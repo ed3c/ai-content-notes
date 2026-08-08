@@ -1,0 +1,78 @@
+name: Materialize AI Content Notes migration
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.bootstrap/**'
+      - '.github/workflows/materialize-migration.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verify payload and materialize repository
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(find .bootstrap -maxdepth 1 -type f -name 'payload.*' | wc -l | tr -d ' ')" = "7"
+          cat .bootstrap/payload.* | base64 --decode > /tmp/ai-content-notes.tar.xz
+          echo "b3a80dd44ade0adf106399b7e1c595220ecabf24f0473a4520cf99d85f62f341  /tmp/ai-content-notes.tar.xz" | sha256sum --check --strict
+          tar -tJf /tmp/ai-content-notes.tar.xz >/tmp/archive-list.txt
+          tar -xJf /tmp/ai-content-notes.tar.xz -C "$GITHUB_WORKSPACE"
+          rm -rf .bootstrap
+          rm -f .github/workflows/materialize-migration.yml
+          rmdir .github/workflows 2>/dev/null || true
+          rmdir .github 2>/dev/null || true
+
+      - name: Validate migrated tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f README.md
+          test -f INDEX.md
+          test -f CONTEXT.md
+          test -f RANK.md
+          test -f MIGRATION_MANIFEST.json
+          test "$(find notes -type f -name '*.md' | wc -l | tr -d ' ')" = "22"
+          test "$(find notes -mindepth 1 -maxdepth 1 -type d | wc -l | tr -d ' ')" = "13"
+          test "$(find . -type f ! -path './.git/*' | wc -l | tr -d ' ')" = "37"
+          test "$(grep -RIl '^repository: ed3c/ai-content-notes$' notes | wc -l | tr -d ' ')" = "22"
+          test "$(grep -RIl '^path: notes/' notes | wc -l | tr -d ' ')" = "22"
+          ! grep -RIl '^repository: ed3c/openwiki-ablation$' notes
+          ! grep -RIl '^path: ai-content-notes/notes/' notes
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          manifest = json.loads(Path('MIGRATION_MANIFEST.json').read_text(encoding='utf-8'))
+          assert manifest['repository'] == 'ed3c/ai-content-notes'
+          assert manifest['branch'] == 'main'
+          assert manifest['note_count'] == 22
+          assert manifest['category_count'] == 13
+          assert len(manifest['notes']) == 22
+          paths = [entry['path'] for entry in manifest['notes']]
+          ids = [entry['content_id'] for entry in manifest['notes']]
+          assert len(paths) == len(set(paths))
+          assert len(ids) == len(set(ids))
+          assert all(Path(path).is_file() for path in paths)
+          assert all(path.startswith('notes/') for path in paths)
+          PY
+
+      - name: Commit materialized repository
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Migrate AI Content Notes from openwiki-ablation'
+          git push origin HEAD:main
