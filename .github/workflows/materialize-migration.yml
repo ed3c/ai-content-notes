@@ -6,12 +6,17 @@ on:
     paths:
       - '.bootstrap/**'
       - '.github/workflows/materialize-migration.yml'
+  issues:
+    types: [opened]
+  workflow_dispatch:
 
 permissions:
   contents: write
+  issues: read
 
 jobs:
   materialize:
+    if: github.event_name != 'issues' || github.event.issue.title == 'materialize-ai-content-notes-migration'
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
