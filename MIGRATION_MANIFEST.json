@@ -1,0 +1,35 @@
+{
+  "schema_version": "migration-manifest@1",
+  "migration_id": "google-docs-to-private-github-markdown",
+  "source": "legacy Google Docs and Google Sheet canonical URLs",
+  "target_repository": "ed3c/ai-content-notes",
+  "status": "incomplete",
+  "expected_legacy_note_count": 22,
+  "materialized_legacy_entries": [],
+  "known_issue": {
+    "repository": "ed3c/ai-content-notes",
+    "issue_number": 2,
+    "title": "materialize-ai-content-notes-migration",
+    "url": "https://github.com/ed3c/ai-content-notes/issues/2"
+  },
+  "completion_contract": [
+    "each legacy path exists at an immutable commit",
+    "frontmatter repository and path match the materialized file",
+    "Google Sheet URL points to the verified private GitHub path",
+    "GitHub read-back succeeds",
+    "no completed status is inferred from a planned path",
+    "source and artifact licenses remain attached"
+  ],
+  "current_contract_files": [
+    "CONTEXT.md",
+    "INDEX.md",
+    "RANK.md",
+    "schemas/claim-map.schema.json",
+    "schemas/note-delta.schema.json",
+    "schemas/rank-entry.schema.json",
+    "governance/CITATION_MAPPING.md",
+    "governance/LICENSE_POLICY.md",
+    "governance/SHEET_CONTRACT.md"
+  ],
+  "note": "An empty materialized_legacy_entries array is deliberate. This manifest does not pretend that the 22 legacy notes exist before path-level read-back evidence is available."
+}
