@@ -1,0 +1,449 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ed3c/ai-content-notes/schemas/claim-map.schema.json",
+  "title": "AI Content Note Atomic Claim Map",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "note",
+    "claims"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "claim-map@1"
+    },
+    "note": {
+      "$ref": "#/$defs/noteBinding"
+    },
+    "claims": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/claim"
+      }
+    }
+  },
+  "$defs": {
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "sha": {
+      "type": "string",
+      "pattern": "^(sha256:[a-f0-9]{64}|git-blob-sha1:[a-f0-9]{40})$"
+    },
+    "noteBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "repository",
+        "path",
+        "blob_sha",
+        "source_url",
+        "category",
+        "note_format"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 3
+        },
+        "title": {
+          "type": "string",
+          "minLength": 3
+        },
+        "repository": {
+          "const": "ed3c/ai-content-notes"
+        },
+        "path": {
+          "type": "string",
+          "pattern": "^notes/[a-z0-9-]+/.+\\.md$"
+        },
+        "blob_sha": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{40}$"
+        },
+        "source_url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "agent-runtime",
+            "evaluation",
+            "security-governance",
+            "retrieval-rag",
+            "ai-infrastructure",
+            "model-serving",
+            "data-trajectory",
+            "full-stack",
+            "android-kotlin",
+            "frontier-models"
+          ]
+        },
+        "note_format": {
+          "const": "zettelkasten-v6.6-cyberpunk"
+        }
+      }
+    },
+    "claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "statement",
+        "status",
+        "source",
+        "note_anchor",
+        "evidence",
+        "mappings",
+        "freshness",
+        "license",
+        "relations",
+        "review"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^claim:[a-z0-9._-]+$"
+        },
+        "kind": {
+          "enum": [
+            "fact",
+            "inference",
+            "assumption",
+            "invariant"
+          ]
+        },
+        "statement": {
+          "type": "string",
+          "minLength": 10
+        },
+        "status": {
+          "enum": [
+            "candidate",
+            "review-required",
+            "superseded",
+            "invalidated",
+            "quarantined"
+          ]
+        },
+        "source": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "canonical_url",
+            "publisher",
+            "retrieved_at",
+            "anchor"
+          ],
+          "properties": {
+            "canonical_url": {
+              "type": "string",
+              "format": "uri"
+            },
+            "publisher": {
+              "type": "string",
+              "minLength": 2
+            },
+            "published_at": {
+              "$ref": "#/$defs/date"
+            },
+            "retrieved_at": {
+              "$ref": "#/$defs/date"
+            },
+            "version": {
+              "type": "string"
+            },
+            "digest": {
+              "$ref": "#/$defs/sha"
+            },
+            "anchor": {
+              "type": "string",
+              "minLength": 2
+            }
+          }
+        },
+        "note_anchor": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "card_ids"
+          ],
+          "properties": {
+            "card_ids": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "pattern": "^[NQCDSPTRGE][0-9]+(?:\\.[0-9]+)?$"
+              }
+            },
+            "section": {
+              "type": "string"
+            },
+            "shadow_evidence": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "evidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "grade",
+            "complete_source",
+            "cross_checked",
+            "locally_reproduced",
+            "sandbox_attested",
+            "production_observed"
+          ],
+          "properties": {
+            "grade": {
+              "enum": [
+                "E0",
+                "E1"
+              ]
+            },
+            "complete_source": {
+              "type": "boolean"
+            },
+            "cross_checked": {
+              "type": "boolean"
+            },
+            "locally_reproduced": {
+              "const": false
+            },
+            "sandbox_attested": {
+              "const": false
+            },
+            "production_observed": {
+              "const": false
+            }
+          }
+        },
+        "mappings": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "domain",
+            "capability_ids",
+            "engineering_lifecycle",
+            "principle_ids",
+            "artifact_planes",
+            "skill_impact"
+          ],
+          "properties": {
+            "domain": {
+              "type": "string"
+            },
+            "capability_ids": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z0-9-]+(?:\\.[a-z0-9-]+)+$"
+              }
+            },
+            "engineering_lifecycle": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "enum": [
+                  "discover",
+                  "learn",
+                  "specify",
+                  "design",
+                  "implement",
+                  "verify",
+                  "secure",
+                  "deploy",
+                  "operate",
+                  "observe",
+                  "migrate",
+                  "retire"
+                ]
+              }
+            },
+            "principle_ids": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "type": "string"
+              }
+            },
+            "artifact_planes": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "enum": [
+                  "code",
+                  "model",
+                  "data",
+                  "trajectory"
+                ]
+              }
+            },
+            "skill_impact": {
+              "enum": [
+                "none",
+                "new-candidate",
+                "update-candidate",
+                "invalidate",
+                "deprecate",
+                "review-and-requalify"
+              ]
+            }
+          }
+        },
+        "freshness": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "stale_after",
+            "revalidate_on"
+          ],
+          "properties": {
+            "stale_after": {
+              "$ref": "#/$defs/date"
+            },
+            "revalidate_on": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "enum": [
+                  "source-change",
+                  "version-change",
+                  "security-advisory",
+                  "contradiction",
+                  "note-blob-change",
+                  "license-change"
+                ]
+              }
+            }
+          }
+        },
+        "license": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "code",
+            "model",
+            "data",
+            "trajectory"
+          ],
+          "properties": {
+            "code": {
+              "$ref": "#/$defs/licensePlane"
+            },
+            "model": {
+              "$ref": "#/$defs/licensePlane"
+            },
+            "data": {
+              "$ref": "#/$defs/licensePlane"
+            },
+            "trajectory": {
+              "$ref": "#/$defs/licensePlane"
+            }
+          }
+        },
+        "relations": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "supersedes",
+            "contradicts",
+            "invalidates"
+          ],
+          "properties": {
+            "supersedes": {
+              "$ref": "#/$defs/claimRefs"
+            },
+            "contradicts": {
+              "$ref": "#/$defs/claimRefs"
+            },
+            "invalidates": {
+              "$ref": "#/$defs/claimRefs"
+            }
+          }
+        },
+        "review": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "pending",
+                "accepted-for-ingestion",
+                "rejected",
+                "needs-source"
+              ]
+            },
+            "reason": {
+              "type": "string"
+            },
+            "reviewer": {
+              "type": "string"
+            },
+            "reviewed_at": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        }
+      }
+    },
+    "claimRefs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^claim:[a-z0-9._-]+$"
+      }
+    },
+    "licensePlane": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "pass",
+            "fail",
+            "unknown",
+            "not-applicable"
+          ]
+        },
+        "identifier": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
