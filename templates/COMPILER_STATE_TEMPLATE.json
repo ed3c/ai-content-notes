@@ -1,0 +1,57 @@
+{
+  "schema_version": "zettelkasten-compiler-state@1",
+  "protocol": "zettelkasten-v7.0-evidence-first-loop-safe",
+  "run_mode": "LOOP",
+  "state_channel": "SIDECAR",
+  "status": "CONTINUE",
+  "source_id": "example-source",
+  "content_id": "example-content",
+  "source_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "registry_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "source_cursor": {
+    "cursor_type": "item",
+    "value": 0,
+    "complete": false
+  },
+  "batch": {
+    "index": 1,
+    "max_cards": 12,
+    "cards_added": 0,
+    "cards_updated": 0,
+    "cards_superseded": 0,
+    "cards_deprecated": 0,
+    "noop": false
+  },
+  "source_queue_empty": false,
+  "counts": {
+    "high_signal_unmapped": 0,
+    "critical_failed_assertions": 0,
+    "duplicate_canonical_keys": 0,
+    "unresolved_links_without_k": 0,
+    "contradictions_without_x": 0,
+    "action_status_misrepresentations": 0,
+    "orphan_evidence": 0
+  },
+  "quality_gates": {
+    "QG-01": "NOT_RUN",
+    "QG-02": "NOT_RUN",
+    "QG-03": "NOT_RUN",
+    "QG-04": "NOT_RUN",
+    "QG-05": "NOT_RUN",
+    "QG-06": "NOT_RUN",
+    "QG-07": "NOT_RUN",
+    "QG-08": "NOT_RUN",
+    "QG-09": "NOT_RUN",
+    "QG-10": "NOT_RUN",
+    "QG-11": "NOT_RUN",
+    "QG-12": "NOT_RUN",
+    "QG-13": "NOT_RUN",
+    "QG-14": "NOT_RUN"
+  },
+  "remaining_work": [
+    "load-source-manifest"
+  ],
+  "blocked_by": [],
+  "retry_count": 0,
+  "updated_at": "2026-08-12T00:00:00Z"
+}

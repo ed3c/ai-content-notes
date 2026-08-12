@@ -1,0 +1,11 @@
+{
+  "schema_version": "zettelkasten-card-registry@1",
+  "protocol": "zettelkasten-v7.0-evidence-first-loop-safe",
+  "source_id": "example-source",
+  "registry_revision": 1,
+  "source_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "cards": {},
+  "canonical_index": {},
+  "evidence": {},
+  "updated_at": "2026-08-12T00:00:00Z"
+}

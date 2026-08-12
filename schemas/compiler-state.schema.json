@@ -1,0 +1,291 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ed3c/ai-content-notes/schemas/compiler-state.schema.json",
+  "title": "Zettelkasten v7 Compiler State",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "protocol",
+    "run_mode",
+    "state_channel",
+    "status",
+    "source_id",
+    "content_id",
+    "source_digest",
+    "registry_digest",
+    "source_cursor",
+    "batch",
+    "source_queue_empty",
+    "counts",
+    "quality_gates",
+    "remaining_work",
+    "updated_at"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "zettelkasten-compiler-state@1"
+    },
+    "protocol": {
+      "const": "zettelkasten-v7.0-evidence-first-loop-safe"
+    },
+    "run_mode": {
+      "enum": ["INTERACTIVE", "LOOP"]
+    },
+    "state_channel": {
+      "enum": ["SIDECAR", "HTML_COMMENT", "NONE"]
+    },
+    "status": {
+      "enum": ["CONTINUE", "DONE", "BLOCKED", "FAILED"]
+    },
+    "source_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"
+    },
+    "content_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "source_digest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "registry_digest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "source_cursor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cursor_type", "value", "complete"],
+      "properties": {
+        "cursor_type": {
+          "enum": ["timestamp", "line", "paragraph", "section", "page", "token", "item", "custom"]
+        },
+        "value": {
+          "type": ["string", "integer"]
+        },
+        "complete": {
+          "type": "boolean"
+        }
+      }
+    },
+    "batch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["index", "max_cards", "cards_added", "cards_updated", "cards_superseded", "cards_deprecated", "noop"],
+      "properties": {
+        "index": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "max_cards": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 12
+        },
+        "cards_added": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "cards_updated": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "cards_superseded": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "cards_deprecated": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "noop": {
+          "type": "boolean"
+        }
+      }
+    },
+    "source_queue_empty": {
+      "type": "boolean"
+    },
+    "counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "high_signal_unmapped",
+        "critical_failed_assertions",
+        "duplicate_canonical_keys",
+        "unresolved_links_without_k",
+        "contradictions_without_x",
+        "action_status_misrepresentations",
+        "orphan_evidence"
+      ],
+      "properties": {
+        "high_signal_unmapped": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "critical_failed_assertions": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "duplicate_canonical_keys": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "unresolved_links_without_k": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "contradictions_without_x": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "action_status_misrepresentations": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "orphan_evidence": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "quality_gates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "QG-01",
+        "QG-02",
+        "QG-03",
+        "QG-04",
+        "QG-05",
+        "QG-06",
+        "QG-07",
+        "QG-08",
+        "QG-09",
+        "QG-10",
+        "QG-11",
+        "QG-12",
+        "QG-13",
+        "QG-14"
+      ],
+      "properties": {
+        "QG-01": { "$ref": "#/$defs/gateState" },
+        "QG-02": { "$ref": "#/$defs/gateState" },
+        "QG-03": { "$ref": "#/$defs/gateState" },
+        "QG-04": { "$ref": "#/$defs/gateState" },
+        "QG-05": { "$ref": "#/$defs/gateState" },
+        "QG-06": { "$ref": "#/$defs/gateState" },
+        "QG-07": { "$ref": "#/$defs/gateState" },
+        "QG-08": { "$ref": "#/$defs/gateState" },
+        "QG-09": { "$ref": "#/$defs/gateState" },
+        "QG-10": { "$ref": "#/$defs/gateState" },
+        "QG-11": { "$ref": "#/$defs/gateState" },
+        "QG-12": { "$ref": "#/$defs/gateState" },
+        "QG-13": { "$ref": "#/$defs/gateState" },
+        "QG-14": { "$ref": "#/$defs/gateState" }
+      }
+    },
+    "remaining_work": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "blocked_by": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true,
+      "default": []
+    },
+    "retry_count": {
+      "type": "integer",
+      "minimum": 0,
+      "default": 0
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": { "const": "DONE" }
+        },
+        "required": ["status"]
+      },
+      "then": {
+        "properties": {
+          "source_queue_empty": { "const": true },
+          "source_cursor": {
+            "properties": {
+              "complete": { "const": true }
+            }
+          },
+          "counts": {
+            "properties": {
+              "high_signal_unmapped": { "const": 0 },
+              "critical_failed_assertions": { "const": 0 },
+              "duplicate_canonical_keys": { "const": 0 },
+              "unresolved_links_without_k": { "const": 0 },
+              "contradictions_without_x": { "const": 0 },
+              "action_status_misrepresentations": { "const": 0 },
+              "orphan_evidence": { "const": 0 }
+            }
+          },
+          "quality_gates": {
+            "properties": {
+              "QG-01": { "const": "PASS" },
+              "QG-02": { "const": "PASS" },
+              "QG-03": { "const": "PASS" },
+              "QG-04": { "const": "PASS" },
+              "QG-05": { "const": "PASS" },
+              "QG-06": { "const": "PASS" },
+              "QG-07": { "const": "PASS" },
+              "QG-08": { "const": "PASS" },
+              "QG-09": { "const": "PASS" },
+              "QG-10": { "const": "PASS" },
+              "QG-11": { "const": "PASS" },
+              "QG-12": { "const": "PASS" },
+              "QG-13": { "const": "PASS" },
+              "QG-14": { "const": "PASS" }
+            }
+          },
+          "remaining_work": {
+            "maxItems": 0
+          },
+          "blocked_by": {
+            "maxItems": 0
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "run_mode": { "const": "LOOP" }
+        },
+        "required": ["run_mode"]
+      },
+      "then": {
+        "properties": {
+          "state_channel": { "const": "SIDECAR" }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "gateState": {
+      "enum": ["PASS", "FAIL", "NOT_RUN"]
+    }
+  }
+}
