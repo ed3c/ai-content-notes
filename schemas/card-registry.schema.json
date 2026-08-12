@@ -1,0 +1,251 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ed3c/ai-content-notes/schemas/card-registry.schema.json",
+  "title": "Zettelkasten v7 Card Registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "protocol",
+    "source_id",
+    "registry_revision",
+    "source_digest",
+    "cards",
+    "canonical_index",
+    "evidence",
+    "updated_at"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "zettelkasten-card-registry@1"
+    },
+    "protocol": {
+      "const": "zettelkasten-v7.0-evidence-first-loop-safe"
+    },
+    "source_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"
+    },
+    "registry_revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "source_digest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "cards": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^[NCQDSTRGEPVXK]-[a-z0-9][a-z0-9-]{2,159}$"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/cardEntry"
+      }
+    },
+    "canonical_index": {
+      "type": "object",
+      "propertyNames": {
+        "minLength": 9
+      },
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[NCQDSTRGEPVXK]-[a-z0-9][a-z0-9-]{2,159}$"
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^EV-[a-z0-9][a-z0-9._:-]{2,127}-[a-z0-9][a-z0-9-]{1,159}$"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/evidenceEntry"
+      }
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "$defs": {
+    "cardEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stable_id",
+        "canonical_key",
+        "series",
+        "lifecycle_status",
+        "revision",
+        "claim_kind",
+        "verification",
+        "confidence",
+        "confidence_basis",
+        "scope",
+        "content_digest",
+        "evidence_ids",
+        "typed_links",
+        "updated_at"
+      ],
+      "properties": {
+        "stable_id": {
+          "type": "string",
+          "pattern": "^[NCQDSTRGEPVXK]-[a-z0-9][a-z0-9-]{2,159}$"
+        },
+        "display_alias": {
+          "type": ["string", "null"],
+          "maxLength": 80
+        },
+        "canonical_key": {
+          "type": "string",
+          "pattern": "^(N|Q|C|D|S|P|T|R|G|E|V|X|K) \\| .+ \\| .+ \\| .+ \\| .+ \\| .+$"
+        },
+        "series": {
+          "enum": ["N", "Q", "C", "D", "S", "P", "T", "R", "G", "E", "V", "X", "K"]
+        },
+        "lifecycle_status": {
+          "enum": ["ACTIVE", "SUPERSEDED", "DEPRECATED"]
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "claim_kind": {
+          "enum": ["SOURCE_STATEMENT", "OBSERVATION", "INFERENCE", "HYPOTHESIS", "NORMATIVE"]
+        },
+        "verification": {
+          "enum": ["UNCHECKED", "SUPPORTED", "CORROBORATED", "TESTED", "CONTESTED", "FALSIFIED"]
+        },
+        "confidence": {
+          "enum": ["HIGH", "MEDIUM", "LOW"]
+        },
+        "confidence_basis": {
+          "type": "string",
+          "minLength": 1
+        },
+        "scope": {
+          "type": "string",
+          "minLength": 1
+        },
+        "content_digest": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^EV-[a-z0-9][a-z0-9._:-]{2,127}-[a-z0-9][a-z0-9-]{1,159}$"
+          },
+          "uniqueItems": true
+        },
+        "typed_links": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/typedLink"
+          }
+        },
+        "supersedes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[NCQDSTRGEPVXK]-[a-z0-9][a-z0-9-]{2,159}$"
+          },
+          "uniqueItems": true,
+          "default": []
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "typedLink": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["edge_type", "relation", "target"],
+      "properties": {
+        "edge_type": {
+          "enum": ["ROOT", "FLOW", "CONFLICT", "ANALOGY", "INSTANCE_OF", "IMPLEMENTS", "VALIDATED_BY", "SUPERSEDES", "DEPENDS_ON", "MITIGATES"]
+        },
+        "relation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "target": {
+          "type": "string",
+          "anyOf": [
+            {
+              "pattern": "^[NCQDSTRGEPVXK]-[a-z0-9][a-z0-9-]{2,159}$"
+            },
+            {
+              "pattern": "^UNRESOLVED::(N|Q|C|D|S|P|T|R|G|E|V|X|K) \\| .+ \\| .+ \\| .+ \\| .+ \\| .+$"
+            }
+          ]
+        }
+      }
+    },
+    "evidenceEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evidence_id",
+        "source_id",
+        "source_type",
+        "locator",
+        "evidence_kind",
+        "verbatim",
+        "context",
+        "supports",
+        "challenges",
+        "secondary"
+      ],
+      "properties": {
+        "evidence_id": {
+          "type": "string",
+          "pattern": "^EV-[a-z0-9][a-z0-9._:-]{2,127}-[a-z0-9][a-z0-9-]{1,159}$"
+        },
+        "source_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"
+        },
+        "source_type": {
+          "enum": ["transcript", "article", "paper", "code", "log", "issue", "interview", "dataset", "observation"]
+        },
+        "locator": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_kind": {
+          "enum": ["quote", "datum", "code", "event", "observation", "experiment", "counterexample"]
+        },
+        "verbatim": {
+          "type": "string",
+          "minLength": 1
+        },
+        "context": {
+          "type": "string"
+        },
+        "supports": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "challenges": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "secondary": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}
