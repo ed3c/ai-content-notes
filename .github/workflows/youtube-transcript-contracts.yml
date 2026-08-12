@@ -1,0 +1,61 @@
+name: YouTube transcript contracts
+
+on:
+  pull_request:
+    paths:
+      - .gitignore
+      - tools/youtube_transcript.py
+      - schemas/youtube-transcript-manifest.schema.json
+      - tests/test_youtube_transcript.py
+      - requirements-youtube-transcript*.txt
+      - requirements-contracts.txt
+      - ruff.toml
+      - docs/YOUTUBE_TRANSCRIPT_PIPELINE.md
+      - .github/workflows/youtube-transcript*.yml
+  push:
+    branches: [main]
+    paths:
+      - .gitignore
+      - tools/youtube_transcript.py
+      - schemas/youtube-transcript-manifest.schema.json
+      - tests/test_youtube_transcript.py
+      - requirements-youtube-transcript*.txt
+      - requirements-contracts.txt
+      - ruff.toml
+      - docs/YOUTUBE_TRANSCRIPT_PIPELINE.md
+      - .github/workflows/youtube-transcript*.yml
+
+permissions:
+  contents: read
+
+env:
+  PYTHONDONTWRITEBYTECODE: "1"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.13"]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: requirements-contracts.txt
+      - name: Reject tracked Python bytecode
+        run: |
+          tracked="$(git ls-files | grep -E '(^|/)(__pycache__/|[^/]+\.py[co]$)' || true)"
+          test -z "$tracked" || { printf '%s\n' "$tracked" >&2; exit 1; }
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install -r requirements-contracts.txt
+      - run: ruff check --output-format=github tools/youtube_transcript.py tests/test_youtube_transcript.py
+      - run: python -m py_compile tools/youtube_transcript.py tests/test_youtube_transcript.py
+      - run: pytest -q tests/test_youtube_transcript.py
+      - name: Assert CLI exposes no bypass interface
+        run: |
+          python tools/youtube_transcript.py --help > /tmp/help.txt
+          ! grep -Eqi -- '--(cookie|proxy|po[-_]?token|impersonat)' /tmp/help.txt

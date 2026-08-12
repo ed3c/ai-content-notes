@@ -47,6 +47,33 @@ rank 1
 
 Do not stop at the first blocked row. Continue until one note succeeds or no eligible rows remain.
 
+### YouTube complete-text acquisition｜YouTube 完整文本取得
+
+For YouTube rows, use the rights-gated pipeline documented in
+`docs/YOUTUBE_TRANSCRIPT_PIPELINE.md` and implemented by
+`tools/youtube_transcript.py`.
+
+```text
+explicit rights basis
+  -> single-video canonicalization
+  -> manual captions
+  -> platform automatic captions
+  -> explicit authorized ASR fallback
+  -> manifest + raw-source digest + timestamped artifacts
+  -> human review
+  -> complete-source decision
+```
+
+Rules:
+
+- Public visibility alone is not a rights basis.
+- Caption acquisition is the default. Audio download requires an explicit ASR gate.
+- No cookie, proxy, browser-session, PO-token-provider, or anti-bot bypass is supported.
+- `manifest.status = needs-review` is not note completion.
+- `manual-caption`, `platform-auto-caption`, and `asr-unreviewed` all require review of technical proper nouns, figures, dates, quotations, and code identifiers.
+- A `blocked` manifest must write the exact acquisition failure to the Sheet and the workflow must continue to the next ranked row.
+- Full transcript/audio artifacts remain private and are never copied into public Skill exports.
+
 ## Phase C — Note validation｜筆記驗證
 
 Required frontmatter:
@@ -120,6 +147,9 @@ The downstream action is always `review-and-requalify`. Note ingestion never rai
 |---|---|
 | duplicate content | count as deduplicated; do not create another note |
 | incomplete text | mark blocked with exact acquisition reason |
+| YouTube rights basis missing | block acquisition; do not invoke caption/audio backend |
+| YouTube caption unavailable | remain blocked or use separately authorized ASR; continue next row |
+| YouTube ASR unreviewed | keep `needs-review`; do not mark note completed |
 | invalid frontmatter/path | abort commit |
 | failed commit | keep Sheet row non-completed |
 | failed read-back | do not write canonical note URL |
