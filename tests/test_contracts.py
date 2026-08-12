@@ -42,14 +42,20 @@ def test_declared_canonical_paths_exist() -> None:
         "MIGRATION_MANIFEST.json",
         "governance/PARAMETERS.md",
         "governance/WORKFLOW.md",
+        "governance/CARD_PROTOCOL_V7_0.md",
+        "governance/CARD_PROTOCOL_MIGRATION_V6_6_TO_V7_0.md",
         "governance/CARD_PROTOCOL_V6_6.md",
         "governance/CITATION_MAPPING.md",
         "governance/LICENSE_POLICY.md",
         "governance/SHEET_CONTRACT.md",
+        "schemas/card-registry.schema.json",
+        "schemas/compiler-state.schema.json",
         "schemas/claim-map.schema.json",
         "schemas/note-delta.schema.json",
         "schemas/rank-entry.schema.json",
         "templates/NOTE_TEMPLATE.md",
+        "templates/CARD_REGISTRY_TEMPLATE.json",
+        "templates/COMPILER_STATE_TEMPLATE.json",
         "templates/LIBRARY_CANDIDATE_TEMPLATE.md",
     ]
     missing = [path for path in expected if not (ROOT / path).exists()]
@@ -58,11 +64,88 @@ def test_declared_canonical_paths_exist() -> None:
 
 def test_all_contract_schemas_are_valid_draft_2020_12() -> None:
     for name in (
+        "card-registry.schema.json",
+        "compiler-state.schema.json",
         "claim-map.schema.json",
         "note-delta.schema.json",
         "rank-entry.schema.json",
     ):
         Draft202012Validator.check_schema(load_json(ROOT / "schemas" / name))
+
+
+def test_v7_templates_are_schema_valid() -> None:
+    registry = load_json(ROOT / "templates" / "CARD_REGISTRY_TEMPLATE.json")
+    state = load_json(ROOT / "templates" / "COMPILER_STATE_TEMPLATE.json")
+    assert schema_errors(registry, "card-registry.schema.json") == []
+    assert schema_errors(state, "compiler-state.schema.json") == []
+
+
+def test_done_state_fails_closed_until_all_gates_and_counts_pass() -> None:
+    state = load_json(ROOT / "templates" / "COMPILER_STATE_TEMPLATE.json")
+    state["status"] = "DONE"
+    errors = schema_errors(state, "compiler-state.schema.json")
+    assert errors
+    assert any("True was expected" in error or "[] is too long" in error for error in errors)
+
+
+def test_done_state_accepts_only_complete_loop_checkpoint() -> None:
+    state = load_json(ROOT / "templates" / "COMPILER_STATE_TEMPLATE.json")
+    state["status"] = "DONE"
+    state["source_queue_empty"] = True
+    state["source_cursor"]["complete"] = True
+    state["remaining_work"] = []
+    state["blocked_by"] = []
+    state["quality_gates"] = {f"QG-{index:02d}": "PASS" for index in range(1, 15)}
+    assert schema_errors(state, "compiler-state.schema.json") == []
+
+
+def test_loop_mode_requires_sidecar_state_channel() -> None:
+    state = load_json(ROOT / "templates" / "COMPILER_STATE_TEMPLATE.json")
+    state["state_channel"] = "HTML_COMMENT"
+    errors = schema_errors(state, "compiler-state.schema.json")
+    assert errors
+    assert any("SIDECAR" in error for error in errors)
+
+
+def test_v7_protocol_is_evidence_first_loop_safe_and_injection_aware() -> None:
+    protocol = (ROOT / "governance" / "CARD_PROTOCOL_V7_0.md").read_text(encoding="utf-8")
+    required = [
+        "v7.0-EVIDENCE-FIRST-LOOP-SAFE",
+        "Evidence Before Narrative",
+        "D → V → X → K",
+        "STABLE_CANONICAL_KEY",
+        "EXACT_TYPED_LINKS",
+        "LOCATOR_MISSING",
+        "prompt injection evidence",
+        "QG-14",
+        "CARD_PATCH",
+        "ASSERTION_REPORT",
+        "NEXT_STATE",
+    ]
+    for marker in required:
+        assert marker in protocol
+    assert protocol.index("D → V → X → K") < protocol.index("C：概念與邊界")
+
+
+def test_v7_note_template_contains_common_header_and_new_series() -> None:
+    template = (ROOT / "templates" / "NOTE_TEMPLATE.md").read_text(encoding="utf-8")
+    required = [
+        "note_format: zettelkasten-v7.0-evidence-first-loop-safe",
+        "**Stable ID**",
+        "**Canonical Key**",
+        "**Claim Kind**",
+        "**Verification**",
+        "**Confidence Basis**",
+        "V-target-assertion-method-environment-version",
+        "X-claim-a-claim-b-conflict-type-scope-time",
+        "K-unknown-impact-scope-time",
+        "**Rollback**",
+        "**Execution Status**",
+    ]
+    for marker in required:
+        assert marker in template
+    assert "[[D系列]]" not in template
+    assert "[[相關證據]]" not in template
 
 
 def test_complete_note_claim_map_is_schema_valid_and_blob_bound() -> None:
