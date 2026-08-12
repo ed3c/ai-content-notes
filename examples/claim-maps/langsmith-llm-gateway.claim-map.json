@@ -1,0 +1,465 @@
+{
+  "schema_version": "claim-map@1",
+  "note": {
+    "id": "langchain:llm-gateway-runtime-controls",
+    "title": "LangSmith LLM Gateway: runtime controls for production agents",
+    "repository": "ed3c/ai-content-notes",
+    "path": "notes/agent-runtime/2026-07-30-langsmith-llm-gateway-runtime-controls.md",
+    "blob_sha": "e3ada83629260ac9267d7ae97f3bbba7c08892a6",
+    "source_url": "https://www.langchain.com/blog/langsmith-llm-gateway-runtime-controls-for-production-agents",
+    "category": "agent-runtime",
+    "note_format": "zettelkasten-v6.6-cyberpunk"
+  },
+  "claims": [
+    {
+      "id": "claim:langsmith.gateway.spend-cap-http-402",
+      "kind": "fact",
+      "statement": "LangSmith LLM Gateway can enforce spend caps at organization, workspace, API-key, and user scopes, and a triggered cap returns HTTP 402.",
+      "status": "candidate",
+      "source": {
+        "canonical_url": "https://www.langchain.com/blog/langsmith-llm-gateway-runtime-controls-for-production-agents",
+        "publisher": "LangChain",
+        "published_at": "2026-07-30",
+        "retrieved_at": "2026-08-09",
+        "version": "public-beta announcement",
+        "anchor": "Spend caps and rate limits"
+      },
+      "note_anchor": {
+        "card_ids": [
+          "C2",
+          "D2",
+          "P2"
+        ],
+        "section": "Budget as an Authorization Boundary",
+        "shadow_evidence": [
+          "cap hit → HTTP 402",
+          "organization/workspace/API key/user scopes"
+        ]
+      },
+      "evidence": {
+        "grade": "E1",
+        "complete_source": true,
+        "cross_checked": false,
+        "locally_reproduced": false,
+        "sandbox_attested": false,
+        "production_observed": false
+      },
+      "mappings": {
+        "domain": "agent-runtime",
+        "capability_ids": [
+          "agent-runtime.llm-gateway",
+          "ai-infrastructure.cost-latency-slo"
+        ],
+        "engineering_lifecycle": [
+          "design",
+          "implement",
+          "verify",
+          "operate"
+        ],
+        "principle_ids": [
+          "evidence-first",
+          "fail-closed",
+          "policy-before-routing"
+        ],
+        "artifact_planes": [
+          "code",
+          "trajectory"
+        ],
+        "skill_impact": "new-candidate"
+      },
+      "freshness": {
+        "stale_after": "2026-09-30",
+        "revalidate_on": [
+          "source-change",
+          "version-change",
+          "security-advisory",
+          "note-blob-change"
+        ]
+      },
+      "license": {
+        "code": {
+          "status": "not-applicable"
+        },
+        "model": {
+          "status": "not-applicable"
+        },
+        "data": {
+          "status": "not-applicable"
+        },
+        "trajectory": {
+          "status": "not-applicable"
+        }
+      },
+      "relations": {
+        "supersedes": [],
+        "contradicts": [],
+        "invalidates": []
+      },
+      "review": {
+        "status": "accepted-for-ingestion",
+        "reason": "Direct product behavior stated in the complete official article. Runtime reproduction remains separate."
+      }
+    },
+    {
+      "id": "claim:langsmith.gateway.per-customer-header-policy",
+      "kind": "fact",
+      "statement": "LangSmith LLM Gateway supports per-customer policy selection through a custom request header without requiring one provider API key per customer.",
+      "status": "candidate",
+      "source": {
+        "canonical_url": "https://www.langchain.com/blog/langsmith-llm-gateway-runtime-controls-for-production-agents",
+        "publisher": "LangChain",
+        "published_at": "2026-07-30",
+        "retrieved_at": "2026-08-09",
+        "version": "public-beta announcement",
+        "anchor": "Per-customer controls"
+      },
+      "note_anchor": {
+        "card_ids": [
+          "C3",
+          "D5",
+          "P4"
+        ],
+        "section": "Policy-Carrying Tenant Identity",
+        "shadow_evidence": [
+          "custom request header",
+          "per-customer controls"
+        ]
+      },
+      "evidence": {
+        "grade": "E1",
+        "complete_source": true,
+        "cross_checked": false,
+        "locally_reproduced": false,
+        "sandbox_attested": false,
+        "production_observed": false
+      },
+      "mappings": {
+        "domain": "agent-runtime",
+        "capability_ids": [
+          "agent-runtime.llm-gateway",
+          "security.oauth-review"
+        ],
+        "engineering_lifecycle": [
+          "design",
+          "implement",
+          "secure",
+          "verify"
+        ],
+        "principle_ids": [
+          "least-privilege",
+          "policy-before-routing",
+          "source-anchoring"
+        ],
+        "artifact_planes": [
+          "code",
+          "trajectory"
+        ],
+        "skill_impact": "new-candidate"
+      },
+      "freshness": {
+        "stale_after": "2026-09-30",
+        "revalidate_on": [
+          "source-change",
+          "version-change",
+          "security-advisory",
+          "note-blob-change"
+        ]
+      },
+      "license": {
+        "code": {
+          "status": "not-applicable"
+        },
+        "model": {
+          "status": "not-applicable"
+        },
+        "data": {
+          "status": "not-applicable"
+        },
+        "trajectory": {
+          "status": "not-applicable"
+        }
+      },
+      "relations": {
+        "supersedes": [],
+        "contradicts": [],
+        "invalidates": []
+      },
+      "review": {
+        "status": "accepted-for-ingestion",
+        "reason": "Direct product behavior stated in the complete official article. Authentication of the header remains an implementation assertion."
+      }
+    },
+    {
+      "id": "claim:langsmith.gateway.redaction-before-provider-and-trace",
+      "kind": "fact",
+      "statement": "LangSmith LLM Gateway can redact PII and secrets before a request reaches a model provider and can control sensitive values written into LangSmith traces.",
+      "status": "candidate",
+      "source": {
+        "canonical_url": "https://www.langchain.com/blog/langsmith-llm-gateway-runtime-controls-for-production-agents",
+        "publisher": "LangChain",
+        "published_at": "2026-07-30",
+        "retrieved_at": "2026-08-09",
+        "version": "public-beta announcement",
+        "anchor": "Data Protection and trace metadata"
+      },
+      "note_anchor": {
+        "card_ids": [
+          "D4",
+          "P5",
+          "G1"
+        ],
+        "section": "PII / Secrets Redaction",
+        "shadow_evidence": [
+          "request redaction before provider",
+          "Gateway events in LangSmith trace metadata"
+        ]
+      },
+      "evidence": {
+        "grade": "E1",
+        "complete_source": true,
+        "cross_checked": false,
+        "locally_reproduced": false,
+        "sandbox_attested": false,
+        "production_observed": false
+      },
+      "mappings": {
+        "domain": "security-governance",
+        "capability_ids": [
+          "agent-runtime.llm-gateway",
+          "security.secret-output-guard"
+        ],
+        "engineering_lifecycle": [
+          "design",
+          "implement",
+          "secure",
+          "verify",
+          "operate"
+        ],
+        "principle_ids": [
+          "fail-closed",
+          "least-privilege",
+          "evidence-first"
+        ],
+        "artifact_planes": [
+          "code",
+          "data",
+          "trajectory"
+        ],
+        "skill_impact": "new-candidate"
+      },
+      "freshness": {
+        "stale_after": "2026-09-30",
+        "revalidate_on": [
+          "source-change",
+          "version-change",
+          "security-advisory",
+          "note-blob-change"
+        ]
+      },
+      "license": {
+        "code": {
+          "status": "not-applicable"
+        },
+        "model": {
+          "status": "not-applicable"
+        },
+        "data": {
+          "status": "not-applicable"
+        },
+        "trajectory": {
+          "status": "not-applicable"
+        }
+      },
+      "relations": {
+        "supersedes": [],
+        "contradicts": [],
+        "invalidates": []
+      },
+      "review": {
+        "status": "accepted-for-ingestion",
+        "reason": "Direct product behavior stated in the complete official article. Exact redaction coverage requires runtime verification."
+      }
+    },
+    {
+      "id": "claim:langsmith.gateway.policy-state-moat",
+      "kind": "inference",
+      "statement": "The durable value of an LLM gateway is more likely to come from accumulated tenant policy, budget, redaction, fallback, and trace state than from provider routing alone.",
+      "status": "review-required",
+      "source": {
+        "canonical_url": "https://www.langchain.com/blog/langsmith-llm-gateway-runtime-controls-for-production-agents",
+        "publisher": "LangChain",
+        "published_at": "2026-07-30",
+        "retrieved_at": "2026-08-09",
+        "version": "public-beta announcement",
+        "anchor": "Combined runtime-control feature set"
+      },
+      "note_anchor": {
+        "card_ids": [
+          "Q1",
+          "S1",
+          "T1"
+        ],
+        "section": "LLM Gateway moat",
+        "shadow_evidence": [
+          "budget policy",
+          "customer identity",
+          "redaction",
+          "fallback outcome",
+          "trace metadata"
+        ]
+      },
+      "evidence": {
+        "grade": "E0",
+        "complete_source": true,
+        "cross_checked": false,
+        "locally_reproduced": false,
+        "sandbox_attested": false,
+        "production_observed": false
+      },
+      "mappings": {
+        "domain": "agent-runtime",
+        "capability_ids": [
+          "agent-runtime.llm-gateway"
+        ],
+        "engineering_lifecycle": [
+          "discover",
+          "learn",
+          "design"
+        ],
+        "principle_ids": [
+          "policy-before-routing",
+          "evidence-first"
+        ],
+        "artifact_planes": [
+          "code",
+          "trajectory"
+        ],
+        "skill_impact": "none"
+      },
+      "freshness": {
+        "stale_after": "2026-09-30",
+        "revalidate_on": [
+          "source-change",
+          "version-change",
+          "contradiction",
+          "note-blob-change"
+        ]
+      },
+      "license": {
+        "code": {
+          "status": "not-applicable"
+        },
+        "model": {
+          "status": "not-applicable"
+        },
+        "data": {
+          "status": "not-applicable"
+        },
+        "trajectory": {
+          "status": "not-applicable"
+        }
+      },
+      "relations": {
+        "supersedes": [],
+        "contradicts": [],
+        "invalidates": []
+      },
+      "review": {
+        "status": "pending",
+        "reason": "Strategic inference from the combined feature set; requires competitive and outcome evidence."
+      }
+    },
+    {
+      "id": "claim:langsmith.gateway.fallback-policy-compatibility",
+      "kind": "invariant",
+      "statement": "A model fallback route must satisfy the same data-residency, safety, tool-capability, and secret-handling policy as the primary route before availability is considered.",
+      "status": "review-required",
+      "source": {
+        "canonical_url": "https://www.langchain.com/blog/langsmith-llm-gateway-runtime-controls-for-production-agents",
+        "publisher": "LangChain",
+        "published_at": "2026-07-30",
+        "retrieved_at": "2026-08-09",
+        "version": "public-beta announcement",
+        "anchor": "Fallback and Data Protection controls"
+      },
+      "note_anchor": {
+        "card_ids": [
+          "Q2",
+          "S3",
+          "G2"
+        ],
+        "section": "Fallback safety boundary",
+        "shadow_evidence": [
+          "cross-provider fallback",
+          "data protection before provider"
+        ]
+      },
+      "evidence": {
+        "grade": "E0",
+        "complete_source": true,
+        "cross_checked": false,
+        "locally_reproduced": false,
+        "sandbox_attested": false,
+        "production_observed": false
+      },
+      "mappings": {
+        "domain": "security-governance",
+        "capability_ids": [
+          "agent-runtime.llm-gateway",
+          "security.policy-downgrade-guard"
+        ],
+        "engineering_lifecycle": [
+          "design",
+          "implement",
+          "secure",
+          "verify",
+          "operate"
+        ],
+        "principle_ids": [
+          "fail-closed",
+          "policy-before-routing",
+          "least-privilege"
+        ],
+        "artifact_planes": [
+          "code",
+          "data",
+          "trajectory"
+        ],
+        "skill_impact": "new-candidate"
+      },
+      "freshness": {
+        "stale_after": "2026-09-30",
+        "revalidate_on": [
+          "source-change",
+          "version-change",
+          "security-advisory",
+          "contradiction",
+          "note-blob-change"
+        ]
+      },
+      "license": {
+        "code": {
+          "status": "not-applicable"
+        },
+        "model": {
+          "status": "not-applicable"
+        },
+        "data": {
+          "status": "not-applicable"
+        },
+        "trajectory": {
+          "status": "not-applicable"
+        }
+      },
+      "relations": {
+        "supersedes": [],
+        "contradicts": [],
+        "invalidates": []
+      },
+      "review": {
+        "status": "pending",
+        "reason": "Governance invariant derived from the note's fallback and redaction risk analysis; requires policy review."
+      }
+    }
+  ]
+}
