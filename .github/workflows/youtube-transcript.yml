@@ -40,10 +40,12 @@ on:
         default: auto
         type: string
       asr_model:
-        description: faster-whisper model
+        description: Reviewed faster-whisper model
         required: true
         default: large-v3
-        type: string
+        type: choice
+        options:
+          - large-v3
       asr_model_revision:
         description: Pinned Hugging Face model Git revision
         required: true
@@ -54,7 +56,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: youtube-transcript-${{ github.event.inputs.mode }}-${{ github.run_id }}
+  group: youtube-transcript-${{ inputs.mode }}-${{ github.run_id }}
   cancel-in-progress: false
 
 env:
@@ -63,9 +65,14 @@ env:
 
 jobs:
   captions:
-    if: ${{ github.event.inputs.mode == 'captions' }}
+    if: ${{ inputs.mode == 'captions' }}
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    env:
+      INPUT_VIDEO_URL: ${{ inputs.video_url }}
+      INPUT_LANGUAGES: ${{ inputs.languages }}
+      INPUT_RIGHTS_BASIS: ${{ inputs.rights_basis }}
+      INPUT_RIGHTS_REFERENCE: ${{ inputs.rights_reference }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -85,25 +92,27 @@ jobs:
         continue-on-error: true
         shell: bash
         run: |
+          set -euo pipefail
           python tools/youtube_transcript.py \
-            --url "${{ github.event.inputs.video_url }}" \
+            --url "$INPUT_VIDEO_URL" \
             --output-dir "$OUTPUT_DIR" \
             --mode captions \
-            --languages "${{ github.event.inputs.languages }}" \
-            --rights-basis "${{ github.event.inputs.rights_basis }}" \
-            --rights-reference "${{ github.event.inputs.rights_reference }}" \
-            --attested-by "github:${{ github.actor }}"
+            --languages "$INPUT_LANGUAGES" \
+            --rights-basis "$INPUT_RIGHTS_BASIS" \
+            --rights-reference "$INPUT_RIGHTS_REFERENCE" \
+            --attested-by "github:$GITHUB_ACTOR"
       - name: Validate manifest when present
         if: ${{ always() }}
         shell: bash
         run: |
+          set -euo pipefail
           if test -f "$OUTPUT_DIR/manifest.json"; then
             python - <<'PY'
           import json
           from pathlib import Path
           from jsonschema import Draft202012Validator, FormatChecker
-          schema = json.loads(Path("schemas/youtube-transcript-manifest.schema.json").read_text())
-          manifest = json.loads(Path("transcript-evidence/manifest.json").read_text())
+          schema = json.loads(Path("schemas/youtube-transcript-manifest.schema.json").read_text(encoding="utf-8"))
+          manifest = json.loads(Path("transcript-evidence/manifest.json").read_text(encoding="utf-8"))
           Draft202012Validator(schema, format_checker=FormatChecker()).validate(manifest)
           PY
           else
@@ -123,9 +132,16 @@ jobs:
         run: exit 1
 
   asr:
-    if: ${{ github.event.inputs.mode == 'asr' }}
+    if: ${{ inputs.mode == 'asr' }}
     runs-on: [self-hosted, linux, x64, gpu, youtube-transcript]
     timeout-minutes: 180
+    env:
+      INPUT_VIDEO_URL: ${{ inputs.video_url }}
+      INPUT_RIGHTS_BASIS: ${{ inputs.rights_basis }}
+      INPUT_RIGHTS_REFERENCE: ${{ inputs.rights_reference }}
+      INPUT_ASR_LANGUAGE: ${{ inputs.asr_language }}
+      INPUT_ASR_MODEL: ${{ inputs.asr_model }}
+      INPUT_ASR_MODEL_REVISION: ${{ inputs.asr_model_revision }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -145,30 +161,32 @@ jobs:
         continue-on-error: true
         shell: bash
         run: |
+          set -euo pipefail
           python tools/youtube_transcript.py \
-            --url "${{ github.event.inputs.video_url }}" \
+            --url "$INPUT_VIDEO_URL" \
             --output-dir "$OUTPUT_DIR" \
             --mode asr \
             --allow-audio-download \
-            --asr-language "${{ github.event.inputs.asr_language }}" \
-            --asr-model "${{ github.event.inputs.asr_model }}" \
-            --asr-model-revision "${{ github.event.inputs.asr_model_revision }}" \
+            --asr-language "$INPUT_ASR_LANGUAGE" \
+            --asr-model "$INPUT_ASR_MODEL" \
+            --asr-model-revision "$INPUT_ASR_MODEL_REVISION" \
             --asr-device cuda \
             --asr-compute-type float16 \
-            --rights-basis "${{ github.event.inputs.rights_basis }}" \
-            --rights-reference "${{ github.event.inputs.rights_reference }}" \
-            --attested-by "github:${{ github.actor }}"
+            --rights-basis "$INPUT_RIGHTS_BASIS" \
+            --rights-reference "$INPUT_RIGHTS_REFERENCE" \
+            --attested-by "github:$GITHUB_ACTOR"
       - name: Validate manifest when present
         if: ${{ always() }}
         shell: bash
         run: |
+          set -euo pipefail
           if test -f "$OUTPUT_DIR/manifest.json"; then
             python - <<'PY'
           import json
           from pathlib import Path
           from jsonschema import Draft202012Validator, FormatChecker
-          schema = json.loads(Path("schemas/youtube-transcript-manifest.schema.json").read_text())
-          manifest = json.loads(Path("transcript-evidence/manifest.json").read_text())
+          schema = json.loads(Path("schemas/youtube-transcript-manifest.schema.json").read_text(encoding="utf-8"))
+          manifest = json.loads(Path("transcript-evidence/manifest.json").read_text(encoding="utf-8"))
           Draft202012Validator(schema, format_checker=FormatChecker()).validate(manifest)
           PY
           else
