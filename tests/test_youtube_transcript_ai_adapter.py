@@ -62,7 +62,7 @@ def test_parse_broker_response_rejects_source_video_mismatch() -> None:
         adapter.parse_broker_response(sample_response(), "dQw4w9WgXcQ")
 
 
-def test_parse_broker_response_rejects_non_monotonic_timestamps() -> None:
+def test_parse_broker_response_rejects_descending_timestamps() -> None:
     adapter = load_adapter()
     response = """# Transcript: Bad order
 Source video: https://www.youtube.com/watch?v=CvRngaQZQ3Y
@@ -71,7 +71,10 @@ Language: English · Duration: 0:30 · Words: 4
 [0:20] Later.
 [0:10] Earlier.
 """
-    with pytest.raises(adapter.BrokerTranscriptError, match="non-monotonic"):
+    with pytest.raises(
+        adapter.BrokerTranscriptError,
+        match="non-monotonic|ends before it starts",
+    ):
         adapter.parse_broker_response(response, "CvRngaQZQ3Y")
 
 
