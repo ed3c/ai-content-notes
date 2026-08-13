@@ -63,7 +63,7 @@ env:
 
 jobs:
   acquire:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     timeout-minutes: 25
     steps:
       - name: Check out AI Content Notes
@@ -210,6 +210,7 @@ jobs:
           summary = {
               "schema_version": "transcript-evidence-chain@1",
               "video_id": "CvRngaQZQ3Y",
+              "runner_os": "macOS",
               "attempts": entries,
               "candidate": candidate,
               "note_completion_allowed": False,
@@ -227,7 +228,7 @@ jobs:
         if: ${{ always() }}
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: transcript-evidence-chain-CvRngaQZQ3Y-${{ github.run_id }}
+          name: transcript-evidence-chain-macos-CvRngaQZQ3Y-${{ github.run_id }}
           path: transcript-evidence/
           if-no-files-found: error
           retention-days: 7
