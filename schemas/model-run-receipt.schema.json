@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ed3c/ai-content-notes/schemas/model-run-receipt.schema.json",
+  "title": "Provider-neutral model run receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "run_id",
+    "provider",
+    "model_api_identifier",
+    "prompt",
+    "source_pack",
+    "sampling",
+    "raw_response",
+    "compiled_output",
+    "created_at"
+  ],
+  "properties": {
+    "schema_version": {"const": "model-run-receipt@1"},
+    "run_id": {"type": "string", "minLength": 1},
+    "provider": {"type": "string", "minLength": 1},
+    "model_api_identifier": {"type": "string", "minLength": 1},
+    "model_display_name": {"type": ["string", "null"]},
+    "prompt": {"$ref": "#/$defs/artifact"},
+    "source_pack": {"$ref": "#/$defs/artifact"},
+    "sampling": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["temperature", "top_p", "seed", "max_output_tokens"],
+      "properties": {
+        "temperature": {"type": ["number", "string", "null"]},
+        "top_p": {"type": ["number", "string", "null"]},
+        "seed": {"type": ["integer", "string", "null"]},
+        "max_output_tokens": {"type": ["integer", "null"], "minimum": 1}
+      }
+    },
+    "raw_response": {"$ref": "#/$defs/artifact"},
+    "compiled_output": {"$ref": "#/$defs/artifact"},
+    "created_at": {"type": "string", "format": "date-time"}
+  },
+  "$defs": {
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256", "bytes"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"},
+        "bytes": {"type": "integer", "minimum": 0}
+      }
+    }
+  }
+}
