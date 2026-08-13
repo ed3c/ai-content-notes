@@ -19,12 +19,12 @@ from ai_video_transcriber_contract import (
     AUTHORIZATION_STATUSES,
     DEFAULT_UPSTREAM_COMMIT,
     AdapterError,
+    artifact_entry,
     base_manifest,
     build_source_manifest,
     build_validation,
     canonical_video_url,
     caption_kind,
-    artifact_entry,
     parse_upstream_markdown,
     published_date,
     utc_now,
@@ -74,7 +74,11 @@ async def acquire(args: argparse.Namespace) -> tuple[dict[str, Any], int]:
             upstream_root, canonical_url, output_dir / "upstream-work"
         )
         cues = parse_upstream_markdown(upstream_markdown)
-        duration = float(metadata["duration"]) if metadata.get("duration") is not None else None
+        duration = (
+            float(metadata["duration"])
+            if metadata.get("duration") is not None
+            else None
+        )
         kind = caption_kind(metadata, language)
         artifacts = write_transcript_artifacts(
             output_dir,
@@ -95,35 +99,78 @@ async def acquire(args: argparse.Namespace) -> tuple[dict[str, Any], int]:
             authorization_status=args.authorization_status,
         )
         source_manifest_path = output_dir / "source-manifest.json"
-        artifacts["source_manifest"] = artifact_entry(source_manifest_path, output_diŠBˆX[šY™\İÈšY[È—K\]JˆÂˆ]Hˆ]HÜˆY]Y]K™Ù]
-]HŠKˆ˜Ú[›™[ˆY]Y]K™Ù]
-˜Ú[›™[ŠHÜˆY]Y]K™Ù]
-\ØY\ˆŠKˆ˜Ú[›™[ÚYˆY]Y]K™Ù]
-˜Ú[›™[ÚYŠHÜˆY]Y]K™Ù]
-\ØY\—ÚYŠKˆ™\˜][Û—ÜÙXÛÛ™Èˆ\˜][Û‹ˆœX›\ÚYØ]ˆX›\ÚYÙ]JY]Y]JKˆBˆ
-BˆX[šY™\İÈ˜XÜ]Z\Ú][Ûˆ—K\]JÈ˜Ø\[Û—ÚÚ[™ˆÚ[™›[™İXYÙHˆ[™İXYÙ_JBˆX[šY™\İÈ˜[Y][Ûˆ—HHZ[İ˜[Y][ÛŠİY\Ë\˜][ÛŠBˆYˆ[™İXYÙH[™[™İXYÙH›İ[ˆX[šY™\İÈ˜XÜ]Z\Ú][Ûˆ—VÈœ™\]Y\İYÛ[™İXYÙ\È—N‚ˆX[šY™\İÈ˜[Y][Ûˆ—VÈØ\›š[™ÜÈ—K˜\[™
-ˆ\İ™X[H[™İXYÙHš[Üš]HÙ[XİYH˜XÚÈİ]ÚYHH™\]Y\İY\İ‚ˆ
-BˆYˆ\™ÜË˜]]Üš^˜][Û—Üİ]\ÈOH™\šYšYY‚ˆX[šY™\İÈ˜[Y][Ûˆ—VÈØ\›š[™ÜÈ—K˜\[™
-ˆ˜]]Üš^˜][Ûˆ\È[™\šYšYYY]˜[X][Û‹[Û›NÈÈ›İX\šÈH›İHÛÛ\]Y‚ˆ
-BˆX[šY™\İÈ˜\Y˜XİÈ—HH\Y˜XİÂˆX[šY™\İÈœİ]\È—HH›™YYË\™]šY]È‚ˆX[šY™\İÈ™\œ›Üˆ—HH›Û™BˆX[šY™\İÈœÛİ\˜ÙWÛX[šY™\İÙYÙ\İ—HHˆœÚLMØ\Y˜XİÖÉÜÛİ\˜ÙWÛX[šY™\İ	×VÉÜÚLM‰×_H‚ˆX[šY™\İÈœÛİ\˜ÙWÛX[šY™\İÚY—HHÛİ\˜ÙWÛX[šY™\İÈ›X[šY™\İÚY—BˆÜš]WÚœÛÛŠX[šY™\İÜ]X[šY™\İ
-Bˆ™]\›ˆX[šY™\İˆ^Ù\^Ù\[Ûˆ\È^ÎˆÈ›ÜXNˆ“LHHÛÛ™\[[YH˜Z[\™\ÈÈ›ØÚÙY]šY[˜ÙBˆX[šY™\İÈœİ]\È—HH˜›ØÚÙY‚ˆX[šY™\İÈ™\œ›Üˆ—HHÂˆ\Hˆ\J^ÊK—×Û˜[YW×Ëˆ›Y\ÜØYÙHˆ™KœİXŠˆ—ÊÈ‹ˆ‹İŠ^ÊJKœİš\
+        artifacts["source_manifest"] = artifact_entry(source_manifest_path, output_dir)
+        manifest["video"].update(
+            {
+                "title": title or metadata.get("title"),
+                "channel": metadata.get("channel") or metadata.get("uploader"),
+                "channel_id": metadata.get("channel_id")
+                or metadata.get("uploader_id"),
+                "duration_seconds": duration,
+                "published_at": published_date(metadata),
+            }
+        )
+        manifest["acquisition"].update(
+            {"caption_kind": kind, "language": language}
+        )
+        manifest["validation"] = build_validation(cues, duration)
+        if (
+            language
+            and language not in manifest["acquisition"]["requested_languages"]
+        ):
+            manifest["validation"]["warnings"].append(
+                "upstream language priority selected a track outside the requested list"
+            )
+        if args.authorization_status != "verified":
+            manifest["validation"]["warnings"].append(
+                "authorization is unverified-evaluation-only; do not mark the note completed"
+            )
+        manifest["artifacts"] = artifacts
+        manifest["status"] = "needs-review"
+        manifest["error"] = None
+        manifest["source_manifest_digest"] = (
+            f"sha256:{artifacts['source_manifest']['sha256']}"
+        )
+        manifest["source_manifest_id"] = source_manifest["manifest_id"]
+        write_json(manifest_path, manifest)
+        return manifest, 0
+    except Exception as exc:  # noqa: BLE001 - convert runtime failures to blocked evidence
+        manifest["status"] = "blocked"
+        manifest["error"] = {
+            "type": type(exc).__name__,
+            "message": re.sub(r"\s+", " ", str(exc)).strip()[:2000],
+        }
+        manifest["validation"]["warnings"] = [
+            "acquisition failed closed; do not compile a completed note from this run"
+        ]
+        write_json(manifest_path, manifest)
+        return manifest, 2
 
-VÎŒŒKˆBˆX[šY™\İÈ˜[Y][Ûˆ—VÈØ\›š[™ÜÈ—HHÂˆ˜XÜ]Z\Ú][Ûˆ˜Z[YÛÜÙYÈÈ›İÛÛ\[HHÛÛ\]Y›İHœ›ÛH\È[ˆ‚ˆBˆÜš]WÚœÛÛŠX[šY™\İÜ]X[šY™\İ
-Bˆ™]\›ˆX[šY™\İ‚‚‚™YˆZ[Ü\œÙ\Š
-HOˆ\™Ü\œÙK\™İ[Y[\œÙ\‚ˆ\œÙ\ˆH\™Ü\œÙK\™İ[Y[\œÙ\Š\ØÜš\[ÛW×ÙØ××ÊBˆ\œÙ\‹˜YØ\™İ[Y[
-‹K]\›‹™\]Z\™YUYJBˆ\œÙ\‹˜YØ\™İ[Y[
-‹K[İ]]Y\ˆ‹™\]Z\™YUYJBˆ\œÙ\‹˜YØ\™İ[Y[
-‹K]\İ™X[K\›Ûİ‹™\]Z\™YUYJBˆ\œÙ\‹˜YØ\™İ[Y[
-‹K]\İ™X[KXÛÛ[Z]‹Y˜][QQUSÕTÕ‘PSWĞÓÓSRU
-Bˆ\œÙ\‹˜YØ\™İ[Y[
-‹K\›Û\\]‹™\]Z\™YUYJBˆ\œÙ\‹˜YØ\™İ[Y[
-‹K[[™İXYÙ\È‹Y˜][H™[‹šR[šUËš˜HŠBˆ\œÙ\‹˜YØ\™İ[Y[
-ˆ‹KX]]Üš^˜][Û‹\İ]\È‹ˆÚÚXÙ\Ï\ÛÜY
-UUÔ’VUSÓ—ÔÕUTÑTÊKˆ™\]Z\™YUYKˆ
-Bˆ\œÙ\‹˜YØ\™İ[Y[
-‹K\šYÚËX˜\Ú\È‹™\]Z\™YUYJBˆ\œÙ\‹˜YØ\™İ[Y[
-‹K\šYÚË\™Y™\™[˜ÙH‹™\]Z\™YUYJBˆ\œÙ\‹˜YØ\™İ[Y[
-‹KX]\İYXH‹™\]Z\™YUYJBˆ™]\›ˆ\œÙ\‚‚‚™YˆXZ[Š\™İˆÙ\]Y[˜ÙVÜİ—H›Û™HH›Û™JHOˆ[‚ˆ\™ÜÈHZ[Ü\œÙ\Š
-Kœ\œÙWØ\™ÜÊ\™İŠBˆË™]\›—ØÛÙHH\Ş[˜Ú[Ëœ[ŠXÜ]Z\™J\™ÜÊJBˆ™]\›ˆ™]\›—ØÛÙB‚‚šYˆ×Û˜[YW×ÈOH—×ÛXZ[—×È‚ˆ˜Z\ÙHŞ\İ[Q^]
-XZ[Š
-JB
+
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--url", required=True)
+    parser.add_argument("--output-dir", required=True)
+    parser.add_argument("--upstream-root", required=True)
+    parser.add_argument("--upstream-commit", default=DEFAULT_UPSTREAM_COMMIT)
+    parser.add_argument("--prompt-path", required=True)
+    parser.add_argument("--languages", default="en,zh-Hant,zh-TW,zh,ja")
+    parser.add_argument(
+        "--authorization-status",
+        choices=sorted(AUTHORIZATION_STATUSES),
+        required=True,
+    )
+    parser.add_argument("--rights-basis", required=True)
+    parser.add_argument("--rights-reference", required=True)
+    parser.add_argument("--attested-by", required=True)
+    return parser
+
+
+def main(argv: Sequence[str] | None = None) -> int:
+    args = build_parser().parse_args(argv)
+    _, return_code = asyncio.run(acquire(args))
+    return return_code
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
