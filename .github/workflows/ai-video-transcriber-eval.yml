@@ -1,0 +1,314 @@
+name: AI-Video-Transcriber evidence evaluation
+
+on:
+  push:
+    branches:
+      - agent/ai-video-transcriber-cvrngaqzq3y
+    paths:
+      - .github/workflows/ai-video-transcriber-eval.yml
+      - tools/ai_video_transcriber_adapter.py
+      - tools/ai_video_transcriber_contract.py
+      - tools/ai_video_transcriber_upstream.py
+      - tools/youtube_direct_caption_adapter.py
+      - tools/youtube_transcript_ai_adapter.py
+      - tools/normalize_rolling_transcript.py
+      - tests/test_ai_video_transcriber_adapter.py
+      - tests/test_youtube_direct_caption_adapter.py
+      - tests/test_youtube_transcript_ai_adapter.py
+      - tests/test_normalize_rolling_transcript.py
+      - schemas/ai-video-transcriber-evidence.schema.json
+      - schemas/youtube-direct-caption-evidence.schema.json
+      - schemas/youtube-transcript-ai-evidence.schema.json
+      - schemas/source-manifest.schema.json
+      - requirements-youtube-direct-caption.txt
+      - governance/CARD_PROTOCOL_V7_1.md
+      - governance/TRANSCRIPT_BACKENDS.json
+  workflow_dispatch:
+    inputs:
+      video_url:
+        description: Single YouTube video URL
+        required: true
+        default: https://www.youtube.com/watch?v=CvRngaQZQ3Y
+        type: string
+      authorization_status:
+        description: Verified rights or private evaluation only
+        required: true
+        default: unverified-evaluation-only
+        type: choice
+        options:
+          - unverified-evaluation-only
+          - verified
+      rights_basis:
+        description: Use user-directed-evaluation unless verified rights are documented
+        required: true
+        default: user-directed-evaluation
+        type: string
+      rights_reference:
+        description: Reviewable non-secret reference
+        required: true
+        default: chat-request-2026-08-13:CvRngaQZQ3Y
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ai-video-transcriber-${{ github.ref }}-${{ github.event_name }}
+  cancel-in-progress: false
+
+env:
+  UPSTREAM_COMMIT: ade833b790d482f7a5c0a722c67bc33f71e9d2b5
+  EVIDENCE_ROOT: transcript-evidence
+  PRIMARY_DIR: transcript-evidence/primary-ai-video-transcriber
+  DIRECT_DIR: transcript-evidence/fallback-youtube-transcript-api
+  BROKER_DIR: transcript-evidence/fallback-youtube-transcript-ai
+  NORMALIZED_DIR: transcript-evidence/normalized
+  INPUT_VIDEO_URL: ${{ github.event_name == 'workflow_dispatch' && inputs.video_url || 'https://www.youtube.com/watch?v=CvRngaQZQ3Y' }}
+  INPUT_AUTHORIZATION_STATUS: ${{ github.event_name == 'workflow_dispatch' && inputs.authorization_status || 'unverified-evaluation-only' }}
+  INPUT_RIGHTS_BASIS: ${{ github.event_name == 'workflow_dispatch' && inputs.rights_basis || 'user-directed-evaluation' }}
+  INPUT_RIGHTS_REFERENCE: ${{ github.event_name == 'workflow_dispatch' && inputs.rights_reference || 'chat-request-2026-08-13:CvRngaQZQ3Y' }}
+
+jobs:
+  acquire:
+    runs-on: macos-latest
+    timeout-minutes: 25
+    steps:
+      - name: Check out AI Content Notes
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Check out pinned AI-Video-Transcriber
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: wendy7756/AI-Video-Transcriber
+          ref: ade833b790d482f7a5c0a722c67bc33f71e9d2b5
+          path: vendor/AI-Video-Transcriber
+          persist-credentials: false
+
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: |
+            requirements-contracts.txt
+            requirements-youtube-transcript.txt
+            requirements-youtube-direct-caption.txt
+
+      - uses: denoland/setup-deno@22d081ff2d3a40755e97629de92e3bcbfa7cf2ed # v2.0.5
+        with:
+          deno-version: lts
+
+      - run: python -m pip install --upgrade pip
+      - run: >-
+          python -m pip install
+          -r requirements-contracts.txt
+          -r requirements-youtube-transcript.txt
+          -r requirements-youtube-direct-caption.txt
+      - run: >-
+          python -m py_compile
+          tools/ai_video_transcriber_adapter.py
+          tools/youtube_direct_caption_adapter.py
+          tools/youtube_transcript_ai_adapter.py
+          tools/normalize_rolling_transcript.py
+          tests/test_ai_video_transcriber_adapter.py
+          tests/test_youtube_direct_caption_adapter.py
+          tests/test_youtube_transcript_ai_adapter.py
+          tests/test_normalize_rolling_transcript.py
+      - run: >-
+          pytest -q
+          tests/test_ai_video_transcriber_adapter.py
+          tests/test_youtube_direct_caption_adapter.py
+          tests/test_youtube_transcript_ai_adapter.py
+          tests/test_normalize_rolling_transcript.py
+
+      - name: Attempt pinned AI-Video-Transcriber captions
+        id: primary
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/ai_video_transcriber_adapter.py \
+            --url "$INPUT_VIDEO_URL" \
+            --output-dir "$PRIMARY_DIR" \
+            --upstream-root vendor/AI-Video-Transcriber \
+            --upstream-commit "$UPSTREAM_COMMIT" \
+            --prompt-path governance/CARD_PROTOCOL_V7_1.md \
+            --languages en,zh-Hant,zh-TW,zh,ja \
+            --authorization-status "$INPUT_AUTHORIZATION_STATUS" \
+            --rights-basis "$INPUT_RIGHTS_BASIS" \
+            --rights-reference "$INPUT_RIGHTS_REFERENCE" \
+            --attested-by "github:$GITHUB_ACTOR"
+
+      - name: Attempt direct no-cookie caption fallback
+        id: direct
+        if: ${{ steps.primary.outcome == 'failure' }}
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/youtube_direct_caption_adapter.py \
+            --url "$INPUT_VIDEO_URL" \
+            --output-dir "$DIRECT_DIR" \
+            --prompt-path governance/CARD_PROTOCOL_V7_1.md \
+            --languages en,zh-Hant,zh-TW,zh,ja \
+            --authorization-status "$INPUT_AUTHORIZATION_STATUS" \
+            --rights-basis "$INPUT_RIGHTS_BASIS" \
+            --rights-reference "$INPUT_RIGHTS_REFERENCE" \
+            --attested-by "github:$GITHUB_ACTOR"
+
+      - name: Attempt documented transcript broker fallback
+        id: broker
+        if: ${{ steps.primary.outcome == 'failure' && steps.direct.outcome == 'failure' }}
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/youtube_transcript_ai_adapter.py \
+            --url "$INPUT_VIDEO_URL" \
+            --output-dir "$BROKER_DIR" \
+            --prompt-path governance/CARD_PROTOCOL_V7_1.md \
+            --authorization-status "$INPUT_AUTHORIZATION_STATUS" \
+            --rights-basis "$INPUT_RIGHTS_BASIS" \
+            --rights-reference "$INPUT_RIGHTS_REFERENCE" \
+            --attested-by "github:$GITHUB_ACTOR"
+
+      - name: Validate evidence chain
+        id: validate
+        if: ${{ always() }}
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from jsonschema import Draft202012Validator, FormatChecker
+
+          root = Path("transcript-evidence")
+          source_schema = json.loads(Path("schemas/source-manifest.schema.json").read_text(encoding="utf-8"))
+          entries = []
+          specs = [
+              (
+                  "primary-ai-video-transcriber",
+                  root / "primary-ai-video-transcriber",
+                  Path("schemas/ai-video-transcriber-evidence.schema.json"),
+              ),
+              (
+                  "fallback-youtube-transcript-api",
+                  root / "fallback-youtube-transcript-api",
+                  Path("schemas/youtube-direct-caption-evidence.schema.json"),
+              ),
+              (
+                  "fallback-youtube-transcript-ai",
+                  root / "fallback-youtube-transcript-ai",
+                  Path("schemas/youtube-transcript-ai-evidence.schema.json"),
+              ),
+          ]
+          for name, directory, schema_path in specs:
+              path = directory / "manifest.json"
+              if not path.is_file():
+                  entries.append({"backend": name, "status": "NOT_RUN"})
+                  continue
+              manifest = json.loads(path.read_text(encoding="utf-8"))
+              schema = json.loads(schema_path.read_text(encoding="utf-8"))
+              Draft202012Validator(schema, format_checker=FormatChecker()).validate(manifest)
+              entry = {
+                  "backend": name,
+                  "status": manifest["status"],
+                  "error": manifest.get("error"),
+                  "manifest_path": path.as_posix(),
+              }
+              if manifest["status"] == "needs-review":
+                  source_path = directory / "source-manifest.json"
+                  transcript_path = directory / "transcript.json"
+                  if not source_path.is_file() or not transcript_path.is_file():
+                      raise SystemExit(f"{name} succeeded without source/transcript artifacts")
+                  source = json.loads(source_path.read_text(encoding="utf-8"))
+                  Draft202012Validator(
+                      source_schema, format_checker=FormatChecker()
+                  ).validate(source)
+                  entry.update(
+                      {
+                          "source_manifest_path": source_path.as_posix(),
+                          "transcript_path": transcript_path.as_posix(),
+                          "source_manifest_id": source["manifest_id"],
+                      }
+                  )
+              entries.append(entry)
+
+          candidate = next(
+              (entry for entry in entries if entry["status"] == "needs-review"),
+              None,
+          )
+          summary = {
+              "schema_version": "transcript-evidence-chain@1",
+              "video_id": "CvRngaQZQ3Y",
+              "runner_os": "macOS",
+              "attempts": entries,
+              "candidate": candidate,
+              "note_completion_allowed": False,
+              "independent_corroboration_count": 0,
+          }
+          root.mkdir(parents=True, exist_ok=True)
+          (root / "chain-summary.json").write_text(
+              json.dumps(summary, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+              encoding="utf-8",
+          )
+          if candidate is None:
+              raise SystemExit("all transcript backends were blocked")
+          PY
+
+      - name: Build auditable normalized transcript view
+        id: normalize
+        if: ${{ steps.validate.outcome == 'success' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          TRANSCRIPT_PATH=$(python - <<'PY'
+          import json
+          from pathlib import Path
+
+          summary = json.loads(Path("transcript-evidence/chain-summary.json").read_text(encoding="utf-8"))
+          print(summary["candidate"]["transcript_path"])
+          PY
+          )
+          python tools/normalize_rolling_transcript.py \
+            --transcript "$TRANSCRIPT_PATH" \
+            --output-dir "$NORMALIZED_DIR"
+
+      - name: Upload private evidence artifact
+        if: ${{ always() }}
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: transcript-evidence-chain-CvRngaQZQ3Y-${{ github.run_id }}
+          path: transcript-evidence/
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Require one validated transcript candidate and normalized view
+        if: ${{ always() }}
+        env:
+          VALIDATION_OUTCOME: ${{ steps.validate.outcome }}
+          NORMALIZATION_OUTCOME: ${{ steps.normalize.outcome }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$VALIDATION_OUTCOME" = success
+          test "$NORMALIZATION_OUTCOME" = success
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          summary = json.loads(Path("transcript-evidence/chain-summary.json").read_text(encoding="utf-8"))
+          if summary["candidate"] is None:
+              raise SystemExit("no transcript candidate")
+          report = json.loads(Path("transcript-evidence/normalized/normalization-report.json").read_text(encoding="utf-8"))
+          if report["normalization_status"] != "REVIEW_REQUIRED":
+              raise SystemExit("unexpected normalization status")
+          metrics = report["metrics"]
+          if metrics["normalized_word_count"] <= 0:
+              raise SystemExit("normalized transcript is empty")
+          if metrics["raw_subject_word_count"] < metrics["normalized_word_count"]:
+              raise SystemExit("normalization added words")
+          PY

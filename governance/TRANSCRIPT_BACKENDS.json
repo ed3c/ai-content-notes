@@ -1,0 +1,71 @@
+{
+  "schema_version": "transcript-backend-registry@1",
+  "backends": [
+    {
+      "id": "native-youtube-evidence",
+      "implementation": "tools/youtube_transcript.py",
+      "role": "canonical-caption-or-authorized-asr-candidate",
+      "raw_platform_caption_retained": true,
+      "note_completion_authority": false
+    },
+    {
+      "id": "ai-video-transcriber-captions",
+      "repository": "wendy7756/AI-Video-Transcriber",
+      "commit": "ade833b790d482f7a5c0a722c67bc33f71e9d2b5",
+      "license": "Apache-2.0",
+      "module": "backend/video_processor.py",
+      "entrypoint": "VideoProcessor.fetch_subtitles",
+      "adapter": "tools/ai_video_transcriber_adapter.py",
+      "role": "primary-review-only-caption-candidate",
+      "source_dependency_policy": "youtube-video-id",
+      "independent_corroboration_authority": false,
+      "raw_platform_caption_retained": false,
+      "note_completion_authority": false,
+      "known_constraints": [
+        "upstream language preference is hard-coded rather than caller-controlled",
+        "upstream deletes downloaded VTT/SRT after returning Markdown",
+        "upstream catches caption errors and returns a null candidate",
+        "upstream timestamp rendering has whole-second precision",
+        "audio fallback is disabled by this adapter"
+      ]
+    },
+    {
+      "id": "youtube-transcript-api-direct",
+      "repository": "jdepoix/youtube-transcript-api",
+      "version": "1.2.4",
+      "adapter": "tools/youtube_direct_caption_adapter.py",
+      "role": "second-line-no-cookie-caption-candidate",
+      "source_dependency_policy": "youtube-video-id",
+      "independent_corroboration_authority": false,
+      "cookies_allowed": false,
+      "proxy_allowed": false,
+      "audio_allowed": false,
+      "raw_platform_caption_retained": false,
+      "note_completion_authority": false
+    },
+    {
+      "id": "youtube-transcript-ai-broker",
+      "service_origin": "https://youtube-transcript.ai",
+      "terms_url": "https://youtube-transcript.ai/terms",
+      "privacy_url": "https://youtube-transcript.ai/privacy",
+      "adapter": "tools/youtube_transcript_ai_adapter.py",
+      "role": "third-line-secondary-transport-candidate",
+      "source_dependency_policy": "youtube-video-id",
+      "independent_corroboration_authority": false,
+      "authentication_allowed": false,
+      "cookies_allowed": false,
+      "proxy_allowed": false,
+      "audio_allowed": false,
+      "raw_broker_response_retained": true,
+      "raw_platform_caption_retained": false,
+      "note_completion_authority": false,
+      "known_constraints": [
+        "transport service is not the original subject-matter source",
+        "raw YouTube VTT/SRT and caption-track identity are unavailable",
+        "same YouTube video dependency cannot be counted as independent corroboration",
+        "single-video low-volume evaluation only",
+        "human review remains mandatory"
+      ]
+    }
+  ]
+}

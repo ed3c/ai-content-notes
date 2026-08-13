@@ -1,0 +1,150 @@
+{
+  "schema_version": "v7.1-card-batch-manifest@1",
+  "experiment_id": "cvrngaqzq3y-v7.1-live-replay-2026-08-13",
+  "video_id": "CvRngaQZQ3Y",
+  "status": "CONTINUE",
+  "protocol": {
+    "path": "governance/CARD_PROTOCOL_V7_1.md",
+    "git_blob_sha1": "7f3019f4b41a90728cd48a523d742c7c59721bf6",
+    "sha256": "9388c4f17172dc970f7228ded2f0df54a1111b22047faa11f8e7db36579165dd"
+  },
+  "source": {
+    "manifest_id": "sm-youtube-CvRngaQZQ3Y-youtube-transcript-ai",
+    "source_id": "youtube:CvRngaQZQ3Y:youtube-transcript-ai",
+    "source_dependency_key": "youtube-video:CvRngaQZQ3Y",
+    "primary_or_secondary": "secondary",
+    "raw_broker_sha256": "b14ef715744a2d5c0bab99da8bfe4fdcf46a90ebb513dc4a06e6e489177a2a0e",
+    "source_manifest_sha256": "0add6d253e3f7b9b3b05da9cee94e6702df364ee057b6dab0b803c98b6f1f4fe",
+    "source_set_digest": "sha256:5591adb0e9c20545f0afe3b61a1afd92f9ec9d6c67a3ffda018b329f93e88175",
+    "normalized_transcript_sha256": "bf993b8d98717284f58139bfa93955b1bbfcb0128ca386b1913e98d2a4eef462"
+  },
+  "acquisition": {
+    "github_actions_run_id": 31698798606,
+    "artifact_id": 9180387295,
+    "artifact_digest": "sha256:2184ec48e49069fe8e7e5f7e4d6ad748e20bf1d65e7f9c82a0d5ac9d6f1ab225",
+    "artifact_expires_at": "2026-08-20T12:10:49Z",
+    "authorization_status": "unverified-evaluation-only",
+    "rights_basis": "user-directed-evaluation",
+    "candidate_backend": "youtube-transcript.ai",
+    "primary_ai_video_transcriber_status": "blocked",
+    "direct_caption_status": "blocked",
+    "independent_corroboration_count": 0,
+    "note_completion_allowed": false
+  },
+  "normalization": {
+    "status": "REVIEW_REQUIRED",
+    "raw_source_remains_authoritative": true,
+    "input_cue_count": 39,
+    "output_cue_count": 39,
+    "raw_subject_word_count": 11290,
+    "normalized_word_count": 3797,
+    "removed_adjacent_duplicate_tokens": 7214,
+    "removed_cross_cue_overlap_tokens": 279,
+    "removed_transport_footer_characters": 240,
+    "collapse_event_count": 542,
+    "report_sha256": "363f2fd1285986330ad60950b84fc627b383c57c013a05cd89e67934ecffbced"
+  },
+  "card_count": 12,
+  "card_order": [
+    "N-trace-data-to-agent-improvement-loop",
+    "C-trace-mining-feedback-substrate",
+    "S-model-harness-task-fit-iteration",
+    "P-trace-driven-agent-improvement-cycle",
+    "C-model-harness-task-fit",
+    "C-continual-learning-state-planes",
+    "D-four-stage-trace-improvement-loop",
+    "D-open-model-trace-judge-cost-claim",
+    "D-harness-finetune-harness-sandwich",
+    "V-trace-improvement-procedure-replay",
+    "K-auto-caption-identifiers-unverified",
+    "K-rights-and-note-completion-authority"
+  ],
+  "series_order": [
+    "N",
+    "C",
+    "S",
+    "P",
+    "C",
+    "C",
+    "D",
+    "D",
+    "D",
+    "V",
+    "K",
+    "K"
+  ],
+  "parts": [
+    {
+      "path": "evals/live/CvRngaQZQ3Y/card-output-v7.1.part-01.md",
+      "sha256": "5a1e192be899273b252818944aba72e88f8b81c058d092ac4c62ac27326fb85e",
+      "bytes": 6258,
+      "card_ids": [
+        "N-trace-data-to-agent-improvement-loop",
+        "C-trace-mining-feedback-substrate"
+      ]
+    },
+    {
+      "path": "evals/live/CvRngaQZQ3Y/card-output-v7.1.part-02.md",
+      "sha256": "6dcd9021870ecbb1c6b9d0703750817b51a677c29623820a42a55aefe0e3d5ba",
+      "bytes": 9876,
+      "card_ids": [
+        "S-model-harness-task-fit-iteration",
+        "P-trace-driven-agent-improvement-cycle"
+      ]
+    },
+    {
+      "path": "evals/live/CvRngaQZQ3Y/card-output-v7.1.part-03a.md",
+      "sha256": "fc089227dd15f38a5363a6923e390ec8897f4c62ef7e7fd73322280dc3c19579",
+      "bytes": 3487,
+      "card_ids": [
+        "C-model-harness-task-fit"
+      ]
+    },
+    {
+      "path": "evals/live/CvRngaQZQ3Y/card-output-v7.1.part-03b.md",
+      "sha256": "bf6bf08b1f8629e1c631c4052723475a8a79935bcd7bbb1fceeebe26a0ed239f",
+      "bytes": 2589,
+      "card_ids": [
+        "C-continual-learning-state-planes"
+      ]
+    },
+    {
+      "path": "evals/live/CvRngaQZQ3Y/card-output-v7.1.part-04.md",
+      "sha256": "09a9c6fc63d1b63c5877f4c71cecada5c71eae79bc7261506f5399df6f81fad",
+      "bytes": 5858,
+      "card_ids": [
+        "D-four-stage-trace-improvement-loop",
+        "D-open-model-trace-judge-cost-claim"
+      ]
+    },
+    {
+      "path": "evals/live/CvRngaQZQ3Y/card-output-v7.1.part-05.md",
+      "sha256": "f4b7c8fdc8285784b28e0b68f511ef73b10ffb518c77979a541294aab1d04cd4",
+      "bytes": 6330,
+      "card_ids": [
+        "D-harness-finetune-harness-sandwich",
+        "V-trace-improvement-procedure-replay"
+      ]
+    },
+    {
+      "path": "evals/live/CvRngaQZQ3Y/card-output-v7.1.part-06a.md",
+      "sha256": "f8c3753a68271bf313eb8ee937085e7329ec7787029f3b521d835fea55f089d1",
+      "bytes": 5047,
+      "card_ids": [
+        "K-auto-caption-identifiers-unverified"
+      ]
+    },
+    {
+      "path": "evals/live/CvRngaQZQ3Y/card-output-v7.1.part-06b.md",
+      "sha256": "bcd6a7beb84a1ab419d6abbe11221135559d48e45f4dc0bc48f76a7d38a8e777",
+      "bytes": 4312,
+      "card_ids": [
+        "K-rights-and-note-completion-authority"
+      ]
+    }
+  ],
+  "run_state_path": "evals/live/CvRngaQZQ3Y/run-state.md",
+  "run_state_sha256": "75346d0a85ff9edba8e678b748e9964085dbe71608b7af3ae84ad9bd49815271",
+  "logical_output_bytes": 43993,
+  "logical_output_sha256": "4eb91ca518ef5078d8c485fb84e6921ca9ed45aff6c7b24f0b0a8a62fdac0b78"
+}

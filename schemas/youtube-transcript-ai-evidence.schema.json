@@ -1,0 +1,282 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ed3c/ai-content-notes/schemas/youtube-transcript-ai-evidence.schema.json",
+  "title": "youtube-transcript.ai review-only evidence bundle",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "tool",
+    "status",
+    "video",
+    "authorization",
+    "transport",
+    "transcript",
+    "artifacts",
+    "authority",
+    "source_manifest_digest",
+    "source_manifest_id",
+    "error"
+  ],
+  "properties": {
+    "schema_version": {"const": "youtube-transcript-ai-evidence@1"},
+    "tool": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version"],
+      "properties": {
+        "name": {"const": "youtube_transcript_ai_adapter.py"},
+        "version": {"type": "string", "minLength": 1}
+      }
+    },
+    "status": {"enum": ["needs-review", "blocked"]},
+    "video": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "canonical_url", "title", "duration_seconds"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[A-Za-z0-9_-]{6,20}$"},
+        "canonical_url": {"type": "string", "format": "uri"},
+        "title": {"type": ["string", "null"]},
+        "duration_seconds": {"type": ["integer", "null"], "minimum": 0}
+      }
+    },
+    "authorization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "rights_basis",
+        "rights_reference",
+        "attested_by",
+        "attested_at",
+        "scope"
+      ],
+      "properties": {
+        "status": {"enum": ["verified", "unverified-evaluation-only"]},
+        "rights_basis": {
+          "enum": [
+            "owned",
+            "licensed",
+            "creator-permission",
+            "public-domain",
+            "user-provided-media",
+            "user-directed-evaluation"
+          ]
+        },
+        "rights_reference": {"type": "string", "minLength": 1},
+        "attested_by": {"type": "string", "minLength": 1},
+        "attested_at": {"type": "string", "format": "date-time"},
+        "scope": {
+          "enum": ["private-transient-evaluation", "review-candidate-evidence"]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {"status": {"const": "unverified-evaluation-only"}},
+            "required": ["status"]
+          },
+          "then": {
+            "properties": {
+              "rights_basis": {"const": "user-directed-evaluation"},
+              "scope": {"const": "private-transient-evaluation"}
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {"status": {"const": "verified"}},
+            "required": ["status"]
+          },
+          "then": {
+            "properties": {
+              "rights_basis": {
+                "enum": [
+                  "owned",
+                  "licensed",
+                  "creator-permission",
+                  "public-domain",
+                  "user-provided-media"
+                ]
+              },
+              "scope": {"const": "review-candidate-evidence"}
+            }
+          }
+        }
+      ]
+    },
+    "transport": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "service",
+        "service_origin",
+        "endpoint",
+        "terms_url",
+        "privacy_url",
+        "authentication_used",
+        "cookies_supplied",
+        "proxy_supplied",
+        "audio_requested",
+        "retrieved_at"
+      ],
+      "properties": {
+        "service": {"const": "youtube-transcript.ai"},
+        "service_origin": {"const": "https://youtube-transcript.ai"},
+        "endpoint": {
+          "anyOf": [
+            {"type": "string", "format": "uri"},
+            {"type": "null"}
+          ]
+        },
+        "terms_url": {"const": "https://youtube-transcript.ai/terms"},
+        "privacy_url": {"const": "https://youtube-transcript.ai/privacy"},
+        "authentication_used": {"const": false},
+        "cookies_supplied": {"const": false},
+        "proxy_supplied": {"const": false},
+        "audio_requested": {"const": false},
+        "retrieved_at": {"type": "string", "format": "date-time"}
+      }
+    },
+    "transcript": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "language",
+        "duration_seconds",
+        "declared_word_count",
+        "observed_word_count",
+        "character_count",
+        "cue_count",
+        "timestamps_monotonic",
+        "other_languages",
+        "human_review_required",
+        "warnings"
+      ],
+      "properties": {
+        "language": {"type": ["string", "null"]},
+        "duration_seconds": {"type": ["integer", "null"], "minimum": 0},
+        "declared_word_count": {"type": ["integer", "null"], "minimum": 0},
+        "observed_word_count": {"type": "integer", "minimum": 0},
+        "character_count": {"type": "integer", "minimum": 0},
+        "cue_count": {"type": "integer", "minimum": 0},
+        "timestamps_monotonic": {"type": "boolean"},
+        "other_languages": {"type": ["string", "null"]},
+        "human_review_required": {"const": true},
+        "warnings": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "sha256"],
+        "properties": {
+          "path": {"type": "string", "minLength": 1},
+          "sha256": {"$ref": "#/$defs/sha256Bare"}
+        }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "may_compile_evaluation_cards",
+        "may_complete_note",
+        "may_raise_claim_evidence",
+        "may_enable_skill_routing",
+        "may_count_as_independent_corroboration"
+      ],
+      "properties": {
+        "may_compile_evaluation_cards": {"const": true},
+        "may_complete_note": {"const": false},
+        "may_raise_claim_evidence": {"const": false},
+        "may_enable_skill_routing": {"const": false},
+        "may_count_as_independent_corroboration": {"const": false}
+      }
+    },
+    "source_manifest_digest": {
+      "anyOf": [
+        {"$ref": "#/$defs/sha256Prefixed"},
+        {"type": "null"}
+      ]
+    },
+    "source_manifest_id": {"type": ["string", "null"]},
+    "error": {
+      "anyOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type", "message"],
+          "properties": {
+            "type": {"type": "string", "minLength": 1},
+            "message": {"type": "string", "minLength": 1}
+          }
+        }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"status": {"const": "needs-review"}},
+        "required": ["status"]
+      },
+      "then": {
+        "properties": {
+          "video": {
+            "properties": {
+              "title": {"type": "string", "minLength": 1},
+              "duration_seconds": {"type": "integer", "minimum": 1}
+            }
+          },
+          "transport": {
+            "properties": {
+              "endpoint": {"type": "string", "format": "uri"}
+            }
+          },
+          "transcript": {
+            "properties": {
+              "language": {"type": "string", "minLength": 1},
+              "duration_seconds": {"type": "integer", "minimum": 1},
+              "declared_word_count": {"type": "integer", "minimum": 1},
+              "observed_word_count": {"type": "integer", "minimum": 1},
+              "character_count": {"type": "integer", "minimum": 1},
+              "cue_count": {"type": "integer", "minimum": 1},
+              "timestamps_monotonic": {"const": true}
+            }
+          },
+          "source_manifest_digest": {"$ref": "#/$defs/sha256Prefixed"},
+          "source_manifest_id": {"type": "string", "minLength": 1},
+          "error": {"type": "null"}
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {"status": {"const": "blocked"}},
+        "required": ["status"]
+      },
+      "then": {
+        "properties": {
+          "error": {
+            "anyOf": [
+              {"type": "object"},
+              {"type": "null"}
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "sha256Bare": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "sha256Prefixed": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"}
+  }
+}

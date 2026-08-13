@@ -1,0 +1,249 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ed3c/ai-content-notes/schemas/ai-video-transcriber-evidence.schema.json",
+  "title": "AI-Video-Transcriber review-only evidence bundle",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "tool",
+    "status",
+    "upstream",
+    "video",
+    "authorization",
+    "acquisition",
+    "validation",
+    "artifacts",
+    "authority",
+    "error"
+  ],
+  "properties": {
+    "schema_version": {"const": "ai-video-transcriber-evidence@1"},
+    "tool": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version"],
+      "properties": {
+        "name": {"const": "ai_video_transcriber_adapter.py"},
+        "version": {"type": "string", "minLength": 1}
+      }
+    },
+    "status": {"enum": ["needs-review", "blocked"]},
+    "upstream": {
+      "anyOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "repository", "commit", "license", "module_path",
+            "module_sha256", "license_sha256"
+          ],
+          "properties": {
+            "repository": {"const": "wendy7756/AI-Video-Transcriber"},
+            "commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+            "license": {"const": "Apache-2.0"},
+            "module_path": {"const": "backend/video_processor.py"},
+            "module_sha256": {"$ref": "#/$defs/sha256Bare"},
+            "license_sha256": {"$ref": "#/$defs/sha256Bare"}
+          }
+        }
+      ]
+    },
+    "video": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id", "canonical_url", "title", "channel", "channel_id",
+        "duration_seconds", "published_at"
+      ],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[A-Za-z0-9_-]{6,20}$"},
+        "canonical_url": {"type": "string", "format": "uri"},
+        "title": {"type": ["string", "null"]},
+        "channel": {"type": ["string", "null"]},
+        "channel_id": {"type": ["string", "null"]},
+        "duration_seconds": {"type": ["number", "null"], "minimum": 0},
+        "published_at": {
+          "anyOf": [
+            {"type": "string", "format": "date"},
+            {"type": "null"}
+          ]
+        }
+      }
+    },
+    "authorization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status", "rights_basis", "rights_reference", "attested_by",
+        "attested_at", "scope"
+      ],
+      "properties": {
+        "status": {"enum": ["verified", "unverified-evaluation-only"]},
+        "rights_basis": {
+          "enum": [
+            "owned", "licensed", "creator-permission", "public-domain",
+            "user-provided-media", "user-directed-evaluation"
+          ]
+        },
+        "rights_reference": {"type": "string", "minLength": 1},
+        "attested_by": {"type": "string", "minLength": 1},
+        "attested_at": {"type": "string", "format": "date-time"},
+        "scope": {"enum": ["private-transient-evaluation", "review-candidate-evidence"]}
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {"status": {"const": "unverified-evaluation-only"}},
+            "required": ["status"]
+          },
+          "then": {
+            "properties": {
+              "rights_basis": {"const": "user-directed-evaluation"},
+              "scope": {"const": "private-transient-evaluation"}
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {"status": {"const": "verified"}},
+            "required": ["status"]
+          },
+          "then": {
+            "properties": {
+              "rights_basis": {
+                "enum": [
+                  "owned", "licensed", "creator-permission", "public-domain",
+                  "user-provided-media"
+                ]
+              },
+              "scope": {"const": "review-candidate-evidence"}
+            }
+          }
+        }
+      ]
+    },
+    "acquisition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "backend", "requested_languages", "caption_kind", "language",
+        "source_format", "retrieved_at"
+      ],
+      "properties": {
+        "backend": {"const": "ai-video-transcriber.fetch_subtitles"},
+        "requested_languages": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        },
+        "caption_kind": {"enum": ["manual", "automatic", null]},
+        "language": {"type": ["string", "null"]},
+        "source_format": {"const": "upstream-markdown"},
+        "retrieved_at": {"type": "string", "format": "date-time"}
+      }
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cue_count", "word_count", "character_count", "timestamps_monotonic",
+        "maximum_end_seconds", "end_coverage_ratio", "warnings",
+        "quality_grade", "human_review_required"
+      ],
+      "properties": {
+        "cue_count": {"type": "integer", "minimum": 0},
+        "word_count": {"type": "integer", "minimum": 0},
+        "character_count": {"type": "integer", "minimum": 0},
+        "timestamps_monotonic": {"type": "boolean"},
+        "maximum_end_seconds": {"type": "integer", "minimum": 0},
+        "end_coverage_ratio": {"type": ["number", "null"], "minimum": 0},
+        "warnings": {"type": "array", "items": {"type": "string"}},
+        "quality_grade": {"enum": ["upstream-caption-candidate", "blocked"]},
+        "human_review_required": {"const": true}
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "sha256"],
+        "properties": {
+          "path": {"type": "string", "minLength": 1},
+          "sha256": {"$ref": "#/$defs/sha256Bare"}
+        }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "may_compile_evaluation_cards", "may_complete_note",
+        "may_raise_claim_evidence", "may_enable_skill_routing"
+      ],
+      "properties": {
+        "may_compile_evaluation_cards": {"const": true},
+        "may_complete_note": {"const": false},
+        "may_raise_claim_evidence": {"const": false},
+        "may_enable_skill_routing": {"const": false}
+      }
+    },
+    "source_manifest_digest": {"$ref": "#/$defs/sha256Prefixed"},
+    "source_manifest_id": {"type": "string", "minLength": 1},
+    "error": {
+      "anyOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type", "message"],
+          "properties": {
+            "type": {"type": "string", "minLength": 1},
+            "message": {"type": "string", "minLength": 1}
+          }
+        }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"status": {"const": "needs-review"}},
+        "required": ["status"]
+      },
+      "then": {
+        "required": ["source_manifest_digest", "source_manifest_id"],
+        "properties": {
+          "upstream": {"type": "object"},
+          "error": {"type": "null"},
+          "validation": {
+            "properties": {
+              "cue_count": {"minimum": 1},
+              "timestamps_monotonic": {"const": true},
+              "quality_grade": {"const": "upstream-caption-candidate"}
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {"status": {"const": "blocked"}},
+        "required": ["status"]
+      },
+      "then": {
+        "properties": {
+          "validation": {
+            "properties": {"quality_grade": {"const": "blocked"}}
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "sha256Bare": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "sha256Prefixed": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"}
+  }
+}

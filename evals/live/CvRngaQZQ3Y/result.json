@@ -1,0 +1,129 @@
+{
+  "schema_version": "v7.1-live-replay-result@1",
+  "experiment_id": "cvrngaqzq3y-v7.1-live-replay-2026-08-13",
+  "video_id": "CvRngaQZQ3Y",
+  "status": "CONTINUE",
+  "card_count": 12,
+  "card_order": [
+    "N-trace-data-to-agent-improvement-loop",
+    "C-trace-mining-feedback-substrate",
+    "S-model-harness-task-fit-iteration",
+    "P-trace-driven-agent-improvement-cycle",
+    "C-model-harness-task-fit",
+    "C-continual-learning-state-planes",
+    "D-four-stage-trace-improvement-loop",
+    "D-open-model-trace-judge-cost-claim",
+    "D-harness-finetune-harness-sandwich",
+    "V-trace-improvement-procedure-replay",
+    "K-auto-caption-identifiers-unverified",
+    "K-rights-and-note-completion-authority"
+  ],
+  "series_counts": {
+    "N": 1,
+    "C": 3,
+    "S": 1,
+    "P": 1,
+    "D": 3,
+    "V": 1,
+    "K": 2
+  },
+  "batch_contract": {
+    "human_entry_first": true,
+    "payload_first": true,
+    "has_narrative_or_concept_entry": true,
+    "has_atomic_detail": true,
+    "has_action_card": true,
+    "has_verification_or_gap": true,
+    "maximum_cards_respected": true
+  },
+  "evidence_contract": {
+    "source_dependency_key": "youtube-video:CvRngaQZQ3Y",
+    "independent_source_dependency_count": 1,
+    "corroborated_claim_count": 0,
+    "raw_source_remains_authoritative": true,
+    "source_manifest_status": "needs-review",
+    "proper_nouns_human_verified": false
+  },
+  "test_honesty": {
+    "tool_execution": "DISALLOW",
+    "practice_execution_status": "UNTESTED",
+    "verification_observed_result": "NOT_RUN",
+    "verification_verdict": "NOT_RUN",
+    "verification_artifacts": "NONE",
+    "tested_claim_count": 0
+  },
+  "authority": {
+    "may_complete_note": false,
+    "may_raise_claim_evidence": false,
+    "may_enable_skill_routing": false,
+    "may_publish_raw_transcript": false,
+    "may_count_transport_fallback_as_independent_corroboration": false
+  },
+  "quality_gate_status": {
+    "QG-01": "NOT_RUN_EXTERNALLY",
+    "QG-02": "NOT_RUN_EXTERNALLY",
+    "QG-03": "NOT_RUN_EXTERNALLY",
+    "QG-04": "NOT_RUN_EXTERNALLY",
+    "QG-05": "NOT_RUN_EXTERNALLY",
+    "QG-06": "NOT_RUN_EXTERNALLY",
+    "QG-07": "NOT_RUN_EXTERNALLY",
+    "QG-08": "NOT_RUN_EXTERNALLY",
+    "QG-09": "NOT_RUN_EXTERNALLY",
+    "QG-10": "NOT_RUN_EXTERNALLY",
+    "QG-11": "NOT_RUN_EXTERNALLY",
+    "QG-12": "NOT_RUN_EXTERNALLY",
+    "QG-13": "NOT_RUN_EXTERNALLY",
+    "QG-14": "NOT_RUN_EXTERNALLY",
+    "QG-15": "NOT_RUN_EXTERNALLY",
+    "QG-16": "NOT_RUN_EXTERNALLY",
+    "QG-17": "NOT_RUN_EXTERNALLY",
+    "QG-18": "NOT_RUN_EXTERNALLY",
+    "QG-19": "NOT_RUN_EXTERNALLY",
+    "QG-20": "NOT_RUN_EXTERNALLY",
+    "QG-21": "NOT_RUN_EXTERNALLY",
+    "QG-22": "NOT_RUN_EXTERNALLY",
+    "QG-23": "NOT_RUN_EXTERNALLY",
+    "QG-24": "NOT_RUN_EXTERNALLY"
+  },
+  "key_findings": [
+    {
+      "stable_id": "N-trace-data-to-agent-improvement-loop",
+      "finding": "Agent execution data becomes a learning asset only when shipping, trace collection, mining, controlled experiments and system updates form a closed loop.",
+      "epistemic_status": "INFERENCE / SUPPORTED / MEDIUM"
+    },
+    {
+      "stable_id": "C-trace-mining-feedback-substrate",
+      "finding": "Trace mining is decision-shaped feedback extraction, not passive logging or indiscriminate context stuffing.",
+      "epistemic_status": "INFERENCE / SUPPORTED / MEDIUM"
+    },
+    {
+      "stable_id": "S-model-harness-task-fit-iteration",
+      "finding": "Model, harness and task/data must be optimized together; feasibility, harness changes, cheaper models and narrow fine-tuning should be evaluated under one frozen contract.",
+      "epistemic_status": "NORMATIVE / SUPPORTED / MEDIUM"
+    },
+    {
+      "stable_id": "C-continual-learning-state-planes",
+      "finding": "Long-lived Agent learning needs separate data, harness and memory state planes with independent authority, validation, retention and rollback.",
+      "epistemic_status": "INFERENCE / SUPPORTED / MEDIUM"
+    }
+  ],
+  "blocked_claims": [
+    {
+      "stable_id": "D-open-model-trace-judge-cost-claim",
+      "reason": "The source-reported open-model versus Opus cost/capability comparison lacks the benchmark, model revisions, sample size, scoring contract and cost artifact; auto-caption identifiers are unverified."
+    }
+  ],
+  "knowledge_gaps": [
+    "human-review-proper-nouns-model-versions-and-acronyms",
+    "obtain-verified-rights-basis",
+    "obtain-raw-caption-or-creator-reviewed-transcript",
+    "run-external-quality-gates-for-QG-01-through-QG-24",
+    "persist-canonical-registry-state-and-read-back"
+  ],
+  "logical_output": {
+    "sha256": "4eb91ca518ef5078d8c485fb84e6921ca9ed45aff6c7b24f0b0a8a62fdac0b78",
+    "bytes": 43993,
+    "materialized_from": "evals/live/CvRngaQZQ3Y/card-manifest.json"
+  },
+  "verdict": "VALID_EVALUATION_CARD_BATCH_WITH_BLOCKERS"
+}
