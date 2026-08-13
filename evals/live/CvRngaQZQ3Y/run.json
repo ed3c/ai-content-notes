@@ -1,0 +1,130 @@
+{
+  "schema_version": "v7.1-live-replay-run@1",
+  "experiment_id": "cvrngaqzq3y-v7.1-live-replay-2026-08-13",
+  "generated_at": "2026-08-13T12:20:00Z",
+  "task": "Acquire a review-only transcript candidate for YouTube video CvRngaQZQ3Y, normalize only provable rolling-caption duplication and transport metadata, then compile the first balanced batch with the immutable v7.1 prompt.",
+  "protocol": {
+    "path": "governance/CARD_PROTOCOL_V7_1.md",
+    "git_blob_sha1": "7f3019f4b41a90728cd48a523d742c7c59721bf6",
+    "sha256": "9388c4f17172dc970f7228ded2f0df54a1111b22047faa11f8e7db36579165dd",
+    "modified_for_run": false
+  },
+  "runtime": {
+    "run_mode": "INTERACTIVE",
+    "output_language": "zh-TW",
+    "style_profile": "CYBERPUNK_PRECISE",
+    "intelligent_compression": "OFF",
+    "granularity": "MAXIMUM",
+    "max_cards_per_batch": 12,
+    "compile_order": "EVIDENCE_FIRST",
+    "render_order": "TASK_VALUE_FIRST",
+    "render_mode": "PAYLOAD_FIRST",
+    "metadata_mode": "COMPACT_WITH_HTML_SIDECAR",
+    "batch_coverage_policy": "BALANCED",
+    "external_knowledge": "DISALLOW",
+    "tool_execution": "DISALLOW",
+    "source_dependency_check": "ON",
+    "anti_fragmentation": "ON",
+    "baseline_guard": "V6_6_SEMANTIC_RICHNESS"
+  },
+  "compiler": {
+    "model_display_name": "GPT-5.6 Pro",
+    "model_api_identifier": null,
+    "sampling": {
+      "temperature": "platform-managed",
+      "top_p": "platform-managed",
+      "seed": null
+    },
+    "live_provider_adapter_used": false,
+    "raw_model_response_artifact": false,
+    "reviewer_count": 1,
+    "reviewer_blinding": false
+  },
+  "acquisition": {
+    "video_id": "CvRngaQZQ3Y",
+    "canonical_url": "https://www.youtube.com/watch?v=CvRngaQZQ3Y",
+    "github_actions_run_id": 31698798606,
+    "artifact_id": 9180387295,
+    "artifact_digest": "sha256:2184ec48e49069fe8e7e5f7e4d6ad748e20bf1d65e7f9c82a0d5ac9d6f1ab225",
+    "artifact_expires_at": "2026-08-20T12:10:49Z",
+    "authorization_status": "unverified-evaluation-only",
+    "rights_basis": "user-directed-evaluation",
+    "note_completion_allowed": false,
+    "independent_corroboration_count": 0,
+    "attempts": [
+      {
+        "backend": "wendy7756/AI-Video-Transcriber@ade833b790d482f7a5c0a722c67bc33f71e9d2b5",
+        "status": "blocked",
+        "reason": "no usable caption track was returned on the hosted runner; audio fallback remained disabled"
+      },
+      {
+        "backend": "jdepoix/youtube-transcript-api@1.2.4",
+        "status": "blocked",
+        "reason": "YouTube blocked the hosted-runner IP; cookies and proxies remained disabled"
+      },
+      {
+        "backend": "youtube-transcript.ai",
+        "status": "needs-review",
+        "role": "secondary transport",
+        "source_dependency_key": "youtube-video:CvRngaQZQ3Y",
+        "may_count_as_independent_corroboration": false
+      }
+    ]
+  },
+  "source": {
+    "title": "Improving Agents is a Data Mining Problem — Vivek Trivedy, LangChain",
+    "language": "en (auto-generated)",
+    "duration_seconds": 1182,
+    "source_manifest_id": "sm-youtube-CvRngaQZQ3Y-youtube-transcript-ai",
+    "source_id": "youtube:CvRngaQZQ3Y:youtube-transcript-ai",
+    "source_dependency_key": "youtube-video:CvRngaQZQ3Y",
+    "primary_or_secondary": "secondary",
+    "raw_broker_sha256": "b14ef715744a2d5c0bab99da8bfe4fdcf46a90ebb513dc4a06e6e489177a2a0e",
+    "source_manifest_sha256": "0add6d253e3f7b9b3b05da9cee94e6702df364ee057b6dab0b803c98b6f1f4fe",
+    "normalized_transcript_sha256": "bf993b8d98717284f58139bfa93955b1bbfcb0128ca386b1913e98d2a4eef462",
+    "locator_range": "00:00:13..00:19:30",
+    "human_review_completed": false
+  },
+  "normalization": {
+    "raw_source_remains_authoritative": true,
+    "status": "REVIEW_REQUIRED",
+    "input_cue_count": 39,
+    "output_cue_count": 39,
+    "raw_subject_word_count": 11290,
+    "normalized_word_count": 3797,
+    "removed_adjacent_duplicate_tokens": 7214,
+    "removed_cross_cue_overlap_tokens": 279,
+    "removed_transport_footer_characters": 240,
+    "collapse_event_count": 542,
+    "normalization_report_sha256": "363f2fd1285986330ad60950b84fc627b383c57c013a05cd89e67934ecffbced",
+    "lexical_or_semantic_correction_performed": false
+  },
+  "limitations": [
+    "The selected transcript is an auto-generated secondary transport candidate, not raw YouTube VTT/SRT.",
+    "Proper nouns, model versions, product names, acronyms, punctuation and quotation boundaries are not human-verified.",
+    "The rights basis permits only private transient evaluation and does not authorize note completion or transcript publication.",
+    "The v7.1 cards were compiled in one model session without a live provider-neutral compiler adapter, provider seed or raw response receipt.",
+    "QG-01 through QG-24 were not run by an independent external validator.",
+    "No Agent improvement experiment described by the source was executed in this run."
+  ],
+  "output": {
+    "path": "evals/live/CvRngaQZQ3Y/card-output-v7.1.md",
+    "sha256": "40365a668a74be3c862a27326041f004a05a5d038d4eaa7e9b580b874efeadb2",
+    "bytes": 43993,
+    "card_count": 12,
+    "card_manifest_path": "evals/live/CvRngaQZQ3Y/card-manifest.json",
+    "part_paths": [
+      "evals/live/CvRngaQZQ3Y/card-output-v7.1.part-01.md",
+      "evals/live/CvRngaQZQ3Y/card-output-v7.1.part-02.md",
+      "evals/live/CvRngaQZQ3Y/card-output-v7.1.part-03a.md",
+      "evals/live/CvRngaQZQ3Y/card-output-v7.1.part-03b.md",
+      "evals/live/CvRngaQZQ3Y/card-output-v7.1.part-04.md",
+      "evals/live/CvRngaQZQ3Y/card-output-v7.1.part-05.md",
+      "evals/live/CvRngaQZQ3Y/card-output-v7.1.part-06a.md",
+      "evals/live/CvRngaQZQ3Y/card-output-v7.1.part-06b.md"
+    ],
+    "run_state_path": "evals/live/CvRngaQZQ3Y/run-state.md",
+    "status": "CONTINUE",
+    "raw_transcript_committed": false
+  }
+}
