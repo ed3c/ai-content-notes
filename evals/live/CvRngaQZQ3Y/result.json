@@ -121,9 +121,12 @@
     "persist-canonical-registry-state-and-read-back"
   ],
   "logical_output": {
-    "sha256": "4eb91ca518ef5078d8c485fb84e6921ca9ed45aff6c7b24f0b0a8a62fdac0b78",
+    "path": "evals/live/CvRngaQZQ3Y/card-output-v7.1.md",
+    "sha256": "40365a668a74be3c862a27326041f004a05a5d038d4eaa7e9b580b874efeadb2",
     "bytes": 43993,
-    "materialized_from": "evals/live/CvRngaQZQ3Y/card-manifest.json"
+    "materialized_from": "evals/live/CvRngaQZQ3Y/card-manifest.json",
+    "committed": true,
+    "raw_transcript_included": false
   },
   "verdict": "VALID_EVALUATION_CARD_BATCH_WITH_BLOCKERS"
 }

@@ -106,5 +106,25 @@
     "The v7.1 cards were compiled in one model session without a live provider-neutral compiler adapter, provider seed or raw response receipt.",
     "QG-01 through QG-24 were not run by an independent external validator.",
     "No Agent improvement experiment described by the source was executed in this run."
-  ]
+  ],
+  "output": {
+    "path": "evals/live/CvRngaQZQ3Y/card-output-v7.1.md",
+    "sha256": "40365a668a74be3c862a27326041f004a05a5d038d4eaa7e9b580b874efeadb2",
+    "bytes": 43993,
+    "card_count": 12,
+    "card_manifest_path": "evals/live/CvRngaQZQ3Y/card-manifest.json",
+    "part_paths": [
+      "evals/live/CvRngaQZQ3Y/card-output-v7.1.part-01.md",
+      "evals/live/CvRngaQZQ3Y/card-output-v7.1.part-02.md",
+      "evals/live/CvRngaQZQ3Y/card-output-v7.1.part-03a.md",
+      "evals/live/CvRngaQZQ3Y/card-output-v7.1.part-03b.md",
+      "evals/live/CvRngaQZQ3Y/card-output-v7.1.part-04.md",
+      "evals/live/CvRngaQZQ3Y/card-output-v7.1.part-05.md",
+      "evals/live/CvRngaQZQ3Y/card-output-v7.1.part-06a.md",
+      "evals/live/CvRngaQZQ3Y/card-output-v7.1.part-06b.md"
+    ],
+    "run_state_path": "evals/live/CvRngaQZQ3Y/run-state.md",
+    "status": "CONTINUE",
+    "raw_transcript_committed": false
+  }
 }

@@ -6,7 +6,7 @@
     "human-review-proper-nouns-model-versions-and-acronyms",
     "obtain-verified-rights-basis",
     "obtain-raw-caption-or-creator-reviewed-transcript",
-    "run-external-quality-gates-for-quality-gate-01-through-quality-gate-24",
+    "run-external-qg-01-through-qg-24-validator",
     "persist-canonical-registry-state-and-read-back"
   ],
   "registry_revision": 1

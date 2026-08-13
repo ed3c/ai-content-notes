@@ -76,8 +76,8 @@
   "parts": [
     {
       "path": "evals/live/CvRngaQZQ3Y/card-output-v7.1.part-01.md",
-      "sha256": "5a1e192be899273b252818944aba72e88f8b81c058d092ac4c62ac27326fb85e",
-      "bytes": 6258,
+      "sha256": "632476e87ae4e96a1e53af9cef673fc18ae0afe851970ba30fae80c629ebcd0b",
+      "bytes": 7245,
       "card_ids": [
         "N-trace-data-to-agent-improvement-loop",
         "C-trace-mining-feedback-substrate"
@@ -85,8 +85,8 @@
     },
     {
       "path": "evals/live/CvRngaQZQ3Y/card-output-v7.1.part-02.md",
-      "sha256": "6dcd9021870ecbb1c6b9d0703750817b51a677c29623820a42a55aefe0e3d5ba",
-      "bytes": 9876,
+      "sha256": "4aeb4e42d258609319f9b0263d72f4d45be5d6475300e207cd932829c8e01ad8",
+      "bytes": 10549,
       "card_ids": [
         "S-model-harness-task-fit-iteration",
         "P-trace-driven-agent-improvement-cycle"
@@ -94,24 +94,24 @@
     },
     {
       "path": "evals/live/CvRngaQZQ3Y/card-output-v7.1.part-03a.md",
-      "sha256": "fc089227dd15f38a5363a6923e390ec8897f4c62ef7e7fd73322280dc3c19579",
-      "bytes": 3487,
+      "sha256": "48f3ca91b0fc242fdc7b39c2a09e254226de194f7253b0f4c989d3583427db43",
+      "bytes": 3248,
       "card_ids": [
         "C-model-harness-task-fit"
       ]
     },
     {
       "path": "evals/live/CvRngaQZQ3Y/card-output-v7.1.part-03b.md",
-      "sha256": "bf6bf08b1f8629e1c631c4052723475a8a79935bcd7bbb1fceeebe26a0ed239f",
-      "bytes": 2589,
+      "sha256": "f1b01e3d37c2da4dd3d4d11c34a90ceb2abeeafcae5c76a520bf46ad6c4cf18a",
+      "bytes": 3524,
       "card_ids": [
         "C-continual-learning-state-planes"
       ]
     },
     {
       "path": "evals/live/CvRngaQZQ3Y/card-output-v7.1.part-04.md",
-      "sha256": "09a9c6fc63d1b63c5877f4c71cecada5c71eae79bc7261506f5399df6f81fad",
-      "bytes": 5858,
+      "sha256": "67dacbcd4ac3da52dd1c4efa29169db6e957f588aa1390527d0eb2537294ab08",
+      "bytes": 5628,
       "card_ids": [
         "D-four-stage-trace-improvement-loop",
         "D-open-model-trace-judge-cost-claim"
@@ -119,8 +119,8 @@
     },
     {
       "path": "evals/live/CvRngaQZQ3Y/card-output-v7.1.part-05.md",
-      "sha256": "f4b7c8fdc8285784b28e0b68f511ef73b10ffb518c77979a541294aab1d04cd4",
-      "bytes": 6330,
+      "sha256": "691f13c612d264f0fcdb27955299320071e131230f0e3c9e91fd0adc44d1c5c3",
+      "bytes": 6034,
       "card_ids": [
         "D-harness-finetune-harness-sandwich",
         "V-trace-improvement-procedure-replay"
@@ -128,23 +128,30 @@
     },
     {
       "path": "evals/live/CvRngaQZQ3Y/card-output-v7.1.part-06a.md",
-      "sha256": "f8c3753a68271bf313eb8ee937085e7329ec7787029f3b521d835fea55f089d1",
-      "bytes": 5047,
+      "sha256": "33dbd9dc5116d9e0f25ae7bda71e832e9b2e71df25e814e011f9cea13fdc318c",
+      "bytes": 3905,
       "card_ids": [
         "K-auto-caption-identifiers-unverified"
       ]
     },
     {
       "path": "evals/live/CvRngaQZQ3Y/card-output-v7.1.part-06b.md",
-      "sha256": "bcd6a7beb84a1ab419d6abbe11221135559d48e45f4dc0bc48f76a7d38a8e777",
-      "bytes": 4312,
+      "sha256": "0969b21306fce4c5d0e74b7af097b799f6dc06922c67c6675b3dc36015929e5d",
+      "bytes": 3421,
       "card_ids": [
         "K-rights-and-note-completion-authority"
       ]
     }
   ],
   "run_state_path": "evals/live/CvRngaQZQ3Y/run-state.md",
-  "run_state_sha256": "75346d0a85ff9edba8e678b748e9964085dbe71608b7af3ae84ad9bd49815271",
+  "run_state_sha256": "28ca3bda6bb363e6fe37721dd787eb89aa7ea2445f5eacc36d8d438c0610e641",
   "logical_output_bytes": 43993,
-  "logical_output_sha256": "4eb91ca518ef5078d8c485fb84e6921ca9ed45aff6c7b24f0b0a8a62fdac0b78"
+  "logical_output_sha256": "40365a668a74be3c862a27326041f004a05a5d038d4eaa7e9b580b874efeadb2",
+  "complete_output": {
+    "path": "evals/live/CvRngaQZQ3Y/card-output-v7.1.md",
+    "sha256": "40365a668a74be3c862a27326041f004a05a5d038d4eaa7e9b580b874efeadb2",
+    "bytes": 43993,
+    "committed": true,
+    "raw_transcript_included": false
+  }
 }

@@ -109,3 +109,15 @@ run.json
 result.json
 run-state.md
 ```
+
+<!-- COMPLETE_V7_1_OUTPUT_START -->
+## Complete v7.1 output
+
+- [Complete 12-card output](card-output-v7.1.md)
+- [Digest-bound card manifest](card-manifest.json)
+- [Run configuration](run.json)
+- [Replay result](result.json)
+- [Continuation state](run-state.md)
+
+Raw transcript and private acquisition evidence are intentionally excluded.
+<!-- COMPLETE_V7_1_OUTPUT_END -->
