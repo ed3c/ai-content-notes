@@ -7,9 +7,15 @@ on:
     paths:
       - .github/workflows/ai-video-transcriber-eval.yml
       - tools/ai_video_transcriber_adapter.py
+      - tools/ai_video_transcriber_contract.py
+      - tools/ai_video_transcriber_upstream.py
+      - tools/youtube_direct_caption_adapter.py
       - tests/test_ai_video_transcriber_adapter.py
+      - tests/test_youtube_direct_caption_adapter.py
       - schemas/ai-video-transcriber-evidence.schema.json
+      - schemas/youtube-direct-caption-evidence.schema.json
       - schemas/source-manifest.schema.json
+      - requirements-youtube-direct-caption.txt
       - governance/CARD_PROTOCOL_V7_1.md
       - governance/TRANSCRIPT_BACKENDS.json
   workflow_dispatch:
@@ -46,9 +52,14 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  DEFAULT_VIDEO_URL: https://www.youtube.com/watch?v=CvRngaQZQ3Y
   UPSTREAM_COMMIT: ade833b790d482f7a5c0a722c67bc33f71e9d2b5
-  OUTPUT_DIR: transcript-evidence
+  EVIDENCE_ROOT: transcript-evidence
+  PRIMARY_DIR: transcript-evidence/primary-ai-video-transcriber
+  FALLBACK_DIR: transcript-evidence/fallback-youtube-transcript-api
+  INPUT_VIDEO_URL: ${{ github.event_name == 'workflow_dispatch' && inputs.video_url || 'https://www.youtube.com/watch?v=CvRngaQZQ3Y' }}
+  INPUT_AUTHORIZATION_STATUS: ${{ github.event_name == 'workflow_dispatch' && inputs.authorization_status || 'unverified-evaluation-only' }}
+  INPUT_RIGHTS_BASIS: ${{ github.event_name == 'workflow_dispatch' && inputs.rights_basis || 'user-directed-evaluation' }}
+  INPUT_RIGHTS_REFERENCE: ${{ github.event_name == 'workflow_dispatch' && inputs.rights_reference || 'chat-request-2026-08-13:CvRngaQZQ3Y' }}
 
 jobs:
   acquire:
@@ -75,30 +86,38 @@ jobs:
           cache-dependency-path: |
             requirements-contracts.txt
             requirements-youtube-transcript.txt
+            requirements-youtube-direct-caption.txt
 
       - uses: denoland/setup-deno@22d081ff2d3a40755e97629de92e3bcbfa7cf2ed # v2.0.5
         with:
           deno-version: lts
 
       - run: python -m pip install --upgrade pip
-      - run: python -m pip install -r requirements-contracts.txt -r requirements-youtube-transcript.txt
-      - run: python -m py_compile tools/ai_video_transcriber_adapter.py tests/test_ai_video_transcriber_adapter.py
-      - run: pytest -q tests/test_ai_video_transcriber_adapter.py
+      - run: >-
+          python -m pip install
+          -r requirements-contracts.txt
+          -r requirements-youtube-transcript.txt
+          -r requirements-youtube-direct-caption.txt
+      - run: >-
+          python -m py_compile
+          tools/ai_video_transcriber_adapter.py
+          tools/youtube_direct_caption_adapter.py
+          tests/test_ai_video_transcriber_adapter.py
+          tests/test_youtube_direct_caption_adapter.py
+      - run: >-
+          pytest -q
+          tests/test_ai_video_transcriber_adapter.py
+          tests/test_youtube_direct_caption_adapter.py
 
-      - name: Acquire review-only transcript candidate
-        id: acquire
+      - name: Attempt pinned AI-Video-Transcriber captions
+        id: primary
         continue-on-error: true
         shell: bash
-        env:
-          INPUT_VIDEO_URL: ${{ github.event_name == 'workflow_dispatch' && inputs.video_url || 'https://www.youtube.com/watch?v=CvRngaQZQ3Y' }}
-          INPUT_AUTHORIZATION_STATUS: ${{ github.event_name == 'workflow_dispatch' && inputs.authorization_status || 'unverified-evaluation-only' }}
-          INPUT_RIGHTS_BASIS: ${{ github.event_name == 'workflow_dispatch' && inputs.rights_basis || 'user-directed-evaluation' }}
-          INPUT_RIGHTS_REFERENCE: ${{ github.event_name == 'workflow_dispatch' && inputs.rights_reference || 'chat-request-2026-08-13:CvRngaQZQ3Y' }}
         run: |
           set -euo pipefail
           python tools/ai_video_transcriber_adapter.py \
             --url "$INPUT_VIDEO_URL" \
-            --output-dir "$OUTPUT_DIR" \
+            --output-dir "$PRIMARY_DIR" \
             --upstream-root vendor/AI-Video-Transcriber \
             --upstream-commit "$UPSTREAM_COMMIT" \
             --prompt-path governance/CARD_PROTOCOL_V7_1.md \
@@ -108,40 +127,124 @@ jobs:
             --rights-reference "$INPUT_RIGHTS_REFERENCE" \
             --attested-by "github:$GITHUB_ACTOR"
 
-      - name: Validate evidence manifests
-        if: ${{ always() }}
+      - name: Attempt direct no-cookie caption fallback
+        id: fallback
+        if: ${{ steps.primary.outcome == 'failure' }}
+        continue-on-error: true
         shell: bash
         run: |
           set -euo pipefail
-          test -f "$OUTPUT_DIR/manifest.json"
+          python tools/youtube_direct_caption_adapter.py \
+            --url "$INPUT_VIDEO_URL" \
+            --output-dir "$FALLBACK_DIR" \
+            --prompt-path governance/CARD_PROTOCOL_V7_1.md \
+            --languages en,zh-Hant,zh-TW,zh,ja \
+            --authorization-status "$INPUT_AUTHORIZATION_STATUS" \
+            --rights-basis "$INPUT_RIGHTS_BASIS" \
+            --rights-reference "$INPUT_RIGHTS_REFERENCE" \
+            --attested-by "github:$GITHUB_ACTOR"
+
+      - name: Validate evidence chain
+        id: validate
+        if: ${{ always() }}
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
           python - <<'PY'
           import json
           from pathlib import Path
           from jsonschema import Draft202012Validator, FormatChecker
 
           root = Path("transcript-evidence")
-          manifest = json.loads((root / "manifest.json").read_text(encoding="utf-8"))
-          schema = json.loads(Path("schemas/ai-video-transcriber-evidence.schema.json").read_text(encoding="utf-8"))
-          Draft202012Validator(schema, format_checker=FormatChecker()).validate(manifest)
+          source_schema = json.loads(Path("schemas/source-manifest.schema.json").read_text(encoding="utf-8"))
+          entries = []
+          specs = [
+              (
+                  "primary-ai-video-transcriber",
+                  root / "primary-ai-video-transcriber",
+                  Path("schemas/ai-video-transcriber-evidence.schema.json"),
+              ),
+              (
+                  "fallback-youtube-transcript-api",
+                  root / "fallback-youtube-transcript-api",
+                  Path("schemas/youtube-direct-caption-evidence.schema.json"),
+              ),
+          ]
+          for name, directory, schema_path in specs:
+              path = directory / "manifest.json"
+              if not path.is_file():
+                  entries.append({"backend": name, "status": "NOT_RUN"})
+                  continue
+              manifest = json.loads(path.read_text(encoding="utf-8"))
+              schema = json.loads(schema_path.read_text(encoding="utf-8"))
+              Draft202012Validator(schema, format_checker=FormatChecker()).validate(manifest)
+              entry = {
+                  "backend": name,
+                  "status": manifest["status"],
+                  "error": manifest.get("error"),
+                  "manifest_path": path.as_posix(),
+              }
+              if manifest["status"] == "needs-review":
+                  source_path = directory / "source-manifest.json"
+                  transcript_path = directory / "transcript.json"
+                  if not source_path.is_file() or not transcript_path.is_file():
+                      raise SystemExit(f"{name} succeeded without source/transcript artifacts")
+                  source = json.loads(source_path.read_text(encoding="utf-8"))
+                  Draft202012Validator(
+                      source_schema, format_checker=FormatChecker()
+                  ).validate(source)
+                  entry.update(
+                      {
+                          "source_manifest_path": source_path.as_posix(),
+                          "transcript_path": transcript_path.as_posix(),
+                          "source_manifest_id": source["manifest_id"],
+                      }
+                  )
+              entries.append(entry)
 
-          source_manifest = root / "source-manifest.json"
-          if manifest["status"] == "needs-review":
-              if not source_manifest.is_file():
-                  raise SystemExit("successful acquisition did not materialize source-manifest.json")
-              source = json.loads(source_manifest.read_text(encoding="utf-8"))
-              source_schema = json.loads(Path("schemas/source-manifest.schema.json").read_text(encoding="utf-8"))
-              Draft202012Validator(source_schema, format_checker=FormatChecker()).validate(source)
+          candidate = next(
+              (entry for entry in entries if entry["status"] == "needs-review"),
+              None,
+          )
+          summary = {
+              "schema_version": "transcript-evidence-chain@1",
+              "video_id": "CvRngaQZQ3Y",
+              "attempts": entries,
+              "candidate": candidate,
+              "note_completion_allowed": False,
+          }
+          root.mkdir(parents=True, exist_ok=True)
+          (root / "chain-summary.json").write_text(
+              json.dumps(summary, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+              encoding="utf-8",
+          )
+          if candidate is None:
+              raise SystemExit("all transcript backends were blocked")
           PY
 
       - name: Upload private evidence artifact
         if: ${{ always() }}
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: ai-video-transcriber-CvRngaQZQ3Y-${{ github.run_id }}
+          name: transcript-evidence-chain-CvRngaQZQ3Y-${{ github.run_id }}
           path: transcript-evidence/
           if-no-files-found: error
           retention-days: 7
 
-      - name: Preserve blocked acquisition as job failure
-        if: ${{ steps.acquire.outcome == 'failure' }}
-        run: exit 1
+      - name: Require one validated transcript candidate
+        if: ${{ always() }}
+        env:
+          VALIDATION_OUTCOME: ${{ steps.validate.outcome }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$VALIDATION_OUTCOME" = success
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          summary = json.loads(Path("transcript-evidence/chain-summary.json").read_text(encoding="utf-8"))
+          if summary["candidate"] is None:
+              raise SystemExit("no transcript candidate")
+          PY
