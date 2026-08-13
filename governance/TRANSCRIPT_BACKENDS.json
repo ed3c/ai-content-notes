@@ -16,7 +16,9 @@
       "module": "backend/video_processor.py",
       "entrypoint": "VideoProcessor.fetch_subtitles",
       "adapter": "tools/ai_video_transcriber_adapter.py",
-      "role": "review-only-caption-candidate-and-cross-backend-evaluation",
+      "role": "primary-review-only-caption-candidate",
+      "source_dependency_policy": "youtube-video-id",
+      "independent_corroboration_authority": false,
       "raw_platform_caption_retained": false,
       "note_completion_authority": false,
       "known_constraints": [
@@ -25,6 +27,44 @@
         "upstream catches caption errors and returns a null candidate",
         "upstream timestamp rendering has whole-second precision",
         "audio fallback is disabled by this adapter"
+      ]
+    },
+    {
+      "id": "youtube-transcript-api-direct",
+      "repository": "jdepoix/youtube-transcript-api",
+      "version": "1.2.4",
+      "adapter": "tools/youtube_direct_caption_adapter.py",
+      "role": "second-line-no-cookie-caption-candidate",
+      "source_dependency_policy": "youtube-video-id",
+      "independent_corroboration_authority": false,
+      "cookies_allowed": false,
+      "proxy_allowed": false,
+      "audio_allowed": false,
+      "raw_platform_caption_retained": false,
+      "note_completion_authority": false
+    },
+    {
+      "id": "youtube-transcript-ai-broker",
+      "service_origin": "https://youtube-transcript.ai",
+      "terms_url": "https://youtube-transcript.ai/terms",
+      "privacy_url": "https://youtube-transcript.ai/privacy",
+      "adapter": "tools/youtube_transcript_ai_adapter.py",
+      "role": "third-line-secondary-transport-candidate",
+      "source_dependency_policy": "youtube-video-id",
+      "independent_corroboration_authority": false,
+      "authentication_allowed": false,
+      "cookies_allowed": false,
+      "proxy_allowed": false,
+      "audio_allowed": false,
+      "raw_broker_response_retained": true,
+      "raw_platform_caption_retained": false,
+      "note_completion_authority": false,
+      "known_constraints": [
+        "transport service is not the original subject-matter source",
+        "raw YouTube VTT/SRT and caption-track identity are unavailable",
+        "same YouTube video dependency cannot be counted as independent corroboration",
+        "single-video low-volume evaluation only",
+        "human review remains mandatory"
       ]
     }
   ]
