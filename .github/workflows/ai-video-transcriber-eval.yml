@@ -11,9 +11,11 @@ on:
       - tools/ai_video_transcriber_upstream.py
       - tools/youtube_direct_caption_adapter.py
       - tools/youtube_transcript_ai_adapter.py
+      - tools/normalize_rolling_transcript.py
       - tests/test_ai_video_transcriber_adapter.py
       - tests/test_youtube_direct_caption_adapter.py
       - tests/test_youtube_transcript_ai_adapter.py
+      - tests/test_normalize_rolling_transcript.py
       - schemas/ai-video-transcriber-evidence.schema.json
       - schemas/youtube-direct-caption-evidence.schema.json
       - schemas/youtube-transcript-ai-evidence.schema.json
@@ -60,6 +62,7 @@ env:
   PRIMARY_DIR: transcript-evidence/primary-ai-video-transcriber
   DIRECT_DIR: transcript-evidence/fallback-youtube-transcript-api
   BROKER_DIR: transcript-evidence/fallback-youtube-transcript-ai
+  NORMALIZED_DIR: transcript-evidence/normalized
   INPUT_VIDEO_URL: ${{ github.event_name == 'workflow_dispatch' && inputs.video_url || 'https://www.youtube.com/watch?v=CvRngaQZQ3Y' }}
   INPUT_AUTHORIZATION_STATUS: ${{ github.event_name == 'workflow_dispatch' && inputs.authorization_status || 'unverified-evaluation-only' }}
   INPUT_RIGHTS_BASIS: ${{ github.event_name == 'workflow_dispatch' && inputs.rights_basis || 'user-directed-evaluation' }}
@@ -107,14 +110,17 @@ jobs:
           tools/ai_video_transcriber_adapter.py
           tools/youtube_direct_caption_adapter.py
           tools/youtube_transcript_ai_adapter.py
+          tools/normalize_rolling_transcript.py
           tests/test_ai_video_transcriber_adapter.py
           tests/test_youtube_direct_caption_adapter.py
           tests/test_youtube_transcript_ai_adapter.py
+          tests/test_normalize_rolling_transcript.py
       - run: >-
           pytest -q
           tests/test_ai_video_transcriber_adapter.py
           tests/test_youtube_direct_caption_adapter.py
           tests/test_youtube_transcript_ai_adapter.py
+          tests/test_normalize_rolling_transcript.py
 
       - name: Attempt pinned AI-Video-Transcriber captions
         id: primary
@@ -253,6 +259,24 @@ jobs:
               raise SystemExit("all transcript backends were blocked")
           PY
 
+      - name: Build auditable normalized transcript view
+        id: normalize
+        if: ${{ steps.validate.outcome == 'success' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          TRANSCRIPT_PATH=$(python - <<'PY'
+          import json
+          from pathlib import Path
+
+          summary = json.loads(Path("transcript-evidence/chain-summary.json").read_text(encoding="utf-8"))
+          print(summary["candidate"]["transcript_path"])
+          PY
+          )
+          python tools/normalize_rolling_transcript.py \
+            --transcript "$TRANSCRIPT_PATH" \
+            --output-dir "$NORMALIZED_DIR"
+
       - name: Upload private evidence artifact
         if: ${{ always() }}
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
@@ -262,14 +286,16 @@ jobs:
           if-no-files-found: error
           retention-days: 7
 
-      - name: Require one validated transcript candidate
+      - name: Require one validated transcript candidate and normalized view
         if: ${{ always() }}
         env:
           VALIDATION_OUTCOME: ${{ steps.validate.outcome }}
+          NORMALIZATION_OUTCOME: ${{ steps.normalize.outcome }}
         shell: bash
         run: |
           set -euo pipefail
           test "$VALIDATION_OUTCOME" = success
+          test "$NORMALIZATION_OUTCOME" = success
           python - <<'PY'
           import json
           from pathlib import Path
@@ -277,4 +303,12 @@ jobs:
           summary = json.loads(Path("transcript-evidence/chain-summary.json").read_text(encoding="utf-8"))
           if summary["candidate"] is None:
               raise SystemExit("no transcript candidate")
+          report = json.loads(Path("transcript-evidence/normalized/normalization-report.json").read_text(encoding="utf-8"))
+          if report["normalization_status"] != "REVIEW_REQUIRED":
+              raise SystemExit("unexpected normalization status")
+          metrics = report["metrics"]
+          if metrics["normalized_word_count"] <= 0:
+              raise SystemExit("normalized transcript is empty")
+          if metrics["raw_subject_word_count"] < metrics["normalized_word_count"]:
+              raise SystemExit("normalization added words")
           PY
