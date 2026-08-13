@@ -1,0 +1,62 @@
+{
+  "schema_version": "knowledge-unit-coverage@1",
+  "fixture_id": "cvrngaqzq3y-semantic-yield-v1",
+  "items": [
+    {
+      "knowledge_unit_id": "autonomy-paradigm-shift",
+      "disposition": "CARD_MAPPED",
+      "evidence_ids": ["EV-cvrngaqzq3y-autonomy-determinism"],
+      "card_ids": ["N-autonomy-trace-mining-paradigm"],
+      "projection_ids": ["PROJ-autonomy-trace-mining"],
+      "reason": null
+    },
+    {
+      "knowledge_unit_id": "trace-improvement-loop",
+      "disposition": "CARD_MAPPED",
+      "evidence_ids": ["EV-cvrngaqzq3y-four-stage-loop"],
+      "card_ids": ["P-trace-driven-agent-improvement-cycle"],
+      "projection_ids": ["PROJ-autonomy-trace-mining"],
+      "reason": null
+    },
+    {
+      "knowledge_unit_id": "model-harness-task-fit",
+      "disposition": "PROJECTION_MAPPED",
+      "evidence_ids": ["EV-cvrngaqzq3y-fit-function"],
+      "card_ids": ["C-model-harness-task-fit"],
+      "projection_ids": ["PROJ-fit-equation"],
+      "reason": null
+    },
+    {
+      "knowledge_unit_id": "harness-finetune-sandwich",
+      "disposition": "PROJECTION_MAPPED",
+      "evidence_ids": ["EV-cvrngaqzq3y-sandwich"],
+      "card_ids": [],
+      "projection_ids": ["PROJ-harness-finetune-sandwich"],
+      "reason": null
+    },
+    {
+      "knowledge_unit_id": "trace-judge-comparison",
+      "disposition": "PROJECTION_MAPPED",
+      "evidence_ids": ["EV-cvrngaqzq3y-open-model-cost-claim"],
+      "card_ids": ["T-trace-judge-decision-matrix"],
+      "projection_ids": ["PROJ-trace-judge-comparison"],
+      "reason": null
+    },
+    {
+      "knowledge_unit_id": "context-cost-bottleneck",
+      "disposition": "CARD_MAPPED",
+      "evidence_ids": ["EV-cvrngaqzq3y-trace-scale"],
+      "card_ids": ["D-trace-scale-cost-context-bottleneck"],
+      "projection_ids": ["PROJ-autonomy-trace-mining"],
+      "reason": null
+    },
+    {
+      "knowledge_unit_id": "continual-learning-state-planes",
+      "disposition": "PROJECTION_MAPPED",
+      "evidence_ids": ["EV-cvrngaqzq3y-three-state-planes"],
+      "card_ids": ["C-continual-learning-state-planes"],
+      "projection_ids": ["PROJ-continual-learning-state-planes"],
+      "reason": null
+    }
+  ]
+}
