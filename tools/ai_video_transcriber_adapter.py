@@ -48,6 +48,10 @@ __all__ = [
 ]
 
 
+def compact_error(exc: Exception) -> str:
+    return re.sub(r"\s+", " ", str(exc)).strip()[:2000]
+
+
 async def acquire(args: argparse.Namespace) -> tuple[dict[str, Any], int]:
     validate_authorization(args)
     video_id = youtube_video_id(args.url)
@@ -67,9 +71,19 @@ async def acquire(args: argparse.Namespace) -> tuple[dict[str, Any], int]:
         if not prompt_path.is_file():
             raise AdapterError("v7.1 prompt path does not exist")
         manifest["upstream"] = verify_upstream(upstream_root, args.upstream_commit)
-        metadata = await fetch_metadata_async(canonical_url)
-        if metadata.get("id") and metadata["id"] != video_id:
-            raise AdapterError("resolved video ID does not match requested URL")
+
+        metadata: dict[str, Any] = {}
+        metadata_warning: str | None = None
+        try:
+            metadata = await fetch_metadata_async(canonical_url)
+            if metadata.get("id") and metadata["id"] != video_id:
+                raise AdapterError("resolved video ID does not match requested URL")
+        except Exception as exc:  # noqa: BLE001 - metadata is not the caption authority
+            metadata_warning = (
+                "metadata probe failed but upstream caption acquisition was still attempted: "
+                f"{type(exc).__name__}: {compact_error(exc)}"
+            )
+
         upstream_markdown, title, language = await fetch_upstream_subtitles(
             upstream_root, canonical_url, output_dir / "upstream-work"
         )
@@ -114,6 +128,8 @@ async def acquire(args: argparse.Namespace) -> tuple[dict[str, Any], int]:
             {"caption_kind": kind, "language": language}
         )
         manifest["validation"] = build_validation(cues, duration)
+        if metadata_warning:
+            manifest["validation"]["warnings"].append(metadata_warning)
         if (
             language
             and language not in manifest["acquisition"]["requested_languages"]
@@ -138,7 +154,7 @@ async def acquire(args: argparse.Namespace) -> tuple[dict[str, Any], int]:
         manifest["status"] = "blocked"
         manifest["error"] = {
             "type": type(exc).__name__,
-            "message": re.sub(r"\s+", " ", str(exc)).strip()[:2000],
+            "message": compact_error(exc),
         }
         manifest["validation"]["warnings"] = [
             "acquisition failed closed; do not compile a completed note from this run"
