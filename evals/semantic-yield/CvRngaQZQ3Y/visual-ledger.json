@@ -1,0 +1,24 @@
+{
+  "schema_version": "visual-coverage-ledger@1",
+  "fixture_id": "cvrngaqzq3y-semantic-yield-v1",
+  "items": [
+    {
+      "visual_id": "VIS-fit-equation",
+      "visual_kind": "equation",
+      "disposition": "BLOCKED_WITH_K_CARD",
+      "evidence_ids": ["EV-cvrngaqzq3y-fit-function"],
+      "card_ids": ["K-video-visual-evidence-unavailable"],
+      "projection_ids": ["PROJ-fit-equation"],
+      "reason": "No authorized frame pixels, frame digest or bbox locator."
+    },
+    {
+      "visual_id": "VIS-harness-sandwich",
+      "visual_kind": "flowchart",
+      "disposition": "BLOCKED_WITH_K_CARD",
+      "evidence_ids": ["EV-cvrngaqzq3y-sandwich"],
+      "card_ids": ["K-video-visual-evidence-unavailable"],
+      "projection_ids": ["PROJ-harness-finetune-sandwich"],
+      "reason": "No authorized frame pixels, exact arrows or slide labels."
+    }
+  ]
+}
