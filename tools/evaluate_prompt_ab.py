@@ -268,7 +268,7 @@ def main() -> int:
     result = build_result(args.fixture, args.output_a, args.output_b, args.run)
     rendered = json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
     if args.check:
-        if not args.output.exists() or args.output.read_text(encoding="utf-8") != rendered:
+        if not args.output.exists() or read_json(args.output) != result:
             raise EvaluationError("persisted A/B result is missing or stale")
     else:
         args.output.parent.mkdir(parents=True, exist_ok=True)
