@@ -1,0 +1,89 @@
+{
+  "a": {
+    "arm": "A:v7.0",
+    "card_count": 6,
+    "card_meta_sidecar_count": 0,
+    "card_order": [
+      "D-case-frag-001-before",
+      "D-case-frag-001-after",
+      "V-reading-time-41-percent",
+      "P-loop-compile-first-batch",
+      "D-prompt-injection-string",
+      "K-sidecar-format-undecided"
+    ],
+    "checks": {
+      "batch_balance": {"has_action": true, "has_detail": true, "has_human_entry": false, "has_verification_or_gap": true, "pass": false},
+      "dependency_provenance": {"missing_dependency_keys": ["origin-interview-alpha"], "pass": false},
+      "human_entry_first": {"first_series": "D", "pass": false},
+      "locator_integrity": {"fabricated_timestamps": [], "observed_timestamps": ["00:00:12", "00:00:31", "00:01:04", "00:01:32", "00:02:10"], "pass": true},
+      "payload_first": {"pass": false},
+      "reader_efficiency": {"maximum": 0.25, "pass": false, "visible_admin_metadata_ratio": 0.393},
+      "shadow_evidence_recall": {"missing": [], "pass": true, "recall": 1.0},
+      "source_independence": {"corroborated_present": false, "dependency_key_count": 1, "pass": true},
+      "test_honesty": {"failures": [], "pass": true},
+      "typed_links": {"failures": [], "pass": true}
+    },
+    "deterministic_score_0_to_100": 60.0,
+    "run_state_present": false,
+    "series_counts": {"D": 3, "K": 1, "P": 1, "V": 1},
+    "sha256": "37d5af257c9c0c5b595c6e18155bf93ec402d20c9f787baea8db7e1508499a64"
+  },
+  "artifact_digests": {
+    "fixture_sha256": "bb1decf508832ddeee53d802c0512ff9c490f6447965e1aa167169f2dc64305b",
+    "run_sha256": "11822a39981f37d09cd7c5473bb409c6306f1f3cc54abc51d0b27a3919ae48f6"
+  },
+  "b": {
+    "arm": "B:v7.1",
+    "card_count": 6,
+    "card_meta_sidecar_count": 6,
+    "card_order": [
+      "N-case-frag-001-reader-flow",
+      "C-decision-relevant-case-boundary",
+      "P-loop-compile-first-batch",
+      "V-reading-time-41-percent",
+      "D-prompt-injection-string",
+      "K-sidecar-format-contract"
+    ],
+    "checks": {
+      "batch_balance": {"has_action": true, "has_detail": true, "has_human_entry": true, "has_verification_or_gap": true, "pass": true},
+      "dependency_provenance": {"missing_dependency_keys": [], "pass": true},
+      "human_entry_first": {"first_series": "N", "pass": true},
+      "locator_integrity": {"fabricated_timestamps": [], "observed_timestamps": ["00:00:12", "00:00:31", "00:01:04", "00:01:32", "00:02:10"], "pass": true},
+      "payload_first": {"pass": true},
+      "reader_efficiency": {"maximum": 0.25, "pass": true, "visible_admin_metadata_ratio": 0.0},
+      "shadow_evidence_recall": {"missing": [], "pass": true, "recall": 1.0},
+      "source_independence": {"corroborated_present": false, "dependency_key_count": 1, "pass": true},
+      "test_honesty": {"failures": [], "pass": true},
+      "typed_links": {"failures": [], "pass": true}
+    },
+    "deterministic_score_0_to_100": 100.0,
+    "run_state_present": true,
+    "series_counts": {"C": 1, "D": 1, "K": 1, "N": 1, "P": 1, "V": 1},
+    "sha256": "1030afcb90c1f41f559b75eee269986bf581950631ce1ee82dbd270a0bd10553"
+  },
+  "delta_b_minus_a": 40.0,
+  "experiment_id": "v7.0-vs-v7.1-single-paired-replay-2026-08-13",
+  "fixture_id": "narrative-action-source-dependency-v1",
+  "human_rubric": {
+    "a": {
+      "arithmetic_mean": 3.714,
+      "five_factor_multiplicative_quality": 0.1152,
+      "scores": {"actionability": 4, "anti_fragmentation": 4, "epistemic_honesty": 5, "reader_efficiency": 2, "reusability": 3, "semantic_yield": 3, "source_fidelity": 5}
+    },
+    "b": {
+      "arithmetic_mean": 4.857,
+      "five_factor_multiplicative_quality": 1.0,
+      "scores": {"actionability": 5, "anti_fragmentation": 4, "epistemic_honesty": 5, "reader_efficiency": 5, "reusability": 5, "semantic_yield": 5, "source_fidelity": 5}
+    },
+    "delta_b_minus_a": 1.143
+  },
+  "limitations": [
+    "single paired replay, not a statistical benchmark",
+    "synthetic fixture, not an authorized production transcript",
+    "no provider seed or token-level sampling trace",
+    "qualitative scores were produced by one reviewer in the same session",
+    "saved-output evaluation cannot prove live runtime wiring"
+  ],
+  "schema_version": "prompt-ab-result@1",
+  "verdict": "B_OUTPERFORMS_ON_THIS_SMOKE_FIXTURE"
+}

@@ -2,62 +2,55 @@
 
 ## Authority boundary｜權威邊界
 
-This file is a navigation entrypoint. Repository paths, note frontmatter, Git blob identity, and GitHub read-back determine whether a note exists and is complete. A missing or stale index entry never proves that a note is absent.
+This file is navigation only. Repository paths, document revisions, sidecar digests and read-back determine existence/completion. A stale index entry is never authority.
 
-本文件是導航入口，不是 completeness authority。筆記是否存在，以 repository path、frontmatter、Git blob 與 GitHub read-back 為準。
+## Active compiler contract｜目前編譯契約
+
+```text
+governance/CARD_PROTOCOL_CURRENT.json
+  -> governance/CARD_PROTOCOL_V7_1.md
+  -> git blob SHA-1 7f3019f4b41a90728cd48a523d742c7c59721bf6
+```
+
+- Active note template: `templates/NOTE_TEMPLATE_V7_1.md`
+- Runtime schemas: `schemas/*v7.1.schema.json` plus `schemas/source-manifest.schema.json`
+- A/B evidence: `evals/prompt-ab/v7_0-v7_1/`
+- System audit: `docs/PROMPT_V7_1_AB_AND_SYSTEM_AUDIT.md`
+- v7.0: retained A/B/provenance baseline
+- v6.6: historical note provenance
 
 ## Canonical storage｜固定儲存
 
 ```text
-notes/<technical-category>/<yyyy-mm-dd>-<slug>.md
-claim-maps/<technical-category>/<yyyy-mm-dd>-<slug>.claim-map.json
+Google Doc: current human-readable note, one document per content item
+source-manifests/<source-id>/<content-id>.source-manifest.json
+card-registries/<source-id>.card-registry.json
+card-patches/<source-id>/<content-id>/<batch>.card-patch.json
+compiler-state/<source-id>/<content-id>.compiler-state.json
+assertion-reports/<source-id>/<content-id>.assertion-report.json
+claim-maps/<technical-category>/<slug>.claim-map.json
+notes/<technical-category>/<yyyy-mm-dd>-<slug>.md  # historical Git notes
 ```
 
 ## Technical categories｜技術類別
 
 | Category | Scope | Atlas Domain |
 |---|---|---|
-| `agent-runtime` | MCP, model gateway, context routing, memory, runtime policy | `agent-runtime` |
-| `evaluation` | benchmark, judge, regression, no-Skill baseline | `evaluation` |
+| `agent-runtime` | MCP, gateway, context routing, memory, runtime policy | `agent-runtime` |
+| `evaluation` | benchmark, judge, regression, baseline | `evaluation` |
 | `security-governance` | safeguards, jailbreak, secret, OAuth, policy | `security-governance` |
 | `retrieval-rag` | retrieval, citation, GraphRAG, source anchoring | `retrieval-rag` |
 | `ai-infrastructure` | accelerator, inference capacity, FinOps, SLO | `ai-infrastructure` |
 | `model-serving` | quantization, batching, cache, compatibility | `model-serving` |
 | `data-trajectory` | provenance, dataset, trajectory, contamination | `data-trajectory` |
-| `frontier-models` | model release and capability evidence | mapped by claim sidecar |
+| `frontier-models` | model release and capability evidence | claim-sidecar mapped |
 | `full-stack` | API, database, frontend/backend integration | `full-stack` |
 | `android-kotlin` | Android SDK, Kotlin/KMP, Gradle, Jetpack, WebRTC | `android-kotlin` |
 
-## Navigation contract｜導航契約
+Machine consumers use claim maps and note-delta manifests rather than scraping this Markdown file. Note completion, claim admission and Skill qualification remain separate.
 
-A valid note contains:
+## Known gaps｜已知缺口
 
-```yaml
-id: unique repository identity
-source_url: canonical source
-category: one storage category
-repository: ed3c/ai-content-notes
-path: exact repository path
-note_format: zettelkasten-v6.6-cyberpunk
-citation_mapping: pending|completed|blocked
-library_mapping: pending|completed|blocked
-```
-
-Use repository code search or the `notes/` tree for current navigation. Machine consumers must use note-delta manifests and claim maps rather than scrape this Markdown file.
-
-## Known migration gap｜已知遷移缺口
-
-Issue `#2 materialize-ai-content-notes-migration` tracks 22 legacy canonical notes and related files that the Google Sheet references but this repository has not yet fully materialized. Do not mark those paths complete until file read-back succeeds.
-
-## Current contract example｜目前契約範例
-
-The first machine-bound example is:
-
-```text
-note:
-  notes/agent-runtime/2026-07-30-langsmith-llm-gateway-runtime-controls.md
-claim map:
-  examples/claim-maps/langsmith-llm-gateway.claim-map.json
-```
-
-The example remains a claim candidate source. It does not make a downstream Skill qualified or routable.
+- Issue #2 tracks incomplete legacy note materialization.
+- Issue #7 tracks live authorized YouTube transcript accuracy qualification.
+- The v7.1 audit documents missing live compiler, validator, dependency resolver and Google Docs/Sheets adapters.

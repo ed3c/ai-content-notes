@@ -1,0 +1,69 @@
+{
+  "schema_version": "prompt-ab-run@1",
+  "experiment_id": "v7.0-vs-v7.1-single-paired-replay-2026-08-13",
+  "generated_on": "2026-08-13",
+  "model_display_name": "GPT-5.6 Pro",
+  "model_api_identifier": null,
+  "sampling": {
+    "temperature": "platform-managed",
+    "top_p": "platform-managed",
+    "seed": null
+  },
+  "isolation": {
+    "changed_variable": "system prompt: CARD_PROTOCOL_V7_0.md vs CARD_PROTOCOL_V7_1.md",
+    "held_constant": [
+      "fixture",
+      "task",
+      "runtime intent",
+      "model session",
+      "external knowledge disabled",
+      "tool execution disabled"
+    ]
+  },
+  "limitations": [
+    "single paired replay, not a statistical benchmark",
+    "synthetic fixture, not an authorized production transcript",
+    "no provider seed or token-level sampling trace",
+    "qualitative scores were produced by one reviewer in the same session",
+    "saved-output evaluation cannot prove live runtime wiring"
+  ],
+  "human_rubric": {
+    "scale": "1-5",
+    "dimensions": [
+      "source_fidelity",
+      "semantic_yield",
+      "actionability",
+      "reader_efficiency",
+      "reusability",
+      "anti_fragmentation",
+      "epistemic_honesty"
+    ],
+    "a": {
+      "source_fidelity": 5,
+      "semantic_yield": 3,
+      "actionability": 4,
+      "reader_efficiency": 2,
+      "reusability": 3,
+      "anti_fragmentation": 4,
+      "epistemic_honesty": 5
+    },
+    "b": {
+      "source_fidelity": 5,
+      "semantic_yield": 5,
+      "actionability": 5,
+      "reader_efficiency": 5,
+      "reusability": 5,
+      "anti_fragmentation": 4,
+      "epistemic_honesty": 5
+    },
+    "rationale": {
+      "source_fidelity": "Both outputs preserve the fixture's exact figures, command and uncertainty.",
+      "semantic_yield": "B adds an evidence-bounded tension-to-outcome narrative and a reusable concept instead of beginning with bookkeeping cards.",
+      "actionability": "Both expose an untested procedure; B binds pre-snapshot, exit code, hard-gate checks and rollback more tightly.",
+      "reader_efficiency": "A prints the full administrative header on every card; B moves canonical metadata to CARD_META and begins with a human entry card.",
+      "reusability": "B exposes dependency provenance and machine sidecars needed for later validation.",
+      "anti_fragmentation": "Both keep CASE-FRAG-001 coherent; this one fixture does not demonstrate a clear winner on fragmentation.",
+      "epistemic_honesty": "Both keep the 41% claim source-supported rather than tested and keep the command UNTESTED."
+    }
+  }
+}

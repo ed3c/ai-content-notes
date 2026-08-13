@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ed3c/ai-content-notes/schemas/prompt-ab-result.schema.json",
+  "title": "Prompt A/B Replay Result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "experiment_id", "fixture_id", "artifact_digests",
+    "a", "b", "delta_b_minus_a", "human_rubric", "limitations", "verdict"
+  ],
+  "properties": {
+    "schema_version": {"const": "prompt-ab-result@1"},
+    "experiment_id": {"type": "string", "minLength": 1},
+    "fixture_id": {"type": "string", "minLength": 1},
+    "artifact_digests": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fixture_sha256", "run_sha256"],
+      "properties": {
+        "fixture_sha256": {"$ref": "#/$defs/hex64"},
+        "run_sha256": {"$ref": "#/$defs/hex64"}
+      }
+    },
+    "a": {"$ref": "#/$defs/arm"},
+    "b": {"$ref": "#/$defs/arm"},
+    "delta_b_minus_a": {"type": "number"},
+    "human_rubric": {"type": "object"},
+    "limitations": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "verdict": {"enum": ["B_OUTPERFORMS_ON_THIS_SMOKE_FIXTURE", "NO_DETERMINISTIC_ADVANTAGE_ON_THIS_FIXTURE"]}
+  },
+  "$defs": {
+    "hex64": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "arm": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "arm", "sha256", "card_count", "series_counts", "card_order",
+        "card_meta_sidecar_count", "run_state_present", "checks",
+        "deterministic_score_0_to_100"
+      ],
+      "properties": {
+        "arm": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/hex64"},
+        "card_count": {"type": "integer", "minimum": 1},
+        "series_counts": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}},
+        "card_order": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+        "card_meta_sidecar_count": {"type": "integer", "minimum": 0},
+        "run_state_present": {"type": "boolean"},
+        "checks": {
+          "type": "object",
+          "required": [
+            "shadow_evidence_recall", "locator_integrity", "test_honesty",
+            "source_independence", "dependency_provenance", "typed_links",
+            "human_entry_first", "payload_first", "reader_efficiency",
+            "batch_balance"
+          ],
+          "additionalProperties": {"type": "object"}
+        },
+        "deterministic_score_0_to_100": {"type": "number", "minimum": 0, "maximum": 100}
+      }
+    }
+  }
+}

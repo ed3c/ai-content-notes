@@ -1,0 +1,48 @@
+{
+  "schema_version": "zettelkasten-assertion-report@2",
+  "protocol": "zettelkasten-v7.1-evidence-first-narrative-alive-dual-plane",
+  "prompt": {
+    "path": "governance/CARD_PROTOCOL_V7_1.md",
+    "git_blob_sha1": "7f3019f4b41a90728cd48a523d742c7c59721bf6"
+  },
+  "source_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "compiler_output_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "validator": {
+    "name": "external-validator-placeholder",
+    "version": "0.0.0",
+    "mode": "deterministic"
+  },
+  "quality_gates": {
+    "QG-01": {"status": "NOT_RUN", "evidence": [], "failures": []},
+    "QG-02": {"status": "NOT_RUN", "evidence": [], "failures": []},
+    "QG-03": {"status": "NOT_RUN", "evidence": [], "failures": []},
+    "QG-04": {"status": "NOT_RUN", "evidence": [], "failures": []},
+    "QG-05": {"status": "NOT_RUN", "evidence": [], "failures": []},
+    "QG-06": {"status": "NOT_RUN", "evidence": [], "failures": []},
+    "QG-07": {"status": "NOT_RUN", "evidence": [], "failures": []},
+    "QG-08": {"status": "NOT_RUN", "evidence": [], "failures": []},
+    "QG-09": {"status": "NOT_RUN", "evidence": [], "failures": []},
+    "QG-10": {"status": "NOT_RUN", "evidence": [], "failures": []},
+    "QG-11": {"status": "NOT_RUN", "evidence": [], "failures": []},
+    "QG-12": {"status": "NOT_RUN", "evidence": [], "failures": []},
+    "QG-13": {"status": "NOT_RUN", "evidence": [], "failures": []},
+    "QG-14": {"status": "NOT_RUN", "evidence": [], "failures": []},
+    "QG-15": {"status": "NOT_RUN", "evidence": [], "failures": []},
+    "QG-16": {"status": "NOT_RUN", "evidence": [], "failures": []},
+    "QG-17": {"status": "NOT_RUN", "evidence": [], "failures": []},
+    "QG-18": {"status": "NOT_RUN", "evidence": [], "failures": []},
+    "QG-19": {"status": "NOT_RUN", "evidence": [], "failures": []},
+    "QG-20": {"status": "NOT_RUN", "evidence": [], "failures": []},
+    "QG-21": {"status": "NOT_RUN", "evidence": [], "failures": []},
+    "QG-22": {"status": "NOT_RUN", "evidence": [], "failures": []},
+    "QG-23": {"status": "NOT_RUN", "evidence": [], "failures": []},
+    "QG-24": {"status": "NOT_RUN", "evidence": [], "failures": []}
+  },
+  "summary": {
+    "pass": 0,
+    "fail": 0,
+    "not_run": 24,
+    "hard_gate_failures": []
+  },
+  "generated_at": "2026-08-13T00:00:00Z"
+}

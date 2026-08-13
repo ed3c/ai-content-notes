@@ -1,0 +1,16 @@
+{
+  "schema_version": "zettelkasten-card-patch@2",
+  "protocol": "zettelkasten-v7.1-evidence-first-narrative-alive-dual-plane",
+  "prompt_git_blob_sha1": "7f3019f4b41a90728cd48a523d742c7c59721bf6",
+  "source_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "registry_before_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "registry_after_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "operations": [
+    {
+      "op": "NOOP",
+      "reason": "example template: no semantic change"
+    }
+  ],
+  "render_order": [],
+  "audit_sidecar_ref": "artifact:assertion-reports/example-source/example-content"
+}

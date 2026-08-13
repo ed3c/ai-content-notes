@@ -1,0 +1,20 @@
+{
+  "baseline": {
+    "path": "governance/CARD_PROTOCOL_V7_0.md",
+    "protocol": "zettelkasten-v7.0-evidence-first-loop-safe",
+    "purpose": "A/B baseline and provenance for notes compiled before the v7.1 cutover"
+  },
+  "canonical_path": "governance/CARD_PROTOCOL_V7_1.md",
+  "effective_from": "2026-08-13",
+  "git_blob_sha1": "7f3019f4b41a90728cd48a523d742c7c59721bf6",
+  "host_contracts": {
+    "assertion_report_schema": "schemas/assertion-report-v7.1.schema.json",
+    "card_patch_schema": "schemas/card-patch-v7.1.schema.json",
+    "compiler_state_schema": "schemas/compiler-state-v7.1.schema.json",
+    "note_template": "templates/NOTE_TEMPLATE_V7_1.md",
+    "source_manifest_schema": "schemas/source-manifest.schema.json"
+  },
+  "immutable_prompt_payload": true,
+  "protocol": "zettelkasten-v7.1-evidence-first-narrative-alive-dual-plane",
+  "schema_version": "card-protocol-pointer@1"
+}

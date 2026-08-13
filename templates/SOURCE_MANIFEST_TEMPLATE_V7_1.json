@@ -1,0 +1,36 @@
+{
+  "schema_version": "zettelkasten-source-manifest@2",
+  "manifest_id": "manifest:example-source/example-content",
+  "content_id": "example-content",
+  "source_set_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "locator_policy": "SOURCE_THEN_HEADING_THEN_TEXT_MATCH_THEN_MISSING",
+  "completeness": {
+    "status": "complete",
+    "reviewed": true,
+    "missing_spans": []
+  },
+  "sources": [
+    {
+      "source_id": "example-source",
+      "source_type": "article",
+      "source_dependency_key": "origin:example-primary",
+      "primary_or_secondary": "primary",
+      "digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "locators": ["section:example"]
+    }
+  ],
+  "artifact_boundaries": [
+    {
+      "artifact_id": "source:example-source/example-content",
+      "role": "subject-matter-source",
+      "digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "artifact_id": "prompt:v7.1",
+      "role": "prompt",
+      "digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+    }
+  ],
+  "injection_findings": [],
+  "created_at": "2026-08-13T00:00:00Z"
+}
