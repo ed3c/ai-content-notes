@@ -1,0 +1,14 @@
+{
+  "schema_version": "semantic-yield-fixture@1",
+  "fixture_id": "cvrngaqzq3y-semantic-yield-v1",
+  "required": {
+    "knowledge_units": ["autonomy-paradigm-shift", "trace-improvement-loop", "model-harness-task-fit", "harness-finetune-sandwich", "trace-judge-comparison", "context-cost-bottleneck", "continual-learning-state-planes"],
+    "relation_ids": ["REL-autonomy-reduces-predictability", "REL-predictability-elevates-traces", "REL-traces-feed-mining", "REL-mining-builds-evals", "REL-evals-update-harness", "REL-model-feeds-performance", "REL-harness-feeds-performance", "REL-task-defines-performance", "REL-ceiling-enables-finetune", "REL-memory-enables-learning"],
+    "visual_ids": ["VIS-fit-equation", "VIS-harness-sandwich"],
+    "projection_kinds": ["causal-dataflow", "equation", "timeline", "state-planes", "comparison-matrix"],
+    "question_tags": ["core-conflict", "dataflow", "decision-rule", "bottleneck", "comparison", "state-model", "uncertainty", "equation", "timeline"]
+  },
+  "forbidden_precision_patterns": ["\\x2480\\+", "\\x240\\.80", "\\x2b7\\.6\\s*(?:pts|points)", "\\b20(?:24)\\b"],
+  "thresholds": {"HG-01": 1.0, "HG-02": 1.0, "HG-03": 1.0, "HG-04": 1.0, "HG-05": 0.95, "HG-06": 1.0},
+  "redundancy_similarity_threshold": 0.84
+}
