@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ed3c/ai-content-notes/schemas/compiler-state-v7.1.schema.json",
+  "title": "Zettelkasten v7.1 Compiler State",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "protocol", "prompt_git_blob_sha1", "run_mode",
+    "state_channel", "render_order", "render_mode", "status", "source_id",
+    "content_id", "source_digest", "registry_digest", "source_cursor",
+    "source_queue_empty", "baseline_guard_pass", "quality_gates",
+    "remaining_work", "blocked_by", "updated_at"
+  ],
+  "properties": {
+    "schema_version": {"const": "zettelkasten-compiler-state@2"},
+    "protocol": {"const": "zettelkasten-v7.1-evidence-first-narrative-alive-dual-plane"},
+    "prompt_git_blob_sha1": {"const": "7f3019f4b41a90728cd48a523d742c7c59721bf6"},
+    "run_mode": {"enum": ["INTERACTIVE", "LOOP"]},
+    "state_channel": {"enum": ["SIDECAR", "HTML_COMMENT", "NONE"]},
+    "render_order": {"const": "TASK_VALUE_FIRST"},
+    "render_mode": {"const": "PAYLOAD_FIRST"},
+    "status": {"enum": ["CONTINUE", "DONE", "BLOCKED", "FAILED"]},
+    "source_id": {"type": "string", "minLength": 1},
+    "content_id": {"type": "string", "minLength": 1},
+    "source_digest": {"$ref": "#/$defs/sha256"},
+    "registry_digest": {"$ref": "#/$defs/sha256"},
+    "source_cursor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cursor_type", "value", "complete", "source_digest"],
+      "properties": {
+        "cursor_type": {"enum": ["timestamp", "line", "paragraph", "section", "page", "token", "item", "custom"]},
+        "value": {"type": ["string", "integer"]},
+        "complete": {"type": "boolean"},
+        "source_digest": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "source_queue_empty": {"type": "boolean"},
+    "baseline_guard_pass": {"type": "boolean"},
+    "quality_gates": {
+      "type": "object",
+      "minProperties": 24,
+      "maxProperties": 24,
+      "additionalProperties": false,
+      "patternProperties": {
+        "^QG-(0[1-9]|1[0-9]|2[0-4])$": {"$ref": "#/$defs/gateState"}
+      }
+    },
+    "remaining_work": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "blocked_by": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "updated_at": {"type": "string", "format": "date-time"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"run_mode": {"const": "LOOP"}}, "required": ["run_mode"]},
+      "then": {"properties": {"state_channel": {"const": "SIDECAR"}}}
+    },
+    {
+      "if": {"properties": {"status": {"const": "DONE"}}, "required": ["status"]},
+      "then": {
+        "properties": {
+          "source_queue_empty": {"const": true},
+          "baseline_guard_pass": {"const": true},
+          "source_cursor": {"properties": {"complete": {"const": true}}},
+          "remaining_work": {"maxItems": 0},
+          "blocked_by": {"maxItems": 0},
+          "quality_gates": {
+            "patternProperties": {
+              "^QG-(0[1-9]|1[0-9]|2[0-4])$": {
+                "properties": {"status": {"const": "PASS"}}
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"},
+    "gateState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "evidence", "failures"],
+      "properties": {
+        "status": {"enum": ["PASS", "FAIL", "NOT_RUN"]},
+        "evidence": {
+          "type": "array",
+          "items": {"type": "string", "pattern": "^(artifact|assertion|card|eval|registry|source|validator):.+$"},
+          "uniqueItems": true
+        },
+        "failures": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"status": {"const": "PASS"}}, "required": ["status"]},
+          "then": {"properties": {"evidence": {"minItems": 1}, "failures": {"maxItems": 0}}}
+        },
+        {
+          "if": {"properties": {"status": {"const": "FAIL"}}, "required": ["status"]},
+          "then": {"properties": {"failures": {"minItems": 1}}}
+        }
+      ]
+    }
+  }
+}
