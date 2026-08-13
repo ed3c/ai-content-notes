@@ -1,0 +1,56 @@
+name: CvRngaQZQ3Y v7.1 replay contracts
+
+on:
+  push:
+    branches:
+      - agent/ai-video-transcriber-cvrngaqzq3y
+    paths:
+      - .github/workflows/ai-video-transcriber-replay.yml
+      - governance/CARD_PROTOCOL_V7_1.md
+      - evals/live/CvRngaQZQ3Y/**
+      - tools/materialize_card_batch.py
+      - tests/test_live_cvrngaqzq3y_v7_1.py
+  pull_request:
+    paths:
+      - .github/workflows/ai-video-transcriber-replay.yml
+      - governance/CARD_PROTOCOL_V7_1.md
+      - evals/live/CvRngaQZQ3Y/**
+      - tools/materialize_card_batch.py
+      - tests/test_live_cvrngaqzq3y_v7_1.py
+
+permissions:
+  contents: read
+
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.13"]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: requirements-contracts.txt
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install -r requirements-contracts.txt
+      - run: ruff check tools/materialize_card_batch.py tests/test_live_cvrngaqzq3y_v7_1.py
+      - run: python -m py_compile tools/materialize_card_batch.py tests/test_live_cvrngaqzq3y_v7_1.py
+      - run: pytest -q tests/test_live_cvrngaqzq3y_v7_1.py
+      - name: Materialize digest-bound v7.1 output
+        run: |
+          set -euo pipefail
+          python tools/materialize_card_batch.py \
+            --manifest evals/live/CvRngaQZQ3Y/card-manifest.json \
+            --output /tmp/CvRngaQZQ3Y-v7.1.md \
+            --check
+          test -s /tmp/CvRngaQZQ3Y-v7.1.md
+          test "$(grep -c '^### ' /tmp/CvRngaQZQ3Y-v7.1.md)" -eq 12
+          grep -q '<!-- RUN_STATE' /tmp/CvRngaQZQ3Y-v7.1.md
+          ! grep -q 'CORROBORATED' /tmp/CvRngaQZQ3Y-v7.1.md
+          grep -q '\*\*Execution Status\*\*：UNTESTED' /tmp/CvRngaQZQ3Y-v7.1.md
+          grep -q '\*\*Observed Result\*\*：NOT_RUN' /tmp/CvRngaQZQ3Y-v7.1.md
