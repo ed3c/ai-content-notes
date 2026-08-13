@@ -10,10 +10,13 @@ on:
       - tools/ai_video_transcriber_contract.py
       - tools/ai_video_transcriber_upstream.py
       - tools/youtube_direct_caption_adapter.py
+      - tools/youtube_transcript_ai_adapter.py
       - tests/test_ai_video_transcriber_adapter.py
       - tests/test_youtube_direct_caption_adapter.py
+      - tests/test_youtube_transcript_ai_adapter.py
       - schemas/ai-video-transcriber-evidence.schema.json
       - schemas/youtube-direct-caption-evidence.schema.json
+      - schemas/youtube-transcript-ai-evidence.schema.json
       - schemas/source-manifest.schema.json
       - requirements-youtube-direct-caption.txt
       - governance/CARD_PROTOCOL_V7_1.md
@@ -55,7 +58,8 @@ env:
   UPSTREAM_COMMIT: ade833b790d482f7a5c0a722c67bc33f71e9d2b5
   EVIDENCE_ROOT: transcript-evidence
   PRIMARY_DIR: transcript-evidence/primary-ai-video-transcriber
-  FALLBACK_DIR: transcript-evidence/fallback-youtube-transcript-api
+  DIRECT_DIR: transcript-evidence/fallback-youtube-transcript-api
+  BROKER_DIR: transcript-evidence/fallback-youtube-transcript-ai
   INPUT_VIDEO_URL: ${{ github.event_name == 'workflow_dispatch' && inputs.video_url || 'https://www.youtube.com/watch?v=CvRngaQZQ3Y' }}
   INPUT_AUTHORIZATION_STATUS: ${{ github.event_name == 'workflow_dispatch' && inputs.authorization_status || 'unverified-evaluation-only' }}
   INPUT_RIGHTS_BASIS: ${{ github.event_name == 'workflow_dispatch' && inputs.rights_basis || 'user-directed-evaluation' }}
@@ -102,12 +106,15 @@ jobs:
           python -m py_compile
           tools/ai_video_transcriber_adapter.py
           tools/youtube_direct_caption_adapter.py
+          tools/youtube_transcript_ai_adapter.py
           tests/test_ai_video_transcriber_adapter.py
           tests/test_youtube_direct_caption_adapter.py
+          tests/test_youtube_transcript_ai_adapter.py
       - run: >-
           pytest -q
           tests/test_ai_video_transcriber_adapter.py
           tests/test_youtube_direct_caption_adapter.py
+          tests/test_youtube_transcript_ai_adapter.py
 
       - name: Attempt pinned AI-Video-Transcriber captions
         id: primary
@@ -128,7 +135,7 @@ jobs:
             --attested-by "github:$GITHUB_ACTOR"
 
       - name: Attempt direct no-cookie caption fallback
-        id: fallback
+        id: direct
         if: ${{ steps.primary.outcome == 'failure' }}
         continue-on-error: true
         shell: bash
@@ -136,9 +143,25 @@ jobs:
           set -euo pipefail
           python tools/youtube_direct_caption_adapter.py \
             --url "$INPUT_VIDEO_URL" \
-            --output-dir "$FALLBACK_DIR" \
+            --output-dir "$DIRECT_DIR" \
             --prompt-path governance/CARD_PROTOCOL_V7_1.md \
             --languages en,zh-Hant,zh-TW,zh,ja \
+            --authorization-status "$INPUT_AUTHORIZATION_STATUS" \
+            --rights-basis "$INPUT_RIGHTS_BASIS" \
+            --rights-reference "$INPUT_RIGHTS_REFERENCE" \
+            --attested-by "github:$GITHUB_ACTOR"
+
+      - name: Attempt documented transcript broker fallback
+        id: broker
+        if: ${{ steps.primary.outcome == 'failure' && steps.direct.outcome == 'failure' }}
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/youtube_transcript_ai_adapter.py \
+            --url "$INPUT_VIDEO_URL" \
+            --output-dir "$BROKER_DIR" \
+            --prompt-path governance/CARD_PROTOCOL_V7_1.md \
             --authorization-status "$INPUT_AUTHORIZATION_STATUS" \
             --rights-basis "$INPUT_RIGHTS_BASIS" \
             --rights-reference "$INPUT_RIGHTS_REFERENCE" \
@@ -169,6 +192,11 @@ jobs:
                   "fallback-youtube-transcript-api",
                   root / "fallback-youtube-transcript-api",
                   Path("schemas/youtube-direct-caption-evidence.schema.json"),
+              ),
+              (
+                  "fallback-youtube-transcript-ai",
+                  root / "fallback-youtube-transcript-ai",
+                  Path("schemas/youtube-transcript-ai-evidence.schema.json"),
               ),
           ]
           for name, directory, schema_path in specs:
@@ -214,6 +242,7 @@ jobs:
               "attempts": entries,
               "candidate": candidate,
               "note_completion_allowed": False,
+              "independent_corroboration_count": 0,
           }
           root.mkdir(parents=True, exist_ok=True)
           (root / "chain-summary.json").write_text(
@@ -228,7 +257,7 @@ jobs:
         if: ${{ always() }}
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: transcript-evidence-chain-macos-CvRngaQZQ3Y-${{ github.run_id }}
+          name: transcript-evidence-chain-CvRngaQZQ3Y-${{ github.run_id }}
           path: transcript-evidence/
           if-no-files-found: error
           retention-days: 7
