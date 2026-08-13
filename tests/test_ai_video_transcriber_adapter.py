@@ -14,7 +14,9 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def load_adapter() -> ModuleType:
-    path = ROOT / "tools" / "ai_video_transcriber_adapter.py"
+    tools = ROOT / "tools"
+    sys.path.insert(0, str(tools))
+    path = tools / "ai_video_transcriber_adapter.py"
     spec = importlib.util.spec_from_file_location("ai_video_transcriber_adapter", path)
     assert spec and spec.loader
     module = importlib.util.module_from_spec(spec)
