@@ -1,4 +1,33 @@
 {
+  "acquisition_transports": [
+    {
+      "backend": "jdepoix/youtube-transcript-api@1.2.4",
+      "cues": 550,
+      "independent_corroboration": false,
+      "max_end_seconds": 1200.683,
+      "normalized_words": 3828,
+      "retained_path": "captions.auto.en.json",
+      "transport": "youtube-transcript-api"
+    },
+    {
+      "backend": "youtube-transcript.ai broker",
+      "cues": 39,
+      "independent_corroboration": false,
+      "max_end_seconds": 1182.0,
+      "normalized_words": 3826,
+      "retained_path": "broker/captions.rolling.en.json",
+      "transport": "youtube-transcript.ai"
+    },
+    {
+      "backend": "wendy7756/AI-Video-Transcriber@ade833b790d482f7a5c0a722c67bc33f71e9d2b5",
+      "cues": 543,
+      "independent_corroboration": false,
+      "max_end_seconds": 1198.0,
+      "normalized_words": 3843,
+      "retained_path": "ai-video-transcriber/captions.auto.en.json",
+      "transport": "ai-video-transcriber"
+    }
+  ],
   "artifact_boundaries": [
     {
       "artifact_id": "direct-caption-transcript-json",
@@ -37,6 +66,42 @@
       "path": "acquisition-receipt.json",
       "role": "audit-artifact",
       "sha256": "sha256:8f12c2b38649dfaca84d0940cda946b08cb31de92d8ab76fbe3c7bea74bf0d26"
+    },
+    {
+      "note": "exact broker payload as returned",
+      "path": "broker/raw-broker-response.md",
+      "role": "audit-artifact",
+      "sha256": "sha256:b14ef715744a2d5c0bab99da8bfe4fdcf46a90ebb513dc4a06e6e489177a2a0e"
+    },
+    {
+      "note": "youtube-transcript-ai-evidence@1",
+      "path": "broker/acquisition-receipt.json",
+      "role": "audit-artifact",
+      "sha256": "sha256:b931cc66523fd915445739ca95394ac4ea6b191baba32d7eab5ccb0ee038a7b3"
+    },
+    {
+      "note": "rolling-caption normalization output",
+      "path": "broker/captions.normalized.en.json",
+      "role": "derived-source",
+      "sha256": "sha256:15364680aefd1365b93fbf0205aa3f2e8ebbfdb0486935254acb510820b095f9"
+    },
+    {
+      "note": "rolling-caption-normalization-report@1",
+      "path": "broker/normalization-report.json",
+      "role": "audit-artifact",
+      "sha256": "sha256:363f2fd1285986330ad60950b84fc627b383c57c013a05cd89e67934ecffbced"
+    },
+    {
+      "note": "markdown returned by the pinned upstream",
+      "path": "ai-video-transcriber/raw-upstream-transcript.md",
+      "role": "audit-artifact",
+      "sha256": "sha256:775559dbb1d79c4271cf8633eb07aba8c71b29153c14e6e97292228c834bd4d7"
+    },
+    {
+      "note": "ai-video-transcriber-evidence@1",
+      "path": "ai-video-transcriber/acquisition-receipt.json",
+      "role": "audit-artifact",
+      "sha256": "sha256:1d01943713d790601ee8d19f9a144f78d9cda4b1f994cb4383ccbe3ceb1e6493"
     }
   ],
   "schema_version": "zettelkasten-source-manifest@2",
@@ -52,6 +117,29 @@
       "source_dependency_key": "youtube-video:CvRngaQZQ3Y",
       "source_id": "youtube:CvRngaQZQ3Y:youtube-transcript-api",
       "source_type": "transcript"
+    },
+    {
+      "digest": "sha256:015e56e715f42405d45d5dcbf915fba3f1c0a1a68535230b99971eca821944b5",
+      "locators": [
+        "timestamp:00:00:13..00:19:42"
+      ],
+      "primary_or_secondary": "secondary",
+      "retained_path": "broker/captions.rolling.en.json",
+      "source_dependency_key": "youtube-video:CvRngaQZQ3Y",
+      "source_id": "youtube:CvRngaQZQ3Y:youtube-transcript-ai",
+      "source_type": "transcript"
+    },
+    {
+      "digest": "sha256:27d16765175d599d5703108aff9fd84bb38fe2437fccad482920b86140b1fed6",
+      "locators": [
+        "timestamp:00:00:01..00:19:58"
+      ],
+      "primary_or_secondary": "secondary",
+      "retained_path": "ai-video-transcriber/captions.auto.en.json",
+      "source_dependency_key": "youtube-video:CvRngaQZQ3Y",
+      "source_id": "youtube:CvRngaQZQ3Y:ai-video-transcriber",
+      "source_type": "transcript"
     }
-  ]
+  ],
+  "transport_note": "Three transports, one origin. They share the same youtube-video dependency key and the same underlying automatic caption track, so agreement between them is not independent corroboration of anything the speaker said."
 }

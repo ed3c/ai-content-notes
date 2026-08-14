@@ -13,7 +13,10 @@
       "attested_on": "2026-08-14",
       "expires_on": null,
       "authorization_status": "evaluation-only",
-      "permitted_backends": ["platform-auto-caption"],
+      "permitted_backends": [
+        "platform-auto-caption",
+        "asr-faster-whisper-large-v3"
+      ],
       "gold_transcript": null,
       "glossary_path": null
     }
