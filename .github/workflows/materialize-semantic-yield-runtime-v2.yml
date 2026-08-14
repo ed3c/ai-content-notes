@@ -1,0 +1,172 @@
+name: Materialize semantic-yield runtime v2
+
+on:
+  push:
+    branches: [agent/semantic-yield-regenerated-cards]
+    paths:
+      - '.bootstrap/trigger'
+      - '.github/workflows/materialize-semantic-yield-runtime-v2.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          cache: pip
+          cache-dependency-path: requirements-contracts.txt
+
+      - name: Verify and extract digest-bound overlay
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib
+          import json
+          import shutil
+          import tarfile
+          from pathlib import Path, PurePosixPath
+
+          root = Path.cwd()
+          manifest_path = root / '.bootstrap/semantic-yield-runtime-v2-manifest.json'
+          manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+          encoded = bytearray()
+          for contract in manifest['archive']['chunks']:
+              chunk = root / contract['path']
+              payload = chunk.read_bytes()
+              actual_chunk = 'sha256:' + hashlib.sha256(payload).hexdigest()
+              if actual_chunk != contract['sha256'] or len(payload) != contract['bytes']:
+                  raise SystemExit(f'chunk contract mismatch: {contract["path"]}')
+              encoded.extend(payload)
+          if len(encoded) != manifest['archive']['base64_bytes']:
+              raise SystemExit('base64 byte count mismatch')
+          import base64
+          archive = Path('/tmp/semantic-yield-runtime-v2-overlay.tar.gz')
+          archive.write_bytes(base64.b64decode(bytes(encoded), validate=True))
+          expected_archive = manifest['archive']['sha256'].removeprefix('sha256:')
+          actual_archive = hashlib.sha256(archive.read_bytes()).hexdigest()
+          if actual_archive != expected_archive:
+              raise SystemExit(f'archive digest mismatch: {actual_archive}')
+
+          expected = {item['path']: item for item in manifest['files']}
+          extract_root = Path('/tmp/semantic-yield-runtime-v2')
+          shutil.rmtree(extract_root, ignore_errors=True)
+          extract_root.mkdir(parents=True)
+
+          with tarfile.open(archive, 'r:gz') as tar:
+              file_members = []
+              for member in tar.getmembers():
+                  raw = member.name[2:] if member.name.startswith('./') else member.name
+                  path = PurePosixPath(raw)
+                  if not raw or path.is_absolute() or '..' in path.parts:
+                      raise SystemExit(f'unsafe archive member: {member.name}')
+                  if member.issym() or member.islnk() or member.isdev():
+                      raise SystemExit(f'unsupported archive member type: {member.name}')
+                  if member.isfile():
+                      file_members.append(raw)
+              if set(file_members) != set(expected):
+                  missing = sorted(set(expected) - set(file_members))
+                  extra = sorted(set(file_members) - set(expected))
+                  raise SystemExit(f'archive file set mismatch; missing={missing}, extra={extra}')
+              tar.extractall(extract_root, filter='data')
+
+          for rel, contract in expected.items():
+              source = extract_root / rel
+              payload = source.read_bytes()
+              actual = 'sha256:' + hashlib.sha256(payload).hexdigest()
+              if actual != contract['sha256'] or len(payload) != contract['bytes']:
+                  raise SystemExit(f'file contract mismatch: {rel}')
+              destination = root / rel
+              destination.parent.mkdir(parents=True, exist_ok=True)
+              shutil.copy2(source, destination)
+
+          output = root / manifest['regenerated_output']['path']
+          if output.read_text(encoding='utf-8').count('\n### ') + int(output.read_text(encoding='utf-8').startswith('### ')) != 9:
+              raise SystemExit('regenerated output card count mismatch')
+          print(json.dumps({
+              'archive_sha256': 'sha256:' + actual_archive,
+              'materialized_files': len(expected),
+              'regenerated_output': manifest['regenerated_output'],
+          }, ensure_ascii=False, sort_keys=True))
+          PY
+
+          rm -rf .bootstrap
+          rm -f .github/workflows/materialize-semantic-yield-runtime-v2.yml
+
+      - name: Install contract dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements-contracts.txt
+
+      - name: Validate runtime and regenerated cards
+        shell: bash
+        run: |
+          set -euo pipefail
+          ruff check tools tests
+          python -m py_compile tools/*.py tests/*.py
+          pytest -q
+
+          python tools/build_multimodal_source_pack.py \
+            --descriptor evals/semantic-yield/CvRngaQZQ3Y/source-pack.descriptor.json \
+            --root . \
+            --output /tmp/source-pack.json \
+            --created-at 2026-08-13T12:20:00Z
+          cmp /tmp/source-pack.json evals/semantic-yield/CvRngaQZQ3Y/source-pack.json
+
+          python tools/build_relation_graph.py \
+            --input evals/semantic-yield/CvRngaQZQ3Y/relation-input.json \
+            --output /tmp/relation-graph.json \
+            --created-at 2026-08-13T12:20:00Z
+          cmp /tmp/relation-graph.json evals/semantic-yield/CvRngaQZQ3Y/relation-graph.json
+
+          python tools/knowledge_views.py \
+            --graph evals/semantic-yield/CvRngaQZQ3Y/relation-graph.json \
+            --plan evals/semantic-yield/CvRngaQZQ3Y/projection-plan.json \
+            --output /tmp/projection-bundle.json \
+            --markdown-output /tmp/knowledge-views.md \
+            --created-at 2026-08-13T12:20:00Z
+          cmp /tmp/projection-bundle.json evals/semantic-yield/CvRngaQZQ3Y/projection-bundle.json
+          cmp /tmp/knowledge-views.md evals/semantic-yield/CvRngaQZQ3Y/knowledge-views.md
+
+          python tools/plan_card_batch.py \
+            --inventory evals/semantic-yield/CvRngaQZQ3Y/batch-inventory.json \
+            --output /tmp/card-batch-plan.json \
+            --created-at 2026-08-13T12:20:00Z
+          cmp /tmp/card-batch-plan.json evals/semantic-yield/CvRngaQZQ3Y/card-batch-plan.json
+
+          python tools/semantic_yield_eval.py \
+            --fixture evals/semantic-yield/CvRngaQZQ3Y/semantic-yield.fixture.json \
+            --candidate evals/semantic-yield/CvRngaQZQ3Y/card-output-v7.1-semantic.md \
+            --projection-bundle evals/semantic-yield/CvRngaQZQ3Y/projection-bundle.json \
+            --relation-graph evals/semantic-yield/CvRngaQZQ3Y/relation-graph.json \
+            --output /tmp/semantic-yield.card-output.result.json \
+            --created-at 2026-08-14T00:00:00Z
+          cmp /tmp/semantic-yield.card-output.result.json \
+            evals/semantic-yield/CvRngaQZQ3Y/semantic-yield.card-output.result.json
+
+          git diff --check
+
+      - name: Commit materialized runtime and regenerated output
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'No materialization changes to commit.'
+            exit 0
+          fi
+          git commit -m 'feat: regenerate CvRngaQZQ3Y cards with semantic-yield runtime'
+          git push origin HEAD:agent/semantic-yield-regenerated-cards
