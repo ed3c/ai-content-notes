@@ -4,3 +4,7 @@ __pycache__/
 .ruff_cache/
 .venv/
 /transcript-evidence/
+
+# Claude Code creates linked worktrees here; each is a full checkout.
+# `git add -A` in the main tree would otherwise stage every one of them.
+.claude/worktrees/
