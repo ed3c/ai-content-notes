@@ -134,3 +134,35 @@ def test_valid_allowlist_round_trips_through_the_schema(tmp_path: Path) -> None:
     path = write(tmp_path, allowlist(entry(gold_transcript=gold)))
     loaded = rights_allowlist.load_allowlist(path, SCHEMA)
     assert loaded["entries"][0]["gold_transcript"]["sha256"] == gold["sha256"]
+
+
+def test_user_directed_evaluation_can_never_be_verified(tmp_path: Path) -> None:
+    """AT-001 records a direction, not a right. The schema pins it closed."""
+    forged = entry(rights_basis="user-directed-evaluation", authorization_status="verified")
+    path = write(tmp_path, allowlist(forged))
+    with pytest.raises(rights_allowlist.RightsError, match="failed validation"):
+        rights_allowlist.load_allowlist(path, SCHEMA)
+
+
+def test_a_user_directed_evaluation_entry_blocks_acquisition(tmp_path: Path) -> None:
+    admissible = entry(
+        rights_basis="user-directed-evaluation",
+        authorization_status="evaluation-only",
+        rights_reference="governance/RIGHTS_ATTESTATIONS.md#AT-001",
+    )
+    loaded = rights_allowlist.load_allowlist(write(tmp_path, allowlist(admissible)), SCHEMA)
+    decision = rights_allowlist.resolve(loaded, "CvRngaQZQ3Y", BACKEND, AS_OF)
+    assert decision["decision"] == "blocked"
+    assert "not verified" in decision["blocked_reason"]
+
+
+def test_the_committed_allowlist_still_grants_nothing() -> None:
+    loaded = rights_allowlist.load_allowlist(
+        REPOSITORY_ROOT / "governance" / "RIGHTS_ALLOWLIST.json", SCHEMA
+    )
+    permitted = [
+        item
+        for item in loaded["entries"]
+        if item["authorization_status"] == "verified"
+    ]
+    assert permitted == [], "a verified entry needs a stated basis and a human attestation"
