@@ -181,6 +181,12 @@ Rules:
 4. A contradiction creates review state; it never silently overwrites an active claim.
 5. Changing the note blob, source version, or claim statement invalidates the previous downstream compile digest.
 6. Note admission never raises Skill lifecycle or production routability.
+7. `source.digest` is required exactly when the acquisition adapter retained
+   the raw subject, and is otherwise absent. It is never back-filled by
+   re-fetching the canonical URL: a later fetch digests a later page, and
+   recording it under the original `retrieved_at` would assert an identity the
+   claim never had. `source.anchor` and `retrieved_at` remain required in both
+   cases.
 
 Canonical schema: [`schemas/claim-map.schema.json`](schemas/claim-map.schema.json).
 

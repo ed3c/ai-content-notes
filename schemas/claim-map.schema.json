@@ -161,9 +161,11 @@
               "type": "string"
             },
             "digest": {
+              "description": "Digest of the retained raw subject. Present exactly when the acquisition adapter retained it; never back-filled by re-fetching canonical_url, because a later fetch digests a later page.",
               "$ref": "#/$defs/sha"
             },
             "anchor": {
+              "description": "Quote or code anchor inside the source. Required in every case, including when no raw subject was retained.",
               "type": "string",
               "minLength": 2
             }
