@@ -24,6 +24,15 @@ jobs:
       - run: python -m pip install --upgrade pip
       - run: python -m pip install -r requirements-contracts.txt
       - run: ruff check tools tests
+      - name: Verify the recorded card-registry gap has not drifted
+        run: |
+          python tools/reconcile_card_registry.py \
+            --cards evals/semantic-yield/CvRngaQZQ3Y/cards \
+            --source-id youtube-video:cvrngaqzq3y \
+            --source-digest sha256:bf993b8d98717284f58139bfa93955b1bbfcb0128ca386b1913e98d2a4eef462 \
+            --updated-at 2026-08-14T02:00:00Z \
+            --gap-report evals/semantic-yield/CvRngaQZQ3Y/card-registry-gap-report.json \
+            --check
       - run: >-
           python -m py_compile
           tools/export_note_delta.py
