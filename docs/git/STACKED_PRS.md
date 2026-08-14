@@ -1,197 +1,174 @@
 # Stacked PR Index｜已合併分支圖與分子化末端實作
 
-> Canonical PR dependency and runtime-leaf index for `ed3c/ai-content-notes`. GitHub PR state is authority. Planned leaves remain plans until an issue, branch, path lease, eval receipt and PR exist.
+> Canonical PR dependency and runtime-leaf index for `ed3c/ai-content-notes`. GitHub state is authority. A planned leaf becomes implemented only after an issue/task packet, branch, exact path lease, tests, PR, trusted checks and Human Admit exist.
 
 ## A. Completed documentation/governance stack
 
-Issue [#17](https://github.com/ed3c/ai-content-notes/issues/17) decomposed the discoverability and governance work into four serial PRs:
+```text
+Merged PR #18  agent/docs-card-catalog
+  -> Merged PR #19  agent/docs-agent-routing
+  -> Merged PR #20  agent/docs-state-machine
+  -> Merged PR #21  agent/docs-git-town-governance
+  -> Merged PR #22  agent/docs-stack-finalize
+```
+
+| PR | Scope | Merge commit |
+|---:|---|---|
+| #18 | card catalog + integration-status SSOT | `bbf92a4106b720f5b50707029779984d6672951f` |
+| #19 | Agent read order and state guard | `073fbdd2c1d09b71f22a30b7458aa0be06b932d6` |
+| #20 | root directory/state/data-flow map + navigation test | `c10f8b4572546262c34f93712c54798fdc451830` |
+| #21 | repo profile, admission blocker and Worker protocol | `a2bd35a615c6754c5be70494bef55b65216bda7c` |
+| #22 | exact merged-stack convergence | `f67ccad478f30d6b17a4ebbf73aaab41f2f05dda` |
+
+## B. Runtime Stack PR state
+
+Issue [#23](https://github.com/ed3c/ai-content-notes/issues/23) owns the runtime decomposition.
 
 ```text
 main
-└── Merged PR #18  agent/docs-card-catalog
-    └── Merged PR #19  agent/docs-agent-routing
-        └── Merged PR #20  agent/docs-state-machine
-            └── Merged PR #21  agent/docs-git-town-governance
+└── Merged PR #24  runtime/01-source-pack-and-run-receipt
+    └── runtime/02-relation-graph-and-thesis-ranking  [NEXT / PLANNED]
+        ├── runtime/03a-knowledge-view-projections    [PLANNED]
+        ├── runtime/03b-source-driven-batch-planner   [PLANNED]
+        └── runtime/03c-semantic-yield-evaluator      [PLANNED]
+            └── runtime/04-convergence-and-cvrngaqzq3y-replay [PLANNED]
+
+main
+└── runtime/visual-01-rights-gated-frame-contracts   [PLANNED]
+    └── runtime/visual-02-frame-extractor-and-annotation
+        └── runtime/04-convergence-and-cvrngaqzq3y-replay
+
+main
+└── runtime/provider-01-model-run-adapter             [PLANNED]
+    └── runtime/provider-02-raw-response-receipt
+        └── runtime/04-convergence-and-cvrngaqzq3y-replay
 ```
 
-| Stack | Branch | Original base | Scope / path lease | Validation | Merge commit |
-|---:|---|---|---|---|---|
-| 1 | `agent/docs-card-catalog` | `main` | `evals/semantic-yield/README.md`, `docs/SEMANTIC_YIELD_INTEGRATION_STATUS.md`, `INDEX.md` | Canonical contracts | `bbf92a4106b720f5b50707029779984d6672951f` |
-| 2 | `agent/docs-agent-routing` | Stack 1 | `AGENTS.md`, `CLAUDE.md`, `INTEGRATION_REQUIREMENTS.md` | Canonical contracts | `073fbdd2c1d09b71f22a30b7458aa0be06b932d6` |
-| 3 | `agent/docs-state-machine` | Stack 2 | `README.md`, `tests/test_repository_navigation.py` | Canonical contracts + Ruff | `c10f8b4572546262c34f93712c54798fdc451830` |
-| 4 | `agent/docs-git-town-governance` | Stack 3 | `docs/git/**` plus convergence-owned root docs/tests | Canonical contracts + Ruff | `a2bd35a615c6754c5be70494bef55b65216bda7c` |
+### Implemented Leaf 01
 
-Actual merge/retarget sequence:
+| Field | Value |
+|---|---|
+| issue | #23 |
+| PR | #24 |
+| branch | `runtime/01-source-pack-and-run-receipt` |
+| base | `main` |
+| merge commit | `d39d4791eed8c0cd3b1227ef8aeafd9685736e91` |
+| changed paths | four schemas, two builders, focused tests, `docs/runtime/README.md` |
+| local evidence | Python compilation, four schema checks, 10 focused tests |
+| GitHub evidence | Ruff + Canonical Contracts on Python 3.11 and 3.13 |
+| boundary | identity receipts only; no provider invocation, cards, relation graph or visual extraction |
+
+Leaf 01 materializes:
 
 ```text
-merge PR #18 with ancestry-preserving merge commit
-→ retarget PR #19 to main and merge
-→ retarget PR #20 to main and merge
-→ retarget PR #21 to main and merge
+multimodal-source-pack-descriptor@1
+  -> build-multimodal-source-pack@1
+  -> multimodal-source-pack@1
+
+model-run-receipt-descriptor@1
+  -> build-model-run-receipt@1
+  -> model-run-receipt@1
 ```
 
-This is a proven GitHub branch/PR and Human-Admit lane. It is not proof that a Git Town executable ran.
+The receipts prove exact artifact identity and declared metadata. They do not prove source accuracy, claim truth, visual fidelity, model quality, QG completion or production admission.
 
-## B. Evidence lanes for the completed stack
+## C. Remaining leaf task contracts
 
-| Lane | Result | Evidence boundary |
+| Leaf | Responsibility | Proposed path lease | Dependency | Required evidence |
+|---|---|---|---|---|
+| `runtime/02-relation-graph-and-thesis-ranking` | evidence-bound relation IR and deterministic central-thesis selector | relation schema/tool/tests only | merged PR #24 | anchored supported edges, stable relation IDs, deterministic ranking, negative controls |
+| `runtime/03a-knowledge-view-projections` | causal flow, equation, timeline, state-plane and comparison views | projection schemas/renderers/tests | leaf 02 | exact relation provenance and UNKNOWN-safe cells |
+| `runtime/03b-source-driven-batch-planner` | decision-value coverage instead of fixed series quota | batch planner/schema/tests | leaf 02 | action/comparison/visual coverage mutation tests |
+| `runtime/03c-semantic-yield-evaluator` | HG-01..HG-06 deterministic evaluator | evaluator/schema/fixtures/tests | leaf 02 | omission, unsupported precision and false-positive controls |
+| `runtime/visual-01-rights-gated-frame-contracts` | rights, timestamps, digests and visual locators | visual schemas/docs/tests | `main` | unauthorized and URL-based media fail closed |
+| `runtime/visual-02-frame-extractor-and-annotation` | local frame extraction and reviewed bbox/OCR/topology | visual tools/tests | visual 01 | local-media canary, no downloader, digest mismatch control |
+| `runtime/provider-01-model-run-adapter` | provider-neutral exact-model invocation boundary | provider interface/tests | `main` | fake-provider replay, timeout/error contract, secret-output guard |
+| `runtime/provider-02-raw-response-receipt` | integrate adapter output with the merged receipt contract | provider receipt adapter/tests | provider 01 + PR #24 | exact digest and stale/mismatched-subject rejection |
+| `runtime/04-convergence-and-cvrngaqzq3y-replay` | integrate admitted siblings and run transcript/multimodal comparison | shared fixtures, indexes, CI and final replay | approved leaf heads | full suite, stable IDs, no fixed-series golden, read-back and 2×2 result |
+
+### Dependency policy
+
+```text
+PR #24 -> runtime/02 is serial because relation inputs consume source-pack identity.
+
+runtime/03a / 03b / 03c are siblings:
+- independent branches;
+- disjoint path leases;
+- no artificial serial dependency.
+
+visual and provider stacks are independent roots from main.
+
+runtime/04 is the only owner of:
+- shared fixtures;
+- aggregate indexes;
+- canonical CI convergence;
+- final CvRngaQZQ3Y replay;
+- transcript-only versus multimodal 2×2 comparison.
+```
+
+## D. Current evidence lanes
+
+| Lane | State | Meaning |
 |---|---|---|
-| task decomposition | `PASS` | issue #17 recorded goal, non-goals, parent, path lease, evals and rollback subjects |
-| remote branch hierarchy | `PASS` | PR #18 → #19 → #20 → #21 bases were read back |
-| connector-backed PR publication | `PASS` | all four PRs existed and were reviewable |
-| trusted checks | `PASS` | Canonical Contracts passed for each stack head; Ruff passed where present |
-| retarget sequence | `PASS` | children were retargeted to `main` only after the parent merged |
-| merge / promotion | `PASS / HUMAN ADMIT` | trusted operator explicitly admitted each merge |
-| exact Git Town admission | `ABSENT / BLOCKED_POLICY` | no exact version/checksum/provenance/legal receipt |
-| live `git town sync` | `NOT_EXERCISED` | branch graph was managed through GitHub APIs |
+| issue/task decomposition | `PASS` | #17 and #23 contain goals, non-goals, leases, tests and rollback subjects |
+| GitHub branch/PR publication | `PASS` | connector-backed publication receipts exist |
+| trusted checks | `PASS` through PR #24 | exact PR heads received green CI |
+| merge sequence | `PASS / HUMAN ADMIT` | explicit merges, not Worker auto-ship |
+| exact Git Town admission | `ABSENT / BLOCKED_POLICY` | version/checksum/provenance/legal receipt missing |
+| live `git town sync` | `NOT_EXERCISED` | GitHub graph is not a sync receipt |
 | linked worktree/lease canary | `NOT_EXERCISED` | no admitted Worker runtime |
 | conflict canary | `NOT_EXERCISED` | no live Git Town canary |
-| exact-HEAD Worker receipt | `NOT_EXERCISED` | GitHub CI is a separate evidence lane |
-| Worker publication gate | `NOT_IMPLEMENTED` | no repo-owned admitted gate/wrapper |
+| Worker publication gate | `NOT_IMPLEMENTED` | connector publication is a separate trusted-operator lane |
 
-The shared `git-town-stacked-pr-worker` method owns the portable rules. This repository owns the profile, issue packets, path leases, CI, receipts and branch graph. Missing live evidence stays `ABSENT`, `NOT_EXERCISED` or `NOT_IMPLEMENTED`.
+## E. Current card-output authority
 
-## C. Current card-output authority
-
-Only this content item has run the modified Semantic Yield flow:
+Modified-flow cards:
 
 ```text
 evals/semantic-yield/CvRngaQZQ3Y/cards/
 ```
 
-Canonical navigation:
+Canonical indexes:
 
 - [`../../evals/semantic-yield/README.md`](../../evals/semantic-yield/README.md)
 - [`../SEMANTIC_YIELD_INTEGRATION_STATUS.md`](../SEMANTIC_YIELD_INTEGRATION_STATUS.md)
 - [`../../README.md`](../../README.md)
 
-The retained first-pass directory:
+The retained `evals/live/CvRngaQZQ3Y/` directory is a transcript-only v7.1 baseline, not modified-flow coverage.
 
-```text
-evals/live/CvRngaQZQ3Y/
-```
-
-is a transcript-only v7.1 baseline and is not modified-flow coverage.
-
-## D. Historical implementation trace
+## F. Historical implementation trace
 
 | PR | State | Role |
 |---:|---|---|
-| PR #9 | merged | immutable v7.1 prompt lock, A/B harness and system audit |
-| PR #11 / PR #12 | merged | transcript acquisition and retained first v7.1 batch under `evals/live/` |
-| PR #15 | merged | current 10-card Semantic Yield output |
-| PR #16 | merged | deterministic artifact validator and partial QG evidence |
-| PR #18 / PR #19 / PR #20 / PR #21 | merged | catalog, Agent routing, State Machine/data flow and Git/stack governance |
-| PR #13 | open draft | monolithic grounded runtime draft; not current `main` authority |
+| #9 | merged | immutable v7.1 prompt, A/B harness and audit |
+| #11/#12 | merged | acquisition and retained transcript-only output |
+| #15 | merged | current 10-card Semantic Yield batch |
+| #16 | merged | deterministic card validator |
+| #18–#22 | merged | discoverability, Agent routing, State Machine and Git/stack governance |
+| #24 | merged | source-pack and model-run receipt foundation |
+| #13 | open draft | monolithic runtime draft; extract remaining leaves, do not merge wholesale |
 
-PR #13 contains useful code but mixes source-pack contracts, relation graphs, projections, planning and evaluation in one large review surface. Reuse requires molecular extraction and replay against current `main`; do not merge it wholesale.
-
-## E. Molecular runtime leaf stack｜PR #13 的分子化末端實作
-
-These leaves are `PLANNED`, not implemented PRs. Every leaf needs a new task packet, branch, exact path lease, required evals, negative controls and rollback subject.
+## G. Next executable order
 
 ```text
-main
-└── runtime/01-source-pack-and-run-receipt
-    └── runtime/02-relation-graph-and-thesis-ranking
-        ├── runtime/03a-knowledge-view-projections
-        ├── runtime/03b-source-driven-batch-planner
-        └── runtime/03c-semantic-yield-evaluator
-            └── runtime/04-convergence-and-cvrngaqzq3y-replay
-
-main
-└── runtime/visual-01-rights-gated-frame-contracts
-    └── runtime/visual-02-frame-extractor-and-annotation
-        └── runtime/04-convergence-and-cvrngaqzq3y-replay
-
-main
-└── runtime/provider-01-model-run-adapter
-    └── runtime/provider-02-raw-response-receipt
-        └── runtime/04-convergence-and-cvrngaqzq3y-replay
+1. create a Leaf 02 task packet under issue #23;
+2. branch from current main after PR #24;
+3. extract only relation-graph and thesis-ranking code from PR #13;
+4. bind relation inputs to multimodal-source-pack@1 identity;
+5. add deterministic IDs, ranking and mutation controls;
+6. publish Leaf 02 as a separate PR;
+7. keep 03a/03b/03c blocked until the relation contract stabilizes.
 ```
-
-### Planned leaves and path leases
-
-| Leaf | Primary responsibility | Proposed path lease | Dependency | Required completion evidence |
-|---|---|---|---|---|
-| `runtime/01-source-pack-and-run-receipt` | multimodal source-pack and provider/model run-receipt contracts/builders | dedicated source-pack/receipt schemas, builders and focused tests | `main` | Draft 2020-12 schema tests, deterministic digests, stale-subject rejection |
-| `runtime/02-relation-graph-and-thesis-ranking` | evidence-bound relation IR and central-thesis selector | relation schema/tool/tests only | leaf 01 | supported edges require anchors; deterministic relation IDs and ranking |
-| `runtime/03a-knowledge-view-projections` | causal flow, equation, timeline, state-plane and comparison views | projection schemas/renderers/tests | leaf 02 | relation provenance and UNKNOWN-safe cells |
-| `runtime/03b-source-driven-batch-planner` | replace fixed series quota with decision-value coverage | batch planner/schema/tests | leaf 02 | comparison/action/visual coverage mutation tests |
-| `runtime/03c-semantic-yield-evaluator` | HG-01..HG-06 deterministic evaluator | evaluator/schema/fixtures/tests | leaf 02 | false-positive, omission and unsupported-precision controls |
-| `runtime/visual-01-rights-gated-frame-contracts` | rights, timestamp, digest and visual locator contracts | visual schemas/docs/tests | `main` | unauthorized or URL-based media fails closed |
-| `runtime/visual-02-frame-extractor-and-annotation` | explicit local frame extraction and reviewed bbox/OCR/topology annotations | visual tools/tests | visual 01 | real local-media canary; no downloader; digest mismatch control |
-| `runtime/provider-01-model-run-adapter` | provider-neutral exact-model invocation boundary | provider adapter interface/tests | `main` | fake-provider replay, timeout/error contract and secret-output guard |
-| `runtime/provider-02-raw-response-receipt` | raw-response, sampling and compiled-output receipt | receipt builder/tests | provider 01 | exact digest binding and stale/mismatched subject rejection |
-| `runtime/04-convergence-and-cvrngaqzq3y-replay` | integrate admitted siblings and run transcript/multimodal comparison | shared fixtures, aggregate indexes, CI and final replay | approved leaf heads | full suite, no fixed-series golden, stable IDs, Git read-back and 2×2 result |
-
-### Dependency and sibling policy
-
-```text
-runtime/01 -> runtime/02 is serial because relation input consumes source-pack identity.
-
-runtime/03a / runtime/03b / runtime/03c are siblings:
-- separate branches;
-- disjoint path leases;
-- no artificial serial chain.
-
-visual and provider stacks are independent roots from main.
-
-runtime/04 is the sole convergence owner for:
-- shared fixtures;
-- aggregate indexes;
-- canonical CI wiring;
-- the final CvRngaQZQ3Y replay;
-- the 2×2 transcript-only versus multimodal comparison.
-```
-
-## F. Next executable order
-
-Current recommended order:
-
-```text
-1. create an epic/task packet for runtime/01;
-2. extract only the source-pack and run-receipt slice from PR #13;
-3. replay focused tests against current main;
-4. publish a draft leaf PR;
-5. keep runtime/02 blocked until leaf 01 contracts stabilize;
-6. do not activate Git Town sync until admission is unblocked.
-```
-
-The first runtime leaf must not copy historical generated fixtures or aggregate indexes owned by convergence.
-
-## G. Traceability matrix
-
-| Requirement | Current artifact |
-|---|---|
-| find modified-flow cards | `evals/semantic-yield/README.md` |
-| exact integration status | `docs/SEMANTIC_YIELD_INTEGRATION_STATUS.md` |
-| Agent read order | `AGENTS.md`, `CLAUDE.md`, `INTEGRATION_REQUIREMENTS.md` |
-| directory State Machine and data flow | root `README.md` |
-| current card identities | `evals/semantic-yield/CvRngaQZQ3Y/card-manifest.json` |
-| deterministic validation | `semantic-validator-report.json`, validator tool/tests |
-| repository profile | `docs/git/REPO_PROFILE.md` |
-| admission blocker | `docs/git/GIT_TOWN_ADMISSION.md` |
-| Worker task/lease contract | `docs/git/WORKER_PROTOCOL.md` |
-| completed and planned branch graph | this file |
-| completed docs-stack owner | issue #17 |
-| runtime implementation owner | new runtime epic/task packets, not issue #17 by implication |
 
 ## H. Update rules
 
-Update this file whenever:
-
-- a planned leaf receives an issue, branch or PR number;
-- a PR base/head changes;
-- a stack item is merged, closed or superseded;
-- a path lease changes;
-- Git Town admission or live evidence changes;
-- a convergence artifact becomes authoritative.
+Update this file whenever a leaf receives an issue/branch/PR, changes base or path lease, passes or fails checks, merges, closes or is superseded.
 
 Never report:
 
 - a planned leaf as implemented;
 - a GitHub branch graph as live Git Town sync;
-- a green check as merge/promotion authority;
+- a receipt as claim truth or quality evidence;
 - a host projection as source visual evidence;
-- a partial validator as full QG-01..QG-24 completion.
+- a partial validator as full QG completion;
+- a green check as automatic merge/promotion authority.

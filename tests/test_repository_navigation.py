@@ -10,6 +10,7 @@ MANIFEST = BATCH / "card-manifest.json"
 ROOT_README = ROOT / "README.md"
 AGENT_FILES = (ROOT / "AGENTS.md", ROOT / "CLAUDE.md")
 GIT_DOCS = ROOT / "docs" / "git"
+RUNTIME_DOCS = ROOT / "docs" / "runtime"
 
 
 def load_json(path: Path) -> dict[str, object]:
@@ -65,6 +66,9 @@ def test_root_readme_exposes_directory_state_machine_and_data_flow() -> None:
         "## Actual data flow",
         "DISCOVERED",
         "RIGHTS_AND_COMPLETENESS_REVIEW",
+        "SOURCE_PACK_BOUND",
+        "MODEL_RUN_BOUND",
+        "EVIDENCE_BOUND",
         "SEMANTIC_MODELED",
         "CARD_BATCH_RENDERED",
         "HOST_VALIDATED",
@@ -112,8 +116,8 @@ def test_git_town_profile_fails_closed_and_stack_is_traceable() -> None:
     assert "CI_PUBLICATION_GATE: ABSENT" in profile
     assert "live_git_town_sync: NOT_EXERCISED" in admission
 
-    for pr_number in (18, 19, 20, 21):
-        assert f"PR #{pr_number}" in stack
+    for pr_number in (18, 19, 20, 21, 22, 24):
+        assert f"#{pr_number}" in stack
     for leaf in (
         "runtime/01-source-pack-and-run-receipt",
         "runtime/02-relation-graph-and-thesis-ranking",
@@ -136,10 +140,11 @@ def test_documentation_stack_is_recorded_as_merged_not_draft() -> None:
         "073fbdd2c1d09b71f22a30b7458aa0be06b932d6",
         "c10f8b4572546262c34f93712c54798fdc451830",
         "a2bd35a615c6754c5be70494bef55b65216bda7c",
+        "f67ccad478f30d6b17a4ebbf73aaab41f2f05dda",
     )
-    for pr_number in (18, 19, 20, 21):
+    for pr_number in (18, 19, 20, 21, 22):
         assert f"Merged PR #{pr_number}" in readme
-        assert f"Merged PR #{pr_number}" in stack
+        assert f"PR #{pr_number}" in stack
         assert f"Draft PR #{pr_number}" not in readme
         assert f"Draft PR #{pr_number}" not in stack
     for merge_commit in merge_commits:
@@ -147,12 +152,43 @@ def test_documentation_stack_is_recorded_as_merged_not_draft() -> None:
         assert merge_commit in stack
 
 
+def test_runtime_leaf01_contracts_are_materialized() -> None:
+    required = (
+        RUNTIME_DOCS / "README.md",
+        ROOT / "schemas" / "multimodal-source-pack-descriptor.schema.json",
+        ROOT / "schemas" / "multimodal-source-pack.schema.json",
+        ROOT / "schemas" / "model-run-receipt-descriptor.schema.json",
+        ROOT / "schemas" / "model-run-receipt.schema.json",
+        ROOT / "tools" / "build_multimodal_source_pack.py",
+        ROOT / "tools" / "build_model_run_receipt.py",
+        ROOT / "tests" / "test_source_pack_and_run_receipt.py",
+    )
+    assert all(path.is_file() for path in required)
+
+    readme = ROOT_README.read_text(encoding="utf-8")
+    stack = (GIT_DOCS / "STACKED_PRS.md").read_text(encoding="utf-8")
+    runtime = (RUNTIME_DOCS / "README.md").read_text(encoding="utf-8")
+
+    assert "Merged PR #24" in readme
+    assert "Merged PR #24" in stack
+    assert "d39d4791eed8c0cd3b1227ef8aeafd9685736e91" in readme
+    assert "d39d4791eed8c0cd3b1227ef8aeafd9685736e91" in stack
+    assert "multimodal-source-pack@1" in readme
+    assert "model-run-receipt@1" in readme
+    assert "runtime/01-source-pack-and-run-receipt" in runtime
+
+
 def test_root_readme_indexes_completed_and_planned_stack_without_overclaim() -> None:
     text = ROOT_README.read_text(encoding="utf-8")
-    for pr_number in (18, 19, 20, 21):
+    for pr_number in (18, 19, 20, 21, 22, 24):
         assert f"PR #{pr_number}" in text
     assert "## Molecular runtime leaf stack" in text
     assert "exact Git Town admission: ABSENT / BLOCKED_POLICY" in text
     assert "live sync: NOT_EXERCISED" in text
-    assert "These leaves are `PLANNED`, not implemented PRs" in text
+    assert (
+        "Leaf 01 is implemented; all remaining leaves are `PLANNED`, "
+        "not implemented PRs"
+    ) in text
     assert "Git branch graph != live Git Town synchronization receipt" in text
+    assert "source-pack receipt != source accuracy or claim truth" in text
+    assert "model-run receipt != model quality or claim verification" in text
