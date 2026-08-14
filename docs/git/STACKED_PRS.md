@@ -9,7 +9,7 @@ main
 └── PR #18  agent/docs-card-catalog
     └── PR #19  agent/docs-agent-routing
         └── PR #20  agent/docs-state-machine
-            └── agent/docs-git-town-governance  (PR assigned on publication)
+            └── PR #21  agent/docs-git-town-governance
 ```
 
 ### Stack task packets
@@ -19,14 +19,14 @@ main
 | 1 | `agent/docs-card-catalog` | `main` | `evals/semantic-yield/README.md`, `docs/SEMANTIC_YIELD_INTEGRATION_STATUS.md`, `INDEX.md` | link/read-back review | Draft PR #18 |
 | 2 | `agent/docs-agent-routing` | Stack 1 | `AGENTS.md`, `CLAUDE.md`, `INTEGRATION_REQUIREMENTS.md` | exact read order and status consistency | Draft PR #19 |
 | 3 | `agent/docs-state-machine` | Stack 2 | `README.md`, `tests/test_repository_navigation.py` | full pytest + navigation contract | Draft PR #20 |
-| 4 | `agent/docs-git-town-governance` | Stack 3 | `docs/git/**`, convergence updates to README/Agent docs/test | full pytest + stack/profile checks | current head; PR pending publication |
+| 4 | `agent/docs-git-town-governance` | Stack 3 | `docs/git/**`, convergence updates to README/Agent docs/test | full pytest + stack/profile checks | Draft PR #21 |
 
 Merge order is strictly bottom-up by dependency:
 
 ```text
 #18 -> retarget #19 to main -> merge #19
     -> retarget #20 to main -> merge #20
-    -> retarget final governance PR to main -> merge
+    -> retarget #21 to main -> merge #21
 ```
 
 A trusted operator owns retargeting and merge. Workers do not invoke `git town ship` or automatic merge.
@@ -37,7 +37,7 @@ A trusted operator owns retargeting and merge. Workers do not invoke `git town s
 |---|---|
 | task decomposition | `PASS` — issue #17 contains goals, non-goals, parents, path leases, evals and rollback subjects |
 | remote branch hierarchy | `PASS` — explicit GitHub parent branches exist |
-| draft PR publication | `PASS` for PR #18/#19/#20; final PR pending |
+| draft PR publication | `PASS` — PR #18/#19/#20/#21 exist with the recorded bases |
 | live Git Town admission | `ABSENT` |
 | live `git town sync` | `NOT_EXERCISED` |
 | linked worktree/lease canary | `NOT_EXERCISED` |
