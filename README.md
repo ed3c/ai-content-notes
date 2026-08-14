@@ -1,12 +1,39 @@
 # AI Content Notes｜AI 高價值內容筆記與證據庫
 
-> A private evidence plane that turns complete AI source material into source-constrained, payload-first v7.1 cards, machine sidecars and review-gated claim candidates.
+> A private Evidence Plane that turns complete AI source material into source-constrained, payload-first v7.1 cards, machine sidecars, knowledge projections and review-gated claim candidates.
 >
-> 私有 Evidence Plane：把完整 AI 來源編譯成受證據約束、payload-first 的 v7.1 卡片、machine sidecars 與待審查 claim candidates。
+> 私有 Evidence Plane：把完整 AI 來源編譯成受證據約束、payload-first 的 v7.1 卡片、machine sidecars、知識投影與待審查 claim candidates。
+
+## Start here｜卡片在哪裡
+
+The canonical modified-flow card catalog is:
+
+- [`evals/semantic-yield/README.md`](evals/semantic-yield/README.md)
+
+As of 2026-08-14, only one content item has run the modified host-side Semantic Yield flow on `main`:
+
+```text
+evals/semantic-yield/CvRngaQZQ3Y/cards/
+```
+
+It contains ten cards and remains `CONTINUE`:
+
+| Order | Stable ID | Series / decision use |
+|---:|---|---|
+| 1 | [`N-autonomy-trace-mining`](evals/semantic-yield/CvRngaQZQ3Y/cards/N-autonomy-trace-mining.md) | Narrative: autonomy → lower predictability → Trace Mining |
+| 2 | [`C-model-harness-task-fit`](evals/semantic-yield/CvRngaQZQ3Y/cards/C-model-harness-task-fit.md) | Concept: `fit(Model, Harness, Task / Distribution)` |
+| 3 | [`S-harness-finetune-harness`](evals/semantic-yield/CvRngaQZQ3Y/cards/S-harness-finetune-harness.md) | Strategy: Harness → ceiling → model update → re-Harness |
+| 4 | [`T-trace-judge-comparison`](evals/semantic-yield/CvRngaQZQ3Y/cards/T-trace-judge-comparison.md) | Comparison: UNKNOWN-safe judge selection |
+| 5 | [`P-trace-driven-improvement-cycle`](evals/semantic-yield/CvRngaQZQ3Y/cards/P-trace-driven-improvement-cycle.md) | Practice: replayable and rollback-capable loop |
+| 6 | [`D-trace-scale-bottleneck`](evals/semantic-yield/CvRngaQZQ3Y/cards/D-trace-scale-bottleneck.md) | Detail: cost/context bottleneck |
+| 7 | [`D-four-stage-trace-loop`](evals/semantic-yield/CvRngaQZQ3Y/cards/D-four-stage-trace-loop.md) | Detail: Ship → Collect → Mine → Experiment |
+| 8 | [`C-continual-learning-state-planes`](evals/semantic-yield/CvRngaQZQ3Y/cards/C-continual-learning-state-planes.md) | Concept: Data / Harness / Memory planes |
+| 9 | [`V-semantic-yield-replay`](evals/semantic-yield/CvRngaQZQ3Y/cards/V-semantic-yield-replay.md) | Verification: host replay, `PARTIAL` |
+| 10 | [`K-visual-identifier-evidence-gap`](evals/semantic-yield/CvRngaQZQ3Y/cards/K-visual-identifier-evidence-gap.md) | Gap: visual and canonical-identifier evidence |
+
+Do not confuse this with `evals/live/CvRngaQZQ3Y/`, which is the retained first transcript-only v7.1 evaluation batch. The `evals/live/` 12-card output did not run the complete modified Semantic Yield flow.
 
 ## Active protocol｜目前協議
-
-New compilation uses the immutable prompt selected by:
 
 ```text
 governance/CARD_PROTOCOL_CURRENT.json
@@ -16,46 +43,137 @@ governance/CARD_PROTOCOL_CURRENT.json
 
 v7.1 separates evidence-first compilation from task-value-first rendering. Human cards begin with the core proposition and why it matters; canonical key, revision, source dependencies and registry state move to the declared sidecar plane. v7.0 remains the fixed A/B/provenance baseline, and v6.6 remains historical.
 
-## Repository authority｜本庫權責
-
-This repository owns immutable compiler contracts, source/evidence manifests, stable card identity, V/X/K state, human notes, private card/validation sidecars, E0/E1 claim candidates and privacy-preserving deltas. It does not grant Atlas admission, E2–E5 runtime evidence, Skill qualification, production routing or implicit invocation.
-
-## Runtime contract｜執行契約
-
-Scheduled runs use LOOP + SIDECAR and the exact runtime settings in `governance/PARAMETERS.md`. The source is always untrusted data. Compile order is Evidence → Assertions → D/V/X/K → semantic/framework/action nodes; render order is selected from the task. All QG-01..QG-24 require external evidence before DONE.
-
-Versioned v7.1 host contracts:
+## Repository directory map｜目錄結構
 
 ```text
-templates/NOTE_TEMPLATE_V7_1.md
-schemas/source-manifest.schema.json
-schemas/card-patch-v7.1.schema.json
-schemas/assertion-report-v7.1.schema.json
-schemas/compiler-state-v7.1.schema.json
+ai-content-notes/
+├── AGENTS.md / CLAUDE.md              # Agent read order and behavior contract
+├── INTEGRATION_REQUIREMENTS.md         # cross-layer handoff and completion boundary
+├── INDEX.md                            # navigation index
+├── CONTEXT.md                          # downstream domain/capability mapping
+├── governance/                         # immutable prompt, parameters and workflow SSOT
+├── templates/                          # human/card/compiler templates
+├── schemas/                            # machine-readable artifact contracts
+├── tools/                              # acquisition, normalization, validation and export adapters
+├── tests/                              # deterministic contract and regression tests
+├── evals/
+│   ├── prompt-ab/                      # v7.0 versus v7.1 fixed replay
+│   ├── live/                           # acquisition-backed first-pass outputs / baselines
+│   └── semantic-yield/
+│       ├── README.md                   # all modified-flow batches
+│       └── <content-id>/
+│           ├── README.md               # batch entrypoint and card order
+│           ├── cards/                  # one stable-ID Markdown file per card
+│           ├── card-manifest.json      # prompt/source/card/blob bindings
+│           ├── knowledge-views.md      # host-side graph projections
+│           ├── semantic-validator-report.json
+│           ├── semantic-yield.result.json
+│           └── run-state.md
+├── docs/                               # implementation status, audits and governance
+├── notes/                              # historical Git note bodies
+├── examples/                           # schemas and claim-map examples
+└── .github/workflows/                  # canonical CI and acquisition workflows
 ```
 
-## A/B evidence｜A/B 測試
+## Directory-to-State-Machine ownership｜目錄對應的 State Machine 分工
 
-The repository contains a fixed synthetic fixture, saved v7.0/v7.1 outputs, a run manifest, deterministic evaluator and persisted result:
+| State / lane | Owning paths | Input | Output / receipt | Failure boundary |
+|---|---|---|---|---|
+| `DISCOVERED` | ranking/source selection outside or before batch materialization | candidate URL/source | content ID + task intent | snippet/title-only input blocks |
+| `RIGHTS_AND_COMPLETENESS_REVIEW` | acquisition adapters, `governance/WORKFLOW.md` | candidate source | rights/completeness decision | unverified rights or incomplete source → `BLOCKED`/evaluation-only |
+| `ACQUIRED` | `tools/ai_video_transcriber_*`, `tools/youtube_*`, acquisition workflows | authorized source | raw/private acquisition artifact + source manifest | transport success is not independent corroboration |
+| `NORMALIZED` | `tools/normalize_rolling_transcript.py` | raw transcript/cues | deterministic normalized derivative + report | semantic/name repair is forbidden in normalization |
+| `EVIDENCE_BOUND` | v7.1 Audit Plane contracts, manifests and evidence anchors | normalized source + dependency key | evidence/assertion candidates | missing anchor → inference/K card, not fabricated precision |
+| `SEMANTIC_MODELED` | relation/thesis/projection layer and `knowledge-views.md` | evidence-bound claims | causal relations, thesis ranking, views | host view is not source-slide evidence |
+| `CARD_BATCH_RENDERED` | `evals/semantic-yield/<id>/cards/`, `card-manifest.json` | semantic graph + render plan | source-driven stable card batch | fixed series quota must not override source decision value |
+| `HOST_VALIDATED` | `tools/validate_semantic_yield_artifacts.py`, schema/tests/report | persisted batch | HG results + evidenced QG subset | model-authored PASS is insufficient |
+| `PERSISTED_AND_READ_BACK` | batch directory, Git blobs, future Doc/Sheet adapters | validated artifacts | exact read-back identity | planned path or status prose is not persistence evidence |
+| `CONTINUE` | `run-state.md`, `semantic-yield.result.json` | partial valid batch | next cursor + blockers | current `CvRngaQZQ3Y` state |
+| `DONE` | complete v7.1 Completion Contract | all required source/QG/storage evidence | final state with no remaining work | unavailable while any required lane remains open |
+| `BLOCKED` / `FAILED` | K/X/V state and run state | missing authority or irreparable input | explicit unblock/recovery contract | never silently downgrade to DONE |
+
+## State machine｜狀態機
+
+```mermaid
+stateDiagram-v2
+    [*] --> DISCOVERED
+    DISCOVERED --> RIGHTS_AND_COMPLETENESS_REVIEW
+    RIGHTS_AND_COMPLETENESS_REVIEW --> ACQUIRED: source/rights admitted
+    RIGHTS_AND_COMPLETENESS_REVIEW --> BLOCKED: authority or completeness absent
+    ACQUIRED --> NORMALIZED
+    NORMALIZED --> EVIDENCE_BOUND
+    EVIDENCE_BOUND --> SEMANTIC_MODELED
+    SEMANTIC_MODELED --> CARD_BATCH_RENDERED
+    CARD_BATCH_RENDERED --> HOST_VALIDATED
+    HOST_VALIDATED --> PERSISTED_AND_READ_BACK
+    PERSISTED_AND_READ_BACK --> CONTINUE: required lanes remain
+    PERSISTED_AND_READ_BACK --> DONE: full completion contract passes
+    NORMALIZED --> FAILED: irreparable state/input
+    HOST_VALIDATED --> FAILED: hard validation failure
+    CONTINUE --> RIGHTS_AND_COMPLETENESS_REVIEW: retrieve missing source/rights
+    CONTINUE --> EVIDENCE_BOUND: add evidence or resolve identifiers
+    CONTINUE --> HOST_VALIDATED: rerun remaining validators
+```
+
+Current position:
 
 ```text
-evals/prompt-ab/v7_0-v7_1/
-tools/evaluate_prompt_ab.py
-docs/PROMPT_V7_1_AB_AND_SYSTEM_AUDIT.md
+CvRngaQZQ3Y
+  = PERSISTED_AND_READ_BACK
+  -> CONTINUE
 ```
 
-The paired smoke result is A=60, B=100 on the deterministic contract score. Both preserve exact evidence and honest test status; v7.1 wins on human entry, payload-first rendering, source-dependency provenance, reader metadata load and batch balance. This is one synthetic replay, not statistical proof.
+## Actual data flow｜實際資料流
 
-Run it with:
+```text
+YouTube URL / complete source
+  -> acquisition backend chain
+  -> private raw transcript artifact
+  -> deterministic rolling-caption normalization
+  -> source dependency + digest contract
+  -> immutable v7.1 prompt
+  -> evidence/assertion modeling
+  -> relation graph and central-thesis selection
+  -> source-driven N/C/S/T/P/D/V/K cards
+  -> knowledge-views.md
+  -> deterministic semantic-validator-report.json
+  -> semantic-yield.result.json + run-state.md
+  -> Git read-back
+  -> future Google Doc/sidecar/Sheet transaction
+  -> claim map / privacy-preserving note delta
+  -> Atlas review
+  -> independent Skill qualification
+```
 
-```bash
-python tools/evaluate_prompt_ab.py \
-  --fixture evals/prompt-ab/v7_0-v7_1/fixture.json \
-  --output-a evals/prompt-ab/v7_0-v7_1/output-a-v7.0.md \
-  --output-b evals/prompt-ab/v7_0-v7_1/output-b-v7.1.md \
-  --run evals/prompt-ab/v7_0-v7_1/run.json \
-  --output evals/prompt-ab/v7_0-v7_1/result.json \
-  --check
+Concrete current paths:
+
+```text
+evals/live/CvRngaQZQ3Y/
+  -> retained first transcript-only v7.1 batch
+
+evals/semantic-yield/CvRngaQZQ3Y/cards/
+  -> current modified-flow card payloads
+
+evals/semantic-yield/CvRngaQZQ3Y/knowledge-views.md
+  -> grounded host projections
+
+evals/semantic-yield/CvRngaQZQ3Y/semantic-validator-report.json
+  -> deterministic HG/QG evidence
+
+evals/semantic-yield/CvRngaQZQ3Y/run-state.md
+  -> current `CONTINUE` cursor and remaining work
+```
+
+## Evidence lanes｜證據分流
+
+```text
+source statement != observed truth
+source-reported test != current TESTED artifact
+host projection != original visual evidence
+note completed != claim verified
+claim candidate != admitted claim
+Skill compiled != Skill qualified
+Git branch graph != live Git Town synchronization receipt
 ```
 
 ## Materialization status｜實作狀態
@@ -66,73 +184,95 @@ Materialized:
 - versioned schemas/templates;
 - saved-output A/B evaluator;
 - rights-gated YouTube caption/authorized-ASR acquisition;
+- deterministic rolling-caption normalization;
+- retained first v7.1 evaluation batch under `evals/live/`;
+- modified Semantic Yield 10-card batch and five human views;
+- deterministic host validator with a ten-QG evidence subset;
 - deterministic historical Git-note delta exporter.
 
-Not materialized in this repository:
+Incomplete or not materialized:
 
 - generic live model/compiler provider adapter;
-- deterministic semantic/anti-fragmentation validator;
-- source-dependency resolver;
+- provider/model raw-response receipt for the original card compilation;
+- authorized frame/slide extraction and reviewed visual topology for this source;
+- general source-dependency resolver;
+- remaining QG-01..QG-24 evidence;
 - Google Docs/Sheets transactional writer/read-back adapter;
 - Drive-revision note-delta adapter.
 
 The documented target workflow must not be presented as an executed production pipeline until these gaps are closed.
 
-## Target data flow｜目標資料流
-
-```text
-ranked complete source
-  -> rights/completeness gate
-  -> source manifest and artifact boundaries
-  -> immutable prompt + pinned host/model config
-  -> evidence-first Audit Plane
-  -> task-value-first Knowledge Plane
-  -> CARD_PATCH + ASSERTION_REPORT + NEXT_STATE
-  -> external QG-01..QG-24 validator
-  -> Google Doc payload + private sidecars
-  -> read-back
-  -> Sheet status/URL
-  -> claim map / note delta
-  -> Atlas review
-  -> independent Skill qualification
-```
-
-Hard separations:
-
-```text
-source statement != observed truth
-source-reported test != current TESTED artifact
-note completed != claim verified
-claim candidate != admitted claim
-Skill compiled != Skill qualified
-```
-
-## Canonical entrypoints｜固定入口
-
-- `AGENTS.md`, `CLAUDE.md`
-- `INTEGRATION_REQUIREMENTS.md`
-- `governance/CARD_PROTOCOL_CURRENT.json`
-- `governance/CARD_PROTOCOL_V7_1.md`
-- `governance/PARAMETERS.md`
-- `governance/WORKFLOW.md`
-- `INDEX.md`, `CONTEXT.md`, `RANK.md`
-- `docs/PROMPT_V7_1_AB_AND_SYSTEM_AUDIT.md`
-
-## Contract validation｜契約驗證
+## Deterministic validation｜契約驗證
 
 ```bash
 python -m pip install -r requirements-contracts.txt
 ruff check tools tests
 python -m py_compile tools/*.py tests/*.py
 pytest -q
+
+python tools/validate_semantic_yield_artifacts.py \
+  --target evals/semantic-yield/CvRngaQZQ3Y \
+  --output evals/semantic-yield/CvRngaQZQ3Y/semantic-validator-report.json \
+  --created-at 2026-08-14T01:15:00Z \
+  --check
 ```
 
-CI validates legacy compatibility plus the v7.1 prompt lock, schemas, templates and deterministic A/B result.
+Current host-validated QG subset:
 
-## Completion｜完成條件
+```text
+QG-07 QG-08 QG-10 QG-11 QG-12
+QG-16 QG-18 QG-20 QG-21 QG-23
+```
 
-A current note is completed only after complete-source/rights review, immutable prompt verification, registry-consistent cards, external QG-01..QG-24 evidence, Google Doc read-back, sidecar read-back and exact Sheet write-back. Planned paths, status cells, prompt output and README prose are not completion evidence.
+All other gates remain `NOT_RUN` for this validator.
 
-## Privacy and downstream boundary｜隱私與下游
+## Canonical entrypoints｜固定入口
+
+- [`AGENTS.md`](AGENTS.md), [`CLAUDE.md`](CLAUDE.md)
+- [`INTEGRATION_REQUIREMENTS.md`](INTEGRATION_REQUIREMENTS.md)
+- [`evals/semantic-yield/README.md`](evals/semantic-yield/README.md)
+- [`docs/SEMANTIC_YIELD_INTEGRATION_STATUS.md`](docs/SEMANTIC_YIELD_INTEGRATION_STATUS.md)
+- [`governance/CARD_PROTOCOL_CURRENT.json`](governance/CARD_PROTOCOL_CURRENT.json)
+- [`governance/CARD_PROTOCOL_V7_1.md`](governance/CARD_PROTOCOL_V7_1.md)
+- [`governance/PARAMETERS.md`](governance/PARAMETERS.md)
+- [`governance/WORKFLOW.md`](governance/WORKFLOW.md)
+- [`INDEX.md`](INDEX.md), [`CONTEXT.md`](CONTEXT.md), [`RANK.md`](RANK.md)
+- [`docs/PROMPT_V7_1_AB_AND_SYSTEM_AUDIT.md`](docs/PROMPT_V7_1_AB_AND_SYSTEM_AUDIT.md)
+- [`docs/SEMANTIC_YIELD_VALIDATOR.md`](docs/SEMANTIC_YIELD_VALIDATOR.md)
+
+## Stacked delivery trace｜Stack PR 追溯
+
+Issue [#17](https://github.com/ed3c/ai-content-notes/issues/17) owns the documentation/governance stack:
+
+```text
+main
+└── PR #18 agent/docs-card-catalog
+    └── PR #19 agent/docs-agent-routing
+        └── agent/docs-state-machine       # this layer
+            └── agent/docs-git-town-governance
+```
+
+| Stack | Branch | Base | Scope | Status |
+|---:|---|---|---|---|
+| 1 | `agent/docs-card-catalog` | `main` | batch/card catalog + status SSOT | Draft PR #18 |
+| 2 | `agent/docs-agent-routing` | Stack 1 | AGENTS/Claude/integration routing | Draft PR #19 |
+| 3 | `agent/docs-state-machine` | Stack 2 | root directory map, state machine, data flow and navigation test | current branch |
+| 4 | `agent/docs-git-town-governance` | Stack 3 | repo profile, admission state, Worker protocol and final PR index | planned child |
+
+This branch graph is Git Town-compatible, but live `git town sync` has not been executed. Exact executable/version/checksum admission is currently `ABSENT`; publication uses explicit GitHub parent branches and merge remains Human Admit.
+
+## Historical delivery trace｜歷史交付
+
+| PR | Purpose | Current meaning |
+|---|---|---|
+| #9 | v7.1 prompt lock, A/B harness and audit | protocol foundation |
+| #11/#12 | transcript acquisition and complete first v7.1 output | retained `evals/live/` baseline |
+| #15 | regenerated 10-card Semantic Yield batch | current modified-flow cards |
+| #16 | deterministic Semantic Yield validator | current host validation |
+| #13 | grounded runtime draft | open monolithic draft; not current `main` authority and should be decomposed before merge |
+
+## Completion and privacy｜完成與隱私
+
+A current note is completed only after complete-source/rights review, immutable prompt verification, registry-consistent cards, all required external gates, Google Doc read-back, sidecar read-back and exact Sheet write-back. Planned paths, status cells, prompt output and README prose are not completion evidence.
 
 Complete private source/note bodies do not enter public or downstream deltas. This repository emits review-and-requalify signals only. Code, model weights, data, trajectories and source text have independent provenance and licenses.
