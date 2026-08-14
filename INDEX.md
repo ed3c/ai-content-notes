@@ -45,6 +45,18 @@ evals/semantic-yield/CvRngaQZQ3Y/
 
 Only the ten cards listed in the Semantic Yield catalog have run the modified flow.
 
+## Legacy v6.6 corpus｜遷移語料
+
+The 22 legacy Google-Doc notes are materialized under `notes/` from the pinned
+bootstrap payload (`sha256:b3a80dd4…`). `MIGRATION_MANIFEST.json` is the record;
+`tools/materialize_legacy_migration.py --check` is the replay authority.
+
+Only `notes/**` was restored. The archived `README.md`, `INDEX.md`, `RANK.md`,
+`CONTEXT.md`, `governance/`, `schemas/` and `templates/` members predate the
+v7.1 contracts on `main` and are not authority. These notes stay `v6.6`,
+`citation_mapping: pending`, and are review candidates only — materialization
+does not mark any Sheet row completed and does not raise Atlas admission.
+
 ## Canonical storage｜固定儲存
 
 ```text
