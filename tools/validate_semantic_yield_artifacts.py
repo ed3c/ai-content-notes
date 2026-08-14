@@ -118,9 +118,22 @@ SERIES_REQUIRED_MARKERS = {
     ),
 }
 
+CLAIM_STATUS = re.compile(r"-\s*\*\*證據與狀態\*\*[：:]\s*(.+)")
+FALSIFIER_LINE = re.compile(r"-\s*\*\*反證／限制\*\*[：:]\s*(.+)")
+ARTIFACTS_LINE = re.compile(r"-\s*\*\*Artifacts\*\*[：:]\s*(.+)")
+EVIDENCE_REF = re.compile(r"\[\[EV-[A-Za-z0-9._:-]+\]\]")
+
+# P, V and K state their boundary through series-specific fields that the
+# series payload contract already requires, so QG-09 does not ask them for a
+# second 反證／限制 line.
+SERIES_OWNED_LIMIT_FIELDS = {"P", "V", "K"}
+ASSERTING_CLAIM_KINDS = {"SOURCE_STATEMENT", "OBSERVATION"}
+
 AUTOMATED_QG_IDS = (
+    "QG-01",
     "QG-07",
     "QG-08",
+    "QG-09",
     "QG-10",
     "QG-11",
     "QG-12",
@@ -516,6 +529,52 @@ def build_report(
         batch_failures,
     )
 
+    # QG-01: a factual assertion carries an anchor, or its claim kind marks it
+    # as inference. INFERENCE / HYPOTHESIS / NORMATIVE are already self-marking,
+    # so only the two asserting kinds need grounding.
+    anchor_failures = []
+    for card in cards:
+        matched = CLAIM_STATUS.search(card["text"])
+        if matched is None:
+            anchor_failures.append(f"{card['stable_id']}: no 證據與狀態 line")
+            continue
+        claim_kind = matched.group(1).split("·")[0].strip()
+        if claim_kind not in ASSERTING_CLAIM_KINDS:
+            continue
+        artifacts = ARTIFACTS_LINE.search(card["text"])
+        grounded = bool(EVIDENCE_REF.search(card["text"])) or bool(
+            artifacts and "NONE" not in artifacts.group(1)
+        )
+        if not grounded:
+            anchor_failures.append(
+                f"{card['stable_id']}: {claim_kind} without an evidence anchor "
+                "or a persisted artifact"
+            )
+    checks["SV-13-evidence-anchor-coverage"] = status(
+        not anchor_failures,
+        card_ids,
+        anchor_failures,
+    )
+
+    # QG-09: a conflict or boundary is never silently dropped. The field that
+    # carries it is series specific, so the series payload contract owns P, V
+    # and K, and every other series must carry 反證／限制 explicitly.
+    conflict_failures = []
+    for card in cards:
+        series_id = str(card["meta"].get("series"))
+        if series_id in SERIES_OWNED_LIMIT_FIELDS:
+            continue
+        matched = FALSIFIER_LINE.search(card["text"])
+        if matched is None or not matched.group(1).strip():
+            conflict_failures.append(
+                f"{card['stable_id']}: series {series_id} carries no 反證／限制"
+            )
+    checks["SV-14-conflict-preservation"] = status(
+        not conflict_failures,
+        card_ids,
+        conflict_failures,
+    )
+
     absolute_failures = []
     for marker in ("唯一方法", "永遠有效", "100% 有效"):
         if marker in joined_cards:
@@ -563,8 +622,10 @@ def build_report(
         "HG-06": checks["SV-10-source-shaped-batch"],
     }
     qg_subset = {
+        "QG-01": checks["SV-13-evidence-anchor-coverage"],
         "QG-07": checks["SV-02-identity-and-link-integrity"],
         "QG-08": checks["SV-02-identity-and-link-integrity"],
+        "QG-09": checks["SV-14-conflict-preservation"],
         "QG-10": checks["SV-04-epistemic-honesty"],
         "QG-11": checks["SV-04-epistemic-honesty"],
         "QG-12": checks["SV-08-action-contract"],

@@ -144,6 +144,38 @@
       ],
       "failures": [],
       "status": "PASS"
+    },
+    "SV-13-evidence-anchor-coverage": {
+      "evidence": [
+        "N-autonomy-trace-mining",
+        "C-model-harness-task-fit",
+        "S-harness-finetune-harness",
+        "T-trace-judge-comparison",
+        "P-trace-driven-improvement-cycle",
+        "D-trace-scale-bottleneck",
+        "D-four-stage-trace-loop",
+        "C-continual-learning-state-planes",
+        "V-semantic-yield-replay",
+        "K-visual-identifier-evidence-gap"
+      ],
+      "failures": [],
+      "status": "PASS"
+    },
+    "SV-14-conflict-preservation": {
+      "evidence": [
+        "N-autonomy-trace-mining",
+        "C-model-harness-task-fit",
+        "S-harness-finetune-harness",
+        "T-trace-judge-comparison",
+        "P-trace-driven-improvement-cycle",
+        "D-trace-scale-bottleneck",
+        "D-four-stage-trace-loop",
+        "C-continual-learning-state-planes",
+        "V-semantic-yield-replay",
+        "K-visual-identifier-evidence-gap"
+      ],
+      "failures": [],
+      "status": "PASS"
     }
   },
   "content_id": "CvRngaQZQ3Y",
@@ -237,13 +269,11 @@
   },
   "overall_status": "PASS_WITH_DEFERRED_VISUAL_AND_PARTIAL_QG",
   "qg_not_run": [
-    "QG-01",
     "QG-02",
     "QG-03",
     "QG-04",
     "QG-05",
     "QG-06",
-    "QG-09",
     "QG-13",
     "QG-14",
     "QG-15",
@@ -253,6 +283,22 @@
     "QG-24"
   ],
   "qg_subset": {
+    "QG-01": {
+      "evidence": [
+        "N-autonomy-trace-mining",
+        "C-model-harness-task-fit",
+        "S-harness-finetune-harness",
+        "T-trace-judge-comparison",
+        "P-trace-driven-improvement-cycle",
+        "D-trace-scale-bottleneck",
+        "D-four-stage-trace-loop",
+        "C-continual-learning-state-planes",
+        "V-semantic-yield-replay",
+        "K-visual-identifier-evidence-gap"
+      ],
+      "failures": [],
+      "status": "PASS"
+    },
     "QG-07": {
       "evidence": [
         "N-autonomy-trace-mining",
@@ -270,6 +316,22 @@
       "status": "PASS"
     },
     "QG-08": {
+      "evidence": [
+        "N-autonomy-trace-mining",
+        "C-model-harness-task-fit",
+        "S-harness-finetune-harness",
+        "T-trace-judge-comparison",
+        "P-trace-driven-improvement-cycle",
+        "D-trace-scale-bottleneck",
+        "D-four-stage-trace-loop",
+        "C-continual-learning-state-planes",
+        "V-semantic-yield-replay",
+        "K-visual-identifier-evidence-gap"
+      ],
+      "failures": [],
+      "status": "PASS"
+    },
+    "QG-09": {
       "evidence": [
         "N-autonomy-trace-mining",
         "C-model-harness-task-fit",
