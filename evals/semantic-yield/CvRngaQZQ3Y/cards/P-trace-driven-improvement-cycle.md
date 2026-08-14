@@ -1,6 +1,7 @@
 ### P-trace-driven-improvement-cycle｜Trace 改進最小可重播程序
 
 - **核心命題**：保存 trace digest、定義 decision question、建立 frozen eval、一次套用一個 patch、重播並保留 rollback receipt。
+- **為什麼重要**：沒有 frozen eval、單變量 patch 與 rollback receipt，trace-driven improvement 會退化成無法歸因的 prompt tweaking。
 - **Scenario**：Agent 已產生可回讀 traces。
 - **Value**：把錯誤轉成可比較的 case 與 experiment。
 - **Prerequisites**：Baseline、oracle、版本資訊與 rollback path。
@@ -14,6 +15,8 @@
 - **Expected Output**：Cohort manifest、eval、patch、report、rollback receipt。
 - **Rollback**：恢復上一個 model/harness snapshot並保留失敗歷史。
 - **Failure Handling**：Trace 不完整先修 instrumentation；污染時廢棄結果；線上 regression 立即 rollback。
+- **Security / Privacy Constraints**：執行前處理 PII/secret redaction、tenant isolation、retention、review access 與 training eligibility。
+- **Toolset**：trace store、case selector、eval runner、model/harness registry、canary 與 rollback controller；來源未指定固定版本。
 - **Execution Status**：UNTESTED
 - **Validated By**：[[V-semantic-yield-replay]]
 - **證據與狀態**：NORMATIVE · SUPPORTED · MEDIUM

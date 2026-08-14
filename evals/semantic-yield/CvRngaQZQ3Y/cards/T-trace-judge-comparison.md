@@ -5,6 +5,8 @@
 - **Decision Use**：決定何時用高能力 model 建立 capability reference，何時測試較低成本 model 作規模化 judge。
 - **Comparison Contract**：相同 task cohort、judge rubric、time window、output contract 與成本口徑；缺值規則為 UNKNOWN。
 
+- **Dimensions**：capability role、exact revision、benchmark artifact、quality result、cost result、harness dependency 與 decision status。
+
 | Dimension | Frontier reference | Open-model candidate |
 |---|---|---|
 | 主要角色 | 建立 task feasibility / capability ceiling | 測試較低成本的規模化 judging |

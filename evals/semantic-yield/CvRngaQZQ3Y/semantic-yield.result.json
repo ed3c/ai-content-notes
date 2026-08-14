@@ -2,17 +2,25 @@
   "schema_version": "semantic-yield-result@1",
   "video_id": "CvRngaQZQ3Y",
   "status": "CONTINUE",
-  "external_validator": "NOT_RUN",
+  "external_validator": "HOST_DETERMINISTIC_PASS_WITH_DEFERRED_VISUAL",
+  "validator_report": "semantic-validator-report.json",
   "card_count": 10,
   "central_thesis": "Agent autonomy reduces static predictability, making runtime traces and decision-shaped trace mining the primary improvement substrate.",
   "checks": {
     "HG-01-grounded-semantic-yield": {
-      "status": "PASS_CANDIDATE",
-      "evidence": ["N-autonomy-trace-mining", "C-model-harness-task-fit", "C-continual-learning-state-planes"]
+      "status": "PASS_HOST_VALIDATED",
+      "evidence": [
+        "N-autonomy-trace-mining",
+        "C-model-harness-task-fit",
+        "C-continual-learning-state-planes"
+      ]
     },
     "HG-02-implicit-relation-recall": {
-      "status": "PASS_CANDIDATE",
-      "evidence": ["knowledge-views.md#1-autonomy--trace-mining", "knowledge-views.md#3-intervention-sequence"]
+      "status": "PASS_HOST_VALIDATED",
+      "evidence": [
+        "knowledge-views.md#1-autonomy--trace-mining",
+        "knowledge-views.md#3-intervention-sequence"
+      ]
     },
     "HG-03-visual-artifact-coverage": {
       "status": "DEFERRED",
@@ -20,16 +28,22 @@
       "tracked_by": "K-visual-identifier-evidence-gap"
     },
     "HG-04-unsupported-precision": {
-      "status": "PASS_CANDIDATE",
+      "status": "PASS_HOST_VALIDATED",
       "reason": "Unknown model revisions, benchmark scores and cost cells remain UNKNOWN; the 1-or-2-orders claim stays source-reported and LOW confidence."
     },
     "HG-05-cross-card-redundancy": {
-      "status": "PASS_CANDIDATE",
+      "status": "PASS_HOST_VALIDATED",
       "reason": "Narrative, concept, strategy, comparison, procedure, details, verification and gap have distinct decision uses."
     },
     "HG-06-mental-model-utility": {
-      "status": "PASS_CANDIDATE",
-      "evidence": ["causal-dataflow", "fit-equation", "intervention-sequence", "state-planes", "comparison-matrix"]
+      "status": "PASS_HOST_VALIDATED",
+      "evidence": [
+        "causal-dataflow",
+        "fit-equation",
+        "intervention-sequence",
+        "state-planes",
+        "comparison-matrix"
+      ]
     }
   },
   "epistemic_contract": {
@@ -39,10 +53,25 @@
     "verification_verdict": "PARTIAL",
     "raw_visual_authority": false
   },
+  "automated_qg_subset": {
+    "report": "semantic-validator-report.json",
+    "status": "PARTIAL",
+    "passed": [
+      "QG-07",
+      "QG-08",
+      "QG-10",
+      "QG-11",
+      "QG-12",
+      "QG-16",
+      "QG-18",
+      "QG-20",
+      "QG-21",
+      "QG-23"
+    ]
+  },
   "completion_blockers": [
     "authorized-video-frame-or-slide-evidence",
     "human-reviewed-identifiers",
-    "independent-semantic-validator",
     "external-QG-01-through-QG-24",
     "provider-model-run-receipt"
   ],

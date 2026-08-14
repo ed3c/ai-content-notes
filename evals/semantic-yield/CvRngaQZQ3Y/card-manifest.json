@@ -36,25 +36,70 @@
     "K-visual-identifier-evidence-gap"
   ],
   "cards": [
-    {"stable_id":"N-autonomy-trace-mining","path":"cards/N-autonomy-trace-mining.md","git_blob_sha1":"f43d22f4def39361607c22ba2c68728673b77045"},
-    {"stable_id":"C-model-harness-task-fit","path":"cards/C-model-harness-task-fit.md","git_blob_sha1":"aa0735cc2420f36ecf4c38334687d33d41d469ee"},
-    {"stable_id":"S-harness-finetune-harness","path":"cards/S-harness-finetune-harness.md","git_blob_sha1":"4e675f6f92de85f095e4e81b1aff961152aa361c"},
-    {"stable_id":"T-trace-judge-comparison","path":"cards/T-trace-judge-comparison.md","git_blob_sha1":"2b359b35404ceed883f61afc68f6859584475872"},
-    {"stable_id":"P-trace-driven-improvement-cycle","path":"cards/P-trace-driven-improvement-cycle.md","git_blob_sha1":"a6711ce0cec7990050c58d6654c8d6ef080594c8"},
-    {"stable_id":"D-trace-scale-bottleneck","path":"cards/D-trace-scale-bottleneck.md","git_blob_sha1":"d2b4f08e924312ae7fd29002f0169eb362052ab4"},
-    {"stable_id":"D-four-stage-trace-loop","path":"cards/D-four-stage-trace-loop.md","git_blob_sha1":"d029cd7ce72b3efaae7daee1bdd0f6a685560b1f"},
-    {"stable_id":"C-continual-learning-state-planes","path":"cards/C-continual-learning-state-planes.md","git_blob_sha1":"3ab6a20722c0e1b645592cd520c82222daf146d8"},
-    {"stable_id":"V-semantic-yield-replay","path":"cards/V-semantic-yield-replay.md","git_blob_sha1":"a4d31132a000b21aa0ed0809c74b6b59b4e19ff0"},
-    {"stable_id":"K-visual-identifier-evidence-gap","path":"cards/K-visual-identifier-evidence-gap.md","git_blob_sha1":"b33fb4c7abd66fe8fbe5f508f2de474f39192f23"}
+    {
+      "stable_id": "N-autonomy-trace-mining",
+      "path": "cards/N-autonomy-trace-mining.md",
+      "git_blob_sha1": "f43d22f4def39361607c22ba2c68728673b77045"
+    },
+    {
+      "stable_id": "C-model-harness-task-fit",
+      "path": "cards/C-model-harness-task-fit.md",
+      "git_blob_sha1": "4a709be9845916bbc9f42b5a7c1eb8dbcdcab53a"
+    },
+    {
+      "stable_id": "S-harness-finetune-harness",
+      "path": "cards/S-harness-finetune-harness.md",
+      "git_blob_sha1": "6f6fdbc1eff7f33e97e177ca1d9df643e823c67d"
+    },
+    {
+      "stable_id": "T-trace-judge-comparison",
+      "path": "cards/T-trace-judge-comparison.md",
+      "git_blob_sha1": "80f3940041cf8aa72452e375e149e6f501629b1b"
+    },
+    {
+      "stable_id": "P-trace-driven-improvement-cycle",
+      "path": "cards/P-trace-driven-improvement-cycle.md",
+      "git_blob_sha1": "82f42c17817f81254b63367f92fc8dd40d9285bb"
+    },
+    {
+      "stable_id": "D-trace-scale-bottleneck",
+      "path": "cards/D-trace-scale-bottleneck.md",
+      "git_blob_sha1": "d2b4f08e924312ae7fd29002f0169eb362052ab4"
+    },
+    {
+      "stable_id": "D-four-stage-trace-loop",
+      "path": "cards/D-four-stage-trace-loop.md",
+      "git_blob_sha1": "d029cd7ce72b3efaae7daee1bdd0f6a685560b1f"
+    },
+    {
+      "stable_id": "C-continual-learning-state-planes",
+      "path": "cards/C-continual-learning-state-planes.md",
+      "git_blob_sha1": "eeb1b3316b7f177972fdd06733bbc49cfb034447"
+    },
+    {
+      "stable_id": "V-semantic-yield-replay",
+      "path": "cards/V-semantic-yield-replay.md",
+      "git_blob_sha1": "82122fe35c3bc726d74f56245172e7cad23f98d2"
+    },
+    {
+      "stable_id": "K-visual-identifier-evidence-gap",
+      "path": "cards/K-visual-identifier-evidence-gap.md",
+      "git_blob_sha1": "297a5e1db804707ab05feb1f8ad588131eb63176"
+    }
   ],
   "projection": {
     "path": "knowledge-views.md",
     "git_blob_sha1": "73fe09d5d89591fa8be1f2888f4b6c2dc664bd70"
   },
+  "validator": {
+    "path": "semantic-validator-report.json",
+    "validator_version": "semantic-yield-validator@1",
+    "status": "PASS_WITH_DEFERRED_VISUAL_AND_PARTIAL_QG"
+  },
   "remaining_work": [
     "obtain-authorized-video-frames-or-creator-slides",
     "human-review-proper-nouns-model-versions-and-acronyms",
-    "run-independent-semantic-and-QG-01-through-QG-24-validation",
+    "run-external-QG-01-through-QG-24",
     "persist-provider-model-run-receipt"
   ]
 }

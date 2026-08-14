@@ -14,9 +14,12 @@ Memory Plane ---+
   - Harness Plane：prompt、tools、skills、orchestration 與 execution policy。
   - Memory Plane：跨 run 保留、重組、淘汰與 supersede 的狀態。
 - **Non-Goals**：不把所有歷史永遠 append；不讓每個 observation 直接進入 model 或 memory；不把 inference 自動升級成 verified fact。
+- **演化**：來源描述 year、5-year、decade 與 lifetime 的長期方向，但沒有已驗證的版本演化時間線。
 - **底層機制**：Agent action → trace → mining/adjudication → routing to data、harness 或 memory → replay。
 - **Invariants**：三個 plane 的 authority、version 與 evidence grade 分離；memory 支援 forgetting、conflict 與 supersession。
 - **Boundary Conditions**：來源未定義 sleep-time/dreaming 的 algorithm、頻率、成本或 oracle；長期狀態還受 privacy、staleness 與 tenant boundary 限制。
+- **正例**：Trace-derived memory candidate 經 review、versioning 與 supersession 後才進入長期狀態。
+- **反例**：把所有 observations 追加到單一無限成長檔案，既不淘汰也不處理衝突。
 - **證據與狀態**：INFERENCE · SUPPORTED · MEDIUM
   - [[EV-cvrngaqzq3y-three-state-planes]]：`00:16:59–00:18:30`。
   - [[EV-cvrngaqzq3y-memory-not-append-only]]：`00:17:59–00:19:00`。
