@@ -65,6 +65,8 @@ jobs:
             --run evals/prompt-ab/v7_0-v7_1/run.json \
             --output evals/prompt-ab/v7_0-v7_1/result.json \
             --check
+      - name: Verify every retained subject artifact is bound
+        run: python tools/verify_source_retention.py
       - name: Verify persisted semantic-yield validator report
         run: |
           python tools/validate_semantic_yield_artifacts.py \

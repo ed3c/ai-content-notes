@@ -82,6 +82,7 @@ notes/ and claim maps
 13. Keep complete private source and note bodies out of downstream deltas and public exports.
 14. Never raise Atlas admission, runtime Evidence Grade, Skill lifecycle, production routability or implicit invocation from this repository.
 15. A new modified-flow content item is discoverable only after `evals/semantic-yield/<content-id>/` and the catalog entry both exist and are readable.
+16. Retain the acquired subject under `sources/<content-id>/`, bound by a `source-manifest.json` that lists every retained file with a matching digest. A digest inside a card records what was compiled; it cannot reconstitute the subject, and an unretained subject makes replay impossible at any later cost.
 
 ## State transition guard
 
