@@ -88,6 +88,46 @@ Leaf 01 rejects:
 - failed/cancelled runs without an error type;
 - stale persisted receipts in `--check` mode.
 
+## LOOP output channel parsing
+
+`tools/parse_compiler_channels.py` splits one captured raw response into the
+three channels section 10 of the v7.1 prompt declares, using the
+`STATE_CHANNEL: HTML_COMMENT` sidecar form section 5 documents for
+`CARD_META` and `RUN_STATE`. It reads that form; it does not extend or
+reinterpret the prompt.
+
+```text
+captured raw response
+  -> channel split, truncation guard
+  -> strict JSON, duplicate-key rejection
+  -> Draft 2020-12 validation per channel
+  -> cross-channel prompt blob / protocol / source-digest agreement
+  -> registry chain: CARD_PATCH.registry_after_digest == NEXT_STATE.registry_digest
+  -> operation identity: no duplicate stable_id, SUPERSEDE names a target
+  -> quarantined model-authored gate labels
+```
+
+The parser refuses to launder authority. `quality_gates` inside a response is a
+label written by the thing under test, so the result carries
+`gate_authority: "none"` and the labels are quarantined under
+`model_authored_gate_labels`. Only an external validator turns
+QG-01..QG-24 into a pass.
+
+```bash
+python tools/parse_compiler_channels.py \
+  --raw-response <captured-response.md> \
+  --output <parsed-channels.json>
+```
+
+Failure injection covered by `tests/test_compiler_channels.py`: truncated
+channel, malformed JSON, duplicate JSON key, duplicate channel, missing
+channel, missing raw-response artifact, stale registry revision, cursor bound
+to a different source digest, duplicate stable id, `SUPERSEDE` without a
+target, `render_order` naming an absent card, a LOOP run declaring the
+`HTML_COMMENT` state channel, and `DONE` declared with work remaining.
+Timeout and partial state persistence belong to the invoking adapter, which
+does not exist yet.
+
 ## Stack boundary
 
 ```text
