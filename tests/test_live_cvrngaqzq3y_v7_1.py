@@ -4,7 +4,6 @@ import importlib.util
 import json
 import re
 import sys
-from collections import Counter
 from pathlib import Path
 from types import ModuleType
 
@@ -78,24 +77,70 @@ def test_normalization_is_exact_and_raw_source_remains_authoritative() -> None:
     assert run["normalization"]["lexical_or_semantic_correction_performed"] is False
 
 
-def test_materialized_batch_is_balanced_unique_and_payload_first() -> None:
+def test_materialized_batch_is_source_shaped_unique_and_payload_first() -> None:
     materializer = load_materializer()
     manifest, rendered = materializer.build_output(MANIFEST)
     card_ids = re.findall(
         r"^###\s+([A-Z][A-Za-z0-9._:-]*)｜.+$", rendered, re.MULTILINE
     )
     assert card_ids == manifest["card_order"]
-    assert len(card_ids) == 12
+    assert len(card_ids) == manifest["card_count"]
     assert len(card_ids) == len(set(card_ids))
-    series = Counter(card_id.split("-", 1)[0] for card_id in card_ids)
-    assert card_ids[0].startswith("N-")
-    assert series == Counter({"C": 3, "D": 3, "K": 2, "N": 1, "S": 1, "P": 1, "V": 1})
+    # The batch shape follows what the source supports, so the rendered series
+    # sequence is checked against the declared plan rather than a fixed quota.
+    assert [card_id.split("-", 1)[0] for card_id in card_ids] == manifest["series_order"]
+    assert card_ids[0].startswith("N-"), "the batch must lead with a human entry"
     first_card = rendered.split("### ", 2)[1]
     first_lines = [line.strip() for line in first_card.splitlines() if line.strip()]
     assert "**核心命題**" in first_lines[1]
     assert "**為什麼重要**" in first_lines[2]
     assert rendered.count("<!-- CARD_META") == 12
     assert "<!-- RUN_STATE" in rendered
+
+
+def test_every_card_is_one_source_supported_decision_case() -> None:
+    """Anti-fragmentation: one decision-relevant case, one card, one source.
+
+    This replaces the previous fixed series quota. A quota only proves the
+    batch matched a template; these assertions prove each rendered card is a
+    distinct decision case that the exact normalized source digest supports.
+    """
+    materializer = load_materializer()
+    manifest, rendered = materializer.build_output(MANIFEST)
+    source_digest = manifest["source"]["normalized_transcript_sha256"]
+
+    metas = [
+        json.loads(block)
+        for block in re.findall(r"<!-- CARD_META\s*(\{.*?\})\s*-->", rendered, re.S)
+    ]
+    assert len(metas) == manifest["card_count"]
+    assert [meta["stable_id"] for meta in metas] == manifest["card_order"]
+
+    canonical_keys = [meta["canonical_key"] for meta in metas]
+    assert len(set(canonical_keys)) == len(canonical_keys), "merged cases must not fragment"
+
+    evidence_bearing = 0
+    for meta in metas:
+        scope = meta["canonical_key"].rsplit("|", 1)[-1].strip()
+        assert meta["canonical_key"].split("|", 1)[0].strip() == meta["series"]
+        assert meta["source_dependency_key"] == manifest["source"]["source_dependency_key"]
+
+        if meta["series"] in {"N", "C", "S", "P", "D"}:
+            # A claim-bearing card is identified by the exact normalized source.
+            evidence_bearing += 1
+            assert scope == f"source-digest:{source_digest[:8]}", meta["stable_id"]
+            assert f"sha256:{source_digest}" in meta["source_provenance"], meta["stable_id"]
+        elif meta["series"] == "V":
+            # A verification card is identified by its execution state, never by
+            # the source, so an unrun replay cannot inherit source support.
+            assert scope == "not-run", meta["stable_id"]
+        else:
+            assert meta["series"] == "K"
+            # A gap card is scoped to the run that observed the gap.
+            assert scope.startswith("run-"), meta["stable_id"]
+
+    assert evidence_bearing >= 1
+    assert {meta["series"] for meta in metas} <= {"N", "C", "S", "P", "D", "V", "K"}
 
 
 def test_epistemic_and_test_honesty_are_preserved() -> None:
