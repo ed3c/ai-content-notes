@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ed3c/ai-content-notes/schemas/rights-allowlist.schema.json",
+  "title": "Machine-readable acquisition rights allowlist",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "entries"],
+  "properties": {
+    "schema_version": {"const": "rights-allowlist@1"},
+    "entries": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/entry"}
+    }
+  },
+  "$defs": {
+    "date": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
+    "sha256": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"},
+    "entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "video_id",
+        "canonical_url",
+        "channel",
+        "title",
+        "rights_basis",
+        "rights_reference",
+        "attestor",
+        "attested_on",
+        "expires_on",
+        "authorization_status",
+        "permitted_backends",
+        "gold_transcript",
+        "glossary_path"
+      ],
+      "properties": {
+        "video_id": {"type": "string", "pattern": "^[A-Za-z0-9_-]{11}$"},
+        "canonical_url": {"type": "string", "format": "uri"},
+        "channel": {"type": "string", "minLength": 1},
+        "title": {"type": "string", "minLength": 1},
+        "published_at": {"$ref": "#/$defs/date"},
+        "rights_basis": {
+          "description": "Public visibility is deliberately absent. Visibility is not authorization.",
+          "enum": [
+            "owned",
+            "licensed",
+            "public-domain",
+            "user-provided",
+            "creator-permission"
+          ]
+        },
+        "rights_reference": {
+          "description": "Non-secret pointer to the attestation record. Never a token, key or signed URL.",
+          "type": "string",
+          "minLength": 1
+        },
+        "attestor": {"type": "string", "minLength": 1},
+        "attested_on": {"$ref": "#/$defs/date"},
+        "expires_on": {"anyOf": [{"$ref": "#/$defs/date"}, {"type": "null"}]},
+        "authorization_status": {"enum": ["verified", "evaluation-only", "blocked"]},
+        "permitted_backends": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "creator-caption",
+              "platform-auto-caption",
+              "asr-faster-whisper-large-v3",
+              "asr-faster-whisper-large-v3-glossary"
+            ]
+          }
+        },
+        "gold_transcript": {
+          "anyOf": [
+            {"type": "null"},
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["path", "source", "version", "sha256", "reviewed_by"],
+              "properties": {
+                "path": {"type": "string", "minLength": 1},
+                "source": {"type": "string", "minLength": 1},
+                "version": {"type": "string", "minLength": 1},
+                "sha256": {"$ref": "#/$defs/sha256"},
+                "reviewed_by": {"type": "string", "minLength": 1}
+              }
+            }
+          ]
+        },
+        "glossary_path": {"type": ["string", "null"]}
+      }
+    }
+  }
+}
