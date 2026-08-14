@@ -29,7 +29,9 @@ jobs:
           tools/export_note_delta.py
           tools/evaluate_prompt_ab.py
           tools/validate_semantic_yield_artifacts.py
+          tools/parse_compiler_channels.py
           tests/test_contracts.py
+          tests/test_compiler_channels.py
           tests/test_prompt_v7_1_ab.py
           tests/test_semantic_yield_validator.py
       - run: pytest -q
