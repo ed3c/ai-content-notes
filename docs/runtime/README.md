@@ -139,3 +139,30 @@ main
 Leaf 02 remains blocked until these contracts stabilize. Visual and provider invocation work use independent roots and converge only in `runtime/04-convergence-and-cvrngaqzq3y-replay`.
 
 Git Town executable admission remains `ABSENT / BLOCKED_POLICY`; live `git town sync`, worktree/lease and conflict canaries remain `NOT_EXERCISED`. GitHub branch/PR publication and Human Admit are separate evidence lanes.
+
+## Card registry reconciliation
+
+`tools/reconcile_card_registry.py` implements `schemas/card-registry.schema.json`,
+which had a contract but no adapter. It reads rendered cards, not a model
+response.
+
+```text
+rendered cards
+  -> CARD_META completeness check per card
+  -> claim kind / verification / confidence from the visible status line
+  -> content digest over the payload with the sidecar removed
+  -> stable-id reuse by exact canonical key
+  -> collision rejection: one key one id, one id one key
+  -> SUPERSEDES marks the prior entry and records the edge
+  -> content-addressed revision, so replay is a NOOP
+```
+
+A card short of the registry contract is reported as a gap and **no registry is
+written while any gap stands**. Nothing is invented to fill a missing field.
+
+Against the ten committed `CvRngaQZQ3Y` cards this reports eight gaps, recorded
+in `evals/semantic-yield/CvRngaQZQ3Y/card-registry-gap-report.json`: eight cards
+omit `scope` and `confidence_basis`, and three of those also omit
+`source_provenance`. `N-autonomy-trace-mining` and `C-model-harness-task-fit`
+are complete. CI verifies the recorded gap has not drifted rather than
+asserting a registry that cannot honestly be built yet.

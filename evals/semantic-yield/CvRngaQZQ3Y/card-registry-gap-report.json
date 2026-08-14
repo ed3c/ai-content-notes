@@ -1,0 +1,17 @@
+{
+  "card_directory": "evals/semantic-yield/CvRngaQZQ3Y/cards",
+  "gap_count": 8,
+  "gaps": [
+    "C-continual-learning-state-planes.md: CARD_META missing scope, confidence_basis",
+    "D-four-stage-trace-loop.md: CARD_META missing scope, confidence_basis",
+    "D-trace-scale-bottleneck.md: CARD_META missing scope, confidence_basis",
+    "K-visual-identifier-evidence-gap.md: CARD_META missing scope, confidence_basis, source_provenance",
+    "P-trace-driven-improvement-cycle.md: CARD_META missing scope, confidence_basis, source_provenance",
+    "S-harness-finetune-harness.md: CARD_META missing scope, confidence_basis",
+    "T-trace-judge-comparison.md: CARD_META missing scope, confidence_basis",
+    "V-semantic-yield-replay.md: CARD_META missing scope, confidence_basis, source_provenance"
+  ],
+  "registry_written": false,
+  "schema_version": "card-registry-gap-report@1",
+  "source_id": "youtube-video:cvrngaqzq3y"
+}
