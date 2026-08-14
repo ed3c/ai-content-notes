@@ -1,0 +1,138 @@
+{
+  "schema_version": "knowledge-unit-coverage@1",
+  "fixture_id": "cvrngaqzq3y-v2-semantic-yield",
+  "items": [
+    {
+      "knowledge_unit_id": "determinism-for-autonomy-tradeoff",
+      "disposition": "PROJECTION_MAPPED",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-determinism-for-autonomy"
+      ],
+      "card_ids": [],
+      "projection_ids": [
+        "PROJ-v2-trace-loop"
+      ],
+      "reason": null
+    },
+    {
+      "knowledge_unit_id": "traces-as-improvement-substrate",
+      "disposition": "PROJECTION_MAPPED",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-observability-coupling",
+        "EV-cvrngaqzq3y-v2-recipe-four-steps"
+      ],
+      "card_ids": [],
+      "projection_ids": [
+        "PROJ-v2-trace-loop"
+      ],
+      "reason": null
+    },
+    {
+      "knowledge_unit_id": "trace-reading-cost-bottleneck",
+      "disposition": "PROJECTION_MAPPED",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-trace-scale-cost"
+      ],
+      "card_ids": [],
+      "projection_ids": [
+        "PROJ-v2-trace-loop"
+      ],
+      "reason": null
+    },
+    {
+      "knowledge_unit_id": "open-model-judge-cost-claim",
+      "disposition": "PROJECTION_MAPPED",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-open-model-judge-cost"
+      ],
+      "card_ids": [],
+      "projection_ids": [
+        "PROJ-v2-judge-comparison"
+      ],
+      "reason": null
+    },
+    {
+      "knowledge_unit_id": "harness-finetune-sandwich",
+      "disposition": "PROJECTION_MAPPED",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-harness-ceiling-finetune",
+        "EV-cvrngaqzq3y-v2-harness-finetune-sandwich"
+      ],
+      "card_ids": [],
+      "projection_ids": [
+        "PROJ-v2-trace-loop"
+      ],
+      "reason": null
+    },
+    {
+      "knowledge_unit_id": "model-harness-task-fit",
+      "disposition": "PROJECTION_MAPPED",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-model-harness-task-fit"
+      ],
+      "card_ids": [],
+      "projection_ids": [
+        "PROJ-v2-fit-equation"
+      ],
+      "reason": null
+    },
+    {
+      "knowledge_unit_id": "continual-learning-three-axes",
+      "disposition": "PROJECTION_MAPPED",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-continual-learning-axes"
+      ],
+      "card_ids": [],
+      "projection_ids": [
+        "PROJ-v2-continual-learning-planes"
+      ],
+      "reason": null
+    },
+    {
+      "knowledge_unit_id": "four-step-improvement-recipe",
+      "disposition": "PROJECTION_MAPPED",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-recipe-four-steps"
+      ],
+      "card_ids": [],
+      "projection_ids": [
+        "PROJ-v2-recipe-timeline"
+      ],
+      "reason": null
+    },
+    {
+      "knowledge_unit_id": "dense-feedback-beats-pass-fail",
+      "disposition": "PROJECTION_MAPPED",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-dense-feedback"
+      ],
+      "card_ids": [],
+      "projection_ids": [
+        "PROJ-v2-trace-loop"
+      ],
+      "reason": null
+    },
+    {
+      "knowledge_unit_id": "token-cost-to-hardware-cost",
+      "disposition": "DEFERRED",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-token-to-hardware-cost"
+      ],
+      "card_ids": [],
+      "projection_ids": [],
+      "reason": "stated once as an economic aside; no projection carries it in this batch"
+    },
+    {
+      "knowledge_unit_id": "three-trace-mining-outputs",
+      "disposition": "PROJECTION_MAPPED",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-three-mining-outputs"
+      ],
+      "card_ids": [],
+      "projection_ids": [
+        "PROJ-v2-trace-loop"
+      ],
+      "reason": null
+    }
+  ]
+}

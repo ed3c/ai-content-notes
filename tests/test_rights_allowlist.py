@@ -60,8 +60,7 @@ def test_attested_row_is_permitted() -> None:
 @pytest.mark.parametrize(
     ("overrides", "fragment"),
     [
-        ({"authorization_status": "evaluation-only"}, "not verified"),
-        ({"authorization_status": "blocked"}, "not verified"),
+        ({"authorization_status": "blocked"}, "blocked"),
         ({"expires_on": "2026-08-13"}, "expired"),
         ({"attested_on": "2026-09-01"}, "future"),
         ({"permitted_backends": ["asr-faster-whisper-large-v3"]}, "not permitted"),
@@ -152,8 +151,10 @@ def test_a_user_directed_evaluation_entry_blocks_acquisition(tmp_path: Path) -> 
     )
     loaded = rights_allowlist.load_allowlist(write(tmp_path, allowlist(admissible)), SCHEMA)
     decision = rights_allowlist.resolve(loaded, "CvRngaQZQ3Y", BACKEND, AS_OF)
-    assert decision["decision"] == "blocked"
-    assert "not verified" in decision["blocked_reason"]
+    assert decision["decision"] == "evaluation-only"
+    assert decision["may_compile_evaluation_cards"] is True
+    assert decision["may_complete_note"] is False
+    assert decision["may_publish_raw_media"] is False
 
 
 def test_the_committed_allowlist_still_grants_nothing() -> None:
@@ -166,3 +167,31 @@ def test_the_committed_allowlist_still_grants_nothing() -> None:
         if item["authorization_status"] == "verified"
     ]
     assert permitted == [], "a verified entry needs a stated basis and a human attestation"
+
+def test_a_verified_row_may_complete_a_note() -> None:
+    decision = rights_allowlist.resolve(allowlist(entry()), "CvRngaQZQ3Y", BACKEND, AS_OF)
+    assert decision["decision"] == "permitted"
+    assert decision["may_compile_evaluation_cards"] is True
+    assert decision["may_complete_note"] is True
+    assert decision["may_publish_raw_media"] is True
+
+
+def test_only_blocked_stops_compilation() -> None:
+    """The three states match schemas/multimodal-source-pack.schema.json."""
+    states = {
+        status: rights_allowlist.resolve(
+            allowlist(entry(authorization_status=status)), "CvRngaQZQ3Y", BACKEND, AS_OF
+        )
+        for status in ("verified", "evaluation-only", "blocked")
+    }
+    assert states["verified"]["decision"] == "permitted"
+    assert states["evaluation-only"]["decision"] == "evaluation-only"
+    assert states["blocked"]["decision"] == "blocked"
+    assert [states[s]["may_compile_evaluation_cards"] for s in ("verified", "evaluation-only", "blocked")] == [True, True, False]
+    assert [states[s]["may_complete_note"] for s in ("verified", "evaluation-only", "blocked")] == [True, False, False]
+
+
+def test_a_row_with_no_record_still_grants_nothing() -> None:
+    decision = rights_allowlist.resolve(allowlist(), "dQw4w9WgXcQ", BACKEND, AS_OF)
+    assert decision["decision"] == "blocked"
+    assert decision["may_compile_evaluation_cards"] is False

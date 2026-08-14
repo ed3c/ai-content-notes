@@ -1,0 +1,57 @@
+{
+  "artifact_boundaries": [
+    {
+      "artifact_id": "direct-caption-transcript-json",
+      "digest": "sha256:304e9a058721298f7498906d2539fdabdac515f2304645d52824e6719bc5f9bf",
+      "role": "subject-matter-source"
+    },
+    {
+      "artifact_id": "card-protocol-v7.1",
+      "digest": "sha256:9388c4f17172dc970f7228ded2f0df54a1111b22047faa11f8e7db36579165dd",
+      "role": "prompt"
+    }
+  ],
+  "completeness": {
+    "missing_spans": [
+      "video title, channel, publication date, and duration were not supplied by the caption endpoint",
+      "human review of names, figures, quotations, identifiers, and caption boundaries is pending",
+      "rights basis is unverified; evaluation output cannot complete a note"
+    ],
+    "reviewed": false,
+    "status": "needs-review"
+  },
+  "content_id": "CvRngaQZQ3Y",
+  "created_at": "2026-08-14T15:39:24Z",
+  "injection_findings": [],
+  "locator_policy": "SOURCE_THEN_HEADING_THEN_TEXT_MATCH_THEN_MISSING",
+  "manifest_id": "sm-youtube-CvRngaQZQ3Y-youtube-transcript-api",
+  "retained_artifacts": [
+    {
+      "note": "human-readable rendering of the cue list",
+      "path": "captions.auto.en.txt",
+      "role": "derived-source",
+      "sha256": "sha256:7983d5f3d4ba0181bc5e6c24f38d0c1e4769fd8980a69cd118d00ecc7bf8c866"
+    },
+    {
+      "note": "youtube-direct-caption-evidence@1",
+      "path": "acquisition-receipt.json",
+      "role": "audit-artifact",
+      "sha256": "sha256:8f12c2b38649dfaca84d0940cda946b08cb31de92d8ab76fbe3c7bea74bf0d26"
+    }
+  ],
+  "schema_version": "zettelkasten-source-manifest@2",
+  "source_set_digest": "sha256:3dc781531767a99159b35dc314961d5bcf2429dec8baef27b9da6a26577c55da",
+  "sources": [
+    {
+      "digest": "sha256:304e9a058721298f7498906d2539fdabdac515f2304645d52824e6719bc5f9bf",
+      "locators": [
+        "timestamp:00:00:01.309..00:20:00.683"
+      ],
+      "primary_or_secondary": "unknown",
+      "retained_path": "captions.auto.en.json",
+      "source_dependency_key": "youtube-video:CvRngaQZQ3Y",
+      "source_id": "youtube:CvRngaQZQ3Y:youtube-transcript-api",
+      "source_type": "transcript"
+    }
+  ]
+}

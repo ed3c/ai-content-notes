@@ -1,0 +1,364 @@
+{
+  "bundle_id": "BUNDLE-CvRngaQZQ3Y-v2",
+  "created_at": "2026-08-14T16:20:00Z",
+  "projections": [
+    {
+      "data": {
+        "edges": [
+          {
+            "from": "NODE-agent-autonomy-ead78c726c3b",
+            "predicate": "is traded against",
+            "relation_id": "REL-agent-autonomy-trades-off-with-is-traded-against-44912ed2a046",
+            "to": "NODE-static-predictability-868184098646",
+            "uncertain": false
+          },
+          {
+            "from": "NODE-static-predictability-868184098646",
+            "predicate": "lowers, which elevates",
+            "relation_id": "REL-static-predictability-causes-lowers-which-elevat-1097d48a1bd8",
+            "to": "NODE-runtime-traces-3f5dcde1768d",
+            "uncertain": false
+          },
+          {
+            "from": "NODE-runtime-traces-3f5dcde1768d",
+            "predicate": "feeds",
+            "relation_id": "REL-runtime-traces-feeds-feeds-trace-mining-95508872354a",
+            "to": "NODE-trace-mining-f1989ee25c20",
+            "uncertain": false
+          },
+          {
+            "from": "NODE-trace-mining-f1989ee25c20",
+            "predicate": "produces",
+            "relation_id": "REL-trace-mining-transforms-produces-generated-evals-d54d3910d5ec",
+            "to": "NODE-generated-evals-81f1a36fe173",
+            "uncertain": false
+          },
+          {
+            "from": "NODE-generated-evals-81f1a36fe173",
+            "predicate": "constrains",
+            "relation_id": "REL-generated-evals-enables-constrains-harness-engin-59f00567c498",
+            "to": "NODE-harness-engineering-43f588eb0663",
+            "uncertain": false
+          },
+          {
+            "from": "NODE-context-window-limit-026c34d42317",
+            "predicate": "bounds",
+            "relation_id": "REL-context-window-limit-depends-on-bounds-trace-min-3132d7eb9573",
+            "to": "NODE-trace-mining-f1989ee25c20",
+            "uncertain": false
+          }
+        ],
+        "nodes": [
+          {
+            "label": "Agent autonomy",
+            "node_id": "NODE-agent-autonomy-ead78c726c3b"
+          },
+          {
+            "label": "Static predictability of agent behaviour",
+            "node_id": "NODE-static-predictability-868184098646"
+          },
+          {
+            "label": "Runtime traces",
+            "node_id": "NODE-runtime-traces-3f5dcde1768d"
+          },
+          {
+            "label": "Trace mining",
+            "node_id": "NODE-trace-mining-f1989ee25c20"
+          },
+          {
+            "label": "Generated evals and environments",
+            "node_id": "NODE-generated-evals-81f1a36fe173"
+          },
+          {
+            "label": "Harness engineering",
+            "node_id": "NODE-harness-engineering-43f588eb0663"
+          },
+          {
+            "label": "Trace size against the context window",
+            "node_id": "NODE-context-window-limit-026c34d42317"
+          }
+        ]
+      },
+      "projection_id": "PROJ-v2-trace-loop",
+      "projection_kind": "causal-dataflow",
+      "question_tags": [
+        "core-conflict",
+        "dataflow",
+        "bottleneck"
+      ],
+      "rendered": {
+        "ascii": "Agent autonomy --is traded against--> Static predictability of agent behaviour\nStatic predictability of agent behaviour --lowers, which elevates--> Runtime traces\nRuntime traces --feeds--> Trace mining\nTrace mining --produces--> Generated evals and environments\nGenerated evals and environments --constrains--> Harness engineering\nTrace size against the context window --bounds--> Trace mining",
+        "markdown": "```mermaid\nflowchart LR\n    NODE_agent_autonomy_ead78c726c3b[\"Agent autonomy\"]\n    NODE_static_predictability_868184098646[\"Static predictability of agent behaviour\"]\n    NODE_runtime_traces_3f5dcde1768d[\"Runtime traces\"]\n    NODE_trace_mining_f1989ee25c20[\"Trace mining\"]\n    NODE_generated_evals_81f1a36fe173[\"Generated evals and environments\"]\n    NODE_harness_engineering_43f588eb0663[\"Harness engineering\"]\n    NODE_context_window_limit_026c34d42317[\"Trace size against the context window\"]\n    NODE_agent_autonomy_ead78c726c3b -->|is traded against| NODE_static_predictability_868184098646\n    NODE_static_predictability_868184098646 -->|lowers, which elevates| NODE_runtime_traces_3f5dcde1768d\n    NODE_runtime_traces_3f5dcde1768d -->|feeds| NODE_trace_mining_f1989ee25c20\n    NODE_trace_mining_f1989ee25c20 -->|produces| NODE_generated_evals_81f1a36fe173\n    NODE_generated_evals_81f1a36fe173 -->|constrains| NODE_harness_engineering_43f588eb0663\n    NODE_context_window_limit_026c34d42317 -->|bounds| NODE_trace_mining_f1989ee25c20\n```",
+        "mermaid": "flowchart LR\n    NODE_agent_autonomy_ead78c726c3b[\"Agent autonomy\"]\n    NODE_static_predictability_868184098646[\"Static predictability of agent behaviour\"]\n    NODE_runtime_traces_3f5dcde1768d[\"Runtime traces\"]\n    NODE_trace_mining_f1989ee25c20[\"Trace mining\"]\n    NODE_generated_evals_81f1a36fe173[\"Generated evals and environments\"]\n    NODE_harness_engineering_43f588eb0663[\"Harness engineering\"]\n    NODE_context_window_limit_026c34d42317[\"Trace size against the context window\"]\n    NODE_agent_autonomy_ead78c726c3b -->|is traded against| NODE_static_predictability_868184098646\n    NODE_static_predictability_868184098646 -->|lowers, which elevates| NODE_runtime_traces_3f5dcde1768d\n    NODE_runtime_traces_3f5dcde1768d -->|feeds| NODE_trace_mining_f1989ee25c20\n    NODE_trace_mining_f1989ee25c20 -->|produces| NODE_generated_evals_81f1a36fe173\n    NODE_generated_evals_81f1a36fe173 -->|constrains| NODE_harness_engineering_43f588eb0663\n    NODE_context_window_limit_026c34d42317 -->|bounds| NODE_trace_mining_f1989ee25c20"
+      },
+      "source_card_ids": [],
+      "source_relation_ids": [
+        "REL-agent-autonomy-trades-off-with-is-traded-against-44912ed2a046",
+        "REL-static-predictability-causes-lowers-which-elevat-1097d48a1bd8",
+        "REL-runtime-traces-feeds-feeds-trace-mining-95508872354a",
+        "REL-trace-mining-transforms-produces-generated-evals-d54d3910d5ec",
+        "REL-generated-evals-enables-constrains-harness-engin-59f00567c498",
+        "REL-context-window-limit-depends-on-bounds-trace-min-3132d7eb9573"
+      ],
+      "title": "自主性下降的可預測性如何把 trace 變成改進基質",
+      "uncertainty_policy": "DOTTED_UNCERTAIN_EDGES",
+      "visual_evidence_ids": []
+    },
+    {
+      "data": {
+        "columns": [
+          "Frontier judge (Opus)",
+          "Open cheaper model"
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "evidence_ids": [
+                  "EV-cvrngaqzq3y-v2-open-model-judge-cost"
+                ],
+                "status": "SUPPORTED",
+                "value": "reference point"
+              },
+              {
+                "evidence_ids": [
+                  "EV-cvrngaqzq3y-v2-open-model-judge-cost"
+                ],
+                "status": "SUPPORTED",
+                "value": "roughly matched"
+              }
+            ],
+            "label": "Trace judging capability on the stated legal benchmark"
+          },
+          {
+            "cells": [
+              {
+                "evidence_ids": [
+                  "EV-cvrngaqzq3y-v2-open-model-judge-cost"
+                ],
+                "status": "SUPPORTED",
+                "value": "baseline"
+              },
+              {
+                "evidence_ids": [
+                  "EV-cvrngaqzq3y-v2-open-model-judge-cost"
+                ],
+                "status": "SUPPORTED",
+                "value": "1–2 orders of magnitude cheaper (source wording)"
+              }
+            ],
+            "label": "Relative cost"
+          },
+          {
+            "cells": [
+              {
+                "status": "UNKNOWN",
+                "value": "UNKNOWN"
+              },
+              {
+                "status": "UNKNOWN",
+                "value": "UNKNOWN"
+              }
+            ],
+            "label": "Exact benchmark score"
+          },
+          {
+            "cells": [
+              {
+                "status": "UNKNOWN",
+                "value": "UNKNOWN"
+              },
+              {
+                "status": "UNKNOWN",
+                "value": "UNKNOWN"
+              }
+            ],
+            "label": "Exact price per million tokens"
+          },
+          {
+            "cells": [
+              {
+                "evidence_ids": [
+                  "EV-cvrngaqzq3y-v2-open-model-judge-cost"
+                ],
+                "status": "SUPPORTED",
+                "value": "Opus (family named, version not stated)"
+              },
+              {
+                "status": "UNKNOWN",
+                "value": "UNKNOWN"
+              }
+            ],
+            "label": "Model identity and version"
+          }
+        ]
+      },
+      "projection_id": "PROJ-v2-judge-comparison",
+      "projection_kind": "comparison-matrix",
+      "question_tags": [
+        "comparison",
+        "uncertainty"
+      ],
+      "rendered": {
+        "ascii": "| Dimension | Frontier judge (Opus) | Open cheaper model |\n|---|---|---|\n| Trace judging capability on the stated legal benchmark | reference point | roughly matched |\n| Relative cost | baseline | 1–2 orders of magnitude cheaper (source wording) |\n| Exact benchmark score | UNKNOWN | UNKNOWN |\n| Exact price per million tokens | UNKNOWN | UNKNOWN |\n| Model identity and version | Opus (family named, version not stated) | UNKNOWN |",
+        "markdown": "| Dimension | Frontier judge (Opus) | Open cheaper model |\n|---|---|---|\n| Trace judging capability on the stated legal benchmark | reference point | roughly matched |\n| Relative cost | baseline | 1–2 orders of magnitude cheaper (source wording) |\n| Exact benchmark score | UNKNOWN | UNKNOWN |\n| Exact price per million tokens | UNKNOWN | UNKNOWN |\n| Model identity and version | Opus (family named, version not stated) | UNKNOWN |",
+        "mermaid": null
+      },
+      "source_card_ids": [],
+      "source_relation_ids": [
+        "REL-open-model-judge-analogous-to-approaches-far-mor-cc4f09893616"
+      ],
+      "title": "Trace judge：frontier 與 open model 的成本對照",
+      "uncertainty_policy": "LABEL_UNKNOWN",
+      "visual_evidence_ids": []
+    },
+    {
+      "data": {
+        "events": [
+          {
+            "evidence_ids": [
+              "EV-cvrngaqzq3y-v2-recipe-four-steps"
+            ],
+            "label": "Ship the agent into a real environment",
+            "node_id": "NODE-agent-autonomy-ead78c726c3b",
+            "order": 1
+          },
+          {
+            "evidence_ids": [
+              "EV-cvrngaqzq3y-v2-recipe-four-steps"
+            ],
+            "label": "Collect traces from every operation",
+            "node_id": "NODE-runtime-traces-3f5dcde1768d",
+            "order": 2
+          },
+          {
+            "evidence_ids": [
+              "EV-cvrngaqzq3y-v2-recipe-four-steps"
+            ],
+            "label": "Mine the trace data",
+            "node_id": "NODE-trace-mining-f1989ee25c20",
+            "order": 3
+          },
+          {
+            "evidence_ids": [
+              "EV-cvrngaqzq3y-v2-recipe-four-steps"
+            ],
+            "label": "Run data-driven experiments against prior traces",
+            "node_id": "NODE-generated-evals-81f1a36fe173",
+            "order": 4
+          }
+        ]
+      },
+      "projection_id": "PROJ-v2-recipe-timeline",
+      "projection_kind": "timeline",
+      "question_tags": [
+        "timeline",
+        "decision-rule"
+      ],
+      "rendered": {
+        "ascii": "Ship the agent into a real environment -> Collect traces from every operation -> Mine the trace data -> Run data-driven experiments against prior traces",
+        "markdown": "1. **Ship the agent into a real environment** — `[[NODE-agent-autonomy-ead78c726c3b]]`\n2. **Collect traces from every operation** — `[[NODE-runtime-traces-3f5dcde1768d]]`\n3. **Mine the trace data** — `[[NODE-trace-mining-f1989ee25c20]]`\n4. **Run data-driven experiments against prior traces** — `[[NODE-generated-evals-81f1a36fe173]]`",
+        "mermaid": "timeline\n    title 持續改進 agent 的四步配方\n    1 : Ship the agent into a real environment\n    2 : Collect traces from every operation\n    3 : Mine the trace data\n    4 : Run data-driven experiments against prior traces"
+      },
+      "source_card_ids": [],
+      "source_relation_ids": [
+        "REL-runtime-traces-flows-to-is-collected-after-shipp-f331f0fb80af"
+      ],
+      "title": "持續改進 agent 的四步配方",
+      "uncertainty_policy": "OMIT_UNSUPPORTED_VALUES",
+      "visual_evidence_ids": []
+    },
+    {
+      "data": {
+        "planes": [
+          {
+            "label": "Data plane",
+            "nodes": [
+              {
+                "label": "Observational training data",
+                "node_id": "NODE-observational-training-data-a11a56cb5e08"
+              }
+            ]
+          },
+          {
+            "label": "Harness plane",
+            "nodes": [
+              {
+                "label": "Harness updates",
+                "node_id": "NODE-harness-updates-684152644e78"
+              }
+            ]
+          },
+          {
+            "label": "Memory plane",
+            "nodes": [
+              {
+                "label": "Agent memory",
+                "node_id": "NODE-agent-memory-22a9405c3d21"
+              }
+            ]
+          }
+        ]
+      },
+      "projection_id": "PROJ-v2-continual-learning-planes",
+      "projection_kind": "state-planes",
+      "question_tags": [
+        "state-model"
+      ],
+      "rendered": {
+        "ascii": "[Data plane] Observational training data\n[Harness plane] Harness updates\n[Memory plane] Agent memory",
+        "markdown": "```mermaid\nflowchart LR\n    subgraph PLANE_1[\"Data plane\"]\n        NODE_observational_training_data_a11a56cb5e08[\"Observational training data\"]\n    end\n    subgraph PLANE_2[\"Harness plane\"]\n        NODE_harness_updates_684152644e78[\"Harness updates\"]\n    end\n    subgraph PLANE_3[\"Memory plane\"]\n        NODE_agent_memory_22a9405c3d21[\"Agent memory\"]\n    end\n    NODE_observational_training_data_a11a56cb5e08 -->|is one axis of| NODE_agent_memory_22a9405c3d21\n    NODE_harness_updates_684152644e78 -->|is one axis of| NODE_agent_memory_22a9405c3d21\n```",
+        "mermaid": "flowchart LR\n    subgraph PLANE_1[\"Data plane\"]\n        NODE_observational_training_data_a11a56cb5e08[\"Observational training data\"]\n    end\n    subgraph PLANE_2[\"Harness plane\"]\n        NODE_harness_updates_684152644e78[\"Harness updates\"]\n    end\n    subgraph PLANE_3[\"Memory plane\"]\n        NODE_agent_memory_22a9405c3d21[\"Agent memory\"]\n    end\n    NODE_observational_training_data_a11a56cb5e08 -->|is one axis of| NODE_agent_memory_22a9405c3d21\n    NODE_harness_updates_684152644e78 -->|is one axis of| NODE_agent_memory_22a9405c3d21"
+      },
+      "source_card_ids": [],
+      "source_relation_ids": [
+        "REL-observational-training-data-part-of-is-one-axis-c414b15e8850",
+        "REL-harness-updates-part-of-is-one-axis-of-agent-mem-998fdec54f64"
+      ],
+      "title": "Continual learning 的三個更新面",
+      "uncertainty_policy": "LABEL_UNKNOWN",
+      "visual_evidence_ids": []
+    },
+    {
+      "data": {
+        "evidence_ids": [
+          "EV-cvrngaqzq3y-v2-model-harness-task-fit"
+        ],
+        "expression": "task_performance = fit(model, harness, task_distribution)",
+        "terms": [
+          {
+            "meaning": "the joint fit the talk borrows from scikit-learn",
+            "node_id": "NODE-model-harness-task-fit-184d14eedd96",
+            "symbol": "fit"
+          },
+          {
+            "meaning": "what a leaderboard alone cannot explain",
+            "node_id": "NODE-agent-task-performance-5ba7a2129b5c",
+            "symbol": "task_performance"
+          }
+        ],
+        "visual_ids": []
+      },
+      "projection_id": "PROJ-v2-fit-equation",
+      "projection_kind": "equation",
+      "question_tags": [
+        "equation",
+        "decision-rule"
+      ],
+      "rendered": {
+        "ascii": "task_performance = fit(model, harness, task_distribution)",
+        "markdown": "```text\ntask_performance = fit(model, harness, task_distribution)\n```\n\n| Symbol | Meaning | Graph node |\n|---|---|---|\n| `fit` | the joint fit the talk borrows from scikit-learn | `[[NODE-model-harness-task-fit-184d14eedd96]]` |\n| `task_performance` | what a leaderboard alone cannot explain | `[[NODE-agent-task-performance-5ba7a2129b5c]]` |",
+        "mermaid": null
+      },
+      "source_card_ids": [],
+      "source_relation_ids": [
+        "REL-model-harness-task-fit-causes-determines-agent-t-d2cd283cd3cc"
+      ],
+      "title": "Model–Harness–Task fit",
+      "uncertainty_policy": "LABEL_UNKNOWN",
+      "visual_evidence_ids": []
+    }
+  ],
+  "schema_version": "projection-bundle@2",
+  "source_graph_digest": "sha256:6153e75dc4f1126d9274b2c8a432cc0c70165279c693b721fc5baba3a8e7b777"
+}

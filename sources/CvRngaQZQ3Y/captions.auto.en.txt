@@ -1,0 +1,550 @@
+[00:00:01.309 --> 00:00:03.329] [music]
+[00:00:12.480 --> 00:00:16.960] >> Hey everyone.
+[00:00:13.880 --> 00:00:19.840] I'm Vic and I lead applied research at
+[00:00:16.960 --> 00:00:22.280] LangChain and I'm going to talk about
+[00:00:19.840 --> 00:00:24.320] something that I think is sexy, which is
+[00:00:22.280 --> 00:00:26.120] data mining, but it's not as sexy as
+[00:00:24.320 --> 00:00:28.600] LLM, so we're going to try to like make
+[00:00:26.120 --> 00:00:30.640] it sexy together. And the problem that
+[00:00:28.600 --> 00:00:33.080] we're going to talk about today is how
+[00:00:30.640 --> 00:00:35.640] do we continuously improve agents, but
+[00:00:33.080 --> 00:00:38.680] how do we do that via data?
+[00:00:35.640 --> 00:00:40.680] So, to start, I'm going to tell a little
+[00:00:38.680 --> 00:00:44.360] story that I think maybe a lot of us
+[00:00:40.680 --> 00:00:46.640] have felt before. Like, I ran my agent,
+[00:00:44.360 --> 00:00:49.200] it did a bunch of things,
+[00:00:46.640 --> 00:00:50.800] it made some mistakes.
+[00:00:49.200 --> 00:00:52.280] Now, I ask someone like, what do I
+[00:00:50.800 --> 00:00:56.720] actually do about that? Like, I have all
+[00:00:52.280 --> 00:00:58.120] this data, made some mistakes, what now?
+[00:00:56.720 --> 00:01:00.760] Basically, what we're going to do today
+[00:00:58.120 --> 00:01:02.760] is we're going to motivate a recipe for
+[00:01:00.760 --> 00:01:04.839] what we should do to continuously
+[00:01:02.760 --> 00:01:06.480] improve agents over time, and then I'm
+[00:01:04.839 --> 00:01:07.480] going to talk from some lived experience
+[00:01:06.480 --> 00:01:09.680] and like some stuff that we help
+[00:01:07.480 --> 00:01:11.520] customers do to run this over
+[00:01:09.680 --> 00:01:13.760] large-scale trace data.
+[00:01:11.520 --> 00:01:17.240] So, the first step in building a
+[00:01:13.760 --> 00:01:18.800] successful agent is shipping it. So, if
+[00:01:17.240 --> 00:01:20.400] you put it out into the real world, then
+[00:01:18.800 --> 00:01:21.640] it can operate in environments and then
+[00:01:20.400 --> 00:01:23.480] you can get feedback from what it's
+[00:01:21.640 --> 00:01:26.320] doing.
+[00:01:23.480 --> 00:01:28.320] The second step is collect a ton of
+[00:01:26.320 --> 00:01:30.160] traces. So, agents operate in the
+[00:01:28.320 --> 00:01:32.080] environment every single time they
+[00:01:30.160 --> 00:01:34.720] operate, they do tool calls, they have
+[00:01:32.080 --> 00:01:37.320] output messages, they call APIs, they
+[00:01:34.720 --> 00:01:38.840] use CLIs. All of that generates data and
+[00:01:37.320 --> 00:01:42.200] we want to store all of that so we can
+[00:01:38.840 --> 00:01:44.880] like do stuff with it.
+[00:01:42.200 --> 00:01:47.520] The next thing is the data mining in
+[00:01:44.880 --> 00:01:49.800] this talk, which is once we have tons of
+[00:01:47.520 --> 00:01:51.040] trace data, maybe gigabytes, maybe
+[00:01:49.800 --> 00:01:52.640] terabytes, depending on like how many
+[00:01:51.040 --> 00:01:55.080] agents you're shipping, we're going to
+[00:01:52.640 --> 00:01:56.640] do data mining over that. And I promise
+[00:01:55.080 --> 00:01:58.280] I will tell you exactly what data mining
+[00:01:56.640 --> 00:02:00.440] we're going do, uh but we're going to do
+[00:01:58.280 --> 00:02:02.600] some over it.
+[00:02:00.440 --> 00:02:04.479] And then the fun part, which is I
+[00:02:02.600 --> 00:02:06.760] collected that data, I read it, I
+[00:02:04.479 --> 00:02:09.240] curated it, and now we actually need to
+[00:02:06.760 --> 00:02:11.760] run the experiments in a data-driven way
+[00:02:09.240 --> 00:02:13.320] to see, "Hey, is this new prompt, or is
+[00:02:11.760 --> 00:02:15.480] this new tool, or is this new
+[00:02:13.320 --> 00:02:17.880] orchestration, or is this new loop, is
+[00:02:15.480 --> 00:02:21.440] it actually improving things based on
+[00:02:17.880 --> 00:02:21.440] the previous traces that I've seen?"
+[00:02:21.800 --> 00:02:26.400] And this is maybe a bit of a hot take,
+[00:02:24.480 --> 00:02:27.880] but continual learning is super hot
+[00:02:26.400 --> 00:02:29.040] right now. I'm talking about it, this
+[00:02:27.880 --> 00:02:32.080] whole room is going to hear about it for
+[00:02:29.040 --> 00:02:34.320] the next like 5-6 hours. Um but there's
+[00:02:32.080 --> 00:02:36.320] a very tight coupling between what
+[00:02:34.320 --> 00:02:38.920] observability is and what continual
+[00:02:36.320 --> 00:02:40.520] learning is. And the main reason for
+[00:02:38.920 --> 00:02:42.640] that is that
+[00:02:40.520 --> 00:02:44.880] agents that operate in environments,
+[00:02:42.640 --> 00:02:46.280] they produce trace data, and what
+[00:02:44.880 --> 00:02:48.000] continual learning for agents and
+[00:02:46.280 --> 00:02:49.800] continual learning for humans basically
+[00:02:48.000 --> 00:02:52.520] is is I do a bunch of stuff in the
+[00:02:49.800 --> 00:02:54.720] world, I think about what I did, and
+[00:02:52.520 --> 00:02:57.120] then I need to update my definition,
+[00:02:54.720 --> 00:02:59.000] like my knowledge, stuff I write down,
+[00:02:57.120 --> 00:03:00.959] in order to respond to the feedback from
+[00:02:59.000 --> 00:03:02.959] the environment. And if you're continual
+[00:03:00.959 --> 00:03:04.760] learning company, you need traces, and
+[00:03:02.959 --> 00:03:08.600] if you have traces, then you can try to
+[00:03:04.760 --> 00:03:08.600] do continual learning over your agents.
+[00:03:09.600 --> 00:03:13.720] I had to put in a meme because
+[00:03:11.760 --> 00:03:15.600] if you look at your data, then you can
+[00:03:13.720 --> 00:03:17.160] be like Will Hunting if anyone's seen
+[00:03:15.600 --> 00:03:19.360] the movie, where like everything is
+[00:03:17.160 --> 00:03:21.840] super super easy, and you can like
+[00:03:19.360 --> 00:03:23.560] improve over time, and I promised Emma I
+[00:03:21.840 --> 00:03:25.880] would put this in there, so putting it
+[00:03:23.560 --> 00:03:29.560] in there.
+[00:03:25.880 --> 00:03:31.640] Cool. So, why am I talking a bunch about
+[00:03:29.560 --> 00:03:33.280] traces anyway? So,
+[00:03:31.640 --> 00:03:34.239] I'm sure a ton of us were software
+[00:03:33.280 --> 00:03:36.800] engineers before, we're software
+[00:03:34.239 --> 00:03:38.560] engineers now, and on the left we have a
+[00:03:36.800 --> 00:03:40.840] code block, and we can sort of like read
+[00:03:38.560 --> 00:03:43.519] the code, and in my head, I can almost
+[00:03:40.840 --> 00:03:45.040] reason over what this code does. I can
+[00:03:43.519 --> 00:03:46.600] see the functions, I can see like how
+[00:03:45.040 --> 00:03:48.040] they call each other.
+[00:03:46.600 --> 00:03:52.480] I can roughly understand the logic in
+[00:03:48.040 --> 00:03:55.160] Python. Um that doesn't exactly exist in
+[00:03:52.480 --> 00:03:56.680] agent world because agents have prompts,
+[00:03:55.160 --> 00:03:58.640] they have tools, they have skills, they
+[00:03:56.680 --> 00:03:59.920] have hooks, they have middlewares, some
+[00:03:58.640 --> 00:04:02.000] agents call other agents and I
+[00:03:59.920 --> 00:04:04.200] orchestrate them in swarms. It's really
+[00:04:02.000 --> 00:04:06.640] really hard for humans to reason about
+[00:04:04.200 --> 00:04:08.600] how certain prompts that they change are
+[00:04:06.640 --> 00:04:11.680] actually going to affect agent behavior
+[00:04:08.600 --> 00:04:12.840] at scale. And this also varies between
+[00:04:11.680 --> 00:04:14.440] the different domains that you're doing
+[00:04:12.840 --> 00:04:16.040] it on. So, a prompt change and you're
+[00:04:14.440 --> 00:04:17.320] using for the medical domain is going to
+[00:04:16.040 --> 00:04:18.280] be like completely different than a
+[00:04:17.320 --> 00:04:19.600] prompt change that you want to do for
+[00:04:18.280 --> 00:04:22.600] the law domain.
+[00:04:19.600 --> 00:04:25.240] And in general, over the last four years
+[00:04:22.600 --> 00:04:28.960] since the ChatGPT moment, we've started
+[00:04:25.240 --> 00:04:31.640] trading determinism for autonomy. And in
+[00:04:28.960 --> 00:04:34.760] that shift, sort of what we need to do
+[00:04:31.640 --> 00:04:37.160] is create tools and create systems to
+[00:04:34.760 --> 00:04:40.960] still understand agents when they're
+[00:04:37.160 --> 00:04:43.280] autonomously operating in environments.
+[00:04:40.960 --> 00:04:45.840] So, I talked about traces. Um
+[00:04:43.280 --> 00:04:48.240] why like why should you read them? And
+[00:04:45.840 --> 00:04:50.400] at LangChain, what do we actually do
+[00:04:48.240 --> 00:04:52.320] when we're reading traces? So, we
+[00:04:50.400 --> 00:04:54.320] centralize a bunch of our data, so we
+[00:04:52.320 --> 00:04:56.720] put everything in a tracing project and
+[00:04:54.320 --> 00:04:57.919] this is usually either like per agent or
+[00:04:56.720 --> 00:05:01.520] like centralized across all of our
+[00:04:57.919 --> 00:05:04.919] agents. And then what we do is we send
+[00:05:01.520 --> 00:05:06.840] agents to read traces from other agents,
+[00:05:04.919 --> 00:05:09.520] right? And then we look for a bunch of
+[00:05:06.840 --> 00:05:11.880] different things. And we might ask for,
+[00:05:09.520 --> 00:05:13.440] "Hey, like find a bunch of like good and
+[00:05:11.880 --> 00:05:14.640] bad interactions where like users got
+[00:05:13.440 --> 00:05:15.720] upset or like users are like really
+[00:05:14.640 --> 00:05:16.320] happy."
+[00:05:15.720 --> 00:05:18.480] Um
+[00:05:16.320 --> 00:05:20.760] another question I might ask is uh this
+[00:05:18.480 --> 00:05:22.960] is a technical question like "Agents now
+[00:05:20.760 --> 00:05:24.680] run for millions of tokens. Does the
+[00:05:22.960 --> 00:05:27.120] agent get really dumb after the first
+[00:05:24.680 --> 00:05:28.919] compaction? After the second compaction?
+[00:05:27.120 --> 00:05:30.200] Does it never get dumb?" Like how do we
+[00:05:28.919 --> 00:05:31.480] actually answer these questions? We need
+[00:05:30.200 --> 00:05:32.720] to do it by actually looking at the
+[00:05:31.480 --> 00:05:35.000] traces.
+[00:05:32.720 --> 00:05:36.919] And then the the other thing is like if
+[00:05:35.000 --> 00:05:39.680] I look at the traces, then I can try to
+[00:05:36.919 --> 00:05:41.960] prove some counterfactuals, which is
+[00:05:39.680 --> 00:05:44.800] "Hey, like I ran GPT 5.5 for this and I
+[00:05:41.960 --> 00:05:47.800] heard like GLM is really good. What
+[00:05:44.800 --> 00:05:50.080] happens if I run GLM 5.2 for this task
+[00:05:47.800 --> 00:05:52.120] and how do I compare them? Metrics,
+[00:05:50.080 --> 00:05:54.240] awesome. The The trace level captures
+[00:05:52.120 --> 00:05:55.600] the actual like behavior that users see.
+[00:05:54.240 --> 00:05:59.480] So, that's also like very helpful for
+[00:05:55.600 --> 00:05:59.480] seeing behavior like fine grain scales.
+[00:05:59.600 --> 00:06:04.800] And the way that we sort of think about
+[00:06:03.160 --> 00:06:07.000] the data that's being generated by
+[00:06:04.800 --> 00:06:09.280] agents is that the data that we see
+[00:06:07.000 --> 00:06:11.520] today is going to be the smallest that
+[00:06:09.280 --> 00:06:14.200] humans have ever seen in their entire
+[00:06:11.520 --> 00:06:16.480] lives because we're in this massive
+[00:06:14.200 --> 00:06:18.480] exponential shift to our agents are
+[00:06:16.480 --> 00:06:19.960] doing more and more work in the economy.
+[00:06:18.480 --> 00:06:21.800] And what that means is like the amount
+[00:06:19.960 --> 00:06:24.840] of data that humans have produced in our
+[00:06:21.800 --> 00:06:27.480] entire lifetime will soon be eclipsed by
+[00:06:24.840 --> 00:06:29.600] agents running on like year scales and
+[00:06:27.480 --> 00:06:32.919] then 6-month scales and 3-month scales
+[00:06:29.600 --> 00:06:35.760] and then maybe every day, right? Um and
+[00:06:32.919 --> 00:06:37.760] to understand a ton of that data,
+[00:06:35.760 --> 00:06:39.400] roughly what we need to do is contend
+[00:06:37.760 --> 00:06:40.720] with a couple problems. There's more,
+[00:06:39.400 --> 00:06:42.400] but these are the two that I'm going to
+[00:06:40.720 --> 00:06:45.720] focus on. So,
+[00:06:42.400 --> 00:06:47.919] one, uh reading traces at scale is super
+[00:06:45.720 --> 00:06:49.840] expensive, uh especially if you have
+[00:06:47.919 --> 00:06:52.440] millions of traces and if you have
+[00:06:49.840 --> 00:06:54.880] millions of tokens per trace, right? Um
+[00:06:52.440 --> 00:06:57.040] think of it as like an input token cost.
+[00:06:54.880 --> 00:06:59.080] You can like literally multiply the
+[00:06:57.040 --> 00:07:01.720] input token cost uh times the number of
+[00:06:59.080 --> 00:07:03.960] traces times like how big each trace is
+[00:07:01.720 --> 00:07:05.040] on average, right? Um the the other
+[00:07:03.960 --> 00:07:07.040] thing is [clears throat] if I have a
+[00:07:05.040 --> 00:07:08.880] super long interaction with a coding
+[00:07:07.040 --> 00:07:10.840] agent like Cloud Code or Codex or like
+[00:07:08.880 --> 00:07:12.840] deep agents, um
+[00:07:10.840 --> 00:07:15.720] I can't even read that trace with
+[00:07:12.840 --> 00:07:17.160] another agent because that that context
+[00:07:15.720 --> 00:07:19.040] like doesn't fit in memory, right? So,
+[00:07:17.160 --> 00:07:20.600] it's like we we need to develop systems
+[00:07:19.040 --> 00:07:22.640] so I can sort of treat that context as
+[00:07:20.600 --> 00:07:24.560] like an external object and then I can
+[00:07:22.640 --> 00:07:26.720] sort of query into it, right? So, we we
+[00:07:24.560 --> 00:07:28.919] need to build agents to efficiently mine
+[00:07:26.720 --> 00:07:30.400] data from other agents and it's it's no
+[00:07:28.919 --> 00:07:32.360] longer as simple as just like feeding
+[00:07:30.400 --> 00:07:34.040] the data into context and there's like
+[00:07:32.360 --> 00:07:36.880] tricks that we'll sort of talk about uh
+[00:07:34.040 --> 00:07:39.080] to to do that well.
+[00:07:36.880 --> 00:07:40.680] Great. So, one of the things that I
+[00:07:39.080 --> 00:07:43.600] think is really really cool in the last
+[00:07:40.680 --> 00:07:45.480] 6 months is that open models have
+[00:07:43.600 --> 00:07:48.800] basically hit an inflection point in
+[00:07:45.480 --> 00:07:50.640] intelligence that we at LangChain don't
+[00:07:48.800 --> 00:07:53.200] reach for the frontier models for every
+[00:07:50.640 --> 00:07:55.600] single use case. We're quite conscious
+[00:07:53.200 --> 00:07:57.960] about what is the minimum level of
+[00:07:55.600 --> 00:08:00.640] intelligence that I need to do any given
+[00:07:57.960 --> 00:08:02.800] task. And like practically speaking,
+[00:08:00.640 --> 00:08:04.720] honestly, yes, we start with Opus, we
+[00:08:02.800 --> 00:08:06.840] start with 55 because we just want to
+[00:08:04.720 --> 00:08:09.160] know if the task is even possible. But
+[00:08:06.840 --> 00:08:11.280] then once we reach that sort of like
+[00:08:09.160 --> 00:08:13.600] waterline, then we like look back at
+[00:08:11.280 --> 00:08:15.400] those traces and we see, "Hey, can we
+[00:08:13.600 --> 00:08:17.000] use an open model to do the same thing?"
+[00:08:15.400 --> 00:08:19.280] So, this is a bunch of work that we did
+[00:08:17.000 --> 00:08:21.200] with Harvey and then their lab legal
+[00:08:19.280 --> 00:08:22.400] benchmark. Basically, what we're looking
+[00:08:21.200 --> 00:08:25.720] at is
+[00:08:22.400 --> 00:08:28.520] can I match the trace judging capability
+[00:08:25.720 --> 00:08:32.400] of Opus with an open cheaper model? And
+[00:08:28.520 --> 00:08:34.280] the answer is roughly yes at like an
+[00:08:32.400 --> 00:08:36.120] order or like two orders of magnitude
+[00:08:34.280 --> 00:08:38.039] cheaper. And like the way we do that is
+[00:08:36.120 --> 00:08:38.960] we try a bunch of models,
+[00:08:38.039 --> 00:08:40.800] we do a bunch of like harness
+[00:08:38.960 --> 00:08:42.440] engineering, and the harness engineering
+[00:08:40.800 --> 00:08:44.039] is informed by a bunch of the traces
+[00:08:42.440 --> 00:08:46.200] that we read. So, it's like, "Hey, like
+[00:08:44.039 --> 00:08:48.080] Opus reasons about things in this way.
+[00:08:46.200 --> 00:08:49.720] Maybe that's because of the prompt.
+[00:08:48.080 --> 00:08:51.080] Maybe Opus is just smarter, which it is,
+[00:08:49.720 --> 00:08:52.320] than a bunch of the open models, but
+[00:08:51.080 --> 00:08:54.160] that might mean I need to give it a
+[00:08:52.320 --> 00:08:55.760] little bit more guidance so it can reach
+[00:08:54.160 --> 00:08:56.760] the sort of same intelligence level at
+[00:08:55.760 --> 00:08:58.839] like a much
+[00:08:56.760 --> 00:09:00.920] much lower cost."
+[00:08:58.839 --> 00:09:03.040] And the the other thing that we sort of
+[00:09:00.920 --> 00:09:04.440] look at is like harness engineering is
+[00:09:03.040 --> 00:09:06.320] amazing.
+[00:09:04.440 --> 00:09:08.200] You get instant feedback and you can
+[00:09:06.320 --> 00:09:10.800] sort of like run on your evals, but
+[00:09:08.200 --> 00:09:12.440] eventually what we find is you hit a
+[00:09:10.800 --> 00:09:15.080] threshold of intelligence where it's
+[00:09:12.440 --> 00:09:16.680] like "If I keep tweaking this prompt,
+[00:09:15.080 --> 00:09:18.880] I'm not going to get too much more out
+[00:09:16.680 --> 00:09:20.880] of it." And once we reach that point, we
+[00:09:18.880 --> 00:09:23.520] sort of look at, "Okay, can I actually
+[00:09:20.880 --> 00:09:25.440] like fine-tune the model on my
+[00:09:23.520 --> 00:09:27.800] domain-specific task?" And can I like
+[00:09:25.440 --> 00:09:29.880] make it better on those tasks? And what
+[00:09:27.800 --> 00:09:32.040] we find is if we take like base models
+[00:09:29.880 --> 00:09:33.640] and we tune them on like very specific
+[00:09:32.040 --> 00:09:35.640] vertical tasks, which is what a lot of
+[00:09:33.640 --> 00:09:37.880] our customers do, they don't really care
+[00:09:35.640 --> 00:09:39.160] about the entire variance of tasks. like
+[00:09:37.880 --> 00:09:40.840] they care about what their customers
+[00:09:39.160 --> 00:09:42.400] care about. So, if we focus on that
+[00:09:40.840 --> 00:09:44.240] narrow set of tasks, then we can
+[00:09:42.400 --> 00:09:47.080] fine-tune base models to sort of like
+[00:09:44.240 --> 00:09:48.840] reach and then also go beyond frontier
+[00:09:47.080 --> 00:09:51.480] performance. And I think one sort of
+[00:09:48.840 --> 00:09:53.200] like small thing I'll mention as a lot
+[00:09:51.480 --> 00:09:55.440] of people are getting into fine-tuning
+[00:09:53.200 --> 00:09:58.800] is that another sort of like economic
+[00:09:55.440 --> 00:10:02.200] decision is that you can move from token
+[00:09:58.800 --> 00:10:04.360] costs to hardware costs. And this is
+[00:10:02.200 --> 00:10:06.320] like can be a really big change, right?
+[00:10:04.360 --> 00:10:08.400] Cuz like you're very used to hey, like a
+[00:10:06.320 --> 00:10:09.960] million tokens cost this much, not as
+[00:10:08.400 --> 00:10:12.040] much like this cluster sort of costs
+[00:10:09.960 --> 00:10:14.160] this much. But for like very high
+[00:10:12.040 --> 00:10:16.440] inference workloads, we find it to be
+[00:10:14.160 --> 00:10:18.000] way cheaper just to like run a cluster
+[00:10:16.440 --> 00:10:19.280] and I get like unlimited inference on
+[00:10:18.000 --> 00:10:20.720] that cluster. I don't have to worry
+[00:10:19.280 --> 00:10:22.600] about tokens, but I can just do the
+[00:10:20.720 --> 00:10:23.920] calculation of like, hey,
+[00:10:22.600 --> 00:10:25.080] um this will end up being cheaper and
+[00:10:23.920 --> 00:10:27.520] then I can spin it down when I don't
+[00:10:25.080 --> 00:10:27.520] need it.
+[00:10:27.920 --> 00:10:31.960] Cool. And I said all of this um
+[00:10:30.200 --> 00:10:33.960] so we obviously like built a product to
+[00:10:31.960 --> 00:10:36.880] do that. Uh I won't shill it too much,
+[00:10:33.960 --> 00:10:39.360] but it's LangSplat engine. Uh basically,
+[00:10:36.880 --> 00:10:42.360] this product is trying to automate this
+[00:10:39.360 --> 00:10:44.440] loop for you, which is if you have any
+[00:10:42.360 --> 00:10:46.320] volume of trace data and you're looking
+[00:10:44.440 --> 00:10:47.920] for something that trace data or you
+[00:10:46.320 --> 00:10:50.120] want to generate e-vals from that trace
+[00:10:47.920 --> 00:10:52.000] data or you want to like generate
+[00:10:50.120 --> 00:10:53.800] feedback for like humans to read from
+[00:10:52.000 --> 00:10:55.200] that trace data, it will go read all of
+[00:10:53.800 --> 00:10:56.839] it, it'll like find issues, it'll
+[00:10:55.200 --> 00:10:59.040] agentically search over it, and they can
+[00:10:56.839 --> 00:11:02.320] like prepare data sets for you to do
+[00:10:59.040 --> 00:11:03.200] something after. And a bit of a leader,
+[00:11:02.320 --> 00:11:05.800] um
+[00:11:03.200 --> 00:11:08.160] what that something basically is is the
+[00:11:05.800 --> 00:11:09.000] outputs of this trace mining exercise.
+[00:11:08.160 --> 00:11:10.040] So,
+[00:11:09.000 --> 00:11:12.560] there's like three things that I
+[00:11:10.040 --> 00:11:14.760] mentioned here uh which we see a bunch
+[00:11:12.560 --> 00:11:17.640] and we kind of put into the product. So,
+[00:11:14.760 --> 00:11:20.920] one is distillation and fine-tuning,
+[00:11:17.640 --> 00:11:23.400] which is let's say I'm running GLM 5.2.
+[00:11:20.920 --> 00:11:25.280] It's doing great, but I think that I can
+[00:11:23.400 --> 00:11:27.880] run this task like way cheaper with like
+[00:11:25.280 --> 00:11:29.320] a 9B or 13B model. Then what I'll do is
+[00:11:27.880 --> 00:11:32.160] like I'll take the good traces and the
+[00:11:29.320 --> 00:11:33.640] good examples from the GLM 5.2 runs,
+[00:11:32.160 --> 00:11:35.440] I'll prepare them in a data set, and
+[00:11:33.640 --> 00:11:37.920] then I'll try to fine-tune a small model
+[00:11:35.440 --> 00:11:39.320] on that data set to like mimic behavior,
+[00:11:37.920 --> 00:11:43.200] essentially, right? And this is like
+[00:11:39.320 --> 00:11:45.960] distillation, SFT. The The other one is
+[00:11:43.200 --> 00:11:48.080] generating evals and environments. So,
+[00:11:45.960 --> 00:11:51.080] maybe another slightly hot take, I think
+[00:11:48.080 --> 00:11:53.240] you can basically define agent behavior
+[00:11:51.080 --> 00:11:55.320] by showing the evals that you ran on it,
+[00:11:53.240 --> 00:11:56.400] right? Like, if someone showed me all
+[00:11:55.320 --> 00:11:58.560] the things that they're trying to test
+[00:11:56.400 --> 00:12:00.440] their agent on, I think I would have a
+[00:11:58.560 --> 00:12:02.600] rough idea about how that agent is going
+[00:12:00.440 --> 00:12:05.600] to behave because it literally like hill
+[00:12:02.600 --> 00:12:07.480] climbs those evals, and you you alter
+[00:12:05.600 --> 00:12:09.320] the behavior of the agent to make the
+[00:12:07.480 --> 00:12:11.280] evals pass, right? Like, the purpose of
+[00:12:09.320 --> 00:12:13.360] evals is roughly to try to make them
+[00:12:11.280 --> 00:12:15.720] pass, right? So, I update my agent so
+[00:12:13.360 --> 00:12:17.960] that they essentially pass. And then the
+[00:12:15.720 --> 00:12:20.360] the other thing is um like humans are
+[00:12:17.960 --> 00:12:23.120] still in the loop. Like, I need to know
+[00:12:20.360 --> 00:12:24.920] that customers are happy. I also want to
+[00:12:23.120 --> 00:12:26.840] know what my agents are doing. I just
+[00:12:24.920 --> 00:12:29.600] don't have the bandwidth to read a bunch
+[00:12:26.840 --> 00:12:31.680] of traces. So, preparing content for
+[00:12:29.600 --> 00:12:34.800] humans is still like really, really
+[00:12:31.680 --> 00:12:36.680] valuable today, especially in like
+[00:12:34.800 --> 00:12:38.400] high-trust domains like legal and
+[00:12:36.680 --> 00:12:40.240] medical. Like, some human needs to
+[00:12:38.400 --> 00:12:42.440] review this, um but they can't read it
+[00:12:40.240 --> 00:12:45.960] all, so we try to make it easy for them
+[00:12:42.440 --> 00:12:45.960] to process all that data.
+[00:12:46.160 --> 00:12:50.080] Great. This is um maybe a bit of a
+[00:12:47.960 --> 00:12:52.040] throwback. Like, how many people here
+[00:12:50.080 --> 00:12:53.920] know what like scikit-learn is? Uh maybe
+[00:12:52.040 --> 00:12:57.200] put your uh psych This crowd is just
+[00:12:53.920 --> 00:12:59.440] awesome. Um cool. So, uh when I was like
+[00:12:57.200 --> 00:13:01.920] first doing my PhD, uh
+[00:12:59.440 --> 00:13:04.040] my PhD was like kind of trying to do
+[00:13:01.920 --> 00:13:05.440] this, but like add new algorithms to
+[00:13:04.040 --> 00:13:09.280] scikit-learn. And like, what
+[00:13:05.440 --> 00:13:13.440] scikit-learn basically is uh an abstract
+[00:13:09.280 --> 00:13:15.960] level, it's a bunch of helpers to fit
+[00:13:13.440 --> 00:13:17.480] learning systems to data, right? And
+[00:13:15.960 --> 00:13:18.640] like, classical machine learning, I had
+[00:13:17.480 --> 00:13:21.680] like a data set, I tried to fit it to
+[00:13:18.640 --> 00:13:24.200] it, but I think the same principles that
+[00:13:21.680 --> 00:13:25.360] we use in modern in I got I call it
+[00:13:24.200 --> 00:13:27.320] classical machine learning, it's like 6
+[00:13:25.360 --> 00:13:29.320] years ago. Um that we do in classical
+[00:13:27.320 --> 00:13:32.720] machine learning uh definitely still
+[00:13:29.320 --> 00:13:34.760] apply to this agent-first world. Um,
+[00:13:32.720 --> 00:13:38.560] the way that they apply is what I like
+[00:13:34.760 --> 00:13:40.520] to call model harness task fit. So, we
+[00:13:38.560 --> 00:13:43.240] still have this sort of like fit
+[00:13:40.520 --> 00:13:46.040] function that I'm going to try to like
+[00:13:43.240 --> 00:13:47.880] take my data, take a harness, take a
+[00:13:46.040 --> 00:13:49.640] model, and I'm going to try to fit it
+[00:13:47.880 --> 00:13:52.920] all together to make sure that all of my
+[00:13:49.640 --> 00:13:56.440] tasks pass, right? The algorithms look
+[00:13:52.920 --> 00:13:58.360] slightly different, uh but the overall
+[00:13:56.440 --> 00:14:00.520] process of machine learning doesn't
+[00:13:58.360 --> 00:14:03.360] really look that different, and we'll
+[00:14:00.520 --> 00:14:06.560] talk about maybe roughly what our job
+[00:14:03.360 --> 00:14:08.680] becomes in this data-first, agent-first,
+[00:14:06.560 --> 00:14:11.160] fit-first world. So, a couple of our
+[00:14:08.680 --> 00:14:13.200] main jobs now are
+[00:14:11.160 --> 00:14:15.720] find good fit functions. So, these are
+[00:14:13.200 --> 00:14:17.600] like auto research. This is tons of
+[00:14:15.720 --> 00:14:20.240] great work that's being done in RL on
+[00:14:17.600 --> 00:14:22.680] different methods like OPD, OPSD,
+[00:14:20.240 --> 00:14:24.480] trySFT.
+[00:14:22.680 --> 00:14:26.440] And also find good data, right? So, if
+[00:14:24.480 --> 00:14:28.760] you put those two things together, then
+[00:14:26.440 --> 00:14:30.280] that is basically the applied or just
+[00:14:28.760 --> 00:14:33.440] overall research question that every
+[00:14:30.280 --> 00:14:35.440] team has to make their agents better.
+[00:14:33.440 --> 00:14:37.240] I like some some examples that we've
+[00:14:35.440 --> 00:14:39.160] seen that are like very popular that
+[00:14:37.240 --> 00:14:41.880] we're pretty bullish on are just
+[00:14:39.160 --> 00:14:43.720] generally auto research. So, if you have
+[00:14:41.880 --> 00:14:45.560] some sort of score that you can make
+[00:14:43.720 --> 00:14:47.280] number go up, uh
+[00:14:45.560 --> 00:14:48.640] agents are pretty good at making that
+[00:14:47.280 --> 00:14:49.800] number go up. They might cheat a little
+[00:14:48.640 --> 00:14:51.760] bit and you need to like check them on
+[00:14:49.800 --> 00:14:54.680] some stuff. Um, but this sort of like
+[00:14:51.760 --> 00:14:56.920] general feedback loop of do something,
+[00:14:54.680 --> 00:14:58.920] read the results, read the traces, and
+[00:14:56.920 --> 00:15:00.160] then do an update ends up being pretty
+[00:14:58.920 --> 00:15:02.400] useful. And then I talked about like
+[00:15:00.160 --> 00:15:03.440] model fine-tuning a bunch as well.
+[00:15:02.400 --> 00:15:05.960] Um,
+[00:15:03.440 --> 00:15:07.560] so we we just like went and did this. Uh
+[00:15:05.960 --> 00:15:08.880] this was I think even before the term
+[00:15:07.560 --> 00:15:10.640] auto research came out, but a lot of
+[00:15:08.880 --> 00:15:12.839] people were doing it, which is hey, like
+[00:15:10.640 --> 00:15:14.520] terminal benches like really hard. Uh
+[00:15:12.839 --> 00:15:17.040] what would happen if an agent just like
+[00:15:14.520 --> 00:15:19.120] read its traces, uh proposed
+[00:15:17.040 --> 00:15:21.920] experiments, and then tried to do fixes?
+[00:15:19.120 --> 00:15:23.640] Um, I think one like really key thing
+[00:15:21.920 --> 00:15:26.400] here is uh
+[00:15:23.640 --> 00:15:28.640] giving agents dense feedback signals.
+[00:15:26.400 --> 00:15:30.400] So, like terminal bench, the output is
+[00:15:28.640 --> 00:15:32.440] just a number, right? Like, did you pass
+[00:15:30.400 --> 00:15:33.840] or did you not pass? Uh that's like kind
+[00:15:32.440 --> 00:15:35.680] of helpful, but if I give you like a
+[00:15:33.840 --> 00:15:37.200] super random task, like you just did a
+[00:15:35.680 --> 00:15:39.120] bunch of stuff, and then I just said
+[00:15:37.200 --> 00:15:40.240] like you failed or you passed, uh if you
+[00:15:39.120 --> 00:15:42.200] failed, like you wouldn't really have a
+[00:15:40.240 --> 00:15:45.080] good signal to figure out what you
+[00:15:42.200 --> 00:15:47.120] should do next, right? So, densifying
+[00:15:45.080 --> 00:15:49.400] feedback is uh really good way to
+[00:15:47.120 --> 00:15:51.880] improve agents, and like traces are the
+[00:15:49.400 --> 00:15:53.000] substrate that hold that feedback. And
+[00:15:51.880 --> 00:15:54.960] then agents are very good at like
+[00:15:53.000 --> 00:15:58.520] reading those uh those traces and then
+[00:15:54.960 --> 00:16:01.560] figuring out like what to do next. Um
+[00:15:58.520 --> 00:16:03.480] and then this sort of question always
+[00:16:01.560 --> 00:16:05.120] comes up, which is
+[00:16:03.480 --> 00:16:07.320] when should I like harness Enge? When
+[00:16:05.120 --> 00:16:10.400] should I fine-tune? Uh should I do more
+[00:16:07.320 --> 00:16:13.120] harness Enge after it? I'm like pretty
+[00:16:10.400 --> 00:16:16.280] bullish on the idea of if you need to do
+[00:16:13.120 --> 00:16:18.320] something for improving your agent, the
+[00:16:16.280 --> 00:16:20.400] best thing that you can do is collect
+[00:16:18.320 --> 00:16:22.160] feedback as quickly as possible, like
+[00:16:20.400 --> 00:16:24.240] either from humans labeling or just
+[00:16:22.160 --> 00:16:26.240] letting the agents run. So, like harness
+[00:16:24.240 --> 00:16:27.800] engineering gives you feedback in maybe
+[00:16:26.240 --> 00:16:29.800] 2 minutes. Um
+[00:16:27.800 --> 00:16:32.680] once you sort of saturate the harness
+[00:16:29.800 --> 00:16:34.320] engineering ceiling, right? Then you can
+[00:16:32.680 --> 00:16:36.160] maybe try to do like fine-tuning after
+[00:16:34.320 --> 00:16:38.880] that, but we find a lot of teams are
+[00:16:36.160 --> 00:16:40.280] happy with harness engineering and uh it
+[00:16:38.880 --> 00:16:41.760] solves their customer use case, so like
+[00:16:40.280 --> 00:16:42.560] we always sort of sort of recommend it.
+[00:16:41.760 --> 00:16:44.040] And then we have this like sort of
+[00:16:42.560 --> 00:16:46.120] sandwich, which is like try harness
+[00:16:44.040 --> 00:16:47.600] engineering, try to do fine-tuning to
+[00:16:46.120 --> 00:16:49.080] sort of like break through that ceiling,
+[00:16:47.600 --> 00:16:51.600] and then do more harness engineering
+[00:16:49.080 --> 00:16:54.640] again if you need to.
+[00:16:51.600 --> 00:16:57.080] And then I'll sort of end on the the
+[00:16:54.640 --> 00:16:59.920] idea generally of continual learning is
+[00:16:57.080 --> 00:17:02.920] that there's an agent taking actions in
+[00:16:59.920 --> 00:17:06.199] the environment, and then it needs to
+[00:17:02.920 --> 00:17:09.640] use that information, sorry guys, needs
+[00:17:06.199 --> 00:17:11.120] to use that information to update
+[00:17:09.640 --> 00:17:13.640] information about itself, right? So,
+[00:17:11.120 --> 00:17:15.560] it's like I did a bunch of these tasks,
+[00:17:13.640 --> 00:17:17.839] and like I need to update my prompts to
+[00:17:15.560 --> 00:17:21.839] make sure I do them more efficiently. Or
+[00:17:17.839 --> 00:17:23.600] users are users keep asking to search
+[00:17:21.839 --> 00:17:26.560] for these types of things, I should
+[00:17:23.600 --> 00:17:27.600] maybe tell like tell my creator that
+[00:17:26.560 --> 00:17:29.120] like they're they're doing this sort of
+[00:17:27.600 --> 00:17:30.680] stuff, right? It's like taking action in
+[00:17:29.120 --> 00:17:33.240] the environment kind of like humans do
+[00:17:30.680 --> 00:17:36.360] and updating ourselves. What that looks
+[00:17:33.240 --> 00:17:38.360] like today, slightly unclear, but we
+[00:17:36.360 --> 00:17:40.880] think that you're going to have to do it
+[00:17:38.360 --> 00:17:42.600] across all three axes, which is one,
+[00:17:40.880 --> 00:17:45.200] collect a bunch of training data, which
+[00:17:42.600 --> 00:17:46.960] is like observational data from agents
+[00:17:45.200 --> 00:17:49.520] taking actions. The The other one is
+[00:17:46.960 --> 00:17:51.000] like harness updates generally, like
+[00:17:49.520 --> 00:17:52.680] you know, the the Codex harness and the
+[00:17:51.000 --> 00:17:54.440] Cloud Code harness and like our harness
+[00:17:52.680 --> 00:17:56.680] and everyone's harness, like they look a
+[00:17:54.440 --> 00:17:57.920] certain way because like models are are
+[00:17:56.680 --> 00:17:59.600] trained in them and they look a certain
+[00:17:57.920 --> 00:18:01.160] way because of the tasks that they do in
+[00:17:59.600 --> 00:18:03.800] the real world and we think like
+[00:18:01.160 --> 00:18:06.240] evolving those over time is going to be
+[00:18:03.800 --> 00:18:08.440] super important in in order to make them
+[00:18:06.240 --> 00:18:10.960] work. And
+[00:18:08.440 --> 00:18:11.640] the the last thing is like memory. So,
+[00:18:10.960 --> 00:18:13.480] uh
+[00:18:11.640 --> 00:18:15.480] we humans are like really good at like
+[00:18:13.480 --> 00:18:18.080] remembering stuff over time, but we are
+[00:18:15.480 --> 00:18:19.760] not append-only logs of information. And
+[00:18:18.080 --> 00:18:22.640] if agents are going to be working with
+[00:18:19.760 --> 00:18:24.800] us over like year, 5-year, decade,
+[00:18:22.640 --> 00:18:26.240] lifetime time scales, we cannot just
+[00:18:24.800 --> 00:18:28.640] append everything to like a really big
+[00:18:26.240 --> 00:18:30.200] file and then search over it. There's a
+[00:18:28.640 --> 00:18:32.200] ton of stuff that needs to happen with
+[00:18:30.200 --> 00:18:33.760] like updating those files over time and
+[00:18:32.200 --> 00:18:35.440] then just making memory like really
+[00:18:33.760 --> 00:18:38.280] efficient. But, we think a lot of that
+[00:18:35.440 --> 00:18:40.400] actually comes from this idea of scaling
+[00:18:38.280 --> 00:18:41.840] sleep time compute and and dreaming
+[00:18:40.400 --> 00:18:44.720] generally. So, it's like read all of the
+[00:18:41.840 --> 00:18:46.200] traces over the entire agent life cycle
+[00:18:44.720 --> 00:18:49.160] and then like do [music] things to
+[00:18:46.200 --> 00:18:51.720] update agent state.
+[00:18:49.160 --> 00:18:54.360] Awesome. So, like quick quick takeaways,
+[00:18:51.720 --> 00:18:56.240] uh mining traces gives you signals to
+[00:18:54.360 --> 00:18:58.520] hill climb on. Uh I would say like if
+[00:18:56.240 --> 00:19:00.560] you have an agent, just turn on tracing
+[00:18:58.520 --> 00:19:02.640] and point an agent at it and that's like
+[00:19:00.560 --> 00:19:04.760] the easiest thing that you can do to see
+[00:19:02.640 --> 00:19:06.000] like to basically understand what your
+[00:19:04.760 --> 00:19:08.360] agents are doing.
+[00:19:06.000 --> 00:19:09.800] Uh we're very excited about open models.
+[00:19:08.360 --> 00:19:12.240] We want to help you fine-tune open
+[00:19:09.800 --> 00:19:13.320] models. Um we provide them as a service
+[00:19:12.240 --> 00:19:15.000] as well. So, if you're interested in
+[00:19:13.320 --> 00:19:17.120] that, would would love to chat how you
+[00:19:15.000 --> 00:19:19.240] can use open models to make everything
+[00:19:17.120 --> 00:19:20.840] smarter and cheaper. Um,
+[00:19:19.240 --> 00:19:22.600] continual learning is about operating
+[00:19:20.840 --> 00:19:25.000] environments and then integrating that
+[00:19:22.600 --> 00:19:27.040] data back into agent state. And then
+[00:19:25.000 --> 00:19:28.440] finally, I think this is so cool that
+[00:19:27.040 --> 00:19:30.120] like we have systems that's going to
+[00:19:28.440 --> 00:19:31.880] pre- that are going to produce more data
+[00:19:30.120 --> 00:19:34.080] than we ever have before.
+[00:19:31.880 --> 00:19:36.080] Uh, we need to all come up with like
+[00:19:34.080 --> 00:19:37.440] interesting research directions to learn
+[00:19:36.080 --> 00:19:39.400] how to like manage that at scale and
+[00:19:37.440 --> 00:19:40.920] like make all of our agents better.
+[00:19:39.400 --> 00:19:42.943] And with that,
+[00:19:40.920 --> 00:19:44.963] thank you. Thank you all for coming.
+[00:19:42.943 --> 00:19:44.963] >> [applause]
+[00:19:58.663 --> 00:20:00.683] [music]

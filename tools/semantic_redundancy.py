@@ -28,6 +28,17 @@ def claims(text: str) -> list[tuple[str, str]]:
 
 def evaluate(text: str, similarity_threshold: float = 0.72, minimum_score: float = 0.95) -> dict[str, Any]:
     parsed = claims(text)
+    if not parsed:
+        # A redundancy gate that observed no claim has not passed, it has failed
+        # to see its subject. Scoring 1.0 here is how a card-less candidate
+        # silently earns a perfect cross-card redundancy result.
+        return {
+            "score": 0.0,
+            "threshold": minimum_score,
+            "status": "FAIL",
+            "evidence": ["claims:0"],
+            "failures": ["no core-claim card was observed in the candidate text"],
+        }
     failures = []
     for (left_id, left), (right_id, right) in combinations(parsed, 2):
         a, b = token_set(left), token_set(right)
@@ -36,10 +47,15 @@ def evaluate(text: str, similarity_threshold: float = 0.72, minimum_score: float
             failures.append({"left": left_id, "right": right_id, "similarity": round(similarity, 6)})
     pairs = len(parsed) * (len(parsed) - 1) // 2
     score = 1.0 - len(failures) / max(pairs, 1)
+    # A ratio alone lets batch size absorb the very thing this gate exists to
+    # catch: in a nine-card batch one exact duplicate costs 1/36 of the score
+    # and clears a 0.95 threshold. Any pair at or above the similarity
+    # threshold is therefore a failure outright, and the score is reported
+    # alongside it rather than instead of it.
     return {
         "score": round(score, 6),
         "threshold": minimum_score,
-        "status": "PASS" if score >= minimum_score else "FAIL",
+        "status": "PASS" if not failures and score >= minimum_score else "FAIL",
         "evidence": [f"claims:{len(parsed)}", f"pairs:{pairs}"],
         "failures": failures,
     }

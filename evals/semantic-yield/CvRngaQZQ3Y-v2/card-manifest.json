@@ -1,0 +1,43 @@
+{
+  "schema_version": "semantic-yield-card-manifest@1",
+  "content_id": "CvRngaQZQ3Y",
+  "run_id": "cvrngaqzq3y-v2-local-2026-08-14",
+  "status": "CONTINUE",
+  "card_count": 9,
+  "card_order": [
+    "N-autonomy-shifts-evidence-to-traces",
+    "C-fit-is-a-three-way-function",
+    "C-dense-feedback-is-the-improvable-signal",
+    "S-harness-then-tune-then-harness",
+    "P-four-step-trace-improvement-recipe",
+    "T-trace-judge-cost-comparison",
+    "D-trace-reading-cost-bottleneck",
+    "V-projection-replay-v2",
+    "K-visual-and-identifier-gap"
+  ],
+  "series_order": [
+    "N",
+    "C",
+    "C",
+    "S",
+    "P",
+    "T",
+    "D",
+    "V",
+    "K"
+  ],
+  "authority": {
+    "authorization_status": "evaluation-only",
+    "rights_basis": "user-directed-evaluation",
+    "rights_reference": "governance/RIGHTS_ATTESTATIONS.md#AT-001",
+    "may_compile_evaluation_cards": true,
+    "may_complete_note": false,
+    "may_publish_raw_media": false
+  },
+  "source": {
+    "source_dependency_key": "youtube-video:CvRngaQZQ3Y",
+    "retained_root": "sources/CvRngaQZQ3Y",
+    "caption_kind": "automatic",
+    "transcript_sha256": "sha256:304e9a058721298f7498906d2539fdabdac515f2304645d52824e6719bc5f9bf"
+  }
+}
