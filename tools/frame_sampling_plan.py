@@ -7,7 +7,9 @@ import json
 from pathlib import Path
 from typing import Any
 
-ALLOWED = {"authorized-local-file", "creator-provided", "user-provided"}
+# Frame extraction is a media-retrieval act, so it needs a verified basis.
+# It shared no vocabulary at all with the acquisition adapters before this.
+from rights_vocabulary import VERIFIED_RIGHTS_BASES as ALLOWED
 
 
 def build(video_digest: str, duration_seconds: float, maximum_frames: int, rights_status: str) -> dict[str, Any]:
