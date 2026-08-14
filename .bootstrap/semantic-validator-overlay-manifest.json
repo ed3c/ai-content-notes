@@ -1,0 +1,134 @@
+{
+  "schema_version": "semantic-validator-overlay@1",
+  "target_branch": "agent/semantic-yield-validator",
+  "base_commit": "b2b11781017a57836454d94d6c9c622c74911947",
+  "archive": {
+    "bytes": 21551,
+    "sha256": "sha256:7d4d3f0b8ed2054e074915eeafd90acded1ec87c5b15e8096784320702417298",
+    "base64_bytes": 28736,
+    "chunks": [
+      {
+        "path": ".bootstrap/semantic-validator/chunk-00.b64",
+        "bytes": 5000,
+        "sha256": "sha256:b94a1cb4fa0c743655e948a4f0965005e87745966294cd5dbcd9680476a1b6b9"
+      },
+      {
+        "path": ".bootstrap/semantic-validator/chunk-01.b64",
+        "bytes": 5000,
+        "sha256": "sha256:e0d8fb9a16d4f209d7b0b2d0306b758816cc72e404bbf1bcd66d88ff5d770440"
+      },
+      {
+        "path": ".bootstrap/semantic-validator/chunk-02.b64",
+        "bytes": 5000,
+        "sha256": "sha256:e5f8fcc68d9d7cfbf27d599c9e47cb7d99c558bc5adf09aca659e773c198133c"
+      },
+      {
+        "path": ".bootstrap/semantic-validator/chunk-03.b64",
+        "bytes": 5000,
+        "sha256": "sha256:99c4f95daa5fee9e0d3e41813b1dac2bb99001553a53a2d11585da8438707030"
+      },
+      {
+        "path": ".bootstrap/semantic-validator/chunk-04.b64",
+        "bytes": 5000,
+        "sha256": "sha256:69d04dd1a93a121d82c449f7e43b357964020fb6b4c96bd3f317504303c560e4"
+      },
+      {
+        "path": ".bootstrap/semantic-validator/chunk-05.b64",
+        "bytes": 3736,
+        "sha256": "sha256:935ea04661a83296cec837c5f3f727ac92f76f8bbb2e3c44425945336e65515f"
+      }
+    ]
+  },
+  "files": [
+    {
+      "path": ".github/workflows/contracts-ci.yml",
+      "bytes": 2320,
+      "sha256": "sha256:ee6c57040037d3bcbe7f3bb792f5111dabaaa07c42119ee7368ad6bd4ec2a22d"
+    },
+    {
+      "path": "docs/SEMANTIC_YIELD_VALIDATOR.md",
+      "bytes": 2144,
+      "sha256": "sha256:5406af839889b3bda367702f3898fe995208d66fdd81f8996624dab69fbb0bd4"
+    },
+    {
+      "path": "evals/semantic-yield/CvRngaQZQ3Y/README.md",
+      "bytes": 3859,
+      "sha256": "sha256:1bfe822a295ad0ecded2e8713b24ed391b3faa6fcceeeb9a92b09e1a960d808d"
+    },
+    {
+      "path": "evals/semantic-yield/CvRngaQZQ3Y/card-manifest.json",
+      "bytes": 3680,
+      "sha256": "sha256:517bbedd436b80914ca62d2ca81555610fc2facee0be2b56051c5a495e78e49d"
+    },
+    {
+      "path": "evals/semantic-yield/CvRngaQZQ3Y/cards/C-continual-learning-state-planes.md",
+      "bytes": 2628,
+      "sha256": "sha256:8c6b07a2097d7c96e988ac97fe8923d9e260a86c4ea34ab90a5ea957e954fe61"
+    },
+    {
+      "path": "evals/semantic-yield/CvRngaQZQ3Y/cards/C-model-harness-task-fit.md",
+      "bytes": 3369,
+      "sha256": "sha256:df67222f2190e949abe294acce3512ad517b92b0acbfad412064e0c1965d65d1"
+    },
+    {
+      "path": "evals/semantic-yield/CvRngaQZQ3Y/cards/K-visual-identifier-evidence-gap.md",
+      "bytes": 2749,
+      "sha256": "sha256:c11c90083f311526d0758f1728b73f02261f479143a3c3739c891de6f84228b4"
+    },
+    {
+      "path": "evals/semantic-yield/CvRngaQZQ3Y/cards/P-trace-driven-improvement-cycle.md",
+      "bytes": 2333,
+      "sha256": "sha256:3e232c77591b9f6eca6fe1bdcd5da033ce37f1f59403265448010143c6f151fb"
+    },
+    {
+      "path": "evals/semantic-yield/CvRngaQZQ3Y/cards/S-harness-finetune-harness.md",
+      "bytes": 2597,
+      "sha256": "sha256:b235bd56754cbadacccbfb0c7f22ff6be01241e6d4046d5c1c91cefc82c7a603"
+    },
+    {
+      "path": "evals/semantic-yield/CvRngaQZQ3Y/cards/T-trace-judge-comparison.md",
+      "bytes": 3003,
+      "sha256": "sha256:71e43889adae0a4ac93bef85c29e51389afc44eb935796c81af72fb82f383d29"
+    },
+    {
+      "path": "evals/semantic-yield/CvRngaQZQ3Y/cards/V-semantic-yield-replay.md",
+      "bytes": 2260,
+      "sha256": "sha256:ed6d7fc7937046d51b9c2ce0fe132af17388f2b9497ae7832399aebe8c5f1909"
+    },
+    {
+      "path": "evals/semantic-yield/CvRngaQZQ3Y/run-state.md",
+      "bytes": 499,
+      "sha256": "sha256:d19978d432d186c31d8eae35e017531d3b27c62c296ce637e0f01e39a151d4b0"
+    },
+    {
+      "path": "evals/semantic-yield/CvRngaQZQ3Y/semantic-validator-report.json",
+      "bytes": 12346,
+      "sha256": "sha256:104605400d32b0c5e37015fd6f644aac3ae69fa0af6cb05bf3d3b71fad634903"
+    },
+    {
+      "path": "evals/semantic-yield/CvRngaQZQ3Y/semantic-yield.result.json",
+      "bytes": 2589,
+      "sha256": "sha256:0387e3a2b31757c920f38afa5a79abe33c34dc9e4d26f624c49644441765931b"
+    },
+    {
+      "path": "schemas/semantic-validator-report.schema.json",
+      "bytes": 3196,
+      "sha256": "sha256:d882a49761c6a07a7988f72d9780e904cf59aecf45f4d31920ca8a1ab419add3"
+    },
+    {
+      "path": "tests/test_semantic_yield_validator.py",
+      "bytes": 5015,
+      "sha256": "sha256:d5eb5ae93e3964f5ff5503807a475a9a54b91e3d20a41bdf65b2e7e085470b3f"
+    },
+    {
+      "path": "tools/validate_semantic_yield_artifacts.py",
+      "bytes": 23103,
+      "sha256": "sha256:5bbb574810350e4a4aba4a39638c5d07713648f9c1a8e2d7144fe47ef31b7075"
+    }
+  ],
+  "validation": {
+    "validator_command": "python tools/validate_semantic_yield_artifacts.py --target evals/semantic-yield/CvRngaQZQ3Y --output evals/semantic-yield/CvRngaQZQ3Y/semantic-validator-report.json --created-at 2026-08-14T01:15:00Z --check",
+    "expected_overall_status": "PASS_WITH_DEFERRED_VISUAL_AND_PARTIAL_QG",
+    "expected_card_count": 10
+  }
+}
