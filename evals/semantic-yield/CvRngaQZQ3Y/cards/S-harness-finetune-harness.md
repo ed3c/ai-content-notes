@@ -1,4 +1,4 @@
-### S-harness-cycle｜Harness → Ceiling → Model Update → Re-Harness
+### S-harness-finetune-harness｜Harness → Ceiling → Model Update → Re-Harness
 
 - **核心命題**：先調整可快速回復的 Harness；只有在固定評測顯示能力瓶頸後，才進入模型更新，完成後重新調整 Harness。
 - **為什麼重要**：低成本、可歸因的外部調整應先於較重的資料與模型變更。
@@ -21,5 +21,5 @@
 - **Typed Links**：ROOT ← [[C-model-harness-task-fit]] · FLOW → [[P-trace-driven-improvement-cycle]] · VALIDATED_BY → [[V-semantic-yield-replay]]
 
 <!-- CARD_META
-{"stable_id":"S-harness-cycle","canonical_key":"S | agent-team | sequences | harness-ceiling-model-update-reharness | narrow-agent-tasks | source-digest:bf993b8d","series":"S","lifecycle":"ACTIVE","revision":1,"source_dependency_key":"youtube-video:CvRngaQZQ3Y","source_provenance":["youtube:CvRngaQZQ3Y:youtube-transcript-ai#timestamp:00:08:55..00:16:59"],"unresolved_links":[]}
+{"stable_id":"S-harness-finetune-harness","canonical_key":"S | agent-team | sequences | harness-ceiling-model-update-reharness | narrow-agent-tasks | source-digest:bf993b8d","series":"S","lifecycle":"ACTIVE","revision":1,"source_dependency_key":"youtube-video:CvRngaQZQ3Y","source_provenance":["youtube:CvRngaQZQ3Y:youtube-transcript-ai#timestamp:00:08:55..00:16:59"],"unresolved_links":[]}
 -->

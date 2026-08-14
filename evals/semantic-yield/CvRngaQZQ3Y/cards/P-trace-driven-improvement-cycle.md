@@ -1,4 +1,4 @@
-### P-trace-cycle｜Trace 改進最小可重播程序
+### P-trace-driven-improvement-cycle｜Trace 改進最小可重播程序
 
 - **核心命題**：保存 trace digest、定義 decision question、建立 frozen eval、一次套用一個 patch、重播並保留 rollback receipt。
 - **Scenario**：Agent 已產生可回讀 traces。
@@ -17,8 +17,8 @@
 - **Execution Status**：UNTESTED
 - **Validated By**：[[V-semantic-yield-replay]]
 - **證據與狀態**：NORMATIVE · SUPPORTED · MEDIUM
-- **Typed Links**：ROOT ← [[S-harness-cycle]] · DEPENDS_ON → [[K-visual-identifier-evidence-gap]]
+- **Typed Links**：ROOT ← [[S-harness-finetune-harness]] · DEPENDS_ON → [[K-visual-identifier-evidence-gap]]
 
 <!-- CARD_META
-{"stable_id":"P-trace-cycle","canonical_key":"P | agent-operator | executes | trace-improvement-cycle | agent-runtime | source-digest:bf993b8d","series":"P","lifecycle":"ACTIVE","revision":1,"source_dependency_key":"youtube-video:CvRngaQZQ3Y","unresolved_links":[]}
+{"stable_id":"P-trace-driven-improvement-cycle","canonical_key":"P | agent-operator | executes | trace-improvement-cycle | agent-runtime | source-digest:bf993b8d","series":"P","lifecycle":"ACTIVE","revision":1,"source_dependency_key":"youtube-video:CvRngaQZQ3Y","unresolved_links":[]}
 -->
