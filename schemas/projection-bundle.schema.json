@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ed3c/ai-content-notes/schemas/projection-bundle.schema.json",
+  "title": "Graph-derived human projection bundle",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "bundle_id",
+    "source_graph_digest",
+    "projections",
+    "created_at"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "projection-bundle@1"
+    },
+    "bundle_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_graph_digest": {
+      "$ref": "#/$defs/sha256"
+    },
+    "projections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "projection_id",
+          "projection_kind",
+          "title",
+          "source_relation_ids",
+          "source_card_ids",
+          "visual_evidence_ids",
+          "uncertainty_policy",
+          "data",
+          "rendered"
+        ],
+        "properties": {
+          "projection_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "projection_kind": {
+            "enum": [
+              "causal-dataflow",
+              "comparison-matrix",
+              "timeline",
+              "state-planes",
+              "equation",
+              "architecture"
+            ]
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_relation_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "source_card_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "visual_evidence_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "uncertainty_policy": {
+            "enum": [
+              "LABEL_UNKNOWN",
+              "DOTTED_UNCERTAIN_EDGES",
+              "OMIT_UNSUPPORTED_VALUES"
+            ]
+          },
+          "rendered": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "markdown",
+              "mermaid",
+              "ascii"
+            ],
+            "properties": {
+              "markdown": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "mermaid": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "ascii": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          },
+          "data": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "description": "Machine-readable projection payload, including comparison-cell provenance when applicable."
+          }
+        }
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    }
+  }
+}

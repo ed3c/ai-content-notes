@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ed3c/ai-content-notes/schemas/semantic-yield-fixture.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "fixture_id", "required", "forbidden_precision_patterns", "thresholds", "redundancy_similarity_threshold"],
+  "properties": {
+    "schema_version": {"const": "semantic-yield-fixture@1"},
+    "fixture_id": {"type": "string", "minLength": 1},
+    "required": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["knowledge_units", "relation_ids", "visual_ids", "projection_kinds", "question_tags"],
+      "properties": {
+        "knowledge_units": {"$ref": "#/$defs/ids"},
+        "relation_ids": {"$ref": "#/$defs/ids"},
+        "visual_ids": {"$ref": "#/$defs/ids"},
+        "projection_kinds": {"$ref": "#/$defs/ids"},
+        "question_tags": {"$ref": "#/$defs/ids"}
+      }
+    },
+    "forbidden_precision_patterns": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "thresholds": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["HG-01", "HG-02", "HG-03", "HG-04", "HG-05", "HG-06"],
+      "properties": {
+        "HG-01": {"$ref": "#/$defs/ratio"},
+        "HG-02": {"$ref": "#/$defs/ratio"},
+        "HG-03": {"$ref": "#/$defs/ratio"},
+        "HG-04": {"$ref": "#/$defs/ratio"},
+        "HG-05": {"$ref": "#/$defs/ratio"},
+        "HG-06": {"$ref": "#/$defs/ratio"}
+      }
+    },
+    "redundancy_similarity_threshold": {"$ref": "#/$defs/ratio"}
+  },
+  "$defs": {
+    "ids": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "ratio": {"type": "number", "minimum": 0, "maximum": 1}
+  }
+}

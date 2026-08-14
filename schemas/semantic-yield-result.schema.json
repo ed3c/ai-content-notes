@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ed3c/ai-content-notes/schemas/semantic-yield-result.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "fixture_id", "gates", "visual_render_ratio", "status"],
+  "properties": {
+    "schema_version": {"const": "semantic-yield-result@1"},
+    "fixture_id": {"type": "string", "minLength": 1},
+    "visual_render_ratio": {"type": "number", "minimum": 0, "maximum": 1},
+    "status": {"enum": ["PASS", "FAIL"]},
+    "gates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["HG-01", "HG-02", "HG-03", "HG-04", "HG-05", "HG-06"],
+      "properties": {
+        "HG-01": {"$ref": "#/$defs/gate"},
+        "HG-02": {"$ref": "#/$defs/gate"},
+        "HG-03": {"$ref": "#/$defs/gate"},
+        "HG-04": {"$ref": "#/$defs/gate"},
+        "HG-05": {"$ref": "#/$defs/gate"},
+        "HG-06": {"$ref": "#/$defs/gate"}
+      }
+    }
+  },
+  "$defs": {
+    "gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["score", "threshold", "status", "evidence", "failures"],
+      "properties": {
+        "score": {"type": "number", "minimum": 0, "maximum": 1},
+        "threshold": {"type": "number", "minimum": 0, "maximum": 1},
+        "status": {"enum": ["PASS", "FAIL"]},
+        "evidence": {"type": "array", "items": {"type": "string"}},
+        "failures": {"type": "array", "items": {"type": ["string", "object"]}}
+      }
+    }
+  }
+}

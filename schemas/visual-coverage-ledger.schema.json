@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ed3c/ai-content-notes/schemas/visual-coverage-ledger.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "fixture_id", "items"],
+  "properties": {
+    "schema_version": {"const": "visual-coverage-ledger@1"},
+    "fixture_id": {"type": "string", "minLength": 1},
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["visual_id", "visual_kind", "disposition", "evidence_ids", "card_ids", "projection_ids", "reason"],
+        "properties": {
+          "visual_id": {"type": "string", "minLength": 1},
+          "visual_kind": {"enum": ["equation", "flowchart", "table", "chart", "architecture", "slide"]},
+          "disposition": {"enum": ["RENDERED", "CARD_MAPPED", "DEFERRED", "BLOCKED_WITH_K_CARD", "OMITTED"]},
+          "evidence_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+          "card_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+          "projection_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+          "reason": {"type": ["string", "null"]}
+        }
+      }
+    }
+  }
+}

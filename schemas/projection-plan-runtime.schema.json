@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ed3c/ai-content-notes/schemas/projection-plan-runtime.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "bundle_id", "source_graph_digest", "projections", "created_at"],
+  "properties": {
+    "schema_version": {"const": "projection-plan@2"},
+    "bundle_id": {"type": "string", "minLength": 1},
+    "source_graph_digest": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"},
+    "created_at": {"type": "string", "format": "date-time"},
+    "projections": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["projection_id", "projection_kind", "title", "relation_ids", "source_card_ids", "visual_evidence_ids", "uncertainty_policy", "question_tags", "options"],
+        "properties": {
+          "projection_id": {"type": "string", "minLength": 1},
+          "projection_kind": {"enum": ["causal-dataflow", "comparison-matrix", "timeline", "state-planes", "equation", "architecture"]},
+          "title": {"type": "string", "minLength": 1},
+          "relation_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+          "source_card_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+          "visual_evidence_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+          "uncertainty_policy": {"enum": ["LABEL_UNKNOWN", "DOTTED_UNCERTAIN_EDGES", "OMIT_UNSUPPORTED_VALUES"]},
+          "question_tags": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+          "options": {"type": "object"}
+        }
+      }
+    }
+  }
+}
