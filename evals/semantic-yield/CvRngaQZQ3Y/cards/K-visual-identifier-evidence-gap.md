@@ -1,6 +1,7 @@
 ### K-visual-identifier-evidence-gap｜投影片圖表與專有名詞仍缺少可回讀的一手 Anchor
 
 - **核心命題**：此次輸出改善了 relation graph、equation、comparison 與 dataflow，但這些是 transcript-grounded host projections，不是對原始 slide/frame 的精確重建。
+- **為什麼重要**：若缺少 frame、bbox 與 creator-slide evidence，系統可以提供有證據邊界的心智圖，卻不能把投影當成原始圖表或用它確認精確名稱與數值。
 - **Unknown**：
   - 影片中的 slide boundary、bbox、chart axis、legend、table cells 與 diagram topology。
   - Auto-caption 中的人名、產品、model version、benchmark 與 acronym 的 canonical spelling。

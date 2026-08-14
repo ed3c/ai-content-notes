@@ -21,6 +21,8 @@ fit(Model, Harness, Task / Distribution) -> Agent Performance
   - 不用單一 general benchmark 取代 production task contract。
   - 不在一次 experiment 同時更換 model、prompt、tools 與 dataset 後宣稱已找到原因。
   - 不把 eval score 上升自動等同 production value。
+- **演化**：UNKNOWN；來源使用 classical ML 的 fit 作類比，但未提供可驗證的版本時間線。
+- **底層機制**：Model 提供基礎 capability；Harness 改變 context 與 action affordance；Task/Data 定義目標與分布；Traces 暴露 mismatch，eval 提供可重播 oracle。
 - **Invariants**：
   - 比較使用同一 task distribution、eval、時間範圍與成本口徑。
   - Training、development、eval 與 holdout 分離。

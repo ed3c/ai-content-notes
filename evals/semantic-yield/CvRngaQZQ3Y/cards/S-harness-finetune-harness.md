@@ -9,7 +9,10 @@
   2. 從 traces 找出 prompt、context、tools、memory 或 orchestration 可修復的 mismatch。
   3. 量測 harness ceiling；只有缺失 capability 仍阻塞任務時才建立模型更新候選。
   4. 更新後重新適配 Harness，並用同一 eval 重播。
-- **Ecological Context**：來源主張 Harness feedback 較快；模型更新較重，但能改變 narrow-task capability。
+- **Ecological Context**：
+  - 主角做法：先用 Harness 建立低成本回饋，再以固定 eval 判定 ceiling。
+  - 環境常態：prompt、tool、model 與 dataset 常被同時改動，導致 attribution 消失。
+  - 競對做法：UNKNOWN；來源未提供同口徑 competitor workflow。
 - **Trade-offs**：Harness 易回復但受 base capability 限制；模型更新增加資料治理、訓練與部署負擔。
 - **Pre-mortem Glitches**：eval leakage、一次改太多變量、只保留成功 traces、held-out 或 safety 退化。
 - **Success Criteria**：同一 eval 可重播；主要指標改善；guardrails 無不可接受退化；成本同口徑；可恢復上一組 artifact。

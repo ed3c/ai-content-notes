@@ -11,6 +11,7 @@ Transcript evidence
   -> equation / dataflow / state-plane / comparison projections
   -> source-driven batch selection
   -> epistemic and visual-gap review
+  -> deterministic host validation
   -> 10-card output
 ```
 
@@ -36,12 +37,56 @@ Agent autonomy increases
 9. [V-semantic-yield-replay](cards/V-semantic-yield-replay.md)
 10. [K-visual-identifier-evidence-gap](cards/K-visual-identifier-evidence-gap.md)
 
-## Derived views and state
+## Derived views, validation and state
 
 - [Knowledge Views](knowledge-views.md)
 - [Card manifest](card-manifest.json)
+- [Deterministic semantic validator report](semantic-validator-report.json)
 - [Semantic Yield result](semantic-yield.result.json)
 - [Run state](run-state.md)
+
+## Validator result
+
+```text
+validator: semantic-yield-validator@1
+overall: PASS_WITH_DEFERRED_VISUAL_AND_PARTIAL_QG
+deterministic checks: 11 PASS + 1 DEFERRED
+HG-01: PASS
+HG-02: PASS
+HG-03: DEFERRED
+HG-04: PASS
+HG-05: PASS
+HG-06: PASS
+```
+
+The validator runs independently from the model that produced the cards. It verifies Git blob bindings, semantic stable IDs, exact typed links, payload-first rendering, epistemic honesty, UNKNOWN-safe precision, action fields, cross-card redundancy, source-shaped batch coverage and series payload contracts.
+
+The following v7.1 Quality Gates are currently supported by deterministic evidence:
+
+```text
+QG-07  Stable Identity
+QG-08  Typed Links
+QG-10  Test Honesty
+QG-11  Source Independence
+QG-12  Actionability
+QG-16  Version Consistency
+QG-18  Narrative / Series Yield
+QG-20  Reader Efficiency
+QG-21  Batch Balance
+QG-23  No Absolute Overreach
+```
+
+This is a partial external-QG implementation. It does not turn the remaining QG states into PASS.
+
+## Reproduce the validator
+
+```bash
+python tools/validate_semantic_yield_artifacts.py \
+  --target evals/semantic-yield/CvRngaQZQ3Y \
+  --output evals/semantic-yield/CvRngaQZQ3Y/semantic-validator-report.json \
+  --created-at 2026-08-14T01:15:00Z \
+  --check
+```
 
 ## Contract
 
@@ -57,9 +102,11 @@ status: CONTINUE
 
 ## Honesty boundary
 
-- No claim is marked CORROBORATED.
+- No claim is marked `CORROBORATED`.
 - The Practice card remains `UNTESTED`.
 - The Verification card is `PARTIAL`, not a completed production experiment.
 - Unknown benchmark values and model revisions remain `UNKNOWN`.
 - Diagrams are host-side relation projections, not reconstructed source slides.
 - Original visual evidence remains deferred until an authorized frame or creator-slide artifact is available.
+- The deterministic validator verifies persisted artifacts, not source-video visual fidelity.
+- QG-01 through QG-24 are not all complete.
