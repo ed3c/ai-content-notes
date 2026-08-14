@@ -24,6 +24,15 @@ jobs:
       - run: python -m pip install --upgrade pip
       - run: python -m pip install -r requirements-contracts.txt
       - run: ruff check tools tests
+      - name: Verify the v2 batch registry reconciles without a gap
+        run: |
+          python tools/reconcile_card_registry.py \
+            --cards evals/semantic-yield/CvRngaQZQ3Y-v2/cards \
+            --source-id youtube-video:cvrngaqzq3y \
+            --source-digest sha256:304e9a058721298f7498906d2539fdabdac515f2304645d52824e6719bc5f9bf \
+            --updated-at 2026-08-14T16:30:00Z \
+            --output evals/semantic-yield/CvRngaQZQ3Y-v2/card-registry.json \
+            --check
       - name: Verify the recorded card-registry gap has not drifted
         run: |
           python tools/reconcile_card_registry.py \

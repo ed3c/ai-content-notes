@@ -1,0 +1,79 @@
+{
+  "acquisition": {
+    "audio_used": false,
+    "backend": "youtube-transcript-api",
+    "backend_repository": "jdepoix/youtube-transcript-api",
+    "backend_version": "1.2.4",
+    "caption_kind": "automatic",
+    "cookies_used": false,
+    "language": "en",
+    "language_name": "English (auto-generated)",
+    "proxy_used": false,
+    "requested_languages": [
+      "en",
+      "zh-Hant",
+      "zh-TW",
+      "zh",
+      "ja"
+    ],
+    "retrieved_at": "2026-08-14T15:39:24Z",
+    "selection_outside_preference": false
+  },
+  "artifacts": {
+    "source_manifest": {
+      "path": "source-manifest.json",
+      "sha256": "b09109bb10bb6adec994823d428c8a43607a9051b190f1a6e4282447e8e21ed7"
+    },
+    "transcript_json": {
+      "path": "transcript.json",
+      "sha256": "304e9a058721298f7498906d2539fdabdac515f2304645d52824e6719bc5f9bf"
+    },
+    "transcript_text": {
+      "path": "transcript.txt",
+      "sha256": "7983d5f3d4ba0181bc5e6c24f38d0c1e4769fd8980a69cd118d00ecc7bf8c866"
+    }
+  },
+  "authority": {
+    "may_compile_evaluation_cards": true,
+    "may_complete_note": false,
+    "may_enable_skill_routing": false,
+    "may_raise_claim_evidence": false
+  },
+  "authorization": {
+    "attested_at": "2026-08-14T15:39:24Z",
+    "attested_by": "repository owner (ed3c)",
+    "rights_basis": "user-directed-evaluation",
+    "rights_reference": "governance/RIGHTS_ATTESTATIONS.md#AT-001",
+    "scope": "private-transient-evaluation",
+    "status": "unverified-evaluation-only"
+  },
+  "error": null,
+  "schema_version": "youtube-direct-caption-evidence@1",
+  "source_manifest_digest": "sha256:b09109bb10bb6adec994823d428c8a43607a9051b190f1a6e4282447e8e21ed7",
+  "source_manifest_id": "sm-youtube-CvRngaQZQ3Y-youtube-transcript-api",
+  "status": "needs-review",
+  "tool": {
+    "name": "youtube_direct_caption_adapter.py",
+    "version": "0.1.0"
+  },
+  "validation": {
+    "character_count": 19984,
+    "cue_count": 550,
+    "human_review_required": true,
+    "maximum_end_seconds": 1200.683,
+    "timestamps_monotonic": true,
+    "warnings": [
+      "technical names, figures, quotations, identifiers, and caption boundaries require human review",
+      "authorization is unverified-evaluation-only; do not mark the note completed"
+    ],
+    "word_count": 3799
+  },
+  "video": {
+    "canonical_url": "https://www.youtube.com/watch?v=CvRngaQZQ3Y",
+    "channel": null,
+    "duration_seconds": null,
+    "id": "CvRngaQZQ3Y",
+    "published_at": null,
+    "title": null
+  }
+}

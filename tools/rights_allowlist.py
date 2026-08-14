@@ -74,6 +74,9 @@ def _blocked(video_id: str, backend: str, reason: str) -> dict[str, Any]:
         "rights_basis": None,
         "attestor": None,
         "gold_transcript": None,
+        "may_compile_evaluation_cards": False,
+        "may_complete_note": False,
+        "may_publish_raw_media": False,
     }
 
 
@@ -92,12 +95,8 @@ def resolve(
         return _blocked(video_id, backend, "no rights record for this video id")
     entry = matches[0]
 
-    if entry["authorization_status"] != "verified":
-        return _blocked(
-            video_id,
-            backend,
-            f"authorization_status is {entry['authorization_status']}, not verified",
-        )
+    if entry["authorization_status"] == "blocked":
+        return _blocked(video_id, backend, "authorization_status is blocked")
     if any(shape.search(entry["rights_reference"]) for shape in SECRET_SHAPES):
         return _blocked(video_id, backend, "rights_reference looks like a credential")
     if entry["expires_on"] is not None and entry["expires_on"] < as_of:
@@ -109,14 +108,22 @@ def resolve(
     if backend not in entry["permitted_backends"]:
         return _blocked(video_id, backend, f"backend {backend} is not permitted")
 
+    # Three states, matching the authority block in
+    # schemas/multimodal-source-pack.schema.json and the direct-caption
+    # adapter: only `blocked` stops compilation. `evaluation-only` permits an
+    # evaluation pass and refuses note completion and raw publication.
+    verified = entry["authorization_status"] == "verified"
     return {
         "video_id": video_id,
         "backend": backend,
-        "decision": "permitted",
+        "decision": "permitted" if verified else "evaluation-only",
         "blocked_reason": None,
         "rights_basis": entry["rights_basis"],
         "attestor": entry["attestor"],
         "gold_transcript": entry["gold_transcript"],
+        "may_compile_evaluation_cards": True,
+        "may_complete_note": verified,
+        "may_publish_raw_media": verified,
     }
 
 

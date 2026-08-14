@@ -283,3 +283,58 @@ def test_frame_sampling_blocks_unauthorized_rights() -> None:
     assert planned["timestamps_seconds"][0] == 0.0
     assert len(planned["timestamps_seconds"]) == 4
     assert planned["timestamps_seconds"] == sorted(planned["timestamps_seconds"])
+
+
+def test_a_candidate_with_no_cards_fails_redundancy_instead_of_scoring_one() -> None:
+    """A gate that cannot see its subject has not passed."""
+    import semantic_redundancy
+
+    empty = semantic_redundancy.evaluate("## a projection view\n\nno cards here\n")
+    assert empty["status"] == "FAIL"
+    assert empty["score"] == 0.0
+    assert empty["evidence"] == ["claims:0"]
+    assert any("no core-claim card was observed" in item for item in empty["failures"])
+
+
+def test_redundancy_still_scores_a_real_card_batch() -> None:
+    import semantic_redundancy
+
+    text = (
+        "### N-one\uff5cFirst\n\n- **\u6838\u5fc3\u547d\u984c**\uff1a\u81ea\u4e3b\u6027\u63d0\u9ad8\u4f7f runtime trace \u6210\u70ba\u4e3b\u8981\u8b49\u64da\u3002\n\n"
+        "### C-two\uff5cSecond\n\n- **\u6838\u5fc3\u547d\u984c**\uff1a\u6a21\u578b\u6392\u884c\u699c\u7121\u6cd5\u55ae\u7368\u89e3\u91cb\u4efb\u52d9\u8868\u73fe\u3002\n"
+    )
+    scored = semantic_redundancy.evaluate(text)
+    assert scored["status"] == "PASS"
+    assert scored["evidence"] == ["claims:2", "pairs:1"]
+
+
+def test_one_duplicate_pair_fails_even_in_a_large_batch() -> None:
+    """Batch size must not dilute the one thing this gate exists to catch."""
+    import semantic_redundancy
+
+    distinct = [
+        "runtime traces accumulate faster than reviewers can read them",
+        "context windows bound how much trajectory fits in one request",
+        "harness engineering answers within minutes of a change",
+        "fine tuning shifts spending from tokens toward hardware clusters",
+        "sparse pass or fail scores hide the reason a run failed",
+        "memory cannot remain an append only log across decades",
+        "legal review demands human sign off before publication",
+        "leaderboards rank models without naming the task distribution",
+    ]
+    claim = "task performance is the joint fit of model harness and task"
+    cards = [
+        f"### U{index}-card｜Unique {index}\n\n- **核心命題**：{sentence}\n"
+        for index, sentence in enumerate(distinct)
+    ]
+    cards += [f"### A-card｜A\n\n- **核心命題**：{claim}\n",
+              f"### B-card｜B\n\n- **核心命題**：{claim}\n"]
+    result = semantic_redundancy.evaluate(
+        "\n".join(cards), similarity_threshold=0.84, minimum_score=0.95
+    )
+    assert result["evidence"] == ["claims:10", "pairs:45"]
+    # The ratio alone would have cleared the threshold: 1 bad pair in 45.
+    assert result["score"] > 0.95
+    assert result["status"] == "FAIL"
+    assert len(result["failures"]) == 1
+    assert {result["failures"][0]["left"], result["failures"][0]["right"]} == {"A-card", "B-card"}

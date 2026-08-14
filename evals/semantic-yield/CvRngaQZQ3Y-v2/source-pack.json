@@ -1,0 +1,85 @@
+{
+  "artifacts": [
+    {
+      "artifact_id": "acquisition-receipt",
+      "bytes": 2481,
+      "locator_range": null,
+      "media_type": "application/json",
+      "modality": "metadata",
+      "path": "acquisition-receipt.json",
+      "primary_or_secondary": "derived",
+      "role": "audit-artifact",
+      "sha256": "sha256:8f12c2b38649dfaca84d0940cda946b08cb31de92d8ab76fbe3c7bea74bf0d26",
+      "source_dependency_key": "youtube-video:CvRngaQZQ3Y",
+      "source_id": null
+    },
+    {
+      "artifact_id": "captions-auto-en-json",
+      "bytes": 126438,
+      "locator_range": "timestamp:00:00:01.309..00:20:00.683",
+      "media_type": "application/json",
+      "modality": "transcript",
+      "path": "captions.auto.en.json",
+      "primary_or_secondary": "secondary",
+      "role": "subject-matter-source",
+      "sha256": "sha256:304e9a058721298f7498906d2539fdabdac515f2304645d52824e6719bc5f9bf",
+      "source_dependency_key": "youtube-video:CvRngaQZQ3Y",
+      "source_id": "youtube:CvRngaQZQ3Y:youtube-transcript-api"
+    },
+    {
+      "artifact_id": "captions-auto-en-txt",
+      "bytes": 37585,
+      "locator_range": "timestamp:00:00:01.309..00:20:00.683",
+      "media_type": "text/plain",
+      "modality": "transcript",
+      "path": "captions.auto.en.txt",
+      "primary_or_secondary": "derived",
+      "role": "derived-source",
+      "sha256": "sha256:7983d5f3d4ba0181bc5e6c24f38d0c1e4769fd8980a69cd118d00ecc7bf8c866",
+      "source_dependency_key": "youtube-video:CvRngaQZQ3Y",
+      "source_id": "youtube:CvRngaQZQ3Y:youtube-transcript-api"
+    }
+  ],
+  "authority": {
+    "authorization_status": "evaluation-only",
+    "may_compile_cards": true,
+    "may_complete_note": false,
+    "may_publish_raw_media": false,
+    "may_reconstruct_visuals": false,
+    "may_treat_visual_text_as_source_exact": false,
+    "rights_basis": "user-directed-evaluation",
+    "rights_reference": "governance/RIGHTS_ATTESTATIONS.md#AT-001"
+  },
+  "builder_version": "build-multimodal-source-pack@1",
+  "content_id": "CvRngaQZQ3Y",
+  "created_at": "2026-08-14T16:00:00Z",
+  "descriptor_digest": "sha256:c09bc5d3ece12134d7ec88f4ea341f07922dc3311193fefc0da8c92a93977971",
+  "modalities": {
+    "audio": {
+      "reason": null,
+      "status": "NOT_REQUESTED"
+    },
+    "metadata": {
+      "reason": null,
+      "status": "AVAILABLE"
+    },
+    "transcript": {
+      "reason": null,
+      "status": "AVAILABLE"
+    },
+    "video_frames": {
+      "reason": "no authorized local video file; rights basis is user-directed-evaluation",
+      "status": "BLOCKED"
+    },
+    "visual_evidence": {
+      "reason": "no creator slides, frames or reviewed annotations exist",
+      "status": "BLOCKED"
+    }
+  },
+  "pack_id": "sp-CvRngaQZQ3Y-auto-caption-v2",
+  "schema_version": "multimodal-source-pack@1",
+  "source_dependency_keys": [
+    "youtube-video:CvRngaQZQ3Y"
+  ],
+  "source_set_digest": "sha256:5556682c30460ed0217a90f5ccc979d9a2a1abd9f4772d8bac6fc454c923e5e5"
+}

@@ -1,0 +1,283 @@
+{
+  "canonical_index": {
+    "C | feedback-density | determines | agent-improvability | trace-driven-iteration | source-digest:304e9a05": "C-dense-feedback-is-the-improvable-signal",
+    "C | task-performance | is-jointly-determined-by | model-harness-task-fit | agent-first-engineering | source-digest:304e9a05": "C-fit-is-a-three-way-function",
+    "D | trace-corpus | is-bounded-by | reading-cost-and-context-limit | trace-mining-systems | source-digest:304e9a05": "D-trace-reading-cost-bottleneck",
+    "K | visual-and-identifier-evidence | blocks | exact-slide-and-name-reconstruction | cvrngaqzq3y-v2-run | run-local-2026-08-14": "K-visual-and-identifier-gap",
+    "N | agent-autonomy | shifts | evidence-surface-to-runtime-traces | production-agent-systems | source-digest:304e9a05": "N-autonomy-shifts-evidence-to-traces",
+    "P | improvement-team | executes | ship-collect-mine-experiment | production-agent-improvement | source-digest:304e9a05": "P-four-step-trace-improvement-recipe",
+    "S | improvement-effort | is-ordered-by | feedback-latency | harness-and-finetune-sandwich | source-digest:304e9a05": "S-harness-then-tune-then-harness",
+    "T | trace-judging | compares | frontier-against-open-model | cost-and-capability | source-digest:304e9a05": "T-trace-judge-cost-comparison",
+    "V | projection-bundle | verifies | deterministic-replay-from-retained-source | cvrngaqzq3y-v2-run | not-run": "V-projection-replay-v2"
+  },
+  "cards": {
+    "C-dense-feedback-is-the-improvable-signal": {
+      "canonical_key": "C | feedback-density | determines | agent-improvability | trace-driven-iteration | source-digest:304e9a05",
+      "claim_kind": "SOURCE_STATEMENT",
+      "confidence": "MEDIUM",
+      "confidence_basis": "來源以 terminal bench 具體說明稀疏訊號問題並提出 densifying feedback；未提供量化對照。",
+      "content_digest": "sha256:94743cebd5f121a68399d58809daeef77806e9fca7a9be6bdc6fbad8621a2dad",
+      "evidence_ids": [],
+      "lifecycle_status": "ACTIVE",
+      "revision": 1,
+      "scope": "CvRngaQZQ3Y English auto-generated caption track retrieved 2026-08-14; user-directed evaluation only",
+      "series": "C",
+      "stable_id": "C-dense-feedback-is-the-improvable-signal",
+      "supersedes": [],
+      "typed_links": [
+        {
+          "edge_type": "ROOT",
+          "relation": "inbound",
+          "target": "N-autonomy-shifts-evidence-to-traces"
+        },
+        {
+          "edge_type": "FLOW",
+          "relation": "outbound",
+          "target": "P-four-step-trace-improvement-recipe"
+        }
+      ],
+      "updated_at": "2026-08-14T16:30:00Z",
+      "verification": "SUPPORTED"
+    },
+    "C-fit-is-a-three-way-function": {
+      "canonical_key": "C | task-performance | is-jointly-determined-by | model-harness-task-fit | agent-first-engineering | source-digest:304e9a05",
+      "claim_kind": "INFERENCE",
+      "confidence": "MEDIUM",
+      "confidence_basis": "來源直接提出 model harness task fit 並以 scikit-learn 類比；三因共同性為 inference，未給量化分解。",
+      "content_digest": "sha256:5cf6dc136b6c5f39e1f00c69fcc2d20cf021cb88e4e941d07bde76608591b01c",
+      "evidence_ids": [],
+      "lifecycle_status": "ACTIVE",
+      "revision": 1,
+      "scope": "CvRngaQZQ3Y English auto-generated caption track retrieved 2026-08-14; user-directed evaluation only",
+      "series": "C",
+      "stable_id": "C-fit-is-a-three-way-function",
+      "supersedes": [],
+      "typed_links": [
+        {
+          "edge_type": "ROOT",
+          "relation": "inbound",
+          "target": "N-autonomy-shifts-evidence-to-traces"
+        },
+        {
+          "edge_type": "FLOW",
+          "relation": "outbound",
+          "target": "S-harness-then-tune-then-harness"
+        }
+      ],
+      "updated_at": "2026-08-14T16:30:00Z",
+      "verification": "SUPPORTED"
+    },
+    "D-trace-reading-cost-bottleneck": {
+      "canonical_key": "D | trace-corpus | is-bounded-by | reading-cost-and-context-limit | trace-mining-systems | source-digest:304e9a05",
+      "claim_kind": "SOURCE_STATEMENT",
+      "confidence": "HIGH",
+      "confidence_basis": "成本結構與 context 不足由來源直接描述並點名具體 coding agent。",
+      "content_digest": "sha256:1a38895f147bceb652b3abaf3e67eb0be35441b5ceaaef0dc8abeb63220bae20",
+      "evidence_ids": [],
+      "lifecycle_status": "ACTIVE",
+      "revision": 1,
+      "scope": "CvRngaQZQ3Y English auto-generated caption track retrieved 2026-08-14; user-directed evaluation only",
+      "series": "D",
+      "stable_id": "D-trace-reading-cost-bottleneck",
+      "supersedes": [],
+      "typed_links": [
+        {
+          "edge_type": "ROOT",
+          "relation": "inbound",
+          "target": "P-four-step-trace-improvement-recipe"
+        },
+        {
+          "edge_type": "CONFLICT",
+          "relation": "outbound",
+          "target": "C-dense-feedback-is-the-improvable-signal"
+        }
+      ],
+      "updated_at": "2026-08-14T16:30:00Z",
+      "verification": "SUPPORTED"
+    },
+    "K-visual-and-identifier-gap": {
+      "canonical_key": "K | visual-and-identifier-evidence | blocks | exact-slide-and-name-reconstruction | cvrngaqzq3y-v2-run | run-local-2026-08-14",
+      "claim_kind": "OBSERVATION",
+      "confidence": "HIGH",
+      "confidence_basis": "字幕本身即顯示不確定拼寫；缺席的媒體與校對稿由本次取材收據直接佐證。",
+      "content_digest": "sha256:6846b50b117691a866fbb3d7f518258cec439a3a1082da07b3615a5e50e1036e",
+      "evidence_ids": [],
+      "lifecycle_status": "ACTIVE",
+      "revision": 1,
+      "scope": "CvRngaQZQ3Y English auto-generated caption track retrieved 2026-08-14; user-directed evaluation only",
+      "series": "K",
+      "stable_id": "K-visual-and-identifier-gap",
+      "supersedes": [],
+      "typed_links": [
+        {
+          "edge_type": "ROOT",
+          "relation": "inbound",
+          "target": "N-autonomy-shifts-evidence-to-traces"
+        }
+      ],
+      "updated_at": "2026-08-14T16:30:00Z",
+      "verification": "SUPPORTED"
+    },
+    "N-autonomy-shifts-evidence-to-traces": {
+      "canonical_key": "N | agent-autonomy | shifts | evidence-surface-to-runtime-traces | production-agent-systems | source-digest:304e9a05",
+      "claim_kind": "INFERENCE",
+      "confidence": "MEDIUM",
+      "confidence_basis": "來源明確陳述 determinism/autonomy 取捨與 code/agent 對比；因果鏈為 bounded inference，無獨立實驗佐證。",
+      "content_digest": "sha256:7073d3a5c41f64b9d5852dfeb51c0210d55fe3183719f051da254919fbb6c4d5",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-code-vs-agent-reasoning",
+        "EV-cvrngaqzq3y-v2-determinism-for-autonomy",
+        "EV-cvrngaqzq3y-v2-observability-coupling"
+      ],
+      "lifecycle_status": "ACTIVE",
+      "revision": 1,
+      "scope": "CvRngaQZQ3Y English auto-generated caption track retrieved 2026-08-14; user-directed evaluation only",
+      "series": "N",
+      "stable_id": "N-autonomy-shifts-evidence-to-traces",
+      "supersedes": [],
+      "typed_links": [
+        {
+          "edge_type": "FLOW",
+          "relation": "outbound",
+          "target": "C-fit-is-a-three-way-function"
+        },
+        {
+          "edge_type": "FLOW",
+          "relation": "outbound",
+          "target": "P-four-step-trace-improvement-recipe"
+        },
+        {
+          "edge_type": "DEPENDS_ON",
+          "relation": "outbound",
+          "target": "K-visual-and-identifier-gap"
+        }
+      ],
+      "updated_at": "2026-08-14T16:30:00Z",
+      "verification": "SUPPORTED"
+    },
+    "P-four-step-trace-improvement-recipe": {
+      "canonical_key": "P | improvement-team | executes | ship-collect-mine-experiment | production-agent-improvement | source-digest:304e9a05",
+      "claim_kind": "SOURCE_STATEMENT",
+      "confidence": "HIGH",
+      "confidence_basis": "四個步驟由來源逐一列出並命名；步驟間的必要性為來源主張，未經本次執行驗證。",
+      "content_digest": "sha256:e3efdc0c3d65326052b5ef464458c8b327ac6f83af8b940a408866db44806c5b",
+      "evidence_ids": [],
+      "lifecycle_status": "ACTIVE",
+      "revision": 1,
+      "scope": "CvRngaQZQ3Y English auto-generated caption track retrieved 2026-08-14; user-directed evaluation only",
+      "series": "P",
+      "stable_id": "P-four-step-trace-improvement-recipe",
+      "supersedes": [],
+      "typed_links": [
+        {
+          "edge_type": "ROOT",
+          "relation": "inbound",
+          "target": "N-autonomy-shifts-evidence-to-traces"
+        },
+        {
+          "edge_type": "VALIDATED_BY",
+          "relation": "outbound",
+          "target": "V-projection-replay-v2"
+        },
+        {
+          "edge_type": "DEPENDS_ON",
+          "relation": "outbound",
+          "target": "D-trace-reading-cost-bottleneck"
+        }
+      ],
+      "updated_at": "2026-08-14T16:30:00Z",
+      "verification": "SUPPORTED"
+    },
+    "S-harness-then-tune-then-harness": {
+      "canonical_key": "S | improvement-effort | is-ordered-by | feedback-latency | harness-and-finetune-sandwich | source-digest:304e9a05",
+      "claim_kind": "SOURCE_STATEMENT",
+      "confidence": "MEDIUM",
+      "confidence_basis": "來源給出約兩分鐘的 harness 回饋時間與 sandwich 順序；門檻位置未量化。",
+      "content_digest": "sha256:14943792ce3c2fbe553893e0eb67879ce641357e72036ff34ac6afb92ecdf9d4",
+      "evidence_ids": [],
+      "lifecycle_status": "ACTIVE",
+      "revision": 1,
+      "scope": "CvRngaQZQ3Y English auto-generated caption track retrieved 2026-08-14; user-directed evaluation only",
+      "series": "S",
+      "stable_id": "S-harness-then-tune-then-harness",
+      "supersedes": [],
+      "typed_links": [
+        {
+          "edge_type": "ROOT",
+          "relation": "inbound",
+          "target": "C-fit-is-a-three-way-function"
+        },
+        {
+          "edge_type": "FLOW",
+          "relation": "outbound",
+          "target": "T-trace-judge-cost-comparison"
+        }
+      ],
+      "updated_at": "2026-08-14T16:30:00Z",
+      "verification": "SUPPORTED"
+    },
+    "T-trace-judge-cost-comparison": {
+      "canonical_key": "T | trace-judging | compares | frontier-against-open-model | cost-and-capability | source-digest:304e9a05",
+      "claim_kind": "SOURCE_STATEMENT",
+      "confidence": "LOW",
+      "confidence_basis": "來源以合作對象與 benchmark 具體陳述，但僅給量級；LOW 反映精確值缺席。",
+      "content_digest": "sha256:7f34487aa8b08263c8af517278fd4769c90892d21ea7ec85251a9d88123d0706",
+      "evidence_ids": [],
+      "lifecycle_status": "ACTIVE",
+      "revision": 1,
+      "scope": "CvRngaQZQ3Y English auto-generated caption track retrieved 2026-08-14; user-directed evaluation only",
+      "series": "T",
+      "stable_id": "T-trace-judge-cost-comparison",
+      "supersedes": [],
+      "typed_links": [
+        {
+          "edge_type": "ROOT",
+          "relation": "inbound",
+          "target": "S-harness-then-tune-then-harness"
+        },
+        {
+          "edge_type": "DEPENDS_ON",
+          "relation": "outbound",
+          "target": "K-visual-and-identifier-gap"
+        }
+      ],
+      "updated_at": "2026-08-14T16:30:00Z",
+      "verification": "SUPPORTED"
+    },
+    "V-projection-replay-v2": {
+      "canonical_key": "V | projection-bundle | verifies | deterministic-replay-from-retained-source | cvrngaqzq3y-v2-run | not-run",
+      "claim_kind": "OBSERVATION",
+      "confidence": "MEDIUM",
+      "confidence_basis": "本次確實執行了完整鏈路並保留 artifacts；但未做第二次獨立重跑比對，故為 PARTIAL。",
+      "content_digest": "sha256:fa9beef3baf13045f52d466fb99bbd0da76a4fde53bc7fba59cc43e6166ad961",
+      "evidence_ids": [],
+      "lifecycle_status": "ACTIVE",
+      "revision": 1,
+      "scope": "CvRngaQZQ3Y English auto-generated caption track retrieved 2026-08-14; user-directed evaluation only",
+      "series": "V",
+      "stable_id": "V-projection-replay-v2",
+      "supersedes": [],
+      "typed_links": [
+        {
+          "edge_type": "ROOT",
+          "relation": "inbound",
+          "target": "P-four-step-trace-improvement-recipe"
+        },
+        {
+          "edge_type": "DEPENDS_ON",
+          "relation": "outbound",
+          "target": "K-visual-and-identifier-gap"
+        }
+      ],
+      "updated_at": "2026-08-14T16:30:00Z",
+      "verification": "TESTED"
+    }
+  },
+  "evidence": {},
+  "protocol": "zettelkasten-v7.0-evidence-first-loop-safe",
+  "registry_revision": 1,
+  "schema_version": "zettelkasten-card-registry@1",
+  "source_digest": "sha256:304e9a058721298f7498906d2539fdabdac515f2304645d52824e6719bc5f9bf",
+  "source_id": "youtube-video:cvrngaqzq3y",
+  "updated_at": "2026-08-14T16:30:00Z"
+}

@@ -6,11 +6,14 @@
 
 ## Current coverage｜目前覆蓋範圍
 
-As of 2026-08-14, **one content item** has run the modified Semantic Yield flow on `main`.
+As of 2026-08-14, **one content item** has run the modified Semantic Yield flow on `main`, across **two batches**.
 
-| Content ID | Source dependency | Card directory | Cards | Validator | State |
+| Batch | Source dependency | Card directory | Cards | Gate result | State |
 |---|---|---|---:|---|---|
 | `CvRngaQZQ3Y` | `youtube-video:CvRngaQZQ3Y` | [`CvRngaQZQ3Y/cards/`](CvRngaQZQ3Y/cards/) | 10 | `PASS_WITH_DEFERRED_VISUAL_AND_PARTIAL_QG` | `CONTINUE` |
+| `CvRngaQZQ3Y-v2` | `youtube-video:CvRngaQZQ3Y` | [`CvRngaQZQ3Y-v2/cards/`](CvRngaQZQ3Y-v2/cards/) | 9 | `HG-01..HG-06 PASS` | `CONTINUE` |
+
+Both batches describe the same video. They are **not** interchangeable: they were compiled from two different acquisitions of the auto-caption track, with different normalized digests, so their stable IDs and canonical keys do not correspond. The v2 batch is the first whose subject is retained in-repo under `sources/CvRngaQZQ3Y/`, and therefore the first that can be replayed.
 
 No other content directory under `evals/semantic-yield/` currently exists. A new directory must not be inferred from an issue, branch, expected path or prompt output.
 
@@ -30,6 +33,33 @@ The following ten cards were selected by the source-driven batch planner and val
 10. [`K-visual-identifier-evidence-gap`](CvRngaQZQ3Y/cards/K-visual-identifier-evidence-gap.md) — missing authorized slide/frame and canonical identifier evidence.
 
 Canonical order and Git blob bindings are stored in [`CvRngaQZQ3Y/card-manifest.json`](CvRngaQZQ3Y/card-manifest.json).
+
+## The v2 batch｜第二次批次
+
+Run locally on 2026-08-14 from a freshly acquired English auto-caption track.
+
+```text
+rights gate       evaluation-only  (AT-001, user-directed-evaluation)
+retained subject  sources/CvRngaQZQ3Y/  bound by source-manifest.json
+pack              sp-CvRngaQZQ3Y-auto-caption-v2
+relation graph    18 nodes, 15 relations, 15 evidence anchors
+selected thesis   traces-are-the-improvement-substrate  (0.6496)
+projections       causal-dataflow, comparison-matrix, timeline, state-planes, equation
+gates             HG-01..HG-06 PASS
+registry          9 cards reconciled, 0 gaps
+```
+
+1. [`N-autonomy-shifts-evidence-to-traces`](CvRngaQZQ3Y-v2/cards/N-autonomy-shifts-evidence-to-traces.md) — determinism traded for autonomy moves the evidence surface onto traces.
+2. [`C-fit-is-a-three-way-function`](CvRngaQZQ3Y-v2/cards/C-fit-is-a-three-way-function.md) — performance is the joint fit of model, harness and task.
+3. [`C-dense-feedback-is-the-improvable-signal`](CvRngaQZQ3Y-v2/cards/C-dense-feedback-is-the-improvable-signal.md) — a pass/fail bit is not an improvable signal.
+4. [`S-harness-then-tune-then-harness`](CvRngaQZQ3Y-v2/cards/S-harness-then-tune-then-harness.md) — order intervention by feedback latency.
+5. [`P-four-step-trace-improvement-recipe`](CvRngaQZQ3Y-v2/cards/P-four-step-trace-improvement-recipe.md) — ship, collect, mine, experiment. `UNTESTED`.
+6. [`T-trace-judge-cost-comparison`](CvRngaQZQ3Y-v2/cards/T-trace-judge-cost-comparison.md) — frontier vs open judge; exact figures stay `UNKNOWN`.
+7. [`D-trace-reading-cost-bottleneck`](CvRngaQZQ3Y-v2/cards/D-trace-reading-cost-bottleneck.md) — reading cost and the context ceiling.
+8. [`V-projection-replay-v2`](CvRngaQZQ3Y-v2/cards/V-projection-replay-v2.md) — replay verification; verdict `PARTIAL`.
+9. [`K-visual-and-identifier-gap`](CvRngaQZQ3Y-v2/cards/K-visual-and-identifier-gap.md) — slides, chart values and product spelling unverifiable.
+
+This batch is `evaluation-only`. It may not complete a note, raise claim evidence, or publish raw media, and `tools/rights_allowlist.py` returns exactly that decision for the video.
 
 ## Do not confuse these outputs｜不要混淆兩套輸出
 

@@ -1,0 +1,42 @@
+{
+  "schema_version": "visual-coverage-ledger@1",
+  "fixture_id": "cvrngaqzq3y-v2-semantic-yield",
+  "items": [
+    {
+      "visual_id": "VIS-v2-fit-equation-slide",
+      "visual_kind": "equation",
+      "disposition": "BLOCKED_WITH_K_CARD",
+      "evidence_ids": [],
+      "card_ids": [],
+      "projection_ids": [],
+      "reason": "the fit expression is reconstructed from speech, not read off the slide"
+    },
+    {
+      "visual_id": "VIS-v2-harness-sandwich-slide",
+      "visual_kind": "flowchart",
+      "disposition": "BLOCKED_WITH_K_CARD",
+      "evidence_ids": [],
+      "card_ids": [],
+      "projection_ids": [],
+      "reason": "the harness/fine-tune sandwich is described verbally; the slide was never retrieved"
+    },
+    {
+      "visual_id": "VIS-v2-continual-learning-axes-slide",
+      "visual_kind": "architecture",
+      "disposition": "BLOCKED_WITH_K_CARD",
+      "evidence_ids": [],
+      "card_ids": [],
+      "projection_ids": [],
+      "reason": "the three axes are spoken; the diagram was never retrieved"
+    },
+    {
+      "visual_id": "VIS-v2-legal-benchmark-chart",
+      "visual_kind": "chart",
+      "disposition": "BLOCKED_WITH_K_CARD",
+      "evidence_ids": [],
+      "card_ids": [],
+      "projection_ids": [],
+      "reason": "the Harvey legal benchmark result is spoken as an order-of-magnitude claim; no chart was retrieved"
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "fixture_id": "cvrngaqzq3y-v2-semantic-yield",
+  "gates": {
+    "HG-01": {
+      "evidence": [
+        "continual-learning-three-axes",
+        "dense-feedback-beats-pass-fail",
+        "determinism-for-autonomy-tradeoff",
+        "four-step-improvement-recipe",
+        "harness-finetune-sandwich",
+        "model-harness-task-fit",
+        "open-model-judge-cost-claim",
+        "three-trace-mining-outputs",
+        "trace-reading-cost-bottleneck",
+        "traces-as-improvement-substrate"
+      ],
+      "failures": [],
+      "score": 1.0,
+      "status": "PASS",
+      "threshold": 1.0
+    },
+    "HG-02": {
+      "evidence": [
+        "REL-agent-autonomy-trades-off-with-is-traded-against-44912ed2a046",
+        "REL-context-window-limit-depends-on-bounds-trace-min-3132d7eb9573",
+        "REL-generated-evals-enables-constrains-harness-engin-59f00567c498",
+        "REL-harness-updates-part-of-is-one-axis-of-agent-mem-998fdec54f64",
+        "REL-model-harness-task-fit-causes-determines-agent-t-d2cd283cd3cc",
+        "REL-observational-training-data-part-of-is-one-axis-c414b15e8850",
+        "REL-open-model-judge-analogous-to-approaches-far-mor-cc4f09893616",
+        "REL-runtime-traces-feeds-feeds-trace-mining-95508872354a",
+        "REL-runtime-traces-flows-to-is-collected-after-shipp-f331f0fb80af",
+        "REL-static-predictability-causes-lowers-which-elevat-1097d48a1bd8",
+        "REL-trace-mining-transforms-produces-generated-evals-d54d3910d5ec"
+      ],
+      "failures": [],
+      "score": 1.0,
+      "status": "PASS",
+      "threshold": 1.0
+    },
+    "HG-03": {
+      "evidence": [
+        "VIS-v2-continual-learning-axes-slide",
+        "VIS-v2-fit-equation-slide",
+        "VIS-v2-harness-sandwich-slide",
+        "VIS-v2-legal-benchmark-chart"
+      ],
+      "failures": [],
+      "score": 1.0,
+      "status": "PASS",
+      "threshold": 1.0
+    },
+    "HG-04": {
+      "evidence": [
+        "checked:\\b\\d+(?:\\.\\d+)?\\s*%\\s*(?:cheaper|better|faster)\\b",
+        "checked:\\bexactly\\s+\\d+\\s*(?:orders?|x)\\b",
+        "checked:\\$\\d+(?:\\.\\d+)?\\s*(?:per|/)\\s*(?:million|1M)\\b",
+        "checked:\\bLangSplat\\s+engine\\b(?!\\s*\\()"
+      ],
+      "failures": [],
+      "score": 1.0,
+      "status": "PASS",
+      "threshold": 1.0
+    },
+    "HG-05": {
+      "evidence": [
+        "claims:9",
+        "pairs:36"
+      ],
+      "failures": [],
+      "score": 1.0,
+      "status": "PASS",
+      "threshold": 0.95
+    },
+    "HG-06": {
+      "evidence": [
+        "projection:causal-dataflow",
+        "projection:comparison-matrix",
+        "projection:equation",
+        "projection:state-planes",
+        "projection:timeline",
+        "tag:bottleneck",
+        "tag:comparison",
+        "tag:core-conflict",
+        "tag:dataflow",
+        "tag:decision-rule",
+        "tag:equation",
+        "tag:state-model",
+        "tag:timeline",
+        "tag:uncertainty"
+      ],
+      "failures": [],
+      "score": 1.0,
+      "status": "PASS",
+      "threshold": 1.0
+    }
+  },
+  "schema_version": "semantic-yield-result@1",
+  "status": "PASS",
+  "visual_render_ratio": 0.0
+}

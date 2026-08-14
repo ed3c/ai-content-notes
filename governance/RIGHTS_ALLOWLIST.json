@@ -1,4 +1,21 @@
 {
   "schema_version": "rights-allowlist@1",
-  "entries": []
+  "entries": [
+    {
+      "video_id": "CvRngaQZQ3Y",
+      "canonical_url": "https://www.youtube.com/watch?v=CvRngaQZQ3Y",
+      "channel": "AI Engineer",
+      "title": "Improving Agents is a Data Mining Problem — Vivek Trivedy, LangChain",
+      "published_at": "2026-08-12",
+      "rights_basis": "user-directed-evaluation",
+      "rights_reference": "governance/RIGHTS_ATTESTATIONS.md#AT-001",
+      "attestor": "repository owner (ed3c)",
+      "attested_on": "2026-08-14",
+      "expires_on": null,
+      "authorization_status": "evaluation-only",
+      "permitted_backends": ["platform-auto-caption"],
+      "gold_transcript": null,
+      "glossary_path": null
+    }
+  ]
 }

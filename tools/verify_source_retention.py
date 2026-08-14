@@ -41,11 +41,16 @@ def _sha256(path: Path) -> str:
 
 
 def _manifest_artifacts(manifest: dict) -> dict[str, str]:
-    """Map artifact path to declared digest, across the manifest's source list."""
+    """Map artifact path to declared digest.
+
+    Subject-matter artifacts are declared in `sources`; audit artifacts such as
+    an acquisition receipt are declared in `retained_artifacts`, so a receipt
+    never has to be misfiled as a source to satisfy the binding.
+    """
     artifacts: dict[str, str] = {}
-    for source in manifest.get("sources", []):
-        path = source.get("retained_path")
-        digest = source.get("sha256") or source.get("digest")
+    for entry in [*manifest.get("sources", []), *manifest.get("retained_artifacts", [])]:
+        path = entry.get("retained_path") or entry.get("path")
+        digest = entry.get("sha256") or entry.get("digest")
         if path and digest:
             artifacts[str(path)] = str(digest)
     return artifacts

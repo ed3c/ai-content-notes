@@ -1,0 +1,4413 @@
+{
+  "backend_repository": "jdepoix/youtube-transcript-api",
+  "backend_version": "1.2.4",
+  "canonical_url": "https://www.youtube.com/watch?v=CvRngaQZQ3Y",
+  "cues": [
+    {
+      "duration_seconds": 2.02,
+      "end_label": "00:00:03.329",
+      "end_seconds": 3.329,
+      "start_label": "00:00:01.309",
+      "start_seconds": 1.309,
+      "text": "[music]"
+    },
+    {
+      "duration_seconds": 4.48,
+      "end_label": "00:00:16.960",
+      "end_seconds": 16.96,
+      "start_label": "00:00:12.480",
+      "start_seconds": 12.48,
+      "text": ">> Hey everyone."
+    },
+    {
+      "duration_seconds": 5.96,
+      "end_label": "00:00:19.840",
+      "end_seconds": 19.84,
+      "start_label": "00:00:13.880",
+      "start_seconds": 13.88,
+      "text": "I'm Vic and I lead applied research at"
+    },
+    {
+      "duration_seconds": 5.32,
+      "end_label": "00:00:22.280",
+      "end_seconds": 22.28,
+      "start_label": "00:00:16.960",
+      "start_seconds": 16.96,
+      "text": "LangChain and I'm going to talk about"
+    },
+    {
+      "duration_seconds": 4.48,
+      "end_label": "00:00:24.320",
+      "end_seconds": 24.32,
+      "start_label": "00:00:19.840",
+      "start_seconds": 19.84,
+      "text": "something that I think is sexy, which is"
+    },
+    {
+      "duration_seconds": 3.84,
+      "end_label": "00:00:26.120",
+      "end_seconds": 26.12,
+      "start_label": "00:00:22.280",
+      "start_seconds": 22.28,
+      "text": "data mining, but it's not as sexy as"
+    },
+    {
+      "duration_seconds": 4.28,
+      "end_label": "00:00:28.600",
+      "end_seconds": 28.6,
+      "start_label": "00:00:24.320",
+      "start_seconds": 24.32,
+      "text": "LLM, so we're going to try to like make"
+    },
+    {
+      "duration_seconds": 4.52,
+      "end_label": "00:00:30.640",
+      "end_seconds": 30.64,
+      "start_label": "00:00:26.120",
+      "start_seconds": 26.12,
+      "text": "it sexy together. And the problem that"
+    },
+    {
+      "duration_seconds": 4.48,
+      "end_label": "00:00:33.080",
+      "end_seconds": 33.08,
+      "start_label": "00:00:28.600",
+      "start_seconds": 28.6,
+      "text": "we're going to talk about today is how"
+    },
+    {
+      "duration_seconds": 5.0,
+      "end_label": "00:00:35.640",
+      "end_seconds": 35.64,
+      "start_label": "00:00:30.640",
+      "start_seconds": 30.64,
+      "text": "do we continuously improve agents, but"
+    },
+    {
+      "duration_seconds": 5.6,
+      "end_label": "00:00:38.680",
+      "end_seconds": 38.68,
+      "start_label": "00:00:33.080",
+      "start_seconds": 33.08,
+      "text": "how do we do that via data?"
+    },
+    {
+      "duration_seconds": 5.04,
+      "end_label": "00:00:40.680",
+      "end_seconds": 40.68,
+      "start_label": "00:00:35.640",
+      "start_seconds": 35.64,
+      "text": "So, to start, I'm going to tell a little"
+    },
+    {
+      "duration_seconds": 5.68,
+      "end_label": "00:00:44.360",
+      "end_seconds": 44.36,
+      "start_label": "00:00:38.680",
+      "start_seconds": 38.68,
+      "text": "story that I think maybe a lot of us"
+    },
+    {
+      "duration_seconds": 5.96,
+      "end_label": "00:00:46.640",
+      "end_seconds": 46.64,
+      "start_label": "00:00:40.680",
+      "start_seconds": 40.68,
+      "text": "have felt before. Like, I ran my agent,"
+    },
+    {
+      "duration_seconds": 4.84,
+      "end_label": "00:00:49.200",
+      "end_seconds": 49.2,
+      "start_label": "00:00:44.360",
+      "start_seconds": 44.36,
+      "text": "it did a bunch of things,"
+    },
+    {
+      "duration_seconds": 4.16,
+      "end_label": "00:00:50.800",
+      "end_seconds": 50.8,
+      "start_label": "00:00:46.640",
+      "start_seconds": 46.64,
+      "text": "it made some mistakes."
+    },
+    {
+      "duration_seconds": 3.08,
+      "end_label": "00:00:52.280",
+      "end_seconds": 52.28,
+      "start_label": "00:00:49.200",
+      "start_seconds": 49.2,
+      "text": "Now, I ask someone like, what do I"
+    },
+    {
+      "duration_seconds": 5.92,
+      "end_label": "00:00:56.720",
+      "end_seconds": 56.72,
+      "start_label": "00:00:50.800",
+      "start_seconds": 50.8,
+      "text": "actually do about that? Like, I have all"
+    },
+    {
+      "duration_seconds": 5.84,
+      "end_label": "00:00:58.120",
+      "end_seconds": 58.12,
+      "start_label": "00:00:52.280",
+      "start_seconds": 52.28,
+      "text": "this data, made some mistakes, what now?"
+    },
+    {
+      "duration_seconds": 4.04,
+      "end_label": "00:01:00.760",
+      "end_seconds": 60.76,
+      "start_label": "00:00:56.720",
+      "start_seconds": 56.72,
+      "text": "Basically, what we're going to do today"
+    },
+    {
+      "duration_seconds": 4.64,
+      "end_label": "00:01:02.760",
+      "end_seconds": 62.76,
+      "start_label": "00:00:58.120",
+      "start_seconds": 58.12,
+      "text": "is we're going to motivate a recipe for"
+    },
+    {
+      "duration_seconds": 4.079,
+      "end_label": "00:01:04.839",
+      "end_seconds": 64.839,
+      "start_label": "00:01:00.760",
+      "start_seconds": 60.76,
+      "text": "what we should do to continuously"
+    },
+    {
+      "duration_seconds": 3.72,
+      "end_label": "00:01:06.480",
+      "end_seconds": 66.48,
+      "start_label": "00:01:02.760",
+      "start_seconds": 62.76,
+      "text": "improve agents over time, and then I'm"
+    },
+    {
+      "duration_seconds": 2.641,
+      "end_label": "00:01:07.480",
+      "end_seconds": 67.48,
+      "start_label": "00:01:04.839",
+      "start_seconds": 64.839,
+      "text": "going to talk from some lived experience"
+    },
+    {
+      "duration_seconds": 3.2,
+      "end_label": "00:01:09.680",
+      "end_seconds": 69.68,
+      "start_label": "00:01:06.480",
+      "start_seconds": 66.48,
+      "text": "and like some stuff that we help"
+    },
+    {
+      "duration_seconds": 4.04,
+      "end_label": "00:01:11.520",
+      "end_seconds": 71.52,
+      "start_label": "00:01:07.480",
+      "start_seconds": 67.48,
+      "text": "customers do to run this over"
+    },
+    {
+      "duration_seconds": 4.08,
+      "end_label": "00:01:13.760",
+      "end_seconds": 73.76,
+      "start_label": "00:01:09.680",
+      "start_seconds": 69.68,
+      "text": "large-scale trace data."
+    },
+    {
+      "duration_seconds": 5.72,
+      "end_label": "00:01:17.240",
+      "end_seconds": 77.24,
+      "start_label": "00:01:11.520",
+      "start_seconds": 71.52,
+      "text": "So, the first step in building a"
+    },
+    {
+      "duration_seconds": 5.04,
+      "end_label": "00:01:18.800",
+      "end_seconds": 78.8,
+      "start_label": "00:01:13.760",
+      "start_seconds": 73.76,
+      "text": "successful agent is shipping it. So, if"
+    },
+    {
+      "duration_seconds": 3.16,
+      "end_label": "00:01:20.400",
+      "end_seconds": 80.4,
+      "start_label": "00:01:17.240",
+      "start_seconds": 77.24,
+      "text": "you put it out into the real world, then"
+    },
+    {
+      "duration_seconds": 2.84,
+      "end_label": "00:01:21.640",
+      "end_seconds": 81.64,
+      "start_label": "00:01:18.800",
+      "start_seconds": 78.8,
+      "text": "it can operate in environments and then"
+    },
+    {
+      "duration_seconds": 3.08,
+      "end_label": "00:01:23.480",
+      "end_seconds": 83.48,
+      "start_label": "00:01:20.400",
+      "start_seconds": 80.4,
+      "text": "you can get feedback from what it's"
+    },
+    {
+      "duration_seconds": 4.68,
+      "end_label": "00:01:26.320",
+      "end_seconds": 86.32,
+      "start_label": "00:01:21.640",
+      "start_seconds": 81.64,
+      "text": "doing."
+    },
+    {
+      "duration_seconds": 4.84,
+      "end_label": "00:01:28.320",
+      "end_seconds": 88.32,
+      "start_label": "00:01:23.480",
+      "start_seconds": 83.48,
+      "text": "The second step is collect a ton of"
+    },
+    {
+      "duration_seconds": 3.84,
+      "end_label": "00:01:30.160",
+      "end_seconds": 90.16,
+      "start_label": "00:01:26.320",
+      "start_seconds": 86.32,
+      "text": "traces. So, agents operate in the"
+    },
+    {
+      "duration_seconds": 3.76,
+      "end_label": "00:01:32.080",
+      "end_seconds": 92.08,
+      "start_label": "00:01:28.320",
+      "start_seconds": 88.32,
+      "text": "environment every single time they"
+    },
+    {
+      "duration_seconds": 4.56,
+      "end_label": "00:01:34.720",
+      "end_seconds": 94.72,
+      "start_label": "00:01:30.160",
+      "start_seconds": 90.16,
+      "text": "operate, they do tool calls, they have"
+    },
+    {
+      "duration_seconds": 5.24,
+      "end_label": "00:01:37.320",
+      "end_seconds": 97.32,
+      "start_label": "00:01:32.080",
+      "start_seconds": 92.08,
+      "text": "output messages, they call APIs, they"
+    },
+    {
+      "duration_seconds": 4.12,
+      "end_label": "00:01:38.840",
+      "end_seconds": 98.84,
+      "start_label": "00:01:34.720",
+      "start_seconds": 94.72,
+      "text": "use CLIs. All of that generates data and"
+    },
+    {
+      "duration_seconds": 4.88,
+      "end_label": "00:01:42.200",
+      "end_seconds": 102.2,
+      "start_label": "00:01:37.320",
+      "start_seconds": 97.32,
+      "text": "we want to store all of that so we can"
+    },
+    {
+      "duration_seconds": 6.04,
+      "end_label": "00:01:44.880",
+      "end_seconds": 104.88,
+      "start_label": "00:01:38.840",
+      "start_seconds": 98.84,
+      "text": "like do stuff with it."
+    },
+    {
+      "duration_seconds": 5.32,
+      "end_label": "00:01:47.520",
+      "end_seconds": 107.52,
+      "start_label": "00:01:42.200",
+      "start_seconds": 102.2,
+      "text": "The next thing is the data mining in"
+    },
+    {
+      "duration_seconds": 4.92,
+      "end_label": "00:01:49.800",
+      "end_seconds": 109.8,
+      "start_label": "00:01:44.880",
+      "start_seconds": 104.88,
+      "text": "this talk, which is once we have tons of"
+    },
+    {
+      "duration_seconds": 3.52,
+      "end_label": "00:01:51.040",
+      "end_seconds": 111.04,
+      "start_label": "00:01:47.520",
+      "start_seconds": 107.52,
+      "text": "trace data, maybe gigabytes, maybe"
+    },
+    {
+      "duration_seconds": 2.84,
+      "end_label": "00:01:52.640",
+      "end_seconds": 112.64,
+      "start_label": "00:01:49.800",
+      "start_seconds": 109.8,
+      "text": "terabytes, depending on like how many"
+    },
+    {
+      "duration_seconds": 4.04,
+      "end_label": "00:01:55.080",
+      "end_seconds": 115.08,
+      "start_label": "00:01:51.040",
+      "start_seconds": 111.04,
+      "text": "agents you're shipping, we're going to"
+    },
+    {
+      "duration_seconds": 4.0,
+      "end_label": "00:01:56.640",
+      "end_seconds": 116.64,
+      "start_label": "00:01:52.640",
+      "start_seconds": 112.64,
+      "text": "do data mining over that. And I promise"
+    },
+    {
+      "duration_seconds": 3.2,
+      "end_label": "00:01:58.280",
+      "end_seconds": 118.28,
+      "start_label": "00:01:55.080",
+      "start_seconds": 115.08,
+      "text": "I will tell you exactly what data mining"
+    },
+    {
+      "duration_seconds": 3.8,
+      "end_label": "00:02:00.440",
+      "end_seconds": 120.44,
+      "start_label": "00:01:56.640",
+      "start_seconds": 116.64,
+      "text": "we're going do, uh but we're going to do"
+    },
+    {
+      "duration_seconds": 4.32,
+      "end_label": "00:02:02.600",
+      "end_seconds": 122.6,
+      "start_label": "00:01:58.280",
+      "start_seconds": 118.28,
+      "text": "some over it."
+    },
+    {
+      "duration_seconds": 4.039,
+      "end_label": "00:02:04.479",
+      "end_seconds": 124.479,
+      "start_label": "00:02:00.440",
+      "start_seconds": 120.44,
+      "text": "And then the fun part, which is I"
+    },
+    {
+      "duration_seconds": 4.16,
+      "end_label": "00:02:06.760",
+      "end_seconds": 126.76,
+      "start_label": "00:02:02.600",
+      "start_seconds": 122.6,
+      "text": "collected that data, I read it, I"
+    },
+    {
+      "duration_seconds": 4.761,
+      "end_label": "00:02:09.240",
+      "end_seconds": 129.24,
+      "start_label": "00:02:04.479",
+      "start_seconds": 124.479,
+      "text": "curated it, and now we actually need to"
+    },
+    {
+      "duration_seconds": 5.0,
+      "end_label": "00:02:11.760",
+      "end_seconds": 131.76,
+      "start_label": "00:02:06.760",
+      "start_seconds": 126.76,
+      "text": "run the experiments in a data-driven way"
+    },
+    {
+      "duration_seconds": 4.08,
+      "end_label": "00:02:13.320",
+      "end_seconds": 133.32,
+      "start_label": "00:02:09.240",
+      "start_seconds": 129.24,
+      "text": "to see, \"Hey, is this new prompt, or is"
+    },
+    {
+      "duration_seconds": 3.72,
+      "end_label": "00:02:15.480",
+      "end_seconds": 135.48,
+      "start_label": "00:02:11.760",
+      "start_seconds": 131.76,
+      "text": "this new tool, or is this new"
+    },
+    {
+      "duration_seconds": 4.56,
+      "end_label": "00:02:17.880",
+      "end_seconds": 137.88,
+      "start_label": "00:02:13.320",
+      "start_seconds": 133.32,
+      "text": "orchestration, or is this new loop, is"
+    },
+    {
+      "duration_seconds": 5.96,
+      "end_label": "00:02:21.440",
+      "end_seconds": 141.44,
+      "start_label": "00:02:15.480",
+      "start_seconds": 135.48,
+      "text": "it actually improving things based on"
+    },
+    {
+      "duration_seconds": 3.56,
+      "end_label": "00:02:21.440",
+      "end_seconds": 141.44,
+      "start_label": "00:02:17.880",
+      "start_seconds": 137.88,
+      "text": "the previous traces that I've seen?\""
+    },
+    {
+      "duration_seconds": 4.6,
+      "end_label": "00:02:26.400",
+      "end_seconds": 146.4,
+      "start_label": "00:02:21.800",
+      "start_seconds": 141.8,
+      "text": "And this is maybe a bit of a hot take,"
+    },
+    {
+      "duration_seconds": 3.4,
+      "end_label": "00:02:27.880",
+      "end_seconds": 147.88,
+      "start_label": "00:02:24.480",
+      "start_seconds": 144.48,
+      "text": "but continual learning is super hot"
+    },
+    {
+      "duration_seconds": 2.64,
+      "end_label": "00:02:29.040",
+      "end_seconds": 149.04,
+      "start_label": "00:02:26.400",
+      "start_seconds": 146.4,
+      "text": "right now. I'm talking about it, this"
+    },
+    {
+      "duration_seconds": 4.2,
+      "end_label": "00:02:32.080",
+      "end_seconds": 152.08,
+      "start_label": "00:02:27.880",
+      "start_seconds": 147.88,
+      "text": "whole room is going to hear about it for"
+    },
+    {
+      "duration_seconds": 5.28,
+      "end_label": "00:02:34.320",
+      "end_seconds": 154.32,
+      "start_label": "00:02:29.040",
+      "start_seconds": 149.04,
+      "text": "the next like 5-6 hours. Um but there's"
+    },
+    {
+      "duration_seconds": 4.24,
+      "end_label": "00:02:36.320",
+      "end_seconds": 156.32,
+      "start_label": "00:02:32.080",
+      "start_seconds": 152.08,
+      "text": "a very tight coupling between what"
+    },
+    {
+      "duration_seconds": 4.6,
+      "end_label": "00:02:38.920",
+      "end_seconds": 158.92,
+      "start_label": "00:02:34.320",
+      "start_seconds": 154.32,
+      "text": "observability is and what continual"
+    },
+    {
+      "duration_seconds": 4.2,
+      "end_label": "00:02:40.520",
+      "end_seconds": 160.52,
+      "start_label": "00:02:36.320",
+      "start_seconds": 156.32,
+      "text": "learning is. And the main reason for"
+    },
+    {
+      "duration_seconds": 3.72,
+      "end_label": "00:02:42.640",
+      "end_seconds": 162.64,
+      "start_label": "00:02:38.920",
+      "start_seconds": 158.92,
+      "text": "that is that"
+    },
+    {
+      "duration_seconds": 4.36,
+      "end_label": "00:02:44.880",
+      "end_seconds": 164.88,
+      "start_label": "00:02:40.520",
+      "start_seconds": 160.52,
+      "text": "agents that operate in environments,"
+    },
+    {
+      "duration_seconds": 3.64,
+      "end_label": "00:02:46.280",
+      "end_seconds": 166.28,
+      "start_label": "00:02:42.640",
+      "start_seconds": 162.64,
+      "text": "they produce trace data, and what"
+    },
+    {
+      "duration_seconds": 3.12,
+      "end_label": "00:02:48.000",
+      "end_seconds": 168.0,
+      "start_label": "00:02:44.880",
+      "start_seconds": 164.88,
+      "text": "continual learning for agents and"
+    },
+    {
+      "duration_seconds": 3.52,
+      "end_label": "00:02:49.800",
+      "end_seconds": 169.8,
+      "start_label": "00:02:46.280",
+      "start_seconds": 166.28,
+      "text": "continual learning for humans basically"
+    },
+    {
+      "duration_seconds": 4.52,
+      "end_label": "00:02:52.520",
+      "end_seconds": 172.52,
+      "start_label": "00:02:48.000",
+      "start_seconds": 168.0,
+      "text": "is is I do a bunch of stuff in the"
+    },
+    {
+      "duration_seconds": 4.92,
+      "end_label": "00:02:54.720",
+      "end_seconds": 174.72,
+      "start_label": "00:02:49.800",
+      "start_seconds": 169.8,
+      "text": "world, I think about what I did, and"
+    },
+    {
+      "duration_seconds": 4.6,
+      "end_label": "00:02:57.120",
+      "end_seconds": 177.12,
+      "start_label": "00:02:52.520",
+      "start_seconds": 172.52,
+      "text": "then I need to update my definition,"
+    },
+    {
+      "duration_seconds": 4.28,
+      "end_label": "00:02:59.000",
+      "end_seconds": 179.0,
+      "start_label": "00:02:54.720",
+      "start_seconds": 174.72,
+      "text": "like my knowledge, stuff I write down,"
+    },
+    {
+      "duration_seconds": 3.839,
+      "end_label": "00:03:00.959",
+      "end_seconds": 180.959,
+      "start_label": "00:02:57.120",
+      "start_seconds": 177.12,
+      "text": "in order to respond to the feedback from"
+    },
+    {
+      "duration_seconds": 3.959,
+      "end_label": "00:03:02.959",
+      "end_seconds": 182.959,
+      "start_label": "00:02:59.000",
+      "start_seconds": 179.0,
+      "text": "the environment. And if you're continual"
+    },
+    {
+      "duration_seconds": 3.801,
+      "end_label": "00:03:04.760",
+      "end_seconds": 184.76,
+      "start_label": "00:03:00.959",
+      "start_seconds": 180.959,
+      "text": "learning company, you need traces, and"
+    },
+    {
+      "duration_seconds": 5.641,
+      "end_label": "00:03:08.600",
+      "end_seconds": 188.6,
+      "start_label": "00:03:02.959",
+      "start_seconds": 182.959,
+      "text": "if you have traces, then you can try to"
+    },
+    {
+      "duration_seconds": 3.84,
+      "end_label": "00:03:08.600",
+      "end_seconds": 188.6,
+      "start_label": "00:03:04.760",
+      "start_seconds": 184.76,
+      "text": "do continual learning over your agents."
+    },
+    {
+      "duration_seconds": 4.12,
+      "end_label": "00:03:13.720",
+      "end_seconds": 193.72,
+      "start_label": "00:03:09.600",
+      "start_seconds": 189.6,
+      "text": "I had to put in a meme because"
+    },
+    {
+      "duration_seconds": 3.84,
+      "end_label": "00:03:15.600",
+      "end_seconds": 195.6,
+      "start_label": "00:03:11.760",
+      "start_seconds": 191.76,
+      "text": "if you look at your data, then you can"
+    },
+    {
+      "duration_seconds": 3.44,
+      "end_label": "00:03:17.160",
+      "end_seconds": 197.16,
+      "start_label": "00:03:13.720",
+      "start_seconds": 193.72,
+      "text": "be like Will Hunting if anyone's seen"
+    },
+    {
+      "duration_seconds": 3.76,
+      "end_label": "00:03:19.360",
+      "end_seconds": 199.36,
+      "start_label": "00:03:15.600",
+      "start_seconds": 195.6,
+      "text": "the movie, where like everything is"
+    },
+    {
+      "duration_seconds": 4.68,
+      "end_label": "00:03:21.840",
+      "end_seconds": 201.84,
+      "start_label": "00:03:17.160",
+      "start_seconds": 197.16,
+      "text": "super super easy, and you can like"
+    },
+    {
+      "duration_seconds": 4.2,
+      "end_label": "00:03:23.560",
+      "end_seconds": 203.56,
+      "start_label": "00:03:19.360",
+      "start_seconds": 199.36,
+      "text": "improve over time, and I promised Emma I"
+    },
+    {
+      "duration_seconds": 4.04,
+      "end_label": "00:03:25.880",
+      "end_seconds": 205.88,
+      "start_label": "00:03:21.840",
+      "start_seconds": 201.84,
+      "text": "would put this in there, so putting it"
+    },
+    {
+      "duration_seconds": 6.0,
+      "end_label": "00:03:29.560",
+      "end_seconds": 209.56,
+      "start_label": "00:03:23.560",
+      "start_seconds": 203.56,
+      "text": "in there."
+    },
+    {
+      "duration_seconds": 5.76,
+      "end_label": "00:03:31.640",
+      "end_seconds": 211.64,
+      "start_label": "00:03:25.880",
+      "start_seconds": 205.88,
+      "text": "Cool. So, why am I talking a bunch about"
+    },
+    {
+      "duration_seconds": 3.72,
+      "end_label": "00:03:33.280",
+      "end_seconds": 213.28,
+      "start_label": "00:03:29.560",
+      "start_seconds": 209.56,
+      "text": "traces anyway? So,"
+    },
+    {
+      "duration_seconds": 2.599,
+      "end_label": "00:03:34.239",
+      "end_seconds": 214.239,
+      "start_label": "00:03:31.640",
+      "start_seconds": 211.64,
+      "text": "I'm sure a ton of us were software"
+    },
+    {
+      "duration_seconds": 3.52,
+      "end_label": "00:03:36.800",
+      "end_seconds": 216.8,
+      "start_label": "00:03:33.280",
+      "start_seconds": 213.28,
+      "text": "engineers before, we're software"
+    },
+    {
+      "duration_seconds": 4.321,
+      "end_label": "00:03:38.560",
+      "end_seconds": 218.56,
+      "start_label": "00:03:34.239",
+      "start_seconds": 214.239,
+      "text": "engineers now, and on the left we have a"
+    },
+    {
+      "duration_seconds": 4.04,
+      "end_label": "00:03:40.840",
+      "end_seconds": 220.84,
+      "start_label": "00:03:36.800",
+      "start_seconds": 216.8,
+      "text": "code block, and we can sort of like read"
+    },
+    {
+      "duration_seconds": 4.959,
+      "end_label": "00:03:43.519",
+      "end_seconds": 223.519,
+      "start_label": "00:03:38.560",
+      "start_seconds": 218.56,
+      "text": "the code, and in my head, I can almost"
+    },
+    {
+      "duration_seconds": 4.2,
+      "end_label": "00:03:45.040",
+      "end_seconds": 225.04,
+      "start_label": "00:03:40.840",
+      "start_seconds": 220.84,
+      "text": "reason over what this code does. I can"
+    },
+    {
+      "duration_seconds": 3.081,
+      "end_label": "00:03:46.600",
+      "end_seconds": 226.6,
+      "start_label": "00:03:43.519",
+      "start_seconds": 223.519,
+      "text": "see the functions, I can see like how"
+    },
+    {
+      "duration_seconds": 3.0,
+      "end_label": "00:03:48.040",
+      "end_seconds": 228.04,
+      "start_label": "00:03:45.040",
+      "start_seconds": 225.04,
+      "text": "they call each other."
+    },
+    {
+      "duration_seconds": 5.88,
+      "end_label": "00:03:52.480",
+      "end_seconds": 232.48,
+      "start_label": "00:03:46.600",
+      "start_seconds": 226.6,
+      "text": "I can roughly understand the logic in"
+    },
+    {
+      "duration_seconds": 7.12,
+      "end_label": "00:03:55.160",
+      "end_seconds": 235.16,
+      "start_label": "00:03:48.040",
+      "start_seconds": 228.04,
+      "text": "Python. Um that doesn't exactly exist in"
+    },
+    {
+      "duration_seconds": 4.2,
+      "end_label": "00:03:56.680",
+      "end_seconds": 236.68,
+      "start_label": "00:03:52.480",
+      "start_seconds": 232.48,
+      "text": "agent world because agents have prompts,"
+    },
+    {
+      "duration_seconds": 3.48,
+      "end_label": "00:03:58.640",
+      "end_seconds": 238.64,
+      "start_label": "00:03:55.160",
+      "start_seconds": 235.16,
+      "text": "they have tools, they have skills, they"
+    },
+    {
+      "duration_seconds": 3.24,
+      "end_label": "00:03:59.920",
+      "end_seconds": 239.92,
+      "start_label": "00:03:56.680",
+      "start_seconds": 236.68,
+      "text": "have hooks, they have middlewares, some"
+    },
+    {
+      "duration_seconds": 3.36,
+      "end_label": "00:04:02.000",
+      "end_seconds": 242.0,
+      "start_label": "00:03:58.640",
+      "start_seconds": 238.64,
+      "text": "agents call other agents and I"
+    },
+    {
+      "duration_seconds": 4.28,
+      "end_label": "00:04:04.200",
+      "end_seconds": 244.2,
+      "start_label": "00:03:59.920",
+      "start_seconds": 239.92,
+      "text": "orchestrate them in swarms. It's really"
+    },
+    {
+      "duration_seconds": 4.64,
+      "end_label": "00:04:06.640",
+      "end_seconds": 246.64,
+      "start_label": "00:04:02.000",
+      "start_seconds": 242.0,
+      "text": "really hard for humans to reason about"
+    },
+    {
+      "duration_seconds": 4.4,
+      "end_label": "00:04:08.600",
+      "end_seconds": 248.6,
+      "start_label": "00:04:04.200",
+      "start_seconds": 244.2,
+      "text": "how certain prompts that they change are"
+    },
+    {
+      "duration_seconds": 5.04,
+      "end_label": "00:04:11.680",
+      "end_seconds": 251.68,
+      "start_label": "00:04:06.640",
+      "start_seconds": 246.64,
+      "text": "actually going to affect agent behavior"
+    },
+    {
+      "duration_seconds": 4.24,
+      "end_label": "00:04:12.840",
+      "end_seconds": 252.84,
+      "start_label": "00:04:08.600",
+      "start_seconds": 248.6,
+      "text": "at scale. And this also varies between"
+    },
+    {
+      "duration_seconds": 2.76,
+      "end_label": "00:04:14.440",
+      "end_seconds": 254.44,
+      "start_label": "00:04:11.680",
+      "start_seconds": 251.68,
+      "text": "the different domains that you're doing"
+    },
+    {
+      "duration_seconds": 3.2,
+      "end_label": "00:04:16.040",
+      "end_seconds": 256.04,
+      "start_label": "00:04:12.840",
+      "start_seconds": 252.84,
+      "text": "it on. So, a prompt change and you're"
+    },
+    {
+      "duration_seconds": 2.88,
+      "end_label": "00:04:17.320",
+      "end_seconds": 257.32,
+      "start_label": "00:04:14.440",
+      "start_seconds": 254.44,
+      "text": "using for the medical domain is going to"
+    },
+    {
+      "duration_seconds": 2.24,
+      "end_label": "00:04:18.280",
+      "end_seconds": 258.28,
+      "start_label": "00:04:16.040",
+      "start_seconds": 256.04,
+      "text": "be like completely different than a"
+    },
+    {
+      "duration_seconds": 2.28,
+      "end_label": "00:04:19.600",
+      "end_seconds": 259.6,
+      "start_label": "00:04:17.320",
+      "start_seconds": 257.32,
+      "text": "prompt change that you want to do for"
+    },
+    {
+      "duration_seconds": 4.32,
+      "end_label": "00:04:22.600",
+      "end_seconds": 262.6,
+      "start_label": "00:04:18.280",
+      "start_seconds": 258.28,
+      "text": "the law domain."
+    },
+    {
+      "duration_seconds": 5.64,
+      "end_label": "00:04:25.240",
+      "end_seconds": 265.24,
+      "start_label": "00:04:19.600",
+      "start_seconds": 259.6,
+      "text": "And in general, over the last four years"
+    },
+    {
+      "duration_seconds": 6.36,
+      "end_label": "00:04:28.960",
+      "end_seconds": 268.96,
+      "start_label": "00:04:22.600",
+      "start_seconds": 262.6,
+      "text": "since the ChatGPT moment, we've started"
+    },
+    {
+      "duration_seconds": 6.4,
+      "end_label": "00:04:31.640",
+      "end_seconds": 271.64,
+      "start_label": "00:04:25.240",
+      "start_seconds": 265.24,
+      "text": "trading determinism for autonomy. And in"
+    },
+    {
+      "duration_seconds": 5.8,
+      "end_label": "00:04:34.760",
+      "end_seconds": 274.76,
+      "start_label": "00:04:28.960",
+      "start_seconds": 268.96,
+      "text": "that shift, sort of what we need to do"
+    },
+    {
+      "duration_seconds": 5.52,
+      "end_label": "00:04:37.160",
+      "end_seconds": 277.16,
+      "start_label": "00:04:31.640",
+      "start_seconds": 271.64,
+      "text": "is create tools and create systems to"
+    },
+    {
+      "duration_seconds": 6.2,
+      "end_label": "00:04:40.960",
+      "end_seconds": 280.96,
+      "start_label": "00:04:34.760",
+      "start_seconds": 274.76,
+      "text": "still understand agents when they're"
+    },
+    {
+      "duration_seconds": 6.12,
+      "end_label": "00:04:43.280",
+      "end_seconds": 283.28,
+      "start_label": "00:04:37.160",
+      "start_seconds": 277.16,
+      "text": "autonomously operating in environments."
+    },
+    {
+      "duration_seconds": 4.88,
+      "end_label": "00:04:45.840",
+      "end_seconds": 285.84,
+      "start_label": "00:04:40.960",
+      "start_seconds": 280.96,
+      "text": "So, I talked about traces. Um"
+    },
+    {
+      "duration_seconds": 4.96,
+      "end_label": "00:04:48.240",
+      "end_seconds": 288.24,
+      "start_label": "00:04:43.280",
+      "start_seconds": 283.28,
+      "text": "why like why should you read them? And"
+    },
+    {
+      "duration_seconds": 4.56,
+      "end_label": "00:04:50.400",
+      "end_seconds": 290.4,
+      "start_label": "00:04:45.840",
+      "start_seconds": 285.84,
+      "text": "at LangChain, what do we actually do"
+    },
+    {
+      "duration_seconds": 4.08,
+      "end_label": "00:04:52.320",
+      "end_seconds": 292.32,
+      "start_label": "00:04:48.240",
+      "start_seconds": 288.24,
+      "text": "when we're reading traces? So, we"
+    },
+    {
+      "duration_seconds": 3.92,
+      "end_label": "00:04:54.320",
+      "end_seconds": 294.32,
+      "start_label": "00:04:50.400",
+      "start_seconds": 290.4,
+      "text": "centralize a bunch of our data, so we"
+    },
+    {
+      "duration_seconds": 4.4,
+      "end_label": "00:04:56.720",
+      "end_seconds": 296.72,
+      "start_label": "00:04:52.320",
+      "start_seconds": 292.32,
+      "text": "put everything in a tracing project and"
+    },
+    {
+      "duration_seconds": 3.599,
+      "end_label": "00:04:57.919",
+      "end_seconds": 297.919,
+      "start_label": "00:04:54.320",
+      "start_seconds": 294.32,
+      "text": "this is usually either like per agent or"
+    },
+    {
+      "duration_seconds": 4.8,
+      "end_label": "00:05:01.520",
+      "end_seconds": 301.52,
+      "start_label": "00:04:56.720",
+      "start_seconds": 296.72,
+      "text": "like centralized across all of our"
+    },
+    {
+      "duration_seconds": 7.0,
+      "end_label": "00:05:04.919",
+      "end_seconds": 304.919,
+      "start_label": "00:04:57.919",
+      "start_seconds": 297.919,
+      "text": "agents. And then what we do is we send"
+    },
+    {
+      "duration_seconds": 5.32,
+      "end_label": "00:05:06.840",
+      "end_seconds": 306.84,
+      "start_label": "00:05:01.520",
+      "start_seconds": 301.52,
+      "text": "agents to read traces from other agents,"
+    },
+    {
+      "duration_seconds": 4.601,
+      "end_label": "00:05:09.520",
+      "end_seconds": 309.52,
+      "start_label": "00:05:04.919",
+      "start_seconds": 304.919,
+      "text": "right? And then we look for a bunch of"
+    },
+    {
+      "duration_seconds": 5.04,
+      "end_label": "00:05:11.880",
+      "end_seconds": 311.88,
+      "start_label": "00:05:06.840",
+      "start_seconds": 306.84,
+      "text": "different things. And we might ask for,"
+    },
+    {
+      "duration_seconds": 3.92,
+      "end_label": "00:05:13.440",
+      "end_seconds": 313.44,
+      "start_label": "00:05:09.520",
+      "start_seconds": 309.52,
+      "text": "\"Hey, like find a bunch of like good and"
+    },
+    {
+      "duration_seconds": 2.76,
+      "end_label": "00:05:14.640",
+      "end_seconds": 314.64,
+      "start_label": "00:05:11.880",
+      "start_seconds": 311.88,
+      "text": "bad interactions where like users got"
+    },
+    {
+      "duration_seconds": 2.28,
+      "end_label": "00:05:15.720",
+      "end_seconds": 315.72,
+      "start_label": "00:05:13.440",
+      "start_seconds": 313.44,
+      "text": "upset or like users are like really"
+    },
+    {
+      "duration_seconds": 1.68,
+      "end_label": "00:05:16.320",
+      "end_seconds": 316.32,
+      "start_label": "00:05:14.640",
+      "start_seconds": 314.64,
+      "text": "happy.\""
+    },
+    {
+      "duration_seconds": 2.76,
+      "end_label": "00:05:18.480",
+      "end_seconds": 318.48,
+      "start_label": "00:05:15.720",
+      "start_seconds": 315.72,
+      "text": "Um"
+    },
+    {
+      "duration_seconds": 4.44,
+      "end_label": "00:05:20.760",
+      "end_seconds": 320.76,
+      "start_label": "00:05:16.320",
+      "start_seconds": 316.32,
+      "text": "another question I might ask is uh this"
+    },
+    {
+      "duration_seconds": 4.48,
+      "end_label": "00:05:22.960",
+      "end_seconds": 322.96,
+      "start_label": "00:05:18.480",
+      "start_seconds": 318.48,
+      "text": "is a technical question like \"Agents now"
+    },
+    {
+      "duration_seconds": 3.92,
+      "end_label": "00:05:24.680",
+      "end_seconds": 324.68,
+      "start_label": "00:05:20.760",
+      "start_seconds": 320.76,
+      "text": "run for millions of tokens. Does the"
+    },
+    {
+      "duration_seconds": 4.16,
+      "end_label": "00:05:27.120",
+      "end_seconds": 327.12,
+      "start_label": "00:05:22.960",
+      "start_seconds": 322.96,
+      "text": "agent get really dumb after the first"
+    },
+    {
+      "duration_seconds": 4.239,
+      "end_label": "00:05:28.919",
+      "end_seconds": 328.919,
+      "start_label": "00:05:24.680",
+      "start_seconds": 324.68,
+      "text": "compaction? After the second compaction?"
+    },
+    {
+      "duration_seconds": 3.08,
+      "end_label": "00:05:30.200",
+      "end_seconds": 330.2,
+      "start_label": "00:05:27.120",
+      "start_seconds": 327.12,
+      "text": "Does it never get dumb?\" Like how do we"
+    },
+    {
+      "duration_seconds": 2.561,
+      "end_label": "00:05:31.480",
+      "end_seconds": 331.48,
+      "start_label": "00:05:28.919",
+      "start_seconds": 328.919,
+      "text": "actually answer these questions? We need"
+    },
+    {
+      "duration_seconds": 2.52,
+      "end_label": "00:05:32.720",
+      "end_seconds": 332.72,
+      "start_label": "00:05:30.200",
+      "start_seconds": 330.2,
+      "text": "to do it by actually looking at the"
+    },
+    {
+      "duration_seconds": 3.52,
+      "end_label": "00:05:35.000",
+      "end_seconds": 335.0,
+      "start_label": "00:05:31.480",
+      "start_seconds": 331.48,
+      "text": "traces."
+    },
+    {
+      "duration_seconds": 4.199,
+      "end_label": "00:05:36.919",
+      "end_seconds": 336.919,
+      "start_label": "00:05:32.720",
+      "start_seconds": 332.72,
+      "text": "And then the the other thing is like if"
+    },
+    {
+      "duration_seconds": 4.68,
+      "end_label": "00:05:39.680",
+      "end_seconds": 339.68,
+      "start_label": "00:05:35.000",
+      "start_seconds": 335.0,
+      "text": "I look at the traces, then I can try to"
+    },
+    {
+      "duration_seconds": 5.041,
+      "end_label": "00:05:41.960",
+      "end_seconds": 341.96,
+      "start_label": "00:05:36.919",
+      "start_seconds": 336.919,
+      "text": "prove some counterfactuals, which is"
+    },
+    {
+      "duration_seconds": 5.12,
+      "end_label": "00:05:44.800",
+      "end_seconds": 344.8,
+      "start_label": "00:05:39.680",
+      "start_seconds": 339.68,
+      "text": "\"Hey, like I ran GPT 5.5 for this and I"
+    },
+    {
+      "duration_seconds": 5.84,
+      "end_label": "00:05:47.800",
+      "end_seconds": 347.8,
+      "start_label": "00:05:41.960",
+      "start_seconds": 341.96,
+      "text": "heard like GLM is really good. What"
+    },
+    {
+      "duration_seconds": 5.28,
+      "end_label": "00:05:50.080",
+      "end_seconds": 350.08,
+      "start_label": "00:05:44.800",
+      "start_seconds": 344.8,
+      "text": "happens if I run GLM 5.2 for this task"
+    },
+    {
+      "duration_seconds": 4.32,
+      "end_label": "00:05:52.120",
+      "end_seconds": 352.12,
+      "start_label": "00:05:47.800",
+      "start_seconds": 347.8,
+      "text": "and how do I compare them? Metrics,"
+    },
+    {
+      "duration_seconds": 4.16,
+      "end_label": "00:05:54.240",
+      "end_seconds": 354.24,
+      "start_label": "00:05:50.080",
+      "start_seconds": 350.08,
+      "text": "awesome. The The trace level captures"
+    },
+    {
+      "duration_seconds": 3.48,
+      "end_label": "00:05:55.600",
+      "end_seconds": 355.6,
+      "start_label": "00:05:52.120",
+      "start_seconds": 352.12,
+      "text": "the actual like behavior that users see."
+    },
+    {
+      "duration_seconds": 5.24,
+      "end_label": "00:05:59.480",
+      "end_seconds": 359.48,
+      "start_label": "00:05:54.240",
+      "start_seconds": 354.24,
+      "text": "So, that's also like very helpful for"
+    },
+    {
+      "duration_seconds": 3.88,
+      "end_label": "00:05:59.480",
+      "end_seconds": 359.48,
+      "start_label": "00:05:55.600",
+      "start_seconds": 355.6,
+      "text": "seeing behavior like fine grain scales."
+    },
+    {
+      "duration_seconds": 5.2,
+      "end_label": "00:06:04.800",
+      "end_seconds": 364.8,
+      "start_label": "00:05:59.600",
+      "start_seconds": 359.6,
+      "text": "And the way that we sort of think about"
+    },
+    {
+      "duration_seconds": 3.84,
+      "end_label": "00:06:07.000",
+      "end_seconds": 367.0,
+      "start_label": "00:06:03.160",
+      "start_seconds": 363.16,
+      "text": "the data that's being generated by"
+    },
+    {
+      "duration_seconds": 4.48,
+      "end_label": "00:06:09.280",
+      "end_seconds": 369.28,
+      "start_label": "00:06:04.800",
+      "start_seconds": 364.8,
+      "text": "agents is that the data that we see"
+    },
+    {
+      "duration_seconds": 4.52,
+      "end_label": "00:06:11.520",
+      "end_seconds": 371.52,
+      "start_label": "00:06:07.000",
+      "start_seconds": 367.0,
+      "text": "today is going to be the smallest that"
+    },
+    {
+      "duration_seconds": 4.92,
+      "end_label": "00:06:14.200",
+      "end_seconds": 374.2,
+      "start_label": "00:06:09.280",
+      "start_seconds": 369.28,
+      "text": "humans have ever seen in their entire"
+    },
+    {
+      "duration_seconds": 4.96,
+      "end_label": "00:06:16.480",
+      "end_seconds": 376.48,
+      "start_label": "00:06:11.520",
+      "start_seconds": 371.52,
+      "text": "lives because we're in this massive"
+    },
+    {
+      "duration_seconds": 4.28,
+      "end_label": "00:06:18.480",
+      "end_seconds": 378.48,
+      "start_label": "00:06:14.200",
+      "start_seconds": 374.2,
+      "text": "exponential shift to our agents are"
+    },
+    {
+      "duration_seconds": 3.48,
+      "end_label": "00:06:19.960",
+      "end_seconds": 379.96,
+      "start_label": "00:06:16.480",
+      "start_seconds": 376.48,
+      "text": "doing more and more work in the economy."
+    },
+    {
+      "duration_seconds": 3.32,
+      "end_label": "00:06:21.800",
+      "end_seconds": 381.8,
+      "start_label": "00:06:18.480",
+      "start_seconds": 378.48,
+      "text": "And what that means is like the amount"
+    },
+    {
+      "duration_seconds": 4.88,
+      "end_label": "00:06:24.840",
+      "end_seconds": 384.84,
+      "start_label": "00:06:19.960",
+      "start_seconds": 379.96,
+      "text": "of data that humans have produced in our"
+    },
+    {
+      "duration_seconds": 5.68,
+      "end_label": "00:06:27.480",
+      "end_seconds": 387.48,
+      "start_label": "00:06:21.800",
+      "start_seconds": 381.8,
+      "text": "entire lifetime will soon be eclipsed by"
+    },
+    {
+      "duration_seconds": 4.76,
+      "end_label": "00:06:29.600",
+      "end_seconds": 389.6,
+      "start_label": "00:06:24.840",
+      "start_seconds": 384.84,
+      "text": "agents running on like year scales and"
+    },
+    {
+      "duration_seconds": 5.439,
+      "end_label": "00:06:32.919",
+      "end_seconds": 392.919,
+      "start_label": "00:06:27.480",
+      "start_seconds": 387.48,
+      "text": "then 6-month scales and 3-month scales"
+    },
+    {
+      "duration_seconds": 6.16,
+      "end_label": "00:06:35.760",
+      "end_seconds": 395.76,
+      "start_label": "00:06:29.600",
+      "start_seconds": 389.6,
+      "text": "and then maybe every day, right? Um and"
+    },
+    {
+      "duration_seconds": 4.841,
+      "end_label": "00:06:37.760",
+      "end_seconds": 397.76,
+      "start_label": "00:06:32.919",
+      "start_seconds": 392.919,
+      "text": "to understand a ton of that data,"
+    },
+    {
+      "duration_seconds": 3.64,
+      "end_label": "00:06:39.400",
+      "end_seconds": 399.4,
+      "start_label": "00:06:35.760",
+      "start_seconds": 395.76,
+      "text": "roughly what we need to do is contend"
+    },
+    {
+      "duration_seconds": 2.96,
+      "end_label": "00:06:40.720",
+      "end_seconds": 400.72,
+      "start_label": "00:06:37.760",
+      "start_seconds": 397.76,
+      "text": "with a couple problems. There's more,"
+    },
+    {
+      "duration_seconds": 3.0,
+      "end_label": "00:06:42.400",
+      "end_seconds": 402.4,
+      "start_label": "00:06:39.400",
+      "start_seconds": 399.4,
+      "text": "but these are the two that I'm going to"
+    },
+    {
+      "duration_seconds": 5.0,
+      "end_label": "00:06:45.720",
+      "end_seconds": 405.72,
+      "start_label": "00:06:40.720",
+      "start_seconds": 400.72,
+      "text": "focus on. So,"
+    },
+    {
+      "duration_seconds": 5.519,
+      "end_label": "00:06:47.919",
+      "end_seconds": 407.919,
+      "start_label": "00:06:42.400",
+      "start_seconds": 402.4,
+      "text": "one, uh reading traces at scale is super"
+    },
+    {
+      "duration_seconds": 4.12,
+      "end_label": "00:06:49.840",
+      "end_seconds": 409.84,
+      "start_label": "00:06:45.720",
+      "start_seconds": 405.72,
+      "text": "expensive, uh especially if you have"
+    },
+    {
+      "duration_seconds": 4.521,
+      "end_label": "00:06:52.440",
+      "end_seconds": 412.44,
+      "start_label": "00:06:47.919",
+      "start_seconds": 407.919,
+      "text": "millions of traces and if you have"
+    },
+    {
+      "duration_seconds": 5.04,
+      "end_label": "00:06:54.880",
+      "end_seconds": 414.88,
+      "start_label": "00:06:49.840",
+      "start_seconds": 409.84,
+      "text": "millions of tokens per trace, right? Um"
+    },
+    {
+      "duration_seconds": 4.6,
+      "end_label": "00:06:57.040",
+      "end_seconds": 417.04,
+      "start_label": "00:06:52.440",
+      "start_seconds": 412.44,
+      "text": "think of it as like an input token cost."
+    },
+    {
+      "duration_seconds": 4.2,
+      "end_label": "00:06:59.080",
+      "end_seconds": 419.08,
+      "start_label": "00:06:54.880",
+      "start_seconds": 414.88,
+      "text": "You can like literally multiply the"
+    },
+    {
+      "duration_seconds": 4.68,
+      "end_label": "00:07:01.720",
+      "end_seconds": 421.72,
+      "start_label": "00:06:57.040",
+      "start_seconds": 417.04,
+      "text": "input token cost uh times the number of"
+    },
+    {
+      "duration_seconds": 4.88,
+      "end_label": "00:07:03.960",
+      "end_seconds": 423.96,
+      "start_label": "00:06:59.080",
+      "start_seconds": 419.08,
+      "text": "traces times like how big each trace is"
+    },
+    {
+      "duration_seconds": 3.32,
+      "end_label": "00:07:05.040",
+      "end_seconds": 425.04,
+      "start_label": "00:07:01.720",
+      "start_seconds": 421.72,
+      "text": "on average, right? Um the the other"
+    },
+    {
+      "duration_seconds": 3.08,
+      "end_label": "00:07:07.040",
+      "end_seconds": 427.04,
+      "start_label": "00:07:03.960",
+      "start_seconds": 423.96,
+      "text": "thing is [clears throat] if I have a"
+    },
+    {
+      "duration_seconds": 3.84,
+      "end_label": "00:07:08.880",
+      "end_seconds": 428.88,
+      "start_label": "00:07:05.040",
+      "start_seconds": 425.04,
+      "text": "super long interaction with a coding"
+    },
+    {
+      "duration_seconds": 3.8,
+      "end_label": "00:07:10.840",
+      "end_seconds": 430.84,
+      "start_label": "00:07:07.040",
+      "start_seconds": 427.04,
+      "text": "agent like Cloud Code or Codex or like"
+    },
+    {
+      "duration_seconds": 3.96,
+      "end_label": "00:07:12.840",
+      "end_seconds": 432.84,
+      "start_label": "00:07:08.880",
+      "start_seconds": 428.88,
+      "text": "deep agents, um"
+    },
+    {
+      "duration_seconds": 4.88,
+      "end_label": "00:07:15.720",
+      "end_seconds": 435.72,
+      "start_label": "00:07:10.840",
+      "start_seconds": 430.84,
+      "text": "I can't even read that trace with"
+    },
+    {
+      "duration_seconds": 4.32,
+      "end_label": "00:07:17.160",
+      "end_seconds": 437.16,
+      "start_label": "00:07:12.840",
+      "start_seconds": 432.84,
+      "text": "another agent because that that context"
+    },
+    {
+      "duration_seconds": 3.32,
+      "end_label": "00:07:19.040",
+      "end_seconds": 439.04,
+      "start_label": "00:07:15.720",
+      "start_seconds": 435.72,
+      "text": "like doesn't fit in memory, right? So,"
+    },
+    {
+      "duration_seconds": 3.44,
+      "end_label": "00:07:20.600",
+      "end_seconds": 440.6,
+      "start_label": "00:07:17.160",
+      "start_seconds": 437.16,
+      "text": "it's like we we need to develop systems"
+    },
+    {
+      "duration_seconds": 3.6,
+      "end_label": "00:07:22.640",
+      "end_seconds": 442.64,
+      "start_label": "00:07:19.040",
+      "start_seconds": 439.04,
+      "text": "so I can sort of treat that context as"
+    },
+    {
+      "duration_seconds": 3.96,
+      "end_label": "00:07:24.560",
+      "end_seconds": 444.56,
+      "start_label": "00:07:20.600",
+      "start_seconds": 440.6,
+      "text": "like an external object and then I can"
+    },
+    {
+      "duration_seconds": 4.08,
+      "end_label": "00:07:26.720",
+      "end_seconds": 446.72,
+      "start_label": "00:07:22.640",
+      "start_seconds": 442.64,
+      "text": "sort of query into it, right? So, we we"
+    },
+    {
+      "duration_seconds": 4.359,
+      "end_label": "00:07:28.919",
+      "end_seconds": 448.919,
+      "start_label": "00:07:24.560",
+      "start_seconds": 444.56,
+      "text": "need to build agents to efficiently mine"
+    },
+    {
+      "duration_seconds": 3.68,
+      "end_label": "00:07:30.400",
+      "end_seconds": 450.4,
+      "start_label": "00:07:26.720",
+      "start_seconds": 446.72,
+      "text": "data from other agents and it's it's no"
+    },
+    {
+      "duration_seconds": 3.441,
+      "end_label": "00:07:32.360",
+      "end_seconds": 452.36,
+      "start_label": "00:07:28.919",
+      "start_seconds": 448.919,
+      "text": "longer as simple as just like feeding"
+    },
+    {
+      "duration_seconds": 3.64,
+      "end_label": "00:07:34.040",
+      "end_seconds": 454.04,
+      "start_label": "00:07:30.400",
+      "start_seconds": 450.4,
+      "text": "the data into context and there's like"
+    },
+    {
+      "duration_seconds": 4.52,
+      "end_label": "00:07:36.880",
+      "end_seconds": 456.88,
+      "start_label": "00:07:32.360",
+      "start_seconds": 452.36,
+      "text": "tricks that we'll sort of talk about uh"
+    },
+    {
+      "duration_seconds": 5.04,
+      "end_label": "00:07:39.080",
+      "end_seconds": 459.08,
+      "start_label": "00:07:34.040",
+      "start_seconds": 454.04,
+      "text": "to to do that well."
+    },
+    {
+      "duration_seconds": 3.8,
+      "end_label": "00:07:40.680",
+      "end_seconds": 460.68,
+      "start_label": "00:07:36.880",
+      "start_seconds": 456.88,
+      "text": "Great. So, one of the things that I"
+    },
+    {
+      "duration_seconds": 4.52,
+      "end_label": "00:07:43.600",
+      "end_seconds": 463.6,
+      "start_label": "00:07:39.080",
+      "start_seconds": 459.08,
+      "text": "think is really really cool in the last"
+    },
+    {
+      "duration_seconds": 4.8,
+      "end_label": "00:07:45.480",
+      "end_seconds": 465.48,
+      "start_label": "00:07:40.680",
+      "start_seconds": 460.68,
+      "text": "6 months is that open models have"
+    },
+    {
+      "duration_seconds": 5.2,
+      "end_label": "00:07:48.800",
+      "end_seconds": 468.8,
+      "start_label": "00:07:43.600",
+      "start_seconds": 463.6,
+      "text": "basically hit an inflection point in"
+    },
+    {
+      "duration_seconds": 5.16,
+      "end_label": "00:07:50.640",
+      "end_seconds": 470.64,
+      "start_label": "00:07:45.480",
+      "start_seconds": 465.48,
+      "text": "intelligence that we at LangChain don't"
+    },
+    {
+      "duration_seconds": 4.4,
+      "end_label": "00:07:53.200",
+      "end_seconds": 473.2,
+      "start_label": "00:07:48.800",
+      "start_seconds": 468.8,
+      "text": "reach for the frontier models for every"
+    },
+    {
+      "duration_seconds": 4.96,
+      "end_label": "00:07:55.600",
+      "end_seconds": 475.6,
+      "start_label": "00:07:50.640",
+      "start_seconds": 470.64,
+      "text": "single use case. We're quite conscious"
+    },
+    {
+      "duration_seconds": 4.76,
+      "end_label": "00:07:57.960",
+      "end_seconds": 477.96,
+      "start_label": "00:07:53.200",
+      "start_seconds": 473.2,
+      "text": "about what is the minimum level of"
+    },
+    {
+      "duration_seconds": 5.04,
+      "end_label": "00:08:00.640",
+      "end_seconds": 480.64,
+      "start_label": "00:07:55.600",
+      "start_seconds": 475.6,
+      "text": "intelligence that I need to do any given"
+    },
+    {
+      "duration_seconds": 4.84,
+      "end_label": "00:08:02.800",
+      "end_seconds": 482.8,
+      "start_label": "00:07:57.960",
+      "start_seconds": 477.96,
+      "text": "task. And like practically speaking,"
+    },
+    {
+      "duration_seconds": 4.08,
+      "end_label": "00:08:04.720",
+      "end_seconds": 484.72,
+      "start_label": "00:08:00.640",
+      "start_seconds": 480.64,
+      "text": "honestly, yes, we start with Opus, we"
+    },
+    {
+      "duration_seconds": 4.04,
+      "end_label": "00:08:06.840",
+      "end_seconds": 486.84,
+      "start_label": "00:08:02.800",
+      "start_seconds": 482.8,
+      "text": "start with 55 because we just want to"
+    },
+    {
+      "duration_seconds": 4.44,
+      "end_label": "00:08:09.160",
+      "end_seconds": 489.16,
+      "start_label": "00:08:04.720",
+      "start_seconds": 484.72,
+      "text": "know if the task is even possible. But"
+    },
+    {
+      "duration_seconds": 4.44,
+      "end_label": "00:08:11.280",
+      "end_seconds": 491.28,
+      "start_label": "00:08:06.840",
+      "start_seconds": 486.84,
+      "text": "then once we reach that sort of like"
+    },
+    {
+      "duration_seconds": 4.44,
+      "end_label": "00:08:13.600",
+      "end_seconds": 493.6,
+      "start_label": "00:08:09.160",
+      "start_seconds": 489.16,
+      "text": "waterline, then we like look back at"
+    },
+    {
+      "duration_seconds": 4.12,
+      "end_label": "00:08:15.400",
+      "end_seconds": 495.4,
+      "start_label": "00:08:11.280",
+      "start_seconds": 491.28,
+      "text": "those traces and we see, \"Hey, can we"
+    },
+    {
+      "duration_seconds": 3.4,
+      "end_label": "00:08:17.000",
+      "end_seconds": 497.0,
+      "start_label": "00:08:13.600",
+      "start_seconds": 493.6,
+      "text": "use an open model to do the same thing?\""
+    },
+    {
+      "duration_seconds": 3.88,
+      "end_label": "00:08:19.280",
+      "end_seconds": 499.28,
+      "start_label": "00:08:15.400",
+      "start_seconds": 495.4,
+      "text": "So, this is a bunch of work that we did"
+    },
+    {
+      "duration_seconds": 4.2,
+      "end_label": "00:08:21.200",
+      "end_seconds": 501.2,
+      "start_label": "00:08:17.000",
+      "start_seconds": 497.0,
+      "text": "with Harvey and then their lab legal"
+    },
+    {
+      "duration_seconds": 3.12,
+      "end_label": "00:08:22.400",
+      "end_seconds": 502.4,
+      "start_label": "00:08:19.280",
+      "start_seconds": 499.28,
+      "text": "benchmark. Basically, what we're looking"
+    },
+    {
+      "duration_seconds": 4.52,
+      "end_label": "00:08:25.720",
+      "end_seconds": 505.72,
+      "start_label": "00:08:21.200",
+      "start_seconds": 501.2,
+      "text": "at is"
+    },
+    {
+      "duration_seconds": 6.12,
+      "end_label": "00:08:28.520",
+      "end_seconds": 508.52,
+      "start_label": "00:08:22.400",
+      "start_seconds": 502.4,
+      "text": "can I match the trace judging capability"
+    },
+    {
+      "duration_seconds": 6.68,
+      "end_label": "00:08:32.400",
+      "end_seconds": 512.4,
+      "start_label": "00:08:25.720",
+      "start_seconds": 505.72,
+      "text": "of Opus with an open cheaper model? And"
+    },
+    {
+      "duration_seconds": 5.76,
+      "end_label": "00:08:34.280",
+      "end_seconds": 514.28,
+      "start_label": "00:08:28.520",
+      "start_seconds": 508.52,
+      "text": "the answer is roughly yes at like an"
+    },
+    {
+      "duration_seconds": 3.72,
+      "end_label": "00:08:36.120",
+      "end_seconds": 516.12,
+      "start_label": "00:08:32.400",
+      "start_seconds": 512.4,
+      "text": "order or like two orders of magnitude"
+    },
+    {
+      "duration_seconds": 3.759,
+      "end_label": "00:08:38.039",
+      "end_seconds": 518.039,
+      "start_label": "00:08:34.280",
+      "start_seconds": 514.28,
+      "text": "cheaper. And like the way we do that is"
+    },
+    {
+      "duration_seconds": 2.84,
+      "end_label": "00:08:38.960",
+      "end_seconds": 518.96,
+      "start_label": "00:08:36.120",
+      "start_seconds": 516.12,
+      "text": "we try a bunch of models,"
+    },
+    {
+      "duration_seconds": 2.761,
+      "end_label": "00:08:40.800",
+      "end_seconds": 520.8,
+      "start_label": "00:08:38.039",
+      "start_seconds": 518.039,
+      "text": "we do a bunch of like harness"
+    },
+    {
+      "duration_seconds": 3.48,
+      "end_label": "00:08:42.440",
+      "end_seconds": 522.44,
+      "start_label": "00:08:38.960",
+      "start_seconds": 518.96,
+      "text": "engineering, and the harness engineering"
+    },
+    {
+      "duration_seconds": 3.239,
+      "end_label": "00:08:44.039",
+      "end_seconds": 524.039,
+      "start_label": "00:08:40.800",
+      "start_seconds": 520.8,
+      "text": "is informed by a bunch of the traces"
+    },
+    {
+      "duration_seconds": 3.76,
+      "end_label": "00:08:46.200",
+      "end_seconds": 526.2,
+      "start_label": "00:08:42.440",
+      "start_seconds": 522.44,
+      "text": "that we read. So, it's like, \"Hey, like"
+    },
+    {
+      "duration_seconds": 4.041,
+      "end_label": "00:08:48.080",
+      "end_seconds": 528.08,
+      "start_label": "00:08:44.039",
+      "start_seconds": 524.039,
+      "text": "Opus reasons about things in this way."
+    },
+    {
+      "duration_seconds": 3.52,
+      "end_label": "00:08:49.720",
+      "end_seconds": 529.72,
+      "start_label": "00:08:46.200",
+      "start_seconds": 526.2,
+      "text": "Maybe that's because of the prompt."
+    },
+    {
+      "duration_seconds": 3.0,
+      "end_label": "00:08:51.080",
+      "end_seconds": 531.08,
+      "start_label": "00:08:48.080",
+      "start_seconds": 528.08,
+      "text": "Maybe Opus is just smarter, which it is,"
+    },
+    {
+      "duration_seconds": 2.6,
+      "end_label": "00:08:52.320",
+      "end_seconds": 532.32,
+      "start_label": "00:08:49.720",
+      "start_seconds": 529.72,
+      "text": "than a bunch of the open models, but"
+    },
+    {
+      "duration_seconds": 3.08,
+      "end_label": "00:08:54.160",
+      "end_seconds": 534.16,
+      "start_label": "00:08:51.080",
+      "start_seconds": 531.08,
+      "text": "that might mean I need to give it a"
+    },
+    {
+      "duration_seconds": 3.44,
+      "end_label": "00:08:55.760",
+      "end_seconds": 535.76,
+      "start_label": "00:08:52.320",
+      "start_seconds": 532.32,
+      "text": "little bit more guidance so it can reach"
+    },
+    {
+      "duration_seconds": 2.6,
+      "end_label": "00:08:56.760",
+      "end_seconds": 536.76,
+      "start_label": "00:08:54.160",
+      "start_seconds": 534.16,
+      "text": "the sort of same intelligence level at"
+    },
+    {
+      "duration_seconds": 3.079,
+      "end_label": "00:08:58.839",
+      "end_seconds": 538.839,
+      "start_label": "00:08:55.760",
+      "start_seconds": 535.76,
+      "text": "like a much"
+    },
+    {
+      "duration_seconds": 4.16,
+      "end_label": "00:09:00.920",
+      "end_seconds": 540.92,
+      "start_label": "00:08:56.760",
+      "start_seconds": 536.76,
+      "text": "much lower cost.\""
+    },
+    {
+      "duration_seconds": 4.201,
+      "end_label": "00:09:03.040",
+      "end_seconds": 543.04,
+      "start_label": "00:08:58.839",
+      "start_seconds": 538.839,
+      "text": "And the the other thing that we sort of"
+    },
+    {
+      "duration_seconds": 3.52,
+      "end_label": "00:09:04.440",
+      "end_seconds": 544.44,
+      "start_label": "00:09:00.920",
+      "start_seconds": 540.92,
+      "text": "look at is like harness engineering is"
+    },
+    {
+      "duration_seconds": 3.28,
+      "end_label": "00:09:06.320",
+      "end_seconds": 546.32,
+      "start_label": "00:09:03.040",
+      "start_seconds": 543.04,
+      "text": "amazing."
+    },
+    {
+      "duration_seconds": 3.76,
+      "end_label": "00:09:08.200",
+      "end_seconds": 548.2,
+      "start_label": "00:09:04.440",
+      "start_seconds": 544.44,
+      "text": "You get instant feedback and you can"
+    },
+    {
+      "duration_seconds": 4.48,
+      "end_label": "00:09:10.800",
+      "end_seconds": 550.8,
+      "start_label": "00:09:06.320",
+      "start_seconds": 546.32,
+      "text": "sort of like run on your evals, but"
+    },
+    {
+      "duration_seconds": 4.24,
+      "end_label": "00:09:12.440",
+      "end_seconds": 552.44,
+      "start_label": "00:09:08.200",
+      "start_seconds": 548.2,
+      "text": "eventually what we find is you hit a"
+    },
+    {
+      "duration_seconds": 4.28,
+      "end_label": "00:09:15.080",
+      "end_seconds": 555.08,
+      "start_label": "00:09:10.800",
+      "start_seconds": 550.8,
+      "text": "threshold of intelligence where it's"
+    },
+    {
+      "duration_seconds": 4.24,
+      "end_label": "00:09:16.680",
+      "end_seconds": 556.68,
+      "start_label": "00:09:12.440",
+      "start_seconds": 552.44,
+      "text": "like \"If I keep tweaking this prompt,"
+    },
+    {
+      "duration_seconds": 3.8,
+      "end_label": "00:09:18.880",
+      "end_seconds": 558.88,
+      "start_label": "00:09:15.080",
+      "start_seconds": 555.08,
+      "text": "I'm not going to get too much more out"
+    },
+    {
+      "duration_seconds": 4.2,
+      "end_label": "00:09:20.880",
+      "end_seconds": 560.88,
+      "start_label": "00:09:16.680",
+      "start_seconds": 556.68,
+      "text": "of it.\" And once we reach that point, we"
+    },
+    {
+      "duration_seconds": 4.64,
+      "end_label": "00:09:23.520",
+      "end_seconds": 563.52,
+      "start_label": "00:09:18.880",
+      "start_seconds": 558.88,
+      "text": "sort of look at, \"Okay, can I actually"
+    },
+    {
+      "duration_seconds": 4.56,
+      "end_label": "00:09:25.440",
+      "end_seconds": 565.44,
+      "start_label": "00:09:20.880",
+      "start_seconds": 560.88,
+      "text": "like fine-tune the model on my"
+    },
+    {
+      "duration_seconds": 4.28,
+      "end_label": "00:09:27.800",
+      "end_seconds": 567.8,
+      "start_label": "00:09:23.520",
+      "start_seconds": 563.52,
+      "text": "domain-specific task?\" And can I like"
+    },
+    {
+      "duration_seconds": 4.44,
+      "end_label": "00:09:29.880",
+      "end_seconds": 569.88,
+      "start_label": "00:09:25.440",
+      "start_seconds": 565.44,
+      "text": "make it better on those tasks? And what"
+    },
+    {
+      "duration_seconds": 4.24,
+      "end_label": "00:09:32.040",
+      "end_seconds": 572.04,
+      "start_label": "00:09:27.800",
+      "start_seconds": 567.8,
+      "text": "we find is if we take like base models"
+    },
+    {
+      "duration_seconds": 3.76,
+      "end_label": "00:09:33.640",
+      "end_seconds": 573.64,
+      "start_label": "00:09:29.880",
+      "start_seconds": 569.88,
+      "text": "and we tune them on like very specific"
+    },
+    {
+      "duration_seconds": 3.6,
+      "end_label": "00:09:35.640",
+      "end_seconds": 575.64,
+      "start_label": "00:09:32.040",
+      "start_seconds": 572.04,
+      "text": "vertical tasks, which is what a lot of"
+    },
+    {
+      "duration_seconds": 4.24,
+      "end_label": "00:09:37.880",
+      "end_seconds": 577.88,
+      "start_label": "00:09:33.640",
+      "start_seconds": 573.64,
+      "text": "our customers do, they don't really care"
+    },
+    {
+      "duration_seconds": 3.52,
+      "end_label": "00:09:39.160",
+      "end_seconds": 579.16,
+      "start_label": "00:09:35.640",
+      "start_seconds": 575.64,
+      "text": "about the entire variance of tasks. like"
+    },
+    {
+      "duration_seconds": 2.96,
+      "end_label": "00:09:40.840",
+      "end_seconds": 580.84,
+      "start_label": "00:09:37.880",
+      "start_seconds": 577.88,
+      "text": "they care about what their customers"
+    },
+    {
+      "duration_seconds": 3.24,
+      "end_label": "00:09:42.400",
+      "end_seconds": 582.4,
+      "start_label": "00:09:39.160",
+      "start_seconds": 579.16,
+      "text": "care about. So, if we focus on that"
+    },
+    {
+      "duration_seconds": 3.4,
+      "end_label": "00:09:44.240",
+      "end_seconds": 584.24,
+      "start_label": "00:09:40.840",
+      "start_seconds": 580.84,
+      "text": "narrow set of tasks, then we can"
+    },
+    {
+      "duration_seconds": 4.68,
+      "end_label": "00:09:47.080",
+      "end_seconds": 587.08,
+      "start_label": "00:09:42.400",
+      "start_seconds": 582.4,
+      "text": "fine-tune base models to sort of like"
+    },
+    {
+      "duration_seconds": 4.6,
+      "end_label": "00:09:48.840",
+      "end_seconds": 588.84,
+      "start_label": "00:09:44.240",
+      "start_seconds": 584.24,
+      "text": "reach and then also go beyond frontier"
+    },
+    {
+      "duration_seconds": 4.4,
+      "end_label": "00:09:51.480",
+      "end_seconds": 591.48,
+      "start_label": "00:09:47.080",
+      "start_seconds": 587.08,
+      "text": "performance. And I think one sort of"
+    },
+    {
+      "duration_seconds": 4.36,
+      "end_label": "00:09:53.200",
+      "end_seconds": 593.2,
+      "start_label": "00:09:48.840",
+      "start_seconds": 588.84,
+      "text": "like small thing I'll mention as a lot"
+    },
+    {
+      "duration_seconds": 3.96,
+      "end_label": "00:09:55.440",
+      "end_seconds": 595.44,
+      "start_label": "00:09:51.480",
+      "start_seconds": 591.48,
+      "text": "of people are getting into fine-tuning"
+    },
+    {
+      "duration_seconds": 5.6,
+      "end_label": "00:09:58.800",
+      "end_seconds": 598.8,
+      "start_label": "00:09:53.200",
+      "start_seconds": 593.2,
+      "text": "is that another sort of like economic"
+    },
+    {
+      "duration_seconds": 6.76,
+      "end_label": "00:10:02.200",
+      "end_seconds": 602.2,
+      "start_label": "00:09:55.440",
+      "start_seconds": 595.44,
+      "text": "decision is that you can move from token"
+    },
+    {
+      "duration_seconds": 5.56,
+      "end_label": "00:10:04.360",
+      "end_seconds": 604.36,
+      "start_label": "00:09:58.800",
+      "start_seconds": 598.8,
+      "text": "costs to hardware costs. And this is"
+    },
+    {
+      "duration_seconds": 4.12,
+      "end_label": "00:10:06.320",
+      "end_seconds": 606.32,
+      "start_label": "00:10:02.200",
+      "start_seconds": 602.2,
+      "text": "like can be a really big change, right?"
+    },
+    {
+      "duration_seconds": 4.04,
+      "end_label": "00:10:08.400",
+      "end_seconds": 608.4,
+      "start_label": "00:10:04.360",
+      "start_seconds": 604.36,
+      "text": "Cuz like you're very used to hey, like a"
+    },
+    {
+      "duration_seconds": 3.64,
+      "end_label": "00:10:09.960",
+      "end_seconds": 609.96,
+      "start_label": "00:10:06.320",
+      "start_seconds": 606.32,
+      "text": "million tokens cost this much, not as"
+    },
+    {
+      "duration_seconds": 3.64,
+      "end_label": "00:10:12.040",
+      "end_seconds": 612.04,
+      "start_label": "00:10:08.400",
+      "start_seconds": 608.4,
+      "text": "much like this cluster sort of costs"
+    },
+    {
+      "duration_seconds": 4.2,
+      "end_label": "00:10:14.160",
+      "end_seconds": 614.16,
+      "start_label": "00:10:09.960",
+      "start_seconds": 609.96,
+      "text": "this much. But for like very high"
+    },
+    {
+      "duration_seconds": 4.4,
+      "end_label": "00:10:16.440",
+      "end_seconds": 616.44,
+      "start_label": "00:10:12.040",
+      "start_seconds": 612.04,
+      "text": "inference workloads, we find it to be"
+    },
+    {
+      "duration_seconds": 3.84,
+      "end_label": "00:10:18.000",
+      "end_seconds": 618.0,
+      "start_label": "00:10:14.160",
+      "start_seconds": 614.16,
+      "text": "way cheaper just to like run a cluster"
+    },
+    {
+      "duration_seconds": 2.84,
+      "end_label": "00:10:19.280",
+      "end_seconds": 619.28,
+      "start_label": "00:10:16.440",
+      "start_seconds": 616.44,
+      "text": "and I get like unlimited inference on"
+    },
+    {
+      "duration_seconds": 2.72,
+      "end_label": "00:10:20.720",
+      "end_seconds": 620.72,
+      "start_label": "00:10:18.000",
+      "start_seconds": 618.0,
+      "text": "that cluster. I don't have to worry"
+    },
+    {
+      "duration_seconds": 3.32,
+      "end_label": "00:10:22.600",
+      "end_seconds": 622.6,
+      "start_label": "00:10:19.280",
+      "start_seconds": 619.28,
+      "text": "about tokens, but I can just do the"
+    },
+    {
+      "duration_seconds": 3.2,
+      "end_label": "00:10:23.920",
+      "end_seconds": 623.92,
+      "start_label": "00:10:20.720",
+      "start_seconds": 620.72,
+      "text": "calculation of like, hey,"
+    },
+    {
+      "duration_seconds": 2.48,
+      "end_label": "00:10:25.080",
+      "end_seconds": 625.08,
+      "start_label": "00:10:22.600",
+      "start_seconds": 622.6,
+      "text": "um this will end up being cheaper and"
+    },
+    {
+      "duration_seconds": 3.6,
+      "end_label": "00:10:27.520",
+      "end_seconds": 627.52,
+      "start_label": "00:10:23.920",
+      "start_seconds": 623.92,
+      "text": "then I can spin it down when I don't"
+    },
+    {
+      "duration_seconds": 2.44,
+      "end_label": "00:10:27.520",
+      "end_seconds": 627.52,
+      "start_label": "00:10:25.080",
+      "start_seconds": 625.08,
+      "text": "need it."
+    },
+    {
+      "duration_seconds": 4.04,
+      "end_label": "00:10:31.960",
+      "end_seconds": 631.96,
+      "start_label": "00:10:27.920",
+      "start_seconds": 627.92,
+      "text": "Cool. And I said all of this um"
+    },
+    {
+      "duration_seconds": 3.76,
+      "end_label": "00:10:33.960",
+      "end_seconds": 633.96,
+      "start_label": "00:10:30.200",
+      "start_seconds": 630.2,
+      "text": "so we obviously like built a product to"
+    },
+    {
+      "duration_seconds": 4.92,
+      "end_label": "00:10:36.880",
+      "end_seconds": 636.88,
+      "start_label": "00:10:31.960",
+      "start_seconds": 631.96,
+      "text": "do that. Uh I won't shill it too much,"
+    },
+    {
+      "duration_seconds": 5.4,
+      "end_label": "00:10:39.360",
+      "end_seconds": 639.36,
+      "start_label": "00:10:33.960",
+      "start_seconds": 633.96,
+      "text": "but it's LangSplat engine. Uh basically,"
+    },
+    {
+      "duration_seconds": 5.48,
+      "end_label": "00:10:42.360",
+      "end_seconds": 642.36,
+      "start_label": "00:10:36.880",
+      "start_seconds": 636.88,
+      "text": "this product is trying to automate this"
+    },
+    {
+      "duration_seconds": 5.08,
+      "end_label": "00:10:44.440",
+      "end_seconds": 644.44,
+      "start_label": "00:10:39.360",
+      "start_seconds": 639.36,
+      "text": "loop for you, which is if you have any"
+    },
+    {
+      "duration_seconds": 3.96,
+      "end_label": "00:10:46.320",
+      "end_seconds": 646.32,
+      "start_label": "00:10:42.360",
+      "start_seconds": 642.36,
+      "text": "volume of trace data and you're looking"
+    },
+    {
+      "duration_seconds": 3.48,
+      "end_label": "00:10:47.920",
+      "end_seconds": 647.92,
+      "start_label": "00:10:44.440",
+      "start_seconds": 644.44,
+      "text": "for something that trace data or you"
+    },
+    {
+      "duration_seconds": 3.8,
+      "end_label": "00:10:50.120",
+      "end_seconds": 650.12,
+      "start_label": "00:10:46.320",
+      "start_seconds": 646.32,
+      "text": "want to generate e-vals from that trace"
+    },
+    {
+      "duration_seconds": 4.08,
+      "end_label": "00:10:52.000",
+      "end_seconds": 652.0,
+      "start_label": "00:10:47.920",
+      "start_seconds": 647.92,
+      "text": "data or you want to like generate"
+    },
+    {
+      "duration_seconds": 3.68,
+      "end_label": "00:10:53.800",
+      "end_seconds": 653.8,
+      "start_label": "00:10:50.120",
+      "start_seconds": 650.12,
+      "text": "feedback for like humans to read from"
+    },
+    {
+      "duration_seconds": 3.2,
+      "end_label": "00:10:55.200",
+      "end_seconds": 655.2,
+      "start_label": "00:10:52.000",
+      "start_seconds": 652.0,
+      "text": "that trace data, it will go read all of"
+    },
+    {
+      "duration_seconds": 3.039,
+      "end_label": "00:10:56.839",
+      "end_seconds": 656.839,
+      "start_label": "00:10:53.800",
+      "start_seconds": 653.8,
+      "text": "it, it'll like find issues, it'll"
+    },
+    {
+      "duration_seconds": 3.84,
+      "end_label": "00:10:59.040",
+      "end_seconds": 659.04,
+      "start_label": "00:10:55.200",
+      "start_seconds": 655.2,
+      "text": "agentically search over it, and they can"
+    },
+    {
+      "duration_seconds": 5.481,
+      "end_label": "00:11:02.320",
+      "end_seconds": 662.32,
+      "start_label": "00:10:56.839",
+      "start_seconds": 656.839,
+      "text": "like prepare data sets for you to do"
+    },
+    {
+      "duration_seconds": 4.16,
+      "end_label": "00:11:03.200",
+      "end_seconds": 663.2,
+      "start_label": "00:10:59.040",
+      "start_seconds": 659.04,
+      "text": "something after. And a bit of a leader,"
+    },
+    {
+      "duration_seconds": 3.48,
+      "end_label": "00:11:05.800",
+      "end_seconds": 665.8,
+      "start_label": "00:11:02.320",
+      "start_seconds": 662.32,
+      "text": "um"
+    },
+    {
+      "duration_seconds": 4.96,
+      "end_label": "00:11:08.160",
+      "end_seconds": 668.16,
+      "start_label": "00:11:03.200",
+      "start_seconds": 663.2,
+      "text": "what that something basically is is the"
+    },
+    {
+      "duration_seconds": 3.2,
+      "end_label": "00:11:09.000",
+      "end_seconds": 669.0,
+      "start_label": "00:11:05.800",
+      "start_seconds": 665.8,
+      "text": "outputs of this trace mining exercise."
+    },
+    {
+      "duration_seconds": 1.88,
+      "end_label": "00:11:10.040",
+      "end_seconds": 670.04,
+      "start_label": "00:11:08.160",
+      "start_seconds": 668.16,
+      "text": "So,"
+    },
+    {
+      "duration_seconds": 3.56,
+      "end_label": "00:11:12.560",
+      "end_seconds": 672.56,
+      "start_label": "00:11:09.000",
+      "start_seconds": 669.0,
+      "text": "there's like three things that I"
+    },
+    {
+      "duration_seconds": 4.72,
+      "end_label": "00:11:14.760",
+      "end_seconds": 674.76,
+      "start_label": "00:11:10.040",
+      "start_seconds": 670.04,
+      "text": "mentioned here uh which we see a bunch"
+    },
+    {
+      "duration_seconds": 5.08,
+      "end_label": "00:11:17.640",
+      "end_seconds": 677.64,
+      "start_label": "00:11:12.560",
+      "start_seconds": 672.56,
+      "text": "and we kind of put into the product. So,"
+    },
+    {
+      "duration_seconds": 6.16,
+      "end_label": "00:11:20.920",
+      "end_seconds": 680.92,
+      "start_label": "00:11:14.760",
+      "start_seconds": 674.76,
+      "text": "one is distillation and fine-tuning,"
+    },
+    {
+      "duration_seconds": 5.76,
+      "end_label": "00:11:23.400",
+      "end_seconds": 683.4,
+      "start_label": "00:11:17.640",
+      "start_seconds": 677.64,
+      "text": "which is let's say I'm running GLM 5.2."
+    },
+    {
+      "duration_seconds": 4.36,
+      "end_label": "00:11:25.280",
+      "end_seconds": 685.28,
+      "start_label": "00:11:20.920",
+      "start_seconds": 680.92,
+      "text": "It's doing great, but I think that I can"
+    },
+    {
+      "duration_seconds": 4.48,
+      "end_label": "00:11:27.880",
+      "end_seconds": 687.88,
+      "start_label": "00:11:23.400",
+      "start_seconds": 683.4,
+      "text": "run this task like way cheaper with like"
+    },
+    {
+      "duration_seconds": 4.04,
+      "end_label": "00:11:29.320",
+      "end_seconds": 689.32,
+      "start_label": "00:11:25.280",
+      "start_seconds": 685.28,
+      "text": "a 9B or 13B model. Then what I'll do is"
+    },
+    {
+      "duration_seconds": 4.28,
+      "end_label": "00:11:32.160",
+      "end_seconds": 692.16,
+      "start_label": "00:11:27.880",
+      "start_seconds": 687.88,
+      "text": "like I'll take the good traces and the"
+    },
+    {
+      "duration_seconds": 4.32,
+      "end_label": "00:11:33.640",
+      "end_seconds": 693.64,
+      "start_label": "00:11:29.320",
+      "start_seconds": 689.32,
+      "text": "good examples from the GLM 5.2 runs,"
+    },
+    {
+      "duration_seconds": 3.28,
+      "end_label": "00:11:35.440",
+      "end_seconds": 695.44,
+      "start_label": "00:11:32.160",
+      "start_seconds": 692.16,
+      "text": "I'll prepare them in a data set, and"
+    },
+    {
+      "duration_seconds": 4.28,
+      "end_label": "00:11:37.920",
+      "end_seconds": 697.92,
+      "start_label": "00:11:33.640",
+      "start_seconds": 693.64,
+      "text": "then I'll try to fine-tune a small model"
+    },
+    {
+      "duration_seconds": 3.88,
+      "end_label": "00:11:39.320",
+      "end_seconds": 699.32,
+      "start_label": "00:11:35.440",
+      "start_seconds": 695.44,
+      "text": "on that data set to like mimic behavior,"
+    },
+    {
+      "duration_seconds": 5.28,
+      "end_label": "00:11:43.200",
+      "end_seconds": 703.2,
+      "start_label": "00:11:37.920",
+      "start_seconds": 697.92,
+      "text": "essentially, right? And this is like"
+    },
+    {
+      "duration_seconds": 6.64,
+      "end_label": "00:11:45.960",
+      "end_seconds": 705.96,
+      "start_label": "00:11:39.320",
+      "start_seconds": 699.32,
+      "text": "distillation, SFT. The The other one is"
+    },
+    {
+      "duration_seconds": 4.88,
+      "end_label": "00:11:48.080",
+      "end_seconds": 708.08,
+      "start_label": "00:11:43.200",
+      "start_seconds": 703.2,
+      "text": "generating evals and environments. So,"
+    },
+    {
+      "duration_seconds": 5.12,
+      "end_label": "00:11:51.080",
+      "end_seconds": 711.08,
+      "start_label": "00:11:45.960",
+      "start_seconds": 705.96,
+      "text": "maybe another slightly hot take, I think"
+    },
+    {
+      "duration_seconds": 5.16,
+      "end_label": "00:11:53.240",
+      "end_seconds": 713.24,
+      "start_label": "00:11:48.080",
+      "start_seconds": 708.08,
+      "text": "you can basically define agent behavior"
+    },
+    {
+      "duration_seconds": 4.24,
+      "end_label": "00:11:55.320",
+      "end_seconds": 715.32,
+      "start_label": "00:11:51.080",
+      "start_seconds": 711.08,
+      "text": "by showing the evals that you ran on it,"
+    },
+    {
+      "duration_seconds": 3.16,
+      "end_label": "00:11:56.400",
+      "end_seconds": 716.4,
+      "start_label": "00:11:53.240",
+      "start_seconds": 713.24,
+      "text": "right? Like, if someone showed me all"
+    },
+    {
+      "duration_seconds": 3.24,
+      "end_label": "00:11:58.560",
+      "end_seconds": 718.56,
+      "start_label": "00:11:55.320",
+      "start_seconds": 715.32,
+      "text": "the things that they're trying to test"
+    },
+    {
+      "duration_seconds": 4.04,
+      "end_label": "00:12:00.440",
+      "end_seconds": 720.44,
+      "start_label": "00:11:56.400",
+      "start_seconds": 716.4,
+      "text": "their agent on, I think I would have a"
+    },
+    {
+      "duration_seconds": 4.04,
+      "end_label": "00:12:02.600",
+      "end_seconds": 722.6,
+      "start_label": "00:11:58.560",
+      "start_seconds": 718.56,
+      "text": "rough idea about how that agent is going"
+    },
+    {
+      "duration_seconds": 5.16,
+      "end_label": "00:12:05.600",
+      "end_seconds": 725.6,
+      "start_label": "00:12:00.440",
+      "start_seconds": 720.44,
+      "text": "to behave because it literally like hill"
+    },
+    {
+      "duration_seconds": 4.88,
+      "end_label": "00:12:07.480",
+      "end_seconds": 727.48,
+      "start_label": "00:12:02.600",
+      "start_seconds": 722.6,
+      "text": "climbs those evals, and you you alter"
+    },
+    {
+      "duration_seconds": 3.72,
+      "end_label": "00:12:09.320",
+      "end_seconds": 729.32,
+      "start_label": "00:12:05.600",
+      "start_seconds": 725.6,
+      "text": "the behavior of the agent to make the"
+    },
+    {
+      "duration_seconds": 3.8,
+      "end_label": "00:12:11.280",
+      "end_seconds": 731.28,
+      "start_label": "00:12:07.480",
+      "start_seconds": 727.48,
+      "text": "evals pass, right? Like, the purpose of"
+    },
+    {
+      "duration_seconds": 4.04,
+      "end_label": "00:12:13.360",
+      "end_seconds": 733.36,
+      "start_label": "00:12:09.320",
+      "start_seconds": 729.32,
+      "text": "evals is roughly to try to make them"
+    },
+    {
+      "duration_seconds": 4.44,
+      "end_label": "00:12:15.720",
+      "end_seconds": 735.72,
+      "start_label": "00:12:11.280",
+      "start_seconds": 731.28,
+      "text": "pass, right? So, I update my agent so"
+    },
+    {
+      "duration_seconds": 4.6,
+      "end_label": "00:12:17.960",
+      "end_seconds": 737.96,
+      "start_label": "00:12:13.360",
+      "start_seconds": 733.36,
+      "text": "that they essentially pass. And then the"
+    },
+    {
+      "duration_seconds": 4.64,
+      "end_label": "00:12:20.360",
+      "end_seconds": 740.36,
+      "start_label": "00:12:15.720",
+      "start_seconds": 735.72,
+      "text": "the other thing is um like humans are"
+    },
+    {
+      "duration_seconds": 5.16,
+      "end_label": "00:12:23.120",
+      "end_seconds": 743.12,
+      "start_label": "00:12:17.960",
+      "start_seconds": 737.96,
+      "text": "still in the loop. Like, I need to know"
+    },
+    {
+      "duration_seconds": 4.56,
+      "end_label": "00:12:24.920",
+      "end_seconds": 744.92,
+      "start_label": "00:12:20.360",
+      "start_seconds": 740.36,
+      "text": "that customers are happy. I also want to"
+    },
+    {
+      "duration_seconds": 3.72,
+      "end_label": "00:12:26.840",
+      "end_seconds": 746.84,
+      "start_label": "00:12:23.120",
+      "start_seconds": 743.12,
+      "text": "know what my agents are doing. I just"
+    },
+    {
+      "duration_seconds": 4.68,
+      "end_label": "00:12:29.600",
+      "end_seconds": 749.6,
+      "start_label": "00:12:24.920",
+      "start_seconds": 744.92,
+      "text": "don't have the bandwidth to read a bunch"
+    },
+    {
+      "duration_seconds": 4.84,
+      "end_label": "00:12:31.680",
+      "end_seconds": 751.68,
+      "start_label": "00:12:26.840",
+      "start_seconds": 746.84,
+      "text": "of traces. So, preparing content for"
+    },
+    {
+      "duration_seconds": 5.2,
+      "end_label": "00:12:34.800",
+      "end_seconds": 754.8,
+      "start_label": "00:12:29.600",
+      "start_seconds": 749.6,
+      "text": "humans is still like really, really"
+    },
+    {
+      "duration_seconds": 5.0,
+      "end_label": "00:12:36.680",
+      "end_seconds": 756.68,
+      "start_label": "00:12:31.680",
+      "start_seconds": 751.68,
+      "text": "valuable today, especially in like"
+    },
+    {
+      "duration_seconds": 3.6,
+      "end_label": "00:12:38.400",
+      "end_seconds": 758.4,
+      "start_label": "00:12:34.800",
+      "start_seconds": 754.8,
+      "text": "high-trust domains like legal and"
+    },
+    {
+      "duration_seconds": 3.56,
+      "end_label": "00:12:40.240",
+      "end_seconds": 760.24,
+      "start_label": "00:12:36.680",
+      "start_seconds": 756.68,
+      "text": "medical. Like, some human needs to"
+    },
+    {
+      "duration_seconds": 4.04,
+      "end_label": "00:12:42.440",
+      "end_seconds": 762.44,
+      "start_label": "00:12:38.400",
+      "start_seconds": 758.4,
+      "text": "review this, um but they can't read it"
+    },
+    {
+      "duration_seconds": 5.72,
+      "end_label": "00:12:45.960",
+      "end_seconds": 765.96,
+      "start_label": "00:12:40.240",
+      "start_seconds": 760.24,
+      "text": "all, so we try to make it easy for them"
+    },
+    {
+      "duration_seconds": 3.52,
+      "end_label": "00:12:45.960",
+      "end_seconds": 765.96,
+      "start_label": "00:12:42.440",
+      "start_seconds": 762.44,
+      "text": "to process all that data."
+    },
+    {
+      "duration_seconds": 3.92,
+      "end_label": "00:12:50.080",
+      "end_seconds": 770.08,
+      "start_label": "00:12:46.160",
+      "start_seconds": 766.16,
+      "text": "Great. This is um maybe a bit of a"
+    },
+    {
+      "duration_seconds": 4.08,
+      "end_label": "00:12:52.040",
+      "end_seconds": 772.04,
+      "start_label": "00:12:47.960",
+      "start_seconds": 767.96,
+      "text": "throwback. Like, how many people here"
+    },
+    {
+      "duration_seconds": 3.84,
+      "end_label": "00:12:53.920",
+      "end_seconds": 773.92,
+      "start_label": "00:12:50.080",
+      "start_seconds": 770.08,
+      "text": "know what like scikit-learn is? Uh maybe"
+    },
+    {
+      "duration_seconds": 5.16,
+      "end_label": "00:12:57.200",
+      "end_seconds": 777.2,
+      "start_label": "00:12:52.040",
+      "start_seconds": 772.04,
+      "text": "put your uh psych This crowd is just"
+    },
+    {
+      "duration_seconds": 5.52,
+      "end_label": "00:12:59.440",
+      "end_seconds": 779.44,
+      "start_label": "00:12:53.920",
+      "start_seconds": 773.92,
+      "text": "awesome. Um cool. So, uh when I was like"
+    },
+    {
+      "duration_seconds": 4.72,
+      "end_label": "00:13:01.920",
+      "end_seconds": 781.92,
+      "start_label": "00:12:57.200",
+      "start_seconds": 777.2,
+      "text": "first doing my PhD, uh"
+    },
+    {
+      "duration_seconds": 4.6,
+      "end_label": "00:13:04.040",
+      "end_seconds": 784.04,
+      "start_label": "00:12:59.440",
+      "start_seconds": 779.44,
+      "text": "my PhD was like kind of trying to do"
+    },
+    {
+      "duration_seconds": 3.52,
+      "end_label": "00:13:05.440",
+      "end_seconds": 785.44,
+      "start_label": "00:13:01.920",
+      "start_seconds": 781.92,
+      "text": "this, but like add new algorithms to"
+    },
+    {
+      "duration_seconds": 5.24,
+      "end_label": "00:13:09.280",
+      "end_seconds": 789.28,
+      "start_label": "00:13:04.040",
+      "start_seconds": 784.04,
+      "text": "scikit-learn. And like, what"
+    },
+    {
+      "duration_seconds": 8.0,
+      "end_label": "00:13:13.440",
+      "end_seconds": 793.44,
+      "start_label": "00:13:05.440",
+      "start_seconds": 785.44,
+      "text": "scikit-learn basically is uh an abstract"
+    },
+    {
+      "duration_seconds": 6.68,
+      "end_label": "00:13:15.960",
+      "end_seconds": 795.96,
+      "start_label": "00:13:09.280",
+      "start_seconds": 789.28,
+      "text": "level, it's a bunch of helpers to fit"
+    },
+    {
+      "duration_seconds": 4.04,
+      "end_label": "00:13:17.480",
+      "end_seconds": 797.48,
+      "start_label": "00:13:13.440",
+      "start_seconds": 793.44,
+      "text": "learning systems to data, right? And"
+    },
+    {
+      "duration_seconds": 2.68,
+      "end_label": "00:13:18.640",
+      "end_seconds": 798.64,
+      "start_label": "00:13:15.960",
+      "start_seconds": 795.96,
+      "text": "like, classical machine learning, I had"
+    },
+    {
+      "duration_seconds": 4.2,
+      "end_label": "00:13:21.680",
+      "end_seconds": 801.68,
+      "start_label": "00:13:17.480",
+      "start_seconds": 797.48,
+      "text": "like a data set, I tried to fit it to"
+    },
+    {
+      "duration_seconds": 5.56,
+      "end_label": "00:13:24.200",
+      "end_seconds": 804.2,
+      "start_label": "00:13:18.640",
+      "start_seconds": 798.64,
+      "text": "it, but I think the same principles that"
+    },
+    {
+      "duration_seconds": 3.68,
+      "end_label": "00:13:25.360",
+      "end_seconds": 805.36,
+      "start_label": "00:13:21.680",
+      "start_seconds": 801.68,
+      "text": "we use in modern in I got I call it"
+    },
+    {
+      "duration_seconds": 3.12,
+      "end_label": "00:13:27.320",
+      "end_seconds": 807.32,
+      "start_label": "00:13:24.200",
+      "start_seconds": 804.2,
+      "text": "classical machine learning, it's like 6"
+    },
+    {
+      "duration_seconds": 3.96,
+      "end_label": "00:13:29.320",
+      "end_seconds": 809.32,
+      "start_label": "00:13:25.360",
+      "start_seconds": 805.36,
+      "text": "years ago. Um that we do in classical"
+    },
+    {
+      "duration_seconds": 5.4,
+      "end_label": "00:13:32.720",
+      "end_seconds": 812.72,
+      "start_label": "00:13:27.320",
+      "start_seconds": 807.32,
+      "text": "machine learning uh definitely still"
+    },
+    {
+      "duration_seconds": 5.44,
+      "end_label": "00:13:34.760",
+      "end_seconds": 814.76,
+      "start_label": "00:13:29.320",
+      "start_seconds": 809.32,
+      "text": "apply to this agent-first world. Um,"
+    },
+    {
+      "duration_seconds": 5.84,
+      "end_label": "00:13:38.560",
+      "end_seconds": 818.56,
+      "start_label": "00:13:32.720",
+      "start_seconds": 812.72,
+      "text": "the way that they apply is what I like"
+    },
+    {
+      "duration_seconds": 5.76,
+      "end_label": "00:13:40.520",
+      "end_seconds": 820.52,
+      "start_label": "00:13:34.760",
+      "start_seconds": 814.76,
+      "text": "to call model harness task fit. So, we"
+    },
+    {
+      "duration_seconds": 4.68,
+      "end_label": "00:13:43.240",
+      "end_seconds": 823.24,
+      "start_label": "00:13:38.560",
+      "start_seconds": 818.56,
+      "text": "still have this sort of like fit"
+    },
+    {
+      "duration_seconds": 5.52,
+      "end_label": "00:13:46.040",
+      "end_seconds": 826.04,
+      "start_label": "00:13:40.520",
+      "start_seconds": 820.52,
+      "text": "function that I'm going to try to like"
+    },
+    {
+      "duration_seconds": 4.64,
+      "end_label": "00:13:47.880",
+      "end_seconds": 827.88,
+      "start_label": "00:13:43.240",
+      "start_seconds": 823.24,
+      "text": "take my data, take a harness, take a"
+    },
+    {
+      "duration_seconds": 3.6,
+      "end_label": "00:13:49.640",
+      "end_seconds": 829.64,
+      "start_label": "00:13:46.040",
+      "start_seconds": 826.04,
+      "text": "model, and I'm going to try to fit it"
+    },
+    {
+      "duration_seconds": 5.04,
+      "end_label": "00:13:52.920",
+      "end_seconds": 832.92,
+      "start_label": "00:13:47.880",
+      "start_seconds": 827.88,
+      "text": "all together to make sure that all of my"
+    },
+    {
+      "duration_seconds": 6.8,
+      "end_label": "00:13:56.440",
+      "end_seconds": 836.44,
+      "start_label": "00:13:49.640",
+      "start_seconds": 829.64,
+      "text": "tasks pass, right? The algorithms look"
+    },
+    {
+      "duration_seconds": 5.44,
+      "end_label": "00:13:58.360",
+      "end_seconds": 838.36,
+      "start_label": "00:13:52.920",
+      "start_seconds": 832.92,
+      "text": "slightly different, uh but the overall"
+    },
+    {
+      "duration_seconds": 4.08,
+      "end_label": "00:14:00.520",
+      "end_seconds": 840.52,
+      "start_label": "00:13:56.440",
+      "start_seconds": 836.44,
+      "text": "process of machine learning doesn't"
+    },
+    {
+      "duration_seconds": 5.0,
+      "end_label": "00:14:03.360",
+      "end_seconds": 843.36,
+      "start_label": "00:13:58.360",
+      "start_seconds": 838.36,
+      "text": "really look that different, and we'll"
+    },
+    {
+      "duration_seconds": 6.04,
+      "end_label": "00:14:06.560",
+      "end_seconds": 846.56,
+      "start_label": "00:14:00.520",
+      "start_seconds": 840.52,
+      "text": "talk about maybe roughly what our job"
+    },
+    {
+      "duration_seconds": 5.32,
+      "end_label": "00:14:08.680",
+      "end_seconds": 848.68,
+      "start_label": "00:14:03.360",
+      "start_seconds": 843.36,
+      "text": "becomes in this data-first, agent-first,"
+    },
+    {
+      "duration_seconds": 4.6,
+      "end_label": "00:14:11.160",
+      "end_seconds": 851.16,
+      "start_label": "00:14:06.560",
+      "start_seconds": 846.56,
+      "text": "fit-first world. So, a couple of our"
+    },
+    {
+      "duration_seconds": 4.52,
+      "end_label": "00:14:13.200",
+      "end_seconds": 853.2,
+      "start_label": "00:14:08.680",
+      "start_seconds": 848.68,
+      "text": "main jobs now are"
+    },
+    {
+      "duration_seconds": 4.56,
+      "end_label": "00:14:15.720",
+      "end_seconds": 855.72,
+      "start_label": "00:14:11.160",
+      "start_seconds": 851.16,
+      "text": "find good fit functions. So, these are"
+    },
+    {
+      "duration_seconds": 4.4,
+      "end_label": "00:14:17.600",
+      "end_seconds": 857.6,
+      "start_label": "00:14:13.200",
+      "start_seconds": 853.2,
+      "text": "like auto research. This is tons of"
+    },
+    {
+      "duration_seconds": 4.52,
+      "end_label": "00:14:20.240",
+      "end_seconds": 860.24,
+      "start_label": "00:14:15.720",
+      "start_seconds": 855.72,
+      "text": "great work that's being done in RL on"
+    },
+    {
+      "duration_seconds": 5.08,
+      "end_label": "00:14:22.680",
+      "end_seconds": 862.68,
+      "start_label": "00:14:17.600",
+      "start_seconds": 857.6,
+      "text": "different methods like OPD, OPSD,"
+    },
+    {
+      "duration_seconds": 4.24,
+      "end_label": "00:14:24.480",
+      "end_seconds": 864.48,
+      "start_label": "00:14:20.240",
+      "start_seconds": 860.24,
+      "text": "trySFT."
+    },
+    {
+      "duration_seconds": 3.76,
+      "end_label": "00:14:26.440",
+      "end_seconds": 866.44,
+      "start_label": "00:14:22.680",
+      "start_seconds": 862.68,
+      "text": "And also find good data, right? So, if"
+    },
+    {
+      "duration_seconds": 4.28,
+      "end_label": "00:14:28.760",
+      "end_seconds": 868.76,
+      "start_label": "00:14:24.480",
+      "start_seconds": 864.48,
+      "text": "you put those two things together, then"
+    },
+    {
+      "duration_seconds": 3.84,
+      "end_label": "00:14:30.280",
+      "end_seconds": 870.28,
+      "start_label": "00:14:26.440",
+      "start_seconds": 866.44,
+      "text": "that is basically the applied or just"
+    },
+    {
+      "duration_seconds": 4.68,
+      "end_label": "00:14:33.440",
+      "end_seconds": 873.44,
+      "start_label": "00:14:28.760",
+      "start_seconds": 868.76,
+      "text": "overall research question that every"
+    },
+    {
+      "duration_seconds": 5.16,
+      "end_label": "00:14:35.440",
+      "end_seconds": 875.44,
+      "start_label": "00:14:30.280",
+      "start_seconds": 870.28,
+      "text": "team has to make their agents better."
+    },
+    {
+      "duration_seconds": 3.8,
+      "end_label": "00:14:37.240",
+      "end_seconds": 877.24,
+      "start_label": "00:14:33.440",
+      "start_seconds": 873.44,
+      "text": "I like some some examples that we've"
+    },
+    {
+      "duration_seconds": 3.72,
+      "end_label": "00:14:39.160",
+      "end_seconds": 879.16,
+      "start_label": "00:14:35.440",
+      "start_seconds": 875.44,
+      "text": "seen that are like very popular that"
+    },
+    {
+      "duration_seconds": 4.64,
+      "end_label": "00:14:41.880",
+      "end_seconds": 881.88,
+      "start_label": "00:14:37.240",
+      "start_seconds": 877.24,
+      "text": "we're pretty bullish on are just"
+    },
+    {
+      "duration_seconds": 4.56,
+      "end_label": "00:14:43.720",
+      "end_seconds": 883.72,
+      "start_label": "00:14:39.160",
+      "start_seconds": 879.16,
+      "text": "generally auto research. So, if you have"
+    },
+    {
+      "duration_seconds": 3.68,
+      "end_label": "00:14:45.560",
+      "end_seconds": 885.56,
+      "start_label": "00:14:41.880",
+      "start_seconds": 881.88,
+      "text": "some sort of score that you can make"
+    },
+    {
+      "duration_seconds": 3.56,
+      "end_label": "00:14:47.280",
+      "end_seconds": 887.28,
+      "start_label": "00:14:43.720",
+      "start_seconds": 883.72,
+      "text": "number go up, uh"
+    },
+    {
+      "duration_seconds": 3.08,
+      "end_label": "00:14:48.640",
+      "end_seconds": 888.64,
+      "start_label": "00:14:45.560",
+      "start_seconds": 885.56,
+      "text": "agents are pretty good at making that"
+    },
+    {
+      "duration_seconds": 2.52,
+      "end_label": "00:14:49.800",
+      "end_seconds": 889.8,
+      "start_label": "00:14:47.280",
+      "start_seconds": 887.28,
+      "text": "number go up. They might cheat a little"
+    },
+    {
+      "duration_seconds": 3.12,
+      "end_label": "00:14:51.760",
+      "end_seconds": 891.76,
+      "start_label": "00:14:48.640",
+      "start_seconds": 888.64,
+      "text": "bit and you need to like check them on"
+    },
+    {
+      "duration_seconds": 4.88,
+      "end_label": "00:14:54.680",
+      "end_seconds": 894.68,
+      "start_label": "00:14:49.800",
+      "start_seconds": 889.8,
+      "text": "some stuff. Um, but this sort of like"
+    },
+    {
+      "duration_seconds": 5.16,
+      "end_label": "00:14:56.920",
+      "end_seconds": 896.92,
+      "start_label": "00:14:51.760",
+      "start_seconds": 891.76,
+      "text": "general feedback loop of do something,"
+    },
+    {
+      "duration_seconds": 4.24,
+      "end_label": "00:14:58.920",
+      "end_seconds": 898.92,
+      "start_label": "00:14:54.680",
+      "start_seconds": 894.68,
+      "text": "read the results, read the traces, and"
+    },
+    {
+      "duration_seconds": 3.24,
+      "end_label": "00:15:00.160",
+      "end_seconds": 900.16,
+      "start_label": "00:14:56.920",
+      "start_seconds": 896.92,
+      "text": "then do an update ends up being pretty"
+    },
+    {
+      "duration_seconds": 3.48,
+      "end_label": "00:15:02.400",
+      "end_seconds": 902.4,
+      "start_label": "00:14:58.920",
+      "start_seconds": 898.92,
+      "text": "useful. And then I talked about like"
+    },
+    {
+      "duration_seconds": 3.28,
+      "end_label": "00:15:03.440",
+      "end_seconds": 903.44,
+      "start_label": "00:15:00.160",
+      "start_seconds": 900.16,
+      "text": "model fine-tuning a bunch as well."
+    },
+    {
+      "duration_seconds": 3.56,
+      "end_label": "00:15:05.960",
+      "end_seconds": 905.96,
+      "start_label": "00:15:02.400",
+      "start_seconds": 902.4,
+      "text": "Um,"
+    },
+    {
+      "duration_seconds": 4.12,
+      "end_label": "00:15:07.560",
+      "end_seconds": 907.56,
+      "start_label": "00:15:03.440",
+      "start_seconds": 903.44,
+      "text": "so we we just like went and did this. Uh"
+    },
+    {
+      "duration_seconds": 2.92,
+      "end_label": "00:15:08.880",
+      "end_seconds": 908.88,
+      "start_label": "00:15:05.960",
+      "start_seconds": 905.96,
+      "text": "this was I think even before the term"
+    },
+    {
+      "duration_seconds": 3.08,
+      "end_label": "00:15:10.640",
+      "end_seconds": 910.64,
+      "start_label": "00:15:07.560",
+      "start_seconds": 907.56,
+      "text": "auto research came out, but a lot of"
+    },
+    {
+      "duration_seconds": 3.959,
+      "end_label": "00:15:12.839",
+      "end_seconds": 912.839,
+      "start_label": "00:15:08.880",
+      "start_seconds": 908.88,
+      "text": "people were doing it, which is hey, like"
+    },
+    {
+      "duration_seconds": 3.88,
+      "end_label": "00:15:14.520",
+      "end_seconds": 914.52,
+      "start_label": "00:15:10.640",
+      "start_seconds": 910.64,
+      "text": "terminal benches like really hard. Uh"
+    },
+    {
+      "duration_seconds": 4.201,
+      "end_label": "00:15:17.040",
+      "end_seconds": 917.04,
+      "start_label": "00:15:12.839",
+      "start_seconds": 912.839,
+      "text": "what would happen if an agent just like"
+    },
+    {
+      "duration_seconds": 4.6,
+      "end_label": "00:15:19.120",
+      "end_seconds": 919.12,
+      "start_label": "00:15:14.520",
+      "start_seconds": 914.52,
+      "text": "read its traces, uh proposed"
+    },
+    {
+      "duration_seconds": 4.88,
+      "end_label": "00:15:21.920",
+      "end_seconds": 921.92,
+      "start_label": "00:15:17.040",
+      "start_seconds": 917.04,
+      "text": "experiments, and then tried to do fixes?"
+    },
+    {
+      "duration_seconds": 4.52,
+      "end_label": "00:15:23.640",
+      "end_seconds": 923.64,
+      "start_label": "00:15:19.120",
+      "start_seconds": 919.12,
+      "text": "Um, I think one like really key thing"
+    },
+    {
+      "duration_seconds": 4.48,
+      "end_label": "00:15:26.400",
+      "end_seconds": 926.4,
+      "start_label": "00:15:21.920",
+      "start_seconds": 921.92,
+      "text": "here is uh"
+    },
+    {
+      "duration_seconds": 5.0,
+      "end_label": "00:15:28.640",
+      "end_seconds": 928.64,
+      "start_label": "00:15:23.640",
+      "start_seconds": 923.64,
+      "text": "giving agents dense feedback signals."
+    },
+    {
+      "duration_seconds": 4.0,
+      "end_label": "00:15:30.400",
+      "end_seconds": 930.4,
+      "start_label": "00:15:26.400",
+      "start_seconds": 926.4,
+      "text": "So, like terminal bench, the output is"
+    },
+    {
+      "duration_seconds": 3.8,
+      "end_label": "00:15:32.440",
+      "end_seconds": 932.44,
+      "start_label": "00:15:28.640",
+      "start_seconds": 928.64,
+      "text": "just a number, right? Like, did you pass"
+    },
+    {
+      "duration_seconds": 3.44,
+      "end_label": "00:15:33.840",
+      "end_seconds": 933.84,
+      "start_label": "00:15:30.400",
+      "start_seconds": 930.4,
+      "text": "or did you not pass? Uh that's like kind"
+    },
+    {
+      "duration_seconds": 3.24,
+      "end_label": "00:15:35.680",
+      "end_seconds": 935.68,
+      "start_label": "00:15:32.440",
+      "start_seconds": 932.44,
+      "text": "of helpful, but if I give you like a"
+    },
+    {
+      "duration_seconds": 3.36,
+      "end_label": "00:15:37.200",
+      "end_seconds": 937.2,
+      "start_label": "00:15:33.840",
+      "start_seconds": 933.84,
+      "text": "super random task, like you just did a"
+    },
+    {
+      "duration_seconds": 3.44,
+      "end_label": "00:15:39.120",
+      "end_seconds": 939.12,
+      "start_label": "00:15:35.680",
+      "start_seconds": 935.68,
+      "text": "bunch of stuff, and then I just said"
+    },
+    {
+      "duration_seconds": 3.04,
+      "end_label": "00:15:40.240",
+      "end_seconds": 940.24,
+      "start_label": "00:15:37.200",
+      "start_seconds": 937.2,
+      "text": "like you failed or you passed, uh if you"
+    },
+    {
+      "duration_seconds": 3.08,
+      "end_label": "00:15:42.200",
+      "end_seconds": 942.2,
+      "start_label": "00:15:39.120",
+      "start_seconds": 939.12,
+      "text": "failed, like you wouldn't really have a"
+    },
+    {
+      "duration_seconds": 4.84,
+      "end_label": "00:15:45.080",
+      "end_seconds": 945.08,
+      "start_label": "00:15:40.240",
+      "start_seconds": 940.24,
+      "text": "good signal to figure out what you"
+    },
+    {
+      "duration_seconds": 4.92,
+      "end_label": "00:15:47.120",
+      "end_seconds": 947.12,
+      "start_label": "00:15:42.200",
+      "start_seconds": 942.2,
+      "text": "should do next, right? So, densifying"
+    },
+    {
+      "duration_seconds": 4.32,
+      "end_label": "00:15:49.400",
+      "end_seconds": 949.4,
+      "start_label": "00:15:45.080",
+      "start_seconds": 945.08,
+      "text": "feedback is uh really good way to"
+    },
+    {
+      "duration_seconds": 4.76,
+      "end_label": "00:15:51.880",
+      "end_seconds": 951.88,
+      "start_label": "00:15:47.120",
+      "start_seconds": 947.12,
+      "text": "improve agents, and like traces are the"
+    },
+    {
+      "duration_seconds": 3.6,
+      "end_label": "00:15:53.000",
+      "end_seconds": 953.0,
+      "start_label": "00:15:49.400",
+      "start_seconds": 949.4,
+      "text": "substrate that hold that feedback. And"
+    },
+    {
+      "duration_seconds": 3.08,
+      "end_label": "00:15:54.960",
+      "end_seconds": 954.96,
+      "start_label": "00:15:51.880",
+      "start_seconds": 951.88,
+      "text": "then agents are very good at like"
+    },
+    {
+      "duration_seconds": 5.52,
+      "end_label": "00:15:58.520",
+      "end_seconds": 958.52,
+      "start_label": "00:15:53.000",
+      "start_seconds": 953.0,
+      "text": "reading those uh those traces and then"
+    },
+    {
+      "duration_seconds": 6.6,
+      "end_label": "00:16:01.560",
+      "end_seconds": 961.56,
+      "start_label": "00:15:54.960",
+      "start_seconds": 954.96,
+      "text": "figuring out like what to do next. Um"
+    },
+    {
+      "duration_seconds": 4.96,
+      "end_label": "00:16:03.480",
+      "end_seconds": 963.48,
+      "start_label": "00:15:58.520",
+      "start_seconds": 958.52,
+      "text": "and then this sort of question always"
+    },
+    {
+      "duration_seconds": 3.56,
+      "end_label": "00:16:05.120",
+      "end_seconds": 965.12,
+      "start_label": "00:16:01.560",
+      "start_seconds": 961.56,
+      "text": "comes up, which is"
+    },
+    {
+      "duration_seconds": 3.84,
+      "end_label": "00:16:07.320",
+      "end_seconds": 967.32,
+      "start_label": "00:16:03.480",
+      "start_seconds": 963.48,
+      "text": "when should I like harness Enge? When"
+    },
+    {
+      "duration_seconds": 5.28,
+      "end_label": "00:16:10.400",
+      "end_seconds": 970.4,
+      "start_label": "00:16:05.120",
+      "start_seconds": 965.12,
+      "text": "should I fine-tune? Uh should I do more"
+    },
+    {
+      "duration_seconds": 5.8,
+      "end_label": "00:16:13.120",
+      "end_seconds": 973.12,
+      "start_label": "00:16:07.320",
+      "start_seconds": 967.32,
+      "text": "harness Enge after it? I'm like pretty"
+    },
+    {
+      "duration_seconds": 5.88,
+      "end_label": "00:16:16.280",
+      "end_seconds": 976.28,
+      "start_label": "00:16:10.400",
+      "start_seconds": 970.4,
+      "text": "bullish on the idea of if you need to do"
+    },
+    {
+      "duration_seconds": 5.2,
+      "end_label": "00:16:18.320",
+      "end_seconds": 978.32,
+      "start_label": "00:16:13.120",
+      "start_seconds": 973.12,
+      "text": "something for improving your agent, the"
+    },
+    {
+      "duration_seconds": 4.12,
+      "end_label": "00:16:20.400",
+      "end_seconds": 980.4,
+      "start_label": "00:16:16.280",
+      "start_seconds": 976.28,
+      "text": "best thing that you can do is collect"
+    },
+    {
+      "duration_seconds": 3.84,
+      "end_label": "00:16:22.160",
+      "end_seconds": 982.16,
+      "start_label": "00:16:18.320",
+      "start_seconds": 978.32,
+      "text": "feedback as quickly as possible, like"
+    },
+    {
+      "duration_seconds": 3.84,
+      "end_label": "00:16:24.240",
+      "end_seconds": 984.24,
+      "start_label": "00:16:20.400",
+      "start_seconds": 980.4,
+      "text": "either from humans labeling or just"
+    },
+    {
+      "duration_seconds": 4.08,
+      "end_label": "00:16:26.240",
+      "end_seconds": 986.24,
+      "start_label": "00:16:22.160",
+      "start_seconds": 982.16,
+      "text": "letting the agents run. So, like harness"
+    },
+    {
+      "duration_seconds": 3.56,
+      "end_label": "00:16:27.800",
+      "end_seconds": 987.8,
+      "start_label": "00:16:24.240",
+      "start_seconds": 984.24,
+      "text": "engineering gives you feedback in maybe"
+    },
+    {
+      "duration_seconds": 3.56,
+      "end_label": "00:16:29.800",
+      "end_seconds": 989.8,
+      "start_label": "00:16:26.240",
+      "start_seconds": 986.24,
+      "text": "2 minutes. Um"
+    },
+    {
+      "duration_seconds": 4.88,
+      "end_label": "00:16:32.680",
+      "end_seconds": 992.68,
+      "start_label": "00:16:27.800",
+      "start_seconds": 987.8,
+      "text": "once you sort of saturate the harness"
+    },
+    {
+      "duration_seconds": 4.52,
+      "end_label": "00:16:34.320",
+      "end_seconds": 994.32,
+      "start_label": "00:16:29.800",
+      "start_seconds": 989.8,
+      "text": "engineering ceiling, right? Then you can"
+    },
+    {
+      "duration_seconds": 3.48,
+      "end_label": "00:16:36.160",
+      "end_seconds": 996.16,
+      "start_label": "00:16:32.680",
+      "start_seconds": 992.68,
+      "text": "maybe try to do like fine-tuning after"
+    },
+    {
+      "duration_seconds": 4.56,
+      "end_label": "00:16:38.880",
+      "end_seconds": 998.88,
+      "start_label": "00:16:34.320",
+      "start_seconds": 994.32,
+      "text": "that, but we find a lot of teams are"
+    },
+    {
+      "duration_seconds": 4.12,
+      "end_label": "00:16:40.280",
+      "end_seconds": 1000.28,
+      "start_label": "00:16:36.160",
+      "start_seconds": 996.16,
+      "text": "happy with harness engineering and uh it"
+    },
+    {
+      "duration_seconds": 2.88,
+      "end_label": "00:16:41.760",
+      "end_seconds": 1001.76,
+      "start_label": "00:16:38.880",
+      "start_seconds": 998.88,
+      "text": "solves their customer use case, so like"
+    },
+    {
+      "duration_seconds": 2.28,
+      "end_label": "00:16:42.560",
+      "end_seconds": 1002.56,
+      "start_label": "00:16:40.280",
+      "start_seconds": 1000.28,
+      "text": "we always sort of sort of recommend it."
+    },
+    {
+      "duration_seconds": 2.28,
+      "end_label": "00:16:44.040",
+      "end_seconds": 1004.04,
+      "start_label": "00:16:41.760",
+      "start_seconds": 1001.76,
+      "text": "And then we have this like sort of"
+    },
+    {
+      "duration_seconds": 3.56,
+      "end_label": "00:16:46.120",
+      "end_seconds": 1006.12,
+      "start_label": "00:16:42.560",
+      "start_seconds": 1002.56,
+      "text": "sandwich, which is like try harness"
+    },
+    {
+      "duration_seconds": 3.56,
+      "end_label": "00:16:47.600",
+      "end_seconds": 1007.6,
+      "start_label": "00:16:44.040",
+      "start_seconds": 1004.04,
+      "text": "engineering, try to do fine-tuning to"
+    },
+    {
+      "duration_seconds": 2.96,
+      "end_label": "00:16:49.080",
+      "end_seconds": 1009.08,
+      "start_label": "00:16:46.120",
+      "start_seconds": 1006.12,
+      "text": "sort of like break through that ceiling,"
+    },
+    {
+      "duration_seconds": 4.0,
+      "end_label": "00:16:51.600",
+      "end_seconds": 1011.6,
+      "start_label": "00:16:47.600",
+      "start_seconds": 1007.6,
+      "text": "and then do more harness engineering"
+    },
+    {
+      "duration_seconds": 5.56,
+      "end_label": "00:16:54.640",
+      "end_seconds": 1014.64,
+      "start_label": "00:16:49.080",
+      "start_seconds": 1009.08,
+      "text": "again if you need to."
+    },
+    {
+      "duration_seconds": 5.48,
+      "end_label": "00:16:57.080",
+      "end_seconds": 1017.08,
+      "start_label": "00:16:51.600",
+      "start_seconds": 1011.6,
+      "text": "And then I'll sort of end on the the"
+    },
+    {
+      "duration_seconds": 5.28,
+      "end_label": "00:16:59.920",
+      "end_seconds": 1019.92,
+      "start_label": "00:16:54.640",
+      "start_seconds": 1014.64,
+      "text": "idea generally of continual learning is"
+    },
+    {
+      "duration_seconds": 5.84,
+      "end_label": "00:17:02.920",
+      "end_seconds": 1022.92,
+      "start_label": "00:16:57.080",
+      "start_seconds": 1017.08,
+      "text": "that there's an agent taking actions in"
+    },
+    {
+      "duration_seconds": 6.279,
+      "end_label": "00:17:06.199",
+      "end_seconds": 1026.199,
+      "start_label": "00:16:59.920",
+      "start_seconds": 1019.92,
+      "text": "the environment, and then it needs to"
+    },
+    {
+      "duration_seconds": 6.72,
+      "end_label": "00:17:09.640",
+      "end_seconds": 1029.64,
+      "start_label": "00:17:02.920",
+      "start_seconds": 1022.92,
+      "text": "use that information, sorry guys, needs"
+    },
+    {
+      "duration_seconds": 4.921,
+      "end_label": "00:17:11.120",
+      "end_seconds": 1031.12,
+      "start_label": "00:17:06.199",
+      "start_seconds": 1026.199,
+      "text": "to use that information to update"
+    },
+    {
+      "duration_seconds": 4.0,
+      "end_label": "00:17:13.640",
+      "end_seconds": 1033.64,
+      "start_label": "00:17:09.640",
+      "start_seconds": 1029.64,
+      "text": "information about itself, right? So,"
+    },
+    {
+      "duration_seconds": 4.44,
+      "end_label": "00:17:15.560",
+      "end_seconds": 1035.56,
+      "start_label": "00:17:11.120",
+      "start_seconds": 1031.12,
+      "text": "it's like I did a bunch of these tasks,"
+    },
+    {
+      "duration_seconds": 4.199,
+      "end_label": "00:17:17.839",
+      "end_seconds": 1037.839,
+      "start_label": "00:17:13.640",
+      "start_seconds": 1033.64,
+      "text": "and like I need to update my prompts to"
+    },
+    {
+      "duration_seconds": 6.279,
+      "end_label": "00:17:21.839",
+      "end_seconds": 1041.839,
+      "start_label": "00:17:15.560",
+      "start_seconds": 1035.56,
+      "text": "make sure I do them more efficiently. Or"
+    },
+    {
+      "duration_seconds": 5.761,
+      "end_label": "00:17:23.600",
+      "end_seconds": 1043.6,
+      "start_label": "00:17:17.839",
+      "start_seconds": 1037.839,
+      "text": "users are users keep asking to search"
+    },
+    {
+      "duration_seconds": 4.721,
+      "end_label": "00:17:26.560",
+      "end_seconds": 1046.56,
+      "start_label": "00:17:21.839",
+      "start_seconds": 1041.839,
+      "text": "for these types of things, I should"
+    },
+    {
+      "duration_seconds": 4.0,
+      "end_label": "00:17:27.600",
+      "end_seconds": 1047.6,
+      "start_label": "00:17:23.600",
+      "start_seconds": 1043.6,
+      "text": "maybe tell like tell my creator that"
+    },
+    {
+      "duration_seconds": 2.56,
+      "end_label": "00:17:29.120",
+      "end_seconds": 1049.12,
+      "start_label": "00:17:26.560",
+      "start_seconds": 1046.56,
+      "text": "like they're they're doing this sort of"
+    },
+    {
+      "duration_seconds": 3.08,
+      "end_label": "00:17:30.680",
+      "end_seconds": 1050.68,
+      "start_label": "00:17:27.600",
+      "start_seconds": 1047.6,
+      "text": "stuff, right? It's like taking action in"
+    },
+    {
+      "duration_seconds": 4.12,
+      "end_label": "00:17:33.240",
+      "end_seconds": 1053.24,
+      "start_label": "00:17:29.120",
+      "start_seconds": 1049.12,
+      "text": "the environment kind of like humans do"
+    },
+    {
+      "duration_seconds": 5.68,
+      "end_label": "00:17:36.360",
+      "end_seconds": 1056.36,
+      "start_label": "00:17:30.680",
+      "start_seconds": 1050.68,
+      "text": "and updating ourselves. What that looks"
+    },
+    {
+      "duration_seconds": 5.12,
+      "end_label": "00:17:38.360",
+      "end_seconds": 1058.36,
+      "start_label": "00:17:33.240",
+      "start_seconds": 1053.24,
+      "text": "like today, slightly unclear, but we"
+    },
+    {
+      "duration_seconds": 4.52,
+      "end_label": "00:17:40.880",
+      "end_seconds": 1060.88,
+      "start_label": "00:17:36.360",
+      "start_seconds": 1056.36,
+      "text": "think that you're going to have to do it"
+    },
+    {
+      "duration_seconds": 4.24,
+      "end_label": "00:17:42.600",
+      "end_seconds": 1062.6,
+      "start_label": "00:17:38.360",
+      "start_seconds": 1058.36,
+      "text": "across all three axes, which is one,"
+    },
+    {
+      "duration_seconds": 4.32,
+      "end_label": "00:17:45.200",
+      "end_seconds": 1065.2,
+      "start_label": "00:17:40.880",
+      "start_seconds": 1060.88,
+      "text": "collect a bunch of training data, which"
+    },
+    {
+      "duration_seconds": 4.36,
+      "end_label": "00:17:46.960",
+      "end_seconds": 1066.96,
+      "start_label": "00:17:42.600",
+      "start_seconds": 1062.6,
+      "text": "is like observational data from agents"
+    },
+    {
+      "duration_seconds": 4.32,
+      "end_label": "00:17:49.520",
+      "end_seconds": 1069.52,
+      "start_label": "00:17:45.200",
+      "start_seconds": 1065.2,
+      "text": "taking actions. The The other one is"
+    },
+    {
+      "duration_seconds": 4.04,
+      "end_label": "00:17:51.000",
+      "end_seconds": 1071.0,
+      "start_label": "00:17:46.960",
+      "start_seconds": 1066.96,
+      "text": "like harness updates generally, like"
+    },
+    {
+      "duration_seconds": 3.16,
+      "end_label": "00:17:52.680",
+      "end_seconds": 1072.68,
+      "start_label": "00:17:49.520",
+      "start_seconds": 1069.52,
+      "text": "you know, the the Codex harness and the"
+    },
+    {
+      "duration_seconds": 3.44,
+      "end_label": "00:17:54.440",
+      "end_seconds": 1074.44,
+      "start_label": "00:17:51.000",
+      "start_seconds": 1071.0,
+      "text": "Cloud Code harness and like our harness"
+    },
+    {
+      "duration_seconds": 4.0,
+      "end_label": "00:17:56.680",
+      "end_seconds": 1076.68,
+      "start_label": "00:17:52.680",
+      "start_seconds": 1072.68,
+      "text": "and everyone's harness, like they look a"
+    },
+    {
+      "duration_seconds": 3.48,
+      "end_label": "00:17:57.920",
+      "end_seconds": 1077.92,
+      "start_label": "00:17:54.440",
+      "start_seconds": 1074.44,
+      "text": "certain way because like models are are"
+    },
+    {
+      "duration_seconds": 2.92,
+      "end_label": "00:17:59.600",
+      "end_seconds": 1079.6,
+      "start_label": "00:17:56.680",
+      "start_seconds": 1076.68,
+      "text": "trained in them and they look a certain"
+    },
+    {
+      "duration_seconds": 3.24,
+      "end_label": "00:18:01.160",
+      "end_seconds": 1081.16,
+      "start_label": "00:17:57.920",
+      "start_seconds": 1077.92,
+      "text": "way because of the tasks that they do in"
+    },
+    {
+      "duration_seconds": 4.2,
+      "end_label": "00:18:03.800",
+      "end_seconds": 1083.8,
+      "start_label": "00:17:59.600",
+      "start_seconds": 1079.6,
+      "text": "the real world and we think like"
+    },
+    {
+      "duration_seconds": 5.08,
+      "end_label": "00:18:06.240",
+      "end_seconds": 1086.24,
+      "start_label": "00:18:01.160",
+      "start_seconds": 1081.16,
+      "text": "evolving those over time is going to be"
+    },
+    {
+      "duration_seconds": 4.64,
+      "end_label": "00:18:08.440",
+      "end_seconds": 1088.44,
+      "start_label": "00:18:03.800",
+      "start_seconds": 1083.8,
+      "text": "super important in in order to make them"
+    },
+    {
+      "duration_seconds": 4.72,
+      "end_label": "00:18:10.960",
+      "end_seconds": 1090.96,
+      "start_label": "00:18:06.240",
+      "start_seconds": 1086.24,
+      "text": "work. And"
+    },
+    {
+      "duration_seconds": 3.2,
+      "end_label": "00:18:11.640",
+      "end_seconds": 1091.64,
+      "start_label": "00:18:08.440",
+      "start_seconds": 1088.44,
+      "text": "the the last thing is like memory. So,"
+    },
+    {
+      "duration_seconds": 2.52,
+      "end_label": "00:18:13.480",
+      "end_seconds": 1093.48,
+      "start_label": "00:18:10.960",
+      "start_seconds": 1090.96,
+      "text": "uh"
+    },
+    {
+      "duration_seconds": 3.84,
+      "end_label": "00:18:15.480",
+      "end_seconds": 1095.48,
+      "start_label": "00:18:11.640",
+      "start_seconds": 1091.64,
+      "text": "we humans are like really good at like"
+    },
+    {
+      "duration_seconds": 4.6,
+      "end_label": "00:18:18.080",
+      "end_seconds": 1098.08,
+      "start_label": "00:18:13.480",
+      "start_seconds": 1093.48,
+      "text": "remembering stuff over time, but we are"
+    },
+    {
+      "duration_seconds": 4.28,
+      "end_label": "00:18:19.760",
+      "end_seconds": 1099.76,
+      "start_label": "00:18:15.480",
+      "start_seconds": 1095.48,
+      "text": "not append-only logs of information. And"
+    },
+    {
+      "duration_seconds": 4.56,
+      "end_label": "00:18:22.640",
+      "end_seconds": 1102.64,
+      "start_label": "00:18:18.080",
+      "start_seconds": 1098.08,
+      "text": "if agents are going to be working with"
+    },
+    {
+      "duration_seconds": 5.04,
+      "end_label": "00:18:24.800",
+      "end_seconds": 1104.8,
+      "start_label": "00:18:19.760",
+      "start_seconds": 1099.76,
+      "text": "us over like year, 5-year, decade,"
+    },
+    {
+      "duration_seconds": 3.6,
+      "end_label": "00:18:26.240",
+      "end_seconds": 1106.24,
+      "start_label": "00:18:22.640",
+      "start_seconds": 1102.64,
+      "text": "lifetime time scales, we cannot just"
+    },
+    {
+      "duration_seconds": 3.84,
+      "end_label": "00:18:28.640",
+      "end_seconds": 1108.64,
+      "start_label": "00:18:24.800",
+      "start_seconds": 1104.8,
+      "text": "append everything to like a really big"
+    },
+    {
+      "duration_seconds": 3.96,
+      "end_label": "00:18:30.200",
+      "end_seconds": 1110.2,
+      "start_label": "00:18:26.240",
+      "start_seconds": 1106.24,
+      "text": "file and then search over it. There's a"
+    },
+    {
+      "duration_seconds": 3.56,
+      "end_label": "00:18:32.200",
+      "end_seconds": 1112.2,
+      "start_label": "00:18:28.640",
+      "start_seconds": 1108.64,
+      "text": "ton of stuff that needs to happen with"
+    },
+    {
+      "duration_seconds": 3.56,
+      "end_label": "00:18:33.760",
+      "end_seconds": 1113.76,
+      "start_label": "00:18:30.200",
+      "start_seconds": 1110.2,
+      "text": "like updating those files over time and"
+    },
+    {
+      "duration_seconds": 3.24,
+      "end_label": "00:18:35.440",
+      "end_seconds": 1115.44,
+      "start_label": "00:18:32.200",
+      "start_seconds": 1112.2,
+      "text": "then just making memory like really"
+    },
+    {
+      "duration_seconds": 4.52,
+      "end_label": "00:18:38.280",
+      "end_seconds": 1118.28,
+      "start_label": "00:18:33.760",
+      "start_seconds": 1113.76,
+      "text": "efficient. But, we think a lot of that"
+    },
+    {
+      "duration_seconds": 4.96,
+      "end_label": "00:18:40.400",
+      "end_seconds": 1120.4,
+      "start_label": "00:18:35.440",
+      "start_seconds": 1115.44,
+      "text": "actually comes from this idea of scaling"
+    },
+    {
+      "duration_seconds": 3.56,
+      "end_label": "00:18:41.840",
+      "end_seconds": 1121.84,
+      "start_label": "00:18:38.280",
+      "start_seconds": 1118.28,
+      "text": "sleep time compute and and dreaming"
+    },
+    {
+      "duration_seconds": 4.32,
+      "end_label": "00:18:44.720",
+      "end_seconds": 1124.72,
+      "start_label": "00:18:40.400",
+      "start_seconds": 1120.4,
+      "text": "generally. So, it's like read all of the"
+    },
+    {
+      "duration_seconds": 4.36,
+      "end_label": "00:18:46.200",
+      "end_seconds": 1126.2,
+      "start_label": "00:18:41.840",
+      "start_seconds": 1121.84,
+      "text": "traces over the entire agent life cycle"
+    },
+    {
+      "duration_seconds": 4.44,
+      "end_label": "00:18:49.160",
+      "end_seconds": 1129.16,
+      "start_label": "00:18:44.720",
+      "start_seconds": 1124.72,
+      "text": "and then like do [music] things to"
+    },
+    {
+      "duration_seconds": 5.52,
+      "end_label": "00:18:51.720",
+      "end_seconds": 1131.72,
+      "start_label": "00:18:46.200",
+      "start_seconds": 1126.2,
+      "text": "update agent state."
+    },
+    {
+      "duration_seconds": 5.2,
+      "end_label": "00:18:54.360",
+      "end_seconds": 1134.36,
+      "start_label": "00:18:49.160",
+      "start_seconds": 1129.16,
+      "text": "Awesome. So, like quick quick takeaways,"
+    },
+    {
+      "duration_seconds": 4.52,
+      "end_label": "00:18:56.240",
+      "end_seconds": 1136.24,
+      "start_label": "00:18:51.720",
+      "start_seconds": 1131.72,
+      "text": "uh mining traces gives you signals to"
+    },
+    {
+      "duration_seconds": 4.16,
+      "end_label": "00:18:58.520",
+      "end_seconds": 1138.52,
+      "start_label": "00:18:54.360",
+      "start_seconds": 1134.36,
+      "text": "hill climb on. Uh I would say like if"
+    },
+    {
+      "duration_seconds": 4.32,
+      "end_label": "00:19:00.560",
+      "end_seconds": 1140.56,
+      "start_label": "00:18:56.240",
+      "start_seconds": 1136.24,
+      "text": "you have an agent, just turn on tracing"
+    },
+    {
+      "duration_seconds": 4.12,
+      "end_label": "00:19:02.640",
+      "end_seconds": 1142.64,
+      "start_label": "00:18:58.520",
+      "start_seconds": 1138.52,
+      "text": "and point an agent at it and that's like"
+    },
+    {
+      "duration_seconds": 4.2,
+      "end_label": "00:19:04.760",
+      "end_seconds": 1144.76,
+      "start_label": "00:19:00.560",
+      "start_seconds": 1140.56,
+      "text": "the easiest thing that you can do to see"
+    },
+    {
+      "duration_seconds": 3.36,
+      "end_label": "00:19:06.000",
+      "end_seconds": 1146.0,
+      "start_label": "00:19:02.640",
+      "start_seconds": 1142.64,
+      "text": "like to basically understand what your"
+    },
+    {
+      "duration_seconds": 3.6,
+      "end_label": "00:19:08.360",
+      "end_seconds": 1148.36,
+      "start_label": "00:19:04.760",
+      "start_seconds": 1144.76,
+      "text": "agents are doing."
+    },
+    {
+      "duration_seconds": 3.8,
+      "end_label": "00:19:09.800",
+      "end_seconds": 1149.8,
+      "start_label": "00:19:06.000",
+      "start_seconds": 1146.0,
+      "text": "Uh we're very excited about open models."
+    },
+    {
+      "duration_seconds": 3.88,
+      "end_label": "00:19:12.240",
+      "end_seconds": 1152.24,
+      "start_label": "00:19:08.360",
+      "start_seconds": 1148.36,
+      "text": "We want to help you fine-tune open"
+    },
+    {
+      "duration_seconds": 3.52,
+      "end_label": "00:19:13.320",
+      "end_seconds": 1153.32,
+      "start_label": "00:19:09.800",
+      "start_seconds": 1149.8,
+      "text": "models. Um we provide them as a service"
+    },
+    {
+      "duration_seconds": 2.76,
+      "end_label": "00:19:15.000",
+      "end_seconds": 1155.0,
+      "start_label": "00:19:12.240",
+      "start_seconds": 1152.24,
+      "text": "as well. So, if you're interested in"
+    },
+    {
+      "duration_seconds": 3.8,
+      "end_label": "00:19:17.120",
+      "end_seconds": 1157.12,
+      "start_label": "00:19:13.320",
+      "start_seconds": 1153.32,
+      "text": "that, would would love to chat how you"
+    },
+    {
+      "duration_seconds": 4.24,
+      "end_label": "00:19:19.240",
+      "end_seconds": 1159.24,
+      "start_label": "00:19:15.000",
+      "start_seconds": 1155.0,
+      "text": "can use open models to make everything"
+    },
+    {
+      "duration_seconds": 3.72,
+      "end_label": "00:19:20.840",
+      "end_seconds": 1160.84,
+      "start_label": "00:19:17.120",
+      "start_seconds": 1157.12,
+      "text": "smarter and cheaper. Um,"
+    },
+    {
+      "duration_seconds": 3.36,
+      "end_label": "00:19:22.600",
+      "end_seconds": 1162.6,
+      "start_label": "00:19:19.240",
+      "start_seconds": 1159.24,
+      "text": "continual learning is about operating"
+    },
+    {
+      "duration_seconds": 4.16,
+      "end_label": "00:19:25.000",
+      "end_seconds": 1165.0,
+      "start_label": "00:19:20.840",
+      "start_seconds": 1160.84,
+      "text": "environments and then integrating that"
+    },
+    {
+      "duration_seconds": 4.44,
+      "end_label": "00:19:27.040",
+      "end_seconds": 1167.04,
+      "start_label": "00:19:22.600",
+      "start_seconds": 1162.6,
+      "text": "data back into agent state. And then"
+    },
+    {
+      "duration_seconds": 3.44,
+      "end_label": "00:19:28.440",
+      "end_seconds": 1168.44,
+      "start_label": "00:19:25.000",
+      "start_seconds": 1165.0,
+      "text": "finally, I think this is so cool that"
+    },
+    {
+      "duration_seconds": 3.08,
+      "end_label": "00:19:30.120",
+      "end_seconds": 1170.12,
+      "start_label": "00:19:27.040",
+      "start_seconds": 1167.04,
+      "text": "like we have systems that's going to"
+    },
+    {
+      "duration_seconds": 3.44,
+      "end_label": "00:19:31.880",
+      "end_seconds": 1171.88,
+      "start_label": "00:19:28.440",
+      "start_seconds": 1168.44,
+      "text": "pre- that are going to produce more data"
+    },
+    {
+      "duration_seconds": 3.96,
+      "end_label": "00:19:34.080",
+      "end_seconds": 1174.08,
+      "start_label": "00:19:30.120",
+      "start_seconds": 1170.12,
+      "text": "than we ever have before."
+    },
+    {
+      "duration_seconds": 4.2,
+      "end_label": "00:19:36.080",
+      "end_seconds": 1176.08,
+      "start_label": "00:19:31.880",
+      "start_seconds": 1171.88,
+      "text": "Uh, we need to all come up with like"
+    },
+    {
+      "duration_seconds": 3.36,
+      "end_label": "00:19:37.440",
+      "end_seconds": 1177.44,
+      "start_label": "00:19:34.080",
+      "start_seconds": 1174.08,
+      "text": "interesting research directions to learn"
+    },
+    {
+      "duration_seconds": 3.32,
+      "end_label": "00:19:39.400",
+      "end_seconds": 1179.4,
+      "start_label": "00:19:36.080",
+      "start_seconds": 1176.08,
+      "text": "how to like manage that at scale and"
+    },
+    {
+      "duration_seconds": 3.48,
+      "end_label": "00:19:40.920",
+      "end_seconds": 1180.92,
+      "start_label": "00:19:37.440",
+      "start_seconds": 1177.44,
+      "text": "like make all of our agents better."
+    },
+    {
+      "duration_seconds": 3.543,
+      "end_label": "00:19:42.943",
+      "end_seconds": 1182.943,
+      "start_label": "00:19:39.400",
+      "start_seconds": 1179.4,
+      "text": "And with that,"
+    },
+    {
+      "duration_seconds": 4.043,
+      "end_label": "00:19:44.963",
+      "end_seconds": 1184.963,
+      "start_label": "00:19:40.920",
+      "start_seconds": 1180.92,
+      "text": "thank you. Thank you all for coming."
+    },
+    {
+      "duration_seconds": 2.02,
+      "end_label": "00:19:44.963",
+      "end_seconds": 1184.963,
+      "start_label": "00:19:42.943",
+      "start_seconds": 1182.943,
+      "text": ">> [applause]"
+    },
+    {
+      "duration_seconds": 2.02,
+      "end_label": "00:20:00.683",
+      "end_seconds": 1200.683,
+      "start_label": "00:19:58.663",
+      "start_seconds": 1198.663,
+      "text": "[music]"
+    }
+  ],
+  "is_generated": true,
+  "language": "English (auto-generated)",
+  "language_code": "en",
+  "schema_version": "youtube-direct-caption-transcript@1",
+  "timestamp_precision": "milliseconds-from-caption-api",
+  "video_id": "CvRngaQZQ3Y"
+}

@@ -1,0 +1,937 @@
+{
+  "anchors": [
+    {
+      "anchor_id": "EV-cvrngaqzq3y-v2-code-vs-agent-reasoning",
+      "anchor_kind": "evidence",
+      "artifact_id": "captions-auto-en-json",
+      "artifact_modality": "transcript",
+      "artifact_role": "subject-matter-source",
+      "artifact_sha256": "sha256:304e9a058721298f7498906d2539fdabdac515f2304645d52824e6719bc5f9bf",
+      "description": "Code can be reasoned about by reading it; agents have prompts, tools, skills, hooks, middlewares and swarms, and prompt effects vary by domain.",
+      "locator": "timestamp:00:03:29.560..00:04:19.600",
+      "source_dependency_key": "youtube-video:CvRngaQZQ3Y"
+    },
+    {
+      "anchor_id": "EV-cvrngaqzq3y-v2-continual-learning-axes",
+      "anchor_kind": "evidence",
+      "artifact_id": "captions-auto-en-json",
+      "artifact_modality": "transcript",
+      "artifact_role": "subject-matter-source",
+      "artifact_sha256": "sha256:304e9a058721298f7498906d2539fdabdac515f2304645d52824e6719bc5f9bf",
+      "description": "Continual learning runs across three axes: observational training data, harness updates, and memory that is not an append-only log.",
+      "locator": "timestamp:00:16:51.600..00:18:49.160",
+      "source_dependency_key": "youtube-video:CvRngaQZQ3Y"
+    },
+    {
+      "anchor_id": "EV-cvrngaqzq3y-v2-dense-feedback",
+      "anchor_kind": "evidence",
+      "artifact_id": "captions-auto-en-json",
+      "artifact_modality": "transcript",
+      "artifact_role": "subject-matter-source",
+      "artifact_sha256": "sha256:304e9a058721298f7498906d2539fdabdac515f2304645d52824e6719bc5f9bf",
+      "description": "A pass/fail number is a sparse signal; densifying feedback improves agents and traces are the substrate that holds that feedback.",
+      "locator": "timestamp:00:14:33.440..00:16:01.560",
+      "source_dependency_key": "youtube-video:CvRngaQZQ3Y"
+    },
+    {
+      "anchor_id": "EV-cvrngaqzq3y-v2-determinism-for-autonomy",
+      "anchor_kind": "evidence",
+      "artifact_id": "captions-auto-en-json",
+      "artifact_modality": "transcript",
+      "artifact_role": "subject-matter-source",
+      "artifact_sha256": "sha256:304e9a058721298f7498906d2539fdabdac515f2304645d52824e6719bc5f9bf",
+      "description": "Over four years since the ChatGPT moment the field has been trading determinism for autonomy.",
+      "locator": "timestamp:00:04:19.600..00:04:43.280",
+      "source_dependency_key": "youtube-video:CvRngaQZQ3Y"
+    },
+    {
+      "anchor_id": "EV-cvrngaqzq3y-v2-harness-ceiling-finetune",
+      "anchor_kind": "evidence",
+      "artifact_id": "captions-auto-en-json",
+      "artifact_modality": "transcript",
+      "artifact_role": "subject-matter-source",
+      "artifact_sha256": "sha256:304e9a058721298f7498906d2539fdabdac515f2304645d52824e6719bc5f9bf",
+      "description": "Harness engineering gives instant feedback but saturates at an intelligence threshold; fine-tuning base models on narrow vertical tasks can reach and exceed frontier performance.",
+      "locator": "timestamp:00:09:00.920..00:09:51.480",
+      "source_dependency_key": "youtube-video:CvRngaQZQ3Y"
+    },
+    {
+      "anchor_id": "EV-cvrngaqzq3y-v2-harness-finetune-sandwich",
+      "anchor_kind": "evidence",
+      "artifact_id": "captions-auto-en-json",
+      "artifact_modality": "transcript",
+      "artifact_role": "subject-matter-source",
+      "artifact_sha256": "sha256:304e9a058721298f7498906d2539fdabdac515f2304645d52824e6719bc5f9bf",
+      "description": "Collect feedback as fast as possible; harness engineering answers in about two minutes; on saturating its ceiling try fine-tuning, then return to harness engineering.",
+      "locator": "timestamp:00:16:01.560..00:16:51.600",
+      "source_dependency_key": "youtube-video:CvRngaQZQ3Y"
+    },
+    {
+      "anchor_id": "EV-cvrngaqzq3y-v2-model-harness-task-fit",
+      "anchor_kind": "evidence",
+      "artifact_id": "captions-auto-en-json",
+      "artifact_modality": "transcript",
+      "artifact_role": "subject-matter-source",
+      "artifact_sha256": "sha256:304e9a058721298f7498906d2539fdabdac515f2304645d52824e6719bc5f9bf",
+      "description": "The scikit-learn fit analogy generalizes to model-harness-task fit; the jobs become finding good fit functions and finding good data.",
+      "locator": "timestamp:00:12:45.960..00:14:33.440",
+      "source_dependency_key": "youtube-video:CvRngaQZQ3Y"
+    },
+    {
+      "anchor_id": "EV-cvrngaqzq3y-v2-observability-coupling",
+      "anchor_kind": "evidence",
+      "artifact_id": "captions-auto-en-json",
+      "artifact_modality": "transcript",
+      "artifact_role": "subject-matter-source",
+      "artifact_sha256": "sha256:304e9a058721298f7498906d2539fdabdac515f2304645d52824e6719bc5f9bf",
+      "description": "Tight coupling stated between observability and continual learning: you need traces to do continual learning.",
+      "locator": "timestamp:00:02:21.800..00:03:08.600",
+      "source_dependency_key": "youtube-video:CvRngaQZQ3Y"
+    },
+    {
+      "anchor_id": "EV-cvrngaqzq3y-v2-open-model-judge-cost",
+      "anchor_kind": "evidence",
+      "artifact_id": "captions-auto-en-json",
+      "artifact_modality": "transcript",
+      "artifact_role": "subject-matter-source",
+      "artifact_sha256": "sha256:304e9a058721298f7498906d2539fdabdac515f2304645d52824e6719bc5f9bf",
+      "description": "Work with Harvey on their legal benchmark: matching Opus trace-judging capability with a cheaper open model, roughly one to two orders of magnitude cheaper.",
+      "locator": "timestamp:00:07:36.880..00:09:00.920",
+      "source_dependency_key": "youtube-video:CvRngaQZQ3Y"
+    },
+    {
+      "anchor_id": "EV-cvrngaqzq3y-v2-product-identifier-uncertain",
+      "anchor_kind": "evidence",
+      "artifact_id": "captions-auto-en-json",
+      "artifact_modality": "transcript",
+      "artifact_role": "subject-matter-source",
+      "artifact_sha256": "sha256:304e9a058721298f7498906d2539fdabdac515f2304645d52824e6719bc5f9bf",
+      "description": "The product name is rendered by the automatic caption as LangSplat engine; the identifier is unverified.",
+      "locator": "timestamp:00:10:27.920..00:11:03.200",
+      "source_dependency_key": "youtube-video:CvRngaQZQ3Y"
+    },
+    {
+      "anchor_id": "EV-cvrngaqzq3y-v2-recipe-four-steps",
+      "anchor_kind": "evidence",
+      "artifact_id": "captions-auto-en-json",
+      "artifact_modality": "transcript",
+      "artifact_role": "subject-matter-source",
+      "artifact_sha256": "sha256:304e9a058721298f7498906d2539fdabdac515f2304645d52824e6719bc5f9bf",
+      "description": "Ship the agent, collect traces, mine the trace data, then run data-driven experiments.",
+      "locator": "timestamp:00:01:11.520..00:02:21.440",
+      "source_dependency_key": "youtube-video:CvRngaQZQ3Y"
+    },
+    {
+      "anchor_id": "EV-cvrngaqzq3y-v2-three-mining-outputs",
+      "anchor_kind": "evidence",
+      "artifact_id": "captions-auto-en-json",
+      "artifact_modality": "transcript",
+      "artifact_role": "subject-matter-source",
+      "artifact_sha256": "sha256:304e9a058721298f7498906d2539fdabdac515f2304645d52824e6719bc5f9bf",
+      "description": "Three outputs of trace mining: distillation and fine-tuning of a smaller model, generated evals and environments, and prepared content for human review.",
+      "locator": "timestamp:00:11:03.200..00:12:45.960",
+      "source_dependency_key": "youtube-video:CvRngaQZQ3Y"
+    },
+    {
+      "anchor_id": "EV-cvrngaqzq3y-v2-token-to-hardware-cost",
+      "anchor_kind": "evidence",
+      "artifact_id": "captions-auto-en-json",
+      "artifact_modality": "transcript",
+      "artifact_role": "subject-matter-source",
+      "artifact_sha256": "sha256:304e9a058721298f7498906d2539fdabdac515f2304645d52824e6719bc5f9bf",
+      "description": "Fine-tuning moves the economics from token cost to hardware cost; for very high inference workloads running a cluster is cheaper.",
+      "locator": "timestamp:00:09:51.480..00:10:27.520",
+      "source_dependency_key": "youtube-video:CvRngaQZQ3Y"
+    },
+    {
+      "anchor_id": "EV-cvrngaqzq3y-v2-trace-reading-practice",
+      "anchor_kind": "evidence",
+      "artifact_id": "captions-auto-en-json",
+      "artifact_modality": "transcript",
+      "artifact_role": "subject-matter-source",
+      "artifact_sha256": "sha256:304e9a058721298f7498906d2539fdabdac515f2304645d52824e6719bc5f9bf",
+      "description": "Traces centralized in a tracing project; agents read other agents' traces to find good and bad interactions, post-compaction degradation, and model counterfactuals.",
+      "locator": "timestamp:00:04:43.280..00:05:59.480",
+      "source_dependency_key": "youtube-video:CvRngaQZQ3Y"
+    },
+    {
+      "anchor_id": "EV-cvrngaqzq3y-v2-trace-scale-cost",
+      "anchor_kind": "evidence",
+      "artifact_id": "captions-auto-en-json",
+      "artifact_modality": "transcript",
+      "artifact_role": "subject-matter-source",
+      "artifact_sha256": "sha256:304e9a058721298f7498906d2539fdabdac515f2304645d52824e6719bc5f9bf",
+      "description": "Reading traces at scale costs input tokens times trace count times trace size, and a long coding-agent trace does not fit in another agent's context.",
+      "locator": "timestamp:00:06:42.400..00:07:36.880",
+      "source_dependency_key": "youtube-video:CvRngaQZQ3Y"
+    }
+  ],
+  "builder_version": "build-relation-graph@1",
+  "created_at": "2026-08-14T16:10:00Z",
+  "graph_id": "GRAPH-d252060f3a812a45",
+  "graph_subject_digest": "sha256:d252060f3a812a453ccc77669d3d25bf9c00565f35f99eb793d238558d00a1c3",
+  "input_digest": "sha256:4bb5069e03af51ad86db403b608fc2b9b77a9e1a1adc5c125a9a2b8181ff161e",
+  "nodes": [
+    {
+      "aliases": [
+        "autonomy"
+      ],
+      "canonical_key": "agent-autonomy",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-code-vs-agent-reasoning",
+        "EV-cvrngaqzq3y-v2-determinism-for-autonomy"
+      ],
+      "label": "Agent autonomy",
+      "node_id": "NODE-agent-autonomy-ead78c726c3b",
+      "node_kind": "claim",
+      "tags": [
+        "core-conflict"
+      ],
+      "visual_ids": []
+    },
+    {
+      "aliases": [],
+      "canonical_key": "agent-memory",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-continual-learning-axes"
+      ],
+      "label": "Agent memory",
+      "node_id": "NODE-agent-memory-22a9405c3d21",
+      "node_kind": "state-plane",
+      "tags": [
+        "state-model"
+      ],
+      "visual_ids": []
+    },
+    {
+      "aliases": [],
+      "canonical_key": "agent-task-performance",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-model-harness-task-fit"
+      ],
+      "label": "Agent task performance",
+      "node_id": "NODE-agent-task-performance-5ba7a2129b5c",
+      "node_kind": "claim",
+      "tags": [
+        "equation"
+      ],
+      "visual_ids": []
+    },
+    {
+      "aliases": [],
+      "canonical_key": "context-window-limit",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-trace-scale-cost"
+      ],
+      "label": "Trace size against the context window",
+      "node_id": "NODE-context-window-limit-026c34d42317",
+      "node_kind": "claim",
+      "tags": [
+        "bottleneck"
+      ],
+      "visual_ids": []
+    },
+    {
+      "aliases": [],
+      "canonical_key": "dense-feedback-signal",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-dense-feedback"
+      ],
+      "label": "Dense feedback signal",
+      "node_id": "NODE-dense-feedback-signal-d5a26c49a45d",
+      "node_kind": "claim",
+      "tags": [
+        "decision-rule"
+      ],
+      "visual_ids": []
+    },
+    {
+      "aliases": [
+        "distillation",
+        "sft"
+      ],
+      "canonical_key": "domain-fine-tuning",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-harness-ceiling-finetune",
+        "EV-cvrngaqzq3y-v2-three-mining-outputs"
+      ],
+      "label": "Domain fine-tuning",
+      "node_id": "NODE-domain-fine-tuning-de578be28847",
+      "node_kind": "decision",
+      "tags": [
+        "decision-rule"
+      ],
+      "visual_ids": []
+    },
+    {
+      "aliases": [
+        "opus"
+      ],
+      "canonical_key": "frontier-judge",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-open-model-judge-cost"
+      ],
+      "label": "Frontier trace judge",
+      "node_id": "NODE-frontier-judge-d2de33844aa0",
+      "node_kind": "entity",
+      "tags": [
+        "comparison"
+      ],
+      "visual_ids": []
+    },
+    {
+      "aliases": [
+        "frozen evals"
+      ],
+      "canonical_key": "generated-evals",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-three-mining-outputs"
+      ],
+      "label": "Generated evals and environments",
+      "node_id": "NODE-generated-evals-81f1a36fe173",
+      "node_kind": "artifact",
+      "tags": [
+        "dataflow",
+        "decision-rule"
+      ],
+      "visual_ids": []
+    },
+    {
+      "aliases": [],
+      "canonical_key": "harness-engineering",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-harness-ceiling-finetune",
+        "EV-cvrngaqzq3y-v2-harness-finetune-sandwich"
+      ],
+      "label": "Harness engineering",
+      "node_id": "NODE-harness-engineering-43f588eb0663",
+      "node_kind": "decision",
+      "tags": [
+        "decision-rule"
+      ],
+      "visual_ids": []
+    },
+    {
+      "aliases": [],
+      "canonical_key": "harness-updates",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-continual-learning-axes"
+      ],
+      "label": "Harness updates",
+      "node_id": "NODE-harness-updates-684152644e78",
+      "node_kind": "state-plane",
+      "tags": [
+        "state-model"
+      ],
+      "visual_ids": []
+    },
+    {
+      "aliases": [],
+      "canonical_key": "human-review-content",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-three-mining-outputs"
+      ],
+      "label": "Prepared content for human review",
+      "node_id": "NODE-human-review-content-cb95dabe3cc6",
+      "node_kind": "artifact",
+      "tags": [
+        "dataflow"
+      ],
+      "visual_ids": []
+    },
+    {
+      "aliases": [
+        "fit function"
+      ],
+      "canonical_key": "model-harness-task-fit",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-model-harness-task-fit"
+      ],
+      "label": "Model-harness-task fit",
+      "node_id": "NODE-model-harness-task-fit-184d14eedd96",
+      "node_kind": "claim",
+      "tags": [
+        "equation"
+      ],
+      "visual_ids": []
+    },
+    {
+      "aliases": [],
+      "canonical_key": "observational-training-data",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-continual-learning-axes"
+      ],
+      "label": "Observational training data",
+      "node_id": "NODE-observational-training-data-a11a56cb5e08",
+      "node_kind": "state-plane",
+      "tags": [
+        "state-model"
+      ],
+      "visual_ids": []
+    },
+    {
+      "aliases": [],
+      "canonical_key": "open-model-judge",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-open-model-judge-cost"
+      ],
+      "label": "Open-model trace judge",
+      "node_id": "NODE-open-model-judge-692ac2752c11",
+      "node_kind": "entity",
+      "tags": [
+        "comparison"
+      ],
+      "visual_ids": []
+    },
+    {
+      "aliases": [],
+      "canonical_key": "product-identifier",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-product-identifier-uncertain"
+      ],
+      "label": "Trace-mining product identifier",
+      "node_id": "NODE-product-identifier-8cd49ab69eae",
+      "node_kind": "unknown",
+      "tags": [
+        "uncertainty"
+      ],
+      "visual_ids": []
+    },
+    {
+      "aliases": [
+        "trace data"
+      ],
+      "canonical_key": "runtime-traces",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-observability-coupling",
+        "EV-cvrngaqzq3y-v2-recipe-four-steps"
+      ],
+      "label": "Runtime traces",
+      "node_id": "NODE-runtime-traces-3f5dcde1768d",
+      "node_kind": "artifact",
+      "tags": [
+        "dataflow"
+      ],
+      "visual_ids": []
+    },
+    {
+      "aliases": [],
+      "canonical_key": "static-predictability",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-code-vs-agent-reasoning"
+      ],
+      "label": "Static predictability of agent behaviour",
+      "node_id": "NODE-static-predictability-868184098646",
+      "node_kind": "claim",
+      "tags": [
+        "core-conflict"
+      ],
+      "visual_ids": []
+    },
+    {
+      "aliases": [
+        "data mining"
+      ],
+      "canonical_key": "trace-mining",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-recipe-four-steps",
+        "EV-cvrngaqzq3y-v2-trace-reading-practice"
+      ],
+      "label": "Trace mining",
+      "node_id": "NODE-trace-mining-f1989ee25c20",
+      "node_kind": "event",
+      "tags": [
+        "dataflow"
+      ],
+      "visual_ids": []
+    }
+  ],
+  "relations": [
+    {
+      "canonical_key": "agent-autonomy | trades_off_with | is traded against | static-predictability",
+      "claim_kind": "SOURCE_STATEMENT",
+      "confidence": "MEDIUM",
+      "decision_use": "Decide whether behaviour can still be reviewed by reading source alone.",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-determinism-for-autonomy"
+      ],
+      "execution_artifact_ids": [],
+      "falsifier": "A team that reasons about agent behaviour from source alone, at scale, without traces.",
+      "object": "NODE-static-predictability-868184098646",
+      "object_canonical_key": "static-predictability",
+      "predicate": "is traded against",
+      "projection_hints": [
+        "causal-dataflow"
+      ],
+      "relation_id": "REL-agent-autonomy-trades-off-with-is-traded-against-44912ed2a046",
+      "relation_kind": "trades_off_with",
+      "source_dependency_keys": [
+        "youtube-video:CvRngaQZQ3Y"
+      ],
+      "subject": "NODE-agent-autonomy-ead78c726c3b",
+      "subject_canonical_key": "agent-autonomy",
+      "uncertain": false,
+      "verification": "SUPPORTED",
+      "visual_ids": []
+    },
+    {
+      "canonical_key": "context-window-limit | depends_on | bounds | trace-mining",
+      "claim_kind": "SOURCE_STATEMENT",
+      "confidence": "HIGH",
+      "decision_use": "Decide whether traces can be read directly or must be queried as an external object.",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-trace-scale-cost"
+      ],
+      "execution_artifact_ids": [],
+      "falsifier": "A long coding-agent trace read end to end inside another agent's context.",
+      "object": "NODE-trace-mining-f1989ee25c20",
+      "object_canonical_key": "trace-mining",
+      "predicate": "bounds",
+      "projection_hints": [
+        "architecture",
+        "causal-dataflow"
+      ],
+      "relation_id": "REL-context-window-limit-depends-on-bounds-trace-min-3132d7eb9573",
+      "relation_kind": "depends_on",
+      "source_dependency_keys": [
+        "youtube-video:CvRngaQZQ3Y"
+      ],
+      "subject": "NODE-context-window-limit-026c34d42317",
+      "subject_canonical_key": "context-window-limit",
+      "uncertain": false,
+      "verification": "SUPPORTED",
+      "visual_ids": []
+    },
+    {
+      "canonical_key": "dense-feedback-signal | enables | improves | trace-mining",
+      "claim_kind": "SOURCE_STATEMENT",
+      "confidence": "MEDIUM",
+      "decision_use": "Decide whether a pass/fail score is enough to drive an improvement loop.",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-dense-feedback"
+      ],
+      "execution_artifact_ids": [],
+      "falsifier": "An agent improving reliably from a single pass/fail bit per task.",
+      "object": "NODE-trace-mining-f1989ee25c20",
+      "object_canonical_key": "trace-mining",
+      "predicate": "improves",
+      "projection_hints": [
+        "causal-dataflow"
+      ],
+      "relation_id": "REL-dense-feedback-signal-enables-improves-trace-min-3e26cc3928af",
+      "relation_kind": "enables",
+      "source_dependency_keys": [
+        "youtube-video:CvRngaQZQ3Y"
+      ],
+      "subject": "NODE-dense-feedback-signal-d5a26c49a45d",
+      "subject_canonical_key": "dense-feedback-signal",
+      "uncertain": false,
+      "verification": "SUPPORTED",
+      "visual_ids": []
+    },
+    {
+      "canonical_key": "domain-fine-tuning | enables | re-opens | harness-engineering",
+      "claim_kind": "SOURCE_STATEMENT",
+      "confidence": "MEDIUM",
+      "decision_use": "Decide whether harness work resumes after a tune.",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-harness-finetune-sandwich"
+      ],
+      "execution_artifact_ids": [],
+      "falsifier": "A tuned model that gains nothing from further harness work.",
+      "object": "NODE-harness-engineering-43f588eb0663",
+      "object_canonical_key": "harness-engineering",
+      "predicate": "re-opens",
+      "projection_hints": [
+        "causal-dataflow"
+      ],
+      "relation_id": "REL-domain-fine-tuning-enables-re-opens-harness-engi-0c1eb19993bb",
+      "relation_kind": "enables",
+      "source_dependency_keys": [
+        "youtube-video:CvRngaQZQ3Y"
+      ],
+      "subject": "NODE-domain-fine-tuning-de578be28847",
+      "subject_canonical_key": "domain-fine-tuning",
+      "uncertain": false,
+      "verification": "SUPPORTED",
+      "visual_ids": []
+    },
+    {
+      "canonical_key": "generated-evals | enables | constrains | harness-engineering",
+      "claim_kind": "INFERENCE",
+      "confidence": "MEDIUM",
+      "decision_use": "Decide what a harness change is allowed to be measured against.",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-dense-feedback",
+        "EV-cvrngaqzq3y-v2-three-mining-outputs"
+      ],
+      "execution_artifact_ids": [],
+      "falsifier": "A harness change accepted without an eval that predates it.",
+      "object": "NODE-harness-engineering-43f588eb0663",
+      "object_canonical_key": "harness-engineering",
+      "predicate": "constrains",
+      "projection_hints": [
+        "causal-dataflow"
+      ],
+      "relation_id": "REL-generated-evals-enables-constrains-harness-engin-59f00567c498",
+      "relation_kind": "enables",
+      "source_dependency_keys": [
+        "youtube-video:CvRngaQZQ3Y"
+      ],
+      "subject": "NODE-generated-evals-81f1a36fe173",
+      "subject_canonical_key": "generated-evals",
+      "uncertain": false,
+      "verification": "SUPPORTED",
+      "visual_ids": []
+    },
+    {
+      "canonical_key": "harness-engineering | trades_off_with | saturates, handing off to | domain-fine-tuning",
+      "claim_kind": "SOURCE_STATEMENT",
+      "confidence": "MEDIUM",
+      "decision_use": "Decide when to stop tuning prompts and start tuning weights.",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-harness-ceiling-finetune",
+        "EV-cvrngaqzq3y-v2-harness-finetune-sandwich"
+      ],
+      "execution_artifact_ids": [],
+      "falsifier": "A team that keeps gaining measurable quality from prompt changes past the stated ceiling.",
+      "object": "NODE-domain-fine-tuning-de578be28847",
+      "object_canonical_key": "domain-fine-tuning",
+      "predicate": "saturates, handing off to",
+      "projection_hints": [
+        "causal-dataflow",
+        "timeline"
+      ],
+      "relation_id": "REL-harness-engineering-trades-off-with-saturates-ha-f6afda5eba89",
+      "relation_kind": "trades_off_with",
+      "source_dependency_keys": [
+        "youtube-video:CvRngaQZQ3Y"
+      ],
+      "subject": "NODE-harness-engineering-43f588eb0663",
+      "subject_canonical_key": "harness-engineering",
+      "uncertain": false,
+      "verification": "SUPPORTED",
+      "visual_ids": []
+    },
+    {
+      "canonical_key": "harness-updates | part_of | is one axis of | agent-memory",
+      "claim_kind": "SOURCE_STATEMENT",
+      "confidence": "MEDIUM",
+      "decision_use": "Decide whether harness evolution is in scope for continual learning.",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-continual-learning-axes"
+      ],
+      "execution_artifact_ids": [],
+      "falsifier": "A frozen harness that still supports continual learning across years.",
+      "object": "NODE-agent-memory-22a9405c3d21",
+      "object_canonical_key": "agent-memory",
+      "predicate": "is one axis of",
+      "projection_hints": [
+        "state-planes"
+      ],
+      "relation_id": "REL-harness-updates-part-of-is-one-axis-of-agent-mem-998fdec54f64",
+      "relation_kind": "part_of",
+      "source_dependency_keys": [
+        "youtube-video:CvRngaQZQ3Y"
+      ],
+      "subject": "NODE-harness-updates-684152644e78",
+      "subject_canonical_key": "harness-updates",
+      "uncertain": false,
+      "verification": "SUPPORTED",
+      "visual_ids": []
+    },
+    {
+      "canonical_key": "model-harness-task-fit | causes | determines | agent-task-performance",
+      "claim_kind": "INFERENCE",
+      "confidence": "MEDIUM",
+      "decision_use": "Decide whether to attribute a regression to the model alone.",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-model-harness-task-fit"
+      ],
+      "execution_artifact_ids": [],
+      "falsifier": "Task performance that tracks the model leaderboard independently of harness and task.",
+      "object": "NODE-agent-task-performance-5ba7a2129b5c",
+      "object_canonical_key": "agent-task-performance",
+      "predicate": "determines",
+      "projection_hints": [
+        "equation"
+      ],
+      "relation_id": "REL-model-harness-task-fit-causes-determines-agent-t-d2cd283cd3cc",
+      "relation_kind": "causes",
+      "source_dependency_keys": [
+        "youtube-video:CvRngaQZQ3Y"
+      ],
+      "subject": "NODE-model-harness-task-fit-184d14eedd96",
+      "subject_canonical_key": "model-harness-task-fit",
+      "uncertain": false,
+      "verification": "SUPPORTED",
+      "visual_ids": []
+    },
+    {
+      "canonical_key": "observational-training-data | part_of | is one axis of | agent-memory",
+      "claim_kind": "SOURCE_STATEMENT",
+      "confidence": "MEDIUM",
+      "decision_use": "Decide which planes a continual-learning change must touch.",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-continual-learning-axes"
+      ],
+      "execution_artifact_ids": [],
+      "falsifier": "A continual-learning system that updates only one of the three stated axes.",
+      "object": "NODE-agent-memory-22a9405c3d21",
+      "object_canonical_key": "agent-memory",
+      "predicate": "is one axis of",
+      "projection_hints": [
+        "state-planes"
+      ],
+      "relation_id": "REL-observational-training-data-part-of-is-one-axis-c414b15e8850",
+      "relation_kind": "part_of",
+      "source_dependency_keys": [
+        "youtube-video:CvRngaQZQ3Y"
+      ],
+      "subject": "NODE-observational-training-data-a11a56cb5e08",
+      "subject_canonical_key": "observational-training-data",
+      "uncertain": false,
+      "verification": "SUPPORTED",
+      "visual_ids": []
+    },
+    {
+      "canonical_key": "open-model-judge | analogous_to | approaches, far more cheaply than | frontier-judge",
+      "claim_kind": "SOURCE_STATEMENT",
+      "confidence": "LOW",
+      "decision_use": "Decide whether to spend frontier tokens on trace judging.",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-open-model-judge-cost"
+      ],
+      "execution_artifact_ids": [],
+      "falsifier": "An open-model judge that cannot match frontier judging on the same benchmark at any harness effort.",
+      "object": "NODE-frontier-judge-d2de33844aa0",
+      "object_canonical_key": "frontier-judge",
+      "predicate": "approaches, far more cheaply than",
+      "projection_hints": [
+        "comparison-matrix"
+      ],
+      "relation_id": "REL-open-model-judge-analogous-to-approaches-far-mor-cc4f09893616",
+      "relation_kind": "analogous_to",
+      "source_dependency_keys": [
+        "youtube-video:CvRngaQZQ3Y"
+      ],
+      "subject": "NODE-open-model-judge-692ac2752c11",
+      "subject_canonical_key": "open-model-judge",
+      "uncertain": true,
+      "verification": "SUPPORTED",
+      "visual_ids": []
+    },
+    {
+      "canonical_key": "runtime-traces | feeds | feeds | trace-mining",
+      "claim_kind": "SOURCE_STATEMENT",
+      "confidence": "HIGH",
+      "decision_use": "Decide what the mining step consumes.",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-recipe-four-steps",
+        "EV-cvrngaqzq3y-v2-trace-reading-practice"
+      ],
+      "execution_artifact_ids": [],
+      "falsifier": "A mining step that produces findings without reading traces.",
+      "object": "NODE-trace-mining-f1989ee25c20",
+      "object_canonical_key": "trace-mining",
+      "predicate": "feeds",
+      "projection_hints": [
+        "causal-dataflow",
+        "timeline"
+      ],
+      "relation_id": "REL-runtime-traces-feeds-feeds-trace-mining-95508872354a",
+      "relation_kind": "feeds",
+      "source_dependency_keys": [
+        "youtube-video:CvRngaQZQ3Y"
+      ],
+      "subject": "NODE-runtime-traces-3f5dcde1768d",
+      "subject_canonical_key": "runtime-traces",
+      "uncertain": false,
+      "verification": "SUPPORTED",
+      "visual_ids": []
+    },
+    {
+      "canonical_key": "runtime-traces | flows_to | is collected after shipping into | trace-mining",
+      "claim_kind": "SOURCE_STATEMENT",
+      "confidence": "HIGH",
+      "decision_use": "Decide the order of the improvement recipe.",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-recipe-four-steps"
+      ],
+      "execution_artifact_ids": [],
+      "falsifier": "A recipe that mines traces before the agent has shipped.",
+      "object": "NODE-trace-mining-f1989ee25c20",
+      "object_canonical_key": "trace-mining",
+      "predicate": "is collected after shipping into",
+      "projection_hints": [
+        "timeline"
+      ],
+      "relation_id": "REL-runtime-traces-flows-to-is-collected-after-shipp-f331f0fb80af",
+      "relation_kind": "flows_to",
+      "source_dependency_keys": [
+        "youtube-video:CvRngaQZQ3Y"
+      ],
+      "subject": "NODE-runtime-traces-3f5dcde1768d",
+      "subject_canonical_key": "runtime-traces",
+      "uncertain": false,
+      "verification": "SUPPORTED",
+      "visual_ids": []
+    },
+    {
+      "canonical_key": "static-predictability | causes | lowers, which elevates | runtime-traces",
+      "claim_kind": "INFERENCE",
+      "confidence": "MEDIUM",
+      "decision_use": "Decide whether to turn tracing on before attempting improvement.",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-code-vs-agent-reasoning",
+        "EV-cvrngaqzq3y-v2-observability-coupling"
+      ],
+      "execution_artifact_ids": [],
+      "falsifier": "Agent quality improving measurably without any runtime trace collection.",
+      "object": "NODE-runtime-traces-3f5dcde1768d",
+      "object_canonical_key": "runtime-traces",
+      "predicate": "lowers, which elevates",
+      "projection_hints": [
+        "causal-dataflow"
+      ],
+      "relation_id": "REL-static-predictability-causes-lowers-which-elevat-1097d48a1bd8",
+      "relation_kind": "causes",
+      "source_dependency_keys": [
+        "youtube-video:CvRngaQZQ3Y"
+      ],
+      "subject": "NODE-static-predictability-868184098646",
+      "subject_canonical_key": "static-predictability",
+      "uncertain": false,
+      "verification": "SUPPORTED",
+      "visual_ids": []
+    },
+    {
+      "canonical_key": "trace-mining | transforms | prepares | human-review-content",
+      "claim_kind": "SOURCE_STATEMENT",
+      "confidence": "MEDIUM",
+      "decision_use": "Decide whether human review stays in the loop for high-trust domains.",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-three-mining-outputs"
+      ],
+      "execution_artifact_ids": [],
+      "falsifier": "A high-trust deployment that removes human review of mined findings.",
+      "object": "NODE-human-review-content-cb95dabe3cc6",
+      "object_canonical_key": "human-review-content",
+      "predicate": "prepares",
+      "projection_hints": [
+        "causal-dataflow"
+      ],
+      "relation_id": "REL-trace-mining-transforms-prepares-human-review-co-505ec119e2b9",
+      "relation_kind": "transforms",
+      "source_dependency_keys": [
+        "youtube-video:CvRngaQZQ3Y"
+      ],
+      "subject": "NODE-trace-mining-f1989ee25c20",
+      "subject_canonical_key": "trace-mining",
+      "uncertain": false,
+      "verification": "SUPPORTED",
+      "visual_ids": []
+    },
+    {
+      "canonical_key": "trace-mining | transforms | produces | generated-evals",
+      "claim_kind": "SOURCE_STATEMENT",
+      "confidence": "MEDIUM",
+      "decision_use": "Decide which artefacts a mining run is expected to emit.",
+      "evidence_ids": [
+        "EV-cvrngaqzq3y-v2-three-mining-outputs"
+      ],
+      "execution_artifact_ids": [],
+      "falsifier": "A mining run whose only output is a summary with no eval or dataset.",
+      "object": "NODE-generated-evals-81f1a36fe173",
+      "object_canonical_key": "generated-evals",
+      "predicate": "produces",
+      "projection_hints": [
+        "causal-dataflow"
+      ],
+      "relation_id": "REL-trace-mining-transforms-produces-generated-evals-d54d3910d5ec",
+      "relation_kind": "transforms",
+      "source_dependency_keys": [
+        "youtube-video:CvRngaQZQ3Y"
+      ],
+      "subject": "NODE-trace-mining-f1989ee25c20",
+      "subject_canonical_key": "trace-mining",
+      "uncertain": false,
+      "verification": "SUPPORTED",
+      "visual_ids": []
+    }
+  ],
+  "schema_version": "relation-graph@1",
+  "selected_thesis_id": "TH-traces-are-the-improvement-substrate-1faa1a457dba",
+  "source_pack": {
+    "bytes": 2966,
+    "descriptor_digest": "sha256:c09bc5d3ece12134d7ec88f4ea341f07922dc3311193fefc0da8c92a93977971",
+    "pack_id": "sp-CvRngaQZQ3Y-auto-caption-v2",
+    "path": "evals/semantic-yield/CvRngaQZQ3Y-v2/source-pack.json",
+    "sha256": "sha256:bf4a05be68b95d1d6ad20ba79b57979f1163f7b3806f09d7482d8468035e8506",
+    "source_dependency_keys": [
+      "youtube-video:CvRngaQZQ3Y"
+    ],
+    "source_set_digest": "sha256:5556682c30460ed0217a90f5ccc979d9a2a1abd9f4772d8bac6fc454c923e5e5"
+  },
+  "thesis_ranking": [
+    {
+      "candidate_id": "TH-traces-are-the-improvement-substrate-1faa1a457dba",
+      "canonical_key": "traces-are-the-improvement-substrate",
+      "proposition": "Once autonomy is traded for static predictability, runtime traces become the substrate every agent improvement runs on, and the binding constraint is the cost of reading them rather than the cost of producing them.",
+      "relation_ids": [
+        "REL-agent-autonomy-trades-off-with-is-traded-against-44912ed2a046",
+        "REL-context-window-limit-depends-on-bounds-trace-min-3132d7eb9573",
+        "REL-runtime-traces-feeds-feeds-trace-mining-95508872354a",
+        "REL-static-predictability-causes-lowers-which-elevat-1097d48a1bd8"
+      ],
+      "score": 0.64959,
+      "score_breakdown": {
+        "causal_reach": 0.4444444444444444,
+        "centrality": 0.4333333333333333,
+        "decision_impact": 0.9,
+        "evidence_strength": 0.53625,
+        "novelty": 0.5,
+        "source_emphasis": 0.9,
+        "source_recurrence": 1.0
+      }
+    },
+    {
+      "candidate_id": "TH-harness-then-tune-then-harness-5938c676b4b3",
+      "canonical_key": "harness-then-tune-then-harness",
+      "proposition": "Improvement effort should follow feedback latency: harness engineering first because it answers in minutes, fine-tuning only once that ceiling saturates, then harness engineering again.",
+      "relation_ids": [
+        "REL-domain-fine-tuning-enables-re-opens-harness-engi-0c1eb19993bb",
+        "REL-generated-evals-enables-constrains-harness-engin-59f00567c498",
+        "REL-harness-engineering-trades-off-with-saturates-ha-f6afda5eba89"
+      ],
+      "score": 0.548069,
+      "score_breakdown": {
+        "causal_reach": 0.16666666666666666,
+        "centrality": 0.38888888888888884,
+        "decision_impact": 0.85,
+        "evidence_strength": 0.42250000000000004,
+        "novelty": 0.6,
+        "source_emphasis": 0.7,
+        "source_recurrence": 1.0
+      }
+    },
+    {
+      "candidate_id": "TH-fit-is-a-three-way-function-953c8bb3270f",
+      "canonical_key": "fit-is-a-three-way-function",
+      "proposition": "Agent task performance is a joint function of model, harness and task, so a regression cannot be attributed to the model alone.",
+      "relation_ids": [
+        "REL-model-harness-task-fit-causes-determines-agent-t-d2cd283cd3cc"
+      ],
+      "score": 0.452236,
+      "score_breakdown": {
+        "causal_reach": 0.1111111111111111,
+        "centrality": 0.16666666666666666,
+        "decision_impact": 0.8,
+        "evidence_strength": 0.42250000000000004,
+        "novelty": 0.4,
+        "source_emphasis": 0.6,
+        "source_recurrence": 1.0
+      }
+    }
+  ]
+}
