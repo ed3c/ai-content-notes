@@ -1,0 +1,91 @@
+{
+  "$defs": {
+    "artifactDescriptor": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {"minLength": 1, "type": "string"},
+        "locator_range": {"type": ["string", "null"]},
+        "media_type": {"minLength": 1, "type": "string"},
+        "modality": {"enum": ["transcript", "video-frame", "visual-evidence", "audio", "metadata"]},
+        "path": {"minLength": 1, "type": "string"},
+        "primary_or_secondary": {"enum": ["primary", "secondary", "derived"]},
+        "role": {"enum": ["subject-matter-source", "derived-source", "audit-artifact"]},
+        "source_dependency_key": {"minLength": 1, "type": "string"},
+        "source_id": {"type": ["string", "null"]}
+      },
+      "required": ["artifact_id", "modality", "role", "media_type", "path", "source_dependency_key", "primary_or_secondary"],
+      "type": "object"
+    },
+    "authority": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {"properties": {"authorization_status": {"const": "blocked"}}, "required": ["authorization_status"]},
+          "then": {"properties": {"may_compile_cards": {"const": false}, "may_complete_note": {"const": false}, "may_publish_raw_media": {"const": false}, "may_reconstruct_visuals": {"const": false}, "may_treat_visual_text_as_source_exact": {"const": false}}}
+        },
+        {
+          "if": {"properties": {"authorization_status": {"const": "evaluation-only"}}, "required": ["authorization_status"]},
+          "then": {"properties": {"may_complete_note": {"const": false}, "may_publish_raw_media": {"const": false}}}
+        },
+        {
+          "if": {"properties": {"may_treat_visual_text_as_source_exact": {"const": true}}, "required": ["may_treat_visual_text_as_source_exact"]},
+          "then": {"properties": {"may_reconstruct_visuals": {"const": true}}}
+        }
+      ],
+      "properties": {
+        "authorization_status": {"enum": ["verified", "evaluation-only", "blocked"]},
+        "may_compile_cards": {"type": "boolean"},
+        "may_complete_note": {"type": "boolean"},
+        "may_publish_raw_media": {"type": "boolean"},
+        "may_reconstruct_visuals": {"type": "boolean"},
+        "may_treat_visual_text_as_source_exact": {"type": "boolean"},
+        "rights_basis": {"minLength": 1, "type": "string"},
+        "rights_reference": {"type": ["string", "null"]}
+      },
+      "required": ["authorization_status", "rights_basis", "rights_reference", "may_compile_cards", "may_reconstruct_visuals", "may_treat_visual_text_as_source_exact", "may_complete_note", "may_publish_raw_media"],
+      "type": "object"
+    },
+    "modalities": {
+      "additionalProperties": false,
+      "properties": {
+        "audio": {"$ref": "#/$defs/modalityStatus"},
+        "metadata": {"$ref": "#/$defs/modalityStatus"},
+        "transcript": {"$ref": "#/$defs/modalityStatus"},
+        "video_frames": {"$ref": "#/$defs/modalityStatus"},
+        "visual_evidence": {"$ref": "#/$defs/modalityStatus"}
+      },
+      "required": ["transcript", "video_frames", "visual_evidence", "audio", "metadata"],
+      "type": "object"
+    },
+    "modalityStatus": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {"properties": {"status": {"enum": ["PARTIAL", "BLOCKED"]}}, "required": ["status"]},
+          "then": {"properties": {"reason": {"minLength": 1, "type": "string"}}}
+        }
+      ],
+      "properties": {
+        "reason": {"type": ["string", "null"]},
+        "status": {"enum": ["AVAILABLE", "PARTIAL", "BLOCKED", "NOT_REQUESTED"]}
+      },
+      "required": ["status", "reason"],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/ed3c/ai-content-notes/schemas/multimodal-source-pack-descriptor.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifacts": {"items": {"$ref": "#/$defs/artifactDescriptor"}, "minItems": 1, "type": "array"},
+    "authority": {"$ref": "#/$defs/authority"},
+    "content_id": {"minLength": 1, "type": "string"},
+    "modalities": {"$ref": "#/$defs/modalities"},
+    "pack_id": {"minLength": 1, "type": "string"},
+    "schema_version": {"const": "multimodal-source-pack-descriptor@1"},
+    "source_dependency_keys": {"items": {"minLength": 1, "type": "string"}, "minItems": 1, "type": "array", "uniqueItems": true}
+  },
+  "required": ["schema_version", "pack_id", "content_id", "source_dependency_keys", "modalities", "artifacts", "authority"],
+  "title": "Multimodal source pack descriptor",
+  "type": "object"
+}
