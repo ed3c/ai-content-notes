@@ -52,6 +52,9 @@ evals/live/
 evals/semantic-yield/
   modified-flow card batches, projections, manifests, validator reports and run state
 
+docs/git/
+  repository-owned Git Town/Stacked-PR profile, admission, Worker and stack index
+
 tools/
   deterministic acquisition, normalization, materialization, validation and export adapters
 
@@ -103,4 +106,42 @@ No state transition is authorized by prose alone. Every transition must identify
 - Prompt, schema, compiler, exporter, security, migration, cross-repository and repository-navigation changes use a branch and reviewed PR.
 - A prompt upgrade requires a locked artifact, fixed fixtures, saved A/B outputs, deterministic evaluation, limitations and regression tests.
 - Documentation that changes Agent routing, state-machine ownership or stacked-delivery governance must update the root README and the nearest directory README in the same reviewed stack.
-- Git Town/Stacked-PR work must use the shared `git-town-stacked-pr-worker` Skill plus the repository-owned profile under `docs/git/` when that layer is present. Missing exact Git Town admission is `ABSENT`/`BLOCKED_POLICY`, never inferred as PASS.
+
+## Git Town and Stacked PR work
+
+Before creating, synchronizing, publishing or retargeting a stacked branch, read in this order:
+
+1. the shared [`git-town-stacked-pr-worker`](https://github.com/ed3c/skills-shared/tree/main/skills/git-town-stacked-pr-worker) Skill;
+2. [`docs/git/README.md`](docs/git/README.md);
+3. [`docs/git/REPO_PROFILE.md`](docs/git/REPO_PROFILE.md);
+4. [`docs/git/GIT_TOWN_ADMISSION.md`](docs/git/GIT_TOWN_ADMISSION.md);
+5. [`docs/git/WORKER_PROTOCOL.md`](docs/git/WORKER_PROTOCOL.md);
+6. [`docs/git/STACKED_PRS.md`](docs/git/STACKED_PRS.md);
+7. the assigned issue/task packet and nearest READMEs;
+8. the exact current PR/branch/check graph.
+
+Current documentation stack:
+
+```text
+main
+└── PR #18 agent/docs-card-catalog
+    └── PR #19 agent/docs-agent-routing
+        └── PR #20 agent/docs-state-machine
+            └── PR #21 agent/docs-git-town-governance
+```
+
+Git Town owns synchronization only after exact admission. Semantic conflicts, `continue/skip/undo/ship`, merge, legal acceptance, permission widening, promotion and production rollback remain human/trusted-operator actions.
+
+Current execution lanes:
+
+```text
+remote parent branch graph: PASS
+connector-backed draft PR publication: PASS
+exact Git Town admission: ABSENT / BLOCKED_POLICY
+live git town sync: NOT_EXERCISED
+linked worktree/lease canary: NOT_EXERCISED
+Worker publication gate: NOT_IMPLEMENTED
+merge/ship: HUMAN ADMIT
+```
+
+Do not create a repository-local copy of the shared Skill. Do not add an active `.git-town.toml`, sync wrapper or background loop until the exact admission and required negative controls are complete. A branch graph is not a Git Town execution receipt.

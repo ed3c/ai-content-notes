@@ -69,7 +69,15 @@ ai-content-notes/
 │           ├── semantic-validator-report.json
 │           ├── semantic-yield.result.json
 │           └── run-state.md
-├── docs/                               # implementation status, audits and governance
+├── docs/
+│   ├── SEMANTIC_YIELD_INTEGRATION_STATUS.md
+│   ├── SEMANTIC_YIELD_VALIDATOR.md
+│   └── git/
+│       ├── README.md                   # Git/Stacked-PR governance entry
+│       ├── REPO_PROFILE.md             # consumer-owned Worker profile
+│       ├── GIT_TOWN_ADMISSION.md       # exact executable evidence state
+│       ├── WORKER_PROTOCOL.md          # task packets, leases and outcomes
+│       └── STACKED_PRS.md              # active stack + future leaf graph
 ├── notes/                              # historical Git note bodies
 ├── examples/                           # schemas and claim-map examples
 └── .github/workflows/                  # canonical CI and acquisition workflows
@@ -174,6 +182,9 @@ note completed != claim verified
 claim candidate != admitted claim
 Skill compiled != Skill qualified
 Git branch graph != live Git Town synchronization receipt
+Git Town sync != implementation/test correctness
+remote push != GitHub trusted check
+GitHub trusted check != Human Admit
 ```
 
 ## Materialization status｜實作狀態
@@ -188,7 +199,8 @@ Materialized:
 - retained first v7.1 evaluation batch under `evals/live/`;
 - modified Semantic Yield 10-card batch and five human views;
 - deterministic host validator with a ten-QG evidence subset;
-- deterministic historical Git-note delta exporter.
+- deterministic historical Git-note delta exporter;
+- repository-owned card navigation, Agent routing, state-machine and Git/stack governance documents.
 
 Incomplete or not materialized:
 
@@ -198,7 +210,9 @@ Incomplete or not materialized:
 - general source-dependency resolver;
 - remaining QG-01..QG-24 evidence;
 - Google Docs/Sheets transactional writer/read-back adapter;
-- Drive-revision note-delta adapter.
+- Drive-revision note-delta adapter;
+- exact Git Town executable/version/checksum/legal admission;
+- Worker worktree/lease/sync/publication wrappers and live canaries.
 
 The documented target workflow must not be presented as an executed production pipeline until these gaps are closed.
 
@@ -232,6 +246,11 @@ All other gates remain `NOT_RUN` for this validator.
 - [`INTEGRATION_REQUIREMENTS.md`](INTEGRATION_REQUIREMENTS.md)
 - [`evals/semantic-yield/README.md`](evals/semantic-yield/README.md)
 - [`docs/SEMANTIC_YIELD_INTEGRATION_STATUS.md`](docs/SEMANTIC_YIELD_INTEGRATION_STATUS.md)
+- [`docs/git/README.md`](docs/git/README.md)
+- [`docs/git/REPO_PROFILE.md`](docs/git/REPO_PROFILE.md)
+- [`docs/git/GIT_TOWN_ADMISSION.md`](docs/git/GIT_TOWN_ADMISSION.md)
+- [`docs/git/WORKER_PROTOCOL.md`](docs/git/WORKER_PROTOCOL.md)
+- [`docs/git/STACKED_PRS.md`](docs/git/STACKED_PRS.md)
 - [`governance/CARD_PROTOCOL_CURRENT.json`](governance/CARD_PROTOCOL_CURRENT.json)
 - [`governance/CARD_PROTOCOL_V7_1.md`](governance/CARD_PROTOCOL_V7_1.md)
 - [`governance/PARAMETERS.md`](governance/PARAMETERS.md)
@@ -240,26 +259,81 @@ All other gates remain `NOT_RUN` for this validator.
 - [`docs/PROMPT_V7_1_AB_AND_SYSTEM_AUDIT.md`](docs/PROMPT_V7_1_AB_AND_SYSTEM_AUDIT.md)
 - [`docs/SEMANTIC_YIELD_VALIDATOR.md`](docs/SEMANTIC_YIELD_VALIDATOR.md)
 
-## Stacked delivery trace｜Stack PR 追溯
+## Active Stack PR trace｜目前 Stack PR 追溯
 
-Issue [#17](https://github.com/ed3c/ai-content-notes/issues/17) owns the documentation/governance stack:
+Issue [#17](https://github.com/ed3c/ai-content-notes/issues/17) owns this stack:
 
 ```text
 main
-└── PR #18 agent/docs-card-catalog
-    └── PR #19 agent/docs-agent-routing
-        └── agent/docs-state-machine       # this layer
-            └── agent/docs-git-town-governance
+└── PR #18  agent/docs-card-catalog
+    └── PR #19  agent/docs-agent-routing
+        └── PR #20  agent/docs-state-machine
+            └── PR #21  agent/docs-git-town-governance
 ```
 
-| Stack | Branch | Base | Scope | Status |
+| Stack | Branch | PR base | Molecular scope | Status |
 |---:|---|---|---|---|
-| 1 | `agent/docs-card-catalog` | `main` | batch/card catalog + status SSOT | Draft PR #18 |
-| 2 | `agent/docs-agent-routing` | Stack 1 | AGENTS/Claude/integration routing | Draft PR #19 |
-| 3 | `agent/docs-state-machine` | Stack 2 | root directory map, state machine, data flow and navigation test | current branch |
-| 4 | `agent/docs-git-town-governance` | Stack 3 | repo profile, admission state, Worker protocol and final PR index | planned child |
+| 1 | `agent/docs-card-catalog` | `main` | card catalog + integration status SSOT | Draft PR #18 |
+| 2 | `agent/docs-agent-routing` | Stack 1 | Agent read order and current state | Draft PR #19 |
+| 3 | `agent/docs-state-machine` | Stack 2 | root directory/state/data-flow map + navigation test | Draft PR #20 |
+| 4 | `agent/docs-git-town-governance` | Stack 3 | repo profile, admission blocker, Worker protocol and convergence index | Draft PR #21 |
 
-This branch graph is Git Town-compatible, but live `git town sync` has not been executed. Exact executable/version/checksum admission is currently `ABSENT`; publication uses explicit GitHub parent branches and merge remains Human Admit.
+Merge/retarget order:
+
+```text
+#18 -> #19 -> #20 -> #21
+```
+
+GitHub parent branches and draft PR publication are exercised. Live `git town sync`, linked worktree/lease canaries and Worker publication gates are `NOT_EXERCISED` or `NOT_IMPLEMENTED`; exact Git Town admission is `ABSENT`. See [`docs/git/STACKED_PRS.md`](docs/git/STACKED_PRS.md).
+
+## Molecular runtime leaf stack｜分子化末端實作
+
+The old draft PR #13 is not current `main` authority and should not be merged wholesale. Its runtime scope is decomposed into independently reviewable leaves:
+
+```text
+main
+└── runtime/01-source-pack-and-run-receipt
+    └── runtime/02-relation-graph-and-thesis-ranking
+        ├── runtime/03a-knowledge-view-projections
+        ├── runtime/03b-source-driven-batch-planner
+        └── runtime/03c-semantic-yield-evaluator
+            └── runtime/04-convergence-and-cvrngaqzq3y-replay
+
+main
+└── runtime/visual-01-rights-gated-frame-contracts
+    └── runtime/visual-02-frame-extractor-and-annotation
+        └── runtime/04-convergence-and-cvrngaqzq3y-replay
+
+main
+└── runtime/provider-01-model-run-adapter
+    └── runtime/provider-02-raw-response-receipt
+        └── runtime/04-convergence-and-cvrngaqzq3y-replay
+```
+
+Key rule:
+
+```text
+03a / 03b / 03c are sibling branches with disjoint path leases.
+Visual and provider stacks are independent roots.
+Only the convergence leaf owns shared fixtures, aggregate indexes and final replay.
+```
+
+The complete responsibilities, proposed path leases, dependencies and completion evidence are indexed in [`docs/git/STACKED_PRS.md`](docs/git/STACKED_PRS.md). These leaves are `PLANNED`, not implemented PRs.
+
+## Git Town adoption status｜Git Town 採用狀態
+
+```text
+shared Skill binding: DOCUMENTED
+repository profile: MATERIALIZED
+remote branch graph: MATERIALIZED
+exact Git Town admission: ABSENT / BLOCKED_POLICY
+live sync: NOT_EXERCISED
+background sync: DISABLED
+Worker publication gate: NOT_IMPLEMENTED
+merge/ship: HUMAN ADMIT
+```
+
+No `.git-town.toml`, sync wrapper or background loop should be treated as active before [`docs/git/GIT_TOWN_ADMISSION.md`](docs/git/GIT_TOWN_ADMISSION.md) is unblocked and the required negative controls pass.
 
 ## Historical delivery trace｜歷史交付
 
@@ -269,7 +343,7 @@ This branch graph is Git Town-compatible, but live `git town sync` has not been 
 | #11/#12 | transcript acquisition and complete first v7.1 output | retained `evals/live/` baseline |
 | #15 | regenerated 10-card Semantic Yield batch | current modified-flow cards |
 | #16 | deterministic Semantic Yield validator | current host validation |
-| #13 | grounded runtime draft | open monolithic draft; not current `main` authority and should be decomposed before merge |
+| #13 | grounded runtime draft | open monolithic draft; decompose through the planned leaf graph before merge |
 
 ## Completion and privacy｜完成與隱私
 
