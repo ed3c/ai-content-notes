@@ -26,6 +26,16 @@
       "normalized_words": 3843,
       "retained_path": "ai-video-transcriber/captions.auto.en.json",
       "transport": "ai-video-transcriber"
+    },
+    {
+      "backend": "tools/youtube_transcript.py --mode captions (yt-dlp)",
+      "cues": 1084,
+      "independent_corroboration": false,
+      "max_end_seconds": 1198.653,
+      "normalized_words": 3797,
+      "note": "only transport that retains the platform-native WebVTT, including word-level timing tags",
+      "retained_path": "yt-dlp-captions/captions.auto.en.json",
+      "transport": "yt-dlp-captions"
     }
   ],
   "artifact_boundaries": [
@@ -102,6 +112,18 @@
       "path": "ai-video-transcriber/acquisition-receipt.json",
       "role": "audit-artifact",
       "sha256": "sha256:1d01943713d790601ee8d19f9a144f78d9cda4b1f994cb4383ccbe3ceb1e6493"
+    },
+    {
+      "note": "platform-native WebVTT, the only retained artifact carrying word-level timing tags",
+      "path": "yt-dlp-captions/CvRngaQZQ3Y.en.vtt",
+      "role": "subject-matter-source",
+      "sha256": "sha256:306832234e1b84c119097f43b9a9a9d989fcb13b9062e3934654230fec3337cf"
+    },
+    {
+      "note": "youtube-transcript-manifest@1, authorization.status unverified-evaluation-only",
+      "path": "yt-dlp-captions/acquisition-receipt.json",
+      "role": "audit-artifact",
+      "sha256": "sha256:e6e9be32945f48215bc6efb827552c9f22774fe27a9dc76918d8b71d205f2093"
     }
   ],
   "schema_version": "zettelkasten-source-manifest@2",
@@ -138,6 +160,17 @@
       "retained_path": "ai-video-transcriber/captions.auto.en.json",
       "source_dependency_key": "youtube-video:CvRngaQZQ3Y",
       "source_id": "youtube:CvRngaQZQ3Y:ai-video-transcriber",
+      "source_type": "transcript"
+    },
+    {
+      "digest": "sha256:9792f7d8ee88263a6fc0d9670b306f4b4130ab099b542bd4e3d17d28a5fe721d",
+      "locators": [
+        "timestamp:00:00:01.309..00:19:58.653"
+      ],
+      "primary_or_secondary": "secondary",
+      "retained_path": "yt-dlp-captions/captions.auto.en.json",
+      "source_dependency_key": "youtube-video:CvRngaQZQ3Y",
+      "source_id": "youtube:CvRngaQZQ3Y:yt-dlp-captions",
       "source_type": "transcript"
     }
   ],

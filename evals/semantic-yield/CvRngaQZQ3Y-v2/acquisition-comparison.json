@@ -23,6 +23,20 @@
       "median_anchor_window_words": 207
     },
     {
+      "transport": "yt-dlp-captions",
+      "backend": "tools/youtube_transcript.py --mode captions",
+      "status": "ACQUIRED",
+      "cues": 1084,
+      "raw_words": null,
+      "normalized_words": 3797,
+      "rolling_duplication": true,
+      "max_end_seconds": 1198.653,
+      "tail_loss_seconds": 2.347,
+      "median_anchor_window_words": 385,
+      "retains_platform_native_vtt": true,
+      "note": "unlocked by moving the gate from which tool runs onto what the act retrieves"
+    },
+    {
       "transport": "youtube-transcript.ai",
       "backend": "youtube-transcript.ai broker",
       "status": "ACQUIRED",
@@ -49,14 +63,14 @@
     {
       "transport": "yt-dlp-captions",
       "backend": "tools/youtube_transcript.py --mode captions",
-      "status": "RIGHTS_REFUSED",
+      "status": "SUPERSEDED_BY_EVALUATION_LANE",
       "reason": "accepts only owned, licensed, creator-permission, public-domain or user-provided-media; AT-001 is user-directed-evaluation"
     },
     {
       "transport": "faster-whisper-large-v3",
       "backend": "tools/youtube_transcript.py --mode asr",
       "status": "RIGHTS_REFUSED",
-      "reason": "same gate; it downloads media, so it demands a real rights basis"
+      "reason": "audio is Content under the same ToS clause as video, and in-memory decoding is still reproduction; this needs a verified rights basis"
     }
   ],
   "content_agreement": {
@@ -393,6 +407,8 @@
   "conclusion": {
     "all_v2_anchors_resolve_in_every_acquired_transport": true,
     "recommended_transport": "youtube-transcript-api",
-    "reason": "same content, no rolling duplication, tightest locator windows, and it reaches 1200.683s of a 1201s video"
+    "reason": "tightest anchor windows at 207 median words. yt-dlp-captions has twice the cue count but a 385-word median window, because raw WebVTT cues overlap; cue count is not locator precision.",
+    "word_level_timing_available_only_from": "yt-dlp-captions raw WebVTT",
+    "open_lead": "The retained WebVTT carries per-word timing tags. The parser discards them via normalize_text, so no card can currently anchor below cue level. Relevant to QG-03."
   }
 }

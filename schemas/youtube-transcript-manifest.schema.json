@@ -106,6 +106,7 @@
       "type": "object",
       "additionalProperties": false,
       "required": [
+        "status",
         "rights_basis",
         "rights_reference",
         "attested_by",
@@ -118,7 +119,8 @@
             "licensed",
             "creator-permission",
             "public-domain",
-            "user-provided-media"
+            "user-provided-media",
+            "user-directed-evaluation"
           ]
         },
         "rights_reference": {
@@ -132,8 +134,57 @@
         "attested_at": {
           "type": "string",
           "format": "date-time"
+        },
+        "status": {
+          "description": "Which lane the acquisition took. unverified-evaluation-only may retrieve a caption track only.",
+          "enum": [
+            "verified",
+            "unverified-evaluation-only"
+          ]
         }
-      }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "unverified-evaluation-only"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "rights_basis": {
+                "const": "user-directed-evaluation"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "verified"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "rights_basis": {
+                "not": {
+                  "const": "user-directed-evaluation"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "acquisition": {
       "type": "object",
