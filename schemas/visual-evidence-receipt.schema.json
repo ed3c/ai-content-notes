@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ed3c/ai-content-notes/schemas/visual-evidence-receipt.schema.json",
+  "title": "Rights-gated visual evidence receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "content_id",
+    "source_dependency_key",
+    "rights",
+    "video",
+    "frames",
+    "annotations",
+    "created_at"
+  ],
+  "properties": {
+    "schema_version": {"const": "visual-evidence-receipt@1"},
+    "content_id": {"type": "string", "minLength": 1},
+    "source_dependency_key": {"type": "string", "minLength": 1},
+    "rights": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["basis", "authorization_status", "attestor", "reference"],
+      "properties": {
+        "basis": {
+          "description": "Public visibility is deliberately absent, matching the rights allowlist.",
+          "enum": [
+            "owned",
+            "licensed",
+            "public-domain",
+            "user-provided",
+            "creator-permission",
+            "unattested"
+          ]
+        },
+        "authorization_status": {"enum": ["verified", "evaluation-only", "blocked"]},
+        "attestor": {"type": ["string", "null"]},
+        "reference": {"type": ["string", "null"]}
+      }
+    },
+    "video": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sha256", "duration_seconds"],
+      "properties": {
+        "sha256": {"anyOf": [{"$ref": "#/$defs/sha256"}, {"type": "null"}]},
+        "duration_seconds": {
+          "description": "Null when no media was ever held; a duration cannot be known without it.",
+          "anyOf": [{"type": "number", "exclusiveMinimum": 0}, {"type": "null"}]
+        }
+      }
+    },
+    "frames": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/frame"}
+    },
+    "annotations": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/annotation"}
+    },
+    "created_at": {"type": "string", "format": "date-time"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"},
+    "unitInterval": {"type": "number", "minimum": 0, "maximum": 1},
+    "frame": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["frame_id", "timestamp_seconds", "disposition", "sha256", "path", "reason"],
+      "properties": {
+        "frame_id": {"type": "string", "pattern": "^VIS-[A-Za-z0-9._:-]+$"},
+        "timestamp_seconds": {"type": "number", "minimum": 0},
+        "disposition": {
+          "enum": ["RENDERED", "CARD_MAPPED", "DEFERRED", "BLOCKED_WITH_K_CARD"]
+        },
+        "sha256": {"anyOf": [{"$ref": "#/$defs/sha256"}, {"type": "null"}]},
+        "path": {"type": ["string", "null"]},
+        "reason": {"type": ["string", "null"]}
+      }
+    },
+    "annotation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["annotation_id", "frame_id", "bbox", "label", "claim_status"],
+      "properties": {
+        "annotation_id": {"type": "string", "minLength": 1},
+        "frame_id": {"type": "string", "pattern": "^VIS-[A-Za-z0-9._:-]+$"},
+        "bbox": {
+          "description": "Normalized to the frame, origin at top left.",
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["x", "y", "width", "height"],
+          "properties": {
+            "x": {"$ref": "#/$defs/unitInterval"},
+            "y": {"$ref": "#/$defs/unitInterval"},
+            "width": {"type": "number", "exclusiveMinimum": 0, "maximum": 1},
+            "height": {"type": "number", "exclusiveMinimum": 0, "maximum": 1}
+          }
+        },
+        "label": {"type": "string", "minLength": 1},
+        "claim_status": {
+          "enum": ["EXACT_VISUAL_CLAIM", "DESCRIPTIVE", "BLOCKED_WITH_K_CARD"]
+        }
+      }
+    }
+  }
+}
