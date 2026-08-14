@@ -86,6 +86,33 @@ prior state
 
 Each subject source records `source_id`, `source_type`, `source_dependency_key`, `primary_or_secondary`, digest and real locators. Prompt-injection text is isolated as data.
 
+### Subject retention｜素材保留
+
+Retain the acquired subject in this repository under:
+
+```text
+sources/<content-id>/source-manifest.json
+sources/<content-id>/<retained artifacts>
+```
+
+A digest recorded in a card proves what was compiled, but it cannot reconstitute
+the subject. The `CvRngaQZQ3Y` transcript was acquired, compiled into ten cards
+and then lost, so `runtime/04-convergence-and-cvrngaqzq3y-replay` has no subject
+to bind a source pack to and cannot be replayed at any cost. Retention is what
+prevents the next batch from ending the same way.
+
+Retention only counts when it is bound. Every file under `sources/<content-id>/`
+must be listed in that content's `source-manifest.json` with a matching
+SHA-256, and every artifact the manifest lists must exist.
+`tools/verify_source_retention.py` enforces both directions and fails closed on
+a retained-but-undeclared file, a declared-but-absent artifact, a digest
+mismatch, or a retained directory with no manifest.
+
+This does not relax the separate prohibitions. Raw and normalized artifacts stay
+separate files; a raw broker response never becomes a note; transcript bodies
+never appear inside `evals/**` markdown; and `needs-review` is still not note
+completion. Retention changes where the subject lives, not what it authorizes.
+
 ## 6. Phase D — Dual-plane compilation｜雙平面編譯
 
 Audit Plane order is fixed:
