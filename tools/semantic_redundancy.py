@@ -6,9 +6,9 @@ import re
 from itertools import combinations
 from typing import Any
 
-CARD = re.compile(r"^###\s+([^｜\n]+)＜", re.MULTILINE)
-CORE = re.compile(r^\s*- \*\核心命题\*\[：:]\s*(.+)$", re.MULTILINE)
-TOKEN = re.compile(r[A-Za-z0-9_\-]+|[\u4e00-\u9fff]+")
+CARD = re.compile(r"^###\s+([^｜\n]+)｜", re.MULTILINE)
+CORE = re.compile(r"^\s*- \*\*核心命題\*\*[：:]\s*(.+)$", re.MULTILINE)
+TOKEN = re.compile(r"[A-Za-z0-9_\-]+|[\u4e00-\u9fff]+")
 
 
 def token_set(value: str) -> set[str]:

@@ -28,8 +28,10 @@ jobs:
           python -m py_compile
           tools/export_note_delta.py
           tools/evaluate_prompt_ab.py
+          tools/validate_semantic_yield_artifacts.py
           tests/test_contracts.py
           tests/test_prompt_v7_1_ab.py
+          tests/test_semantic_yield_validator.py
       - run: pytest -q
       - name: Verify persisted v7.0 versus v7.1 replay result
         run: |
@@ -39,6 +41,13 @@ jobs:
             --output-b evals/prompt-ab/v7_0-v7_1/output-b-v7.1.md \
             --run evals/prompt-ab/v7_0-v7_1/run.json \
             --output evals/prompt-ab/v7_0-v7_1/result.json \
+            --check
+      - name: Verify persisted semantic-yield validator report
+        run: |
+          python tools/validate_semantic_yield_artifacts.py \
+            --target evals/semantic-yield/CvRngaQZQ3Y \
+            --output evals/semantic-yield/CvRngaQZQ3Y/semantic-validator-report.json \
+            --created-at 2026-08-14T01:15:00Z \
             --check
       - name: Export deterministic privacy-preserving delta
         run: |

@@ -11,6 +11,13 @@ import projection_dispatch
 from semantic_runtime_common import load_json, sha256_file, stable_id, utc_now, validate, write_json
 
 
+def index_graph(graph: dict[str, object]) -> tuple[dict[str, dict], dict[str, dict]]:
+    """Index a relation-graph receipt by node_id and relation_id."""
+    nodes = {item["node_id"]: item for item in graph["nodes"]}
+    edges = {item["relation_id"]: item for item in graph["relations"]}
+    return nodes, edges
+
+
 def build_markdown(projections: list[dict[str, object]]) -> str:
     parts = []
     for projection in projections:
@@ -37,8 +44,7 @@ def main() -> int:
     digest = sha256_file(args.graph)
     if plan["source_graph_digest"] != digest:
         raise ValueError("projection plan graph digest mismatch")
-    nodes = {item["node_id"]: item for item in graph["nodes"]}
-    edges = {item["relation_id"]: item for item in graph["edges"]}
+    nodes, edges = index_graph(graph)
     projections = [projection_dispatch.render(item, nodes, edges) for item in plan["projections"]]
     bundle = {
         "schema_version": "projection-bundle@2",

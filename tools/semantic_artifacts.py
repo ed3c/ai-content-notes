@@ -13,11 +13,11 @@ ACCOUNTED_VISUAL_STATES = {
 
 
 def relation_ids(graph: dict[str, Any]) -> set[str]:
-    return {item["relation_id"] for item in graph.get("edges", [])}
+    return {item["relation_id"] for item in graph.get("relations", [])}
 
 
 def projection_kinds(bundle: dict[str, Any]) -> set[str]:
-    return {item["projection_kind"] for item in bundle.get("projections", []}
+    return {item["projection_kind"] for item in bundle.get("projections", [])}
 
 
 def question_tags(bundle: dict[str, Any]) -> set[str]:
@@ -29,7 +29,7 @@ def question_tags(bundle: dict[str, Any]) -> set[str]:
 
 
 def projection_ids(bundle: dict[str, Any]) -> set[str]:
-    return {item["projection_id"] for item in bundle.get("projections", []}
+    return {item["projection_id"] for item in bundle.get("projections", [])}
 
 
 def accounted_visual_ids(ledger: dict[str, Any]) -> set[str]:
