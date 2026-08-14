@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import re
 import shutil
 import sys
 from pathlib import Path
@@ -86,8 +87,10 @@ def test_persisted_semantic_validator_report_is_current() -> None:
     )
     assert report["hg"]["HG-03"]["status"] == "DEFERRED"
     assert set(report["qg_subset"]) == {
+        "QG-01",
         "QG-07",
         "QG-08",
+        "QG-09",
         "QG-10",
         "QG-11",
         "QG-12",
@@ -162,3 +165,60 @@ def test_unsupported_precision_fails_closed(tmp_path: Path) -> None:
     precision = report["checks"]["SV-07-unknown-safe-precision"]
     assert precision["status"] == "FAIL"
     assert any("unsupported precision" in item for item in precision["failures"])
+
+
+def test_an_unanchored_source_statement_fails_closed(tmp_path: Path) -> None:
+    """QG-01: an asserting claim kind may not stand without an anchor."""
+    validator = load_validator()
+    repository, target, schema = copy_fixture(tmp_path)
+
+    path = target / "cards" / "D-trace-scale-bottleneck.md"
+    text = path.read_text(encoding="utf-8")
+    stripped = re.sub(r"\[\[EV-[A-Za-z0-9._:-]+\]\]", "(anchor removed)", text)
+    assert stripped != text
+    path.write_text(stripped, encoding="utf-8")
+
+    report = validator.build_report(
+        repository, target, created_at=CREATED_AT, schema_path=schema
+    )
+    check = report["checks"]["SV-13-evidence-anchor-coverage"]
+    assert check["status"] == "FAIL"
+    assert any("SOURCE_STATEMENT without an evidence anchor" in item for item in check["failures"])
+    assert report["qg_subset"]["QG-01"]["status"] == "FAIL"
+
+
+def test_a_dropped_boundary_fails_closed(tmp_path: Path) -> None:
+    """QG-09: a conflict or boundary is never silently dropped."""
+    validator = load_validator()
+    repository, target, schema = copy_fixture(tmp_path)
+
+    path = target / "cards" / "C-model-harness-task-fit.md"
+    text = path.read_text(encoding="utf-8")
+    stripped = re.sub(r"- \*\*反證／限制\*\*[：:].*", "", text)
+    assert stripped != text
+    path.write_text(stripped, encoding="utf-8")
+
+    report = validator.build_report(
+        repository, target, created_at=CREATED_AT, schema_path=schema
+    )
+    check = report["checks"]["SV-14-conflict-preservation"]
+    assert check["status"] == "FAIL"
+    assert any("carries no 反證／限制" in item for item in check["failures"])
+    assert report["qg_subset"]["QG-09"]["status"] == "FAIL"
+
+
+def test_series_that_own_their_boundary_are_not_asked_twice() -> None:
+    """P, V and K state the boundary through fields SV-12 already requires."""
+    validator = load_validator()
+    report = validator.build_report(
+        ROOT, TARGET, created_at=CREATED_AT, schema_path=SCHEMA
+    )
+    assert report["checks"]["SV-14-conflict-preservation"]["status"] == "PASS"
+    assert validator.SERIES_OWNED_LIMIT_FIELDS == {"P", "V", "K"}
+    # The P card genuinely has no 反證／限制 line; it carries Rollback and
+    # Failure Handling instead, which is why the exemption is not cosmetic.
+    practice = (TARGET / "cards" / "P-trace-driven-improvement-cycle.md").read_text(
+        encoding="utf-8"
+    )
+    assert "**反證／限制**" not in practice
+    assert "**Rollback**" in practice and "**Failure Handling**" in practice
