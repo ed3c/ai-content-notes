@@ -278,7 +278,12 @@ def test_frame_sampling_blocks_unauthorized_rights() -> None:
     assert blocked["status"] == "BLOCKED"
     assert blocked["timestamps_seconds"] == []
 
-    planned = frame_sampling_plan.build("sha256:" + "0" * 64, 120.0, 4, "authorized-local-file")
+    # The sampler used to accept `authorized-local-file`, a value no acquisition
+    # adapter has ever emitted. It is now a blocked non-value like any other.
+    retired = frame_sampling_plan.build("sha256:" + "0" * 64, 120.0, 4, "authorized-local-file")
+    assert retired["status"] == "BLOCKED"
+
+    planned = frame_sampling_plan.build("sha256:" + "0" * 64, 120.0, 4, "user-provided-media")
     assert planned["status"] == "PLANNED"
     assert planned["timestamps_seconds"][0] == 0.0
     assert len(planned["timestamps_seconds"]) == 4

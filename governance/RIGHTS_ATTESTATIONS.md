@@ -32,7 +32,7 @@ unverified-evaluation-only`.
 
 The owner does not own this channel. A direction to use material is not a
 statement about who holds rights in it, so this attestation is **not**
-`owned`, `licensed`, `public-domain`, `user-provided` or
+`owned`, `licensed`, `public-domain`, `user-provided-media` or
 `creator-permission`.
 
 `schemas/rights-allowlist.schema.json` pins `user-directed-evaluation` to
@@ -56,7 +56,7 @@ A separate attestation stating **which** basis applies and on what evidence:
 - `licensed` — the licence the videos are published under, per video, with a
   reference that can be read back;
 - `public-domain` — the basis for that status;
-- `owned` / `user-provided` — the owner holds or supplies the media directly.
+- `owned` / `user-provided-media` — the owner holds or supplies the media directly.
 
 Issue #7's admission thresholds also require a human-reviewed gold transcript
 per evaluated item before any accuracy number is quoted. AT-001 does not

@@ -26,15 +26,11 @@ from typing import Any
 
 from jsonschema import Draft202012Validator, FormatChecker
 
+from rights_vocabulary import VERIFIED_RIGHTS_BASES
+
 SCHEMA_PATH = Path("schemas/visual-evidence-receipt.schema.json")
 PRESENT = {"RENDERED", "CARD_MAPPED"}
-ATTESTED_BASES = {
-    "owned",
-    "licensed",
-    "public-domain",
-    "user-provided",
-    "creator-permission",
-}
+ATTESTED_BASES = VERIFIED_RIGHTS_BASES
 
 
 class VisualEvidenceError(RuntimeError):
