@@ -18,6 +18,17 @@
     "entry": {
       "type": "object",
       "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {"rights_basis": {"const": "user-directed-evaluation"}},
+            "required": ["rights_basis"]
+          },
+          "then": {
+            "properties": {"authorization_status": {"const": "evaluation-only"}}
+          }
+        }
+      ],
       "required": [
         "video_id",
         "canonical_url",
@@ -40,13 +51,14 @@
         "title": {"type": "string", "minLength": 1},
         "published_at": {"$ref": "#/$defs/date"},
         "rights_basis": {
-          "description": "Public visibility is deliberately absent. Visibility is not authorization.",
+          "description": "Public visibility is deliberately absent. Visibility is not authorization. user-directed-evaluation records that the repository owner pointed at material they do not own; it can never be verified.",
           "enum": [
             "owned",
             "licensed",
             "public-domain",
             "user-provided",
-            "creator-permission"
+            "creator-permission",
+            "user-directed-evaluation"
           ]
         },
         "rights_reference": {
