@@ -1,0 +1,60 @@
+{
+  "schema_version": "semantic-yield-card-manifest@1",
+  "video_id": "CvRngaQZQ3Y",
+  "generated_date": "2026-08-14",
+  "status": "CONTINUE",
+  "protocol": {
+    "path": "governance/CARD_PROTOCOL_V7_1.md",
+    "git_blob_sha1": "7f3019f4b41a90728cd48a523d742c7c59721bf6",
+    "modified_for_run": false
+  },
+  "source": {
+    "source_id": "youtube:CvRngaQZQ3Y:youtube-transcript-ai",
+    "source_dependency_key": "youtube-video:CvRngaQZQ3Y",
+    "primary_or_secondary": "secondary",
+    "normalized_transcript_sha256": "bf993b8d98717284f58139bfa93955b1bbfcb0128ca386b1913e98d2a4eef462",
+    "human_review_completed": false,
+    "authorized_video_frames_available": false
+  },
+  "render_policy": {
+    "thesis_selection": "causal-reach-and-decision-value",
+    "batch_policy": "source-driven",
+    "visual_policy": "project-grounded-relations; defer-original-slide-reconstruction",
+    "unknown_policy": "preserve-UNKNOWN-cells"
+  },
+  "card_count": 10,
+  "card_order": [
+    "N-autonomy-trace-mining",
+    "C-model-harness-task-fit",
+    "S-harness-finetune-harness",
+    "T-trace-judge-comparison",
+    "P-trace-driven-improvement-cycle",
+    "D-trace-scale-bottleneck",
+    "D-four-stage-trace-loop",
+    "C-continual-learning-state-planes",
+    "V-semantic-yield-replay",
+    "K-visual-identifier-evidence-gap"
+  ],
+  "cards": [
+    {"stable_id":"N-autonomy-trace-mining","path":"cards/N-autonomy-trace-mining.md","git_blob_sha1":"f43d22f4def39361607c22ba2c68728673b77045"},
+    {"stable_id":"C-model-harness-task-fit","path":"cards/C-model-harness-task-fit.md","git_blob_sha1":"aa0735cc2420f36ecf4c38334687d33d41d469ee"},
+    {"stable_id":"S-harness-finetune-harness","path":"cards/S-harness-finetune-harness.md","git_blob_sha1":"4e675f6f92de85f095e4e81b1aff961152aa361c"},
+    {"stable_id":"T-trace-judge-comparison","path":"cards/T-trace-judge-comparison.md","git_blob_sha1":"2b359b35404ceed883f61afc68f6859584475872"},
+    {"stable_id":"P-trace-driven-improvement-cycle","path":"cards/P-trace-driven-improvement-cycle.md","git_blob_sha1":"a6711ce0cec7990050c58d6654c8d6ef080594c8"},
+    {"stable_id":"D-trace-scale-bottleneck","path":"cards/D-trace-scale-bottleneck.md","git_blob_sha1":"d2b4f08e924312ae7fd29002f0169eb362052ab4"},
+    {"stable_id":"D-four-stage-trace-loop","path":"cards/D-four-stage-trace-loop.md","git_blob_sha1":"d029cd7ce72b3efaae7daee1bdd0f6a685560b1f"},
+    {"stable_id":"C-continual-learning-state-planes","path":"cards/C-continual-learning-state-planes.md","git_blob_sha1":"3ab6a20722c0e1b645592cd520c82222daf146d8"},
+    {"stable_id":"V-semantic-yield-replay","path":"cards/V-semantic-yield-replay.md","git_blob_sha1":"a4d31132a000b21aa0ed0809c74b6b59b4e19ff0"},
+    {"stable_id":"K-visual-identifier-evidence-gap","path":"cards/K-visual-identifier-evidence-gap.md","git_blob_sha1":"b33fb4c7abd66fe8fbe5f508f2de474f39192f23"}
+  ],
+  "projection": {
+    "path": "knowledge-views.md",
+    "git_blob_sha1": "73fe09d5d89591fa8be1f2888f4b6c2dc664bd70"
+  },
+  "remaining_work": [
+    "obtain-authorized-video-frames-or-creator-slides",
+    "human-review-proper-nouns-model-versions-and-acronyms",
+    "run-independent-semantic-and-QG-01-through-QG-24-validation",
+    "persist-provider-model-run-receipt"
+  ]
+}

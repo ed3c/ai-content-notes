@@ -1,0 +1,50 @@
+{
+  "schema_version": "semantic-yield-result@1",
+  "video_id": "CvRngaQZQ3Y",
+  "status": "CONTINUE",
+  "external_validator": "NOT_RUN",
+  "card_count": 10,
+  "central_thesis": "Agent autonomy reduces static predictability, making runtime traces and decision-shaped trace mining the primary improvement substrate.",
+  "checks": {
+    "HG-01-grounded-semantic-yield": {
+      "status": "PASS_CANDIDATE",
+      "evidence": ["N-autonomy-trace-mining", "C-model-harness-task-fit", "C-continual-learning-state-planes"]
+    },
+    "HG-02-implicit-relation-recall": {
+      "status": "PASS_CANDIDATE",
+      "evidence": ["knowledge-views.md#1-autonomy--trace-mining", "knowledge-views.md#3-intervention-sequence"]
+    },
+    "HG-03-visual-artifact-coverage": {
+      "status": "DEFERRED",
+      "reason": "No authorized frame or creator-slide artifact was available; host projections are not original-slide reconstructions.",
+      "tracked_by": "K-visual-identifier-evidence-gap"
+    },
+    "HG-04-unsupported-precision": {
+      "status": "PASS_CANDIDATE",
+      "reason": "Unknown model revisions, benchmark scores and cost cells remain UNKNOWN; the 1-or-2-orders claim stays source-reported and LOW confidence."
+    },
+    "HG-05-cross-card-redundancy": {
+      "status": "PASS_CANDIDATE",
+      "reason": "Narrative, concept, strategy, comparison, procedure, details, verification and gap have distinct decision uses."
+    },
+    "HG-06-mental-model-utility": {
+      "status": "PASS_CANDIDATE",
+      "evidence": ["causal-dataflow", "fit-equation", "intervention-sequence", "state-planes", "comparison-matrix"]
+    }
+  },
+  "epistemic_contract": {
+    "source_dependency_count": 1,
+    "corroborated_claim_count": 0,
+    "practice_execution_status": "UNTESTED",
+    "verification_verdict": "PARTIAL",
+    "raw_visual_authority": false
+  },
+  "completion_blockers": [
+    "authorized-video-frame-or-slide-evidence",
+    "human-reviewed-identifiers",
+    "independent-semantic-validator",
+    "external-QG-01-through-QG-24",
+    "provider-model-run-receipt"
+  ],
+  "verdict": "REGENERATED_SEMANTIC_YIELD_CARD_BATCH_WITH_BLOCKERS"
+}
