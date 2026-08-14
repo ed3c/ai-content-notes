@@ -1,22 +1,22 @@
 # AI Content Notes｜AI 高價值內容筆記與證據庫
 
-> A private Evidence Plane that turns complete AI source material into source-constrained, payload-first v7.1 cards, machine sidecars, knowledge projections and review-gated claim candidates.
+> A private Evidence Plane that turns complete AI source material into source-constrained, payload-first v7.1 cards, machine sidecars, knowledge projections, deterministic validation receipts and review-gated claim candidates.
 >
-> 私有 Evidence Plane：把完整 AI 來源編譯成受證據約束、payload-first 的 v7.1 卡片、machine sidecars、知識投影與待審查 claim candidates。
+> 私有 Evidence Plane：把完整 AI 來源編譯成受證據約束、payload-first 的 v7.1 卡片、machine sidecars、知識投影、deterministic validation receipts 與待審查 claim candidates。
 
 ## Start here｜卡片在哪裡
 
-The canonical modified-flow card catalog is:
+Canonical modified-flow catalog:
 
 - [`evals/semantic-yield/README.md`](evals/semantic-yield/README.md)
 
-As of 2026-08-14, only one content item has run the modified host-side Semantic Yield flow on `main`:
+As of 2026-08-14, only one content item has run the modified host-side Semantic Yield flow:
 
 ```text
 evals/semantic-yield/CvRngaQZQ3Y/cards/
 ```
 
-It contains ten cards and remains `CONTINUE`:
+It contains ten stable-ID cards and remains `CONTINUE`:
 
 | Order | Stable ID | Series / decision use |
 |---:|---|---|
@@ -31,17 +31,23 @@ It contains ten cards and remains `CONTINUE`:
 | 9 | [`V-semantic-yield-replay`](evals/semantic-yield/CvRngaQZQ3Y/cards/V-semantic-yield-replay.md) | Verification: host replay, `PARTIAL` |
 | 10 | [`K-visual-identifier-evidence-gap`](evals/semantic-yield/CvRngaQZQ3Y/cards/K-visual-identifier-evidence-gap.md) | Gap: visual and canonical-identifier evidence |
 
-Do not confuse this with `evals/live/CvRngaQZQ3Y/`, which is the retained first transcript-only v7.1 evaluation batch. The `evals/live/` 12-card output did not run the complete modified Semantic Yield flow.
+Do not confuse that directory with:
+
+```text
+evals/live/CvRngaQZQ3Y/
+```
+
+`evals/live/` is the retained first **transcript-only** v7.1 evaluation batch. Its 12-card output did not run the complete modified Semantic Yield flow.
 
 ## Active protocol｜目前協議
 
 ```text
 governance/CARD_PROTOCOL_CURRENT.json
   -> governance/CARD_PROTOCOL_V7_1.md
-  -> git blob SHA-1 7f3019f4b41a90728cd48a523d742c7c59721bf6
+  -> Git blob SHA-1 7f3019f4b41a90728cd48a523d742c7c59721bf6
 ```
 
-v7.1 separates evidence-first compilation from task-value-first rendering. Human cards begin with the core proposition and why it matters; canonical key, revision, source dependencies and registry state move to the declared sidecar plane. v7.0 remains the fixed A/B/provenance baseline, and v6.6 remains historical.
+The v7.1 prompt is immutable. Host-side Semantic Yield work adds source packs, relation modeling, projections, batch selection and validators without patching the prompt bytes.
 
 ## Repository directory map｜目錄結構
 
@@ -57,7 +63,7 @@ ai-content-notes/
 ├── tools/                              # acquisition, normalization, validation and export adapters
 ├── tests/                              # deterministic contract and regression tests
 ├── evals/
-│   ├── prompt-ab/                      # v7.0 versus v7.1 fixed replay
+│   ├── prompt-ab/                      # fixed v7.0 versus v7.1 replay
 │   ├── live/                           # acquisition-backed first-pass outputs / baselines
 │   └── semantic-yield/
 │       ├── README.md                   # all modified-flow batches
@@ -65,7 +71,7 @@ ai-content-notes/
 │           ├── README.md               # batch entrypoint and card order
 │           ├── cards/                  # one stable-ID Markdown file per card
 │           ├── card-manifest.json      # prompt/source/card/blob bindings
-│           ├── knowledge-views.md      # host-side graph projections
+│           ├── knowledge-views.md      # grounded host-side graph projections
 │           ├── semantic-validator-report.json
 │           ├── semantic-yield.result.json
 │           └── run-state.md
@@ -77,7 +83,7 @@ ai-content-notes/
 │       ├── REPO_PROFILE.md             # consumer-owned Worker profile
 │       ├── GIT_TOWN_ADMISSION.md       # exact executable evidence state
 │       ├── WORKER_PROTOCOL.md          # task packets, leases and outcomes
-│       └── STACKED_PRS.md              # active stack + future leaf graph
+│       └── STACKED_PRS.md              # completed stack + planned runtime leaf graph
 ├── notes/                              # historical Git note bodies
 ├── examples/                           # schemas and claim-map examples
 └── .github/workflows/                  # canonical CI and acquisition workflows
@@ -87,17 +93,17 @@ ai-content-notes/
 
 | State / lane | Owning paths | Input | Output / receipt | Failure boundary |
 |---|---|---|---|---|
-| `DISCOVERED` | ranking/source selection outside or before batch materialization | candidate URL/source | content ID + task intent | snippet/title-only input blocks |
-| `RIGHTS_AND_COMPLETENESS_REVIEW` | acquisition adapters, `governance/WORKFLOW.md` | candidate source | rights/completeness decision | unverified rights or incomplete source → `BLOCKED`/evaluation-only |
-| `ACQUIRED` | `tools/ai_video_transcriber_*`, `tools/youtube_*`, acquisition workflows | authorized source | raw/private acquisition artifact + source manifest | transport success is not independent corroboration |
+| `DISCOVERED` | ranking/source selection before batch materialization | candidate URL/source | content ID + task intent | snippet/title-only input blocks |
+| `RIGHTS_AND_COMPLETENESS_REVIEW` | acquisition adapters, `governance/WORKFLOW.md` | candidate source | rights/completeness decision | missing authority or incomplete source → `BLOCKED`/evaluation-only |
+| `ACQUIRED` | `tools/ai_video_transcriber_*`, `tools/youtube_*`, acquisition workflows | admitted source | raw/private acquisition artifact + source manifest | transport success is not independent corroboration |
 | `NORMALIZED` | `tools/normalize_rolling_transcript.py` | raw transcript/cues | deterministic normalized derivative + report | semantic/name repair is forbidden in normalization |
-| `EVIDENCE_BOUND` | v7.1 Audit Plane contracts, manifests and evidence anchors | normalized source + dependency key | evidence/assertion candidates | missing anchor → inference/K card, not fabricated precision |
-| `SEMANTIC_MODELED` | relation/thesis/projection layer and `knowledge-views.md` | evidence-bound claims | causal relations, thesis ranking, views | host view is not source-slide evidence |
-| `CARD_BATCH_RENDERED` | `evals/semantic-yield/<id>/cards/`, `card-manifest.json` | semantic graph + render plan | source-driven stable card batch | fixed series quota must not override source decision value |
+| `EVIDENCE_BOUND` | v7.1 Audit Plane contracts, manifests and anchors | normalized source + dependency key | evidence/assertion candidates | missing anchor → inference/K card, not fabricated precision |
+| `SEMANTIC_MODELED` | relation/thesis/projection layer, `knowledge-views.md` | evidence-bound claims | causal relations, thesis ranking and views | host view is not source-slide evidence |
+| `CARD_BATCH_RENDERED` | `evals/semantic-yield/<id>/cards/`, `card-manifest.json` | semantic graph + render plan | source-driven stable card batch | fixed series quota must not override decision value |
 | `HOST_VALIDATED` | `tools/validate_semantic_yield_artifacts.py`, schema/tests/report | persisted batch | HG results + evidenced QG subset | model-authored PASS is insufficient |
-| `PERSISTED_AND_READ_BACK` | batch directory, Git blobs, future Doc/Sheet adapters | validated artifacts | exact read-back identity | planned path or status prose is not persistence evidence |
+| `PERSISTED_AND_READ_BACK` | batch directory and Git blobs; future Doc/Sheet adapters | validated artifacts | exact read-back identity | planned path or prose is not persistence evidence |
 | `CONTINUE` | `run-state.md`, `semantic-yield.result.json` | partial valid batch | next cursor + blockers | current `CvRngaQZQ3Y` state |
-| `DONE` | complete v7.1 Completion Contract | all required source/QG/storage evidence | final state with no remaining work | unavailable while any required lane remains open |
+| `DONE` | full v7.1 Completion Contract | all required source/QG/storage evidence | final state with no remaining work | unavailable while any required lane remains open |
 | `BLOCKED` / `FAILED` | K/X/V state and run state | missing authority or irreparable input | explicit unblock/recovery contract | never silently downgrade to DONE |
 
 ## State machine｜狀態機
@@ -157,7 +163,7 @@ Concrete current paths:
 
 ```text
 evals/live/CvRngaQZQ3Y/
-  -> retained first transcript-only v7.1 batch
+  -> retained transcript-only baseline
 
 evals/semantic-yield/CvRngaQZQ3Y/cards/
   -> current modified-flow card payloads
@@ -169,7 +175,7 @@ evals/semantic-yield/CvRngaQZQ3Y/semantic-validator-report.json
   -> deterministic HG/QG evidence
 
 evals/semantic-yield/CvRngaQZQ3Y/run-state.md
-  -> current `CONTINUE` cursor and remaining work
+  -> current CONTINUE cursor and remaining work
 ```
 
 ## Evidence lanes｜證據分流
@@ -198,9 +204,10 @@ Materialized:
 - deterministic rolling-caption normalization;
 - retained first v7.1 evaluation batch under `evals/live/`;
 - modified Semantic Yield 10-card batch and five human views;
-- deterministic host validator with a ten-QG evidence subset;
+- deterministic host validator with an evidenced ten-QG subset;
 - deterministic historical Git-note delta exporter;
-- repository-owned card navigation, Agent routing, state-machine and Git/stack governance documents.
+- repository-owned card catalog, Agent routing, state-machine, data-flow and Git/stack governance documents;
+- merged documentation Stack PRs #18, #19, #20 and #21.
 
 Incomplete or not materialized:
 
@@ -214,7 +221,7 @@ Incomplete or not materialized:
 - exact Git Town executable/version/checksum/legal admission;
 - Worker worktree/lease/sync/publication wrappers and live canaries.
 
-The documented target workflow must not be presented as an executed production pipeline until these gaps are closed.
+The target workflow must not be described as an executed production pipeline until those gaps are closed.
 
 ## Deterministic validation｜契約驗證
 
@@ -246,6 +253,7 @@ All other gates remain `NOT_RUN` for this validator.
 - [`INTEGRATION_REQUIREMENTS.md`](INTEGRATION_REQUIREMENTS.md)
 - [`evals/semantic-yield/README.md`](evals/semantic-yield/README.md)
 - [`docs/SEMANTIC_YIELD_INTEGRATION_STATUS.md`](docs/SEMANTIC_YIELD_INTEGRATION_STATUS.md)
+- [`docs/SEMANTIC_YIELD_VALIDATOR.md`](docs/SEMANTIC_YIELD_VALIDATOR.md)
 - [`docs/git/README.md`](docs/git/README.md)
 - [`docs/git/REPO_PROFILE.md`](docs/git/REPO_PROFILE.md)
 - [`docs/git/GIT_TOWN_ADMISSION.md`](docs/git/GIT_TOWN_ADMISSION.md)
@@ -256,39 +264,44 @@ All other gates remain `NOT_RUN` for this validator.
 - [`governance/PARAMETERS.md`](governance/PARAMETERS.md)
 - [`governance/WORKFLOW.md`](governance/WORKFLOW.md)
 - [`INDEX.md`](INDEX.md), [`CONTEXT.md`](CONTEXT.md), [`RANK.md`](RANK.md)
-- [`docs/PROMPT_V7_1_AB_AND_SYSTEM_AUDIT.md`](docs/PROMPT_V7_1_AB_AND_SYSTEM_AUDIT.md)
-- [`docs/SEMANTIC_YIELD_VALIDATOR.md`](docs/SEMANTIC_YIELD_VALIDATOR.md)
 
-## Active Stack PR trace｜目前 Stack PR 追溯
+## Completed documentation Stack PR trace｜已合併 Stack PR 追溯
 
-Issue [#17](https://github.com/ed3c/ai-content-notes/issues/17) owns this stack:
+Issue [#17](https://github.com/ed3c/ai-content-notes/issues/17) owned the documentation/governance stack:
 
 ```text
 main
-└── PR #18  agent/docs-card-catalog
-    └── PR #19  agent/docs-agent-routing
-        └── PR #20  agent/docs-state-machine
-            └── PR #21  agent/docs-git-town-governance
+└── Merged PR #18  agent/docs-card-catalog
+    └── Merged PR #19  agent/docs-agent-routing
+        └── Merged PR #20  agent/docs-state-machine
+            └── Merged PR #21  agent/docs-git-town-governance
 ```
 
-| Stack | Branch | PR base | Molecular scope | Status |
-|---:|---|---|---|---|
-| 1 | `agent/docs-card-catalog` | `main` | card catalog + integration status SSOT | Draft PR #18 |
-| 2 | `agent/docs-agent-routing` | Stack 1 | Agent read order and current state | Draft PR #19 |
-| 3 | `agent/docs-state-machine` | Stack 2 | root directory/state/data-flow map + navigation test | Draft PR #20 |
-| 4 | `agent/docs-git-town-governance` | Stack 3 | repo profile, admission blocker, Worker protocol and convergence index | Draft PR #21 |
+| Stack | PR | Scope | Merge commit |
+|---:|---:|---|---|
+| 1 | PR #18 | card catalog + integration status SSOT | `bbf92a4106b720f5b50707029779984d6672951f` |
+| 2 | PR #19 | Agent read order and current state | `073fbdd2c1d09b71f22a30b7458aa0be06b932d6` |
+| 3 | PR #20 | root directory/state/data-flow map + navigation test | `c10f8b4572546262c34f93712c54798fdc451830` |
+| 4 | PR #21 | repo profile, admission blocker, Worker protocol and convergence index | `a2bd35a615c6754c5be70494bef55b65216bda7c` |
 
-Merge/retarget order:
+The stack was merged in ancestry-preserving order with GitHub merge commits. That proves the remote branch/PR sequence and Human Admit, but not a live `git town sync`.
+
+Current Git Town evidence:
 
 ```text
-#18 -> #19 -> #20 -> #21
+remote parent branch graph: PASS
+connector-backed PR publication: PASS
+merge sequence: PASS / HUMAN ADMIT
+exact Git Town admission: ABSENT / BLOCKED_POLICY
+live sync: NOT_EXERCISED
+linked worktree/lease canary: NOT_EXERCISED
+conflict canary: NOT_EXERCISED
+Worker publication gate: NOT_IMPLEMENTED
 ```
-
-GitHub parent branches and draft PR publication are exercised. Live `git town sync`, linked worktree/lease canaries and Worker publication gates are `NOT_EXERCISED` or `NOT_IMPLEMENTED`; exact Git Town admission is `ABSENT`. See [`docs/git/STACKED_PRS.md`](docs/git/STACKED_PRS.md).
 
 ## Molecular runtime leaf stack｜分子化末端實作
 
-The old draft PR #13 is not current `main` authority and should not be merged wholesale. Its runtime scope is decomposed into independently reviewable leaves:
+The old draft PR #13 is not current `main` authority and must not be merged wholesale. Its runtime scope is decomposed into independently reviewable leaves:
 
 ```text
 main
@@ -310,15 +323,15 @@ main
         └── runtime/04-convergence-and-cvrngaqzq3y-replay
 ```
 
-Key rule:
+Key ownership rule:
 
 ```text
 03a / 03b / 03c are sibling branches with disjoint path leases.
 Visual and provider stacks are independent roots.
-Only the convergence leaf owns shared fixtures, aggregate indexes and final replay.
+Only runtime/04 owns shared fixtures, aggregate indexes, CI convergence and final 2×2 replay.
 ```
 
-The complete responsibilities, proposed path leases, dependencies and completion evidence are indexed in [`docs/git/STACKED_PRS.md`](docs/git/STACKED_PRS.md). These leaves are `PLANNED`, not implemented PRs.
+These leaves are `PLANNED`, not implemented PRs. Their proposed path leases, dependencies and completion evidence are indexed in [`docs/git/STACKED_PRS.md`](docs/git/STACKED_PRS.md).
 
 ## Git Town adoption status｜Git Town 採用狀態
 
@@ -333,20 +346,21 @@ Worker publication gate: NOT_IMPLEMENTED
 merge/ship: HUMAN ADMIT
 ```
 
-No `.git-town.toml`, sync wrapper or background loop should be treated as active before [`docs/git/GIT_TOWN_ADMISSION.md`](docs/git/GIT_TOWN_ADMISSION.md) is unblocked and the required negative controls pass.
+No `.git-town.toml`, sync wrapper or background loop is active. Do not enable them until [`docs/git/GIT_TOWN_ADMISSION.md`](docs/git/GIT_TOWN_ADMISSION.md) is unblocked and required negative controls pass.
 
 ## Historical delivery trace｜歷史交付
 
 | PR | Purpose | Current meaning |
-|---|---|---|
+|---:|---|---|
 | #9 | v7.1 prompt lock, A/B harness and audit | protocol foundation |
 | #11/#12 | transcript acquisition and complete first v7.1 output | retained `evals/live/` baseline |
 | #15 | regenerated 10-card Semantic Yield batch | current modified-flow cards |
 | #16 | deterministic Semantic Yield validator | current host validation |
+| #18–#21 | discoverability, Agent routing, state machine and Git/stack governance | merged documentation foundation |
 | #13 | grounded runtime draft | open monolithic draft; decompose through the planned leaf graph before merge |
 
 ## Completion and privacy｜完成與隱私
 
-A current note is completed only after complete-source/rights review, immutable prompt verification, registry-consistent cards, all required external gates, Google Doc read-back, sidecar read-back and exact Sheet write-back. Planned paths, status cells, prompt output and README prose are not completion evidence.
+A content item is `DONE` only after complete-source/rights review, immutable prompt verification, registry-consistent cards, all required external gates, Google Doc read-back, sidecar read-back and exact Sheet write-back. Planned paths, status prose or a partial validator are not completion evidence.
 
-Complete private source/note bodies do not enter public or downstream deltas. This repository emits review-and-requalify signals only. Code, model weights, data, trajectories and source text have independent provenance and licenses.
+Complete private source/note bodies do not enter public or downstream deltas. Code, model weights, data, trajectories and source text keep independent provenance and license states.
