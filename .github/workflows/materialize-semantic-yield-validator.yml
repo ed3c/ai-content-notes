@@ -118,8 +118,8 @@ jobs:
           }, sort_keys=True))
           PY
 
-          rm -rf .bootstrap
-          rm -f .github/workflows/materialize-semantic-yield-validator.yml
+          rm -rf .bootstrap/semantic-validator
+          rm -f .bootstrap/semantic-validator-overlay-manifest.json
 
       - name: Install contract dependencies
         run: |
@@ -169,6 +169,8 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email \
             '41898282+github-actions[bot]@users.noreply.github.com'
+          git restore --source=HEAD --worktree --staged \
+            .github/workflows/contracts-ci.yml
           git add -A
           git commit -m \
             'feat: add deterministic semantic-yield artifact validator'
