@@ -127,7 +127,27 @@ def test_git_town_profile_fails_closed_and_stack_is_traceable() -> None:
         assert leaf in stack
 
 
-def test_root_readme_indexes_active_and_planned_stack_without_overclaim() -> None:
+def test_documentation_stack_is_recorded_as_merged_not_draft() -> None:
+    readme = ROOT_README.read_text(encoding="utf-8")
+    stack = (GIT_DOCS / "STACKED_PRS.md").read_text(encoding="utf-8")
+
+    merge_commits = (
+        "bbf92a4106b720f5b50707029779984d6672951f",
+        "073fbdd2c1d09b71f22a30b7458aa0be06b932d6",
+        "c10f8b4572546262c34f93712c54798fdc451830",
+        "a2bd35a615c6754c5be70494bef55b65216bda7c",
+    )
+    for pr_number in (18, 19, 20, 21):
+        assert f"Merged PR #{pr_number}" in readme
+        assert f"Merged PR #{pr_number}" in stack
+        assert f"Draft PR #{pr_number}" not in readme
+        assert f"Draft PR #{pr_number}" not in stack
+    for merge_commit in merge_commits:
+        assert merge_commit in readme
+        assert merge_commit in stack
+
+
+def test_root_readme_indexes_completed_and_planned_stack_without_overclaim() -> None:
     text = ROOT_README.read_text(encoding="utf-8")
     for pr_number in (18, 19, 20, 21):
         assert f"PR #{pr_number}" in text
@@ -135,3 +155,4 @@ def test_root_readme_indexes_active_and_planned_stack_without_overclaim() -> Non
     assert "exact Git Town admission: ABSENT / BLOCKED_POLICY" in text
     assert "live sync: NOT_EXERCISED" in text
     assert "These leaves are `PLANNED`, not implemented PRs" in text
+    assert "Git branch graph != live Git Town synchronization receipt" in text
