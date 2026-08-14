@@ -35,6 +35,18 @@ jobs:
           tests/test_prompt_v7_1_ab.py
           tests/test_semantic_yield_validator.py
       - run: pytest -q
+      - name: Verify the rights allowlist denies by default
+        run: |
+          python tools/rights_allowlist.py \
+            --allowlist governance/RIGHTS_ALLOWLIST.json \
+            --video-id CvRngaQZQ3Y \
+            --backend creator-caption \
+            --as-of 2026-08-14 > /tmp/rights-decisions.json
+          python - <<'PY'
+          import json
+          decisions = json.load(open("/tmp/rights-decisions.json"))["decisions"]
+          assert all(item["decision"] == "blocked" for item in decisions), decisions
+          PY
       - name: Verify persisted v7.0 versus v7.1 replay result
         run: |
           python tools/evaluate_prompt_ab.py \
