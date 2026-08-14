@@ -1,0 +1,66 @@
+{
+  "acquisition": {
+    "asr": null,
+    "backend": "yt-dlp-captions",
+    "caption_kind": "automatic",
+    "language": "en",
+    "raw_source": {
+      "path": "raw/CvRngaQZQ3Y.en.vtt",
+      "sha256": "306832234e1b84c119097f43b9a9a9d989fcb13b9062e3934654230fec3337cf"
+    },
+    "requested_mode": "captions",
+    "retrieved_at": "2026-08-14T17:05:28Z",
+    "source_audio_retained": false,
+    "source_format": "webvtt"
+  },
+  "artifacts": {
+    "transcript_json": {
+      "path": "transcript.json",
+      "sha256": "9792f7d8ee88263a6fc0d9670b306f4b4130ab099b542bd4e3d17d28a5fe721d"
+    },
+    "transcript_text": {
+      "path": "transcript.txt",
+      "sha256": "bd55ca3780a5833b1e00156cb809cfa9470562ddcf06b99d8ce010f90e4ac216"
+    }
+  },
+  "authority": {
+    "may_complete_note": false,
+    "may_enable_skill_routing": false,
+    "may_raise_claim_evidence": false
+  },
+  "authorization": {
+    "attested_at": "2026-08-14T17:05:28Z",
+    "attested_by": "repository owner (ed3c)",
+    "rights_basis": "user-directed-evaluation",
+    "rights_reference": "governance/RIGHTS_ATTESTATIONS.md#AT-001",
+    "status": "unverified-evaluation-only"
+  },
+  "error": null,
+  "schema_version": "youtube-transcript-manifest@1",
+  "status": "needs-review",
+  "tool": {
+    "name": "youtube_transcript.py",
+    "version": "0.1.0"
+  },
+  "validation": {
+    "character_count": 19968,
+    "cue_count": 1084,
+    "end_coverage_ratio": 0.998046,
+    "human_review_required": true,
+    "maximum_end_seconds": 1198.653,
+    "quality_grade": "platform-auto-caption",
+    "timeline_coverage_ratio": 0.976106,
+    "timestamps_monotonic": true,
+    "warnings": [],
+    "word_count": 3797
+  },
+  "video": {
+    "canonical_url": "https://www.youtube.com/watch?v=CvRngaQZQ3Y",
+    "channel": "AI Engineer",
+    "channel_id": "UCLKPca3kwwd-B59HNr-_lvA",
+    "duration_seconds": 1201.0,
+    "id": "CvRngaQZQ3Y",
+    "published_at": "2026-08-12",
+    "title": "Improving Agents is a Data Mining Problem — Vivek Trivedy, LangChain"
+  }
+}

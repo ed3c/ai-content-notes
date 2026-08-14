@@ -33,14 +33,23 @@ ADAPTERS = {
 
 
 def literal_set(module_name: str, constant: str) -> set[str]:
-    """Read a module-level set literal without importing the module."""
+    """Resolve a module-level rights set without importing the module.
+
+    An adapter may either spell the set out or import it from
+    `rights_vocabulary`. Importing is the better state, so it resolves to the
+    canonical set rather than failing for want of a literal.
+    """
     tree = ast.parse((REPOSITORY_ROOT / "tools" / module_name).read_text(encoding="utf-8"))
     for node in tree.body:
         if isinstance(node, ast.Assign) and any(
             isinstance(t, ast.Name) and t.id == constant for t in node.targets
         ):
             return set(ast.literal_eval(node.value))
-    raise AssertionError(f"{module_name}: {constant} not found")
+        if isinstance(node, ast.ImportFrom) and node.module == "rights_vocabulary":
+            for alias in node.names:
+                if (alias.asname or alias.name) == constant:
+                    return set(getattr(vocab, alias.name))
+    raise AssertionError(f"{module_name}: {constant} is neither defined nor imported")
 
 
 @pytest.mark.parametrize(("module_name", "constant"), sorted(ADAPTERS.items()))

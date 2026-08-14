@@ -1,0 +1,6512 @@
+{
+  "canonical_url": "https://www.youtube.com/watch?v=CvRngaQZQ3Y",
+  "cues": [
+    {
+      "end": 13.88,
+      "normalized_text": ">> Hey everyone.",
+      "start": 13.87,
+      "text": ">> Hey everyone."
+    },
+    {
+      "end": 16.95,
+      "normalized_text": "I'm Vic and I lead applied research at",
+      "start": 13.88,
+      "text": ">> Hey everyone. I'm Vic and I lead applied research at"
+    },
+    {
+      "end": 16.96,
+      "normalized_text": "",
+      "start": 16.95,
+      "text": "I'm Vic and I lead applied research at"
+    },
+    {
+      "end": 19.83,
+      "normalized_text": "LangChain and I'm going to talk about",
+      "start": 16.96,
+      "text": "I'm Vic and I lead applied research at LangChain and I'm going to talk about"
+    },
+    {
+      "end": 19.84,
+      "normalized_text": "",
+      "start": 19.83,
+      "text": "LangChain and I'm going to talk about"
+    },
+    {
+      "end": 22.27,
+      "normalized_text": "something that I think is sexy, which is",
+      "start": 19.84,
+      "text": "LangChain and I'm going to talk about something that I think is sexy, which is"
+    },
+    {
+      "end": 22.28,
+      "normalized_text": "",
+      "start": 22.27,
+      "text": "something that I think is sexy, which is"
+    },
+    {
+      "end": 24.31,
+      "normalized_text": "data mining, but it's not as sexy as",
+      "start": 22.28,
+      "text": "something that I think is sexy, which is data mining, but it's not as sexy as"
+    },
+    {
+      "end": 24.32,
+      "normalized_text": "",
+      "start": 24.31,
+      "text": "data mining, but it's not as sexy as"
+    },
+    {
+      "end": 26.11,
+      "normalized_text": "LLM, so we're going to try to like make",
+      "start": 24.32,
+      "text": "data mining, but it's not as sexy as LLM, so we're going to try to like make"
+    },
+    {
+      "end": 26.12,
+      "normalized_text": "",
+      "start": 26.11,
+      "text": "LLM, so we're going to try to like make"
+    },
+    {
+      "end": 28.59,
+      "normalized_text": "it sexy together. And the problem that",
+      "start": 26.12,
+      "text": "LLM, so we're going to try to like make it sexy together. And the problem that"
+    },
+    {
+      "end": 28.6,
+      "normalized_text": "",
+      "start": 28.59,
+      "text": "it sexy together. And the problem that"
+    },
+    {
+      "end": 30.63,
+      "normalized_text": "we're going to talk about today is how",
+      "start": 28.6,
+      "text": "it sexy together. And the problem that we're going to talk about today is how"
+    },
+    {
+      "end": 30.64,
+      "normalized_text": "",
+      "start": 30.63,
+      "text": "we're going to talk about today is how"
+    },
+    {
+      "end": 33.07,
+      "normalized_text": "do we continuously improve agents, but",
+      "start": 30.64,
+      "text": "we're going to talk about today is how do we continuously improve agents, but"
+    },
+    {
+      "end": 33.08,
+      "normalized_text": "",
+      "start": 33.07,
+      "text": "do we continuously improve agents, but"
+    },
+    {
+      "end": 35.63,
+      "normalized_text": "how do we do that via data?",
+      "start": 33.08,
+      "text": "do we continuously improve agents, but how do we do that via data?"
+    },
+    {
+      "end": 35.64,
+      "normalized_text": "",
+      "start": 35.63,
+      "text": "how do we do that via data?"
+    },
+    {
+      "end": 38.67,
+      "normalized_text": "So, to start, I'm going to tell a little",
+      "start": 35.64,
+      "text": "how do we do that via data? So, to start, I'm going to tell a little"
+    },
+    {
+      "end": 38.68,
+      "normalized_text": "",
+      "start": 38.67,
+      "text": "So, to start, I'm going to tell a little"
+    },
+    {
+      "end": 40.67,
+      "normalized_text": "story that I think maybe a lot of us",
+      "start": 38.68,
+      "text": "So, to start, I'm going to tell a little story that I think maybe a lot of us"
+    },
+    {
+      "end": 40.68,
+      "normalized_text": "",
+      "start": 40.67,
+      "text": "story that I think maybe a lot of us"
+    },
+    {
+      "end": 44.35,
+      "normalized_text": "have felt before. Like, I ran my agent,",
+      "start": 40.68,
+      "text": "story that I think maybe a lot of us have felt before. Like, I ran my agent,"
+    },
+    {
+      "end": 44.36,
+      "normalized_text": "",
+      "start": 44.35,
+      "text": "have felt before. Like, I ran my agent,"
+    },
+    {
+      "end": 46.63,
+      "normalized_text": "it did a bunch of things,",
+      "start": 44.36,
+      "text": "have felt before. Like, I ran my agent, it did a bunch of things,"
+    },
+    {
+      "end": 46.64,
+      "normalized_text": "",
+      "start": 46.63,
+      "text": "it did a bunch of things,"
+    },
+    {
+      "end": 49.19,
+      "normalized_text": "it made some mistakes.",
+      "start": 46.64,
+      "text": "it did a bunch of things, it made some mistakes."
+    },
+    {
+      "end": 49.2,
+      "normalized_text": "",
+      "start": 49.19,
+      "text": "it made some mistakes."
+    },
+    {
+      "end": 50.79,
+      "normalized_text": "Now, I ask someone like, what do I",
+      "start": 49.2,
+      "text": "it made some mistakes. Now, I ask someone like, what do I"
+    },
+    {
+      "end": 50.8,
+      "normalized_text": "",
+      "start": 50.79,
+      "text": "Now, I ask someone like, what do I"
+    },
+    {
+      "end": 52.27,
+      "normalized_text": "actually do about that? Like, I have all",
+      "start": 50.8,
+      "text": "Now, I ask someone like, what do I actually do about that? Like, I have all"
+    },
+    {
+      "end": 52.28,
+      "normalized_text": "",
+      "start": 52.27,
+      "text": "actually do about that? Like, I have all"
+    },
+    {
+      "end": 56.71,
+      "normalized_text": "this data, made some mistakes, what now?",
+      "start": 52.28,
+      "text": "actually do about that? Like, I have all this data, made some mistakes, what now?"
+    },
+    {
+      "end": 56.72,
+      "normalized_text": "",
+      "start": 56.71,
+      "text": "this data, made some mistakes, what now?"
+    },
+    {
+      "end": 58.11,
+      "normalized_text": "Basically, what we're going to do today",
+      "start": 56.72,
+      "text": "this data, made some mistakes, what now? Basically, what we're going to do today"
+    },
+    {
+      "end": 58.12,
+      "normalized_text": "",
+      "start": 58.11,
+      "text": "Basically, what we're going to do today"
+    },
+    {
+      "end": 60.75,
+      "normalized_text": "is we're going to motivate a recipe for",
+      "start": 58.12,
+      "text": "Basically, what we're going to do today is we're going to motivate a recipe for"
+    },
+    {
+      "end": 60.76,
+      "normalized_text": "",
+      "start": 60.75,
+      "text": "is we're going to motivate a recipe for"
+    },
+    {
+      "end": 62.75,
+      "normalized_text": "what we should do to continuously",
+      "start": 60.76,
+      "text": "is we're going to motivate a recipe for what we should do to continuously"
+    },
+    {
+      "end": 62.76,
+      "normalized_text": "",
+      "start": 62.75,
+      "text": "what we should do to continuously"
+    },
+    {
+      "end": 64.829,
+      "normalized_text": "improve agents over time, and then I'm",
+      "start": 62.76,
+      "text": "what we should do to continuously improve agents over time, and then I'm"
+    },
+    {
+      "end": 64.839,
+      "normalized_text": "",
+      "start": 64.829,
+      "text": "improve agents over time, and then I'm"
+    },
+    {
+      "end": 66.47,
+      "normalized_text": "going to talk from some lived experience",
+      "start": 64.839,
+      "text": "improve agents over time, and then I'm going to talk from some lived experience"
+    },
+    {
+      "end": 66.48,
+      "normalized_text": "",
+      "start": 66.47,
+      "text": "going to talk from some lived experience"
+    },
+    {
+      "end": 67.47,
+      "normalized_text": "and like some stuff that we help",
+      "start": 66.48,
+      "text": "going to talk from some lived experience and like some stuff that we help"
+    },
+    {
+      "end": 67.48,
+      "normalized_text": "",
+      "start": 67.47,
+      "text": "and like some stuff that we help"
+    },
+    {
+      "end": 69.67,
+      "normalized_text": "customers do to run this over",
+      "start": 67.48,
+      "text": "and like some stuff that we help customers do to run this over"
+    },
+    {
+      "end": 69.68,
+      "normalized_text": "",
+      "start": 69.67,
+      "text": "customers do to run this over"
+    },
+    {
+      "end": 71.51,
+      "normalized_text": "large-scale trace data.",
+      "start": 69.68,
+      "text": "customers do to run this over large-scale trace data."
+    },
+    {
+      "end": 71.52,
+      "normalized_text": "",
+      "start": 71.51,
+      "text": "large-scale trace data."
+    },
+    {
+      "end": 73.75,
+      "normalized_text": "So, the first step in building a",
+      "start": 71.52,
+      "text": "large-scale trace data. So, the first step in building a"
+    },
+    {
+      "end": 73.76,
+      "normalized_text": "",
+      "start": 73.75,
+      "text": "So, the first step in building a"
+    },
+    {
+      "end": 77.23,
+      "normalized_text": "successful agent is shipping it. So, if",
+      "start": 73.76,
+      "text": "So, the first step in building a successful agent is shipping it. So, if"
+    },
+    {
+      "end": 77.24,
+      "normalized_text": "",
+      "start": 77.23,
+      "text": "successful agent is shipping it. So, if"
+    },
+    {
+      "end": 78.78999999999999,
+      "normalized_text": "you put it out into the real world, then",
+      "start": 77.24,
+      "text": "successful agent is shipping it. So, if you put it out into the real world, then"
+    },
+    {
+      "end": 78.8,
+      "normalized_text": "",
+      "start": 78.78999999999999,
+      "text": "you put it out into the real world, then"
+    },
+    {
+      "end": 80.39,
+      "normalized_text": "it can operate in environments and then",
+      "start": 78.8,
+      "text": "you put it out into the real world, then it can operate in environments and then"
+    },
+    {
+      "end": 80.4,
+      "normalized_text": "",
+      "start": 80.39,
+      "text": "it can operate in environments and then"
+    },
+    {
+      "end": 81.63,
+      "normalized_text": "you can get feedback from what it's",
+      "start": 80.4,
+      "text": "it can operate in environments and then you can get feedback from what it's"
+    },
+    {
+      "end": 81.64,
+      "normalized_text": "",
+      "start": 81.63,
+      "text": "you can get feedback from what it's"
+    },
+    {
+      "end": 83.47,
+      "normalized_text": "doing.",
+      "start": 81.64,
+      "text": "you can get feedback from what it's doing."
+    },
+    {
+      "end": 83.48,
+      "normalized_text": "",
+      "start": 83.47,
+      "text": "doing."
+    },
+    {
+      "end": 86.31,
+      "normalized_text": "The second step is collect a ton of",
+      "start": 83.48,
+      "text": "doing. The second step is collect a ton of"
+    },
+    {
+      "end": 86.32,
+      "normalized_text": "",
+      "start": 86.31,
+      "text": "The second step is collect a ton of"
+    },
+    {
+      "end": 88.31,
+      "normalized_text": "traces. So, agents operate in the",
+      "start": 86.32,
+      "text": "The second step is collect a ton of traces. So, agents operate in the"
+    },
+    {
+      "end": 88.32,
+      "normalized_text": "",
+      "start": 88.31,
+      "text": "traces. So, agents operate in the"
+    },
+    {
+      "end": 90.15,
+      "normalized_text": "environment every single time they",
+      "start": 88.32,
+      "text": "traces. So, agents operate in the environment every single time they"
+    },
+    {
+      "end": 90.16,
+      "normalized_text": "",
+      "start": 90.15,
+      "text": "environment every single time they"
+    },
+    {
+      "end": 92.07,
+      "normalized_text": "operate, they do tool calls, they have",
+      "start": 90.16,
+      "text": "environment every single time they operate, they do tool calls, they have"
+    },
+    {
+      "end": 92.08,
+      "normalized_text": "",
+      "start": 92.07,
+      "text": "operate, they do tool calls, they have"
+    },
+    {
+      "end": 94.71000000000001,
+      "normalized_text": "output messages, they call APIs, they",
+      "start": 92.08,
+      "text": "operate, they do tool calls, they have output messages, they call APIs, they"
+    },
+    {
+      "end": 94.72,
+      "normalized_text": "",
+      "start": 94.71000000000001,
+      "text": "output messages, they call APIs, they"
+    },
+    {
+      "end": 97.31,
+      "normalized_text": "use CLIs. All of that generates data and",
+      "start": 94.72,
+      "text": "output messages, they call APIs, they use CLIs. All of that generates data and"
+    },
+    {
+      "end": 97.32,
+      "normalized_text": "",
+      "start": 97.31,
+      "text": "use CLIs. All of that generates data and"
+    },
+    {
+      "end": 98.83,
+      "normalized_text": "we want to store all of that so we can",
+      "start": 97.32,
+      "text": "use CLIs. All of that generates data and we want to store all of that so we can"
+    },
+    {
+      "end": 98.84,
+      "normalized_text": "",
+      "start": 98.83,
+      "text": "we want to store all of that so we can"
+    },
+    {
+      "end": 102.19,
+      "normalized_text": "like do stuff with it.",
+      "start": 98.84,
+      "text": "we want to store all of that so we can like do stuff with it."
+    },
+    {
+      "end": 102.2,
+      "normalized_text": "",
+      "start": 102.19,
+      "text": "like do stuff with it."
+    },
+    {
+      "end": 104.87,
+      "normalized_text": "The next thing is the data mining in",
+      "start": 102.2,
+      "text": "like do stuff with it. The next thing is the data mining in"
+    },
+    {
+      "end": 104.88,
+      "normalized_text": "",
+      "start": 104.87,
+      "text": "The next thing is the data mining in"
+    },
+    {
+      "end": 107.50999999999999,
+      "normalized_text": "this talk, which is once we have tons of",
+      "start": 104.88,
+      "text": "The next thing is the data mining in this talk, which is once we have tons of"
+    },
+    {
+      "end": 107.52000000000001,
+      "normalized_text": "",
+      "start": 107.50999999999999,
+      "text": "this talk, which is once we have tons of"
+    },
+    {
+      "end": 109.78999999999999,
+      "normalized_text": "trace data, maybe gigabytes, maybe",
+      "start": 107.52000000000001,
+      "text": "this talk, which is once we have tons of trace data, maybe gigabytes, maybe"
+    },
+    {
+      "end": 109.8,
+      "normalized_text": "",
+      "start": 109.78999999999999,
+      "text": "trace data, maybe gigabytes, maybe"
+    },
+    {
+      "end": 111.03,
+      "normalized_text": "terabytes, depending on like how many",
+      "start": 109.8,
+      "text": "trace data, maybe gigabytes, maybe terabytes, depending on like how many"
+    },
+    {
+      "end": 111.03999999999999,
+      "normalized_text": "",
+      "start": 111.03,
+      "text": "terabytes, depending on like how many"
+    },
+    {
+      "end": 112.63,
+      "normalized_text": "agents you're shipping, we're going to",
+      "start": 111.03999999999999,
+      "text": "terabytes, depending on like how many agents you're shipping, we're going to"
+    },
+    {
+      "end": 112.64,
+      "normalized_text": "",
+      "start": 112.63,
+      "text": "agents you're shipping, we're going to"
+    },
+    {
+      "end": 115.07,
+      "normalized_text": "do data mining over that. And I promise",
+      "start": 112.64,
+      "text": "agents you're shipping, we're going to do data mining over that. And I promise"
+    },
+    {
+      "end": 115.08,
+      "normalized_text": "",
+      "start": 115.07,
+      "text": "do data mining over that. And I promise"
+    },
+    {
+      "end": 116.63,
+      "normalized_text": "I will tell you exactly what data mining",
+      "start": 115.08,
+      "text": "do data mining over that. And I promise I will tell you exactly what data mining"
+    },
+    {
+      "end": 116.64,
+      "normalized_text": "",
+      "start": 116.63,
+      "text": "I will tell you exactly what data mining"
+    },
+    {
+      "end": 118.27000000000001,
+      "normalized_text": "we're going do, uh but we're going to do",
+      "start": 116.64,
+      "text": "I will tell you exactly what data mining we're going do, uh but we're going to do"
+    },
+    {
+      "end": 118.28,
+      "normalized_text": "",
+      "start": 118.27000000000001,
+      "text": "we're going do, uh but we're going to do"
+    },
+    {
+      "end": 120.43,
+      "normalized_text": "some over it.",
+      "start": 118.28,
+      "text": "we're going do, uh but we're going to do some over it."
+    },
+    {
+      "end": 120.44,
+      "normalized_text": "",
+      "start": 120.43,
+      "text": "some over it."
+    },
+    {
+      "end": 122.59,
+      "normalized_text": "And then the fun part, which is I",
+      "start": 120.44,
+      "text": "some over it. And then the fun part, which is I"
+    },
+    {
+      "end": 122.6,
+      "normalized_text": "",
+      "start": 122.59,
+      "text": "And then the fun part, which is I"
+    },
+    {
+      "end": 124.469,
+      "normalized_text": "collected that data, I read it, I",
+      "start": 122.6,
+      "text": "And then the fun part, which is I collected that data, I read it, I"
+    },
+    {
+      "end": 124.479,
+      "normalized_text": "",
+      "start": 124.469,
+      "text": "collected that data, I read it, I"
+    },
+    {
+      "end": 126.75,
+      "normalized_text": "curated it, and now we actually need to",
+      "start": 124.479,
+      "text": "collected that data, I read it, I curated it, and now we actually need to"
+    },
+    {
+      "end": 126.76,
+      "normalized_text": "",
+      "start": 126.75,
+      "text": "curated it, and now we actually need to"
+    },
+    {
+      "end": 129.23,
+      "normalized_text": "run the experiments in a data-driven way",
+      "start": 126.76,
+      "text": "curated it, and now we actually need to run the experiments in a data-driven way"
+    },
+    {
+      "end": 129.24,
+      "normalized_text": "",
+      "start": 129.23,
+      "text": "run the experiments in a data-driven way"
+    },
+    {
+      "end": 131.75,
+      "normalized_text": "to see, \"Hey, is this new prompt, or is",
+      "start": 129.24,
+      "text": "run the experiments in a data-driven way to see, \"Hey, is this new prompt, or is"
+    },
+    {
+      "end": 131.76,
+      "normalized_text": "",
+      "start": 131.75,
+      "text": "to see, \"Hey, is this new prompt, or is"
+    },
+    {
+      "end": 133.31,
+      "normalized_text": "this new tool, or is this new",
+      "start": 131.76,
+      "text": "to see, \"Hey, is this new prompt, or is this new tool, or is this new"
+    },
+    {
+      "end": 133.32,
+      "normalized_text": "",
+      "start": 133.31,
+      "text": "this new tool, or is this new"
+    },
+    {
+      "end": 135.47,
+      "normalized_text": "orchestration, or is this new loop, is",
+      "start": 133.32,
+      "text": "this new tool, or is this new orchestration, or is this new loop, is"
+    },
+    {
+      "end": 135.48,
+      "normalized_text": "",
+      "start": 135.47,
+      "text": "orchestration, or is this new loop, is"
+    },
+    {
+      "end": 137.87,
+      "normalized_text": "it actually improving things based on",
+      "start": 135.48,
+      "text": "orchestration, or is this new loop, is it actually improving things based on"
+    },
+    {
+      "end": 137.88,
+      "normalized_text": "",
+      "start": 137.87,
+      "text": "it actually improving things based on"
+    },
+    {
+      "end": 141.79,
+      "normalized_text": "the previous traces that I've seen?\"",
+      "start": 137.88,
+      "text": "it actually improving things based on the previous traces that I've seen?\""
+    },
+    {
+      "end": 144.48,
+      "normalized_text": "And this is maybe a bit of a hot take,",
+      "start": 144.47,
+      "text": "And this is maybe a bit of a hot take,"
+    },
+    {
+      "end": 146.39,
+      "normalized_text": "but continual learning is super hot",
+      "start": 144.48,
+      "text": "And this is maybe a bit of a hot take, but continual learning is super hot"
+    },
+    {
+      "end": 146.4,
+      "normalized_text": "",
+      "start": 146.39,
+      "text": "but continual learning is super hot"
+    },
+    {
+      "end": 147.87,
+      "normalized_text": "right now. I'm talking about it, this",
+      "start": 146.4,
+      "text": "but continual learning is super hot right now. I'm talking about it, this"
+    },
+    {
+      "end": 147.88,
+      "normalized_text": "",
+      "start": 147.87,
+      "text": "right now. I'm talking about it, this"
+    },
+    {
+      "end": 149.03,
+      "normalized_text": "whole room is going to hear about it for",
+      "start": 147.88,
+      "text": "right now. I'm talking about it, this whole room is going to hear about it for"
+    },
+    {
+      "end": 149.04,
+      "normalized_text": "",
+      "start": 149.03,
+      "text": "whole room is going to hear about it for"
+    },
+    {
+      "end": 152.07,
+      "normalized_text": "the next like 5-6 hours. Um but there's",
+      "start": 149.04,
+      "text": "whole room is going to hear about it for the next like 5-6 hours. Um but there's"
+    },
+    {
+      "end": 152.07999999999998,
+      "normalized_text": "",
+      "start": 152.07,
+      "text": "the next like 5-6 hours. Um but there's"
+    },
+    {
+      "end": 154.31,
+      "normalized_text": "a very tight coupling between what",
+      "start": 152.07999999999998,
+      "text": "the next like 5-6 hours. Um but there's a very tight coupling between what"
+    },
+    {
+      "end": 154.32,
+      "normalized_text": "",
+      "start": 154.31,
+      "text": "a very tight coupling between what"
+    },
+    {
+      "end": 156.31,
+      "normalized_text": "observability is and what continual",
+      "start": 154.32,
+      "text": "a very tight coupling between what observability is and what continual"
+    },
+    {
+      "end": 156.32,
+      "normalized_text": "",
+      "start": 156.31,
+      "text": "observability is and what continual"
+    },
+    {
+      "end": 158.91,
+      "normalized_text": "learning is. And the main reason for",
+      "start": 156.32,
+      "text": "observability is and what continual learning is. And the main reason for"
+    },
+    {
+      "end": 158.92000000000002,
+      "normalized_text": "",
+      "start": 158.91,
+      "text": "learning is. And the main reason for"
+    },
+    {
+      "end": 160.51,
+      "normalized_text": "that is that",
+      "start": 158.92000000000002,
+      "text": "learning is. And the main reason for that is that"
+    },
+    {
+      "end": 160.52,
+      "normalized_text": "",
+      "start": 160.51,
+      "text": "that is that"
+    },
+    {
+      "end": 162.63,
+      "normalized_text": "agents that operate in environments,",
+      "start": 160.52,
+      "text": "that is that agents that operate in environments,"
+    },
+    {
+      "end": 162.64,
+      "normalized_text": "",
+      "start": 162.63,
+      "text": "agents that operate in environments,"
+    },
+    {
+      "end": 164.87,
+      "normalized_text": "they produce trace data, and what",
+      "start": 162.64,
+      "text": "agents that operate in environments, they produce trace data, and what"
+    },
+    {
+      "end": 164.88,
+      "normalized_text": "",
+      "start": 164.87,
+      "text": "they produce trace data, and what"
+    },
+    {
+      "end": 166.27,
+      "normalized_text": "continual learning for agents and",
+      "start": 164.88,
+      "text": "they produce trace data, and what continual learning for agents and"
+    },
+    {
+      "end": 166.28,
+      "normalized_text": "",
+      "start": 166.27,
+      "text": "continual learning for agents and"
+    },
+    {
+      "end": 167.99,
+      "normalized_text": "continual learning for humans basically",
+      "start": 166.28,
+      "text": "continual learning for agents and continual learning for humans basically"
+    },
+    {
+      "end": 168.0,
+      "normalized_text": "",
+      "start": 167.99,
+      "text": "continual learning for humans basically"
+    },
+    {
+      "end": 169.79,
+      "normalized_text": "is is I do a bunch of stuff in the",
+      "start": 168.0,
+      "text": "continual learning for humans basically is is I do a bunch of stuff in the"
+    },
+    {
+      "end": 169.8,
+      "normalized_text": "",
+      "start": 169.79,
+      "text": "is is I do a bunch of stuff in the"
+    },
+    {
+      "end": 172.51,
+      "normalized_text": "world, I think about what I did, and",
+      "start": 169.8,
+      "text": "is is I do a bunch of stuff in the world, I think about what I did, and"
+    },
+    {
+      "end": 172.52,
+      "normalized_text": "",
+      "start": 172.51,
+      "text": "world, I think about what I did, and"
+    },
+    {
+      "end": 174.71,
+      "normalized_text": "then I need to update my definition,",
+      "start": 172.52,
+      "text": "world, I think about what I did, and then I need to update my definition,"
+    },
+    {
+      "end": 174.72,
+      "normalized_text": "",
+      "start": 174.71,
+      "text": "then I need to update my definition,"
+    },
+    {
+      "end": 177.11,
+      "normalized_text": "like my knowledge, stuff I write down,",
+      "start": 174.72,
+      "text": "then I need to update my definition, like my knowledge, stuff I write down,"
+    },
+    {
+      "end": 177.12,
+      "normalized_text": "",
+      "start": 177.11,
+      "text": "like my knowledge, stuff I write down,"
+    },
+    {
+      "end": 178.99,
+      "normalized_text": "in order to respond to the feedback from",
+      "start": 177.12,
+      "text": "like my knowledge, stuff I write down, in order to respond to the feedback from"
+    },
+    {
+      "end": 179.0,
+      "normalized_text": "",
+      "start": 178.99,
+      "text": "in order to respond to the feedback from"
+    },
+    {
+      "end": 180.949,
+      "normalized_text": "the environment. And if you're continual",
+      "start": 179.0,
+      "text": "in order to respond to the feedback from the environment. And if you're continual"
+    },
+    {
+      "end": 180.959,
+      "normalized_text": "",
+      "start": 180.949,
+      "text": "the environment. And if you're continual"
+    },
+    {
+      "end": 182.949,
+      "normalized_text": "learning company, you need traces, and",
+      "start": 180.959,
+      "text": "the environment. And if you're continual learning company, you need traces, and"
+    },
+    {
+      "end": 182.959,
+      "normalized_text": "",
+      "start": 182.949,
+      "text": "learning company, you need traces, and"
+    },
+    {
+      "end": 184.75,
+      "normalized_text": "if you have traces, then you can try to",
+      "start": 182.959,
+      "text": "learning company, you need traces, and if you have traces, then you can try to"
+    },
+    {
+      "end": 184.76,
+      "normalized_text": "",
+      "start": 184.75,
+      "text": "if you have traces, then you can try to"
+    },
+    {
+      "end": 189.59,
+      "normalized_text": "do continual learning over your agents.",
+      "start": 184.76,
+      "text": "if you have traces, then you can try to do continual learning over your agents."
+    },
+    {
+      "end": 191.76,
+      "normalized_text": "I had to put in a meme because",
+      "start": 191.75,
+      "text": "I had to put in a meme because"
+    },
+    {
+      "end": 193.71,
+      "normalized_text": "if you look at your data, then you can",
+      "start": 191.76,
+      "text": "I had to put in a meme because if you look at your data, then you can"
+    },
+    {
+      "end": 193.72,
+      "normalized_text": "",
+      "start": 193.71,
+      "text": "if you look at your data, then you can"
+    },
+    {
+      "end": 195.59,
+      "normalized_text": "be like Will Hunting if anyone's seen",
+      "start": 193.72,
+      "text": "if you look at your data, then you can be like Will Hunting if anyone's seen"
+    },
+    {
+      "end": 195.6,
+      "normalized_text": "",
+      "start": 195.59,
+      "text": "be like Will Hunting if anyone's seen"
+    },
+    {
+      "end": 197.15,
+      "normalized_text": "the movie, where like everything is",
+      "start": 195.6,
+      "text": "be like Will Hunting if anyone's seen the movie, where like everything is"
+    },
+    {
+      "end": 197.16,
+      "normalized_text": "",
+      "start": 197.15,
+      "text": "the movie, where like everything is"
+    },
+    {
+      "end": 199.35,
+      "normalized_text": "super super easy, and you can like",
+      "start": 197.16,
+      "text": "the movie, where like everything is super super easy, and you can like"
+    },
+    {
+      "end": 199.36,
+      "normalized_text": "",
+      "start": 199.35,
+      "text": "super super easy, and you can like"
+    },
+    {
+      "end": 201.82999999999998,
+      "normalized_text": "improve over time, and I promised Emma I",
+      "start": 199.36,
+      "text": "super super easy, and you can like improve over time, and I promised Emma I"
+    },
+    {
+      "end": 201.84,
+      "normalized_text": "",
+      "start": 201.82999999999998,
+      "text": "improve over time, and I promised Emma I"
+    },
+    {
+      "end": 203.55,
+      "normalized_text": "would put this in there, so putting it",
+      "start": 201.84,
+      "text": "improve over time, and I promised Emma I would put this in there, so putting it"
+    },
+    {
+      "end": 203.56,
+      "normalized_text": "",
+      "start": 203.55,
+      "text": "would put this in there, so putting it"
+    },
+    {
+      "end": 205.87,
+      "normalized_text": "in there.",
+      "start": 203.56,
+      "text": "would put this in there, so putting it in there."
+    },
+    {
+      "end": 205.88,
+      "normalized_text": "",
+      "start": 205.87,
+      "text": "in there."
+    },
+    {
+      "end": 209.55,
+      "normalized_text": "Cool. So, why am I talking a bunch about",
+      "start": 205.88,
+      "text": "in there. Cool. So, why am I talking a bunch about"
+    },
+    {
+      "end": 209.56,
+      "normalized_text": "",
+      "start": 209.55,
+      "text": "Cool. So, why am I talking a bunch about"
+    },
+    {
+      "end": 211.63,
+      "normalized_text": "traces anyway? So,",
+      "start": 209.56,
+      "text": "Cool. So, why am I talking a bunch about traces anyway? So,"
+    },
+    {
+      "end": 211.64,
+      "normalized_text": "",
+      "start": 211.63,
+      "text": "traces anyway? So,"
+    },
+    {
+      "end": 213.27,
+      "normalized_text": "I'm sure a ton of us were software",
+      "start": 211.64,
+      "text": "traces anyway? So, I'm sure a ton of us were software"
+    },
+    {
+      "end": 213.28,
+      "normalized_text": "",
+      "start": 213.27,
+      "text": "I'm sure a ton of us were software"
+    },
+    {
+      "end": 214.22899999999998,
+      "normalized_text": "engineers before, we're software",
+      "start": 213.28,
+      "text": "I'm sure a ton of us were software engineers before, we're software"
+    },
+    {
+      "end": 214.239,
+      "normalized_text": "",
+      "start": 214.22899999999998,
+      "text": "engineers before, we're software"
+    },
+    {
+      "end": 216.79,
+      "normalized_text": "engineers now, and on the left we have a",
+      "start": 214.239,
+      "text": "engineers before, we're software engineers now, and on the left we have a"
+    },
+    {
+      "end": 216.8,
+      "normalized_text": "",
+      "start": 216.79,
+      "text": "engineers now, and on the left we have a"
+    },
+    {
+      "end": 218.55,
+      "normalized_text": "code block, and we can sort of like read",
+      "start": 216.8,
+      "text": "engineers now, and on the left we have a code block, and we can sort of like read"
+    },
+    {
+      "end": 218.56,
+      "normalized_text": "",
+      "start": 218.55,
+      "text": "code block, and we can sort of like read"
+    },
+    {
+      "end": 220.82999999999998,
+      "normalized_text": "the code, and in my head, I can almost",
+      "start": 218.56,
+      "text": "code block, and we can sort of like read the code, and in my head, I can almost"
+    },
+    {
+      "end": 220.84,
+      "normalized_text": "",
+      "start": 220.82999999999998,
+      "text": "the code, and in my head, I can almost"
+    },
+    {
+      "end": 223.50900000000001,
+      "normalized_text": "reason over what this code does. I can",
+      "start": 220.84,
+      "text": "the code, and in my head, I can almost reason over what this code does. I can"
+    },
+    {
+      "end": 223.519,
+      "normalized_text": "",
+      "start": 223.50900000000001,
+      "text": "reason over what this code does. I can"
+    },
+    {
+      "end": 225.03,
+      "normalized_text": "see the functions, I can see like how",
+      "start": 223.519,
+      "text": "reason over what this code does. I can see the functions, I can see like how"
+    },
+    {
+      "end": 225.04,
+      "normalized_text": "",
+      "start": 225.03,
+      "text": "see the functions, I can see like how"
+    },
+    {
+      "end": 226.59,
+      "normalized_text": "they call each other.",
+      "start": 225.04,
+      "text": "see the functions, I can see like how they call each other."
+    },
+    {
+      "end": 226.6,
+      "normalized_text": "",
+      "start": 226.59,
+      "text": "they call each other."
+    },
+    {
+      "end": 228.03,
+      "normalized_text": "I can roughly understand the logic in",
+      "start": 226.6,
+      "text": "they call each other. I can roughly understand the logic in"
+    },
+    {
+      "end": 228.04,
+      "normalized_text": "",
+      "start": 228.03,
+      "text": "I can roughly understand the logic in"
+    },
+    {
+      "end": 232.47,
+      "normalized_text": "Python. Um that doesn't exactly exist in",
+      "start": 228.04,
+      "text": "I can roughly understand the logic in Python. Um that doesn't exactly exist in"
+    },
+    {
+      "end": 232.48,
+      "normalized_text": "",
+      "start": 232.47,
+      "text": "Python. Um that doesn't exactly exist in"
+    },
+    {
+      "end": 235.15,
+      "normalized_text": "agent world because agents have prompts,",
+      "start": 232.48,
+      "text": "Python. Um that doesn't exactly exist in agent world because agents have prompts,"
+    },
+    {
+      "end": 235.16,
+      "normalized_text": "",
+      "start": 235.15,
+      "text": "agent world because agents have prompts,"
+    },
+    {
+      "end": 236.67000000000002,
+      "normalized_text": "they have tools, they have skills, they",
+      "start": 235.16,
+      "text": "agent world because agents have prompts, they have tools, they have skills, they"
+    },
+    {
+      "end": 236.68,
+      "normalized_text": "",
+      "start": 236.67000000000002,
+      "text": "they have tools, they have skills, they"
+    },
+    {
+      "end": 238.63,
+      "normalized_text": "have hooks, they have middlewares, some",
+      "start": 236.68,
+      "text": "they have tools, they have skills, they have hooks, they have middlewares, some"
+    },
+    {
+      "end": 238.64,
+      "normalized_text": "",
+      "start": 238.63,
+      "text": "have hooks, they have middlewares, some"
+    },
+    {
+      "end": 239.91,
+      "normalized_text": "agents call other agents and I",
+      "start": 238.64,
+      "text": "have hooks, they have middlewares, some agents call other agents and I"
+    },
+    {
+      "end": 239.92000000000002,
+      "normalized_text": "",
+      "start": 239.91,
+      "text": "agents call other agents and I"
+    },
+    {
+      "end": 241.99,
+      "normalized_text": "orchestrate them in swarms. It's really",
+      "start": 239.92000000000002,
+      "text": "agents call other agents and I orchestrate them in swarms. It's really"
+    },
+    {
+      "end": 242.0,
+      "normalized_text": "",
+      "start": 241.99,
+      "text": "orchestrate them in swarms. It's really"
+    },
+    {
+      "end": 244.19,
+      "normalized_text": "really hard for humans to reason about",
+      "start": 242.0,
+      "text": "orchestrate them in swarms. It's really really hard for humans to reason about"
+    },
+    {
+      "end": 244.2,
+      "normalized_text": "",
+      "start": 244.19,
+      "text": "really hard for humans to reason about"
+    },
+    {
+      "end": 246.63,
+      "normalized_text": "how certain prompts that they change are",
+      "start": 244.2,
+      "text": "really hard for humans to reason about how certain prompts that they change are"
+    },
+    {
+      "end": 246.64,
+      "normalized_text": "",
+      "start": 246.63,
+      "text": "how certain prompts that they change are"
+    },
+    {
+      "end": 248.59,
+      "normalized_text": "actually going to affect agent behavior",
+      "start": 246.64,
+      "text": "how certain prompts that they change are actually going to affect agent behavior"
+    },
+    {
+      "end": 248.6,
+      "normalized_text": "",
+      "start": 248.59,
+      "text": "actually going to affect agent behavior"
+    },
+    {
+      "end": 251.67,
+      "normalized_text": "at scale. And this also varies between",
+      "start": 248.6,
+      "text": "actually going to affect agent behavior at scale. And this also varies between"
+    },
+    {
+      "end": 251.68,
+      "normalized_text": "",
+      "start": 251.67,
+      "text": "at scale. And this also varies between"
+    },
+    {
+      "end": 252.83,
+      "normalized_text": "the different domains that you're doing",
+      "start": 251.68,
+      "text": "at scale. And this also varies between the different domains that you're doing"
+    },
+    {
+      "end": 252.84,
+      "normalized_text": "",
+      "start": 252.83,
+      "text": "the different domains that you're doing"
+    },
+    {
+      "end": 254.43,
+      "normalized_text": "it on. So, a prompt change and you're",
+      "start": 252.84,
+      "text": "the different domains that you're doing it on. So, a prompt change and you're"
+    },
+    {
+      "end": 254.44,
+      "normalized_text": "",
+      "start": 254.43,
+      "text": "it on. So, a prompt change and you're"
+    },
+    {
+      "end": 256.03,
+      "normalized_text": "using for the medical domain is going to",
+      "start": 254.44,
+      "text": "it on. So, a prompt change and you're using for the medical domain is going to"
+    },
+    {
+      "end": 256.04,
+      "normalized_text": "",
+      "start": 256.03,
+      "text": "using for the medical domain is going to"
+    },
+    {
+      "end": 257.31,
+      "normalized_text": "be like completely different than a",
+      "start": 256.04,
+      "text": "using for the medical domain is going to be like completely different than a"
+    },
+    {
+      "end": 257.32,
+      "normalized_text": "",
+      "start": 257.31,
+      "text": "be like completely different than a"
+    },
+    {
+      "end": 258.27,
+      "normalized_text": "prompt change that you want to do for",
+      "start": 257.32,
+      "text": "be like completely different than a prompt change that you want to do for"
+    },
+    {
+      "end": 258.28,
+      "normalized_text": "",
+      "start": 258.27,
+      "text": "prompt change that you want to do for"
+    },
+    {
+      "end": 259.59,
+      "normalized_text": "the law domain.",
+      "start": 258.28,
+      "text": "prompt change that you want to do for the law domain."
+    },
+    {
+      "end": 259.6,
+      "normalized_text": "",
+      "start": 259.59,
+      "text": "the law domain."
+    },
+    {
+      "end": 262.59,
+      "normalized_text": "And in general, over the last four years",
+      "start": 259.6,
+      "text": "the law domain. And in general, over the last four years"
+    },
+    {
+      "end": 262.6,
+      "normalized_text": "",
+      "start": 262.59,
+      "text": "And in general, over the last four years"
+    },
+    {
+      "end": 265.23,
+      "normalized_text": "since the ChatGPT moment, we've started",
+      "start": 262.6,
+      "text": "And in general, over the last four years since the ChatGPT moment, we've started"
+    },
+    {
+      "end": 265.24,
+      "normalized_text": "",
+      "start": 265.23,
+      "text": "since the ChatGPT moment, we've started"
+    },
+    {
+      "end": 268.95,
+      "normalized_text": "trading determinism for autonomy. And in",
+      "start": 265.24,
+      "text": "since the ChatGPT moment, we've started trading determinism for autonomy. And in"
+    },
+    {
+      "end": 268.96,
+      "normalized_text": "",
+      "start": 268.95,
+      "text": "trading determinism for autonomy. And in"
+    },
+    {
+      "end": 271.63,
+      "normalized_text": "that shift, sort of what we need to do",
+      "start": 268.96,
+      "text": "trading determinism for autonomy. And in that shift, sort of what we need to do"
+    },
+    {
+      "end": 271.64,
+      "normalized_text": "",
+      "start": 271.63,
+      "text": "that shift, sort of what we need to do"
+    },
+    {
+      "end": 274.75,
+      "normalized_text": "is create tools and create systems to",
+      "start": 271.64,
+      "text": "that shift, sort of what we need to do is create tools and create systems to"
+    },
+    {
+      "end": 274.76,
+      "normalized_text": "",
+      "start": 274.75,
+      "text": "is create tools and create systems to"
+    },
+    {
+      "end": 277.15,
+      "normalized_text": "still understand agents when they're",
+      "start": 274.76,
+      "text": "is create tools and create systems to still understand agents when they're"
+    },
+    {
+      "end": 277.15999999999997,
+      "normalized_text": "",
+      "start": 277.15,
+      "text": "still understand agents when they're"
+    },
+    {
+      "end": 280.95,
+      "normalized_text": "autonomously operating in environments.",
+      "start": 277.15999999999997,
+      "text": "still understand agents when they're autonomously operating in environments."
+    },
+    {
+      "end": 280.96,
+      "normalized_text": "",
+      "start": 280.95,
+      "text": "autonomously operating in environments."
+    },
+    {
+      "end": 283.27,
+      "normalized_text": "So, I talked about traces. Um",
+      "start": 280.96,
+      "text": "autonomously operating in environments. So, I talked about traces. Um"
+    },
+    {
+      "end": 283.28,
+      "normalized_text": "",
+      "start": 283.27,
+      "text": "So, I talked about traces. Um"
+    },
+    {
+      "end": 285.83,
+      "normalized_text": "why like why should you read them? And",
+      "start": 283.28,
+      "text": "So, I talked about traces. Um why like why should you read them? And"
+    },
+    {
+      "end": 285.84000000000003,
+      "normalized_text": "",
+      "start": 285.83,
+      "text": "why like why should you read them? And"
+    },
+    {
+      "end": 288.23,
+      "normalized_text": "at LangChain, what do we actually do",
+      "start": 285.84000000000003,
+      "text": "why like why should you read them? And at LangChain, what do we actually do"
+    },
+    {
+      "end": 288.24,
+      "normalized_text": "",
+      "start": 288.23,
+      "text": "at LangChain, what do we actually do"
+    },
+    {
+      "end": 290.39,
+      "normalized_text": "when we're reading traces? So, we",
+      "start": 288.24,
+      "text": "at LangChain, what do we actually do when we're reading traces? So, we"
+    },
+    {
+      "end": 290.4,
+      "normalized_text": "",
+      "start": 290.39,
+      "text": "when we're reading traces? So, we"
+    },
+    {
+      "end": 292.31,
+      "normalized_text": "centralize a bunch of our data, so we",
+      "start": 290.4,
+      "text": "when we're reading traces? So, we centralize a bunch of our data, so we"
+    },
+    {
+      "end": 292.32,
+      "normalized_text": "",
+      "start": 292.31,
+      "text": "centralize a bunch of our data, so we"
+    },
+    {
+      "end": 294.31,
+      "normalized_text": "put everything in a tracing project and",
+      "start": 292.32,
+      "text": "centralize a bunch of our data, so we put everything in a tracing project and"
+    },
+    {
+      "end": 294.32,
+      "normalized_text": "",
+      "start": 294.31,
+      "text": "put everything in a tracing project and"
+    },
+    {
+      "end": 296.71,
+      "normalized_text": "this is usually either like per agent or",
+      "start": 294.32,
+      "text": "put everything in a tracing project and this is usually either like per agent or"
+    },
+    {
+      "end": 296.72,
+      "normalized_text": "",
+      "start": 296.71,
+      "text": "this is usually either like per agent or"
+    },
+    {
+      "end": 297.909,
+      "normalized_text": "like centralized across all of our",
+      "start": 296.72,
+      "text": "this is usually either like per agent or like centralized across all of our"
+    },
+    {
+      "end": 297.919,
+      "normalized_text": "",
+      "start": 297.909,
+      "text": "like centralized across all of our"
+    },
+    {
+      "end": 301.51,
+      "normalized_text": "agents. And then what we do is we send",
+      "start": 297.919,
+      "text": "like centralized across all of our agents. And then what we do is we send"
+    },
+    {
+      "end": 301.52,
+      "normalized_text": "",
+      "start": 301.51,
+      "text": "agents. And then what we do is we send"
+    },
+    {
+      "end": 304.909,
+      "normalized_text": "agents to read traces from other agents,",
+      "start": 301.52,
+      "text": "agents. And then what we do is we send agents to read traces from other agents,"
+    },
+    {
+      "end": 304.919,
+      "normalized_text": "",
+      "start": 304.909,
+      "text": "agents to read traces from other agents,"
+    },
+    {
+      "end": 306.83,
+      "normalized_text": "right? And then we look for a bunch of",
+      "start": 304.919,
+      "text": "agents to read traces from other agents, right? And then we look for a bunch of"
+    },
+    {
+      "end": 306.84,
+      "normalized_text": "",
+      "start": 306.83,
+      "text": "right? And then we look for a bunch of"
+    },
+    {
+      "end": 309.51,
+      "normalized_text": "different things. And we might ask for,",
+      "start": 306.84,
+      "text": "right? And then we look for a bunch of different things. And we might ask for,"
+    },
+    {
+      "end": 309.52,
+      "normalized_text": "",
+      "start": 309.51,
+      "text": "different things. And we might ask for,"
+    },
+    {
+      "end": 311.87,
+      "normalized_text": "\"Hey, like find a bunch of like good and",
+      "start": 309.52,
+      "text": "different things. And we might ask for, \"Hey, like find a bunch of like good and"
+    },
+    {
+      "end": 311.88,
+      "normalized_text": "",
+      "start": 311.87,
+      "text": "\"Hey, like find a bunch of like good and"
+    },
+    {
+      "end": 313.43,
+      "normalized_text": "bad interactions where like users got",
+      "start": 311.88,
+      "text": "\"Hey, like find a bunch of like good and bad interactions where like users got"
+    },
+    {
+      "end": 313.44,
+      "normalized_text": "",
+      "start": 313.43,
+      "text": "bad interactions where like users got"
+    },
+    {
+      "end": 314.63,
+      "normalized_text": "upset or like users are like really",
+      "start": 313.44,
+      "text": "bad interactions where like users got upset or like users are like really"
+    },
+    {
+      "end": 314.64,
+      "normalized_text": "",
+      "start": 314.63,
+      "text": "upset or like users are like really"
+    },
+    {
+      "end": 315.71,
+      "normalized_text": "happy.\"",
+      "start": 314.64,
+      "text": "upset or like users are like really happy.\""
+    },
+    {
+      "end": 315.72,
+      "normalized_text": "",
+      "start": 315.71,
+      "text": "happy.\""
+    },
+    {
+      "end": 316.31,
+      "normalized_text": "Um",
+      "start": 315.72,
+      "text": "happy.\" Um"
+    },
+    {
+      "end": 316.32,
+      "normalized_text": "",
+      "start": 316.31,
+      "text": "Um"
+    },
+    {
+      "end": 318.47,
+      "normalized_text": "another question I might ask is uh this",
+      "start": 316.32,
+      "text": "Um another question I might ask is uh this"
+    },
+    {
+      "end": 318.48,
+      "normalized_text": "",
+      "start": 318.47,
+      "text": "another question I might ask is uh this"
+    },
+    {
+      "end": 320.75,
+      "normalized_text": "is a technical question like \"Agents now",
+      "start": 318.48,
+      "text": "another question I might ask is uh this is a technical question like \"Agents now"
+    },
+    {
+      "end": 320.76,
+      "normalized_text": "",
+      "start": 320.75,
+      "text": "is a technical question like \"Agents now"
+    },
+    {
+      "end": 322.95,
+      "normalized_text": "run for millions of tokens. Does the",
+      "start": 320.76,
+      "text": "is a technical question like \"Agents now run for millions of tokens. Does the"
+    },
+    {
+      "end": 322.96,
+      "normalized_text": "",
+      "start": 322.95,
+      "text": "run for millions of tokens. Does the"
+    },
+    {
+      "end": 324.67,
+      "normalized_text": "agent get really dumb after the first",
+      "start": 322.96,
+      "text": "run for millions of tokens. Does the agent get really dumb after the first"
+    },
+    {
+      "end": 324.68,
+      "normalized_text": "",
+      "start": 324.67,
+      "text": "agent get really dumb after the first"
+    },
+    {
+      "end": 327.11,
+      "normalized_text": "compaction? After the second compaction?",
+      "start": 324.68,
+      "text": "agent get really dumb after the first compaction? After the second compaction?"
+    },
+    {
+      "end": 327.12,
+      "normalized_text": "",
+      "start": 327.11,
+      "text": "compaction? After the second compaction?"
+    },
+    {
+      "end": 328.909,
+      "normalized_text": "Does it never get dumb?\" Like how do we",
+      "start": 327.12,
+      "text": "compaction? After the second compaction? Does it never get dumb?\" Like how do we"
+    },
+    {
+      "end": 328.919,
+      "normalized_text": "",
+      "start": 328.909,
+      "text": "Does it never get dumb?\" Like how do we"
+    },
+    {
+      "end": 330.19,
+      "normalized_text": "actually answer these questions? We need",
+      "start": 328.919,
+      "text": "Does it never get dumb?\" Like how do we actually answer these questions? We need"
+    },
+    {
+      "end": 330.2,
+      "normalized_text": "",
+      "start": 330.19,
+      "text": "actually answer these questions? We need"
+    },
+    {
+      "end": 331.47,
+      "normalized_text": "to do it by actually looking at the",
+      "start": 330.2,
+      "text": "actually answer these questions? We need to do it by actually looking at the"
+    },
+    {
+      "end": 331.48,
+      "normalized_text": "",
+      "start": 331.47,
+      "text": "to do it by actually looking at the"
+    },
+    {
+      "end": 332.71,
+      "normalized_text": "traces.",
+      "start": 331.48,
+      "text": "to do it by actually looking at the traces."
+    },
+    {
+      "end": 332.72,
+      "normalized_text": "",
+      "start": 332.71,
+      "text": "traces."
+    },
+    {
+      "end": 334.99,
+      "normalized_text": "And then the the other thing is like if",
+      "start": 332.72,
+      "text": "traces. And then the the other thing is like if"
+    },
+    {
+      "end": 335.0,
+      "normalized_text": "",
+      "start": 334.99,
+      "text": "And then the the other thing is like if"
+    },
+    {
+      "end": 336.909,
+      "normalized_text": "I look at the traces, then I can try to",
+      "start": 335.0,
+      "text": "And then the the other thing is like if I look at the traces, then I can try to"
+    },
+    {
+      "end": 336.919,
+      "normalized_text": "",
+      "start": 336.909,
+      "text": "I look at the traces, then I can try to"
+    },
+    {
+      "end": 339.67,
+      "normalized_text": "prove some counterfactuals, which is",
+      "start": 336.919,
+      "text": "I look at the traces, then I can try to prove some counterfactuals, which is"
+    },
+    {
+      "end": 339.68,
+      "normalized_text": "",
+      "start": 339.67,
+      "text": "prove some counterfactuals, which is"
+    },
+    {
+      "end": 341.95,
+      "normalized_text": "\"Hey, like I ran GPT 5.5 for this and I",
+      "start": 339.68,
+      "text": "prove some counterfactuals, which is \"Hey, like I ran GPT 5.5 for this and I"
+    },
+    {
+      "end": 341.96,
+      "normalized_text": "",
+      "start": 341.95,
+      "text": "\"Hey, like I ran GPT 5.5 for this and I"
+    },
+    {
+      "end": 344.79,
+      "normalized_text": "heard like GLM is really good. What",
+      "start": 341.96,
+      "text": "\"Hey, like I ran GPT 5.5 for this and I heard like GLM is really good. What"
+    },
+    {
+      "end": 344.8,
+      "normalized_text": "",
+      "start": 344.79,
+      "text": "heard like GLM is really good. What"
+    },
+    {
+      "end": 347.79,
+      "normalized_text": "happens if I run GLM 5.2 for this task",
+      "start": 344.8,
+      "text": "heard like GLM is really good. What happens if I run GLM 5.2 for this task"
+    },
+    {
+      "end": 347.8,
+      "normalized_text": "",
+      "start": 347.79,
+      "text": "happens if I run GLM 5.2 for this task"
+    },
+    {
+      "end": 350.07,
+      "normalized_text": "and how do I compare them? Metrics,",
+      "start": 347.8,
+      "text": "happens if I run GLM 5.2 for this task and how do I compare them? Metrics,"
+    },
+    {
+      "end": 350.08,
+      "normalized_text": "",
+      "start": 350.07,
+      "text": "and how do I compare them? Metrics,"
+    },
+    {
+      "end": 352.11,
+      "normalized_text": "awesome. The The trace level captures",
+      "start": 350.08,
+      "text": "and how do I compare them? Metrics, awesome. The The trace level captures"
+    },
+    {
+      "end": 352.12,
+      "normalized_text": "",
+      "start": 352.11,
+      "text": "awesome. The The trace level captures"
+    },
+    {
+      "end": 354.23,
+      "normalized_text": "the actual like behavior that users see.",
+      "start": 352.12,
+      "text": "awesome. The The trace level captures the actual like behavior that users see."
+    },
+    {
+      "end": 354.24,
+      "normalized_text": "",
+      "start": 354.23,
+      "text": "the actual like behavior that users see."
+    },
+    {
+      "end": 355.59000000000003,
+      "normalized_text": "So, that's also like very helpful for",
+      "start": 354.24,
+      "text": "the actual like behavior that users see. So, that's also like very helpful for"
+    },
+    {
+      "end": 355.6,
+      "normalized_text": "",
+      "start": 355.59000000000003,
+      "text": "So, that's also like very helpful for"
+    },
+    {
+      "end": 359.59000000000003,
+      "normalized_text": "seeing behavior like fine grain scales.",
+      "start": 355.6,
+      "text": "So, that's also like very helpful for seeing behavior like fine grain scales."
+    },
+    {
+      "end": 363.16,
+      "normalized_text": "And the way that we sort of think about",
+      "start": 363.15,
+      "text": "And the way that we sort of think about"
+    },
+    {
+      "end": 364.79,
+      "normalized_text": "the data that's being generated by",
+      "start": 363.16,
+      "text": "And the way that we sort of think about the data that's being generated by"
+    },
+    {
+      "end": 364.8,
+      "normalized_text": "",
+      "start": 364.79,
+      "text": "the data that's being generated by"
+    },
+    {
+      "end": 366.99,
+      "normalized_text": "agents is that the data that we see",
+      "start": 364.8,
+      "text": "the data that's being generated by agents is that the data that we see"
+    },
+    {
+      "end": 367.0,
+      "normalized_text": "",
+      "start": 366.99,
+      "text": "agents is that the data that we see"
+    },
+    {
+      "end": 369.27,
+      "normalized_text": "today is going to be the smallest that",
+      "start": 367.0,
+      "text": "agents is that the data that we see today is going to be the smallest that"
+    },
+    {
+      "end": 369.28,
+      "normalized_text": "",
+      "start": 369.27,
+      "text": "today is going to be the smallest that"
+    },
+    {
+      "end": 371.51,
+      "normalized_text": "humans have ever seen in their entire",
+      "start": 369.28,
+      "text": "today is going to be the smallest that humans have ever seen in their entire"
+    },
+    {
+      "end": 371.52,
+      "normalized_text": "",
+      "start": 371.51,
+      "text": "humans have ever seen in their entire"
+    },
+    {
+      "end": 374.19,
+      "normalized_text": "lives because we're in this massive",
+      "start": 371.52,
+      "text": "humans have ever seen in their entire lives because we're in this massive"
+    },
+    {
+      "end": 374.2,
+      "normalized_text": "",
+      "start": 374.19,
+      "text": "lives because we're in this massive"
+    },
+    {
+      "end": 376.47,
+      "normalized_text": "exponential shift to our agents are",
+      "start": 374.2,
+      "text": "lives because we're in this massive exponential shift to our agents are"
+    },
+    {
+      "end": 376.48,
+      "normalized_text": "",
+      "start": 376.47,
+      "text": "exponential shift to our agents are"
+    },
+    {
+      "end": 378.47,
+      "normalized_text": "doing more and more work in the economy.",
+      "start": 376.48,
+      "text": "exponential shift to our agents are doing more and more work in the economy."
+    },
+    {
+      "end": 378.48,
+      "normalized_text": "",
+      "start": 378.47,
+      "text": "doing more and more work in the economy."
+    },
+    {
+      "end": 379.95,
+      "normalized_text": "And what that means is like the amount",
+      "start": 378.48,
+      "text": "doing more and more work in the economy. And what that means is like the amount"
+    },
+    {
+      "end": 379.96,
+      "normalized_text": "",
+      "start": 379.95,
+      "text": "And what that means is like the amount"
+    },
+    {
+      "end": 381.79,
+      "normalized_text": "of data that humans have produced in our",
+      "start": 379.96,
+      "text": "And what that means is like the amount of data that humans have produced in our"
+    },
+    {
+      "end": 381.8,
+      "normalized_text": "",
+      "start": 381.79,
+      "text": "of data that humans have produced in our"
+    },
+    {
+      "end": 384.83,
+      "normalized_text": "entire lifetime will soon be eclipsed by",
+      "start": 381.8,
+      "text": "of data that humans have produced in our entire lifetime will soon be eclipsed by"
+    },
+    {
+      "end": 384.84,
+      "normalized_text": "",
+      "start": 384.83,
+      "text": "entire lifetime will soon be eclipsed by"
+    },
+    {
+      "end": 387.47,
+      "normalized_text": "agents running on like year scales and",
+      "start": 384.84,
+      "text": "entire lifetime will soon be eclipsed by agents running on like year scales and"
+    },
+    {
+      "end": 387.48,
+      "normalized_text": "",
+      "start": 387.47,
+      "text": "agents running on like year scales and"
+    },
+    {
+      "end": 389.59,
+      "normalized_text": "then 6-month scales and 3-month scales",
+      "start": 387.48,
+      "text": "agents running on like year scales and then 6-month scales and 3-month scales"
+    },
+    {
+      "end": 389.6,
+      "normalized_text": "",
+      "start": 389.59,
+      "text": "then 6-month scales and 3-month scales"
+    },
+    {
+      "end": 392.909,
+      "normalized_text": "and then maybe every day, right? Um and",
+      "start": 389.6,
+      "text": "then 6-month scales and 3-month scales and then maybe every day, right? Um and"
+    },
+    {
+      "end": 392.919,
+      "normalized_text": "",
+      "start": 392.909,
+      "text": "and then maybe every day, right? Um and"
+    },
+    {
+      "end": 395.75,
+      "normalized_text": "to understand a ton of that data,",
+      "start": 392.919,
+      "text": "and then maybe every day, right? Um and to understand a ton of that data,"
+    },
+    {
+      "end": 395.76,
+      "normalized_text": "",
+      "start": 395.75,
+      "text": "to understand a ton of that data,"
+    },
+    {
+      "end": 397.75,
+      "normalized_text": "roughly what we need to do is contend",
+      "start": 395.76,
+      "text": "to understand a ton of that data, roughly what we need to do is contend"
+    },
+    {
+      "end": 397.76,
+      "normalized_text": "",
+      "start": 397.75,
+      "text": "roughly what we need to do is contend"
+    },
+    {
+      "end": 399.39,
+      "normalized_text": "with a couple problems. There's more,",
+      "start": 397.76,
+      "text": "roughly what we need to do is contend with a couple problems. There's more,"
+    },
+    {
+      "end": 399.4,
+      "normalized_text": "",
+      "start": 399.39,
+      "text": "with a couple problems. There's more,"
+    },
+    {
+      "end": 400.71,
+      "normalized_text": "but these are the two that I'm going to",
+      "start": 399.4,
+      "text": "with a couple problems. There's more, but these are the two that I'm going to"
+    },
+    {
+      "end": 400.72,
+      "normalized_text": "",
+      "start": 400.71,
+      "text": "but these are the two that I'm going to"
+    },
+    {
+      "end": 402.39,
+      "normalized_text": "focus on. So,",
+      "start": 400.72,
+      "text": "but these are the two that I'm going to focus on. So,"
+    },
+    {
+      "end": 402.4,
+      "normalized_text": "",
+      "start": 402.39,
+      "text": "focus on. So,"
+    },
+    {
+      "end": 405.71,
+      "normalized_text": "one, uh reading traces at scale is super",
+      "start": 402.4,
+      "text": "focus on. So, one, uh reading traces at scale is super"
+    },
+    {
+      "end": 405.72,
+      "normalized_text": "",
+      "start": 405.71,
+      "text": "one, uh reading traces at scale is super"
+    },
+    {
+      "end": 407.909,
+      "normalized_text": "expensive, uh especially if you have",
+      "start": 405.72,
+      "text": "one, uh reading traces at scale is super expensive, uh especially if you have"
+    },
+    {
+      "end": 407.919,
+      "normalized_text": "",
+      "start": 407.909,
+      "text": "expensive, uh especially if you have"
+    },
+    {
+      "end": 409.83,
+      "normalized_text": "millions of traces and if you have",
+      "start": 407.919,
+      "text": "expensive, uh especially if you have millions of traces and if you have"
+    },
+    {
+      "end": 409.84000000000003,
+      "normalized_text": "",
+      "start": 409.83,
+      "text": "millions of traces and if you have"
+    },
+    {
+      "end": 412.43,
+      "normalized_text": "millions of tokens per trace, right? Um",
+      "start": 409.84000000000003,
+      "text": "millions of traces and if you have millions of tokens per trace, right? Um"
+    },
+    {
+      "end": 412.44,
+      "normalized_text": "",
+      "start": 412.43,
+      "text": "millions of tokens per trace, right? Um"
+    },
+    {
+      "end": 414.87,
+      "normalized_text": "think of it as like an input token cost.",
+      "start": 412.44,
+      "text": "millions of tokens per trace, right? Um think of it as like an input token cost."
+    },
+    {
+      "end": 414.88,
+      "normalized_text": "",
+      "start": 414.87,
+      "text": "think of it as like an input token cost."
+    },
+    {
+      "end": 417.03,
+      "normalized_text": "You can like literally multiply the",
+      "start": 414.88,
+      "text": "think of it as like an input token cost. You can like literally multiply the"
+    },
+    {
+      "end": 417.04,
+      "normalized_text": "",
+      "start": 417.03,
+      "text": "You can like literally multiply the"
+    },
+    {
+      "end": 419.07,
+      "normalized_text": "input token cost uh times the number of",
+      "start": 417.04,
+      "text": "You can like literally multiply the input token cost uh times the number of"
+    },
+    {
+      "end": 419.08,
+      "normalized_text": "",
+      "start": 419.07,
+      "text": "input token cost uh times the number of"
+    },
+    {
+      "end": 421.71,
+      "normalized_text": "traces times like how big each trace is",
+      "start": 419.08,
+      "text": "input token cost uh times the number of traces times like how big each trace is"
+    },
+    {
+      "end": 421.72,
+      "normalized_text": "",
+      "start": 421.71,
+      "text": "traces times like how big each trace is"
+    },
+    {
+      "end": 423.95,
+      "normalized_text": "on average, right? Um the the other",
+      "start": 421.72,
+      "text": "traces times like how big each trace is on average, right? Um the the other"
+    },
+    {
+      "end": 423.96,
+      "normalized_text": "",
+      "start": 423.95,
+      "text": "on average, right? Um the the other"
+    },
+    {
+      "end": 425.03,
+      "normalized_text": "thing is [clears throat] if I have a",
+      "start": 423.96,
+      "text": "on average, right? Um the the other thing is [clears throat] if I have a"
+    },
+    {
+      "end": 425.04,
+      "normalized_text": "",
+      "start": 425.03,
+      "text": "thing is [clears throat] if I have a"
+    },
+    {
+      "end": 427.03,
+      "normalized_text": "super long interaction with a coding",
+      "start": 425.04,
+      "text": "thing is [clears throat] if I have a super long interaction with a coding"
+    },
+    {
+      "end": 427.04,
+      "normalized_text": "",
+      "start": 427.03,
+      "text": "super long interaction with a coding"
+    },
+    {
+      "end": 428.87,
+      "normalized_text": "agent like Cloud Code or Codex or like",
+      "start": 427.04,
+      "text": "super long interaction with a coding agent like Cloud Code or Codex or like"
+    },
+    {
+      "end": 428.88,
+      "normalized_text": "",
+      "start": 428.87,
+      "text": "agent like Cloud Code or Codex or like"
+    },
+    {
+      "end": 430.83,
+      "normalized_text": "deep agents, um",
+      "start": 428.88,
+      "text": "agent like Cloud Code or Codex or like deep agents, um"
+    },
+    {
+      "end": 430.84,
+      "normalized_text": "",
+      "start": 430.83,
+      "text": "deep agents, um"
+    },
+    {
+      "end": 432.83,
+      "normalized_text": "I can't even read that trace with",
+      "start": 430.84,
+      "text": "deep agents, um I can't even read that trace with"
+    },
+    {
+      "end": 432.84,
+      "normalized_text": "",
+      "start": 432.83,
+      "text": "I can't even read that trace with"
+    },
+    {
+      "end": 435.71,
+      "normalized_text": "another agent because that that context",
+      "start": 432.84,
+      "text": "I can't even read that trace with another agent because that that context"
+    },
+    {
+      "end": 435.72,
+      "normalized_text": "",
+      "start": 435.71,
+      "text": "another agent because that that context"
+    },
+    {
+      "end": 437.15,
+      "normalized_text": "like doesn't fit in memory, right? So,",
+      "start": 435.72,
+      "text": "another agent because that that context like doesn't fit in memory, right? So,"
+    },
+    {
+      "end": 437.16,
+      "normalized_text": "",
+      "start": 437.15,
+      "text": "like doesn't fit in memory, right? So,"
+    },
+    {
+      "end": 439.03,
+      "normalized_text": "it's like we we need to develop systems",
+      "start": 437.16,
+      "text": "like doesn't fit in memory, right? So, it's like we we need to develop systems"
+    },
+    {
+      "end": 439.04,
+      "normalized_text": "",
+      "start": 439.03,
+      "text": "it's like we we need to develop systems"
+    },
+    {
+      "end": 440.59,
+      "normalized_text": "so I can sort of treat that context as",
+      "start": 439.04,
+      "text": "it's like we we need to develop systems so I can sort of treat that context as"
+    },
+    {
+      "end": 440.6,
+      "normalized_text": "",
+      "start": 440.59,
+      "text": "so I can sort of treat that context as"
+    },
+    {
+      "end": 442.63,
+      "normalized_text": "like an external object and then I can",
+      "start": 440.6,
+      "text": "so I can sort of treat that context as like an external object and then I can"
+    },
+    {
+      "end": 442.64,
+      "normalized_text": "",
+      "start": 442.63,
+      "text": "like an external object and then I can"
+    },
+    {
+      "end": 444.55,
+      "normalized_text": "sort of query into it, right? So, we we",
+      "start": 442.64,
+      "text": "like an external object and then I can sort of query into it, right? So, we we"
+    },
+    {
+      "end": 444.56,
+      "normalized_text": "",
+      "start": 444.55,
+      "text": "sort of query into it, right? So, we we"
+    },
+    {
+      "end": 446.71,
+      "normalized_text": "need to build agents to efficiently mine",
+      "start": 444.56,
+      "text": "sort of query into it, right? So, we we need to build agents to efficiently mine"
+    },
+    {
+      "end": 446.72,
+      "normalized_text": "",
+      "start": 446.71,
+      "text": "need to build agents to efficiently mine"
+    },
+    {
+      "end": 448.909,
+      "normalized_text": "data from other agents and it's it's no",
+      "start": 446.72,
+      "text": "need to build agents to efficiently mine data from other agents and it's it's no"
+    },
+    {
+      "end": 448.919,
+      "normalized_text": "",
+      "start": 448.909,
+      "text": "data from other agents and it's it's no"
+    },
+    {
+      "end": 450.39,
+      "normalized_text": "longer as simple as just like feeding",
+      "start": 448.919,
+      "text": "data from other agents and it's it's no longer as simple as just like feeding"
+    },
+    {
+      "end": 450.4,
+      "normalized_text": "",
+      "start": 450.39,
+      "text": "longer as simple as just like feeding"
+    },
+    {
+      "end": 452.35,
+      "normalized_text": "the data into context and there's like",
+      "start": 450.4,
+      "text": "longer as simple as just like feeding the data into context and there's like"
+    },
+    {
+      "end": 452.36,
+      "normalized_text": "",
+      "start": 452.35,
+      "text": "the data into context and there's like"
+    },
+    {
+      "end": 454.03,
+      "normalized_text": "tricks that we'll sort of talk about uh",
+      "start": 452.36,
+      "text": "the data into context and there's like tricks that we'll sort of talk about uh"
+    },
+    {
+      "end": 454.04,
+      "normalized_text": "",
+      "start": 454.03,
+      "text": "tricks that we'll sort of talk about uh"
+    },
+    {
+      "end": 456.87,
+      "normalized_text": "to to do that well.",
+      "start": 454.04,
+      "text": "tricks that we'll sort of talk about uh to to do that well."
+    },
+    {
+      "end": 456.88,
+      "normalized_text": "",
+      "start": 456.87,
+      "text": "to to do that well."
+    },
+    {
+      "end": 459.07,
+      "normalized_text": "Great. So, one of the things that I",
+      "start": 456.88,
+      "text": "to to do that well. Great. So, one of the things that I"
+    },
+    {
+      "end": 459.08,
+      "normalized_text": "",
+      "start": 459.07,
+      "text": "Great. So, one of the things that I"
+    },
+    {
+      "end": 460.67,
+      "normalized_text": "think is really really cool in the last",
+      "start": 459.08,
+      "text": "Great. So, one of the things that I think is really really cool in the last"
+    },
+    {
+      "end": 460.68,
+      "normalized_text": "",
+      "start": 460.67,
+      "text": "think is really really cool in the last"
+    },
+    {
+      "end": 463.59000000000003,
+      "normalized_text": "6 months is that open models have",
+      "start": 460.68,
+      "text": "think is really really cool in the last 6 months is that open models have"
+    },
+    {
+      "end": 463.6,
+      "normalized_text": "",
+      "start": 463.59000000000003,
+      "text": "6 months is that open models have"
+    },
+    {
+      "end": 465.47,
+      "normalized_text": "basically hit an inflection point in",
+      "start": 463.6,
+      "text": "6 months is that open models have basically hit an inflection point in"
+    },
+    {
+      "end": 465.48,
+      "normalized_text": "",
+      "start": 465.47,
+      "text": "basically hit an inflection point in"
+    },
+    {
+      "end": 468.79,
+      "normalized_text": "intelligence that we at LangChain don't",
+      "start": 465.48,
+      "text": "basically hit an inflection point in intelligence that we at LangChain don't"
+    },
+    {
+      "end": 468.8,
+      "normalized_text": "",
+      "start": 468.79,
+      "text": "intelligence that we at LangChain don't"
+    },
+    {
+      "end": 470.63,
+      "normalized_text": "reach for the frontier models for every",
+      "start": 468.8,
+      "text": "intelligence that we at LangChain don't reach for the frontier models for every"
+    },
+    {
+      "end": 470.64,
+      "normalized_text": "",
+      "start": 470.63,
+      "text": "reach for the frontier models for every"
+    },
+    {
+      "end": 473.19,
+      "normalized_text": "single use case. We're quite conscious",
+      "start": 470.64,
+      "text": "reach for the frontier models for every single use case. We're quite conscious"
+    },
+    {
+      "end": 473.2,
+      "normalized_text": "",
+      "start": 473.19,
+      "text": "single use case. We're quite conscious"
+    },
+    {
+      "end": 475.59000000000003,
+      "normalized_text": "about what is the minimum level of",
+      "start": 473.2,
+      "text": "single use case. We're quite conscious about what is the minimum level of"
+    },
+    {
+      "end": 475.6,
+      "normalized_text": "",
+      "start": 475.59000000000003,
+      "text": "about what is the minimum level of"
+    },
+    {
+      "end": 477.95,
+      "normalized_text": "intelligence that I need to do any given",
+      "start": 475.6,
+      "text": "about what is the minimum level of intelligence that I need to do any given"
+    },
+    {
+      "end": 477.96,
+      "normalized_text": "",
+      "start": 477.95,
+      "text": "intelligence that I need to do any given"
+    },
+    {
+      "end": 480.63,
+      "normalized_text": "task. And like practically speaking,",
+      "start": 477.96,
+      "text": "intelligence that I need to do any given task. And like practically speaking,"
+    },
+    {
+      "end": 480.64,
+      "normalized_text": "",
+      "start": 480.63,
+      "text": "task. And like practically speaking,"
+    },
+    {
+      "end": 482.79,
+      "normalized_text": "honestly, yes, we start with Opus, we",
+      "start": 480.64,
+      "text": "task. And like practically speaking, honestly, yes, we start with Opus, we"
+    },
+    {
+      "end": 482.8,
+      "normalized_text": "",
+      "start": 482.79,
+      "text": "honestly, yes, we start with Opus, we"
+    },
+    {
+      "end": 484.71,
+      "normalized_text": "start with 55 because we just want to",
+      "start": 482.8,
+      "text": "honestly, yes, we start with Opus, we start with 55 because we just want to"
+    },
+    {
+      "end": 484.72,
+      "normalized_text": "",
+      "start": 484.71,
+      "text": "start with 55 because we just want to"
+    },
+    {
+      "end": 486.83,
+      "normalized_text": "know if the task is even possible. But",
+      "start": 484.72,
+      "text": "start with 55 because we just want to know if the task is even possible. But"
+    },
+    {
+      "end": 486.84,
+      "normalized_text": "",
+      "start": 486.83,
+      "text": "know if the task is even possible. But"
+    },
+    {
+      "end": 489.15,
+      "normalized_text": "then once we reach that sort of like",
+      "start": 486.84,
+      "text": "know if the task is even possible. But then once we reach that sort of like"
+    },
+    {
+      "end": 489.16,
+      "normalized_text": "",
+      "start": 489.15,
+      "text": "then once we reach that sort of like"
+    },
+    {
+      "end": 491.27,
+      "normalized_text": "waterline, then we like look back at",
+      "start": 489.16,
+      "text": "then once we reach that sort of like waterline, then we like look back at"
+    },
+    {
+      "end": 491.28,
+      "normalized_text": "",
+      "start": 491.27,
+      "text": "waterline, then we like look back at"
+    },
+    {
+      "end": 493.59,
+      "normalized_text": "those traces and we see, \"Hey, can we",
+      "start": 491.28,
+      "text": "waterline, then we like look back at those traces and we see, \"Hey, can we"
+    },
+    {
+      "end": 493.6,
+      "normalized_text": "",
+      "start": 493.59,
+      "text": "those traces and we see, \"Hey, can we"
+    },
+    {
+      "end": 495.39,
+      "normalized_text": "use an open model to do the same thing?\"",
+      "start": 493.6,
+      "text": "those traces and we see, \"Hey, can we use an open model to do the same thing?\""
+    },
+    {
+      "end": 495.4,
+      "normalized_text": "",
+      "start": 495.39,
+      "text": "use an open model to do the same thing?\""
+    },
+    {
+      "end": 496.99,
+      "normalized_text": "So, this is a bunch of work that we did",
+      "start": 495.4,
+      "text": "use an open model to do the same thing?\" So, this is a bunch of work that we did"
+    },
+    {
+      "end": 497.0,
+      "normalized_text": "",
+      "start": 496.99,
+      "text": "So, this is a bunch of work that we did"
+    },
+    {
+      "end": 499.27,
+      "normalized_text": "with Harvey and then their lab legal",
+      "start": 497.0,
+      "text": "So, this is a bunch of work that we did with Harvey and then their lab legal"
+    },
+    {
+      "end": 499.28,
+      "normalized_text": "",
+      "start": 499.27,
+      "text": "with Harvey and then their lab legal"
+    },
+    {
+      "end": 501.19,
+      "normalized_text": "benchmark. Basically, what we're looking",
+      "start": 499.28,
+      "text": "with Harvey and then their lab legal benchmark. Basically, what we're looking"
+    },
+    {
+      "end": 501.2,
+      "normalized_text": "",
+      "start": 501.19,
+      "text": "benchmark. Basically, what we're looking"
+    },
+    {
+      "end": 502.39,
+      "normalized_text": "at is",
+      "start": 501.2,
+      "text": "benchmark. Basically, what we're looking at is"
+    },
+    {
+      "end": 502.4,
+      "normalized_text": "",
+      "start": 502.39,
+      "text": "at is"
+    },
+    {
+      "end": 505.71,
+      "normalized_text": "can I match the trace judging capability",
+      "start": 502.4,
+      "text": "at is can I match the trace judging capability"
+    },
+    {
+      "end": 505.72,
+      "normalized_text": "",
+      "start": 505.71,
+      "text": "can I match the trace judging capability"
+    },
+    {
+      "end": 508.51,
+      "normalized_text": "of Opus with an open cheaper model? And",
+      "start": 505.72,
+      "text": "can I match the trace judging capability of Opus with an open cheaper model? And"
+    },
+    {
+      "end": 508.52,
+      "normalized_text": "",
+      "start": 508.51,
+      "text": "of Opus with an open cheaper model? And"
+    },
+    {
+      "end": 512.39,
+      "normalized_text": "the answer is roughly yes at like an",
+      "start": 508.52,
+      "text": "of Opus with an open cheaper model? And the answer is roughly yes at like an"
+    },
+    {
+      "end": 512.4,
+      "normalized_text": "",
+      "start": 512.39,
+      "text": "the answer is roughly yes at like an"
+    },
+    {
+      "end": 514.27,
+      "normalized_text": "order or like two orders of magnitude",
+      "start": 512.4,
+      "text": "the answer is roughly yes at like an order or like two orders of magnitude"
+    },
+    {
+      "end": 514.28,
+      "normalized_text": "",
+      "start": 514.27,
+      "text": "order or like two orders of magnitude"
+    },
+    {
+      "end": 516.11,
+      "normalized_text": "cheaper. And like the way we do that is",
+      "start": 514.28,
+      "text": "order or like two orders of magnitude cheaper. And like the way we do that is"
+    },
+    {
+      "end": 516.12,
+      "normalized_text": "",
+      "start": 516.11,
+      "text": "cheaper. And like the way we do that is"
+    },
+    {
+      "end": 518.029,
+      "normalized_text": "we try a bunch of models,",
+      "start": 516.12,
+      "text": "cheaper. And like the way we do that is we try a bunch of models,"
+    },
+    {
+      "end": 518.039,
+      "normalized_text": "",
+      "start": 518.029,
+      "text": "we try a bunch of models,"
+    },
+    {
+      "end": 518.95,
+      "normalized_text": "we do a bunch of like harness",
+      "start": 518.039,
+      "text": "we try a bunch of models, we do a bunch of like harness"
+    },
+    {
+      "end": 518.96,
+      "normalized_text": "",
+      "start": 518.95,
+      "text": "we do a bunch of like harness"
+    },
+    {
+      "end": 520.79,
+      "normalized_text": "engineering, and the harness engineering",
+      "start": 518.96,
+      "text": "we do a bunch of like harness engineering, and the harness engineering"
+    },
+    {
+      "end": 520.8,
+      "normalized_text": "",
+      "start": 520.79,
+      "text": "engineering, and the harness engineering"
+    },
+    {
+      "end": 522.43,
+      "normalized_text": "is informed by a bunch of the traces",
+      "start": 520.8,
+      "text": "engineering, and the harness engineering is informed by a bunch of the traces"
+    },
+    {
+      "end": 522.44,
+      "normalized_text": "",
+      "start": 522.43,
+      "text": "is informed by a bunch of the traces"
+    },
+    {
+      "end": 524.029,
+      "normalized_text": "that we read. So, it's like, \"Hey, like",
+      "start": 522.44,
+      "text": "is informed by a bunch of the traces that we read. So, it's like, \"Hey, like"
+    },
+    {
+      "end": 524.039,
+      "normalized_text": "",
+      "start": 524.029,
+      "text": "that we read. So, it's like, \"Hey, like"
+    },
+    {
+      "end": 526.19,
+      "normalized_text": "Opus reasons about things in this way.",
+      "start": 524.039,
+      "text": "that we read. So, it's like, \"Hey, like Opus reasons about things in this way."
+    },
+    {
+      "end": 526.2,
+      "normalized_text": "",
+      "start": 526.19,
+      "text": "Opus reasons about things in this way."
+    },
+    {
+      "end": 528.07,
+      "normalized_text": "Maybe that's because of the prompt.",
+      "start": 526.2,
+      "text": "Opus reasons about things in this way. Maybe that's because of the prompt."
+    },
+    {
+      "end": 528.08,
+      "normalized_text": "",
+      "start": 528.07,
+      "text": "Maybe that's because of the prompt."
+    },
+    {
+      "end": 529.71,
+      "normalized_text": "Maybe Opus is just smarter, which it is,",
+      "start": 528.08,
+      "text": "Maybe that's because of the prompt. Maybe Opus is just smarter, which it is,"
+    },
+    {
+      "end": 529.72,
+      "normalized_text": "",
+      "start": 529.71,
+      "text": "Maybe Opus is just smarter, which it is,"
+    },
+    {
+      "end": 531.07,
+      "normalized_text": "than a bunch of the open models, but",
+      "start": 529.72,
+      "text": "Maybe Opus is just smarter, which it is, than a bunch of the open models, but"
+    },
+    {
+      "end": 531.08,
+      "normalized_text": "",
+      "start": 531.07,
+      "text": "than a bunch of the open models, but"
+    },
+    {
+      "end": 532.31,
+      "normalized_text": "that might mean I need to give it a",
+      "start": 531.08,
+      "text": "than a bunch of the open models, but that might mean I need to give it a"
+    },
+    {
+      "end": 532.32,
+      "normalized_text": "",
+      "start": 532.31,
+      "text": "that might mean I need to give it a"
+    },
+    {
+      "end": 534.15,
+      "normalized_text": "little bit more guidance so it can reach",
+      "start": 532.32,
+      "text": "that might mean I need to give it a little bit more guidance so it can reach"
+    },
+    {
+      "end": 534.16,
+      "normalized_text": "",
+      "start": 534.15,
+      "text": "little bit more guidance so it can reach"
+    },
+    {
+      "end": 535.75,
+      "normalized_text": "the sort of same intelligence level at",
+      "start": 534.16,
+      "text": "little bit more guidance so it can reach the sort of same intelligence level at"
+    },
+    {
+      "end": 535.76,
+      "normalized_text": "",
+      "start": 535.75,
+      "text": "the sort of same intelligence level at"
+    },
+    {
+      "end": 536.75,
+      "normalized_text": "like a much",
+      "start": 535.76,
+      "text": "the sort of same intelligence level at like a much"
+    },
+    {
+      "end": 536.76,
+      "normalized_text": "",
+      "start": 536.75,
+      "text": "like a much"
+    },
+    {
+      "end": 538.829,
+      "normalized_text": "much lower cost.\"",
+      "start": 536.76,
+      "text": "like a much much lower cost.\""
+    },
+    {
+      "end": 538.8389999999999,
+      "normalized_text": "",
+      "start": 538.829,
+      "text": "much lower cost.\""
+    },
+    {
+      "end": 540.91,
+      "normalized_text": "And the the other thing that we sort of",
+      "start": 538.8389999999999,
+      "text": "much lower cost.\" And the the other thing that we sort of"
+    },
+    {
+      "end": 540.92,
+      "normalized_text": "",
+      "start": 540.91,
+      "text": "And the the other thing that we sort of"
+    },
+    {
+      "end": 543.03,
+      "normalized_text": "look at is like harness engineering is",
+      "start": 540.92,
+      "text": "And the the other thing that we sort of look at is like harness engineering is"
+    },
+    {
+      "end": 543.04,
+      "normalized_text": "",
+      "start": 543.03,
+      "text": "look at is like harness engineering is"
+    },
+    {
+      "end": 544.43,
+      "normalized_text": "amazing.",
+      "start": 543.04,
+      "text": "look at is like harness engineering is amazing."
+    },
+    {
+      "end": 544.44,
+      "normalized_text": "",
+      "start": 544.43,
+      "text": "amazing."
+    },
+    {
+      "end": 546.31,
+      "normalized_text": "You get instant feedback and you can",
+      "start": 544.44,
+      "text": "amazing. You get instant feedback and you can"
+    },
+    {
+      "end": 546.32,
+      "normalized_text": "",
+      "start": 546.31,
+      "text": "You get instant feedback and you can"
+    },
+    {
+      "end": 548.19,
+      "normalized_text": "sort of like run on your evals, but",
+      "start": 546.32,
+      "text": "You get instant feedback and you can sort of like run on your evals, but"
+    },
+    {
+      "end": 548.2,
+      "normalized_text": "",
+      "start": 548.19,
+      "text": "sort of like run on your evals, but"
+    },
+    {
+      "end": 550.79,
+      "normalized_text": "eventually what we find is you hit a",
+      "start": 548.2,
+      "text": "sort of like run on your evals, but eventually what we find is you hit a"
+    },
+    {
+      "end": 550.8,
+      "normalized_text": "",
+      "start": 550.79,
+      "text": "eventually what we find is you hit a"
+    },
+    {
+      "end": 552.43,
+      "normalized_text": "threshold of intelligence where it's",
+      "start": 550.8,
+      "text": "eventually what we find is you hit a threshold of intelligence where it's"
+    },
+    {
+      "end": 552.44,
+      "normalized_text": "",
+      "start": 552.43,
+      "text": "threshold of intelligence where it's"
+    },
+    {
+      "end": 555.07,
+      "normalized_text": "like \"If I keep tweaking this prompt,",
+      "start": 552.44,
+      "text": "threshold of intelligence where it's like \"If I keep tweaking this prompt,"
+    },
+    {
+      "end": 555.08,
+      "normalized_text": "",
+      "start": 555.07,
+      "text": "like \"If I keep tweaking this prompt,"
+    },
+    {
+      "end": 556.67,
+      "normalized_text": "I'm not going to get too much more out",
+      "start": 555.08,
+      "text": "like \"If I keep tweaking this prompt, I'm not going to get too much more out"
+    },
+    {
+      "end": 556.68,
+      "normalized_text": "",
+      "start": 556.67,
+      "text": "I'm not going to get too much more out"
+    },
+    {
+      "end": 558.87,
+      "normalized_text": "of it.\" And once we reach that point, we",
+      "start": 556.68,
+      "text": "I'm not going to get too much more out of it.\" And once we reach that point, we"
+    },
+    {
+      "end": 558.88,
+      "normalized_text": "",
+      "start": 558.87,
+      "text": "of it.\" And once we reach that point, we"
+    },
+    {
+      "end": 560.87,
+      "normalized_text": "sort of look at, \"Okay, can I actually",
+      "start": 558.88,
+      "text": "of it.\" And once we reach that point, we sort of look at, \"Okay, can I actually"
+    },
+    {
+      "end": 560.88,
+      "normalized_text": "",
+      "start": 560.87,
+      "text": "sort of look at, \"Okay, can I actually"
+    },
+    {
+      "end": 563.51,
+      "normalized_text": "like fine-tune the model on my",
+      "start": 560.88,
+      "text": "sort of look at, \"Okay, can I actually like fine-tune the model on my"
+    },
+    {
+      "end": 563.52,
+      "normalized_text": "",
+      "start": 563.51,
+      "text": "like fine-tune the model on my"
+    },
+    {
+      "end": 565.43,
+      "normalized_text": "domain-specific task?\" And can I like",
+      "start": 563.52,
+      "text": "like fine-tune the model on my domain-specific task?\" And can I like"
+    },
+    {
+      "end": 565.44,
+      "normalized_text": "",
+      "start": 565.43,
+      "text": "domain-specific task?\" And can I like"
+    },
+    {
+      "end": 567.79,
+      "normalized_text": "make it better on those tasks? And what",
+      "start": 565.44,
+      "text": "domain-specific task?\" And can I like make it better on those tasks? And what"
+    },
+    {
+      "end": 567.8,
+      "normalized_text": "",
+      "start": 567.79,
+      "text": "make it better on those tasks? And what"
+    },
+    {
+      "end": 569.87,
+      "normalized_text": "we find is if we take like base models",
+      "start": 567.8,
+      "text": "make it better on those tasks? And what we find is if we take like base models"
+    },
+    {
+      "end": 569.88,
+      "normalized_text": "",
+      "start": 569.87,
+      "text": "we find is if we take like base models"
+    },
+    {
+      "end": 572.03,
+      "normalized_text": "and we tune them on like very specific",
+      "start": 569.88,
+      "text": "we find is if we take like base models and we tune them on like very specific"
+    },
+    {
+      "end": 572.04,
+      "normalized_text": "",
+      "start": 572.03,
+      "text": "and we tune them on like very specific"
+    },
+    {
+      "end": 573.63,
+      "normalized_text": "vertical tasks, which is what a lot of",
+      "start": 572.04,
+      "text": "and we tune them on like very specific vertical tasks, which is what a lot of"
+    },
+    {
+      "end": 573.64,
+      "normalized_text": "",
+      "start": 573.63,
+      "text": "vertical tasks, which is what a lot of"
+    },
+    {
+      "end": 575.63,
+      "normalized_text": "our customers do, they don't really care",
+      "start": 573.64,
+      "text": "vertical tasks, which is what a lot of our customers do, they don't really care"
+    },
+    {
+      "end": 575.64,
+      "normalized_text": "",
+      "start": 575.63,
+      "text": "our customers do, they don't really care"
+    },
+    {
+      "end": 577.87,
+      "normalized_text": "about the entire variance of tasks. like",
+      "start": 575.64,
+      "text": "our customers do, they don't really care about the entire variance of tasks. like"
+    },
+    {
+      "end": 577.88,
+      "normalized_text": "",
+      "start": 577.87,
+      "text": "about the entire variance of tasks. like"
+    },
+    {
+      "end": 579.15,
+      "normalized_text": "they care about what their customers",
+      "start": 577.88,
+      "text": "about the entire variance of tasks. like they care about what their customers"
+    },
+    {
+      "end": 579.16,
+      "normalized_text": "",
+      "start": 579.15,
+      "text": "they care about what their customers"
+    },
+    {
+      "end": 580.83,
+      "normalized_text": "care about. So, if we focus on that",
+      "start": 579.16,
+      "text": "they care about what their customers care about. So, if we focus on that"
+    },
+    {
+      "end": 580.84,
+      "normalized_text": "",
+      "start": 580.83,
+      "text": "care about. So, if we focus on that"
+    },
+    {
+      "end": 582.39,
+      "normalized_text": "narrow set of tasks, then we can",
+      "start": 580.84,
+      "text": "care about. So, if we focus on that narrow set of tasks, then we can"
+    },
+    {
+      "end": 582.4,
+      "normalized_text": "",
+      "start": 582.39,
+      "text": "narrow set of tasks, then we can"
+    },
+    {
+      "end": 584.23,
+      "normalized_text": "fine-tune base models to sort of like",
+      "start": 582.4,
+      "text": "narrow set of tasks, then we can fine-tune base models to sort of like"
+    },
+    {
+      "end": 584.24,
+      "normalized_text": "",
+      "start": 584.23,
+      "text": "fine-tune base models to sort of like"
+    },
+    {
+      "end": 587.07,
+      "normalized_text": "reach and then also go beyond frontier",
+      "start": 584.24,
+      "text": "fine-tune base models to sort of like reach and then also go beyond frontier"
+    },
+    {
+      "end": 587.08,
+      "normalized_text": "",
+      "start": 587.07,
+      "text": "reach and then also go beyond frontier"
+    },
+    {
+      "end": 588.83,
+      "normalized_text": "performance. And I think one sort of",
+      "start": 587.08,
+      "text": "reach and then also go beyond frontier performance. And I think one sort of"
+    },
+    {
+      "end": 588.84,
+      "normalized_text": "",
+      "start": 588.83,
+      "text": "performance. And I think one sort of"
+    },
+    {
+      "end": 591.47,
+      "normalized_text": "like small thing I'll mention as a lot",
+      "start": 588.84,
+      "text": "performance. And I think one sort of like small thing I'll mention as a lot"
+    },
+    {
+      "end": 591.48,
+      "normalized_text": "",
+      "start": 591.47,
+      "text": "like small thing I'll mention as a lot"
+    },
+    {
+      "end": 593.19,
+      "normalized_text": "of people are getting into fine-tuning",
+      "start": 591.48,
+      "text": "like small thing I'll mention as a lot of people are getting into fine-tuning"
+    },
+    {
+      "end": 593.2,
+      "normalized_text": "",
+      "start": 593.19,
+      "text": "of people are getting into fine-tuning"
+    },
+    {
+      "end": 595.43,
+      "normalized_text": "is that another sort of like economic",
+      "start": 593.2,
+      "text": "of people are getting into fine-tuning is that another sort of like economic"
+    },
+    {
+      "end": 595.44,
+      "normalized_text": "",
+      "start": 595.43,
+      "text": "is that another sort of like economic"
+    },
+    {
+      "end": 598.79,
+      "normalized_text": "decision is that you can move from token",
+      "start": 595.44,
+      "text": "is that another sort of like economic decision is that you can move from token"
+    },
+    {
+      "end": 598.8,
+      "normalized_text": "",
+      "start": 598.79,
+      "text": "decision is that you can move from token"
+    },
+    {
+      "end": 602.19,
+      "normalized_text": "costs to hardware costs. And this is",
+      "start": 598.8,
+      "text": "decision is that you can move from token costs to hardware costs. And this is"
+    },
+    {
+      "end": 602.2,
+      "normalized_text": "",
+      "start": 602.19,
+      "text": "costs to hardware costs. And this is"
+    },
+    {
+      "end": 604.35,
+      "normalized_text": "like can be a really big change, right?",
+      "start": 602.2,
+      "text": "costs to hardware costs. And this is like can be a really big change, right?"
+    },
+    {
+      "end": 604.36,
+      "normalized_text": "",
+      "start": 604.35,
+      "text": "like can be a really big change, right?"
+    },
+    {
+      "end": 606.31,
+      "normalized_text": "Cuz like you're very used to hey, like a",
+      "start": 604.36,
+      "text": "like can be a really big change, right? Cuz like you're very used to hey, like a"
+    },
+    {
+      "end": 606.32,
+      "normalized_text": "",
+      "start": 606.31,
+      "text": "Cuz like you're very used to hey, like a"
+    },
+    {
+      "end": 608.39,
+      "normalized_text": "million tokens cost this much, not as",
+      "start": 606.32,
+      "text": "Cuz like you're very used to hey, like a million tokens cost this much, not as"
+    },
+    {
+      "end": 608.4,
+      "normalized_text": "",
+      "start": 608.39,
+      "text": "million tokens cost this much, not as"
+    },
+    {
+      "end": 609.95,
+      "normalized_text": "much like this cluster sort of costs",
+      "start": 608.4,
+      "text": "million tokens cost this much, not as much like this cluster sort of costs"
+    },
+    {
+      "end": 609.96,
+      "normalized_text": "",
+      "start": 609.95,
+      "text": "much like this cluster sort of costs"
+    },
+    {
+      "end": 612.03,
+      "normalized_text": "this much. But for like very high",
+      "start": 609.96,
+      "text": "much like this cluster sort of costs this much. But for like very high"
+    },
+    {
+      "end": 612.04,
+      "normalized_text": "",
+      "start": 612.03,
+      "text": "this much. But for like very high"
+    },
+    {
+      "end": 614.15,
+      "normalized_text": "inference workloads, we find it to be",
+      "start": 612.04,
+      "text": "this much. But for like very high inference workloads, we find it to be"
+    },
+    {
+      "end": 614.16,
+      "normalized_text": "",
+      "start": 614.15,
+      "text": "inference workloads, we find it to be"
+    },
+    {
+      "end": 616.43,
+      "normalized_text": "way cheaper just to like run a cluster",
+      "start": 614.16,
+      "text": "inference workloads, we find it to be way cheaper just to like run a cluster"
+    },
+    {
+      "end": 616.44,
+      "normalized_text": "",
+      "start": 616.43,
+      "text": "way cheaper just to like run a cluster"
+    },
+    {
+      "end": 617.99,
+      "normalized_text": "and I get like unlimited inference on",
+      "start": 616.44,
+      "text": "way cheaper just to like run a cluster and I get like unlimited inference on"
+    },
+    {
+      "end": 618.0,
+      "normalized_text": "",
+      "start": 617.99,
+      "text": "and I get like unlimited inference on"
+    },
+    {
+      "end": 619.27,
+      "normalized_text": "that cluster. I don't have to worry",
+      "start": 618.0,
+      "text": "and I get like unlimited inference on that cluster. I don't have to worry"
+    },
+    {
+      "end": 619.28,
+      "normalized_text": "",
+      "start": 619.27,
+      "text": "that cluster. I don't have to worry"
+    },
+    {
+      "end": 620.71,
+      "normalized_text": "about tokens, but I can just do the",
+      "start": 619.28,
+      "text": "that cluster. I don't have to worry about tokens, but I can just do the"
+    },
+    {
+      "end": 620.72,
+      "normalized_text": "",
+      "start": 620.71,
+      "text": "about tokens, but I can just do the"
+    },
+    {
+      "end": 622.59,
+      "normalized_text": "calculation of like, hey,",
+      "start": 620.72,
+      "text": "about tokens, but I can just do the calculation of like, hey,"
+    },
+    {
+      "end": 622.6,
+      "normalized_text": "",
+      "start": 622.59,
+      "text": "calculation of like, hey,"
+    },
+    {
+      "end": 623.91,
+      "normalized_text": "um this will end up being cheaper and",
+      "start": 622.6,
+      "text": "calculation of like, hey, um this will end up being cheaper and"
+    },
+    {
+      "end": 623.92,
+      "normalized_text": "",
+      "start": 623.91,
+      "text": "um this will end up being cheaper and"
+    },
+    {
+      "end": 625.07,
+      "normalized_text": "then I can spin it down when I don't",
+      "start": 623.92,
+      "text": "um this will end up being cheaper and then I can spin it down when I don't"
+    },
+    {
+      "end": 625.08,
+      "normalized_text": "",
+      "start": 625.07,
+      "text": "then I can spin it down when I don't"
+    },
+    {
+      "end": 627.91,
+      "normalized_text": "need it.",
+      "start": 625.08,
+      "text": "then I can spin it down when I don't need it."
+    },
+    {
+      "end": 630.2,
+      "normalized_text": "Cool. And I said all of this um",
+      "start": 630.19,
+      "text": "Cool. And I said all of this um"
+    },
+    {
+      "end": 631.95,
+      "normalized_text": "so we obviously like built a product to",
+      "start": 630.2,
+      "text": "Cool. And I said all of this um so we obviously like built a product to"
+    },
+    {
+      "end": 631.96,
+      "normalized_text": "",
+      "start": 631.95,
+      "text": "so we obviously like built a product to"
+    },
+    {
+      "end": 633.95,
+      "normalized_text": "do that. Uh I won't shill it too much,",
+      "start": 631.96,
+      "text": "so we obviously like built a product to do that. Uh I won't shill it too much,"
+    },
+    {
+      "end": 633.96,
+      "normalized_text": "",
+      "start": 633.95,
+      "text": "do that. Uh I won't shill it too much,"
+    },
+    {
+      "end": 636.87,
+      "normalized_text": "but it's LangSplat engine. Uh basically,",
+      "start": 633.96,
+      "text": "do that. Uh I won't shill it too much, but it's LangSplat engine. Uh basically,"
+    },
+    {
+      "end": 636.88,
+      "normalized_text": "",
+      "start": 636.87,
+      "text": "but it's LangSplat engine. Uh basically,"
+    },
+    {
+      "end": 639.35,
+      "normalized_text": "this product is trying to automate this",
+      "start": 636.88,
+      "text": "but it's LangSplat engine. Uh basically, this product is trying to automate this"
+    },
+    {
+      "end": 639.36,
+      "normalized_text": "",
+      "start": 639.35,
+      "text": "this product is trying to automate this"
+    },
+    {
+      "end": 642.35,
+      "normalized_text": "loop for you, which is if you have any",
+      "start": 639.36,
+      "text": "this product is trying to automate this loop for you, which is if you have any"
+    },
+    {
+      "end": 642.36,
+      "normalized_text": "",
+      "start": 642.35,
+      "text": "loop for you, which is if you have any"
+    },
+    {
+      "end": 644.43,
+      "normalized_text": "volume of trace data and you're looking",
+      "start": 642.36,
+      "text": "loop for you, which is if you have any volume of trace data and you're looking"
+    },
+    {
+      "end": 644.44,
+      "normalized_text": "",
+      "start": 644.43,
+      "text": "volume of trace data and you're looking"
+    },
+    {
+      "end": 646.31,
+      "normalized_text": "for something that trace data or you",
+      "start": 644.44,
+      "text": "volume of trace data and you're looking for something that trace data or you"
+    },
+    {
+      "end": 646.32,
+      "normalized_text": "",
+      "start": 646.31,
+      "text": "for something that trace data or you"
+    },
+    {
+      "end": 647.91,
+      "normalized_text": "want to generate e-vals from that trace",
+      "start": 646.32,
+      "text": "for something that trace data or you want to generate e-vals from that trace"
+    },
+    {
+      "end": 647.92,
+      "normalized_text": "",
+      "start": 647.91,
+      "text": "want to generate e-vals from that trace"
+    },
+    {
+      "end": 650.11,
+      "normalized_text": "data or you want to like generate",
+      "start": 647.92,
+      "text": "want to generate e-vals from that trace data or you want to like generate"
+    },
+    {
+      "end": 650.12,
+      "normalized_text": "",
+      "start": 650.11,
+      "text": "data or you want to like generate"
+    },
+    {
+      "end": 651.99,
+      "normalized_text": "feedback for like humans to read from",
+      "start": 650.12,
+      "text": "data or you want to like generate feedback for like humans to read from"
+    },
+    {
+      "end": 652.0,
+      "normalized_text": "",
+      "start": 651.99,
+      "text": "feedback for like humans to read from"
+    },
+    {
+      "end": 653.79,
+      "normalized_text": "that trace data, it will go read all of",
+      "start": 652.0,
+      "text": "feedback for like humans to read from that trace data, it will go read all of"
+    },
+    {
+      "end": 653.8,
+      "normalized_text": "",
+      "start": 653.79,
+      "text": "that trace data, it will go read all of"
+    },
+    {
+      "end": 655.19,
+      "normalized_text": "it, it'll like find issues, it'll",
+      "start": 653.8,
+      "text": "that trace data, it will go read all of it, it'll like find issues, it'll"
+    },
+    {
+      "end": 655.2,
+      "normalized_text": "",
+      "start": 655.19,
+      "text": "it, it'll like find issues, it'll"
+    },
+    {
+      "end": 656.829,
+      "normalized_text": "agentically search over it, and they can",
+      "start": 655.2,
+      "text": "it, it'll like find issues, it'll agentically search over it, and they can"
+    },
+    {
+      "end": 656.8389999999999,
+      "normalized_text": "",
+      "start": 656.829,
+      "text": "agentically search over it, and they can"
+    },
+    {
+      "end": 659.03,
+      "normalized_text": "like prepare data sets for you to do",
+      "start": 656.8389999999999,
+      "text": "agentically search over it, and they can like prepare data sets for you to do"
+    },
+    {
+      "end": 659.04,
+      "normalized_text": "",
+      "start": 659.03,
+      "text": "like prepare data sets for you to do"
+    },
+    {
+      "end": 662.31,
+      "normalized_text": "something after. And a bit of a leader,",
+      "start": 659.04,
+      "text": "like prepare data sets for you to do something after. And a bit of a leader,"
+    },
+    {
+      "end": 662.32,
+      "normalized_text": "",
+      "start": 662.31,
+      "text": "something after. And a bit of a leader,"
+    },
+    {
+      "end": 663.19,
+      "normalized_text": "um",
+      "start": 662.32,
+      "text": "something after. And a bit of a leader, um"
+    },
+    {
+      "end": 663.2,
+      "normalized_text": "",
+      "start": 663.19,
+      "text": "um"
+    },
+    {
+      "end": 665.79,
+      "normalized_text": "what that something basically is is the",
+      "start": 663.2,
+      "text": "um what that something basically is is the"
+    },
+    {
+      "end": 665.8,
+      "normalized_text": "",
+      "start": 665.79,
+      "text": "what that something basically is is the"
+    },
+    {
+      "end": 668.15,
+      "normalized_text": "outputs of this trace mining exercise.",
+      "start": 665.8,
+      "text": "what that something basically is is the outputs of this trace mining exercise."
+    },
+    {
+      "end": 668.16,
+      "normalized_text": "",
+      "start": 668.15,
+      "text": "outputs of this trace mining exercise."
+    },
+    {
+      "end": 668.99,
+      "normalized_text": "So,",
+      "start": 668.16,
+      "text": "outputs of this trace mining exercise. So,"
+    },
+    {
+      "end": 669.0,
+      "normalized_text": "",
+      "start": 668.99,
+      "text": "So,"
+    },
+    {
+      "end": 670.03,
+      "normalized_text": "there's like three things that I",
+      "start": 669.0,
+      "text": "So, there's like three things that I"
+    },
+    {
+      "end": 670.04,
+      "normalized_text": "",
+      "start": 670.03,
+      "text": "there's like three things that I"
+    },
+    {
+      "end": 672.55,
+      "normalized_text": "mentioned here uh which we see a bunch",
+      "start": 670.04,
+      "text": "there's like three things that I mentioned here uh which we see a bunch"
+    },
+    {
+      "end": 672.56,
+      "normalized_text": "",
+      "start": 672.55,
+      "text": "mentioned here uh which we see a bunch"
+    },
+    {
+      "end": 674.75,
+      "normalized_text": "and we kind of put into the product. So,",
+      "start": 672.56,
+      "text": "mentioned here uh which we see a bunch and we kind of put into the product. So,"
+    },
+    {
+      "end": 674.76,
+      "normalized_text": "",
+      "start": 674.75,
+      "text": "and we kind of put into the product. So,"
+    },
+    {
+      "end": 677.63,
+      "normalized_text": "one is distillation and fine-tuning,",
+      "start": 674.76,
+      "text": "and we kind of put into the product. So, one is distillation and fine-tuning,"
+    },
+    {
+      "end": 677.64,
+      "normalized_text": "",
+      "start": 677.63,
+      "text": "one is distillation and fine-tuning,"
+    },
+    {
+      "end": 680.91,
+      "normalized_text": "which is let's say I'm running GLM 5.2.",
+      "start": 677.64,
+      "text": "one is distillation and fine-tuning, which is let's say I'm running GLM 5.2."
+    },
+    {
+      "end": 680.92,
+      "normalized_text": "",
+      "start": 680.91,
+      "text": "which is let's say I'm running GLM 5.2."
+    },
+    {
+      "end": 683.39,
+      "normalized_text": "It's doing great, but I think that I can",
+      "start": 680.92,
+      "text": "which is let's say I'm running GLM 5.2. It's doing great, but I think that I can"
+    },
+    {
+      "end": 683.4,
+      "normalized_text": "",
+      "start": 683.39,
+      "text": "It's doing great, but I think that I can"
+    },
+    {
+      "end": 685.27,
+      "normalized_text": "run this task like way cheaper with like",
+      "start": 683.4,
+      "text": "It's doing great, but I think that I can run this task like way cheaper with like"
+    },
+    {
+      "end": 685.28,
+      "normalized_text": "",
+      "start": 685.27,
+      "text": "run this task like way cheaper with like"
+    },
+    {
+      "end": 687.87,
+      "normalized_text": "a 9B or 13B model. Then what I'll do is",
+      "start": 685.28,
+      "text": "run this task like way cheaper with like a 9B or 13B model. Then what I'll do is"
+    },
+    {
+      "end": 687.88,
+      "normalized_text": "",
+      "start": 687.87,
+      "text": "a 9B or 13B model. Then what I'll do is"
+    },
+    {
+      "end": 689.31,
+      "normalized_text": "like I'll take the good traces and the",
+      "start": 687.88,
+      "text": "a 9B or 13B model. Then what I'll do is like I'll take the good traces and the"
+    },
+    {
+      "end": 689.32,
+      "normalized_text": "",
+      "start": 689.31,
+      "text": "like I'll take the good traces and the"
+    },
+    {
+      "end": 692.15,
+      "normalized_text": "good examples from the GLM 5.2 runs,",
+      "start": 689.32,
+      "text": "like I'll take the good traces and the good examples from the GLM 5.2 runs,"
+    },
+    {
+      "end": 692.16,
+      "normalized_text": "",
+      "start": 692.15,
+      "text": "good examples from the GLM 5.2 runs,"
+    },
+    {
+      "end": 693.63,
+      "normalized_text": "I'll prepare them in a data set, and",
+      "start": 692.16,
+      "text": "good examples from the GLM 5.2 runs, I'll prepare them in a data set, and"
+    },
+    {
+      "end": 693.64,
+      "normalized_text": "",
+      "start": 693.63,
+      "text": "I'll prepare them in a data set, and"
+    },
+    {
+      "end": 695.43,
+      "normalized_text": "then I'll try to fine-tune a small model",
+      "start": 693.64,
+      "text": "I'll prepare them in a data set, and then I'll try to fine-tune a small model"
+    },
+    {
+      "end": 695.44,
+      "normalized_text": "",
+      "start": 695.43,
+      "text": "then I'll try to fine-tune a small model"
+    },
+    {
+      "end": 697.91,
+      "normalized_text": "on that data set to like mimic behavior,",
+      "start": 695.44,
+      "text": "then I'll try to fine-tune a small model on that data set to like mimic behavior,"
+    },
+    {
+      "end": 697.92,
+      "normalized_text": "",
+      "start": 697.91,
+      "text": "on that data set to like mimic behavior,"
+    },
+    {
+      "end": 699.31,
+      "normalized_text": "essentially, right? And this is like",
+      "start": 697.92,
+      "text": "on that data set to like mimic behavior, essentially, right? And this is like"
+    },
+    {
+      "end": 699.32,
+      "normalized_text": "",
+      "start": 699.31,
+      "text": "essentially, right? And this is like"
+    },
+    {
+      "end": 703.19,
+      "normalized_text": "distillation, SFT. The The other one is",
+      "start": 699.32,
+      "text": "essentially, right? And this is like distillation, SFT. The The other one is"
+    },
+    {
+      "end": 703.2,
+      "normalized_text": "",
+      "start": 703.19,
+      "text": "distillation, SFT. The The other one is"
+    },
+    {
+      "end": 705.95,
+      "normalized_text": "generating evals and environments. So,",
+      "start": 703.2,
+      "text": "distillation, SFT. The The other one is generating evals and environments. So,"
+    },
+    {
+      "end": 705.96,
+      "normalized_text": "",
+      "start": 705.95,
+      "text": "generating evals and environments. So,"
+    },
+    {
+      "end": 708.07,
+      "normalized_text": "maybe another slightly hot take, I think",
+      "start": 705.96,
+      "text": "generating evals and environments. So, maybe another slightly hot take, I think"
+    },
+    {
+      "end": 708.08,
+      "normalized_text": "",
+      "start": 708.07,
+      "text": "maybe another slightly hot take, I think"
+    },
+    {
+      "end": 711.07,
+      "normalized_text": "you can basically define agent behavior",
+      "start": 708.08,
+      "text": "maybe another slightly hot take, I think you can basically define agent behavior"
+    },
+    {
+      "end": 711.08,
+      "normalized_text": "",
+      "start": 711.07,
+      "text": "you can basically define agent behavior"
+    },
+    {
+      "end": 713.23,
+      "normalized_text": "by showing the evals that you ran on it,",
+      "start": 711.08,
+      "text": "you can basically define agent behavior by showing the evals that you ran on it,"
+    },
+    {
+      "end": 713.24,
+      "normalized_text": "",
+      "start": 713.23,
+      "text": "by showing the evals that you ran on it,"
+    },
+    {
+      "end": 715.31,
+      "normalized_text": "right? Like, if someone showed me all",
+      "start": 713.24,
+      "text": "by showing the evals that you ran on it, right? Like, if someone showed me all"
+    },
+    {
+      "end": 715.32,
+      "normalized_text": "",
+      "start": 715.31,
+      "text": "right? Like, if someone showed me all"
+    },
+    {
+      "end": 716.39,
+      "normalized_text": "the things that they're trying to test",
+      "start": 715.32,
+      "text": "right? Like, if someone showed me all the things that they're trying to test"
+    },
+    {
+      "end": 716.4,
+      "normalized_text": "",
+      "start": 716.39,
+      "text": "the things that they're trying to test"
+    },
+    {
+      "end": 718.55,
+      "normalized_text": "their agent on, I think I would have a",
+      "start": 716.4,
+      "text": "the things that they're trying to test their agent on, I think I would have a"
+    },
+    {
+      "end": 718.56,
+      "normalized_text": "",
+      "start": 718.55,
+      "text": "their agent on, I think I would have a"
+    },
+    {
+      "end": 720.43,
+      "normalized_text": "rough idea about how that agent is going",
+      "start": 718.56,
+      "text": "their agent on, I think I would have a rough idea about how that agent is going"
+    },
+    {
+      "end": 720.44,
+      "normalized_text": "",
+      "start": 720.43,
+      "text": "rough idea about how that agent is going"
+    },
+    {
+      "end": 722.59,
+      "normalized_text": "to behave because it literally like hill",
+      "start": 720.44,
+      "text": "rough idea about how that agent is going to behave because it literally like hill"
+    },
+    {
+      "end": 722.6,
+      "normalized_text": "",
+      "start": 722.59,
+      "text": "to behave because it literally like hill"
+    },
+    {
+      "end": 725.59,
+      "normalized_text": "climbs those evals, and you you alter",
+      "start": 722.6,
+      "text": "to behave because it literally like hill climbs those evals, and you you alter"
+    },
+    {
+      "end": 725.6,
+      "normalized_text": "",
+      "start": 725.59,
+      "text": "climbs those evals, and you you alter"
+    },
+    {
+      "end": 727.47,
+      "normalized_text": "the behavior of the agent to make the",
+      "start": 725.6,
+      "text": "climbs those evals, and you you alter the behavior of the agent to make the"
+    },
+    {
+      "end": 727.48,
+      "normalized_text": "",
+      "start": 727.47,
+      "text": "the behavior of the agent to make the"
+    },
+    {
+      "end": 729.31,
+      "normalized_text": "evals pass, right? Like, the purpose of",
+      "start": 727.48,
+      "text": "the behavior of the agent to make the evals pass, right? Like, the purpose of"
+    },
+    {
+      "end": 729.32,
+      "normalized_text": "",
+      "start": 729.31,
+      "text": "evals pass, right? Like, the purpose of"
+    },
+    {
+      "end": 731.27,
+      "normalized_text": "evals is roughly to try to make them",
+      "start": 729.32,
+      "text": "evals pass, right? Like, the purpose of evals is roughly to try to make them"
+    },
+    {
+      "end": 731.28,
+      "normalized_text": "",
+      "start": 731.27,
+      "text": "evals is roughly to try to make them"
+    },
+    {
+      "end": 733.35,
+      "normalized_text": "pass, right? So, I update my agent so",
+      "start": 731.28,
+      "text": "evals is roughly to try to make them pass, right? So, I update my agent so"
+    },
+    {
+      "end": 733.36,
+      "normalized_text": "",
+      "start": 733.35,
+      "text": "pass, right? So, I update my agent so"
+    },
+    {
+      "end": 735.71,
+      "normalized_text": "that they essentially pass. And then the",
+      "start": 733.36,
+      "text": "pass, right? So, I update my agent so that they essentially pass. And then the"
+    },
+    {
+      "end": 735.72,
+      "normalized_text": "",
+      "start": 735.71,
+      "text": "that they essentially pass. And then the"
+    },
+    {
+      "end": 737.95,
+      "normalized_text": "the other thing is um like humans are",
+      "start": 735.72,
+      "text": "that they essentially pass. And then the the other thing is um like humans are"
+    },
+    {
+      "end": 737.96,
+      "normalized_text": "",
+      "start": 737.95,
+      "text": "the other thing is um like humans are"
+    },
+    {
+      "end": 740.35,
+      "normalized_text": "still in the loop. Like, I need to know",
+      "start": 737.96,
+      "text": "the other thing is um like humans are still in the loop. Like, I need to know"
+    },
+    {
+      "end": 740.36,
+      "normalized_text": "",
+      "start": 740.35,
+      "text": "still in the loop. Like, I need to know"
+    },
+    {
+      "end": 743.11,
+      "normalized_text": "that customers are happy. I also want to",
+      "start": 740.36,
+      "text": "still in the loop. Like, I need to know that customers are happy. I also want to"
+    },
+    {
+      "end": 743.12,
+      "normalized_text": "",
+      "start": 743.11,
+      "text": "that customers are happy. I also want to"
+    },
+    {
+      "end": 744.91,
+      "normalized_text": "know what my agents are doing. I just",
+      "start": 743.12,
+      "text": "that customers are happy. I also want to know what my agents are doing. I just"
+    },
+    {
+      "end": 744.92,
+      "normalized_text": "",
+      "start": 744.91,
+      "text": "know what my agents are doing. I just"
+    },
+    {
+      "end": 746.83,
+      "normalized_text": "don't have the bandwidth to read a bunch",
+      "start": 744.92,
+      "text": "know what my agents are doing. I just don't have the bandwidth to read a bunch"
+    },
+    {
+      "end": 746.84,
+      "normalized_text": "",
+      "start": 746.83,
+      "text": "don't have the bandwidth to read a bunch"
+    },
+    {
+      "end": 749.59,
+      "normalized_text": "of traces. So, preparing content for",
+      "start": 746.84,
+      "text": "don't have the bandwidth to read a bunch of traces. So, preparing content for"
+    },
+    {
+      "end": 749.6,
+      "normalized_text": "",
+      "start": 749.59,
+      "text": "of traces. So, preparing content for"
+    },
+    {
+      "end": 751.67,
+      "normalized_text": "humans is still like really, really",
+      "start": 749.6,
+      "text": "of traces. So, preparing content for humans is still like really, really"
+    },
+    {
+      "end": 751.68,
+      "normalized_text": "",
+      "start": 751.67,
+      "text": "humans is still like really, really"
+    },
+    {
+      "end": 754.79,
+      "normalized_text": "valuable today, especially in like",
+      "start": 751.68,
+      "text": "humans is still like really, really valuable today, especially in like"
+    },
+    {
+      "end": 754.8,
+      "normalized_text": "",
+      "start": 754.79,
+      "text": "valuable today, especially in like"
+    },
+    {
+      "end": 756.67,
+      "normalized_text": "high-trust domains like legal and",
+      "start": 754.8,
+      "text": "valuable today, especially in like high-trust domains like legal and"
+    },
+    {
+      "end": 756.68,
+      "normalized_text": "",
+      "start": 756.67,
+      "text": "high-trust domains like legal and"
+    },
+    {
+      "end": 758.39,
+      "normalized_text": "medical. Like, some human needs to",
+      "start": 756.68,
+      "text": "high-trust domains like legal and medical. Like, some human needs to"
+    },
+    {
+      "end": 758.4,
+      "normalized_text": "",
+      "start": 758.39,
+      "text": "medical. Like, some human needs to"
+    },
+    {
+      "end": 760.23,
+      "normalized_text": "review this, um but they can't read it",
+      "start": 758.4,
+      "text": "medical. Like, some human needs to review this, um but they can't read it"
+    },
+    {
+      "end": 760.24,
+      "normalized_text": "",
+      "start": 760.23,
+      "text": "review this, um but they can't read it"
+    },
+    {
+      "end": 762.43,
+      "normalized_text": "all, so we try to make it easy for them",
+      "start": 760.24,
+      "text": "review this, um but they can't read it all, so we try to make it easy for them"
+    },
+    {
+      "end": 762.44,
+      "normalized_text": "",
+      "start": 762.43,
+      "text": "all, so we try to make it easy for them"
+    },
+    {
+      "end": 766.15,
+      "normalized_text": "to process all that data.",
+      "start": 762.44,
+      "text": "all, so we try to make it easy for them to process all that data."
+    },
+    {
+      "end": 767.96,
+      "normalized_text": "Great. This is um maybe a bit of a",
+      "start": 767.95,
+      "text": "Great. This is um maybe a bit of a"
+    },
+    {
+      "end": 770.07,
+      "normalized_text": "throwback. Like, how many people here",
+      "start": 767.96,
+      "text": "Great. This is um maybe a bit of a throwback. Like, how many people here"
+    },
+    {
+      "end": 770.08,
+      "normalized_text": "",
+      "start": 770.07,
+      "text": "throwback. Like, how many people here"
+    },
+    {
+      "end": 772.03,
+      "normalized_text": "know what like scikit-learn is? Uh maybe",
+      "start": 770.08,
+      "text": "throwback. Like, how many people here know what like scikit-learn is? Uh maybe"
+    },
+    {
+      "end": 772.04,
+      "normalized_text": "",
+      "start": 772.03,
+      "text": "know what like scikit-learn is? Uh maybe"
+    },
+    {
+      "end": 773.91,
+      "normalized_text": "put your uh psych This crowd is just",
+      "start": 772.04,
+      "text": "know what like scikit-learn is? Uh maybe put your uh psych This crowd is just"
+    },
+    {
+      "end": 773.92,
+      "normalized_text": "",
+      "start": 773.91,
+      "text": "put your uh psych This crowd is just"
+    },
+    {
+      "end": 777.19,
+      "normalized_text": "awesome. Um cool. So, uh when I was like",
+      "start": 773.92,
+      "text": "put your uh psych This crowd is just awesome. Um cool. So, uh when I was like"
+    },
+    {
+      "end": 777.2,
+      "normalized_text": "",
+      "start": 777.19,
+      "text": "awesome. Um cool. So, uh when I was like"
+    },
+    {
+      "end": 779.43,
+      "normalized_text": "first doing my PhD, uh",
+      "start": 777.2,
+      "text": "awesome. Um cool. So, uh when I was like first doing my PhD, uh"
+    },
+    {
+      "end": 779.44,
+      "normalized_text": "",
+      "start": 779.43,
+      "text": "first doing my PhD, uh"
+    },
+    {
+      "end": 781.91,
+      "normalized_text": "my PhD was like kind of trying to do",
+      "start": 779.44,
+      "text": "first doing my PhD, uh my PhD was like kind of trying to do"
+    },
+    {
+      "end": 781.92,
+      "normalized_text": "",
+      "start": 781.91,
+      "text": "my PhD was like kind of trying to do"
+    },
+    {
+      "end": 784.03,
+      "normalized_text": "this, but like add new algorithms to",
+      "start": 781.92,
+      "text": "my PhD was like kind of trying to do this, but like add new algorithms to"
+    },
+    {
+      "end": 784.04,
+      "normalized_text": "",
+      "start": 784.03,
+      "text": "this, but like add new algorithms to"
+    },
+    {
+      "end": 785.43,
+      "normalized_text": "scikit-learn. And like, what",
+      "start": 784.04,
+      "text": "this, but like add new algorithms to scikit-learn. And like, what"
+    },
+    {
+      "end": 785.44,
+      "normalized_text": "",
+      "start": 785.43,
+      "text": "scikit-learn. And like, what"
+    },
+    {
+      "end": 789.27,
+      "normalized_text": "scikit-learn basically is uh an abstract",
+      "start": 785.44,
+      "text": "scikit-learn. And like, what scikit-learn basically is uh an abstract"
+    },
+    {
+      "end": 789.28,
+      "normalized_text": "",
+      "start": 789.27,
+      "text": "scikit-learn basically is uh an abstract"
+    },
+    {
+      "end": 793.43,
+      "normalized_text": "level, it's a bunch of helpers to fit",
+      "start": 789.28,
+      "text": "scikit-learn basically is uh an abstract level, it's a bunch of helpers to fit"
+    },
+    {
+      "end": 793.44,
+      "normalized_text": "",
+      "start": 793.43,
+      "text": "level, it's a bunch of helpers to fit"
+    },
+    {
+      "end": 795.95,
+      "normalized_text": "learning systems to data, right? And",
+      "start": 793.44,
+      "text": "level, it's a bunch of helpers to fit learning systems to data, right? And"
+    },
+    {
+      "end": 795.96,
+      "normalized_text": "",
+      "start": 795.95,
+      "text": "learning systems to data, right? And"
+    },
+    {
+      "end": 797.47,
+      "normalized_text": "like, classical machine learning, I had",
+      "start": 795.96,
+      "text": "learning systems to data, right? And like, classical machine learning, I had"
+    },
+    {
+      "end": 797.48,
+      "normalized_text": "",
+      "start": 797.47,
+      "text": "like, classical machine learning, I had"
+    },
+    {
+      "end": 798.63,
+      "normalized_text": "like a data set, I tried to fit it to",
+      "start": 797.48,
+      "text": "like, classical machine learning, I had like a data set, I tried to fit it to"
+    },
+    {
+      "end": 798.64,
+      "normalized_text": "",
+      "start": 798.63,
+      "text": "like a data set, I tried to fit it to"
+    },
+    {
+      "end": 801.67,
+      "normalized_text": "it, but I think the same principles that",
+      "start": 798.64,
+      "text": "like a data set, I tried to fit it to it, but I think the same principles that"
+    },
+    {
+      "end": 801.68,
+      "normalized_text": "",
+      "start": 801.67,
+      "text": "it, but I think the same principles that"
+    },
+    {
+      "end": 804.19,
+      "normalized_text": "we use in modern in I got I call it",
+      "start": 801.68,
+      "text": "it, but I think the same principles that we use in modern in I got I call it"
+    },
+    {
+      "end": 804.2,
+      "normalized_text": "",
+      "start": 804.19,
+      "text": "we use in modern in I got I call it"
+    },
+    {
+      "end": 805.35,
+      "normalized_text": "classical machine learning, it's like 6",
+      "start": 804.2,
+      "text": "we use in modern in I got I call it classical machine learning, it's like 6"
+    },
+    {
+      "end": 805.36,
+      "normalized_text": "",
+      "start": 805.35,
+      "text": "classical machine learning, it's like 6"
+    },
+    {
+      "end": 807.31,
+      "normalized_text": "years ago. Um that we do in classical",
+      "start": 805.36,
+      "text": "classical machine learning, it's like 6 years ago. Um that we do in classical"
+    },
+    {
+      "end": 807.32,
+      "normalized_text": "",
+      "start": 807.31,
+      "text": "years ago. Um that we do in classical"
+    },
+    {
+      "end": 809.31,
+      "normalized_text": "machine learning uh definitely still",
+      "start": 807.32,
+      "text": "years ago. Um that we do in classical machine learning uh definitely still"
+    },
+    {
+      "end": 809.32,
+      "normalized_text": "",
+      "start": 809.31,
+      "text": "machine learning uh definitely still"
+    },
+    {
+      "end": 812.71,
+      "normalized_text": "apply to this agent-first world. Um,",
+      "start": 809.32,
+      "text": "machine learning uh definitely still apply to this agent-first world. Um,"
+    },
+    {
+      "end": 812.72,
+      "normalized_text": "",
+      "start": 812.71,
+      "text": "apply to this agent-first world. Um,"
+    },
+    {
+      "end": 814.75,
+      "normalized_text": "the way that they apply is what I like",
+      "start": 812.72,
+      "text": "apply to this agent-first world. Um, the way that they apply is what I like"
+    },
+    {
+      "end": 814.76,
+      "normalized_text": "",
+      "start": 814.75,
+      "text": "the way that they apply is what I like"
+    },
+    {
+      "end": 818.55,
+      "normalized_text": "to call model harness task fit. So, we",
+      "start": 814.76,
+      "text": "the way that they apply is what I like to call model harness task fit. So, we"
+    },
+    {
+      "end": 818.56,
+      "normalized_text": "",
+      "start": 818.55,
+      "text": "to call model harness task fit. So, we"
+    },
+    {
+      "end": 820.51,
+      "normalized_text": "still have this sort of like fit",
+      "start": 818.56,
+      "text": "to call model harness task fit. So, we still have this sort of like fit"
+    },
+    {
+      "end": 820.52,
+      "normalized_text": "",
+      "start": 820.51,
+      "text": "still have this sort of like fit"
+    },
+    {
+      "end": 823.23,
+      "normalized_text": "function that I'm going to try to like",
+      "start": 820.52,
+      "text": "still have this sort of like fit function that I'm going to try to like"
+    },
+    {
+      "end": 823.24,
+      "normalized_text": "",
+      "start": 823.23,
+      "text": "function that I'm going to try to like"
+    },
+    {
+      "end": 826.03,
+      "normalized_text": "take my data, take a harness, take a",
+      "start": 823.24,
+      "text": "function that I'm going to try to like take my data, take a harness, take a"
+    },
+    {
+      "end": 826.04,
+      "normalized_text": "",
+      "start": 826.03,
+      "text": "take my data, take a harness, take a"
+    },
+    {
+      "end": 827.87,
+      "normalized_text": "model, and I'm going to try to fit it",
+      "start": 826.04,
+      "text": "take my data, take a harness, take a model, and I'm going to try to fit it"
+    },
+    {
+      "end": 827.88,
+      "normalized_text": "",
+      "start": 827.87,
+      "text": "model, and I'm going to try to fit it"
+    },
+    {
+      "end": 829.63,
+      "normalized_text": "all together to make sure that all of my",
+      "start": 827.88,
+      "text": "model, and I'm going to try to fit it all together to make sure that all of my"
+    },
+    {
+      "end": 829.64,
+      "normalized_text": "",
+      "start": 829.63,
+      "text": "all together to make sure that all of my"
+    },
+    {
+      "end": 832.91,
+      "normalized_text": "tasks pass, right? The algorithms look",
+      "start": 829.64,
+      "text": "all together to make sure that all of my tasks pass, right? The algorithms look"
+    },
+    {
+      "end": 832.92,
+      "normalized_text": "",
+      "start": 832.91,
+      "text": "tasks pass, right? The algorithms look"
+    },
+    {
+      "end": 836.43,
+      "normalized_text": "slightly different, uh but the overall",
+      "start": 832.92,
+      "text": "tasks pass, right? The algorithms look slightly different, uh but the overall"
+    },
+    {
+      "end": 836.44,
+      "normalized_text": "",
+      "start": 836.43,
+      "text": "slightly different, uh but the overall"
+    },
+    {
+      "end": 838.35,
+      "normalized_text": "process of machine learning doesn't",
+      "start": 836.44,
+      "text": "slightly different, uh but the overall process of machine learning doesn't"
+    },
+    {
+      "end": 838.36,
+      "normalized_text": "",
+      "start": 838.35,
+      "text": "process of machine learning doesn't"
+    },
+    {
+      "end": 840.51,
+      "normalized_text": "really look that different, and we'll",
+      "start": 838.36,
+      "text": "process of machine learning doesn't really look that different, and we'll"
+    },
+    {
+      "end": 840.52,
+      "normalized_text": "",
+      "start": 840.51,
+      "text": "really look that different, and we'll"
+    },
+    {
+      "end": 843.35,
+      "normalized_text": "talk about maybe roughly what our job",
+      "start": 840.52,
+      "text": "really look that different, and we'll talk about maybe roughly what our job"
+    },
+    {
+      "end": 843.36,
+      "normalized_text": "",
+      "start": 843.35,
+      "text": "talk about maybe roughly what our job"
+    },
+    {
+      "end": 846.55,
+      "normalized_text": "becomes in this data-first, agent-first,",
+      "start": 843.36,
+      "text": "talk about maybe roughly what our job becomes in this data-first, agent-first,"
+    },
+    {
+      "end": 846.56,
+      "normalized_text": "",
+      "start": 846.55,
+      "text": "becomes in this data-first, agent-first,"
+    },
+    {
+      "end": 848.67,
+      "normalized_text": "fit-first world. So, a couple of our",
+      "start": 846.56,
+      "text": "becomes in this data-first, agent-first, fit-first world. So, a couple of our"
+    },
+    {
+      "end": 848.68,
+      "normalized_text": "",
+      "start": 848.67,
+      "text": "fit-first world. So, a couple of our"
+    },
+    {
+      "end": 851.15,
+      "normalized_text": "main jobs now are",
+      "start": 848.68,
+      "text": "fit-first world. So, a couple of our main jobs now are"
+    },
+    {
+      "end": 851.16,
+      "normalized_text": "",
+      "start": 851.15,
+      "text": "main jobs now are"
+    },
+    {
+      "end": 853.19,
+      "normalized_text": "find good fit functions. So, these are",
+      "start": 851.16,
+      "text": "main jobs now are find good fit functions. So, these are"
+    },
+    {
+      "end": 853.2,
+      "normalized_text": "",
+      "start": 853.19,
+      "text": "find good fit functions. So, these are"
+    },
+    {
+      "end": 855.71,
+      "normalized_text": "like auto research. This is tons of",
+      "start": 853.2,
+      "text": "find good fit functions. So, these are like auto research. This is tons of"
+    },
+    {
+      "end": 855.72,
+      "normalized_text": "",
+      "start": 855.71,
+      "text": "like auto research. This is tons of"
+    },
+    {
+      "end": 857.59,
+      "normalized_text": "great work that's being done in RL on",
+      "start": 855.72,
+      "text": "like auto research. This is tons of great work that's being done in RL on"
+    },
+    {
+      "end": 857.6,
+      "normalized_text": "",
+      "start": 857.59,
+      "text": "great work that's being done in RL on"
+    },
+    {
+      "end": 860.23,
+      "normalized_text": "different methods like OPD, OPSD,",
+      "start": 857.6,
+      "text": "great work that's being done in RL on different methods like OPD, OPSD,"
+    },
+    {
+      "end": 860.24,
+      "normalized_text": "",
+      "start": 860.23,
+      "text": "different methods like OPD, OPSD,"
+    },
+    {
+      "end": 862.67,
+      "normalized_text": "trySFT.",
+      "start": 860.24,
+      "text": "different methods like OPD, OPSD, trySFT."
+    },
+    {
+      "end": 862.68,
+      "normalized_text": "",
+      "start": 862.67,
+      "text": "trySFT."
+    },
+    {
+      "end": 864.47,
+      "normalized_text": "And also find good data, right? So, if",
+      "start": 862.68,
+      "text": "trySFT. And also find good data, right? So, if"
+    },
+    {
+      "end": 864.48,
+      "normalized_text": "",
+      "start": 864.47,
+      "text": "And also find good data, right? So, if"
+    },
+    {
+      "end": 866.43,
+      "normalized_text": "you put those two things together, then",
+      "start": 864.48,
+      "text": "And also find good data, right? So, if you put those two things together, then"
+    },
+    {
+      "end": 866.44,
+      "normalized_text": "",
+      "start": 866.43,
+      "text": "you put those two things together, then"
+    },
+    {
+      "end": 868.75,
+      "normalized_text": "that is basically the applied or just",
+      "start": 866.44,
+      "text": "you put those two things together, then that is basically the applied or just"
+    },
+    {
+      "end": 868.76,
+      "normalized_text": "",
+      "start": 868.75,
+      "text": "that is basically the applied or just"
+    },
+    {
+      "end": 870.27,
+      "normalized_text": "overall research question that every",
+      "start": 868.76,
+      "text": "that is basically the applied or just overall research question that every"
+    },
+    {
+      "end": 870.28,
+      "normalized_text": "",
+      "start": 870.27,
+      "text": "overall research question that every"
+    },
+    {
+      "end": 873.43,
+      "normalized_text": "team has to make their agents better.",
+      "start": 870.28,
+      "text": "overall research question that every team has to make their agents better."
+    },
+    {
+      "end": 873.44,
+      "normalized_text": "",
+      "start": 873.43,
+      "text": "team has to make their agents better."
+    },
+    {
+      "end": 875.43,
+      "normalized_text": "I like some some examples that we've",
+      "start": 873.44,
+      "text": "team has to make their agents better. I like some some examples that we've"
+    },
+    {
+      "end": 875.44,
+      "normalized_text": "",
+      "start": 875.43,
+      "text": "I like some some examples that we've"
+    },
+    {
+      "end": 877.23,
+      "normalized_text": "seen that are like very popular that",
+      "start": 875.44,
+      "text": "I like some some examples that we've seen that are like very popular that"
+    },
+    {
+      "end": 877.24,
+      "normalized_text": "",
+      "start": 877.23,
+      "text": "seen that are like very popular that"
+    },
+    {
+      "end": 879.15,
+      "normalized_text": "we're pretty bullish on are just",
+      "start": 877.24,
+      "text": "seen that are like very popular that we're pretty bullish on are just"
+    },
+    {
+      "end": 879.16,
+      "normalized_text": "",
+      "start": 879.15,
+      "text": "we're pretty bullish on are just"
+    },
+    {
+      "end": 881.87,
+      "normalized_text": "generally auto research. So, if you have",
+      "start": 879.16,
+      "text": "we're pretty bullish on are just generally auto research. So, if you have"
+    },
+    {
+      "end": 881.88,
+      "normalized_text": "",
+      "start": 881.87,
+      "text": "generally auto research. So, if you have"
+    },
+    {
+      "end": 883.71,
+      "normalized_text": "some sort of score that you can make",
+      "start": 881.88,
+      "text": "generally auto research. So, if you have some sort of score that you can make"
+    },
+    {
+      "end": 883.72,
+      "normalized_text": "",
+      "start": 883.71,
+      "text": "some sort of score that you can make"
+    },
+    {
+      "end": 885.55,
+      "normalized_text": "number go up, uh",
+      "start": 883.72,
+      "text": "some sort of score that you can make number go up, uh"
+    },
+    {
+      "end": 885.56,
+      "normalized_text": "",
+      "start": 885.55,
+      "text": "number go up, uh"
+    },
+    {
+      "end": 887.27,
+      "normalized_text": "agents are pretty good at making that",
+      "start": 885.56,
+      "text": "number go up, uh agents are pretty good at making that"
+    },
+    {
+      "end": 887.28,
+      "normalized_text": "",
+      "start": 887.27,
+      "text": "agents are pretty good at making that"
+    },
+    {
+      "end": 888.63,
+      "normalized_text": "number go up. They might cheat a little",
+      "start": 887.28,
+      "text": "agents are pretty good at making that number go up. They might cheat a little"
+    },
+    {
+      "end": 888.64,
+      "normalized_text": "",
+      "start": 888.63,
+      "text": "number go up. They might cheat a little"
+    },
+    {
+      "end": 889.79,
+      "normalized_text": "bit and you need to like check them on",
+      "start": 888.64,
+      "text": "number go up. They might cheat a little bit and you need to like check them on"
+    },
+    {
+      "end": 889.8,
+      "normalized_text": "",
+      "start": 889.79,
+      "text": "bit and you need to like check them on"
+    },
+    {
+      "end": 891.75,
+      "normalized_text": "some stuff. Um, but this sort of like",
+      "start": 889.8,
+      "text": "bit and you need to like check them on some stuff. Um, but this sort of like"
+    },
+    {
+      "end": 891.76,
+      "normalized_text": "",
+      "start": 891.75,
+      "text": "some stuff. Um, but this sort of like"
+    },
+    {
+      "end": 894.67,
+      "normalized_text": "general feedback loop of do something,",
+      "start": 891.76,
+      "text": "some stuff. Um, but this sort of like general feedback loop of do something,"
+    },
+    {
+      "end": 894.68,
+      "normalized_text": "",
+      "start": 894.67,
+      "text": "general feedback loop of do something,"
+    },
+    {
+      "end": 896.91,
+      "normalized_text": "read the results, read the traces, and",
+      "start": 894.68,
+      "text": "general feedback loop of do something, read the results, read the traces, and"
+    },
+    {
+      "end": 896.92,
+      "normalized_text": "",
+      "start": 896.91,
+      "text": "read the results, read the traces, and"
+    },
+    {
+      "end": 898.91,
+      "normalized_text": "then do an update ends up being pretty",
+      "start": 896.92,
+      "text": "read the results, read the traces, and then do an update ends up being pretty"
+    },
+    {
+      "end": 898.92,
+      "normalized_text": "",
+      "start": 898.91,
+      "text": "then do an update ends up being pretty"
+    },
+    {
+      "end": 900.15,
+      "normalized_text": "useful. And then I talked about like",
+      "start": 898.92,
+      "text": "then do an update ends up being pretty useful. And then I talked about like"
+    },
+    {
+      "end": 900.16,
+      "normalized_text": "",
+      "start": 900.15,
+      "text": "useful. And then I talked about like"
+    },
+    {
+      "end": 902.39,
+      "normalized_text": "model fine-tuning a bunch as well.",
+      "start": 900.16,
+      "text": "useful. And then I talked about like model fine-tuning a bunch as well."
+    },
+    {
+      "end": 902.4,
+      "normalized_text": "",
+      "start": 902.39,
+      "text": "model fine-tuning a bunch as well."
+    },
+    {
+      "end": 903.43,
+      "normalized_text": "Um,",
+      "start": 902.4,
+      "text": "model fine-tuning a bunch as well. Um,"
+    },
+    {
+      "end": 903.44,
+      "normalized_text": "",
+      "start": 903.43,
+      "text": "Um,"
+    },
+    {
+      "end": 905.95,
+      "normalized_text": "so we we just like went and did this. Uh",
+      "start": 903.44,
+      "text": "Um, so we we just like went and did this. Uh"
+    },
+    {
+      "end": 905.96,
+      "normalized_text": "",
+      "start": 905.95,
+      "text": "so we we just like went and did this. Uh"
+    },
+    {
+      "end": 907.55,
+      "normalized_text": "this was I think even before the term",
+      "start": 905.96,
+      "text": "so we we just like went and did this. Uh this was I think even before the term"
+    },
+    {
+      "end": 907.56,
+      "normalized_text": "",
+      "start": 907.55,
+      "text": "this was I think even before the term"
+    },
+    {
+      "end": 908.87,
+      "normalized_text": "auto research came out, but a lot of",
+      "start": 907.56,
+      "text": "this was I think even before the term auto research came out, but a lot of"
+    },
+    {
+      "end": 908.88,
+      "normalized_text": "",
+      "start": 908.87,
+      "text": "auto research came out, but a lot of"
+    },
+    {
+      "end": 910.63,
+      "normalized_text": "people were doing it, which is hey, like",
+      "start": 908.88,
+      "text": "auto research came out, but a lot of people were doing it, which is hey, like"
+    },
+    {
+      "end": 910.64,
+      "normalized_text": "",
+      "start": 910.63,
+      "text": "people were doing it, which is hey, like"
+    },
+    {
+      "end": 912.829,
+      "normalized_text": "terminal benches like really hard. Uh",
+      "start": 910.64,
+      "text": "people were doing it, which is hey, like terminal benches like really hard. Uh"
+    },
+    {
+      "end": 912.839,
+      "normalized_text": "",
+      "start": 912.829,
+      "text": "terminal benches like really hard. Uh"
+    },
+    {
+      "end": 914.51,
+      "normalized_text": "what would happen if an agent just like",
+      "start": 912.839,
+      "text": "terminal benches like really hard. Uh what would happen if an agent just like"
+    },
+    {
+      "end": 914.52,
+      "normalized_text": "",
+      "start": 914.51,
+      "text": "what would happen if an agent just like"
+    },
+    {
+      "end": 917.03,
+      "normalized_text": "read its traces, uh proposed",
+      "start": 914.52,
+      "text": "what would happen if an agent just like read its traces, uh proposed"
+    },
+    {
+      "end": 917.04,
+      "normalized_text": "",
+      "start": 917.03,
+      "text": "read its traces, uh proposed"
+    },
+    {
+      "end": 919.11,
+      "normalized_text": "experiments, and then tried to do fixes?",
+      "start": 917.04,
+      "text": "read its traces, uh proposed experiments, and then tried to do fixes?"
+    },
+    {
+      "end": 919.12,
+      "normalized_text": "",
+      "start": 919.11,
+      "text": "experiments, and then tried to do fixes?"
+    },
+    {
+      "end": 921.91,
+      "normalized_text": "Um, I think one like really key thing",
+      "start": 919.12,
+      "text": "experiments, and then tried to do fixes? Um, I think one like really key thing"
+    },
+    {
+      "end": 921.92,
+      "normalized_text": "",
+      "start": 921.91,
+      "text": "Um, I think one like really key thing"
+    },
+    {
+      "end": 923.63,
+      "normalized_text": "here is uh",
+      "start": 921.92,
+      "text": "Um, I think one like really key thing here is uh"
+    },
+    {
+      "end": 923.64,
+      "normalized_text": "",
+      "start": 923.63,
+      "text": "here is uh"
+    },
+    {
+      "end": 926.39,
+      "normalized_text": "giving agents dense feedback signals.",
+      "start": 923.64,
+      "text": "here is uh giving agents dense feedback signals."
+    },
+    {
+      "end": 926.4,
+      "normalized_text": "",
+      "start": 926.39,
+      "text": "giving agents dense feedback signals."
+    },
+    {
+      "end": 928.63,
+      "normalized_text": "So, like terminal bench, the output is",
+      "start": 926.4,
+      "text": "giving agents dense feedback signals. So, like terminal bench, the output is"
+    },
+    {
+      "end": 928.64,
+      "normalized_text": "",
+      "start": 928.63,
+      "text": "So, like terminal bench, the output is"
+    },
+    {
+      "end": 930.39,
+      "normalized_text": "just a number, right? Like, did you pass",
+      "start": 928.64,
+      "text": "So, like terminal bench, the output is just a number, right? Like, did you pass"
+    },
+    {
+      "end": 930.4,
+      "normalized_text": "",
+      "start": 930.39,
+      "text": "just a number, right? Like, did you pass"
+    },
+    {
+      "end": 932.43,
+      "normalized_text": "or did you not pass? Uh that's like kind",
+      "start": 930.4,
+      "text": "just a number, right? Like, did you pass or did you not pass? Uh that's like kind"
+    },
+    {
+      "end": 932.44,
+      "normalized_text": "",
+      "start": 932.43,
+      "text": "or did you not pass? Uh that's like kind"
+    },
+    {
+      "end": 933.83,
+      "normalized_text": "of helpful, but if I give you like a",
+      "start": 932.44,
+      "text": "or did you not pass? Uh that's like kind of helpful, but if I give you like a"
+    },
+    {
+      "end": 933.84,
+      "normalized_text": "",
+      "start": 933.83,
+      "text": "of helpful, but if I give you like a"
+    },
+    {
+      "end": 935.67,
+      "normalized_text": "super random task, like you just did a",
+      "start": 933.84,
+      "text": "of helpful, but if I give you like a super random task, like you just did a"
+    },
+    {
+      "end": 935.68,
+      "normalized_text": "",
+      "start": 935.67,
+      "text": "super random task, like you just did a"
+    },
+    {
+      "end": 937.19,
+      "normalized_text": "bunch of stuff, and then I just said",
+      "start": 935.68,
+      "text": "super random task, like you just did a bunch of stuff, and then I just said"
+    },
+    {
+      "end": 937.2,
+      "normalized_text": "",
+      "start": 937.19,
+      "text": "bunch of stuff, and then I just said"
+    },
+    {
+      "end": 939.11,
+      "normalized_text": "like you failed or you passed, uh if you",
+      "start": 937.2,
+      "text": "bunch of stuff, and then I just said like you failed or you passed, uh if you"
+    },
+    {
+      "end": 939.12,
+      "normalized_text": "",
+      "start": 939.11,
+      "text": "like you failed or you passed, uh if you"
+    },
+    {
+      "end": 940.23,
+      "normalized_text": "failed, like you wouldn't really have a",
+      "start": 939.12,
+      "text": "like you failed or you passed, uh if you failed, like you wouldn't really have a"
+    },
+    {
+      "end": 940.24,
+      "normalized_text": "",
+      "start": 940.23,
+      "text": "failed, like you wouldn't really have a"
+    },
+    {
+      "end": 942.19,
+      "normalized_text": "good signal to figure out what you",
+      "start": 940.24,
+      "text": "failed, like you wouldn't really have a good signal to figure out what you"
+    },
+    {
+      "end": 942.2,
+      "normalized_text": "",
+      "start": 942.19,
+      "text": "good signal to figure out what you"
+    },
+    {
+      "end": 945.07,
+      "normalized_text": "should do next, right? So, densifying",
+      "start": 942.2,
+      "text": "good signal to figure out what you should do next, right? So, densifying"
+    },
+    {
+      "end": 945.08,
+      "normalized_text": "",
+      "start": 945.07,
+      "text": "should do next, right? So, densifying"
+    },
+    {
+      "end": 947.11,
+      "normalized_text": "feedback is uh really good way to",
+      "start": 945.08,
+      "text": "should do next, right? So, densifying feedback is uh really good way to"
+    },
+    {
+      "end": 947.12,
+      "normalized_text": "",
+      "start": 947.11,
+      "text": "feedback is uh really good way to"
+    },
+    {
+      "end": 949.39,
+      "normalized_text": "improve agents, and like traces are the",
+      "start": 947.12,
+      "text": "feedback is uh really good way to improve agents, and like traces are the"
+    },
+    {
+      "end": 949.4,
+      "normalized_text": "",
+      "start": 949.39,
+      "text": "improve agents, and like traces are the"
+    },
+    {
+      "end": 951.87,
+      "normalized_text": "substrate that hold that feedback. And",
+      "start": 949.4,
+      "text": "improve agents, and like traces are the substrate that hold that feedback. And"
+    },
+    {
+      "end": 951.88,
+      "normalized_text": "",
+      "start": 951.87,
+      "text": "substrate that hold that feedback. And"
+    },
+    {
+      "end": 952.99,
+      "normalized_text": "then agents are very good at like",
+      "start": 951.88,
+      "text": "substrate that hold that feedback. And then agents are very good at like"
+    },
+    {
+      "end": 953.0,
+      "normalized_text": "",
+      "start": 952.99,
+      "text": "then agents are very good at like"
+    },
+    {
+      "end": 954.95,
+      "normalized_text": "reading those uh those traces and then",
+      "start": 953.0,
+      "text": "then agents are very good at like reading those uh those traces and then"
+    },
+    {
+      "end": 954.96,
+      "normalized_text": "",
+      "start": 954.95,
+      "text": "reading those uh those traces and then"
+    },
+    {
+      "end": 958.51,
+      "normalized_text": "figuring out like what to do next. Um",
+      "start": 954.96,
+      "text": "reading those uh those traces and then figuring out like what to do next. Um"
+    },
+    {
+      "end": 958.52,
+      "normalized_text": "",
+      "start": 958.51,
+      "text": "figuring out like what to do next. Um"
+    },
+    {
+      "end": 961.55,
+      "normalized_text": "and then this sort of question always",
+      "start": 958.52,
+      "text": "figuring out like what to do next. Um and then this sort of question always"
+    },
+    {
+      "end": 961.56,
+      "normalized_text": "",
+      "start": 961.55,
+      "text": "and then this sort of question always"
+    },
+    {
+      "end": 963.47,
+      "normalized_text": "comes up, which is",
+      "start": 961.56,
+      "text": "and then this sort of question always comes up, which is"
+    },
+    {
+      "end": 963.48,
+      "normalized_text": "",
+      "start": 963.47,
+      "text": "comes up, which is"
+    },
+    {
+      "end": 965.11,
+      "normalized_text": "when should I like harness Enge? When",
+      "start": 963.48,
+      "text": "comes up, which is when should I like harness Enge? When"
+    },
+    {
+      "end": 965.12,
+      "normalized_text": "",
+      "start": 965.11,
+      "text": "when should I like harness Enge? When"
+    },
+    {
+      "end": 967.31,
+      "normalized_text": "should I fine-tune? Uh should I do more",
+      "start": 965.12,
+      "text": "when should I like harness Enge? When should I fine-tune? Uh should I do more"
+    },
+    {
+      "end": 967.32,
+      "normalized_text": "",
+      "start": 967.31,
+      "text": "should I fine-tune? Uh should I do more"
+    },
+    {
+      "end": 970.39,
+      "normalized_text": "harness Enge after it? I'm like pretty",
+      "start": 967.32,
+      "text": "should I fine-tune? Uh should I do more harness Enge after it? I'm like pretty"
+    },
+    {
+      "end": 970.4,
+      "normalized_text": "",
+      "start": 970.39,
+      "text": "harness Enge after it? I'm like pretty"
+    },
+    {
+      "end": 973.11,
+      "normalized_text": "bullish on the idea of if you need to do",
+      "start": 970.4,
+      "text": "harness Enge after it? I'm like pretty bullish on the idea of if you need to do"
+    },
+    {
+      "end": 973.12,
+      "normalized_text": "",
+      "start": 973.11,
+      "text": "bullish on the idea of if you need to do"
+    },
+    {
+      "end": 976.27,
+      "normalized_text": "something for improving your agent, the",
+      "start": 973.12,
+      "text": "bullish on the idea of if you need to do something for improving your agent, the"
+    },
+    {
+      "end": 976.28,
+      "normalized_text": "",
+      "start": 976.27,
+      "text": "something for improving your agent, the"
+    },
+    {
+      "end": 978.31,
+      "normalized_text": "best thing that you can do is collect",
+      "start": 976.28,
+      "text": "something for improving your agent, the best thing that you can do is collect"
+    },
+    {
+      "end": 978.32,
+      "normalized_text": "",
+      "start": 978.31,
+      "text": "best thing that you can do is collect"
+    },
+    {
+      "end": 980.39,
+      "normalized_text": "feedback as quickly as possible, like",
+      "start": 978.32,
+      "text": "best thing that you can do is collect feedback as quickly as possible, like"
+    },
+    {
+      "end": 980.4,
+      "normalized_text": "",
+      "start": 980.39,
+      "text": "feedback as quickly as possible, like"
+    },
+    {
+      "end": 982.15,
+      "normalized_text": "either from humans labeling or just",
+      "start": 980.4,
+      "text": "feedback as quickly as possible, like either from humans labeling or just"
+    },
+    {
+      "end": 982.16,
+      "normalized_text": "",
+      "start": 982.15,
+      "text": "either from humans labeling or just"
+    },
+    {
+      "end": 984.23,
+      "normalized_text": "letting the agents run. So, like harness",
+      "start": 982.16,
+      "text": "either from humans labeling or just letting the agents run. So, like harness"
+    },
+    {
+      "end": 984.24,
+      "normalized_text": "",
+      "start": 984.23,
+      "text": "letting the agents run. So, like harness"
+    },
+    {
+      "end": 986.23,
+      "normalized_text": "engineering gives you feedback in maybe",
+      "start": 984.24,
+      "text": "letting the agents run. So, like harness engineering gives you feedback in maybe"
+    },
+    {
+      "end": 986.24,
+      "normalized_text": "",
+      "start": 986.23,
+      "text": "engineering gives you feedback in maybe"
+    },
+    {
+      "end": 987.79,
+      "normalized_text": "2 minutes. Um",
+      "start": 986.24,
+      "text": "engineering gives you feedback in maybe 2 minutes. Um"
+    },
+    {
+      "end": 987.8,
+      "normalized_text": "",
+      "start": 987.79,
+      "text": "2 minutes. Um"
+    },
+    {
+      "end": 989.79,
+      "normalized_text": "once you sort of saturate the harness",
+      "start": 987.8,
+      "text": "2 minutes. Um once you sort of saturate the harness"
+    },
+    {
+      "end": 989.8,
+      "normalized_text": "",
+      "start": 989.79,
+      "text": "once you sort of saturate the harness"
+    },
+    {
+      "end": 992.67,
+      "normalized_text": "engineering ceiling, right? Then you can",
+      "start": 989.8,
+      "text": "once you sort of saturate the harness engineering ceiling, right? Then you can"
+    },
+    {
+      "end": 992.68,
+      "normalized_text": "",
+      "start": 992.67,
+      "text": "engineering ceiling, right? Then you can"
+    },
+    {
+      "end": 994.31,
+      "normalized_text": "maybe try to do like fine-tuning after",
+      "start": 992.68,
+      "text": "engineering ceiling, right? Then you can maybe try to do like fine-tuning after"
+    },
+    {
+      "end": 994.32,
+      "normalized_text": "",
+      "start": 994.31,
+      "text": "maybe try to do like fine-tuning after"
+    },
+    {
+      "end": 996.15,
+      "normalized_text": "that, but we find a lot of teams are",
+      "start": 994.32,
+      "text": "maybe try to do like fine-tuning after that, but we find a lot of teams are"
+    },
+    {
+      "end": 996.16,
+      "normalized_text": "",
+      "start": 996.15,
+      "text": "that, but we find a lot of teams are"
+    },
+    {
+      "end": 998.87,
+      "normalized_text": "happy with harness engineering and uh it",
+      "start": 996.16,
+      "text": "that, but we find a lot of teams are happy with harness engineering and uh it"
+    },
+    {
+      "end": 998.88,
+      "normalized_text": "",
+      "start": 998.87,
+      "text": "happy with harness engineering and uh it"
+    },
+    {
+      "end": 1000.27,
+      "normalized_text": "solves their customer use case, so like",
+      "start": 998.88,
+      "text": "happy with harness engineering and uh it solves their customer use case, so like"
+    },
+    {
+      "end": 1000.28,
+      "normalized_text": "",
+      "start": 1000.27,
+      "text": "solves their customer use case, so like"
+    },
+    {
+      "end": 1001.75,
+      "normalized_text": "we always sort of sort of recommend it.",
+      "start": 1000.28,
+      "text": "solves their customer use case, so like we always sort of sort of recommend it."
+    },
+    {
+      "end": 1001.76,
+      "normalized_text": "",
+      "start": 1001.75,
+      "text": "we always sort of sort of recommend it."
+    },
+    {
+      "end": 1002.55,
+      "normalized_text": "And then we have this like sort of",
+      "start": 1001.76,
+      "text": "we always sort of sort of recommend it. And then we have this like sort of"
+    },
+    {
+      "end": 1002.56,
+      "normalized_text": "",
+      "start": 1002.55,
+      "text": "And then we have this like sort of"
+    },
+    {
+      "end": 1004.03,
+      "normalized_text": "sandwich, which is like try harness",
+      "start": 1002.56,
+      "text": "And then we have this like sort of sandwich, which is like try harness"
+    },
+    {
+      "end": 1004.04,
+      "normalized_text": "",
+      "start": 1004.03,
+      "text": "sandwich, which is like try harness"
+    },
+    {
+      "end": 1006.11,
+      "normalized_text": "engineering, try to do fine-tuning to",
+      "start": 1004.04,
+      "text": "sandwich, which is like try harness engineering, try to do fine-tuning to"
+    },
+    {
+      "end": 1006.12,
+      "normalized_text": "",
+      "start": 1006.11,
+      "text": "engineering, try to do fine-tuning to"
+    },
+    {
+      "end": 1007.59,
+      "normalized_text": "sort of like break through that ceiling,",
+      "start": 1006.12,
+      "text": "engineering, try to do fine-tuning to sort of like break through that ceiling,"
+    },
+    {
+      "end": 1007.6,
+      "normalized_text": "",
+      "start": 1007.59,
+      "text": "sort of like break through that ceiling,"
+    },
+    {
+      "end": 1009.07,
+      "normalized_text": "and then do more harness engineering",
+      "start": 1007.6,
+      "text": "sort of like break through that ceiling, and then do more harness engineering"
+    },
+    {
+      "end": 1009.08,
+      "normalized_text": "",
+      "start": 1009.07,
+      "text": "and then do more harness engineering"
+    },
+    {
+      "end": 1011.59,
+      "normalized_text": "again if you need to.",
+      "start": 1009.08,
+      "text": "and then do more harness engineering again if you need to."
+    },
+    {
+      "end": 1011.6,
+      "normalized_text": "",
+      "start": 1011.59,
+      "text": "again if you need to."
+    },
+    {
+      "end": 1014.63,
+      "normalized_text": "And then I'll sort of end on the the",
+      "start": 1011.6,
+      "text": "again if you need to. And then I'll sort of end on the the"
+    },
+    {
+      "end": 1014.64,
+      "normalized_text": "",
+      "start": 1014.63,
+      "text": "And then I'll sort of end on the the"
+    },
+    {
+      "end": 1017.07,
+      "normalized_text": "idea generally of continual learning is",
+      "start": 1014.64,
+      "text": "And then I'll sort of end on the the idea generally of continual learning is"
+    },
+    {
+      "end": 1017.08,
+      "normalized_text": "",
+      "start": 1017.07,
+      "text": "idea generally of continual learning is"
+    },
+    {
+      "end": 1019.91,
+      "normalized_text": "that there's an agent taking actions in",
+      "start": 1017.08,
+      "text": "idea generally of continual learning is that there's an agent taking actions in"
+    },
+    {
+      "end": 1019.92,
+      "normalized_text": "",
+      "start": 1019.91,
+      "text": "that there's an agent taking actions in"
+    },
+    {
+      "end": 1022.91,
+      "normalized_text": "the environment, and then it needs to",
+      "start": 1019.92,
+      "text": "that there's an agent taking actions in the environment, and then it needs to"
+    },
+    {
+      "end": 1022.92,
+      "normalized_text": "",
+      "start": 1022.91,
+      "text": "the environment, and then it needs to"
+    },
+    {
+      "end": 1026.189,
+      "normalized_text": "use that information, sorry guys, needs",
+      "start": 1022.92,
+      "text": "the environment, and then it needs to use that information, sorry guys, needs"
+    },
+    {
+      "end": 1026.199,
+      "normalized_text": "",
+      "start": 1026.189,
+      "text": "use that information, sorry guys, needs"
+    },
+    {
+      "end": 1029.63,
+      "normalized_text": "to use that information to update",
+      "start": 1026.199,
+      "text": "use that information, sorry guys, needs to use that information to update"
+    },
+    {
+      "end": 1029.64,
+      "normalized_text": "",
+      "start": 1029.63,
+      "text": "to use that information to update"
+    },
+    {
+      "end": 1031.11,
+      "normalized_text": "information about itself, right? So,",
+      "start": 1029.64,
+      "text": "to use that information to update information about itself, right? So,"
+    },
+    {
+      "end": 1031.12,
+      "normalized_text": "",
+      "start": 1031.11,
+      "text": "information about itself, right? So,"
+    },
+    {
+      "end": 1033.63,
+      "normalized_text": "it's like I did a bunch of these tasks,",
+      "start": 1031.12,
+      "text": "information about itself, right? So, it's like I did a bunch of these tasks,"
+    },
+    {
+      "end": 1033.64,
+      "normalized_text": "",
+      "start": 1033.63,
+      "text": "it's like I did a bunch of these tasks,"
+    },
+    {
+      "end": 1035.55,
+      "normalized_text": "and like I need to update my prompts to",
+      "start": 1033.64,
+      "text": "it's like I did a bunch of these tasks, and like I need to update my prompts to"
+    },
+    {
+      "end": 1035.56,
+      "normalized_text": "",
+      "start": 1035.55,
+      "text": "and like I need to update my prompts to"
+    },
+    {
+      "end": 1037.829,
+      "normalized_text": "make sure I do them more efficiently. Or",
+      "start": 1035.56,
+      "text": "and like I need to update my prompts to make sure I do them more efficiently. Or"
+    },
+    {
+      "end": 1037.839,
+      "normalized_text": "",
+      "start": 1037.829,
+      "text": "make sure I do them more efficiently. Or"
+    },
+    {
+      "end": 1041.829,
+      "normalized_text": "users are users keep asking to search",
+      "start": 1037.839,
+      "text": "make sure I do them more efficiently. Or users are users keep asking to search"
+    },
+    {
+      "end": 1041.839,
+      "normalized_text": "",
+      "start": 1041.829,
+      "text": "users are users keep asking to search"
+    },
+    {
+      "end": 1043.59,
+      "normalized_text": "for these types of things, I should",
+      "start": 1041.839,
+      "text": "users are users keep asking to search for these types of things, I should"
+    },
+    {
+      "end": 1043.6,
+      "normalized_text": "",
+      "start": 1043.59,
+      "text": "for these types of things, I should"
+    },
+    {
+      "end": 1046.55,
+      "normalized_text": "maybe tell like tell my creator that",
+      "start": 1043.6,
+      "text": "for these types of things, I should maybe tell like tell my creator that"
+    },
+    {
+      "end": 1046.56,
+      "normalized_text": "",
+      "start": 1046.55,
+      "text": "maybe tell like tell my creator that"
+    },
+    {
+      "end": 1047.59,
+      "normalized_text": "like they're they're doing this sort of",
+      "start": 1046.56,
+      "text": "maybe tell like tell my creator that like they're they're doing this sort of"
+    },
+    {
+      "end": 1047.6,
+      "normalized_text": "",
+      "start": 1047.59,
+      "text": "like they're they're doing this sort of"
+    },
+    {
+      "end": 1049.11,
+      "normalized_text": "stuff, right? It's like taking action in",
+      "start": 1047.6,
+      "text": "like they're they're doing this sort of stuff, right? It's like taking action in"
+    },
+    {
+      "end": 1049.12,
+      "normalized_text": "",
+      "start": 1049.11,
+      "text": "stuff, right? It's like taking action in"
+    },
+    {
+      "end": 1050.67,
+      "normalized_text": "the environment kind of like humans do",
+      "start": 1049.12,
+      "text": "stuff, right? It's like taking action in the environment kind of like humans do"
+    },
+    {
+      "end": 1050.68,
+      "normalized_text": "",
+      "start": 1050.67,
+      "text": "the environment kind of like humans do"
+    },
+    {
+      "end": 1053.23,
+      "normalized_text": "and updating ourselves. What that looks",
+      "start": 1050.68,
+      "text": "the environment kind of like humans do and updating ourselves. What that looks"
+    },
+    {
+      "end": 1053.24,
+      "normalized_text": "",
+      "start": 1053.23,
+      "text": "and updating ourselves. What that looks"
+    },
+    {
+      "end": 1056.35,
+      "normalized_text": "like today, slightly unclear, but we",
+      "start": 1053.24,
+      "text": "and updating ourselves. What that looks like today, slightly unclear, but we"
+    },
+    {
+      "end": 1056.36,
+      "normalized_text": "",
+      "start": 1056.35,
+      "text": "like today, slightly unclear, but we"
+    },
+    {
+      "end": 1058.35,
+      "normalized_text": "think that you're going to have to do it",
+      "start": 1056.36,
+      "text": "like today, slightly unclear, but we think that you're going to have to do it"
+    },
+    {
+      "end": 1058.36,
+      "normalized_text": "",
+      "start": 1058.35,
+      "text": "think that you're going to have to do it"
+    },
+    {
+      "end": 1060.87,
+      "normalized_text": "across all three axes, which is one,",
+      "start": 1058.36,
+      "text": "think that you're going to have to do it across all three axes, which is one,"
+    },
+    {
+      "end": 1060.88,
+      "normalized_text": "",
+      "start": 1060.87,
+      "text": "across all three axes, which is one,"
+    },
+    {
+      "end": 1062.59,
+      "normalized_text": "collect a bunch of training data, which",
+      "start": 1060.88,
+      "text": "across all three axes, which is one, collect a bunch of training data, which"
+    },
+    {
+      "end": 1062.6,
+      "normalized_text": "",
+      "start": 1062.59,
+      "text": "collect a bunch of training data, which"
+    },
+    {
+      "end": 1065.19,
+      "normalized_text": "is like observational data from agents",
+      "start": 1062.6,
+      "text": "collect a bunch of training data, which is like observational data from agents"
+    },
+    {
+      "end": 1065.2,
+      "normalized_text": "",
+      "start": 1065.19,
+      "text": "is like observational data from agents"
+    },
+    {
+      "end": 1066.95,
+      "normalized_text": "taking actions. The The other one is",
+      "start": 1065.2,
+      "text": "is like observational data from agents taking actions. The The other one is"
+    },
+    {
+      "end": 1066.96,
+      "normalized_text": "",
+      "start": 1066.95,
+      "text": "taking actions. The The other one is"
+    },
+    {
+      "end": 1069.51,
+      "normalized_text": "like harness updates generally, like",
+      "start": 1066.96,
+      "text": "taking actions. The The other one is like harness updates generally, like"
+    },
+    {
+      "end": 1069.52,
+      "normalized_text": "",
+      "start": 1069.51,
+      "text": "like harness updates generally, like"
+    },
+    {
+      "end": 1070.99,
+      "normalized_text": "you know, the the Codex harness and the",
+      "start": 1069.52,
+      "text": "like harness updates generally, like you know, the the Codex harness and the"
+    },
+    {
+      "end": 1071.0,
+      "normalized_text": "",
+      "start": 1070.99,
+      "text": "you know, the the Codex harness and the"
+    },
+    {
+      "end": 1072.67,
+      "normalized_text": "Cloud Code harness and like our harness",
+      "start": 1071.0,
+      "text": "you know, the the Codex harness and the Cloud Code harness and like our harness"
+    },
+    {
+      "end": 1072.68,
+      "normalized_text": "",
+      "start": 1072.67,
+      "text": "Cloud Code harness and like our harness"
+    },
+    {
+      "end": 1074.43,
+      "normalized_text": "and everyone's harness, like they look a",
+      "start": 1072.68,
+      "text": "Cloud Code harness and like our harness and everyone's harness, like they look a"
+    },
+    {
+      "end": 1074.44,
+      "normalized_text": "",
+      "start": 1074.43,
+      "text": "and everyone's harness, like they look a"
+    },
+    {
+      "end": 1076.67,
+      "normalized_text": "certain way because like models are are",
+      "start": 1074.44,
+      "text": "and everyone's harness, like they look a certain way because like models are are"
+    },
+    {
+      "end": 1076.68,
+      "normalized_text": "",
+      "start": 1076.67,
+      "text": "certain way because like models are are"
+    },
+    {
+      "end": 1077.91,
+      "normalized_text": "trained in them and they look a certain",
+      "start": 1076.68,
+      "text": "certain way because like models are are trained in them and they look a certain"
+    },
+    {
+      "end": 1077.92,
+      "normalized_text": "",
+      "start": 1077.91,
+      "text": "trained in them and they look a certain"
+    },
+    {
+      "end": 1079.59,
+      "normalized_text": "way because of the tasks that they do in",
+      "start": 1077.92,
+      "text": "trained in them and they look a certain way because of the tasks that they do in"
+    },
+    {
+      "end": 1079.6,
+      "normalized_text": "",
+      "start": 1079.59,
+      "text": "way because of the tasks that they do in"
+    },
+    {
+      "end": 1081.15,
+      "normalized_text": "the real world and we think like",
+      "start": 1079.6,
+      "text": "way because of the tasks that they do in the real world and we think like"
+    },
+    {
+      "end": 1081.16,
+      "normalized_text": "",
+      "start": 1081.15,
+      "text": "the real world and we think like"
+    },
+    {
+      "end": 1083.79,
+      "normalized_text": "evolving those over time is going to be",
+      "start": 1081.16,
+      "text": "the real world and we think like evolving those over time is going to be"
+    },
+    {
+      "end": 1083.8,
+      "normalized_text": "",
+      "start": 1083.79,
+      "text": "evolving those over time is going to be"
+    },
+    {
+      "end": 1086.23,
+      "normalized_text": "super important in in order to make them",
+      "start": 1083.8,
+      "text": "evolving those over time is going to be super important in in order to make them"
+    },
+    {
+      "end": 1086.24,
+      "normalized_text": "",
+      "start": 1086.23,
+      "text": "super important in in order to make them"
+    },
+    {
+      "end": 1088.43,
+      "normalized_text": "work. And",
+      "start": 1086.24,
+      "text": "super important in in order to make them work. And"
+    },
+    {
+      "end": 1088.44,
+      "normalized_text": "",
+      "start": 1088.43,
+      "text": "work. And"
+    },
+    {
+      "end": 1090.95,
+      "normalized_text": "the the last thing is like memory. So,",
+      "start": 1088.44,
+      "text": "work. And the the last thing is like memory. So,"
+    },
+    {
+      "end": 1090.96,
+      "normalized_text": "",
+      "start": 1090.95,
+      "text": "the the last thing is like memory. So,"
+    },
+    {
+      "end": 1091.63,
+      "normalized_text": "uh",
+      "start": 1090.96,
+      "text": "the the last thing is like memory. So, uh"
+    },
+    {
+      "end": 1091.64,
+      "normalized_text": "",
+      "start": 1091.63,
+      "text": "uh"
+    },
+    {
+      "end": 1093.47,
+      "normalized_text": "we humans are like really good at like",
+      "start": 1091.64,
+      "text": "uh we humans are like really good at like"
+    },
+    {
+      "end": 1093.48,
+      "normalized_text": "",
+      "start": 1093.47,
+      "text": "we humans are like really good at like"
+    },
+    {
+      "end": 1095.47,
+      "normalized_text": "remembering stuff over time, but we are",
+      "start": 1093.48,
+      "text": "we humans are like really good at like remembering stuff over time, but we are"
+    },
+    {
+      "end": 1095.48,
+      "normalized_text": "",
+      "start": 1095.47,
+      "text": "remembering stuff over time, but we are"
+    },
+    {
+      "end": 1098.07,
+      "normalized_text": "not append-only logs of information. And",
+      "start": 1095.48,
+      "text": "remembering stuff over time, but we are not append-only logs of information. And"
+    },
+    {
+      "end": 1098.08,
+      "normalized_text": "",
+      "start": 1098.07,
+      "text": "not append-only logs of information. And"
+    },
+    {
+      "end": 1099.75,
+      "normalized_text": "if agents are going to be working with",
+      "start": 1098.08,
+      "text": "not append-only logs of information. And if agents are going to be working with"
+    },
+    {
+      "end": 1099.76,
+      "normalized_text": "",
+      "start": 1099.75,
+      "text": "if agents are going to be working with"
+    },
+    {
+      "end": 1102.63,
+      "normalized_text": "us over like year, 5-year, decade,",
+      "start": 1099.76,
+      "text": "if agents are going to be working with us over like year, 5-year, decade,"
+    },
+    {
+      "end": 1102.64,
+      "normalized_text": "",
+      "start": 1102.63,
+      "text": "us over like year, 5-year, decade,"
+    },
+    {
+      "end": 1104.79,
+      "normalized_text": "lifetime time scales, we cannot just",
+      "start": 1102.64,
+      "text": "us over like year, 5-year, decade, lifetime time scales, we cannot just"
+    },
+    {
+      "end": 1104.8,
+      "normalized_text": "",
+      "start": 1104.79,
+      "text": "lifetime time scales, we cannot just"
+    },
+    {
+      "end": 1106.23,
+      "normalized_text": "append everything to like a really big",
+      "start": 1104.8,
+      "text": "lifetime time scales, we cannot just append everything to like a really big"
+    },
+    {
+      "end": 1106.24,
+      "normalized_text": "",
+      "start": 1106.23,
+      "text": "append everything to like a really big"
+    },
+    {
+      "end": 1108.63,
+      "normalized_text": "file and then search over it. There's a",
+      "start": 1106.24,
+      "text": "append everything to like a really big file and then search over it. There's a"
+    },
+    {
+      "end": 1108.64,
+      "normalized_text": "",
+      "start": 1108.63,
+      "text": "file and then search over it. There's a"
+    },
+    {
+      "end": 1110.19,
+      "normalized_text": "ton of stuff that needs to happen with",
+      "start": 1108.64,
+      "text": "file and then search over it. There's a ton of stuff that needs to happen with"
+    },
+    {
+      "end": 1110.2,
+      "normalized_text": "",
+      "start": 1110.19,
+      "text": "ton of stuff that needs to happen with"
+    },
+    {
+      "end": 1112.19,
+      "normalized_text": "like updating those files over time and",
+      "start": 1110.2,
+      "text": "ton of stuff that needs to happen with like updating those files over time and"
+    },
+    {
+      "end": 1112.2,
+      "normalized_text": "",
+      "start": 1112.19,
+      "text": "like updating those files over time and"
+    },
+    {
+      "end": 1113.75,
+      "normalized_text": "then just making memory like really",
+      "start": 1112.2,
+      "text": "like updating those files over time and then just making memory like really"
+    },
+    {
+      "end": 1113.76,
+      "normalized_text": "",
+      "start": 1113.75,
+      "text": "then just making memory like really"
+    },
+    {
+      "end": 1115.43,
+      "normalized_text": "efficient. But, we think a lot of that",
+      "start": 1113.76,
+      "text": "then just making memory like really efficient. But, we think a lot of that"
+    },
+    {
+      "end": 1115.44,
+      "normalized_text": "",
+      "start": 1115.43,
+      "text": "efficient. But, we think a lot of that"
+    },
+    {
+      "end": 1118.27,
+      "normalized_text": "actually comes from this idea of scaling",
+      "start": 1115.44,
+      "text": "efficient. But, we think a lot of that actually comes from this idea of scaling"
+    },
+    {
+      "end": 1118.28,
+      "normalized_text": "",
+      "start": 1118.27,
+      "text": "actually comes from this idea of scaling"
+    },
+    {
+      "end": 1120.39,
+      "normalized_text": "sleep time compute and and dreaming",
+      "start": 1118.28,
+      "text": "actually comes from this idea of scaling sleep time compute and and dreaming"
+    },
+    {
+      "end": 1120.4,
+      "normalized_text": "",
+      "start": 1120.39,
+      "text": "sleep time compute and and dreaming"
+    },
+    {
+      "end": 1121.83,
+      "normalized_text": "generally. So, it's like read all of the",
+      "start": 1120.4,
+      "text": "sleep time compute and and dreaming generally. So, it's like read all of the"
+    },
+    {
+      "end": 1121.84,
+      "normalized_text": "",
+      "start": 1121.83,
+      "text": "generally. So, it's like read all of the"
+    },
+    {
+      "end": 1124.71,
+      "normalized_text": "traces over the entire agent life cycle",
+      "start": 1121.84,
+      "text": "generally. So, it's like read all of the traces over the entire agent life cycle"
+    },
+    {
+      "end": 1124.72,
+      "normalized_text": "",
+      "start": 1124.71,
+      "text": "traces over the entire agent life cycle"
+    },
+    {
+      "end": 1126.19,
+      "normalized_text": "and then like do [music] things to",
+      "start": 1124.72,
+      "text": "traces over the entire agent life cycle and then like do [music] things to"
+    },
+    {
+      "end": 1126.2,
+      "normalized_text": "",
+      "start": 1126.19,
+      "text": "and then like do [music] things to"
+    },
+    {
+      "end": 1129.15,
+      "normalized_text": "update agent state.",
+      "start": 1126.2,
+      "text": "and then like do [music] things to update agent state."
+    },
+    {
+      "end": 1129.16,
+      "normalized_text": "",
+      "start": 1129.15,
+      "text": "update agent state."
+    },
+    {
+      "end": 1131.71,
+      "normalized_text": "Awesome. So, like quick quick takeaways,",
+      "start": 1129.16,
+      "text": "update agent state. Awesome. So, like quick quick takeaways,"
+    },
+    {
+      "end": 1131.72,
+      "normalized_text": "",
+      "start": 1131.71,
+      "text": "Awesome. So, like quick quick takeaways,"
+    },
+    {
+      "end": 1134.35,
+      "normalized_text": "uh mining traces gives you signals to",
+      "start": 1131.72,
+      "text": "Awesome. So, like quick quick takeaways, uh mining traces gives you signals to"
+    },
+    {
+      "end": 1134.36,
+      "normalized_text": "",
+      "start": 1134.35,
+      "text": "uh mining traces gives you signals to"
+    },
+    {
+      "end": 1136.23,
+      "normalized_text": "hill climb on. Uh I would say like if",
+      "start": 1134.36,
+      "text": "uh mining traces gives you signals to hill climb on. Uh I would say like if"
+    },
+    {
+      "end": 1136.24,
+      "normalized_text": "",
+      "start": 1136.23,
+      "text": "hill climb on. Uh I would say like if"
+    },
+    {
+      "end": 1138.51,
+      "normalized_text": "you have an agent, just turn on tracing",
+      "start": 1136.24,
+      "text": "hill climb on. Uh I would say like if you have an agent, just turn on tracing"
+    },
+    {
+      "end": 1138.52,
+      "normalized_text": "",
+      "start": 1138.51,
+      "text": "you have an agent, just turn on tracing"
+    },
+    {
+      "end": 1140.55,
+      "normalized_text": "and point an agent at it and that's like",
+      "start": 1138.52,
+      "text": "you have an agent, just turn on tracing and point an agent at it and that's like"
+    },
+    {
+      "end": 1140.56,
+      "normalized_text": "",
+      "start": 1140.55,
+      "text": "and point an agent at it and that's like"
+    },
+    {
+      "end": 1142.63,
+      "normalized_text": "the easiest thing that you can do to see",
+      "start": 1140.56,
+      "text": "and point an agent at it and that's like the easiest thing that you can do to see"
+    },
+    {
+      "end": 1142.64,
+      "normalized_text": "",
+      "start": 1142.63,
+      "text": "the easiest thing that you can do to see"
+    },
+    {
+      "end": 1144.75,
+      "normalized_text": "like to basically understand what your",
+      "start": 1142.64,
+      "text": "the easiest thing that you can do to see like to basically understand what your"
+    },
+    {
+      "end": 1144.76,
+      "normalized_text": "",
+      "start": 1144.75,
+      "text": "like to basically understand what your"
+    },
+    {
+      "end": 1145.99,
+      "normalized_text": "agents are doing.",
+      "start": 1144.76,
+      "text": "like to basically understand what your agents are doing."
+    },
+    {
+      "end": 1146.0,
+      "normalized_text": "",
+      "start": 1145.99,
+      "text": "agents are doing."
+    },
+    {
+      "end": 1148.35,
+      "normalized_text": "Uh we're very excited about open models.",
+      "start": 1146.0,
+      "text": "agents are doing. Uh we're very excited about open models."
+    },
+    {
+      "end": 1148.36,
+      "normalized_text": "",
+      "start": 1148.35,
+      "text": "Uh we're very excited about open models."
+    },
+    {
+      "end": 1149.79,
+      "normalized_text": "We want to help you fine-tune open",
+      "start": 1148.36,
+      "text": "Uh we're very excited about open models. We want to help you fine-tune open"
+    },
+    {
+      "end": 1149.8,
+      "normalized_text": "",
+      "start": 1149.79,
+      "text": "We want to help you fine-tune open"
+    },
+    {
+      "end": 1152.23,
+      "normalized_text": "models. Um we provide them as a service",
+      "start": 1149.8,
+      "text": "We want to help you fine-tune open models. Um we provide them as a service"
+    },
+    {
+      "end": 1152.24,
+      "normalized_text": "",
+      "start": 1152.23,
+      "text": "models. Um we provide them as a service"
+    },
+    {
+      "end": 1153.31,
+      "normalized_text": "as well. So, if you're interested in",
+      "start": 1152.24,
+      "text": "models. Um we provide them as a service as well. So, if you're interested in"
+    },
+    {
+      "end": 1153.32,
+      "normalized_text": "",
+      "start": 1153.31,
+      "text": "as well. So, if you're interested in"
+    },
+    {
+      "end": 1154.99,
+      "normalized_text": "that, would would love to chat how you",
+      "start": 1153.32,
+      "text": "as well. So, if you're interested in that, would would love to chat how you"
+    },
+    {
+      "end": 1155.0,
+      "normalized_text": "",
+      "start": 1154.99,
+      "text": "that, would would love to chat how you"
+    },
+    {
+      "end": 1157.11,
+      "normalized_text": "can use open models to make everything",
+      "start": 1155.0,
+      "text": "that, would would love to chat how you can use open models to make everything"
+    },
+    {
+      "end": 1157.12,
+      "normalized_text": "",
+      "start": 1157.11,
+      "text": "can use open models to make everything"
+    },
+    {
+      "end": 1159.23,
+      "normalized_text": "smarter and cheaper. Um,",
+      "start": 1157.12,
+      "text": "can use open models to make everything smarter and cheaper. Um,"
+    },
+    {
+      "end": 1159.24,
+      "normalized_text": "",
+      "start": 1159.23,
+      "text": "smarter and cheaper. Um,"
+    },
+    {
+      "end": 1160.83,
+      "normalized_text": "continual learning is about operating",
+      "start": 1159.24,
+      "text": "smarter and cheaper. Um, continual learning is about operating"
+    },
+    {
+      "end": 1160.84,
+      "normalized_text": "",
+      "start": 1160.83,
+      "text": "continual learning is about operating"
+    },
+    {
+      "end": 1162.59,
+      "normalized_text": "environments and then integrating that",
+      "start": 1160.84,
+      "text": "continual learning is about operating environments and then integrating that"
+    },
+    {
+      "end": 1162.6,
+      "normalized_text": "",
+      "start": 1162.59,
+      "text": "environments and then integrating that"
+    },
+    {
+      "end": 1164.99,
+      "normalized_text": "data back into agent state. And then",
+      "start": 1162.6,
+      "text": "environments and then integrating that data back into agent state. And then"
+    },
+    {
+      "end": 1165.0,
+      "normalized_text": "",
+      "start": 1164.99,
+      "text": "data back into agent state. And then"
+    },
+    {
+      "end": 1167.03,
+      "normalized_text": "finally, I think this is so cool that",
+      "start": 1165.0,
+      "text": "data back into agent state. And then finally, I think this is so cool that"
+    },
+    {
+      "end": 1167.04,
+      "normalized_text": "",
+      "start": 1167.03,
+      "text": "finally, I think this is so cool that"
+    },
+    {
+      "end": 1168.43,
+      "normalized_text": "like we have systems that's going to",
+      "start": 1167.04,
+      "text": "finally, I think this is so cool that like we have systems that's going to"
+    },
+    {
+      "end": 1168.44,
+      "normalized_text": "",
+      "start": 1168.43,
+      "text": "like we have systems that's going to"
+    },
+    {
+      "end": 1170.11,
+      "normalized_text": "pre- that are going to produce more data",
+      "start": 1168.44,
+      "text": "like we have systems that's going to pre- that are going to produce more data"
+    },
+    {
+      "end": 1170.12,
+      "normalized_text": "",
+      "start": 1170.11,
+      "text": "pre- that are going to produce more data"
+    },
+    {
+      "end": 1171.87,
+      "normalized_text": "than we ever have before.",
+      "start": 1170.12,
+      "text": "pre- that are going to produce more data than we ever have before."
+    },
+    {
+      "end": 1171.88,
+      "normalized_text": "",
+      "start": 1171.87,
+      "text": "than we ever have before."
+    },
+    {
+      "end": 1174.07,
+      "normalized_text": "Uh, we need to all come up with like",
+      "start": 1171.88,
+      "text": "than we ever have before. Uh, we need to all come up with like"
+    },
+    {
+      "end": 1174.08,
+      "normalized_text": "",
+      "start": 1174.07,
+      "text": "Uh, we need to all come up with like"
+    },
+    {
+      "end": 1176.07,
+      "normalized_text": "interesting research directions to learn",
+      "start": 1174.08,
+      "text": "Uh, we need to all come up with like interesting research directions to learn"
+    },
+    {
+      "end": 1176.08,
+      "normalized_text": "",
+      "start": 1176.07,
+      "text": "interesting research directions to learn"
+    },
+    {
+      "end": 1177.43,
+      "normalized_text": "how to like manage that at scale and",
+      "start": 1176.08,
+      "text": "interesting research directions to learn how to like manage that at scale and"
+    },
+    {
+      "end": 1177.44,
+      "normalized_text": "",
+      "start": 1177.43,
+      "text": "how to like manage that at scale and"
+    },
+    {
+      "end": 1179.39,
+      "normalized_text": "like make all of our agents better.",
+      "start": 1177.44,
+      "text": "how to like manage that at scale and like make all of our agents better."
+    },
+    {
+      "end": 1179.4,
+      "normalized_text": "",
+      "start": 1179.39,
+      "text": "like make all of our agents better."
+    },
+    {
+      "end": 1180.91,
+      "normalized_text": "And with that,",
+      "start": 1179.4,
+      "text": "like make all of our agents better. And with that,"
+    },
+    {
+      "end": 1180.92,
+      "normalized_text": "",
+      "start": 1180.91,
+      "text": "And with that,"
+    },
+    {
+      "end": 1182.933,
+      "normalized_text": "thank you. Thank you all for coming.",
+      "start": 1180.92,
+      "text": "And with that, thank you. Thank you all for coming."
+    },
+    {
+      "end": 1182.943,
+      "normalized_text": "",
+      "start": 1182.933,
+      "text": "thank you. Thank you all for coming."
+    },
+    {
+      "end": 1198.653,
+      "normalized_text": ">> [applause]",
+      "start": 1182.943,
+      "text": "thank you. Thank you all for coming. >> [applause]"
+    }
+  ],
+  "schema_version": "youtube-transcript@1",
+  "video_id": "CvRngaQZQ3Y",
+  "words": []
+}

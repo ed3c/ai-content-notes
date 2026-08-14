@@ -28,16 +28,16 @@ from pathlib import Path
 from typing import Any, Sequence
 from urllib.parse import parse_qs, urlparse
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from rights_vocabulary import (  # noqa: E402
+    EVALUATION_ONLY_BASIS,
+    VERIFIED_RIGHTS_BASES as ALLOWED_RIGHTS_BASES,
+)
+
 SCHEMA_VERSION = "youtube-transcript-manifest@1"
 TOOL_VERSION = "0.1.0"
 DEFAULT_ASR_MODEL_REVISION = "edaa852ec7e145841d8ffdb056a99866b5f0a478"
-ALLOWED_RIGHTS_BASES = {
-    "owned",
-    "licensed",
-    "creator-permission",
-    "public-domain",
-    "user-provided-media",
-}
 ALLOWED_MODES = {"captions", "asr", "auto"}
 YOUTUBE_HOSTS = {
     "youtube.com",
@@ -540,6 +540,7 @@ def base_manifest(args: argparse.Namespace, video_id: str, retrieved_at: str) ->
             "published_at": None,
         },
         "authorization": {
+            "status": getattr(args, "authorization_status", "verified"),
             "rights_basis": args.rights_basis,
             "rights_reference": args.rights_reference,
             "attested_by": args.attested_by,
@@ -597,14 +598,33 @@ def apply_metadata(manifest: dict[str, Any], metadata: dict[str, Any]) -> None:
 
 
 def ensure_rights(args: argparse.Namespace) -> None:
-    if args.rights_basis not in ALLOWED_RIGHTS_BASES:
-        raise TranscriptError(f"unsupported rights basis: {args.rights_basis}")
+    if args.mode not in ALLOWED_MODES:
+        raise TranscriptError(f"unsupported mode: {args.mode}")
     if not args.rights_reference.strip():
         raise TranscriptError("--rights-reference is required")
     if not args.attested_by.strip():
         raise TranscriptError("--attested-by is required")
-    if args.mode not in ALLOWED_MODES:
-        raise TranscriptError(f"unsupported mode: {args.mode}")
+
+    # The gate belongs on what the act retrieves, not on which tool performs it.
+    # `captions` fetches the caption track with --skip-download and touches no
+    # media, which is the same act the three sibling adapters perform under an
+    # evaluation-only record. `asr` and `auto` call download_audio, and audio is
+    # Content, so those keep requiring a verified basis.
+    # Programmatic callers that predate the evaluation lane keep the strict path.
+    authorization_status = getattr(args, "authorization_status", "verified")
+    if authorization_status == "unverified-evaluation-only":
+        if args.mode != "captions":
+            raise TranscriptError(
+                "unverified evaluation may retrieve a caption track only; "
+                "asr and auto acquire media and require a verified rights basis"
+            )
+        if args.rights_basis != EVALUATION_ONLY_BASIS:
+            raise TranscriptError(
+                f"unverified evaluation must use rights_basis={EVALUATION_ONLY_BASIS}"
+            )
+    elif args.rights_basis not in ALLOWED_RIGHTS_BASES:
+        raise TranscriptError(f"unsupported rights basis: {args.rights_basis}")
+
     if args.mode in {"asr", "auto"} and not args.allow_audio_download:
         raise TranscriptError("ASR requires explicit --allow-audio-download")
     if args.mode in {"asr", "auto"} and not re.fullmatch(
@@ -752,7 +772,16 @@ def build_parser() -> argparse.ArgumentParser:
         default="en,zh-Hant,zh-TW,zh",
         help="Comma-separated caption language preference",
     )
-    parser.add_argument("--rights-basis", choices=sorted(ALLOWED_RIGHTS_BASES), required=True)
+    parser.add_argument(
+        "--authorization-status",
+        choices=("verified", "unverified-evaluation-only"),
+        default="verified",
+    )
+    parser.add_argument(
+        "--rights-basis",
+        choices=sorted(set(ALLOWED_RIGHTS_BASES) | {EVALUATION_ONLY_BASIS}),
+        required=True,
+    )
     parser.add_argument("--rights-reference", required=True)
     parser.add_argument("--attested-by", required=True)
     parser.add_argument(
