@@ -58,19 +58,43 @@ def parse_frontmatter(text: str) -> dict[str, Any]:
     end = text.find("\n---\n", 4)
     if end < 0:
         raise ContractError("note frontmatter is not terminated")
+    lines = [
+        (number, line)
+        for number, line in enumerate(text[4:end].splitlines(), start=2)
+        if line.strip() and not line.lstrip().startswith("#")
+    ]
     result: dict[str, Any] = {}
-    for line_number, line in enumerate(text[4:end].splitlines(), start=2):
-        if not line.strip() or line.lstrip().startswith("#"):
-            continue
-        if line.startswith((" ", "\t")) or ":" not in line:
+    block: dict[str, Any] | None = None
+    for index, (line_number, line) in enumerate(lines):
+        if ":" not in line:
             raise ContractError(
                 f"frontmatter line {line_number} is not a supported scalar key/value"
             )
+        indented = line.startswith((" ", "\t"))
+        # Migrated v6.6 notes carry a nested `migration:` provenance block.
+        # Exactly one level of nesting under a valueless parent key is supported.
+        if indented and block is None:
+            raise ContractError(
+                f"frontmatter line {line_number} is indented without a block parent"
+            )
         key, value = line.split(":", 1)
         key = key.strip()
-        if not key or key in result:
+        target = result if not indented else block
+        if not key or key in target:
             raise ContractError(f"invalid or duplicate frontmatter key: {key!r}")
-        result[key] = _parse_scalar(value)
+        opens_block = (
+            not indented
+            and not value.strip()
+            and index + 1 < len(lines)
+            and lines[index + 1][1].startswith((" ", "\t"))
+        )
+        if opens_block:
+            block = {}
+            result[key] = block
+            continue
+        if not indented:
+            block = None
+        target[key] = _parse_scalar(value)
     return result
 
 

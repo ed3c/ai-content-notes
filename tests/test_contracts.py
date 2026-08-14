@@ -243,7 +243,9 @@ library_mapping: pending
 
 def test_migration_manifest_does_not_claim_missing_legacy_notes() -> None:
     manifest = load_json(ROOT / "MIGRATION_MANIFEST.json")
-    assert manifest["status"] == "incomplete"
     assert manifest["expected_legacy_note_count"] == 22
-    assert manifest["materialized_legacy_entries"] == []
     assert manifest["known_issue"]["issue_number"] == 2
+    # The manifest may only claim legacy notes that are readable at this commit.
+    for entry in manifest["materialized_legacy_entries"]:
+        assert (ROOT / entry["path"]).is_file(), entry["path"]
+    assert manifest["status"] != "complete", "Sheet repointing and read-back are outstanding"

@@ -29,7 +29,9 @@ jobs:
           tools/export_note_delta.py
           tools/evaluate_prompt_ab.py
           tools/validate_semantic_yield_artifacts.py
+          tools/materialize_legacy_migration.py
           tests/test_contracts.py
+          tests/test_legacy_migration.py
           tests/test_prompt_v7_1_ab.py
           tests/test_semantic_yield_validator.py
       - run: pytest -q
@@ -48,6 +50,11 @@ jobs:
             --target evals/semantic-yield/CvRngaQZQ3Y \
             --output evals/semantic-yield/CvRngaQZQ3Y/semantic-validator-report.json \
             --created-at 2026-08-14T01:15:00Z \
+            --check
+      - name: Verify materialized legacy notes against the pinned payload
+        run: |
+          python tools/materialize_legacy_migration.py \
+            --scratch "${RUNNER_TEMP}/migration-scratch" \
             --check
       - name: Export deterministic privacy-preserving delta
         run: |

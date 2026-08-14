@@ -1,17 +1,4 @@
 {
-  "schema_version": "migration-manifest@1",
-  "migration_id": "google-docs-to-private-github-markdown",
-  "source": "legacy Google Docs and Google Sheet canonical URLs",
-  "target_repository": "ed3c/ai-content-notes",
-  "status": "incomplete",
-  "expected_legacy_note_count": 22,
-  "materialized_legacy_entries": [],
-  "known_issue": {
-    "repository": "ed3c/ai-content-notes",
-    "issue_number": 2,
-    "title": "materialize-ai-content-notes-migration",
-    "url": "https://github.com/ed3c/ai-content-notes/issues/2"
-  },
   "completion_contract": [
     "each legacy path exists at an immutable commit",
     "frontmatter repository and path match the materialized file",
@@ -31,5 +18,241 @@
     "governance/LICENSE_POLICY.md",
     "governance/SHEET_CONTRACT.md"
   ],
-  "note": "An empty materialized_legacy_entries array is deliberate. This manifest does not pretend that the 22 legacy notes exist before path-level read-back evidence is available."
+  "expected_legacy_note_count": 22,
+  "known_issue": {
+    "issue_number": 2,
+    "repository": "ed3c/ai-content-notes",
+    "title": "materialize-ai-content-notes-migration",
+    "url": "https://github.com/ed3c/ai-content-notes/issues/2"
+  },
+  "materialized_legacy_entries": [
+    {
+      "bytes": 15866,
+      "citation_mapping": "pending",
+      "content_id": "no-priors:noam-brown-benchmark-test-time-compute",
+      "legacy_from_path": "ai-content-notes/notes/agent-evaluation/2026-06-26-noam-brown-modern-benchmarks.md",
+      "legacy_from_repository": "ed3c/openwiki-ablation",
+      "note_format": "zettelkasten-v6.6-cyberpunk",
+      "path": "notes/agent-evaluation/2026-06-26-noam-brown-modern-benchmarks.md",
+      "sha256": "sha256:e630c758a12550a3387e71c78ab9de13c31d721f9dacfc319e35a64408ea46c1"
+    },
+    {
+      "bytes": 13531,
+      "citation_mapping": "pending",
+      "content_id": "langchain:how-we-benchmark-deep-agents",
+      "legacy_from_path": "ai-content-notes/notes/agent-evaluation/2026-07-23-benchmarking-deep-agents.md",
+      "legacy_from_repository": "ed3c/openwiki-ablation",
+      "note_format": "zettelkasten-v6.6-cyberpunk",
+      "path": "notes/agent-evaluation/2026-07-23-benchmarking-deep-agents.md",
+      "sha256": "sha256:7cf49c4abadd0e0860a087ec7353a7cfb8d6b4b318094ab0377bfb1fc79ec3d8"
+    },
+    {
+      "bytes": 10022,
+      "citation_mapping": "pending",
+      "content_id": "openai:arc-agi-3-retained-reasoning-compaction",
+      "legacy_from_path": "ai-content-notes/notes/agent-harness/2026-07-29-arc-agi-3-retained-reasoning-compaction.md",
+      "legacy_from_repository": "ed3c/openwiki-ablation",
+      "note_format": "zettelkasten-v6.6-cyberpunk",
+      "path": "notes/agent-harness/2026-07-29-arc-agi-3-retained-reasoning-compaction.md",
+      "sha256": "sha256:191b357a6fe0fffbbe45867ae186d85a056c4fd258316064c1672051e14a7691"
+    },
+    {
+      "bytes": 12590,
+      "citation_mapping": "pending",
+      "content_id": "langchain:deep-agents-v0-7",
+      "legacy_from_path": "ai-content-notes/notes/agent-harness/2026-07-29-deep-agents-v0-7-harness-diet.md",
+      "legacy_from_repository": "ed3c/openwiki-ablation",
+      "note_format": "zettelkasten-v6.6-cyberpunk",
+      "path": "notes/agent-harness/2026-07-29-deep-agents-v0-7-harness-diet.md",
+      "sha256": "sha256:fa220b5401fcd9dc6e09ee01ee24a20f3eb543f4df0853a9ef1c278c65ef4217"
+    },
+    {
+      "bytes": 11181,
+      "citation_mapping": "pending",
+      "content_id": "langchain:managed-deep-agents-public-beta",
+      "legacy_from_path": "ai-content-notes/notes/agent-runtime/2026-08-07-managed-deep-agents-public-beta.md",
+      "legacy_from_repository": "ed3c/openwiki-ablation",
+      "note_format": "zettelkasten-v6.6-cyberpunk",
+      "path": "notes/agent-runtime/2026-08-07-managed-deep-agents-public-beta.md",
+      "sha256": "sha256:ffdaf566b89caa539de4ea92b775a2bf142338767aad0a7531be4186c8950cf0"
+    },
+    {
+      "bytes": 16305,
+      "citation_mapping": "pending",
+      "content_id": "openai:ten-advances-mathematics",
+      "legacy_from_path": "ai-content-notes/notes/ai-research/2026-08-01-openai-ten-mathematics-advances.md",
+      "legacy_from_repository": "ed3c/openwiki-ablation",
+      "note_format": "zettelkasten-v6.6-cyberpunk",
+      "path": "notes/ai-research/2026-08-01-openai-ten-mathematics-advances.md",
+      "sha256": "sha256:146d6388d3da2fe09f4ebcb3d8d90089917dc3b99719864dd9b9b7decab444cb"
+    },
+    {
+      "bytes": 14915,
+      "citation_mapping": "pending",
+      "content_id": "latent-space:lila-lab-data-center",
+      "legacy_from_path": "ai-content-notes/notes/ai-science/2026-07-16-autonomous-lab-as-data-center.md",
+      "legacy_from_repository": "ed3c/openwiki-ablation",
+      "note_format": "zettelkasten-v6.6-cyberpunk",
+      "path": "notes/ai-science/2026-07-16-autonomous-lab-as-data-center.md",
+      "sha256": "sha256:c0897728b62397dc567a1855f28a91175f4653a65110740bdbb4f10b92280183"
+    },
+    {
+      "bytes": 10700,
+      "citation_mapping": "pending",
+      "content_id": "latent-space:xaira-x-cell",
+      "legacy_from_path": "ai-content-notes/notes/ai-science/2026-07-21-xaira-causal-models-causal-data.md",
+      "legacy_from_repository": "ed3c/openwiki-ablation",
+      "note_format": "zettelkasten-v6.6-cyberpunk",
+      "path": "notes/ai-science/2026-07-21-xaira-causal-models-causal-data.md",
+      "sha256": "sha256:ba30ee8e60f9a6ad0218d9dc76a86b49e8171c634d8e7dd372cd07172ec29b24"
+    },
+    {
+      "bytes": 9735,
+      "citation_mapping": "pending",
+      "content_id": "sequoia:ai-ascent-2026",
+      "legacy_from_path": "ai-content-notes/notes/ai-strategy/2026-05-08-sequoia-ai-ascent-2026.md",
+      "legacy_from_repository": "ed3c/openwiki-ablation",
+      "note_format": "zettelkasten-v6.6-cyberpunk",
+      "path": "notes/ai-strategy/2026-05-08-sequoia-ai-ascent-2026.md",
+      "sha256": "sha256:fe4f76f3bf6c54b19af6a0b7a3377a545b35c90c4582faac4b92ca8940ce12cb"
+    },
+    {
+      "bytes": 13634,
+      "citation_mapping": "pending",
+      "content_id": "langchain:agent-data-stack",
+      "legacy_from_path": "ai-content-notes/notes/data-context/2026-07-27-langchain-agent-first-data-stack.md",
+      "legacy_from_repository": "ed3c/openwiki-ablation",
+      "note_format": "zettelkasten-v6.6-cyberpunk",
+      "path": "notes/data-context/2026-07-27-langchain-agent-first-data-stack.md",
+      "sha256": "sha256:7494db6809482494b3df43a903041d0b7cc59ac5550cb26576ef85d62fb04d45"
+    },
+    {
+      "bytes": 14148,
+      "citation_mapping": "pending",
+      "content_id": "anthropic:claude-opus-5",
+      "legacy_from_path": "ai-content-notes/notes/frontier-models/2026-07-24-anthropic-claude-opus-5.md",
+      "legacy_from_repository": "ed3c/openwiki-ablation",
+      "note_format": "zettelkasten-v6.6-cyberpunk",
+      "path": "notes/frontier-models/2026-07-24-anthropic-claude-opus-5.md",
+      "sha256": "sha256:1c7cbd27f01d883d79d40e9183af4afc5465683bb1b13cb1531a1889492832c2"
+    },
+    {
+      "bytes": 17426,
+      "citation_mapping": "pending",
+      "content_id": "latent-space:poolside-model-factory",
+      "legacy_from_path": "ai-content-notes/notes/model-engineering/2026-07-23-poolside-model-factory.md",
+      "legacy_from_repository": "ed3c/openwiki-ablation",
+      "note_format": "zettelkasten-v6.6-cyberpunk",
+      "path": "notes/model-engineering/2026-07-23-poolside-model-factory.md",
+      "sha256": "sha256:b6083582b26539793a14867d3f08a7ada035b90aacc22b0e5c8c40d7d68c735d"
+    },
+    {
+      "bytes": 15078,
+      "citation_mapping": "pending",
+      "content_id": "sequoia:standard-intelligence-pixel-space",
+      "legacy_from_path": "ai-content-notes/notes/multimodal-agents/2026-04-30-standard-intelligence-pixel-space.md",
+      "legacy_from_repository": "ed3c/openwiki-ablation",
+      "note_format": "zettelkasten-v6.6-cyberpunk",
+      "path": "notes/multimodal-agents/2026-04-30-standard-intelligence-pixel-space.md",
+      "sha256": "sha256:3ffd31e08b66dde428a3c49c67e328ab3f85c65af1050a728d07528b3ed5bc81"
+    },
+    {
+      "bytes": 13270,
+      "citation_mapping": "pending",
+      "content_id": "openai:gpt-live-realtime-architecture",
+      "legacy_from_path": "ai-content-notes/notes/multimodal-agents/2026-08-03-openai-realtime-voice-system.md",
+      "legacy_from_repository": "ed3c/openwiki-ablation",
+      "note_format": "zettelkasten-v6.6-cyberpunk",
+      "path": "notes/multimodal-agents/2026-08-03-openai-realtime-voice-system.md",
+      "sha256": "sha256:610bc4ebf3fe8ef98a4b3a613c2ad880f0ccc411bef1bbc0e7e4924b2a0b4759"
+    },
+    {
+      "bytes": 10450,
+      "citation_mapping": "pending",
+      "content_id": "sequoia:americas-open-model-paradox",
+      "legacy_from_path": "ai-content-notes/notes/open-model-supply-chain/2026-07-24-americas-open-model-paradox.md",
+      "legacy_from_repository": "ed3c/openwiki-ablation",
+      "note_format": "zettelkasten-v6.6-cyberpunk",
+      "path": "notes/open-model-supply-chain/2026-07-24-americas-open-model-paradox.md",
+      "sha256": "sha256:730332c03d018acc83e946a5a807c23b100c4ddb79f8a1a202fd7b53f7277291"
+    },
+    {
+      "bytes": 13455,
+      "citation_mapping": "pending",
+      "content_id": "sequoia:cyera-oasis-agent-security",
+      "legacy_from_path": "ai-content-notes/notes/security-governance/2026-07-28-cyera-oasis-agent-security-graph.md",
+      "legacy_from_repository": "ed3c/openwiki-ablation",
+      "note_format": "zettelkasten-v6.6-cyberpunk",
+      "path": "notes/security-governance/2026-07-28-cyera-oasis-agent-security-graph.md",
+      "sha256": "sha256:9addaeb7b450a228fde5b9c70c085bcbd9b2f2cff8895d0d56d4be1c1447a814"
+    },
+    {
+      "bytes": 11672,
+      "citation_mapping": "pending",
+      "content_id": "anthropic:investigating-incidents-cybersecurity-evals",
+      "legacy_from_path": "ai-content-notes/notes/security-governance/2026-07-30-anthropic-cyber-eval-incidents.md",
+      "legacy_from_repository": "ed3c/openwiki-ablation",
+      "note_format": "zettelkasten-v6.6-cyberpunk",
+      "path": "notes/security-governance/2026-07-30-anthropic-cyber-eval-incidents.md",
+      "sha256": "sha256:812b81898c85a12d9397b9b17e6e2f6ea625decb3cc50ebaa49e2f910f7c6799"
+    },
+    {
+      "bytes": 10523,
+      "citation_mapping": "pending",
+      "content_id": "anthropic:improving-fable-5-biology-safeguards",
+      "legacy_from_path": "ai-content-notes/notes/security-governance/2026-08-07-anthropic-fable-5-biology-safeguards.md",
+      "legacy_from_repository": "ed3c/openwiki-ablation",
+      "note_format": "zettelkasten-v6.6-cyberpunk",
+      "path": "notes/security-governance/2026-08-07-anthropic-fable-5-biology-safeguards.md",
+      "sha256": "sha256:de56fdaf87ddfceb9e602ccf4dcd7c6317151e0ae7c6461fcf5ad6869321a052"
+    },
+    {
+      "bytes": 11164,
+      "citation_mapping": "pending",
+      "content_id": "openai:responding-next-frontier-critical-cyber-capabilities",
+      "legacy_from_path": "ai-content-notes/notes/security-governance/2026-08-07-openai-frontier-cyber-capability-governance.md",
+      "legacy_from_repository": "ed3c/openwiki-ablation",
+      "note_format": "zettelkasten-v6.6-cyberpunk",
+      "path": "notes/security-governance/2026-08-07-openai-frontier-cyber-capability-governance.md",
+      "sha256": "sha256:49d08381d415f2bb778f2ded3a1d68605d5f1d32e8e48a619cc4be63dff5795c"
+    },
+    {
+      "bytes": 11809,
+      "citation_mapping": "pending",
+      "content_id": "no-priors:booking-ai-travel",
+      "legacy_from_path": "ai-content-notes/notes/vertical-agents/2026-07-09-booking-agentic-travel.md",
+      "legacy_from_repository": "ed3c/openwiki-ablation",
+      "note_format": "zettelkasten-v6.6-cyberpunk",
+      "path": "notes/vertical-agents/2026-07-09-booking-agentic-travel.md",
+      "sha256": "sha256:6330e330b83ac5110c3a3bc3d996b581bf01d55001a7f422e87d09d445e7fcd9"
+    },
+    {
+      "bytes": 13264,
+      "citation_mapping": "pending",
+      "content_id": "anthropic:claude-for-teachers",
+      "legacy_from_path": "ai-content-notes/notes/vertical-agents/2026-07-14-anthropic-claude-for-teachers.md",
+      "legacy_from_repository": "ed3c/openwiki-ablation",
+      "note_format": "zettelkasten-v6.6-cyberpunk",
+      "path": "notes/vertical-agents/2026-07-14-anthropic-claude-for-teachers.md",
+      "sha256": "sha256:1a7c314bd07b8844ccb3dce769a11755b07a2111f7094669b4310ab242407a2b"
+    },
+    {
+      "bytes": 14349,
+      "citation_mapping": "pending",
+      "content_id": "no-priors:doordash-autonomous-delivery",
+      "legacy_from_path": "ai-content-notes/notes/vertical-agents/2026-07-23-doordash-autonomous-delivery.md",
+      "legacy_from_repository": "ed3c/openwiki-ablation",
+      "note_format": "zettelkasten-v6.6-cyberpunk",
+      "path": "notes/vertical-agents/2026-07-23-doordash-autonomous-delivery.md",
+      "sha256": "sha256:09a9735cb7e3560eaaef73ac9a8f6d70d02d348d8d925832a3326bc33f946e67"
+    }
+  ],
+  "materialized_legacy_note_count": 22,
+  "migration_id": "google-docs-to-private-github-markdown",
+  "note": "Only notes/** was restored from the bootstrap payload. The archived README, INDEX, RANK, CONTEXT, governance, schema and template members predate the current contracts on main and are not authority. Sheet URL repointing and GitHub read-back remain outstanding.",
+  "payload_sha256": "sha256:b3a80dd44ade0adf106399b7e1c595220ecabf24f0473a4520cf99d85f62f341",
+  "schema_version": "migration-manifest@1",
+  "source": "legacy Google Docs and Google Sheet canonical URLs",
+  "status": "notes-materialized",
+  "target_repository": "ed3c/ai-content-notes"
 }
