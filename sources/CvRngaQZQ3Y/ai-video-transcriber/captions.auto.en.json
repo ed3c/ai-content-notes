@@ -1,0 +1,3809 @@
+{
+  "canonical_url": "https://www.youtube.com/watch?v=CvRngaQZQ3Y",
+  "cues": [
+    {
+      "end_label": "00:00:12",
+      "end_seconds": 12,
+      "start_label": "00:00:01",
+      "start_seconds": 1,
+      "text": "[music]"
+    },
+    {
+      "end_label": "00:00:16",
+      "end_seconds": 16,
+      "start_label": "00:00:13",
+      "start_seconds": 13,
+      "text": ">> Hey everyone. I'm Vic and I lead applied research at"
+    },
+    {
+      "end_label": "00:00:19",
+      "end_seconds": 19,
+      "start_label": "00:00:16",
+      "start_seconds": 16,
+      "text": "I'm Vic and I lead applied research at LangChain and I'm going to talk about"
+    },
+    {
+      "end_label": "00:00:22",
+      "end_seconds": 22,
+      "start_label": "00:00:19",
+      "start_seconds": 19,
+      "text": "LangChain and I'm going to talk about something that I think is sexy, which is"
+    },
+    {
+      "end_label": "00:00:24",
+      "end_seconds": 24,
+      "start_label": "00:00:22",
+      "start_seconds": 22,
+      "text": "something that I think is sexy, which is data mining, but it's not as sexy as"
+    },
+    {
+      "end_label": "00:00:26",
+      "end_seconds": 26,
+      "start_label": "00:00:24",
+      "start_seconds": 24,
+      "text": "data mining, but it's not as sexy as LLM, so we're going to try to like make"
+    },
+    {
+      "end_label": "00:00:28",
+      "end_seconds": 28,
+      "start_label": "00:00:26",
+      "start_seconds": 26,
+      "text": "LLM, so we're going to try to like make it sexy together. And the problem that"
+    },
+    {
+      "end_label": "00:00:30",
+      "end_seconds": 30,
+      "start_label": "00:00:28",
+      "start_seconds": 28,
+      "text": "it sexy together. And the problem that we're going to talk about today is how"
+    },
+    {
+      "end_label": "00:00:33",
+      "end_seconds": 33,
+      "start_label": "00:00:30",
+      "start_seconds": 30,
+      "text": "we're going to talk about today is how do we continuously improve agents, but"
+    },
+    {
+      "end_label": "00:00:35",
+      "end_seconds": 35,
+      "start_label": "00:00:33",
+      "start_seconds": 33,
+      "text": "do we continuously improve agents, but how do we do that via data?"
+    },
+    {
+      "end_label": "00:00:38",
+      "end_seconds": 38,
+      "start_label": "00:00:35",
+      "start_seconds": 35,
+      "text": "how do we do that via data? So, to start, I'm going to tell a little"
+    },
+    {
+      "end_label": "00:00:40",
+      "end_seconds": 40,
+      "start_label": "00:00:38",
+      "start_seconds": 38,
+      "text": "So, to start, I'm going to tell a little story that I think maybe a lot of us"
+    },
+    {
+      "end_label": "00:00:44",
+      "end_seconds": 44,
+      "start_label": "00:00:40",
+      "start_seconds": 40,
+      "text": "story that I think maybe a lot of us have felt before. Like, I ran my agent,"
+    },
+    {
+      "end_label": "00:00:46",
+      "end_seconds": 46,
+      "start_label": "00:00:44",
+      "start_seconds": 44,
+      "text": "have felt before. Like, I ran my agent, it did a bunch of things,"
+    },
+    {
+      "end_label": "00:00:49",
+      "end_seconds": 49,
+      "start_label": "00:00:46",
+      "start_seconds": 46,
+      "text": "it did a bunch of things, it made some mistakes."
+    },
+    {
+      "end_label": "00:00:50",
+      "end_seconds": 50,
+      "start_label": "00:00:49",
+      "start_seconds": 49,
+      "text": "it made some mistakes. Now, I ask someone like, what do I"
+    },
+    {
+      "end_label": "00:00:52",
+      "end_seconds": 52,
+      "start_label": "00:00:50",
+      "start_seconds": 50,
+      "text": "Now, I ask someone like, what do I actually do about that? Like, I have all"
+    },
+    {
+      "end_label": "00:00:56",
+      "end_seconds": 56,
+      "start_label": "00:00:52",
+      "start_seconds": 52,
+      "text": "actually do about that? Like, I have all this data, made some mistakes, what now?"
+    },
+    {
+      "end_label": "00:00:58",
+      "end_seconds": 58,
+      "start_label": "00:00:56",
+      "start_seconds": 56,
+      "text": "this data, made some mistakes, what now? Basically, what we're going to do today"
+    },
+    {
+      "end_label": "00:01:00",
+      "end_seconds": 60,
+      "start_label": "00:00:58",
+      "start_seconds": 58,
+      "text": "Basically, what we're going to do today is we're going to motivate a recipe for"
+    },
+    {
+      "end_label": "00:01:02",
+      "end_seconds": 62,
+      "start_label": "00:01:00",
+      "start_seconds": 60,
+      "text": "is we're going to motivate a recipe for what we should do to continuously"
+    },
+    {
+      "end_label": "00:01:04",
+      "end_seconds": 64,
+      "start_label": "00:01:02",
+      "start_seconds": 62,
+      "text": "what we should do to continuously improve agents over time, and then I'm"
+    },
+    {
+      "end_label": "00:01:06",
+      "end_seconds": 66,
+      "start_label": "00:01:04",
+      "start_seconds": 64,
+      "text": "improve agents over time, and then I'm going to talk from some lived experience"
+    },
+    {
+      "end_label": "00:01:07",
+      "end_seconds": 67,
+      "start_label": "00:01:06",
+      "start_seconds": 66,
+      "text": "going to talk from some lived experience and like some stuff that we help"
+    },
+    {
+      "end_label": "00:01:09",
+      "end_seconds": 69,
+      "start_label": "00:01:07",
+      "start_seconds": 67,
+      "text": "and like some stuff that we help customers do to run this over"
+    },
+    {
+      "end_label": "00:01:11",
+      "end_seconds": 71,
+      "start_label": "00:01:09",
+      "start_seconds": 69,
+      "text": "customers do to run this over large-scale trace data."
+    },
+    {
+      "end_label": "00:01:13",
+      "end_seconds": 73,
+      "start_label": "00:01:11",
+      "start_seconds": 71,
+      "text": "large-scale trace data. So, the first step in building a"
+    },
+    {
+      "end_label": "00:01:17",
+      "end_seconds": 77,
+      "start_label": "00:01:13",
+      "start_seconds": 73,
+      "text": "So, the first step in building a successful agent is shipping it. So, if"
+    },
+    {
+      "end_label": "00:01:18",
+      "end_seconds": 78,
+      "start_label": "00:01:17",
+      "start_seconds": 77,
+      "text": "successful agent is shipping it. So, if you put it out into the real world, then"
+    },
+    {
+      "end_label": "00:01:20",
+      "end_seconds": 80,
+      "start_label": "00:01:18",
+      "start_seconds": 78,
+      "text": "you put it out into the real world, then it can operate in environments and then"
+    },
+    {
+      "end_label": "00:01:21",
+      "end_seconds": 81,
+      "start_label": "00:01:20",
+      "start_seconds": 80,
+      "text": "it can operate in environments and then you can get feedback from what it's"
+    },
+    {
+      "end_label": "00:01:23",
+      "end_seconds": 83,
+      "start_label": "00:01:21",
+      "start_seconds": 81,
+      "text": "you can get feedback from what it's doing."
+    },
+    {
+      "end_label": "00:01:26",
+      "end_seconds": 86,
+      "start_label": "00:01:23",
+      "start_seconds": 83,
+      "text": "doing. The second step is collect a ton of"
+    },
+    {
+      "end_label": "00:01:28",
+      "end_seconds": 88,
+      "start_label": "00:01:26",
+      "start_seconds": 86,
+      "text": "The second step is collect a ton of traces. So, agents operate in the"
+    },
+    {
+      "end_label": "00:01:30",
+      "end_seconds": 90,
+      "start_label": "00:01:28",
+      "start_seconds": 88,
+      "text": "traces. So, agents operate in the environment every single time they"
+    },
+    {
+      "end_label": "00:01:32",
+      "end_seconds": 92,
+      "start_label": "00:01:30",
+      "start_seconds": 90,
+      "text": "environment every single time they operate, they do tool calls, they have"
+    },
+    {
+      "end_label": "00:01:34",
+      "end_seconds": 94,
+      "start_label": "00:01:32",
+      "start_seconds": 92,
+      "text": "operate, they do tool calls, they have output messages, they call APIs, they"
+    },
+    {
+      "end_label": "00:01:37",
+      "end_seconds": 97,
+      "start_label": "00:01:34",
+      "start_seconds": 94,
+      "text": "output messages, they call APIs, they use CLIs. All of that generates data and"
+    },
+    {
+      "end_label": "00:01:38",
+      "end_seconds": 98,
+      "start_label": "00:01:37",
+      "start_seconds": 97,
+      "text": "use CLIs. All of that generates data and we want to store all of that so we can"
+    },
+    {
+      "end_label": "00:01:42",
+      "end_seconds": 102,
+      "start_label": "00:01:38",
+      "start_seconds": 98,
+      "text": "we want to store all of that so we can like do stuff with it."
+    },
+    {
+      "end_label": "00:01:44",
+      "end_seconds": 104,
+      "start_label": "00:01:42",
+      "start_seconds": 102,
+      "text": "like do stuff with it. The next thing is the data mining in"
+    },
+    {
+      "end_label": "00:01:47",
+      "end_seconds": 107,
+      "start_label": "00:01:44",
+      "start_seconds": 104,
+      "text": "The next thing is the data mining in this talk, which is once we have tons of"
+    },
+    {
+      "end_label": "00:01:49",
+      "end_seconds": 109,
+      "start_label": "00:01:47",
+      "start_seconds": 107,
+      "text": "this talk, which is once we have tons of trace data, maybe gigabytes, maybe"
+    },
+    {
+      "end_label": "00:01:51",
+      "end_seconds": 111,
+      "start_label": "00:01:49",
+      "start_seconds": 109,
+      "text": "trace data, maybe gigabytes, maybe terabytes, depending on like how many"
+    },
+    {
+      "end_label": "00:01:52",
+      "end_seconds": 112,
+      "start_label": "00:01:51",
+      "start_seconds": 111,
+      "text": "terabytes, depending on like how many agents you're shipping, we're going to"
+    },
+    {
+      "end_label": "00:01:55",
+      "end_seconds": 115,
+      "start_label": "00:01:52",
+      "start_seconds": 112,
+      "text": "agents you're shipping, we're going to do data mining over that. And I promise"
+    },
+    {
+      "end_label": "00:01:56",
+      "end_seconds": 116,
+      "start_label": "00:01:55",
+      "start_seconds": 115,
+      "text": "do data mining over that. And I promise I will tell you exactly what data mining"
+    },
+    {
+      "end_label": "00:01:58",
+      "end_seconds": 118,
+      "start_label": "00:01:56",
+      "start_seconds": 116,
+      "text": "I will tell you exactly what data mining we're going do, uh but we're going to do"
+    },
+    {
+      "end_label": "00:02:00",
+      "end_seconds": 120,
+      "start_label": "00:01:58",
+      "start_seconds": 118,
+      "text": "we're going do, uh but we're going to do some over it."
+    },
+    {
+      "end_label": "00:02:02",
+      "end_seconds": 122,
+      "start_label": "00:02:00",
+      "start_seconds": 120,
+      "text": "some over it. And then the fun part, which is I"
+    },
+    {
+      "end_label": "00:02:04",
+      "end_seconds": 124,
+      "start_label": "00:02:02",
+      "start_seconds": 122,
+      "text": "And then the fun part, which is I collected that data, I read it, I"
+    },
+    {
+      "end_label": "00:02:06",
+      "end_seconds": 126,
+      "start_label": "00:02:04",
+      "start_seconds": 124,
+      "text": "collected that data, I read it, I curated it, and now we actually need to"
+    },
+    {
+      "end_label": "00:02:09",
+      "end_seconds": 129,
+      "start_label": "00:02:06",
+      "start_seconds": 126,
+      "text": "curated it, and now we actually need to run the experiments in a data-driven way"
+    },
+    {
+      "end_label": "00:02:11",
+      "end_seconds": 131,
+      "start_label": "00:02:09",
+      "start_seconds": 129,
+      "text": "run the experiments in a data-driven way to see, \"Hey, is this new prompt, or is"
+    },
+    {
+      "end_label": "00:02:13",
+      "end_seconds": 133,
+      "start_label": "00:02:11",
+      "start_seconds": 131,
+      "text": "to see, \"Hey, is this new prompt, or is this new tool, or is this new"
+    },
+    {
+      "end_label": "00:02:15",
+      "end_seconds": 135,
+      "start_label": "00:02:13",
+      "start_seconds": 133,
+      "text": "this new tool, or is this new orchestration, or is this new loop, is"
+    },
+    {
+      "end_label": "00:02:17",
+      "end_seconds": 137,
+      "start_label": "00:02:15",
+      "start_seconds": 135,
+      "text": "orchestration, or is this new loop, is it actually improving things based on"
+    },
+    {
+      "end_label": "00:02:21",
+      "end_seconds": 141,
+      "start_label": "00:02:17",
+      "start_seconds": 137,
+      "text": "it actually improving things based on the previous traces that I've seen?\""
+    },
+    {
+      "end_label": "00:02:26",
+      "end_seconds": 146,
+      "start_label": "00:02:24",
+      "start_seconds": 144,
+      "text": "And this is maybe a bit of a hot take, but continual learning is super hot"
+    },
+    {
+      "end_label": "00:02:27",
+      "end_seconds": 147,
+      "start_label": "00:02:26",
+      "start_seconds": 146,
+      "text": "but continual learning is super hot right now. I'm talking about it, this"
+    },
+    {
+      "end_label": "00:02:29",
+      "end_seconds": 149,
+      "start_label": "00:02:27",
+      "start_seconds": 147,
+      "text": "right now. I'm talking about it, this whole room is going to hear about it for"
+    },
+    {
+      "end_label": "00:02:32",
+      "end_seconds": 152,
+      "start_label": "00:02:29",
+      "start_seconds": 149,
+      "text": "whole room is going to hear about it for the next like 5-6 hours. Um but there's"
+    },
+    {
+      "end_label": "00:02:34",
+      "end_seconds": 154,
+      "start_label": "00:02:32",
+      "start_seconds": 152,
+      "text": "the next like 5-6 hours. Um but there's a very tight coupling between what"
+    },
+    {
+      "end_label": "00:02:36",
+      "end_seconds": 156,
+      "start_label": "00:02:34",
+      "start_seconds": 154,
+      "text": "a very tight coupling between what observability is and what continual"
+    },
+    {
+      "end_label": "00:02:38",
+      "end_seconds": 158,
+      "start_label": "00:02:36",
+      "start_seconds": 156,
+      "text": "observability is and what continual learning is. And the main reason for"
+    },
+    {
+      "end_label": "00:02:40",
+      "end_seconds": 160,
+      "start_label": "00:02:38",
+      "start_seconds": 158,
+      "text": "learning is. And the main reason for that is that"
+    },
+    {
+      "end_label": "00:02:42",
+      "end_seconds": 162,
+      "start_label": "00:02:40",
+      "start_seconds": 160,
+      "text": "that is that agents that operate in environments,"
+    },
+    {
+      "end_label": "00:02:44",
+      "end_seconds": 164,
+      "start_label": "00:02:42",
+      "start_seconds": 162,
+      "text": "agents that operate in environments, they produce trace data, and what"
+    },
+    {
+      "end_label": "00:02:46",
+      "end_seconds": 166,
+      "start_label": "00:02:44",
+      "start_seconds": 164,
+      "text": "they produce trace data, and what continual learning for agents and"
+    },
+    {
+      "end_label": "00:02:47",
+      "end_seconds": 167,
+      "start_label": "00:02:46",
+      "start_seconds": 166,
+      "text": "continual learning for agents and continual learning for humans basically"
+    },
+    {
+      "end_label": "00:02:49",
+      "end_seconds": 169,
+      "start_label": "00:02:48",
+      "start_seconds": 168,
+      "text": "continual learning for humans basically is is I do a bunch of stuff in the"
+    },
+    {
+      "end_label": "00:02:52",
+      "end_seconds": 172,
+      "start_label": "00:02:49",
+      "start_seconds": 169,
+      "text": "is is I do a bunch of stuff in the world, I think about what I did, and"
+    },
+    {
+      "end_label": "00:02:54",
+      "end_seconds": 174,
+      "start_label": "00:02:52",
+      "start_seconds": 172,
+      "text": "world, I think about what I did, and then I need to update my definition,"
+    },
+    {
+      "end_label": "00:02:57",
+      "end_seconds": 177,
+      "start_label": "00:02:54",
+      "start_seconds": 174,
+      "text": "then I need to update my definition, like my knowledge, stuff I write down,"
+    },
+    {
+      "end_label": "00:02:58",
+      "end_seconds": 178,
+      "start_label": "00:02:57",
+      "start_seconds": 177,
+      "text": "like my knowledge, stuff I write down, in order to respond to the feedback from"
+    },
+    {
+      "end_label": "00:03:00",
+      "end_seconds": 180,
+      "start_label": "00:02:59",
+      "start_seconds": 179,
+      "text": "in order to respond to the feedback from the environment. And if you're continual"
+    },
+    {
+      "end_label": "00:03:02",
+      "end_seconds": 182,
+      "start_label": "00:03:00",
+      "start_seconds": 180,
+      "text": "the environment. And if you're continual learning company, you need traces, and"
+    },
+    {
+      "end_label": "00:03:04",
+      "end_seconds": 184,
+      "start_label": "00:03:02",
+      "start_seconds": 182,
+      "text": "learning company, you need traces, and if you have traces, then you can try to"
+    },
+    {
+      "end_label": "00:03:09",
+      "end_seconds": 189,
+      "start_label": "00:03:04",
+      "start_seconds": 184,
+      "text": "if you have traces, then you can try to do continual learning over your agents."
+    },
+    {
+      "end_label": "00:03:13",
+      "end_seconds": 193,
+      "start_label": "00:03:11",
+      "start_seconds": 191,
+      "text": "I had to put in a meme because if you look at your data, then you can"
+    },
+    {
+      "end_label": "00:03:15",
+      "end_seconds": 195,
+      "start_label": "00:03:13",
+      "start_seconds": 193,
+      "text": "if you look at your data, then you can be like Will Hunting if anyone's seen"
+    },
+    {
+      "end_label": "00:03:17",
+      "end_seconds": 197,
+      "start_label": "00:03:15",
+      "start_seconds": 195,
+      "text": "be like Will Hunting if anyone's seen the movie, where like everything is"
+    },
+    {
+      "end_label": "00:03:19",
+      "end_seconds": 199,
+      "start_label": "00:03:17",
+      "start_seconds": 197,
+      "text": "the movie, where like everything is super super easy, and you can like"
+    },
+    {
+      "end_label": "00:03:21",
+      "end_seconds": 201,
+      "start_label": "00:03:19",
+      "start_seconds": 199,
+      "text": "super super easy, and you can like improve over time, and I promised Emma I"
+    },
+    {
+      "end_label": "00:03:23",
+      "end_seconds": 203,
+      "start_label": "00:03:21",
+      "start_seconds": 201,
+      "text": "improve over time, and I promised Emma I would put this in there, so putting it"
+    },
+    {
+      "end_label": "00:03:25",
+      "end_seconds": 205,
+      "start_label": "00:03:23",
+      "start_seconds": 203,
+      "text": "would put this in there, so putting it in there."
+    },
+    {
+      "end_label": "00:03:29",
+      "end_seconds": 209,
+      "start_label": "00:03:25",
+      "start_seconds": 205,
+      "text": "in there. Cool. So, why am I talking a bunch about"
+    },
+    {
+      "end_label": "00:03:31",
+      "end_seconds": 211,
+      "start_label": "00:03:29",
+      "start_seconds": 209,
+      "text": "Cool. So, why am I talking a bunch about traces anyway? So,"
+    },
+    {
+      "end_label": "00:03:33",
+      "end_seconds": 213,
+      "start_label": "00:03:31",
+      "start_seconds": 211,
+      "text": "traces anyway? So, I'm sure a ton of us were software"
+    },
+    {
+      "end_label": "00:03:34",
+      "end_seconds": 214,
+      "start_label": "00:03:33",
+      "start_seconds": 213,
+      "text": "I'm sure a ton of us were software engineers before, we're software"
+    },
+    {
+      "end_label": "00:03:36",
+      "end_seconds": 216,
+      "start_label": "00:03:34",
+      "start_seconds": 214,
+      "text": "engineers before, we're software engineers now, and on the left we have a"
+    },
+    {
+      "end_label": "00:03:38",
+      "end_seconds": 218,
+      "start_label": "00:03:36",
+      "start_seconds": 216,
+      "text": "engineers now, and on the left we have a code block, and we can sort of like read"
+    },
+    {
+      "end_label": "00:03:40",
+      "end_seconds": 220,
+      "start_label": "00:03:38",
+      "start_seconds": 218,
+      "text": "code block, and we can sort of like read the code, and in my head, I can almost"
+    },
+    {
+      "end_label": "00:03:43",
+      "end_seconds": 223,
+      "start_label": "00:03:40",
+      "start_seconds": 220,
+      "text": "the code, and in my head, I can almost reason over what this code does. I can"
+    },
+    {
+      "end_label": "00:03:45",
+      "end_seconds": 225,
+      "start_label": "00:03:43",
+      "start_seconds": 223,
+      "text": "reason over what this code does. I can see the functions, I can see like how"
+    },
+    {
+      "end_label": "00:03:46",
+      "end_seconds": 226,
+      "start_label": "00:03:45",
+      "start_seconds": 225,
+      "text": "see the functions, I can see like how they call each other."
+    },
+    {
+      "end_label": "00:03:48",
+      "end_seconds": 228,
+      "start_label": "00:03:46",
+      "start_seconds": 226,
+      "text": "they call each other. I can roughly understand the logic in"
+    },
+    {
+      "end_label": "00:03:52",
+      "end_seconds": 232,
+      "start_label": "00:03:48",
+      "start_seconds": 228,
+      "text": "I can roughly understand the logic in Python. Um that doesn't exactly exist in"
+    },
+    {
+      "end_label": "00:03:55",
+      "end_seconds": 235,
+      "start_label": "00:03:52",
+      "start_seconds": 232,
+      "text": "Python. Um that doesn't exactly exist in agent world because agents have prompts,"
+    },
+    {
+      "end_label": "00:03:56",
+      "end_seconds": 236,
+      "start_label": "00:03:55",
+      "start_seconds": 235,
+      "text": "agent world because agents have prompts, they have tools, they have skills, they"
+    },
+    {
+      "end_label": "00:03:58",
+      "end_seconds": 238,
+      "start_label": "00:03:56",
+      "start_seconds": 236,
+      "text": "they have tools, they have skills, they have hooks, they have middlewares, some"
+    },
+    {
+      "end_label": "00:03:59",
+      "end_seconds": 239,
+      "start_label": "00:03:58",
+      "start_seconds": 238,
+      "text": "have hooks, they have middlewares, some agents call other agents and I"
+    },
+    {
+      "end_label": "00:04:01",
+      "end_seconds": 241,
+      "start_label": "00:03:59",
+      "start_seconds": 239,
+      "text": "agents call other agents and I orchestrate them in swarms. It's really"
+    },
+    {
+      "end_label": "00:04:04",
+      "end_seconds": 244,
+      "start_label": "00:04:02",
+      "start_seconds": 242,
+      "text": "orchestrate them in swarms. It's really really hard for humans to reason about"
+    },
+    {
+      "end_label": "00:04:06",
+      "end_seconds": 246,
+      "start_label": "00:04:04",
+      "start_seconds": 244,
+      "text": "really hard for humans to reason about how certain prompts that they change are"
+    },
+    {
+      "end_label": "00:04:08",
+      "end_seconds": 248,
+      "start_label": "00:04:06",
+      "start_seconds": 246,
+      "text": "how certain prompts that they change are actually going to affect agent behavior"
+    },
+    {
+      "end_label": "00:04:11",
+      "end_seconds": 251,
+      "start_label": "00:04:08",
+      "start_seconds": 248,
+      "text": "actually going to affect agent behavior at scale. And this also varies between"
+    },
+    {
+      "end_label": "00:04:12",
+      "end_seconds": 252,
+      "start_label": "00:04:11",
+      "start_seconds": 251,
+      "text": "at scale. And this also varies between the different domains that you're doing"
+    },
+    {
+      "end_label": "00:04:14",
+      "end_seconds": 254,
+      "start_label": "00:04:12",
+      "start_seconds": 252,
+      "text": "the different domains that you're doing it on. So, a prompt change and you're"
+    },
+    {
+      "end_label": "00:04:16",
+      "end_seconds": 256,
+      "start_label": "00:04:14",
+      "start_seconds": 254,
+      "text": "it on. So, a prompt change and you're using for the medical domain is going to"
+    },
+    {
+      "end_label": "00:04:17",
+      "end_seconds": 257,
+      "start_label": "00:04:16",
+      "start_seconds": 256,
+      "text": "using for the medical domain is going to be like completely different than a"
+    },
+    {
+      "end_label": "00:04:18",
+      "end_seconds": 258,
+      "start_label": "00:04:17",
+      "start_seconds": 257,
+      "text": "be like completely different than a prompt change that you want to do for"
+    },
+    {
+      "end_label": "00:04:19",
+      "end_seconds": 259,
+      "start_label": "00:04:18",
+      "start_seconds": 258,
+      "text": "prompt change that you want to do for the law domain."
+    },
+    {
+      "end_label": "00:04:22",
+      "end_seconds": 262,
+      "start_label": "00:04:19",
+      "start_seconds": 259,
+      "text": "the law domain. And in general, over the last four years"
+    },
+    {
+      "end_label": "00:04:25",
+      "end_seconds": 265,
+      "start_label": "00:04:22",
+      "start_seconds": 262,
+      "text": "And in general, over the last four years since the ChatGPT moment, we've started"
+    },
+    {
+      "end_label": "00:04:28",
+      "end_seconds": 268,
+      "start_label": "00:04:25",
+      "start_seconds": 265,
+      "text": "since the ChatGPT moment, we've started trading determinism for autonomy. And in"
+    },
+    {
+      "end_label": "00:04:31",
+      "end_seconds": 271,
+      "start_label": "00:04:28",
+      "start_seconds": 268,
+      "text": "trading determinism for autonomy. And in that shift, sort of what we need to do"
+    },
+    {
+      "end_label": "00:04:34",
+      "end_seconds": 274,
+      "start_label": "00:04:31",
+      "start_seconds": 271,
+      "text": "that shift, sort of what we need to do is create tools and create systems to"
+    },
+    {
+      "end_label": "00:04:37",
+      "end_seconds": 277,
+      "start_label": "00:04:34",
+      "start_seconds": 274,
+      "text": "is create tools and create systems to still understand agents when they're"
+    },
+    {
+      "end_label": "00:04:40",
+      "end_seconds": 280,
+      "start_label": "00:04:37",
+      "start_seconds": 277,
+      "text": "still understand agents when they're autonomously operating in environments."
+    },
+    {
+      "end_label": "00:04:43",
+      "end_seconds": 283,
+      "start_label": "00:04:40",
+      "start_seconds": 280,
+      "text": "autonomously operating in environments. So, I talked about traces. Um"
+    },
+    {
+      "end_label": "00:04:45",
+      "end_seconds": 285,
+      "start_label": "00:04:43",
+      "start_seconds": 283,
+      "text": "So, I talked about traces. Um why like why should you read them? And"
+    },
+    {
+      "end_label": "00:04:48",
+      "end_seconds": 288,
+      "start_label": "00:04:45",
+      "start_seconds": 285,
+      "text": "why like why should you read them? And at LangChain, what do we actually do"
+    },
+    {
+      "end_label": "00:04:50",
+      "end_seconds": 290,
+      "start_label": "00:04:48",
+      "start_seconds": 288,
+      "text": "at LangChain, what do we actually do when we're reading traces? So, we"
+    },
+    {
+      "end_label": "00:04:52",
+      "end_seconds": 292,
+      "start_label": "00:04:50",
+      "start_seconds": 290,
+      "text": "when we're reading traces? So, we centralize a bunch of our data, so we"
+    },
+    {
+      "end_label": "00:04:54",
+      "end_seconds": 294,
+      "start_label": "00:04:52",
+      "start_seconds": 292,
+      "text": "centralize a bunch of our data, so we put everything in a tracing project and"
+    },
+    {
+      "end_label": "00:04:56",
+      "end_seconds": 296,
+      "start_label": "00:04:54",
+      "start_seconds": 294,
+      "text": "put everything in a tracing project and this is usually either like per agent or"
+    },
+    {
+      "end_label": "00:04:57",
+      "end_seconds": 297,
+      "start_label": "00:04:56",
+      "start_seconds": 296,
+      "text": "this is usually either like per agent or like centralized across all of our"
+    },
+    {
+      "end_label": "00:05:01",
+      "end_seconds": 301,
+      "start_label": "00:04:57",
+      "start_seconds": 297,
+      "text": "like centralized across all of our agents. And then what we do is we send"
+    },
+    {
+      "end_label": "00:05:04",
+      "end_seconds": 304,
+      "start_label": "00:05:01",
+      "start_seconds": 301,
+      "text": "agents. And then what we do is we send agents to read traces from other agents,"
+    },
+    {
+      "end_label": "00:05:06",
+      "end_seconds": 306,
+      "start_label": "00:05:04",
+      "start_seconds": 304,
+      "text": "agents to read traces from other agents, right? And then we look for a bunch of"
+    },
+    {
+      "end_label": "00:05:09",
+      "end_seconds": 309,
+      "start_label": "00:05:06",
+      "start_seconds": 306,
+      "text": "right? And then we look for a bunch of different things. And we might ask for,"
+    },
+    {
+      "end_label": "00:05:11",
+      "end_seconds": 311,
+      "start_label": "00:05:09",
+      "start_seconds": 309,
+      "text": "different things. And we might ask for, \"Hey, like find a bunch of like good and"
+    },
+    {
+      "end_label": "00:05:13",
+      "end_seconds": 313,
+      "start_label": "00:05:11",
+      "start_seconds": 311,
+      "text": "\"Hey, like find a bunch of like good and bad interactions where like users got"
+    },
+    {
+      "end_label": "00:05:14",
+      "end_seconds": 314,
+      "start_label": "00:05:13",
+      "start_seconds": 313,
+      "text": "bad interactions where like users got upset or like users are like really"
+    },
+    {
+      "end_label": "00:05:15",
+      "end_seconds": 315,
+      "start_label": "00:05:14",
+      "start_seconds": 314,
+      "text": "upset or like users are like really happy.\""
+    },
+    {
+      "end_label": "00:05:16",
+      "end_seconds": 316,
+      "start_label": "00:05:15",
+      "start_seconds": 315,
+      "text": "happy.\" Um"
+    },
+    {
+      "end_label": "00:05:18",
+      "end_seconds": 318,
+      "start_label": "00:05:16",
+      "start_seconds": 316,
+      "text": "Um another question I might ask is uh this"
+    },
+    {
+      "end_label": "00:05:20",
+      "end_seconds": 320,
+      "start_label": "00:05:18",
+      "start_seconds": 318,
+      "text": "another question I might ask is uh this is a technical question like \"Agents now"
+    },
+    {
+      "end_label": "00:05:22",
+      "end_seconds": 322,
+      "start_label": "00:05:20",
+      "start_seconds": 320,
+      "text": "is a technical question like \"Agents now run for millions of tokens. Does the"
+    },
+    {
+      "end_label": "00:05:24",
+      "end_seconds": 324,
+      "start_label": "00:05:22",
+      "start_seconds": 322,
+      "text": "run for millions of tokens. Does the agent get really dumb after the first"
+    },
+    {
+      "end_label": "00:05:27",
+      "end_seconds": 327,
+      "start_label": "00:05:24",
+      "start_seconds": 324,
+      "text": "agent get really dumb after the first compaction? After the second compaction?"
+    },
+    {
+      "end_label": "00:05:28",
+      "end_seconds": 328,
+      "start_label": "00:05:27",
+      "start_seconds": 327,
+      "text": "compaction? After the second compaction? Does it never get dumb?\" Like how do we"
+    },
+    {
+      "end_label": "00:05:30",
+      "end_seconds": 330,
+      "start_label": "00:05:28",
+      "start_seconds": 328,
+      "text": "Does it never get dumb?\" Like how do we actually answer these questions? We need"
+    },
+    {
+      "end_label": "00:05:31",
+      "end_seconds": 331,
+      "start_label": "00:05:30",
+      "start_seconds": 330,
+      "text": "actually answer these questions? We need to do it by actually looking at the"
+    },
+    {
+      "end_label": "00:05:32",
+      "end_seconds": 332,
+      "start_label": "00:05:31",
+      "start_seconds": 331,
+      "text": "to do it by actually looking at the traces."
+    },
+    {
+      "end_label": "00:05:34",
+      "end_seconds": 334,
+      "start_label": "00:05:32",
+      "start_seconds": 332,
+      "text": "traces. And then the the other thing is like if"
+    },
+    {
+      "end_label": "00:05:36",
+      "end_seconds": 336,
+      "start_label": "00:05:35",
+      "start_seconds": 335,
+      "text": "And then the the other thing is like if I look at the traces, then I can try to"
+    },
+    {
+      "end_label": "00:05:39",
+      "end_seconds": 339,
+      "start_label": "00:05:36",
+      "start_seconds": 336,
+      "text": "I look at the traces, then I can try to prove some counterfactuals, which is"
+    },
+    {
+      "end_label": "00:05:41",
+      "end_seconds": 341,
+      "start_label": "00:05:39",
+      "start_seconds": 339,
+      "text": "prove some counterfactuals, which is \"Hey, like I ran GPT 5.5 for this and I"
+    },
+    {
+      "end_label": "00:05:44",
+      "end_seconds": 344,
+      "start_label": "00:05:41",
+      "start_seconds": 341,
+      "text": "\"Hey, like I ran GPT 5.5 for this and I heard like GLM is really good. What"
+    },
+    {
+      "end_label": "00:05:47",
+      "end_seconds": 347,
+      "start_label": "00:05:44",
+      "start_seconds": 344,
+      "text": "heard like GLM is really good. What happens if I run GLM 5.2 for this task"
+    },
+    {
+      "end_label": "00:05:50",
+      "end_seconds": 350,
+      "start_label": "00:05:47",
+      "start_seconds": 347,
+      "text": "happens if I run GLM 5.2 for this task and how do I compare them? Metrics,"
+    },
+    {
+      "end_label": "00:05:52",
+      "end_seconds": 352,
+      "start_label": "00:05:50",
+      "start_seconds": 350,
+      "text": "and how do I compare them? Metrics, awesome. The The trace level captures"
+    },
+    {
+      "end_label": "00:05:54",
+      "end_seconds": 354,
+      "start_label": "00:05:52",
+      "start_seconds": 352,
+      "text": "awesome. The The trace level captures the actual like behavior that users see."
+    },
+    {
+      "end_label": "00:05:55",
+      "end_seconds": 355,
+      "start_label": "00:05:54",
+      "start_seconds": 354,
+      "text": "the actual like behavior that users see. So, that's also like very helpful for"
+    },
+    {
+      "end_label": "00:05:59",
+      "end_seconds": 359,
+      "start_label": "00:05:55",
+      "start_seconds": 355,
+      "text": "So, that's also like very helpful for seeing behavior like fine grain scales."
+    },
+    {
+      "end_label": "00:06:04",
+      "end_seconds": 364,
+      "start_label": "00:06:03",
+      "start_seconds": 363,
+      "text": "And the way that we sort of think about the data that's being generated by"
+    },
+    {
+      "end_label": "00:06:06",
+      "end_seconds": 366,
+      "start_label": "00:06:04",
+      "start_seconds": 364,
+      "text": "the data that's being generated by agents is that the data that we see"
+    },
+    {
+      "end_label": "00:06:09",
+      "end_seconds": 369,
+      "start_label": "00:06:07",
+      "start_seconds": 367,
+      "text": "agents is that the data that we see today is going to be the smallest that"
+    },
+    {
+      "end_label": "00:06:11",
+      "end_seconds": 371,
+      "start_label": "00:06:09",
+      "start_seconds": 369,
+      "text": "today is going to be the smallest that humans have ever seen in their entire"
+    },
+    {
+      "end_label": "00:06:14",
+      "end_seconds": 374,
+      "start_label": "00:06:11",
+      "start_seconds": 371,
+      "text": "humans have ever seen in their entire lives because we're in this massive"
+    },
+    {
+      "end_label": "00:06:16",
+      "end_seconds": 376,
+      "start_label": "00:06:14",
+      "start_seconds": 374,
+      "text": "lives because we're in this massive exponential shift to our agents are"
+    },
+    {
+      "end_label": "00:06:18",
+      "end_seconds": 378,
+      "start_label": "00:06:16",
+      "start_seconds": 376,
+      "text": "exponential shift to our agents are doing more and more work in the economy."
+    },
+    {
+      "end_label": "00:06:19",
+      "end_seconds": 379,
+      "start_label": "00:06:18",
+      "start_seconds": 378,
+      "text": "doing more and more work in the economy. And what that means is like the amount"
+    },
+    {
+      "end_label": "00:06:21",
+      "end_seconds": 381,
+      "start_label": "00:06:19",
+      "start_seconds": 379,
+      "text": "And what that means is like the amount of data that humans have produced in our"
+    },
+    {
+      "end_label": "00:06:24",
+      "end_seconds": 384,
+      "start_label": "00:06:21",
+      "start_seconds": 381,
+      "text": "of data that humans have produced in our entire lifetime will soon be eclipsed by"
+    },
+    {
+      "end_label": "00:06:27",
+      "end_seconds": 387,
+      "start_label": "00:06:24",
+      "start_seconds": 384,
+      "text": "entire lifetime will soon be eclipsed by agents running on like year scales and"
+    },
+    {
+      "end_label": "00:06:29",
+      "end_seconds": 389,
+      "start_label": "00:06:27",
+      "start_seconds": 387,
+      "text": "agents running on like year scales and then 6-month scales and 3-month scales"
+    },
+    {
+      "end_label": "00:06:32",
+      "end_seconds": 392,
+      "start_label": "00:06:29",
+      "start_seconds": 389,
+      "text": "then 6-month scales and 3-month scales and then maybe every day, right? Um and"
+    },
+    {
+      "end_label": "00:06:35",
+      "end_seconds": 395,
+      "start_label": "00:06:32",
+      "start_seconds": 392,
+      "text": "and then maybe every day, right? Um and to understand a ton of that data,"
+    },
+    {
+      "end_label": "00:06:37",
+      "end_seconds": 397,
+      "start_label": "00:06:35",
+      "start_seconds": 395,
+      "text": "to understand a ton of that data, roughly what we need to do is contend"
+    },
+    {
+      "end_label": "00:06:39",
+      "end_seconds": 399,
+      "start_label": "00:06:37",
+      "start_seconds": 397,
+      "text": "roughly what we need to do is contend with a couple problems. There's more,"
+    },
+    {
+      "end_label": "00:06:40",
+      "end_seconds": 400,
+      "start_label": "00:06:39",
+      "start_seconds": 399,
+      "text": "with a couple problems. There's more, but these are the two that I'm going to"
+    },
+    {
+      "end_label": "00:06:42",
+      "end_seconds": 402,
+      "start_label": "00:06:40",
+      "start_seconds": 400,
+      "text": "but these are the two that I'm going to focus on. So,"
+    },
+    {
+      "end_label": "00:06:45",
+      "end_seconds": 405,
+      "start_label": "00:06:42",
+      "start_seconds": 402,
+      "text": "focus on. So, one, uh reading traces at scale is super"
+    },
+    {
+      "end_label": "00:06:47",
+      "end_seconds": 407,
+      "start_label": "00:06:45",
+      "start_seconds": 405,
+      "text": "one, uh reading traces at scale is super expensive, uh especially if you have"
+    },
+    {
+      "end_label": "00:06:49",
+      "end_seconds": 409,
+      "start_label": "00:06:47",
+      "start_seconds": 407,
+      "text": "expensive, uh especially if you have millions of traces and if you have"
+    },
+    {
+      "end_label": "00:06:52",
+      "end_seconds": 412,
+      "start_label": "00:06:49",
+      "start_seconds": 409,
+      "text": "millions of traces and if you have millions of tokens per trace, right? Um"
+    },
+    {
+      "end_label": "00:06:54",
+      "end_seconds": 414,
+      "start_label": "00:06:52",
+      "start_seconds": 412,
+      "text": "millions of tokens per trace, right? Um think of it as like an input token cost."
+    },
+    {
+      "end_label": "00:06:57",
+      "end_seconds": 417,
+      "start_label": "00:06:54",
+      "start_seconds": 414,
+      "text": "think of it as like an input token cost. You can like literally multiply the"
+    },
+    {
+      "end_label": "00:06:59",
+      "end_seconds": 419,
+      "start_label": "00:06:57",
+      "start_seconds": 417,
+      "text": "You can like literally multiply the input token cost uh times the number of"
+    },
+    {
+      "end_label": "00:07:01",
+      "end_seconds": 421,
+      "start_label": "00:06:59",
+      "start_seconds": 419,
+      "text": "input token cost uh times the number of traces times like how big each trace is"
+    },
+    {
+      "end_label": "00:07:03",
+      "end_seconds": 423,
+      "start_label": "00:07:01",
+      "start_seconds": 421,
+      "text": "traces times like how big each trace is on average, right? Um the the other"
+    },
+    {
+      "end_label": "00:07:05",
+      "end_seconds": 425,
+      "start_label": "00:07:03",
+      "start_seconds": 423,
+      "text": "on average, right? Um the the other thing is [clears throat] if I have a"
+    },
+    {
+      "end_label": "00:07:07",
+      "end_seconds": 427,
+      "start_label": "00:07:05",
+      "start_seconds": 425,
+      "text": "thing is [clears throat] if I have a super long interaction with a coding"
+    },
+    {
+      "end_label": "00:07:08",
+      "end_seconds": 428,
+      "start_label": "00:07:07",
+      "start_seconds": 427,
+      "text": "super long interaction with a coding agent like Cloud Code or Codex or like"
+    },
+    {
+      "end_label": "00:07:10",
+      "end_seconds": 430,
+      "start_label": "00:07:08",
+      "start_seconds": 428,
+      "text": "agent like Cloud Code or Codex or like deep agents, um"
+    },
+    {
+      "end_label": "00:07:12",
+      "end_seconds": 432,
+      "start_label": "00:07:10",
+      "start_seconds": 430,
+      "text": "deep agents, um I can't even read that trace with"
+    },
+    {
+      "end_label": "00:07:15",
+      "end_seconds": 435,
+      "start_label": "00:07:12",
+      "start_seconds": 432,
+      "text": "I can't even read that trace with another agent because that that context"
+    },
+    {
+      "end_label": "00:07:17",
+      "end_seconds": 437,
+      "start_label": "00:07:15",
+      "start_seconds": 435,
+      "text": "another agent because that that context like doesn't fit in memory, right? So,"
+    },
+    {
+      "end_label": "00:07:19",
+      "end_seconds": 439,
+      "start_label": "00:07:17",
+      "start_seconds": 437,
+      "text": "like doesn't fit in memory, right? So, it's like we we need to develop systems"
+    },
+    {
+      "end_label": "00:07:20",
+      "end_seconds": 440,
+      "start_label": "00:07:19",
+      "start_seconds": 439,
+      "text": "it's like we we need to develop systems so I can sort of treat that context as"
+    },
+    {
+      "end_label": "00:07:22",
+      "end_seconds": 442,
+      "start_label": "00:07:20",
+      "start_seconds": 440,
+      "text": "so I can sort of treat that context as like an external object and then I can"
+    },
+    {
+      "end_label": "00:07:24",
+      "end_seconds": 444,
+      "start_label": "00:07:22",
+      "start_seconds": 442,
+      "text": "like an external object and then I can sort of query into it, right? So, we we"
+    },
+    {
+      "end_label": "00:07:26",
+      "end_seconds": 446,
+      "start_label": "00:07:24",
+      "start_seconds": 444,
+      "text": "sort of query into it, right? So, we we need to build agents to efficiently mine"
+    },
+    {
+      "end_label": "00:07:28",
+      "end_seconds": 448,
+      "start_label": "00:07:26",
+      "start_seconds": 446,
+      "text": "need to build agents to efficiently mine data from other agents and it's it's no"
+    },
+    {
+      "end_label": "00:07:30",
+      "end_seconds": 450,
+      "start_label": "00:07:28",
+      "start_seconds": 448,
+      "text": "data from other agents and it's it's no longer as simple as just like feeding"
+    },
+    {
+      "end_label": "00:07:32",
+      "end_seconds": 452,
+      "start_label": "00:07:30",
+      "start_seconds": 450,
+      "text": "longer as simple as just like feeding the data into context and there's like"
+    },
+    {
+      "end_label": "00:07:34",
+      "end_seconds": 454,
+      "start_label": "00:07:32",
+      "start_seconds": 452,
+      "text": "the data into context and there's like tricks that we'll sort of talk about uh"
+    },
+    {
+      "end_label": "00:07:36",
+      "end_seconds": 456,
+      "start_label": "00:07:34",
+      "start_seconds": 454,
+      "text": "tricks that we'll sort of talk about uh to to do that well."
+    },
+    {
+      "end_label": "00:07:39",
+      "end_seconds": 459,
+      "start_label": "00:07:36",
+      "start_seconds": 456,
+      "text": "to to do that well. Great. So, one of the things that I"
+    },
+    {
+      "end_label": "00:07:40",
+      "end_seconds": 460,
+      "start_label": "00:07:39",
+      "start_seconds": 459,
+      "text": "Great. So, one of the things that I think is really really cool in the last"
+    },
+    {
+      "end_label": "00:07:43",
+      "end_seconds": 463,
+      "start_label": "00:07:40",
+      "start_seconds": 460,
+      "text": "think is really really cool in the last 6 months is that open models have"
+    },
+    {
+      "end_label": "00:07:45",
+      "end_seconds": 465,
+      "start_label": "00:07:43",
+      "start_seconds": 463,
+      "text": "6 months is that open models have basically hit an inflection point in"
+    },
+    {
+      "end_label": "00:07:48",
+      "end_seconds": 468,
+      "start_label": "00:07:45",
+      "start_seconds": 465,
+      "text": "basically hit an inflection point in intelligence that we at LangChain don't"
+    },
+    {
+      "end_label": "00:07:50",
+      "end_seconds": 470,
+      "start_label": "00:07:48",
+      "start_seconds": 468,
+      "text": "intelligence that we at LangChain don't reach for the frontier models for every"
+    },
+    {
+      "end_label": "00:07:53",
+      "end_seconds": 473,
+      "start_label": "00:07:50",
+      "start_seconds": 470,
+      "text": "reach for the frontier models for every single use case. We're quite conscious"
+    },
+    {
+      "end_label": "00:07:55",
+      "end_seconds": 475,
+      "start_label": "00:07:53",
+      "start_seconds": 473,
+      "text": "single use case. We're quite conscious about what is the minimum level of"
+    },
+    {
+      "end_label": "00:07:57",
+      "end_seconds": 477,
+      "start_label": "00:07:55",
+      "start_seconds": 475,
+      "text": "about what is the minimum level of intelligence that I need to do any given"
+    },
+    {
+      "end_label": "00:08:00",
+      "end_seconds": 480,
+      "start_label": "00:07:57",
+      "start_seconds": 477,
+      "text": "intelligence that I need to do any given task. And like practically speaking,"
+    },
+    {
+      "end_label": "00:08:02",
+      "end_seconds": 482,
+      "start_label": "00:08:00",
+      "start_seconds": 480,
+      "text": "task. And like practically speaking, honestly, yes, we start with Opus, we"
+    },
+    {
+      "end_label": "00:08:04",
+      "end_seconds": 484,
+      "start_label": "00:08:02",
+      "start_seconds": 482,
+      "text": "honestly, yes, we start with Opus, we start with 55 because we just want to"
+    },
+    {
+      "end_label": "00:08:06",
+      "end_seconds": 486,
+      "start_label": "00:08:04",
+      "start_seconds": 484,
+      "text": "start with 55 because we just want to know if the task is even possible. But"
+    },
+    {
+      "end_label": "00:08:09",
+      "end_seconds": 489,
+      "start_label": "00:08:06",
+      "start_seconds": 486,
+      "text": "know if the task is even possible. But then once we reach that sort of like"
+    },
+    {
+      "end_label": "00:08:11",
+      "end_seconds": 491,
+      "start_label": "00:08:09",
+      "start_seconds": 489,
+      "text": "then once we reach that sort of like waterline, then we like look back at"
+    },
+    {
+      "end_label": "00:08:13",
+      "end_seconds": 493,
+      "start_label": "00:08:11",
+      "start_seconds": 491,
+      "text": "waterline, then we like look back at those traces and we see, \"Hey, can we"
+    },
+    {
+      "end_label": "00:08:15",
+      "end_seconds": 495,
+      "start_label": "00:08:13",
+      "start_seconds": 493,
+      "text": "those traces and we see, \"Hey, can we use an open model to do the same thing?\""
+    },
+    {
+      "end_label": "00:08:16",
+      "end_seconds": 496,
+      "start_label": "00:08:15",
+      "start_seconds": 495,
+      "text": "use an open model to do the same thing?\" So, this is a bunch of work that we did"
+    },
+    {
+      "end_label": "00:08:19",
+      "end_seconds": 499,
+      "start_label": "00:08:17",
+      "start_seconds": 497,
+      "text": "So, this is a bunch of work that we did with Harvey and then their lab legal"
+    },
+    {
+      "end_label": "00:08:21",
+      "end_seconds": 501,
+      "start_label": "00:08:19",
+      "start_seconds": 499,
+      "text": "with Harvey and then their lab legal benchmark. Basically, what we're looking"
+    },
+    {
+      "end_label": "00:08:22",
+      "end_seconds": 502,
+      "start_label": "00:08:21",
+      "start_seconds": 501,
+      "text": "benchmark. Basically, what we're looking at is"
+    },
+    {
+      "end_label": "00:08:25",
+      "end_seconds": 505,
+      "start_label": "00:08:22",
+      "start_seconds": 502,
+      "text": "at is can I match the trace judging capability"
+    },
+    {
+      "end_label": "00:08:28",
+      "end_seconds": 508,
+      "start_label": "00:08:25",
+      "start_seconds": 505,
+      "text": "can I match the trace judging capability of Opus with an open cheaper model? And"
+    },
+    {
+      "end_label": "00:08:32",
+      "end_seconds": 512,
+      "start_label": "00:08:28",
+      "start_seconds": 508,
+      "text": "of Opus with an open cheaper model? And the answer is roughly yes at like an"
+    },
+    {
+      "end_label": "00:08:34",
+      "end_seconds": 514,
+      "start_label": "00:08:32",
+      "start_seconds": 512,
+      "text": "the answer is roughly yes at like an order or like two orders of magnitude"
+    },
+    {
+      "end_label": "00:08:36",
+      "end_seconds": 516,
+      "start_label": "00:08:34",
+      "start_seconds": 514,
+      "text": "order or like two orders of magnitude cheaper. And like the way we do that is"
+    },
+    {
+      "end_label": "00:08:38",
+      "end_seconds": 518,
+      "start_label": "00:08:36",
+      "start_seconds": 516,
+      "text": "cheaper. And like the way we do that is we try a bunch of models,"
+    },
+    {
+      "end_label": "00:08:38",
+      "end_seconds": 518,
+      "start_label": "00:08:38",
+      "start_seconds": 518,
+      "text": "we try a bunch of models, we do a bunch of like harness"
+    },
+    {
+      "end_label": "00:08:40",
+      "end_seconds": 520,
+      "start_label": "00:08:38",
+      "start_seconds": 518,
+      "text": "we do a bunch of like harness engineering, and the harness engineering"
+    },
+    {
+      "end_label": "00:08:42",
+      "end_seconds": 522,
+      "start_label": "00:08:40",
+      "start_seconds": 520,
+      "text": "engineering, and the harness engineering is informed by a bunch of the traces"
+    },
+    {
+      "end_label": "00:08:44",
+      "end_seconds": 524,
+      "start_label": "00:08:42",
+      "start_seconds": 522,
+      "text": "is informed by a bunch of the traces that we read. So, it's like, \"Hey, like"
+    },
+    {
+      "end_label": "00:08:46",
+      "end_seconds": 526,
+      "start_label": "00:08:44",
+      "start_seconds": 524,
+      "text": "that we read. So, it's like, \"Hey, like Opus reasons about things in this way."
+    },
+    {
+      "end_label": "00:08:48",
+      "end_seconds": 528,
+      "start_label": "00:08:46",
+      "start_seconds": 526,
+      "text": "Opus reasons about things in this way. Maybe that's because of the prompt."
+    },
+    {
+      "end_label": "00:08:49",
+      "end_seconds": 529,
+      "start_label": "00:08:48",
+      "start_seconds": 528,
+      "text": "Maybe that's because of the prompt. Maybe Opus is just smarter, which it is,"
+    },
+    {
+      "end_label": "00:08:51",
+      "end_seconds": 531,
+      "start_label": "00:08:49",
+      "start_seconds": 529,
+      "text": "Maybe Opus is just smarter, which it is, than a bunch of the open models, but"
+    },
+    {
+      "end_label": "00:08:52",
+      "end_seconds": 532,
+      "start_label": "00:08:51",
+      "start_seconds": 531,
+      "text": "than a bunch of the open models, but that might mean I need to give it a"
+    },
+    {
+      "end_label": "00:08:54",
+      "end_seconds": 534,
+      "start_label": "00:08:52",
+      "start_seconds": 532,
+      "text": "that might mean I need to give it a little bit more guidance so it can reach"
+    },
+    {
+      "end_label": "00:08:55",
+      "end_seconds": 535,
+      "start_label": "00:08:54",
+      "start_seconds": 534,
+      "text": "little bit more guidance so it can reach the sort of same intelligence level at"
+    },
+    {
+      "end_label": "00:08:56",
+      "end_seconds": 536,
+      "start_label": "00:08:55",
+      "start_seconds": 535,
+      "text": "the sort of same intelligence level at like a much"
+    },
+    {
+      "end_label": "00:08:58",
+      "end_seconds": 538,
+      "start_label": "00:08:56",
+      "start_seconds": 536,
+      "text": "like a much much lower cost.\""
+    },
+    {
+      "end_label": "00:09:00",
+      "end_seconds": 540,
+      "start_label": "00:08:58",
+      "start_seconds": 538,
+      "text": "much lower cost.\" And the the other thing that we sort of"
+    },
+    {
+      "end_label": "00:09:03",
+      "end_seconds": 543,
+      "start_label": "00:09:00",
+      "start_seconds": 540,
+      "text": "And the the other thing that we sort of look at is like harness engineering is"
+    },
+    {
+      "end_label": "00:09:04",
+      "end_seconds": 544,
+      "start_label": "00:09:03",
+      "start_seconds": 543,
+      "text": "look at is like harness engineering is amazing."
+    },
+    {
+      "end_label": "00:09:06",
+      "end_seconds": 546,
+      "start_label": "00:09:04",
+      "start_seconds": 544,
+      "text": "amazing. You get instant feedback and you can"
+    },
+    {
+      "end_label": "00:09:08",
+      "end_seconds": 548,
+      "start_label": "00:09:06",
+      "start_seconds": 546,
+      "text": "You get instant feedback and you can sort of like run on your evals, but"
+    },
+    {
+      "end_label": "00:09:10",
+      "end_seconds": 550,
+      "start_label": "00:09:08",
+      "start_seconds": 548,
+      "text": "sort of like run on your evals, but eventually what we find is you hit a"
+    },
+    {
+      "end_label": "00:09:12",
+      "end_seconds": 552,
+      "start_label": "00:09:10",
+      "start_seconds": 550,
+      "text": "eventually what we find is you hit a threshold of intelligence where it's"
+    },
+    {
+      "end_label": "00:09:15",
+      "end_seconds": 555,
+      "start_label": "00:09:12",
+      "start_seconds": 552,
+      "text": "threshold of intelligence where it's like \"If I keep tweaking this prompt,"
+    },
+    {
+      "end_label": "00:09:16",
+      "end_seconds": 556,
+      "start_label": "00:09:15",
+      "start_seconds": 555,
+      "text": "like \"If I keep tweaking this prompt, I'm not going to get too much more out"
+    },
+    {
+      "end_label": "00:09:18",
+      "end_seconds": 558,
+      "start_label": "00:09:16",
+      "start_seconds": 556,
+      "text": "I'm not going to get too much more out of it.\" And once we reach that point, we"
+    },
+    {
+      "end_label": "00:09:20",
+      "end_seconds": 560,
+      "start_label": "00:09:18",
+      "start_seconds": 558,
+      "text": "of it.\" And once we reach that point, we sort of look at, \"Okay, can I actually"
+    },
+    {
+      "end_label": "00:09:23",
+      "end_seconds": 563,
+      "start_label": "00:09:20",
+      "start_seconds": 560,
+      "text": "sort of look at, \"Okay, can I actually like fine-tune the model on my"
+    },
+    {
+      "end_label": "00:09:25",
+      "end_seconds": 565,
+      "start_label": "00:09:23",
+      "start_seconds": 563,
+      "text": "like fine-tune the model on my domain-specific task?\" And can I like"
+    },
+    {
+      "end_label": "00:09:27",
+      "end_seconds": 567,
+      "start_label": "00:09:25",
+      "start_seconds": 565,
+      "text": "domain-specific task?\" And can I like make it better on those tasks? And what"
+    },
+    {
+      "end_label": "00:09:29",
+      "end_seconds": 569,
+      "start_label": "00:09:27",
+      "start_seconds": 567,
+      "text": "make it better on those tasks? And what we find is if we take like base models"
+    },
+    {
+      "end_label": "00:09:32",
+      "end_seconds": 572,
+      "start_label": "00:09:29",
+      "start_seconds": 569,
+      "text": "we find is if we take like base models and we tune them on like very specific"
+    },
+    {
+      "end_label": "00:09:33",
+      "end_seconds": 573,
+      "start_label": "00:09:32",
+      "start_seconds": 572,
+      "text": "and we tune them on like very specific vertical tasks, which is what a lot of"
+    },
+    {
+      "end_label": "00:09:35",
+      "end_seconds": 575,
+      "start_label": "00:09:33",
+      "start_seconds": 573,
+      "text": "vertical tasks, which is what a lot of our customers do, they don't really care"
+    },
+    {
+      "end_label": "00:09:37",
+      "end_seconds": 577,
+      "start_label": "00:09:35",
+      "start_seconds": 575,
+      "text": "our customers do, they don't really care about the entire variance of tasks. like"
+    },
+    {
+      "end_label": "00:09:39",
+      "end_seconds": 579,
+      "start_label": "00:09:37",
+      "start_seconds": 577,
+      "text": "about the entire variance of tasks. like they care about what their customers"
+    },
+    {
+      "end_label": "00:09:40",
+      "end_seconds": 580,
+      "start_label": "00:09:39",
+      "start_seconds": 579,
+      "text": "they care about what their customers care about. So, if we focus on that"
+    },
+    {
+      "end_label": "00:09:42",
+      "end_seconds": 582,
+      "start_label": "00:09:40",
+      "start_seconds": 580,
+      "text": "care about. So, if we focus on that narrow set of tasks, then we can"
+    },
+    {
+      "end_label": "00:09:44",
+      "end_seconds": 584,
+      "start_label": "00:09:42",
+      "start_seconds": 582,
+      "text": "narrow set of tasks, then we can fine-tune base models to sort of like"
+    },
+    {
+      "end_label": "00:09:47",
+      "end_seconds": 587,
+      "start_label": "00:09:44",
+      "start_seconds": 584,
+      "text": "fine-tune base models to sort of like reach and then also go beyond frontier"
+    },
+    {
+      "end_label": "00:09:48",
+      "end_seconds": 588,
+      "start_label": "00:09:47",
+      "start_seconds": 587,
+      "text": "reach and then also go beyond frontier performance. And I think one sort of"
+    },
+    {
+      "end_label": "00:09:51",
+      "end_seconds": 591,
+      "start_label": "00:09:48",
+      "start_seconds": 588,
+      "text": "performance. And I think one sort of like small thing I'll mention as a lot"
+    },
+    {
+      "end_label": "00:09:53",
+      "end_seconds": 593,
+      "start_label": "00:09:51",
+      "start_seconds": 591,
+      "text": "like small thing I'll mention as a lot of people are getting into fine-tuning"
+    },
+    {
+      "end_label": "00:09:55",
+      "end_seconds": 595,
+      "start_label": "00:09:53",
+      "start_seconds": 593,
+      "text": "of people are getting into fine-tuning is that another sort of like economic"
+    },
+    {
+      "end_label": "00:09:58",
+      "end_seconds": 598,
+      "start_label": "00:09:55",
+      "start_seconds": 595,
+      "text": "is that another sort of like economic decision is that you can move from token"
+    },
+    {
+      "end_label": "00:10:02",
+      "end_seconds": 602,
+      "start_label": "00:09:58",
+      "start_seconds": 598,
+      "text": "decision is that you can move from token costs to hardware costs. And this is"
+    },
+    {
+      "end_label": "00:10:04",
+      "end_seconds": 604,
+      "start_label": "00:10:02",
+      "start_seconds": 602,
+      "text": "costs to hardware costs. And this is like can be a really big change, right?"
+    },
+    {
+      "end_label": "00:10:06",
+      "end_seconds": 606,
+      "start_label": "00:10:04",
+      "start_seconds": 604,
+      "text": "like can be a really big change, right? Cuz like you're very used to hey, like a"
+    },
+    {
+      "end_label": "00:10:08",
+      "end_seconds": 608,
+      "start_label": "00:10:06",
+      "start_seconds": 606,
+      "text": "Cuz like you're very used to hey, like a million tokens cost this much, not as"
+    },
+    {
+      "end_label": "00:10:09",
+      "end_seconds": 609,
+      "start_label": "00:10:08",
+      "start_seconds": 608,
+      "text": "million tokens cost this much, not as much like this cluster sort of costs"
+    },
+    {
+      "end_label": "00:10:12",
+      "end_seconds": 612,
+      "start_label": "00:10:09",
+      "start_seconds": 609,
+      "text": "much like this cluster sort of costs this much. But for like very high"
+    },
+    {
+      "end_label": "00:10:14",
+      "end_seconds": 614,
+      "start_label": "00:10:12",
+      "start_seconds": 612,
+      "text": "this much. But for like very high inference workloads, we find it to be"
+    },
+    {
+      "end_label": "00:10:16",
+      "end_seconds": 616,
+      "start_label": "00:10:14",
+      "start_seconds": 614,
+      "text": "inference workloads, we find it to be way cheaper just to like run a cluster"
+    },
+    {
+      "end_label": "00:10:17",
+      "end_seconds": 617,
+      "start_label": "00:10:16",
+      "start_seconds": 616,
+      "text": "way cheaper just to like run a cluster and I get like unlimited inference on"
+    },
+    {
+      "end_label": "00:10:19",
+      "end_seconds": 619,
+      "start_label": "00:10:18",
+      "start_seconds": 618,
+      "text": "and I get like unlimited inference on that cluster. I don't have to worry"
+    },
+    {
+      "end_label": "00:10:20",
+      "end_seconds": 620,
+      "start_label": "00:10:19",
+      "start_seconds": 619,
+      "text": "that cluster. I don't have to worry about tokens, but I can just do the"
+    },
+    {
+      "end_label": "00:10:22",
+      "end_seconds": 622,
+      "start_label": "00:10:20",
+      "start_seconds": 620,
+      "text": "about tokens, but I can just do the calculation of like, hey,"
+    },
+    {
+      "end_label": "00:10:23",
+      "end_seconds": 623,
+      "start_label": "00:10:22",
+      "start_seconds": 622,
+      "text": "calculation of like, hey, um this will end up being cheaper and"
+    },
+    {
+      "end_label": "00:10:25",
+      "end_seconds": 625,
+      "start_label": "00:10:23",
+      "start_seconds": 623,
+      "text": "um this will end up being cheaper and then I can spin it down when I don't"
+    },
+    {
+      "end_label": "00:10:27",
+      "end_seconds": 627,
+      "start_label": "00:10:25",
+      "start_seconds": 625,
+      "text": "then I can spin it down when I don't need it."
+    },
+    {
+      "end_label": "00:10:31",
+      "end_seconds": 631,
+      "start_label": "00:10:30",
+      "start_seconds": 630,
+      "text": "Cool. And I said all of this um so we obviously like built a product to"
+    },
+    {
+      "end_label": "00:10:33",
+      "end_seconds": 633,
+      "start_label": "00:10:31",
+      "start_seconds": 631,
+      "text": "so we obviously like built a product to do that. Uh I won't shill it too much,"
+    },
+    {
+      "end_label": "00:10:36",
+      "end_seconds": 636,
+      "start_label": "00:10:33",
+      "start_seconds": 633,
+      "text": "do that. Uh I won't shill it too much, but it's LangSplat engine. Uh basically,"
+    },
+    {
+      "end_label": "00:10:39",
+      "end_seconds": 639,
+      "start_label": "00:10:36",
+      "start_seconds": 636,
+      "text": "but it's LangSplat engine. Uh basically, this product is trying to automate this"
+    },
+    {
+      "end_label": "00:10:42",
+      "end_seconds": 642,
+      "start_label": "00:10:39",
+      "start_seconds": 639,
+      "text": "this product is trying to automate this loop for you, which is if you have any"
+    },
+    {
+      "end_label": "00:10:44",
+      "end_seconds": 644,
+      "start_label": "00:10:42",
+      "start_seconds": 642,
+      "text": "loop for you, which is if you have any volume of trace data and you're looking"
+    },
+    {
+      "end_label": "00:10:46",
+      "end_seconds": 646,
+      "start_label": "00:10:44",
+      "start_seconds": 644,
+      "text": "volume of trace data and you're looking for something that trace data or you"
+    },
+    {
+      "end_label": "00:10:47",
+      "end_seconds": 647,
+      "start_label": "00:10:46",
+      "start_seconds": 646,
+      "text": "for something that trace data or you want to generate e-vals from that trace"
+    },
+    {
+      "end_label": "00:10:50",
+      "end_seconds": 650,
+      "start_label": "00:10:47",
+      "start_seconds": 647,
+      "text": "want to generate e-vals from that trace data or you want to like generate"
+    },
+    {
+      "end_label": "00:10:51",
+      "end_seconds": 651,
+      "start_label": "00:10:50",
+      "start_seconds": 650,
+      "text": "data or you want to like generate feedback for like humans to read from"
+    },
+    {
+      "end_label": "00:10:53",
+      "end_seconds": 653,
+      "start_label": "00:10:52",
+      "start_seconds": 652,
+      "text": "feedback for like humans to read from that trace data, it will go read all of"
+    },
+    {
+      "end_label": "00:10:55",
+      "end_seconds": 655,
+      "start_label": "00:10:53",
+      "start_seconds": 653,
+      "text": "that trace data, it will go read all of it, it'll like find issues, it'll"
+    },
+    {
+      "end_label": "00:10:56",
+      "end_seconds": 656,
+      "start_label": "00:10:55",
+      "start_seconds": 655,
+      "text": "it, it'll like find issues, it'll agentically search over it, and they can"
+    },
+    {
+      "end_label": "00:10:59",
+      "end_seconds": 659,
+      "start_label": "00:10:56",
+      "start_seconds": 656,
+      "text": "agentically search over it, and they can like prepare data sets for you to do"
+    },
+    {
+      "end_label": "00:11:02",
+      "end_seconds": 662,
+      "start_label": "00:10:59",
+      "start_seconds": 659,
+      "text": "like prepare data sets for you to do something after. And a bit of a leader,"
+    },
+    {
+      "end_label": "00:11:03",
+      "end_seconds": 663,
+      "start_label": "00:11:02",
+      "start_seconds": 662,
+      "text": "something after. And a bit of a leader, um"
+    },
+    {
+      "end_label": "00:11:05",
+      "end_seconds": 665,
+      "start_label": "00:11:03",
+      "start_seconds": 663,
+      "text": "um what that something basically is is the"
+    },
+    {
+      "end_label": "00:11:08",
+      "end_seconds": 668,
+      "start_label": "00:11:05",
+      "start_seconds": 665,
+      "text": "what that something basically is is the outputs of this trace mining exercise."
+    },
+    {
+      "end_label": "00:11:08",
+      "end_seconds": 668,
+      "start_label": "00:11:08",
+      "start_seconds": 668,
+      "text": "outputs of this trace mining exercise. So,"
+    },
+    {
+      "end_label": "00:11:10",
+      "end_seconds": 670,
+      "start_label": "00:11:09",
+      "start_seconds": 669,
+      "text": "So, there's like three things that I"
+    },
+    {
+      "end_label": "00:11:12",
+      "end_seconds": 672,
+      "start_label": "00:11:10",
+      "start_seconds": 670,
+      "text": "there's like three things that I mentioned here uh which we see a bunch"
+    },
+    {
+      "end_label": "00:11:14",
+      "end_seconds": 674,
+      "start_label": "00:11:12",
+      "start_seconds": 672,
+      "text": "mentioned here uh which we see a bunch and we kind of put into the product. So,"
+    },
+    {
+      "end_label": "00:11:17",
+      "end_seconds": 677,
+      "start_label": "00:11:14",
+      "start_seconds": 674,
+      "text": "and we kind of put into the product. So, one is distillation and fine-tuning,"
+    },
+    {
+      "end_label": "00:11:20",
+      "end_seconds": 680,
+      "start_label": "00:11:17",
+      "start_seconds": 677,
+      "text": "one is distillation and fine-tuning, which is let's say I'm running GLM 5.2."
+    },
+    {
+      "end_label": "00:11:23",
+      "end_seconds": 683,
+      "start_label": "00:11:20",
+      "start_seconds": 680,
+      "text": "which is let's say I'm running GLM 5.2. It's doing great, but I think that I can"
+    },
+    {
+      "end_label": "00:11:25",
+      "end_seconds": 685,
+      "start_label": "00:11:23",
+      "start_seconds": 683,
+      "text": "It's doing great, but I think that I can run this task like way cheaper with like"
+    },
+    {
+      "end_label": "00:11:27",
+      "end_seconds": 687,
+      "start_label": "00:11:25",
+      "start_seconds": 685,
+      "text": "run this task like way cheaper with like a 9B or 13B model. Then what I'll do is"
+    },
+    {
+      "end_label": "00:11:29",
+      "end_seconds": 689,
+      "start_label": "00:11:27",
+      "start_seconds": 687,
+      "text": "a 9B or 13B model. Then what I'll do is like I'll take the good traces and the"
+    },
+    {
+      "end_label": "00:11:32",
+      "end_seconds": 692,
+      "start_label": "00:11:29",
+      "start_seconds": 689,
+      "text": "like I'll take the good traces and the good examples from the GLM 5.2 runs,"
+    },
+    {
+      "end_label": "00:11:33",
+      "end_seconds": 693,
+      "start_label": "00:11:32",
+      "start_seconds": 692,
+      "text": "good examples from the GLM 5.2 runs, I'll prepare them in a data set, and"
+    },
+    {
+      "end_label": "00:11:35",
+      "end_seconds": 695,
+      "start_label": "00:11:33",
+      "start_seconds": 693,
+      "text": "I'll prepare them in a data set, and then I'll try to fine-tune a small model"
+    },
+    {
+      "end_label": "00:11:37",
+      "end_seconds": 697,
+      "start_label": "00:11:35",
+      "start_seconds": 695,
+      "text": "then I'll try to fine-tune a small model on that data set to like mimic behavior,"
+    },
+    {
+      "end_label": "00:11:39",
+      "end_seconds": 699,
+      "start_label": "00:11:37",
+      "start_seconds": 697,
+      "text": "on that data set to like mimic behavior, essentially, right? And this is like"
+    },
+    {
+      "end_label": "00:11:43",
+      "end_seconds": 703,
+      "start_label": "00:11:39",
+      "start_seconds": 699,
+      "text": "essentially, right? And this is like distillation, SFT. The The other one is"
+    },
+    {
+      "end_label": "00:11:45",
+      "end_seconds": 705,
+      "start_label": "00:11:43",
+      "start_seconds": 703,
+      "text": "distillation, SFT. The The other one is generating evals and environments. So,"
+    },
+    {
+      "end_label": "00:11:48",
+      "end_seconds": 708,
+      "start_label": "00:11:45",
+      "start_seconds": 705,
+      "text": "generating evals and environments. So, maybe another slightly hot take, I think"
+    },
+    {
+      "end_label": "00:11:51",
+      "end_seconds": 711,
+      "start_label": "00:11:48",
+      "start_seconds": 708,
+      "text": "maybe another slightly hot take, I think you can basically define agent behavior"
+    },
+    {
+      "end_label": "00:11:53",
+      "end_seconds": 713,
+      "start_label": "00:11:51",
+      "start_seconds": 711,
+      "text": "you can basically define agent behavior by showing the evals that you ran on it,"
+    },
+    {
+      "end_label": "00:11:55",
+      "end_seconds": 715,
+      "start_label": "00:11:53",
+      "start_seconds": 713,
+      "text": "by showing the evals that you ran on it, right? Like, if someone showed me all"
+    },
+    {
+      "end_label": "00:11:56",
+      "end_seconds": 716,
+      "start_label": "00:11:55",
+      "start_seconds": 715,
+      "text": "right? Like, if someone showed me all the things that they're trying to test"
+    },
+    {
+      "end_label": "00:11:58",
+      "end_seconds": 718,
+      "start_label": "00:11:56",
+      "start_seconds": 716,
+      "text": "the things that they're trying to test their agent on, I think I would have a"
+    },
+    {
+      "end_label": "00:12:00",
+      "end_seconds": 720,
+      "start_label": "00:11:58",
+      "start_seconds": 718,
+      "text": "their agent on, I think I would have a rough idea about how that agent is going"
+    },
+    {
+      "end_label": "00:12:02",
+      "end_seconds": 722,
+      "start_label": "00:12:00",
+      "start_seconds": 720,
+      "text": "rough idea about how that agent is going to behave because it literally like hill"
+    },
+    {
+      "end_label": "00:12:05",
+      "end_seconds": 725,
+      "start_label": "00:12:02",
+      "start_seconds": 722,
+      "text": "to behave because it literally like hill climbs those evals, and you you alter"
+    },
+    {
+      "end_label": "00:12:07",
+      "end_seconds": 727,
+      "start_label": "00:12:05",
+      "start_seconds": 725,
+      "text": "climbs those evals, and you you alter the behavior of the agent to make the"
+    },
+    {
+      "end_label": "00:12:09",
+      "end_seconds": 729,
+      "start_label": "00:12:07",
+      "start_seconds": 727,
+      "text": "the behavior of the agent to make the evals pass, right? Like, the purpose of"
+    },
+    {
+      "end_label": "00:12:11",
+      "end_seconds": 731,
+      "start_label": "00:12:09",
+      "start_seconds": 729,
+      "text": "evals pass, right? Like, the purpose of evals is roughly to try to make them"
+    },
+    {
+      "end_label": "00:12:13",
+      "end_seconds": 733,
+      "start_label": "00:12:11",
+      "start_seconds": 731,
+      "text": "evals is roughly to try to make them pass, right? So, I update my agent so"
+    },
+    {
+      "end_label": "00:12:15",
+      "end_seconds": 735,
+      "start_label": "00:12:13",
+      "start_seconds": 733,
+      "text": "pass, right? So, I update my agent so that they essentially pass. And then the"
+    },
+    {
+      "end_label": "00:12:17",
+      "end_seconds": 737,
+      "start_label": "00:12:15",
+      "start_seconds": 735,
+      "text": "that they essentially pass. And then the the other thing is um like humans are"
+    },
+    {
+      "end_label": "00:12:20",
+      "end_seconds": 740,
+      "start_label": "00:12:17",
+      "start_seconds": 737,
+      "text": "the other thing is um like humans are still in the loop. Like, I need to know"
+    },
+    {
+      "end_label": "00:12:23",
+      "end_seconds": 743,
+      "start_label": "00:12:20",
+      "start_seconds": 740,
+      "text": "still in the loop. Like, I need to know that customers are happy. I also want to"
+    },
+    {
+      "end_label": "00:12:24",
+      "end_seconds": 744,
+      "start_label": "00:12:23",
+      "start_seconds": 743,
+      "text": "that customers are happy. I also want to know what my agents are doing. I just"
+    },
+    {
+      "end_label": "00:12:26",
+      "end_seconds": 746,
+      "start_label": "00:12:24",
+      "start_seconds": 744,
+      "text": "know what my agents are doing. I just don't have the bandwidth to read a bunch"
+    },
+    {
+      "end_label": "00:12:29",
+      "end_seconds": 749,
+      "start_label": "00:12:26",
+      "start_seconds": 746,
+      "text": "don't have the bandwidth to read a bunch of traces. So, preparing content for"
+    },
+    {
+      "end_label": "00:12:31",
+      "end_seconds": 751,
+      "start_label": "00:12:29",
+      "start_seconds": 749,
+      "text": "of traces. So, preparing content for humans is still like really, really"
+    },
+    {
+      "end_label": "00:12:34",
+      "end_seconds": 754,
+      "start_label": "00:12:31",
+      "start_seconds": 751,
+      "text": "humans is still like really, really valuable today, especially in like"
+    },
+    {
+      "end_label": "00:12:36",
+      "end_seconds": 756,
+      "start_label": "00:12:34",
+      "start_seconds": 754,
+      "text": "valuable today, especially in like high-trust domains like legal and"
+    },
+    {
+      "end_label": "00:12:38",
+      "end_seconds": 758,
+      "start_label": "00:12:36",
+      "start_seconds": 756,
+      "text": "high-trust domains like legal and medical. Like, some human needs to"
+    },
+    {
+      "end_label": "00:12:40",
+      "end_seconds": 760,
+      "start_label": "00:12:38",
+      "start_seconds": 758,
+      "text": "medical. Like, some human needs to review this, um but they can't read it"
+    },
+    {
+      "end_label": "00:12:42",
+      "end_seconds": 762,
+      "start_label": "00:12:40",
+      "start_seconds": 760,
+      "text": "review this, um but they can't read it all, so we try to make it easy for them"
+    },
+    {
+      "end_label": "00:12:46",
+      "end_seconds": 766,
+      "start_label": "00:12:42",
+      "start_seconds": 762,
+      "text": "all, so we try to make it easy for them to process all that data."
+    },
+    {
+      "end_label": "00:12:50",
+      "end_seconds": 770,
+      "start_label": "00:12:47",
+      "start_seconds": 767,
+      "text": "Great. This is um maybe a bit of a throwback. Like, how many people here"
+    },
+    {
+      "end_label": "00:12:52",
+      "end_seconds": 772,
+      "start_label": "00:12:50",
+      "start_seconds": 770,
+      "text": "throwback. Like, how many people here know what like scikit-learn is? Uh maybe"
+    },
+    {
+      "end_label": "00:12:53",
+      "end_seconds": 773,
+      "start_label": "00:12:52",
+      "start_seconds": 772,
+      "text": "know what like scikit-learn is? Uh maybe put your uh psych This crowd is just"
+    },
+    {
+      "end_label": "00:12:57",
+      "end_seconds": 777,
+      "start_label": "00:12:53",
+      "start_seconds": 773,
+      "text": "put your uh psych This crowd is just awesome. Um cool. So, uh when I was like"
+    },
+    {
+      "end_label": "00:12:59",
+      "end_seconds": 779,
+      "start_label": "00:12:57",
+      "start_seconds": 777,
+      "text": "awesome. Um cool. So, uh when I was like first doing my PhD, uh"
+    },
+    {
+      "end_label": "00:13:01",
+      "end_seconds": 781,
+      "start_label": "00:12:59",
+      "start_seconds": 779,
+      "text": "first doing my PhD, uh my PhD was like kind of trying to do"
+    },
+    {
+      "end_label": "00:13:04",
+      "end_seconds": 784,
+      "start_label": "00:13:01",
+      "start_seconds": 781,
+      "text": "my PhD was like kind of trying to do this, but like add new algorithms to"
+    },
+    {
+      "end_label": "00:13:05",
+      "end_seconds": 785,
+      "start_label": "00:13:04",
+      "start_seconds": 784,
+      "text": "this, but like add new algorithms to scikit-learn. And like, what"
+    },
+    {
+      "end_label": "00:13:09",
+      "end_seconds": 789,
+      "start_label": "00:13:05",
+      "start_seconds": 785,
+      "text": "scikit-learn. And like, what scikit-learn basically is uh an abstract"
+    },
+    {
+      "end_label": "00:13:13",
+      "end_seconds": 793,
+      "start_label": "00:13:09",
+      "start_seconds": 789,
+      "text": "scikit-learn basically is uh an abstract level, it's a bunch of helpers to fit"
+    },
+    {
+      "end_label": "00:13:15",
+      "end_seconds": 795,
+      "start_label": "00:13:13",
+      "start_seconds": 793,
+      "text": "level, it's a bunch of helpers to fit learning systems to data, right? And"
+    },
+    {
+      "end_label": "00:13:17",
+      "end_seconds": 797,
+      "start_label": "00:13:15",
+      "start_seconds": 795,
+      "text": "learning systems to data, right? And like, classical machine learning, I had"
+    },
+    {
+      "end_label": "00:13:18",
+      "end_seconds": 798,
+      "start_label": "00:13:17",
+      "start_seconds": 797,
+      "text": "like, classical machine learning, I had like a data set, I tried to fit it to"
+    },
+    {
+      "end_label": "00:13:21",
+      "end_seconds": 801,
+      "start_label": "00:13:18",
+      "start_seconds": 798,
+      "text": "like a data set, I tried to fit it to it, but I think the same principles that"
+    },
+    {
+      "end_label": "00:13:24",
+      "end_seconds": 804,
+      "start_label": "00:13:21",
+      "start_seconds": 801,
+      "text": "it, but I think the same principles that we use in modern in I got I call it"
+    },
+    {
+      "end_label": "00:13:25",
+      "end_seconds": 805,
+      "start_label": "00:13:24",
+      "start_seconds": 804,
+      "text": "we use in modern in I got I call it classical machine learning, it's like 6"
+    },
+    {
+      "end_label": "00:13:27",
+      "end_seconds": 807,
+      "start_label": "00:13:25",
+      "start_seconds": 805,
+      "text": "classical machine learning, it's like 6 years ago. Um that we do in classical"
+    },
+    {
+      "end_label": "00:13:29",
+      "end_seconds": 809,
+      "start_label": "00:13:27",
+      "start_seconds": 807,
+      "text": "years ago. Um that we do in classical machine learning uh definitely still"
+    },
+    {
+      "end_label": "00:13:32",
+      "end_seconds": 812,
+      "start_label": "00:13:29",
+      "start_seconds": 809,
+      "text": "machine learning uh definitely still apply to this agent-first world. Um,"
+    },
+    {
+      "end_label": "00:13:34",
+      "end_seconds": 814,
+      "start_label": "00:13:32",
+      "start_seconds": 812,
+      "text": "apply to this agent-first world. Um, the way that they apply is what I like"
+    },
+    {
+      "end_label": "00:13:38",
+      "end_seconds": 818,
+      "start_label": "00:13:34",
+      "start_seconds": 814,
+      "text": "the way that they apply is what I like to call model harness task fit. So, we"
+    },
+    {
+      "end_label": "00:13:40",
+      "end_seconds": 820,
+      "start_label": "00:13:38",
+      "start_seconds": 818,
+      "text": "to call model harness task fit. So, we still have this sort of like fit"
+    },
+    {
+      "end_label": "00:13:43",
+      "end_seconds": 823,
+      "start_label": "00:13:40",
+      "start_seconds": 820,
+      "text": "still have this sort of like fit function that I'm going to try to like"
+    },
+    {
+      "end_label": "00:13:46",
+      "end_seconds": 826,
+      "start_label": "00:13:43",
+      "start_seconds": 823,
+      "text": "function that I'm going to try to like take my data, take a harness, take a"
+    },
+    {
+      "end_label": "00:13:47",
+      "end_seconds": 827,
+      "start_label": "00:13:46",
+      "start_seconds": 826,
+      "text": "take my data, take a harness, take a model, and I'm going to try to fit it"
+    },
+    {
+      "end_label": "00:13:49",
+      "end_seconds": 829,
+      "start_label": "00:13:47",
+      "start_seconds": 827,
+      "text": "model, and I'm going to try to fit it all together to make sure that all of my"
+    },
+    {
+      "end_label": "00:13:52",
+      "end_seconds": 832,
+      "start_label": "00:13:49",
+      "start_seconds": 829,
+      "text": "all together to make sure that all of my tasks pass, right? The algorithms look"
+    },
+    {
+      "end_label": "00:13:56",
+      "end_seconds": 836,
+      "start_label": "00:13:52",
+      "start_seconds": 832,
+      "text": "tasks pass, right? The algorithms look slightly different, uh but the overall"
+    },
+    {
+      "end_label": "00:13:58",
+      "end_seconds": 838,
+      "start_label": "00:13:56",
+      "start_seconds": 836,
+      "text": "slightly different, uh but the overall process of machine learning doesn't"
+    },
+    {
+      "end_label": "00:14:00",
+      "end_seconds": 840,
+      "start_label": "00:13:58",
+      "start_seconds": 838,
+      "text": "process of machine learning doesn't really look that different, and we'll"
+    },
+    {
+      "end_label": "00:14:03",
+      "end_seconds": 843,
+      "start_label": "00:14:00",
+      "start_seconds": 840,
+      "text": "really look that different, and we'll talk about maybe roughly what our job"
+    },
+    {
+      "end_label": "00:14:06",
+      "end_seconds": 846,
+      "start_label": "00:14:03",
+      "start_seconds": 843,
+      "text": "talk about maybe roughly what our job becomes in this data-first, agent-first,"
+    },
+    {
+      "end_label": "00:14:08",
+      "end_seconds": 848,
+      "start_label": "00:14:06",
+      "start_seconds": 846,
+      "text": "becomes in this data-first, agent-first, fit-first world. So, a couple of our"
+    },
+    {
+      "end_label": "00:14:11",
+      "end_seconds": 851,
+      "start_label": "00:14:08",
+      "start_seconds": 848,
+      "text": "fit-first world. So, a couple of our main jobs now are"
+    },
+    {
+      "end_label": "00:14:13",
+      "end_seconds": 853,
+      "start_label": "00:14:11",
+      "start_seconds": 851,
+      "text": "main jobs now are find good fit functions. So, these are"
+    },
+    {
+      "end_label": "00:14:15",
+      "end_seconds": 855,
+      "start_label": "00:14:13",
+      "start_seconds": 853,
+      "text": "find good fit functions. So, these are like auto research. This is tons of"
+    },
+    {
+      "end_label": "00:14:17",
+      "end_seconds": 857,
+      "start_label": "00:14:15",
+      "start_seconds": 855,
+      "text": "like auto research. This is tons of great work that's being done in RL on"
+    },
+    {
+      "end_label": "00:14:20",
+      "end_seconds": 860,
+      "start_label": "00:14:17",
+      "start_seconds": 857,
+      "text": "great work that's being done in RL on different methods like OPD, OPSD,"
+    },
+    {
+      "end_label": "00:14:22",
+      "end_seconds": 862,
+      "start_label": "00:14:20",
+      "start_seconds": 860,
+      "text": "different methods like OPD, OPSD, trySFT."
+    },
+    {
+      "end_label": "00:14:24",
+      "end_seconds": 864,
+      "start_label": "00:14:22",
+      "start_seconds": 862,
+      "text": "trySFT. And also find good data, right? So, if"
+    },
+    {
+      "end_label": "00:14:26",
+      "end_seconds": 866,
+      "start_label": "00:14:24",
+      "start_seconds": 864,
+      "text": "And also find good data, right? So, if you put those two things together, then"
+    },
+    {
+      "end_label": "00:14:28",
+      "end_seconds": 868,
+      "start_label": "00:14:26",
+      "start_seconds": 866,
+      "text": "you put those two things together, then that is basically the applied or just"
+    },
+    {
+      "end_label": "00:14:30",
+      "end_seconds": 870,
+      "start_label": "00:14:28",
+      "start_seconds": 868,
+      "text": "that is basically the applied or just overall research question that every"
+    },
+    {
+      "end_label": "00:14:33",
+      "end_seconds": 873,
+      "start_label": "00:14:30",
+      "start_seconds": 870,
+      "text": "overall research question that every team has to make their agents better."
+    },
+    {
+      "end_label": "00:14:35",
+      "end_seconds": 875,
+      "start_label": "00:14:33",
+      "start_seconds": 873,
+      "text": "team has to make their agents better. I like some some examples that we've"
+    },
+    {
+      "end_label": "00:14:37",
+      "end_seconds": 877,
+      "start_label": "00:14:35",
+      "start_seconds": 875,
+      "text": "I like some some examples that we've seen that are like very popular that"
+    },
+    {
+      "end_label": "00:14:39",
+      "end_seconds": 879,
+      "start_label": "00:14:37",
+      "start_seconds": 877,
+      "text": "seen that are like very popular that we're pretty bullish on are just"
+    },
+    {
+      "end_label": "00:14:41",
+      "end_seconds": 881,
+      "start_label": "00:14:39",
+      "start_seconds": 879,
+      "text": "we're pretty bullish on are just generally auto research. So, if you have"
+    },
+    {
+      "end_label": "00:14:43",
+      "end_seconds": 883,
+      "start_label": "00:14:41",
+      "start_seconds": 881,
+      "text": "generally auto research. So, if you have some sort of score that you can make"
+    },
+    {
+      "end_label": "00:14:45",
+      "end_seconds": 885,
+      "start_label": "00:14:43",
+      "start_seconds": 883,
+      "text": "some sort of score that you can make number go up, uh"
+    },
+    {
+      "end_label": "00:14:47",
+      "end_seconds": 887,
+      "start_label": "00:14:45",
+      "start_seconds": 885,
+      "text": "number go up, uh agents are pretty good at making that"
+    },
+    {
+      "end_label": "00:14:48",
+      "end_seconds": 888,
+      "start_label": "00:14:47",
+      "start_seconds": 887,
+      "text": "agents are pretty good at making that number go up. They might cheat a little"
+    },
+    {
+      "end_label": "00:14:49",
+      "end_seconds": 889,
+      "start_label": "00:14:48",
+      "start_seconds": 888,
+      "text": "number go up. They might cheat a little bit and you need to like check them on"
+    },
+    {
+      "end_label": "00:14:51",
+      "end_seconds": 891,
+      "start_label": "00:14:49",
+      "start_seconds": 889,
+      "text": "bit and you need to like check them on some stuff. Um, but this sort of like"
+    },
+    {
+      "end_label": "00:14:54",
+      "end_seconds": 894,
+      "start_label": "00:14:51",
+      "start_seconds": 891,
+      "text": "some stuff. Um, but this sort of like general feedback loop of do something,"
+    },
+    {
+      "end_label": "00:14:56",
+      "end_seconds": 896,
+      "start_label": "00:14:54",
+      "start_seconds": 894,
+      "text": "general feedback loop of do something, read the results, read the traces, and"
+    },
+    {
+      "end_label": "00:14:58",
+      "end_seconds": 898,
+      "start_label": "00:14:56",
+      "start_seconds": 896,
+      "text": "read the results, read the traces, and then do an update ends up being pretty"
+    },
+    {
+      "end_label": "00:15:00",
+      "end_seconds": 900,
+      "start_label": "00:14:58",
+      "start_seconds": 898,
+      "text": "then do an update ends up being pretty useful. And then I talked about like"
+    },
+    {
+      "end_label": "00:15:02",
+      "end_seconds": 902,
+      "start_label": "00:15:00",
+      "start_seconds": 900,
+      "text": "useful. And then I talked about like model fine-tuning a bunch as well."
+    },
+    {
+      "end_label": "00:15:03",
+      "end_seconds": 903,
+      "start_label": "00:15:02",
+      "start_seconds": 902,
+      "text": "model fine-tuning a bunch as well. Um,"
+    },
+    {
+      "end_label": "00:15:05",
+      "end_seconds": 905,
+      "start_label": "00:15:03",
+      "start_seconds": 903,
+      "text": "Um, so we we just like went and did this. Uh"
+    },
+    {
+      "end_label": "00:15:07",
+      "end_seconds": 907,
+      "start_label": "00:15:05",
+      "start_seconds": 905,
+      "text": "so we we just like went and did this. Uh this was I think even before the term"
+    },
+    {
+      "end_label": "00:15:08",
+      "end_seconds": 908,
+      "start_label": "00:15:07",
+      "start_seconds": 907,
+      "text": "this was I think even before the term auto research came out, but a lot of"
+    },
+    {
+      "end_label": "00:15:10",
+      "end_seconds": 910,
+      "start_label": "00:15:08",
+      "start_seconds": 908,
+      "text": "auto research came out, but a lot of people were doing it, which is hey, like"
+    },
+    {
+      "end_label": "00:15:12",
+      "end_seconds": 912,
+      "start_label": "00:15:10",
+      "start_seconds": 910,
+      "text": "people were doing it, which is hey, like terminal benches like really hard. Uh"
+    },
+    {
+      "end_label": "00:15:14",
+      "end_seconds": 914,
+      "start_label": "00:15:12",
+      "start_seconds": 912,
+      "text": "terminal benches like really hard. Uh what would happen if an agent just like"
+    },
+    {
+      "end_label": "00:15:17",
+      "end_seconds": 917,
+      "start_label": "00:15:14",
+      "start_seconds": 914,
+      "text": "what would happen if an agent just like read its traces, uh proposed"
+    },
+    {
+      "end_label": "00:15:19",
+      "end_seconds": 919,
+      "start_label": "00:15:17",
+      "start_seconds": 917,
+      "text": "read its traces, uh proposed experiments, and then tried to do fixes?"
+    },
+    {
+      "end_label": "00:15:21",
+      "end_seconds": 921,
+      "start_label": "00:15:19",
+      "start_seconds": 919,
+      "text": "experiments, and then tried to do fixes? Um, I think one like really key thing"
+    },
+    {
+      "end_label": "00:15:23",
+      "end_seconds": 923,
+      "start_label": "00:15:21",
+      "start_seconds": 921,
+      "text": "Um, I think one like really key thing here is uh"
+    },
+    {
+      "end_label": "00:15:26",
+      "end_seconds": 926,
+      "start_label": "00:15:23",
+      "start_seconds": 923,
+      "text": "here is uh giving agents dense feedback signals."
+    },
+    {
+      "end_label": "00:15:28",
+      "end_seconds": 928,
+      "start_label": "00:15:26",
+      "start_seconds": 926,
+      "text": "giving agents dense feedback signals. So, like terminal bench, the output is"
+    },
+    {
+      "end_label": "00:15:30",
+      "end_seconds": 930,
+      "start_label": "00:15:28",
+      "start_seconds": 928,
+      "text": "So, like terminal bench, the output is just a number, right? Like, did you pass"
+    },
+    {
+      "end_label": "00:15:32",
+      "end_seconds": 932,
+      "start_label": "00:15:30",
+      "start_seconds": 930,
+      "text": "just a number, right? Like, did you pass or did you not pass? Uh that's like kind"
+    },
+    {
+      "end_label": "00:15:33",
+      "end_seconds": 933,
+      "start_label": "00:15:32",
+      "start_seconds": 932,
+      "text": "or did you not pass? Uh that's like kind of helpful, but if I give you like a"
+    },
+    {
+      "end_label": "00:15:35",
+      "end_seconds": 935,
+      "start_label": "00:15:33",
+      "start_seconds": 933,
+      "text": "of helpful, but if I give you like a super random task, like you just did a"
+    },
+    {
+      "end_label": "00:15:37",
+      "end_seconds": 937,
+      "start_label": "00:15:35",
+      "start_seconds": 935,
+      "text": "super random task, like you just did a bunch of stuff, and then I just said"
+    },
+    {
+      "end_label": "00:15:39",
+      "end_seconds": 939,
+      "start_label": "00:15:37",
+      "start_seconds": 937,
+      "text": "bunch of stuff, and then I just said like you failed or you passed, uh if you"
+    },
+    {
+      "end_label": "00:15:40",
+      "end_seconds": 940,
+      "start_label": "00:15:39",
+      "start_seconds": 939,
+      "text": "like you failed or you passed, uh if you failed, like you wouldn't really have a"
+    },
+    {
+      "end_label": "00:15:42",
+      "end_seconds": 942,
+      "start_label": "00:15:40",
+      "start_seconds": 940,
+      "text": "failed, like you wouldn't really have a good signal to figure out what you"
+    },
+    {
+      "end_label": "00:15:45",
+      "end_seconds": 945,
+      "start_label": "00:15:42",
+      "start_seconds": 942,
+      "text": "good signal to figure out what you should do next, right? So, densifying"
+    },
+    {
+      "end_label": "00:15:47",
+      "end_seconds": 947,
+      "start_label": "00:15:45",
+      "start_seconds": 945,
+      "text": "should do next, right? So, densifying feedback is uh really good way to"
+    },
+    {
+      "end_label": "00:15:49",
+      "end_seconds": 949,
+      "start_label": "00:15:47",
+      "start_seconds": 947,
+      "text": "feedback is uh really good way to improve agents, and like traces are the"
+    },
+    {
+      "end_label": "00:15:51",
+      "end_seconds": 951,
+      "start_label": "00:15:49",
+      "start_seconds": 949,
+      "text": "improve agents, and like traces are the substrate that hold that feedback. And"
+    },
+    {
+      "end_label": "00:15:52",
+      "end_seconds": 952,
+      "start_label": "00:15:51",
+      "start_seconds": 951,
+      "text": "substrate that hold that feedback. And then agents are very good at like"
+    },
+    {
+      "end_label": "00:15:54",
+      "end_seconds": 954,
+      "start_label": "00:15:53",
+      "start_seconds": 953,
+      "text": "then agents are very good at like reading those uh those traces and then"
+    },
+    {
+      "end_label": "00:15:58",
+      "end_seconds": 958,
+      "start_label": "00:15:54",
+      "start_seconds": 954,
+      "text": "reading those uh those traces and then figuring out like what to do next. Um"
+    },
+    {
+      "end_label": "00:16:01",
+      "end_seconds": 961,
+      "start_label": "00:15:58",
+      "start_seconds": 958,
+      "text": "figuring out like what to do next. Um and then this sort of question always"
+    },
+    {
+      "end_label": "00:16:03",
+      "end_seconds": 963,
+      "start_label": "00:16:01",
+      "start_seconds": 961,
+      "text": "and then this sort of question always comes up, which is"
+    },
+    {
+      "end_label": "00:16:05",
+      "end_seconds": 965,
+      "start_label": "00:16:03",
+      "start_seconds": 963,
+      "text": "comes up, which is when should I like harness Enge? When"
+    },
+    {
+      "end_label": "00:16:07",
+      "end_seconds": 967,
+      "start_label": "00:16:05",
+      "start_seconds": 965,
+      "text": "when should I like harness Enge? When should I fine-tune? Uh should I do more"
+    },
+    {
+      "end_label": "00:16:10",
+      "end_seconds": 970,
+      "start_label": "00:16:07",
+      "start_seconds": 967,
+      "text": "should I fine-tune? Uh should I do more harness Enge after it? I'm like pretty"
+    },
+    {
+      "end_label": "00:16:13",
+      "end_seconds": 973,
+      "start_label": "00:16:10",
+      "start_seconds": 970,
+      "text": "harness Enge after it? I'm like pretty bullish on the idea of if you need to do"
+    },
+    {
+      "end_label": "00:16:16",
+      "end_seconds": 976,
+      "start_label": "00:16:13",
+      "start_seconds": 973,
+      "text": "bullish on the idea of if you need to do something for improving your agent, the"
+    },
+    {
+      "end_label": "00:16:18",
+      "end_seconds": 978,
+      "start_label": "00:16:16",
+      "start_seconds": 976,
+      "text": "something for improving your agent, the best thing that you can do is collect"
+    },
+    {
+      "end_label": "00:16:20",
+      "end_seconds": 980,
+      "start_label": "00:16:18",
+      "start_seconds": 978,
+      "text": "best thing that you can do is collect feedback as quickly as possible, like"
+    },
+    {
+      "end_label": "00:16:22",
+      "end_seconds": 982,
+      "start_label": "00:16:20",
+      "start_seconds": 980,
+      "text": "feedback as quickly as possible, like either from humans labeling or just"
+    },
+    {
+      "end_label": "00:16:24",
+      "end_seconds": 984,
+      "start_label": "00:16:22",
+      "start_seconds": 982,
+      "text": "either from humans labeling or just letting the agents run. So, like harness"
+    },
+    {
+      "end_label": "00:16:26",
+      "end_seconds": 986,
+      "start_label": "00:16:24",
+      "start_seconds": 984,
+      "text": "letting the agents run. So, like harness engineering gives you feedback in maybe"
+    },
+    {
+      "end_label": "00:16:27",
+      "end_seconds": 987,
+      "start_label": "00:16:26",
+      "start_seconds": 986,
+      "text": "engineering gives you feedback in maybe 2 minutes. Um"
+    },
+    {
+      "end_label": "00:16:29",
+      "end_seconds": 989,
+      "start_label": "00:16:27",
+      "start_seconds": 987,
+      "text": "2 minutes. Um once you sort of saturate the harness"
+    },
+    {
+      "end_label": "00:16:32",
+      "end_seconds": 992,
+      "start_label": "00:16:29",
+      "start_seconds": 989,
+      "text": "once you sort of saturate the harness engineering ceiling, right? Then you can"
+    },
+    {
+      "end_label": "00:16:34",
+      "end_seconds": 994,
+      "start_label": "00:16:32",
+      "start_seconds": 992,
+      "text": "engineering ceiling, right? Then you can maybe try to do like fine-tuning after"
+    },
+    {
+      "end_label": "00:16:36",
+      "end_seconds": 996,
+      "start_label": "00:16:34",
+      "start_seconds": 994,
+      "text": "maybe try to do like fine-tuning after that, but we find a lot of teams are"
+    },
+    {
+      "end_label": "00:16:38",
+      "end_seconds": 998,
+      "start_label": "00:16:36",
+      "start_seconds": 996,
+      "text": "that, but we find a lot of teams are happy with harness engineering and uh it"
+    },
+    {
+      "end_label": "00:16:40",
+      "end_seconds": 1000,
+      "start_label": "00:16:38",
+      "start_seconds": 998,
+      "text": "happy with harness engineering and uh it solves their customer use case, so like"
+    },
+    {
+      "end_label": "00:16:41",
+      "end_seconds": 1001,
+      "start_label": "00:16:40",
+      "start_seconds": 1000,
+      "text": "solves their customer use case, so like we always sort of sort of recommend it."
+    },
+    {
+      "end_label": "00:16:42",
+      "end_seconds": 1002,
+      "start_label": "00:16:41",
+      "start_seconds": 1001,
+      "text": "we always sort of sort of recommend it. And then we have this like sort of"
+    },
+    {
+      "end_label": "00:16:44",
+      "end_seconds": 1004,
+      "start_label": "00:16:42",
+      "start_seconds": 1002,
+      "text": "And then we have this like sort of sandwich, which is like try harness"
+    },
+    {
+      "end_label": "00:16:46",
+      "end_seconds": 1006,
+      "start_label": "00:16:44",
+      "start_seconds": 1004,
+      "text": "sandwich, which is like try harness engineering, try to do fine-tuning to"
+    },
+    {
+      "end_label": "00:16:47",
+      "end_seconds": 1007,
+      "start_label": "00:16:46",
+      "start_seconds": 1006,
+      "text": "engineering, try to do fine-tuning to sort of like break through that ceiling,"
+    },
+    {
+      "end_label": "00:16:49",
+      "end_seconds": 1009,
+      "start_label": "00:16:47",
+      "start_seconds": 1007,
+      "text": "sort of like break through that ceiling, and then do more harness engineering"
+    },
+    {
+      "end_label": "00:16:51",
+      "end_seconds": 1011,
+      "start_label": "00:16:49",
+      "start_seconds": 1009,
+      "text": "and then do more harness engineering again if you need to."
+    },
+    {
+      "end_label": "00:16:54",
+      "end_seconds": 1014,
+      "start_label": "00:16:51",
+      "start_seconds": 1011,
+      "text": "again if you need to. And then I'll sort of end on the the"
+    },
+    {
+      "end_label": "00:16:57",
+      "end_seconds": 1017,
+      "start_label": "00:16:54",
+      "start_seconds": 1014,
+      "text": "And then I'll sort of end on the the idea generally of continual learning is"
+    },
+    {
+      "end_label": "00:16:59",
+      "end_seconds": 1019,
+      "start_label": "00:16:57",
+      "start_seconds": 1017,
+      "text": "idea generally of continual learning is that there's an agent taking actions in"
+    },
+    {
+      "end_label": "00:17:02",
+      "end_seconds": 1022,
+      "start_label": "00:16:59",
+      "start_seconds": 1019,
+      "text": "that there's an agent taking actions in the environment, and then it needs to"
+    },
+    {
+      "end_label": "00:17:06",
+      "end_seconds": 1026,
+      "start_label": "00:17:02",
+      "start_seconds": 1022,
+      "text": "the environment, and then it needs to use that information, sorry guys, needs"
+    },
+    {
+      "end_label": "00:17:09",
+      "end_seconds": 1029,
+      "start_label": "00:17:06",
+      "start_seconds": 1026,
+      "text": "use that information, sorry guys, needs to use that information to update"
+    },
+    {
+      "end_label": "00:17:11",
+      "end_seconds": 1031,
+      "start_label": "00:17:09",
+      "start_seconds": 1029,
+      "text": "to use that information to update information about itself, right? So,"
+    },
+    {
+      "end_label": "00:17:13",
+      "end_seconds": 1033,
+      "start_label": "00:17:11",
+      "start_seconds": 1031,
+      "text": "information about itself, right? So, it's like I did a bunch of these tasks,"
+    },
+    {
+      "end_label": "00:17:15",
+      "end_seconds": 1035,
+      "start_label": "00:17:13",
+      "start_seconds": 1033,
+      "text": "it's like I did a bunch of these tasks, and like I need to update my prompts to"
+    },
+    {
+      "end_label": "00:17:17",
+      "end_seconds": 1037,
+      "start_label": "00:17:15",
+      "start_seconds": 1035,
+      "text": "and like I need to update my prompts to make sure I do them more efficiently. Or"
+    },
+    {
+      "end_label": "00:17:21",
+      "end_seconds": 1041,
+      "start_label": "00:17:17",
+      "start_seconds": 1037,
+      "text": "make sure I do them more efficiently. Or users are users keep asking to search"
+    },
+    {
+      "end_label": "00:17:23",
+      "end_seconds": 1043,
+      "start_label": "00:17:21",
+      "start_seconds": 1041,
+      "text": "users are users keep asking to search for these types of things, I should"
+    },
+    {
+      "end_label": "00:17:26",
+      "end_seconds": 1046,
+      "start_label": "00:17:23",
+      "start_seconds": 1043,
+      "text": "for these types of things, I should maybe tell like tell my creator that"
+    },
+    {
+      "end_label": "00:17:27",
+      "end_seconds": 1047,
+      "start_label": "00:17:26",
+      "start_seconds": 1046,
+      "text": "maybe tell like tell my creator that like they're they're doing this sort of"
+    },
+    {
+      "end_label": "00:17:29",
+      "end_seconds": 1049,
+      "start_label": "00:17:27",
+      "start_seconds": 1047,
+      "text": "like they're they're doing this sort of stuff, right? It's like taking action in"
+    },
+    {
+      "end_label": "00:17:30",
+      "end_seconds": 1050,
+      "start_label": "00:17:29",
+      "start_seconds": 1049,
+      "text": "stuff, right? It's like taking action in the environment kind of like humans do"
+    },
+    {
+      "end_label": "00:17:33",
+      "end_seconds": 1053,
+      "start_label": "00:17:30",
+      "start_seconds": 1050,
+      "text": "the environment kind of like humans do and updating ourselves. What that looks"
+    },
+    {
+      "end_label": "00:17:36",
+      "end_seconds": 1056,
+      "start_label": "00:17:33",
+      "start_seconds": 1053,
+      "text": "and updating ourselves. What that looks like today, slightly unclear, but we"
+    },
+    {
+      "end_label": "00:17:38",
+      "end_seconds": 1058,
+      "start_label": "00:17:36",
+      "start_seconds": 1056,
+      "text": "like today, slightly unclear, but we think that you're going to have to do it"
+    },
+    {
+      "end_label": "00:17:40",
+      "end_seconds": 1060,
+      "start_label": "00:17:38",
+      "start_seconds": 1058,
+      "text": "think that you're going to have to do it across all three axes, which is one,"
+    },
+    {
+      "end_label": "00:17:42",
+      "end_seconds": 1062,
+      "start_label": "00:17:40",
+      "start_seconds": 1060,
+      "text": "across all three axes, which is one, collect a bunch of training data, which"
+    },
+    {
+      "end_label": "00:17:45",
+      "end_seconds": 1065,
+      "start_label": "00:17:42",
+      "start_seconds": 1062,
+      "text": "collect a bunch of training data, which is like observational data from agents"
+    },
+    {
+      "end_label": "00:17:46",
+      "end_seconds": 1066,
+      "start_label": "00:17:45",
+      "start_seconds": 1065,
+      "text": "is like observational data from agents taking actions. The The other one is"
+    },
+    {
+      "end_label": "00:17:49",
+      "end_seconds": 1069,
+      "start_label": "00:17:46",
+      "start_seconds": 1066,
+      "text": "taking actions. The The other one is like harness updates generally, like"
+    },
+    {
+      "end_label": "00:17:50",
+      "end_seconds": 1070,
+      "start_label": "00:17:49",
+      "start_seconds": 1069,
+      "text": "like harness updates generally, like you know, the the Codex harness and the"
+    },
+    {
+      "end_label": "00:17:52",
+      "end_seconds": 1072,
+      "start_label": "00:17:51",
+      "start_seconds": 1071,
+      "text": "you know, the the Codex harness and the Cloud Code harness and like our harness"
+    },
+    {
+      "end_label": "00:17:54",
+      "end_seconds": 1074,
+      "start_label": "00:17:52",
+      "start_seconds": 1072,
+      "text": "Cloud Code harness and like our harness and everyone's harness, like they look a"
+    },
+    {
+      "end_label": "00:17:56",
+      "end_seconds": 1076,
+      "start_label": "00:17:54",
+      "start_seconds": 1074,
+      "text": "and everyone's harness, like they look a certain way because like models are are"
+    },
+    {
+      "end_label": "00:17:57",
+      "end_seconds": 1077,
+      "start_label": "00:17:56",
+      "start_seconds": 1076,
+      "text": "certain way because like models are are trained in them and they look a certain"
+    },
+    {
+      "end_label": "00:17:59",
+      "end_seconds": 1079,
+      "start_label": "00:17:57",
+      "start_seconds": 1077,
+      "text": "trained in them and they look a certain way because of the tasks that they do in"
+    },
+    {
+      "end_label": "00:18:01",
+      "end_seconds": 1081,
+      "start_label": "00:17:59",
+      "start_seconds": 1079,
+      "text": "way because of the tasks that they do in the real world and we think like"
+    },
+    {
+      "end_label": "00:18:03",
+      "end_seconds": 1083,
+      "start_label": "00:18:01",
+      "start_seconds": 1081,
+      "text": "the real world and we think like evolving those over time is going to be"
+    },
+    {
+      "end_label": "00:18:06",
+      "end_seconds": 1086,
+      "start_label": "00:18:03",
+      "start_seconds": 1083,
+      "text": "evolving those over time is going to be super important in in order to make them"
+    },
+    {
+      "end_label": "00:18:08",
+      "end_seconds": 1088,
+      "start_label": "00:18:06",
+      "start_seconds": 1086,
+      "text": "super important in in order to make them work. And"
+    },
+    {
+      "end_label": "00:18:10",
+      "end_seconds": 1090,
+      "start_label": "00:18:08",
+      "start_seconds": 1088,
+      "text": "work. And the the last thing is like memory. So,"
+    },
+    {
+      "end_label": "00:18:11",
+      "end_seconds": 1091,
+      "start_label": "00:18:10",
+      "start_seconds": 1090,
+      "text": "the the last thing is like memory. So, uh"
+    },
+    {
+      "end_label": "00:18:13",
+      "end_seconds": 1093,
+      "start_label": "00:18:11",
+      "start_seconds": 1091,
+      "text": "uh we humans are like really good at like"
+    },
+    {
+      "end_label": "00:18:15",
+      "end_seconds": 1095,
+      "start_label": "00:18:13",
+      "start_seconds": 1093,
+      "text": "we humans are like really good at like remembering stuff over time, but we are"
+    },
+    {
+      "end_label": "00:18:18",
+      "end_seconds": 1098,
+      "start_label": "00:18:15",
+      "start_seconds": 1095,
+      "text": "remembering stuff over time, but we are not append-only logs of information. And"
+    },
+    {
+      "end_label": "00:18:19",
+      "end_seconds": 1099,
+      "start_label": "00:18:18",
+      "start_seconds": 1098,
+      "text": "not append-only logs of information. And if agents are going to be working with"
+    },
+    {
+      "end_label": "00:18:22",
+      "end_seconds": 1102,
+      "start_label": "00:18:19",
+      "start_seconds": 1099,
+      "text": "if agents are going to be working with us over like year, 5-year, decade,"
+    },
+    {
+      "end_label": "00:18:24",
+      "end_seconds": 1104,
+      "start_label": "00:18:22",
+      "start_seconds": 1102,
+      "text": "us over like year, 5-year, decade, lifetime time scales, we cannot just"
+    },
+    {
+      "end_label": "00:18:26",
+      "end_seconds": 1106,
+      "start_label": "00:18:24",
+      "start_seconds": 1104,
+      "text": "lifetime time scales, we cannot just append everything to like a really big"
+    },
+    {
+      "end_label": "00:18:28",
+      "end_seconds": 1108,
+      "start_label": "00:18:26",
+      "start_seconds": 1106,
+      "text": "append everything to like a really big file and then search over it. There's a"
+    },
+    {
+      "end_label": "00:18:30",
+      "end_seconds": 1110,
+      "start_label": "00:18:28",
+      "start_seconds": 1108,
+      "text": "file and then search over it. There's a ton of stuff that needs to happen with"
+    },
+    {
+      "end_label": "00:18:32",
+      "end_seconds": 1112,
+      "start_label": "00:18:30",
+      "start_seconds": 1110,
+      "text": "ton of stuff that needs to happen with like updating those files over time and"
+    },
+    {
+      "end_label": "00:18:33",
+      "end_seconds": 1113,
+      "start_label": "00:18:32",
+      "start_seconds": 1112,
+      "text": "like updating those files over time and then just making memory like really"
+    },
+    {
+      "end_label": "00:18:35",
+      "end_seconds": 1115,
+      "start_label": "00:18:33",
+      "start_seconds": 1113,
+      "text": "then just making memory like really efficient. But, we think a lot of that"
+    },
+    {
+      "end_label": "00:18:38",
+      "end_seconds": 1118,
+      "start_label": "00:18:35",
+      "start_seconds": 1115,
+      "text": "efficient. But, we think a lot of that actually comes from this idea of scaling"
+    },
+    {
+      "end_label": "00:18:40",
+      "end_seconds": 1120,
+      "start_label": "00:18:38",
+      "start_seconds": 1118,
+      "text": "actually comes from this idea of scaling sleep time compute and and dreaming"
+    },
+    {
+      "end_label": "00:18:41",
+      "end_seconds": 1121,
+      "start_label": "00:18:40",
+      "start_seconds": 1120,
+      "text": "sleep time compute and and dreaming generally. So, it's like read all of the"
+    },
+    {
+      "end_label": "00:18:44",
+      "end_seconds": 1124,
+      "start_label": "00:18:41",
+      "start_seconds": 1121,
+      "text": "generally. So, it's like read all of the traces over the entire agent life cycle"
+    },
+    {
+      "end_label": "00:18:46",
+      "end_seconds": 1126,
+      "start_label": "00:18:44",
+      "start_seconds": 1124,
+      "text": "traces over the entire agent life cycle and then like do [music] things to"
+    },
+    {
+      "end_label": "00:18:49",
+      "end_seconds": 1129,
+      "start_label": "00:18:46",
+      "start_seconds": 1126,
+      "text": "and then like do [music] things to update agent state."
+    },
+    {
+      "end_label": "00:18:51",
+      "end_seconds": 1131,
+      "start_label": "00:18:49",
+      "start_seconds": 1129,
+      "text": "update agent state. Awesome. So, like quick quick takeaways,"
+    },
+    {
+      "end_label": "00:18:54",
+      "end_seconds": 1134,
+      "start_label": "00:18:51",
+      "start_seconds": 1131,
+      "text": "Awesome. So, like quick quick takeaways, uh mining traces gives you signals to"
+    },
+    {
+      "end_label": "00:18:56",
+      "end_seconds": 1136,
+      "start_label": "00:18:54",
+      "start_seconds": 1134,
+      "text": "uh mining traces gives you signals to hill climb on. Uh I would say like if"
+    },
+    {
+      "end_label": "00:18:58",
+      "end_seconds": 1138,
+      "start_label": "00:18:56",
+      "start_seconds": 1136,
+      "text": "hill climb on. Uh I would say like if you have an agent, just turn on tracing"
+    },
+    {
+      "end_label": "00:19:00",
+      "end_seconds": 1140,
+      "start_label": "00:18:58",
+      "start_seconds": 1138,
+      "text": "you have an agent, just turn on tracing and point an agent at it and that's like"
+    },
+    {
+      "end_label": "00:19:02",
+      "end_seconds": 1142,
+      "start_label": "00:19:00",
+      "start_seconds": 1140,
+      "text": "and point an agent at it and that's like the easiest thing that you can do to see"
+    },
+    {
+      "end_label": "00:19:04",
+      "end_seconds": 1144,
+      "start_label": "00:19:02",
+      "start_seconds": 1142,
+      "text": "the easiest thing that you can do to see like to basically understand what your"
+    },
+    {
+      "end_label": "00:19:05",
+      "end_seconds": 1145,
+      "start_label": "00:19:04",
+      "start_seconds": 1144,
+      "text": "like to basically understand what your agents are doing."
+    },
+    {
+      "end_label": "00:19:08",
+      "end_seconds": 1148,
+      "start_label": "00:19:06",
+      "start_seconds": 1146,
+      "text": "agents are doing. Uh we're very excited about open models."
+    },
+    {
+      "end_label": "00:19:09",
+      "end_seconds": 1149,
+      "start_label": "00:19:08",
+      "start_seconds": 1148,
+      "text": "Uh we're very excited about open models. We want to help you fine-tune open"
+    },
+    {
+      "end_label": "00:19:12",
+      "end_seconds": 1152,
+      "start_label": "00:19:09",
+      "start_seconds": 1149,
+      "text": "We want to help you fine-tune open models. Um we provide them as a service"
+    },
+    {
+      "end_label": "00:19:13",
+      "end_seconds": 1153,
+      "start_label": "00:19:12",
+      "start_seconds": 1152,
+      "text": "models. Um we provide them as a service as well. So, if you're interested in"
+    },
+    {
+      "end_label": "00:19:14",
+      "end_seconds": 1154,
+      "start_label": "00:19:13",
+      "start_seconds": 1153,
+      "text": "as well. So, if you're interested in that, would would love to chat how you"
+    },
+    {
+      "end_label": "00:19:17",
+      "end_seconds": 1157,
+      "start_label": "00:19:15",
+      "start_seconds": 1155,
+      "text": "that, would would love to chat how you can use open models to make everything"
+    },
+    {
+      "end_label": "00:19:19",
+      "end_seconds": 1159,
+      "start_label": "00:19:17",
+      "start_seconds": 1157,
+      "text": "can use open models to make everything smarter and cheaper. Um,"
+    },
+    {
+      "end_label": "00:19:20",
+      "end_seconds": 1160,
+      "start_label": "00:19:19",
+      "start_seconds": 1159,
+      "text": "smarter and cheaper. Um, continual learning is about operating"
+    },
+    {
+      "end_label": "00:19:22",
+      "end_seconds": 1162,
+      "start_label": "00:19:20",
+      "start_seconds": 1160,
+      "text": "continual learning is about operating environments and then integrating that"
+    },
+    {
+      "end_label": "00:19:24",
+      "end_seconds": 1164,
+      "start_label": "00:19:22",
+      "start_seconds": 1162,
+      "text": "environments and then integrating that data back into agent state. And then"
+    },
+    {
+      "end_label": "00:19:27",
+      "end_seconds": 1167,
+      "start_label": "00:19:25",
+      "start_seconds": 1165,
+      "text": "data back into agent state. And then finally, I think this is so cool that"
+    },
+    {
+      "end_label": "00:19:28",
+      "end_seconds": 1168,
+      "start_label": "00:19:27",
+      "start_seconds": 1167,
+      "text": "finally, I think this is so cool that like we have systems that's going to"
+    },
+    {
+      "end_label": "00:19:30",
+      "end_seconds": 1170,
+      "start_label": "00:19:28",
+      "start_seconds": 1168,
+      "text": "like we have systems that's going to pre- that are going to produce more data"
+    },
+    {
+      "end_label": "00:19:31",
+      "end_seconds": 1171,
+      "start_label": "00:19:30",
+      "start_seconds": 1170,
+      "text": "pre- that are going to produce more data than we ever have before."
+    },
+    {
+      "end_label": "00:19:34",
+      "end_seconds": 1174,
+      "start_label": "00:19:31",
+      "start_seconds": 1171,
+      "text": "than we ever have before. Uh, we need to all come up with like"
+    },
+    {
+      "end_label": "00:19:36",
+      "end_seconds": 1176,
+      "start_label": "00:19:34",
+      "start_seconds": 1174,
+      "text": "Uh, we need to all come up with like interesting research directions to learn"
+    },
+    {
+      "end_label": "00:19:37",
+      "end_seconds": 1177,
+      "start_label": "00:19:36",
+      "start_seconds": 1176,
+      "text": "interesting research directions to learn how to like manage that at scale and"
+    },
+    {
+      "end_label": "00:19:39",
+      "end_seconds": 1179,
+      "start_label": "00:19:37",
+      "start_seconds": 1177,
+      "text": "how to like manage that at scale and like make all of our agents better."
+    },
+    {
+      "end_label": "00:19:40",
+      "end_seconds": 1180,
+      "start_label": "00:19:39",
+      "start_seconds": 1179,
+      "text": "like make all of our agents better. And with that,"
+    },
+    {
+      "end_label": "00:19:42",
+      "end_seconds": 1182,
+      "start_label": "00:19:40",
+      "start_seconds": 1180,
+      "text": "And with that, thank you. Thank you all for coming."
+    },
+    {
+      "end_label": "00:19:58",
+      "end_seconds": 1198,
+      "start_label": "00:19:42",
+      "start_seconds": 1182,
+      "text": "thank you. Thank you all for coming. >> [applause]"
+    }
+  ],
+  "schema_version": "ai-video-transcriber-transcript@1",
+  "timestamp_precision": "whole-second-as-rendered-by-upstream",
+  "video_id": "CvRngaQZQ3Y"
+}

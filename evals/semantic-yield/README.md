@@ -11,7 +11,7 @@ As of 2026-08-14, **one content item** has run the modified Semantic Yield flow 
 | Batch | Source dependency | Card directory | Cards | Gate result | State |
 |---|---|---|---:|---|---|
 | `CvRngaQZQ3Y` | `youtube-video:CvRngaQZQ3Y` | [`CvRngaQZQ3Y/cards/`](CvRngaQZQ3Y/cards/) | 10 | `PASS_WITH_DEFERRED_VISUAL_AND_PARTIAL_QG` | `CONTINUE` |
-| `CvRngaQZQ3Y-v2` | `youtube-video:CvRngaQZQ3Y` | [`CvRngaQZQ3Y-v2/cards/`](CvRngaQZQ3Y-v2/cards/) | 9 | `HG-01..HG-06 PASS` | `CONTINUE` |
+| `CvRngaQZQ3Y-v2` | `youtube-video:CvRngaQZQ3Y` | [`CvRngaQZQ3Y-v2/cards/`](CvRngaQZQ3Y-v2/cards/) | 11 | `HG-01..HG-06 PASS` | `CONTINUE` |
 
 Both batches describe the same video. They are **not** interchangeable: they were compiled from two different acquisitions of the auto-caption track, with different normalized digests, so their stable IDs and canonical keys do not correspond. The v2 batch is the first whose subject is retained in-repo under `sources/CvRngaQZQ3Y/`, and therefore the first that can be replayed.
 
@@ -56,8 +56,12 @@ registry          9 cards reconciled, 0 gaps
 5. [`P-four-step-trace-improvement-recipe`](CvRngaQZQ3Y-v2/cards/P-four-step-trace-improvement-recipe.md) — ship, collect, mine, experiment. `UNTESTED`.
 6. [`T-trace-judge-cost-comparison`](CvRngaQZQ3Y-v2/cards/T-trace-judge-cost-comparison.md) — frontier vs open judge; exact figures stay `UNKNOWN`.
 7. [`D-trace-reading-cost-bottleneck`](CvRngaQZQ3Y-v2/cards/D-trace-reading-cost-bottleneck.md) — reading cost and the context ceiling.
-8. [`V-projection-replay-v2`](CvRngaQZQ3Y-v2/cards/V-projection-replay-v2.md) — replay verification; verdict `PARTIAL`.
-9. [`K-visual-and-identifier-gap`](CvRngaQZQ3Y-v2/cards/K-visual-and-identifier-gap.md) — slides, chart values and product spelling unverifiable.
+8. [`D-transport-locator-precision`](CvRngaQZQ3Y-v2/cards/D-transport-locator-precision.md) — three transports agree on content, differ 4.6x on locator precision.
+9. [`V-projection-replay-v2`](CvRngaQZQ3Y-v2/cards/V-projection-replay-v2.md) — replay verification; verdict `PARTIAL`.
+10. [`V-cross-transport-convergence`](CvRngaQZQ3Y-v2/cards/V-cross-transport-convergence.md) — convergence verified and the v1 digest reproduced.
+11. [`K-visual-and-identifier-gap`](CvRngaQZQ3Y-v2/cards/K-visual-and-identifier-gap.md) — slides, chart values and product spelling unverifiable.
+
+Transport comparison: [`ACQUISITION_COMPARISON.md`](CvRngaQZQ3Y-v2/ACQUISITION_COMPARISON.md). Three transports acquired, two refused for want of a real rights basis; all three retained under `sources/CvRngaQZQ3Y/`.
 
 This batch is `evaluation-only`. It may not complete a note, raise claim evidence, or publish raw media, and `tools/rights_allowlist.py` returns exactly that decision for the video.
 

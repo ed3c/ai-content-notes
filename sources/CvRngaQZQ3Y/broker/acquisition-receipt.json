@@ -1,0 +1,79 @@
+{
+  "artifacts": {
+    "raw_broker_response": {
+      "path": "raw_broker_response.md",
+      "sha256": "b14ef715744a2d5c0bab99da8bfe4fdcf46a90ebb513dc4a06e6e489177a2a0e"
+    },
+    "source_manifest": {
+      "path": "source-manifest.json",
+      "sha256": "294c8ef756d5bcf3b04ddcee082a6cfec3d5352125d86ae80635d7ec14d3b5d7"
+    },
+    "transcript_json": {
+      "path": "transcript.json",
+      "sha256": "015e56e715f42405d45d5dcbf915fba3f1c0a1a68535230b99971eca821944b5"
+    },
+    "transcript_text": {
+      "path": "transcript.txt",
+      "sha256": "6fc3351634e9fa5d4699aa2462210665bebb9232210d48a4f23677aad3193ffc"
+    }
+  },
+  "authority": {
+    "may_compile_evaluation_cards": true,
+    "may_complete_note": false,
+    "may_count_as_independent_corroboration": false,
+    "may_enable_skill_routing": false,
+    "may_raise_claim_evidence": false
+  },
+  "authorization": {
+    "attested_at": "2026-08-14T16:05:35Z",
+    "attested_by": "repository owner (ed3c)",
+    "rights_basis": "user-directed-evaluation",
+    "rights_reference": "governance/RIGHTS_ATTESTATIONS.md#AT-001",
+    "scope": "private-transient-evaluation",
+    "status": "unverified-evaluation-only"
+  },
+  "error": null,
+  "schema_version": "youtube-transcript-ai-evidence@1",
+  "source_manifest_digest": "sha256:294c8ef756d5bcf3b04ddcee082a6cfec3d5352125d86ae80635d7ec14d3b5d7",
+  "source_manifest_id": "sm-youtube-CvRngaQZQ3Y-youtube-transcript-ai",
+  "status": "needs-review",
+  "tool": {
+    "name": "youtube_transcript_ai_adapter.py",
+    "version": "0.1.0"
+  },
+  "transcript": {
+    "character_count": 59639,
+    "cue_count": 39,
+    "declared_word_count": 11290,
+    "duration_seconds": 1182,
+    "human_review_required": true,
+    "language": "en (auto-generated)",
+    "observed_word_count": 11314,
+    "other_languages": null,
+    "timestamps_monotonic": true,
+    "warnings": [
+      "transport is a secondary broker; it shares the same youtube-video dependency and is not independent corroboration",
+      "raw YouTube caption files and caption-track identity are unavailable",
+      "technical names, figures, quotations, identifiers, punctuation, and cue grouping require human review",
+      "authorization is unverified-evaluation-only; do not mark the note completed"
+    ]
+  },
+  "transport": {
+    "audio_requested": false,
+    "authentication_used": false,
+    "cookies_supplied": false,
+    "endpoint": "https://youtube-transcript.ai/transcript/CvRngaQZQ3Y.txt",
+    "privacy_url": "https://youtube-transcript.ai/privacy",
+    "proxy_supplied": false,
+    "retrieved_at": "2026-08-14T16:05:35Z",
+    "service": "youtube-transcript.ai",
+    "service_origin": "https://youtube-transcript.ai",
+    "terms_url": "https://youtube-transcript.ai/terms"
+  },
+  "video": {
+    "canonical_url": "https://www.youtube.com/watch?v=CvRngaQZQ3Y",
+    "duration_seconds": 1182,
+    "id": "CvRngaQZQ3Y",
+    "title": "Improving Agents is a Data Mining Problem — Vivek Trivedy, LangChain"
+  }
+}

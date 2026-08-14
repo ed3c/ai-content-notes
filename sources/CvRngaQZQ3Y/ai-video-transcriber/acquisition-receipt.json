@@ -1,0 +1,89 @@
+{
+  "acquisition": {
+    "backend": "ai-video-transcriber.fetch_subtitles",
+    "caption_kind": "automatic",
+    "language": "en",
+    "requested_languages": [
+      "en",
+      "zh-Hant",
+      "zh-TW",
+      "zh",
+      "ja"
+    ],
+    "retrieved_at": "2026-08-14T16:08:04Z",
+    "source_format": "upstream-markdown"
+  },
+  "artifacts": {
+    "raw_upstream_transcript": {
+      "path": "raw_upstream_transcript.md",
+      "sha256": "775559dbb1d79c4271cf8633eb07aba8c71b29153c14e6e97292228c834bd4d7"
+    },
+    "source_manifest": {
+      "path": "source-manifest.json",
+      "sha256": "7228ba6ee715aa8f1616b986cc4c51dff4e91f4b20486003ff18ecec5808e66c"
+    },
+    "transcript_json": {
+      "path": "transcript.json",
+      "sha256": "27d16765175d599d5703108aff9fd84bb38fe2437fccad482920b86140b1fed6"
+    },
+    "transcript_text": {
+      "path": "transcript.txt",
+      "sha256": "dfe4eb01bfec195ac61fdd2bdbab43efb7d62b439f0eaa55410e05a1b2872e9c"
+    }
+  },
+  "authority": {
+    "may_compile_evaluation_cards": true,
+    "may_complete_note": false,
+    "may_enable_skill_routing": false,
+    "may_raise_claim_evidence": false
+  },
+  "authorization": {
+    "attested_at": "2026-08-14T16:08:04Z",
+    "attested_by": "repository owner (ed3c)",
+    "rights_basis": "user-directed-evaluation",
+    "rights_reference": "governance/RIGHTS_ATTESTATIONS.md#AT-001",
+    "scope": "private-transient-evaluation",
+    "status": "unverified-evaluation-only"
+  },
+  "error": null,
+  "schema_version": "ai-video-transcriber-evidence@1",
+  "source_manifest_digest": "sha256:7228ba6ee715aa8f1616b986cc4c51dff4e91f4b20486003ff18ecec5808e66c",
+  "source_manifest_id": "sm-youtube-CvRngaQZQ3Y-ai-video-transcriber",
+  "status": "needs-review",
+  "tool": {
+    "name": "ai_video_transcriber_adapter.py",
+    "version": "0.1.0"
+  },
+  "upstream": {
+    "commit": "ade833b790d482f7a5c0a722c67bc33f71e9d2b5",
+    "license": "Apache-2.0",
+    "license_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "module_path": "backend/video_processor.py",
+    "module_sha256": "27a8fdc7ceb726ec4de189d71fb47f6c83880f0bda278a94ee118a30a6881492",
+    "repository": "wendy7756/AI-Video-Transcriber"
+  },
+  "validation": {
+    "character_count": 39585,
+    "cue_count": 543,
+    "end_coverage_ratio": 0.997502,
+    "human_review_required": true,
+    "maximum_end_seconds": 1198,
+    "quality_grade": "upstream-caption-candidate",
+    "timestamps_monotonic": true,
+    "warnings": [
+      "AI-Video-Transcriber deletes its downloaded subtitle temp file; this bundle preserves the returned Markdown, not the raw platform VTT/SRT.",
+      "technical names, figures, quotations, identifiers, and cue boundaries require human review",
+      "authorization is unverified-evaluation-only; do not mark the note completed"
+    ],
+    "word_count": 7521
+  },
+  "video": {
+    "canonical_url": "https://www.youtube.com/watch?v=CvRngaQZQ3Y",
+    "channel": "AI Engineer",
+    "channel_id": "UCLKPca3kwwd-B59HNr-_lvA",
+    "duration_seconds": 1201.0,
+    "id": "CvRngaQZQ3Y",
+    "published_at": "2026-08-12",
+    "title": "Improving Agents is a Data Mining Problem — Vivek Trivedy, LangChain"
+  }
+}

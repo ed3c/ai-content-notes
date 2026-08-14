@@ -64,8 +64,8 @@
     },
     "HG-05": {
       "evidence": [
-        "claims:9",
-        "pairs:36"
+        "claims:11",
+        "pairs:55"
       ],
       "failures": [],
       "score": 1.0,

@@ -1,0 +1,398 @@
+{
+  "schema_version": "acquisition-transport-comparison@1",
+  "content_id": "CvRngaQZQ3Y",
+  "canonical_url": "https://www.youtube.com/watch?v=CvRngaQZQ3Y",
+  "video_length_seconds": 1201,
+  "compared_at": "2026-08-15T00:20:00Z",
+  "authority": {
+    "authorization_status": "evaluation-only",
+    "rights_basis": "user-directed-evaluation",
+    "rights_reference": "governance/RIGHTS_ATTESTATIONS.md#AT-001"
+  },
+  "transports": [
+    {
+      "transport": "youtube-transcript-api",
+      "backend": "jdepoix/youtube-transcript-api@1.2.4",
+      "status": "ACQUIRED",
+      "cues": 550,
+      "raw_words": 3828,
+      "normalized_words": 3828,
+      "rolling_duplication": false,
+      "max_end_seconds": 1200.683,
+      "tail_loss_seconds": 0.317,
+      "median_anchor_window_words": 207
+    },
+    {
+      "transport": "youtube-transcript.ai",
+      "backend": "youtube-transcript.ai broker",
+      "status": "ACQUIRED",
+      "cues": 39,
+      "raw_words": 11416,
+      "normalized_words": 3826,
+      "rolling_duplication": true,
+      "max_end_seconds": 1182.0,
+      "tail_loss_seconds": 19.0,
+      "median_anchor_window_words": 959
+    },
+    {
+      "transport": "ai-video-transcriber",
+      "backend": "wendy7756/AI-Video-Transcriber@ade833b790d482f7a5c0a722c67bc33f71e9d2b5",
+      "status": "ACQUIRED",
+      "cues": 543,
+      "raw_words": 7581,
+      "normalized_words": 3843,
+      "rolling_duplication": true,
+      "max_end_seconds": 1198.0,
+      "tail_loss_seconds": 3.0,
+      "median_anchor_window_words": 385
+    },
+    {
+      "transport": "yt-dlp-captions",
+      "backend": "tools/youtube_transcript.py --mode captions",
+      "status": "RIGHTS_REFUSED",
+      "reason": "accepts only owned, licensed, creator-permission, public-domain or user-provided-media; AT-001 is user-directed-evaluation"
+    },
+    {
+      "transport": "faster-whisper-large-v3",
+      "backend": "tools/youtube_transcript.py --mode asr",
+      "status": "RIGHTS_REFUSED",
+      "reason": "same gate; it downloads media, so it demands a real rights basis"
+    }
+  ],
+  "content_agreement": {
+    "method": "bag overlap on lowercased word tokens after rolling-caption normalization",
+    "youtube-transcript-api_vs_youtube-transcript.ai": 1.0,
+    "youtube-transcript-api_vs_ai-video-transcriber": 0.9997,
+    "youtube-transcript.ai_vs_ai-video-transcriber": 1.0,
+    "note": "Three transports, one origin. Agreement is transport fidelity, never independent corroboration."
+  },
+  "v1_artifact_recovery": {
+    "claim": "the v1 normalized transcript was recoverable, not lost",
+    "method": "youtube-transcript.ai transport -> tools/normalize_rolling_transcript.py",
+    "recovered_sha256": "bf993b8d98717284f58139bfa93955b1bbfcb0128ca386b1913e98d2a4eef462",
+    "recorded_sha256": "bf993b8d98717284f58139bfa93955b1bbfcb0128ca386b1913e98d2a4eef462",
+    "match": true
+  },
+  "anchor_resolution": [
+    {
+      "anchor_id": "EV-cvrngaqzq3y-v2-code-vs-agent-reasoning",
+      "locator": "timestamp:00:03:29.560..00:04:19.600",
+      "resolved": {
+        "youtube-transcript-api": {
+          "cues": 29,
+          "words_in_window": 192,
+          "resolves": true
+        },
+        "youtube-transcript.ai": {
+          "cues": 3,
+          "words_in_window": 817,
+          "resolves": true
+        },
+        "ai-video-transcriber": {
+          "cues": 27,
+          "words_in_window": 363,
+          "resolves": true
+        }
+      }
+    },
+    {
+      "anchor_id": "EV-cvrngaqzq3y-v2-continual-learning-axes",
+      "locator": "timestamp:00:16:51.600..00:18:49.160",
+      "resolved": {
+        "youtube-transcript-api": {
+          "cues": 57,
+          "words_in_window": 389,
+          "resolves": true
+        },
+        "youtube-transcript.ai": {
+          "cues": 5,
+          "words_in_window": 1481,
+          "resolves": true
+        },
+        "ai-video-transcriber": {
+          "cues": 55,
+          "words_in_window": 755,
+          "resolves": true
+        }
+      }
+    },
+    {
+      "anchor_id": "EV-cvrngaqzq3y-v2-dense-feedback",
+      "locator": "timestamp:00:14:33.440..00:16:01.560",
+      "resolved": {
+        "youtube-transcript-api": {
+          "cues": 47,
+          "words_in_window": 326,
+          "resolves": true
+        },
+        "youtube-transcript.ai": {
+          "cues": 4,
+          "words_in_window": 1224,
+          "resolves": true
+        },
+        "ai-video-transcriber": {
+          "cues": 45,
+          "words_in_window": 631,
+          "resolves": true
+        }
+      }
+    },
+    {
+      "anchor_id": "EV-cvrngaqzq3y-v2-determinism-for-autonomy",
+      "locator": "timestamp:00:04:19.600..00:04:43.280",
+      "resolved": {
+        "youtube-transcript-api": {
+          "cues": 11,
+          "words_in_window": 70,
+          "resolves": true
+        },
+        "youtube-transcript.ai": {
+          "cues": 1,
+          "words_in_window": 209,
+          "resolves": true
+        },
+        "ai-video-transcriber": {
+          "cues": 9,
+          "words_in_window": 113,
+          "resolves": true
+        }
+      }
+    },
+    {
+      "anchor_id": "EV-cvrngaqzq3y-v2-harness-ceiling-finetune",
+      "locator": "timestamp:00:09:00.920..00:09:51.480",
+      "resolved": {
+        "youtube-transcript-api": {
+          "cues": 28,
+          "words_in_window": 200,
+          "resolves": true
+        },
+        "youtube-transcript.ai": {
+          "cues": 2,
+          "words_in_window": 630,
+          "resolves": true
+        },
+        "ai-video-transcriber": {
+          "cues": 26,
+          "words_in_window": 378,
+          "resolves": true
+        }
+      }
+    },
+    {
+      "anchor_id": "EV-cvrngaqzq3y-v2-harness-finetune-sandwich",
+      "locator": "timestamp:00:16:01.560..00:16:51.600",
+      "resolved": {
+        "youtube-transcript-api": {
+          "cues": 28,
+          "words_in_window": 194,
+          "resolves": true
+        },
+        "youtube-transcript.ai": {
+          "cues": 2,
+          "words_in_window": 599,
+          "resolves": true
+        },
+        "ai-video-transcriber": {
+          "cues": 26,
+          "words_in_window": 356,
+          "resolves": true
+        }
+      }
+    },
+    {
+      "anchor_id": "EV-cvrngaqzq3y-v2-model-harness-task-fit",
+      "locator": "timestamp:00:12:45.960..00:14:33.440",
+      "resolved": {
+        "youtube-transcript-api": {
+          "cues": 48,
+          "words_in_window": 338,
+          "resolves": true
+        },
+        "youtube-transcript.ai": {
+          "cues": 5,
+          "words_in_window": 1361,
+          "resolves": true
+        },
+        "ai-video-transcriber": {
+          "cues": 46,
+          "words_in_window": 645,
+          "resolves": true
+        }
+      }
+    },
+    {
+      "anchor_id": "EV-cvrngaqzq3y-v2-observability-coupling",
+      "locator": "timestamp:00:02:21.800..00:03:08.600",
+      "resolved": {
+        "youtube-transcript-api": {
+          "cues": 22,
+          "words_in_window": 150,
+          "resolves": true
+        },
+        "youtube-transcript.ai": {
+          "cues": 2,
+          "words_in_window": 516,
+          "resolves": true
+        },
+        "ai-video-transcriber": {
+          "cues": 21,
+          "words_in_window": 284,
+          "resolves": true
+        }
+      }
+    },
+    {
+      "anchor_id": "EV-cvrngaqzq3y-v2-open-model-judge-cost",
+      "locator": "timestamp:00:07:36.880..00:09:00.920",
+      "resolved": {
+        "youtube-transcript-api": {
+          "cues": 44,
+          "words_in_window": 308,
+          "resolves": true
+        },
+        "youtube-transcript.ai": {
+          "cues": 4,
+          "words_in_window": 1268,
+          "resolves": true
+        },
+        "ai-video-transcriber": {
+          "cues": 42,
+          "words_in_window": 588,
+          "resolves": true
+        }
+      }
+    },
+    {
+      "anchor_id": "EV-cvrngaqzq3y-v2-product-identifier-uncertain",
+      "locator": "timestamp:00:10:27.920..00:11:03.200",
+      "resolved": {
+        "youtube-transcript-api": {
+          "cues": 18,
+          "words_in_window": 129,
+          "resolves": true
+        },
+        "youtube-transcript.ai": {
+          "cues": 2,
+          "words_in_window": 569,
+          "resolves": true
+        },
+        "ai-video-transcriber": {
+          "cues": 17,
+          "words_in_window": 243,
+          "resolves": true
+        }
+      }
+    },
+    {
+      "anchor_id": "EV-cvrngaqzq3y-v2-recipe-four-steps",
+      "locator": "timestamp:00:01:11.520..00:02:21.440",
+      "resolved": {
+        "youtube-transcript-api": {
+          "cues": 34,
+          "words_in_window": 231,
+          "resolves": true
+        },
+        "youtube-transcript.ai": {
+          "cues": 4,
+          "words_in_window": 1151,
+          "resolves": true
+        },
+        "ai-video-transcriber": {
+          "cues": 32,
+          "words_in_window": 440,
+          "resolves": true
+        }
+      }
+    },
+    {
+      "anchor_id": "EV-cvrngaqzq3y-v2-three-mining-outputs",
+      "locator": "timestamp:00:11:03.200..00:12:45.960",
+      "resolved": {
+        "youtube-transcript-api": {
+          "cues": 48,
+          "words_in_window": 345,
+          "resolves": true
+        },
+        "youtube-transcript.ai": {
+          "cues": 4,
+          "words_in_window": 1175,
+          "resolves": true
+        },
+        "ai-video-transcriber": {
+          "cues": 46,
+          "words_in_window": 668,
+          "resolves": true
+        }
+      }
+    },
+    {
+      "anchor_id": "EV-cvrngaqzq3y-v2-token-to-hardware-cost",
+      "locator": "timestamp:00:09:51.480..00:10:27.520",
+      "resolved": {
+        "youtube-transcript-api": {
+          "cues": 20,
+          "words_in_window": 142,
+          "resolves": true
+        },
+        "youtube-transcript.ai": {
+          "cues": 3,
+          "words_in_window": 959,
+          "resolves": true
+        },
+        "ai-video-transcriber": {
+          "cues": 18,
+          "words_in_window": 260,
+          "resolves": true
+        }
+      }
+    },
+    {
+      "anchor_id": "EV-cvrngaqzq3y-v2-trace-reading-practice",
+      "locator": "timestamp:00:04:43.280..00:05:59.480",
+      "resolved": {
+        "youtube-transcript-api": {
+          "cues": 38,
+          "words_in_window": 259,
+          "resolves": true
+        },
+        "youtube-transcript.ai": {
+          "cues": 4,
+          "words_in_window": 1110,
+          "resolves": true
+        },
+        "ai-video-transcriber": {
+          "cues": 36,
+          "words_in_window": 498,
+          "resolves": true
+        }
+      }
+    },
+    {
+      "anchor_id": "EV-cvrngaqzq3y-v2-trace-scale-cost",
+      "locator": "timestamp:00:06:42.400..00:07:36.880",
+      "resolved": {
+        "youtube-transcript-api": {
+          "cues": 29,
+          "words_in_window": 207,
+          "resolves": true
+        },
+        "youtube-transcript.ai": {
+          "cues": 3,
+          "words_in_window": 898,
+          "resolves": true
+        },
+        "ai-video-transcriber": {
+          "cues": 27,
+          "words_in_window": 385,
+          "resolves": true
+        }
+      }
+    }
+  ],
+  "conclusion": {
+    "all_v2_anchors_resolve_in_every_acquired_transport": true,
+    "recommended_transport": "youtube-transcript-api",
+    "reason": "same content, no rolling duplication, tightest locator windows, and it reaches 1200.683s of a 1201s video"
+  }
+}

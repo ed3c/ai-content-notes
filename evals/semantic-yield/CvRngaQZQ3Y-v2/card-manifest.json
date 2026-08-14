@@ -3,7 +3,7 @@
   "content_id": "CvRngaQZQ3Y",
   "run_id": "cvrngaqzq3y-v2-local-2026-08-14",
   "status": "CONTINUE",
-  "card_count": 9,
+  "card_count": 11,
   "card_order": [
     "N-autonomy-shifts-evidence-to-traces",
     "C-fit-is-a-three-way-function",
@@ -12,7 +12,9 @@
     "P-four-step-trace-improvement-recipe",
     "T-trace-judge-cost-comparison",
     "D-trace-reading-cost-bottleneck",
+    "D-transport-locator-precision",
     "V-projection-replay-v2",
+    "V-cross-transport-convergence",
     "K-visual-and-identifier-gap"
   ],
   "series_order": [
@@ -23,6 +25,8 @@
     "P",
     "T",
     "D",
+    "D",
+    "V",
     "V",
     "K"
   ],
@@ -39,5 +43,7 @@
     "retained_root": "sources/CvRngaQZQ3Y",
     "caption_kind": "automatic",
     "transcript_sha256": "sha256:304e9a058721298f7498906d2539fdabdac515f2304645d52824e6719bc5f9bf"
-  }
+  },
+  "acquisition_transports_compared": 3,
+  "acquisition_transports_refused": 2
 }

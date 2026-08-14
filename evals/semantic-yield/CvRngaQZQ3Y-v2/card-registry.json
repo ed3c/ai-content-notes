@@ -2,13 +2,15 @@
   "canonical_index": {
     "C | feedback-density | determines | agent-improvability | trace-driven-iteration | source-digest:304e9a05": "C-dense-feedback-is-the-improvable-signal",
     "C | task-performance | is-jointly-determined-by | model-harness-task-fit | agent-first-engineering | source-digest:304e9a05": "C-fit-is-a-three-way-function",
+    "D | caption-transports | differ-in | evidence-locator-precision | cvrngaqzq3y-comparison | source-digest:304e9a05": "D-transport-locator-precision",
     "D | trace-corpus | is-bounded-by | reading-cost-and-context-limit | trace-mining-systems | source-digest:304e9a05": "D-trace-reading-cost-bottleneck",
     "K | visual-and-identifier-evidence | blocks | exact-slide-and-name-reconstruction | cvrngaqzq3y-v2-run | run-local-2026-08-14": "K-visual-and-identifier-gap",
     "N | agent-autonomy | shifts | evidence-surface-to-runtime-traces | production-agent-systems | source-digest:304e9a05": "N-autonomy-shifts-evidence-to-traces",
     "P | improvement-team | executes | ship-collect-mine-experiment | production-agent-improvement | source-digest:304e9a05": "P-four-step-trace-improvement-recipe",
     "S | improvement-effort | is-ordered-by | feedback-latency | harness-and-finetune-sandwich | source-digest:304e9a05": "S-harness-then-tune-then-harness",
     "T | trace-judging | compares | frontier-against-open-model | cost-and-capability | source-digest:304e9a05": "T-trace-judge-cost-comparison",
-    "V | projection-bundle | verifies | deterministic-replay-from-retained-source | cvrngaqzq3y-v2-run | not-run": "V-projection-replay-v2"
+    "V | projection-bundle | verifies | deterministic-replay-from-retained-source | cvrngaqzq3y-v2-run | not-run": "V-projection-replay-v2",
+    "V | three-caption-transports | verifies | normalized-content-convergence | cvrngaqzq3y-comparison | run-local-2026-08-15": "V-cross-transport-convergence"
   },
   "cards": {
     "C-dense-feedback-is-the-improvable-signal": {
@@ -36,7 +38,7 @@
           "target": "P-four-step-trace-improvement-recipe"
         }
       ],
-      "updated_at": "2026-08-14T16:30:00Z",
+      "updated_at": "2026-08-15T00:30:00Z",
       "verification": "SUPPORTED"
     },
     "C-fit-is-a-three-way-function": {
@@ -64,7 +66,7 @@
           "target": "S-harness-then-tune-then-harness"
         }
       ],
-      "updated_at": "2026-08-14T16:30:00Z",
+      "updated_at": "2026-08-15T00:30:00Z",
       "verification": "SUPPORTED"
     },
     "D-trace-reading-cost-bottleneck": {
@@ -92,8 +94,36 @@
           "target": "C-dense-feedback-is-the-improvable-signal"
         }
       ],
-      "updated_at": "2026-08-14T16:30:00Z",
+      "updated_at": "2026-08-15T00:30:00Z",
       "verification": "SUPPORTED"
+    },
+    "D-transport-locator-precision": {
+      "canonical_key": "D | caption-transports | differ-in | evidence-locator-precision | cvrngaqzq3y-comparison | source-digest:304e9a05",
+      "claim_kind": "OBSERVATION",
+      "confidence": "HIGH",
+      "confidence_basis": "每個數字都由保留素材上的確定性量測得出，非估計；三份素材皆已入庫並經 verify_source_retention.py 綁定。",
+      "content_digest": "sha256:efc2c1aad6c1e766bda76a5a8b8fba1213ab097382b819461d75802aa081b87f",
+      "evidence_ids": [],
+      "lifecycle_status": "ACTIVE",
+      "revision": 1,
+      "scope": "CvRngaQZQ3Y three retained caption transports compared 2026-08-15; user-directed evaluation only",
+      "series": "D",
+      "stable_id": "D-transport-locator-precision",
+      "supersedes": [],
+      "typed_links": [
+        {
+          "edge_type": "ROOT",
+          "relation": "inbound",
+          "target": "N-autonomy-shifts-evidence-to-traces"
+        },
+        {
+          "edge_type": "CONFLICT",
+          "relation": "outbound",
+          "target": "V-cross-transport-convergence"
+        }
+      ],
+      "updated_at": "2026-08-15T00:30:00Z",
+      "verification": "TESTED"
     },
     "K-visual-and-identifier-gap": {
       "canonical_key": "K | visual-and-identifier-evidence | blocks | exact-slide-and-name-reconstruction | cvrngaqzq3y-v2-run | run-local-2026-08-14",
@@ -115,7 +145,7 @@
           "target": "N-autonomy-shifts-evidence-to-traces"
         }
       ],
-      "updated_at": "2026-08-14T16:30:00Z",
+      "updated_at": "2026-08-15T00:30:00Z",
       "verification": "SUPPORTED"
     },
     "N-autonomy-shifts-evidence-to-traces": {
@@ -152,7 +182,7 @@
           "target": "K-visual-and-identifier-gap"
         }
       ],
-      "updated_at": "2026-08-14T16:30:00Z",
+      "updated_at": "2026-08-15T00:30:00Z",
       "verification": "SUPPORTED"
     },
     "P-four-step-trace-improvement-recipe": {
@@ -185,7 +215,7 @@
           "target": "D-trace-reading-cost-bottleneck"
         }
       ],
-      "updated_at": "2026-08-14T16:30:00Z",
+      "updated_at": "2026-08-15T00:30:00Z",
       "verification": "SUPPORTED"
     },
     "S-harness-then-tune-then-harness": {
@@ -213,7 +243,7 @@
           "target": "T-trace-judge-cost-comparison"
         }
       ],
-      "updated_at": "2026-08-14T16:30:00Z",
+      "updated_at": "2026-08-15T00:30:00Z",
       "verification": "SUPPORTED"
     },
     "T-trace-judge-cost-comparison": {
@@ -241,8 +271,36 @@
           "target": "K-visual-and-identifier-gap"
         }
       ],
-      "updated_at": "2026-08-14T16:30:00Z",
+      "updated_at": "2026-08-15T00:30:00Z",
       "verification": "SUPPORTED"
+    },
+    "V-cross-transport-convergence": {
+      "canonical_key": "V | three-caption-transports | verifies | normalized-content-convergence | cvrngaqzq3y-comparison | run-local-2026-08-15",
+      "claim_kind": "OBSERVATION",
+      "confidence": "HIGH",
+      "confidence_basis": "digest 比對為位元級相等，非相似度判斷；比對雙方皆可回讀。",
+      "content_digest": "sha256:03ea09933b768e9720ed5ad92366491b796db685ddcff6409d0e0318a6b5d6ce",
+      "evidence_ids": [],
+      "lifecycle_status": "ACTIVE",
+      "revision": 1,
+      "scope": "CvRngaQZQ3Y three retained caption transports compared 2026-08-15; user-directed evaluation only",
+      "series": "V",
+      "stable_id": "V-cross-transport-convergence",
+      "supersedes": [],
+      "typed_links": [
+        {
+          "edge_type": "ROOT",
+          "relation": "inbound",
+          "target": "D-transport-locator-precision"
+        },
+        {
+          "edge_type": "DEPENDS_ON",
+          "relation": "outbound",
+          "target": "K-visual-and-identifier-gap"
+        }
+      ],
+      "updated_at": "2026-08-15T00:30:00Z",
+      "verification": "TESTED"
     },
     "V-projection-replay-v2": {
       "canonical_key": "V | projection-bundle | verifies | deterministic-replay-from-retained-source | cvrngaqzq3y-v2-run | not-run",
@@ -269,7 +327,7 @@
           "target": "K-visual-and-identifier-gap"
         }
       ],
-      "updated_at": "2026-08-14T16:30:00Z",
+      "updated_at": "2026-08-15T00:30:00Z",
       "verification": "TESTED"
     }
   },
@@ -279,5 +337,5 @@
   "schema_version": "zettelkasten-card-registry@1",
   "source_digest": "sha256:304e9a058721298f7498906d2539fdabdac515f2304645d52824e6719bc5f9bf",
   "source_id": "youtube-video:cvrngaqzq3y",
-  "updated_at": "2026-08-14T16:30:00Z"
+  "updated_at": "2026-08-15T00:30:00Z"
 }
