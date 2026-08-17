@@ -1,0 +1,306 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ed3c/ai-content-notes/schemas/source-registry.schema.json",
+  "title": "Product Reverse-Engineering Source Registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "registry_id",
+    "evidence_mode",
+    "canonical_authority",
+    "projection_mode",
+    "subject",
+    "generated_at",
+    "entries",
+    "registry_digest"
+  ],
+  "properties": {
+    "schema_version": {"const": "source-registry@1"},
+    "registry_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{2,127}$"
+    },
+    "evidence_mode": {"enum": ["FIXTURE", "LIVE"]},
+    "canonical_authority": {"const": "GITHUB"},
+    "projection_mode": {
+      "enum": [
+        "GITHUB_ONLY",
+        "GITHUB_CANONICAL_GOOGLE_PROJECTION",
+        "OWNER_DECISION_PENDING"
+      ]
+    },
+    "subject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository", "revision", "tree_sha"],
+      "properties": {
+        "repository": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"
+        },
+        "revision": {"$ref": "#/$defs/git_sha"},
+        "tree_sha": {"$ref": "#/$defs/git_sha"}
+      }
+    },
+    "generated_at": {"type": "string", "format": "date-time"},
+    "entries": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/entry"}
+    },
+    "registry_digest": {"$ref": "#/$defs/sha256"}
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "git_sha": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "locator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": {
+          "enum": [
+            "page",
+            "line",
+            "timestamp",
+            "section",
+            "heading",
+            "path",
+            "commit",
+            "text_match",
+            "visual_region",
+            "sheet_range",
+            "row_key",
+            "document_revision",
+            "issue",
+            "pr"
+          ]
+        },
+        "value": {"type": "string", "minLength": 1},
+        "digest": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_id",
+        "source_kind",
+        "source_dependency_key",
+        "primary_or_secondary",
+        "requested_url",
+        "resolved_url",
+        "state",
+        "identity",
+        "rights",
+        "completeness",
+        "content",
+        "locators",
+        "readback",
+        "retention",
+        "change_notification_only",
+        "authority_ceiling",
+        "blockers"
+      ],
+      "properties": {
+        "source_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9._:-]{2,191}$"
+        },
+        "source_kind": {
+          "enum": [
+            "GITHUB_BLOB",
+            "GITHUB_ISSUE",
+            "GITHUB_PR",
+            "PDF",
+            "GOOGLE_DOC",
+            "GOOGLE_SHEET",
+            "WEB_ARTICLE",
+            "INTERVIEW",
+            "RUNTIME_TRACE"
+          ]
+        },
+        "source_dependency_key": {"type": "string", "minLength": 1},
+        "primary_or_secondary": {
+          "enum": ["PRIMARY", "SECONDARY", "UNKNOWN"]
+        },
+        "requested_url": {"type": "string", "format": "uri"},
+        "resolved_url": {"type": "string", "format": "uri"},
+        "state": {
+          "enum": [
+            "SOURCE_REFERENCED",
+            "IDENTITY_RESOLVED",
+            "RIGHTS_AND_COMPLETENESS_REVIEWED",
+            "SNAPSHOT_CAPTURED",
+            "LOCATORS_BOUND",
+            "DIGESTED",
+            "READ_BACK_VERIFIED",
+            "ADMITTED",
+            "BLOCKED"
+          ]
+        },
+        "identity": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["immutable", "resolved_at"],
+          "properties": {
+            "immutable": {"type": "boolean"},
+            "resolved_at": {"type": "string", "format": "date-time"},
+            "repository": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"
+            },
+            "commit_sha": {"$ref": "#/$defs/git_sha"},
+            "blob_sha": {"$ref": "#/$defs/git_sha"},
+            "path": {"type": "string", "minLength": 1},
+            "external_id": {"type": "string", "minLength": 1},
+            "observed_revision": {"type": "string", "minLength": 1},
+            "sheet_range": {"type": "string", "minLength": 1},
+            "row_key": {"type": "string", "minLength": 1}
+          }
+        },
+        "rights": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["basis", "decision"],
+          "properties": {
+            "basis": {
+              "enum": [
+                "OWNER_PROVIDED",
+                "PUBLIC_LICENSE",
+                "CONTRACTUAL_LICENSE",
+                "REPOSITORY_POLICY",
+                "PUBLIC_VISIBILITY_ONLY",
+                "UNKNOWN"
+              ]
+            },
+            "decision": {
+              "enum": ["PASS", "BLOCKED", "NEEDS_REVIEW", "NOT_APPLICABLE"]
+            },
+            "evidence_uri": {"type": "string", "format": "uri"},
+            "reviewed_at": {"type": "string", "format": "date-time"}
+          }
+        },
+        "completeness": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "reviewed", "missing_parts"],
+          "properties": {
+            "status": {
+              "enum": ["COMPLETE", "PARTIAL", "BLOCKED", "NEEDS_REVIEW"]
+            },
+            "reviewed": {"type": "boolean"},
+            "missing_parts": {
+              "type": "array",
+              "items": {"type": "string", "minLength": 1},
+              "uniqueItems": true
+            }
+          }
+        },
+        "content": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "content_scope",
+            "media_type",
+            "has_text",
+            "has_images",
+            "has_tables",
+            "material_visuals",
+            "visual_review_state"
+          ],
+          "properties": {
+            "content_scope": {
+              "enum": [
+                "COMPLETE_BODY",
+                "BOUNDED_RANGE",
+                "METADATA_ONLY",
+                "TITLE_OR_SNIPPET_ONLY"
+              ]
+            },
+            "media_type": {"type": "string", "minLength": 1},
+            "digest": {"$ref": "#/$defs/sha256"},
+            "export_digest": {"$ref": "#/$defs/sha256"},
+            "size_bytes": {"type": "integer", "minimum": 0},
+            "has_text": {"type": "boolean"},
+            "has_images": {"type": "boolean"},
+            "has_tables": {"type": "boolean"},
+            "material_visuals": {"type": "boolean"},
+            "visual_review_state": {
+              "enum": [
+                "PASS",
+                "PARTIAL",
+                "BLOCKED",
+                "NOT_EXERCISED",
+                "NOT_APPLICABLE"
+              ]
+            }
+          }
+        },
+        "locators": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/locator"}
+        },
+        "readback": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "method"],
+          "properties": {
+            "status": {"enum": ["PASS", "FAIL", "NOT_EXERCISED"]},
+            "method": {
+              "enum": [
+                "GITHUB_BLOB_SHA",
+                "DRIVE_EXPORT",
+                "SHEET_RANGE_READBACK",
+                "PDF_PAGE_RENDER",
+                "LOCAL_FILE_HASH",
+                "NOT_EXERCISED"
+              ]
+            },
+            "observed_at": {"type": "string", "format": "date-time"},
+            "evidence_uri": {"type": "string", "format": "uri"},
+            "content_digest": {"$ref": "#/$defs/sha256"}
+          }
+        },
+        "retention": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["policy"],
+          "properties": {
+            "policy": {
+              "enum": [
+                "COMMIT_ALLOWED",
+                "EXTERNAL_REFERENCE_ONLY",
+                "PRIVATE_SIDECAR",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "retained_path": {"type": "string", "minLength": 1},
+            "retention_digest": {"$ref": "#/$defs/sha256"}
+          }
+        },
+        "change_notification_only": {"type": "boolean"},
+        "authority_ceiling": {
+          "enum": [
+            "CONTRACT_FIXTURE_ONLY",
+            "SOURCE_IDENTITY_ONLY",
+            "SOURCE_INPUT_ONLY",
+            "HUMAN_PROJECTION"
+          ]
+        },
+        "blockers": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        }
+      }
+    }
+  }
+}
