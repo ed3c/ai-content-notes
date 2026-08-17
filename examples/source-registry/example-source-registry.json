@@ -1,0 +1,263 @@
+{
+  "canonical_authority": "GITHUB",
+  "entries": [
+    {
+      "authority_ceiling": "CONTRACT_FIXTURE_ONLY",
+      "blockers": [],
+      "change_notification_only": false,
+      "completeness": {
+        "missing_parts": [],
+        "reviewed": true,
+        "status": "COMPLETE"
+      },
+      "content": {
+        "content_scope": "COMPLETE_BODY",
+        "digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+        "has_images": false,
+        "has_tables": false,
+        "has_text": true,
+        "material_visuals": false,
+        "media_type": "text/markdown",
+        "size_bytes": 11092,
+        "visual_review_state": "NOT_APPLICABLE"
+      },
+      "identity": {
+        "blob_sha": "faf6df77c9e2ea5bd7a1d511681b1530efde122b",
+        "commit_sha": "6afe799f9ba01c0c7ab4a25dffe5f226c0d05d53",
+        "immutable": true,
+        "path": "AGENTS.md",
+        "repository": "ed3c/ai-content-notes",
+        "resolved_at": "2026-08-18T02:40:00Z"
+      },
+      "locators": [
+        {
+          "kind": "commit",
+          "value": "6afe799f9ba01c0c7ab4a25dffe5f226c0d05d53"
+        },
+        {
+          "kind": "path",
+          "value": "AGENTS.md"
+        }
+      ],
+      "primary_or_secondary": "PRIMARY",
+      "readback": {
+        "content_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+        "evidence_uri": "https://github.com/ed3c/ai-content-notes/blob/6afe799f9ba01c0c7ab4a25dffe5f226c0d05d53/AGENTS.md",
+        "method": "GITHUB_BLOB_SHA",
+        "observed_at": "2026-08-18T02:40:00Z",
+        "status": "PASS"
+      },
+      "requested_url": "https://github.com/ed3c/ai-content-notes/blob/main/AGENTS.md",
+      "resolved_url": "https://github.com/ed3c/ai-content-notes/blob/6afe799f9ba01c0c7ab4a25dffe5f226c0d05d53/AGENTS.md",
+      "retention": {
+        "policy": "EXTERNAL_REFERENCE_ONLY"
+      },
+      "rights": {
+        "basis": "REPOSITORY_POLICY",
+        "decision": "PASS",
+        "evidence_uri": "https://github.com/ed3c/ai-content-notes",
+        "reviewed_at": "2026-08-18T02:40:00Z"
+      },
+      "source_dependency_key": "github-blob:ed3c/ai-content-notes:AGENTS.md",
+      "source_id": "fixture:github:agents",
+      "source_kind": "GITHUB_BLOB",
+      "state": "READ_BACK_VERIFIED"
+    },
+    {
+      "authority_ceiling": "CONTRACT_FIXTURE_ONLY",
+      "blockers": [],
+      "change_notification_only": false,
+      "completeness": {
+        "missing_parts": [],
+        "reviewed": true,
+        "status": "COMPLETE"
+      },
+      "content": {
+        "content_scope": "COMPLETE_BODY",
+        "digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+        "export_digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+        "has_images": false,
+        "has_tables": true,
+        "has_text": true,
+        "material_visuals": false,
+        "media_type": "text/markdown",
+        "visual_review_state": "NOT_APPLICABLE"
+      },
+      "identity": {
+        "external_id": "1PMLo7I6ze0CFepwmiPbHzfH2HU_GmGMqgLjjZn-1-jo",
+        "immutable": false,
+        "observed_revision": "AIroW34-fixture-revision",
+        "resolved_at": "2026-08-18T02:40:00Z"
+      },
+      "locators": [
+        {
+          "kind": "document_revision",
+          "value": "AIroW34-fixture-revision"
+        },
+        {
+          "kind": "section",
+          "value": "Stage 1 Preparation Milestone"
+        }
+      ],
+      "primary_or_secondary": "PRIMARY",
+      "readback": {
+        "content_digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+        "evidence_uri": "https://docs.google.com/document/d/1PMLo7I6ze0CFepwmiPbHzfH2HU_GmGMqgLjjZn-1-jo/edit",
+        "method": "DRIVE_EXPORT",
+        "observed_at": "2026-08-18T02:40:00Z",
+        "status": "PASS"
+      },
+      "requested_url": "https://docs.google.com/document/d/1PMLo7I6ze0CFepwmiPbHzfH2HU_GmGMqgLjjZn-1-jo/edit",
+      "resolved_url": "https://docs.google.com/document/d/1PMLo7I6ze0CFepwmiPbHzfH2HU_GmGMqgLjjZn-1-jo/edit",
+      "retention": {
+        "policy": "EXTERNAL_REFERENCE_ONLY"
+      },
+      "rights": {
+        "basis": "OWNER_PROVIDED",
+        "decision": "PASS",
+        "evidence_uri": "https://docs.google.com/document/d/1PMLo7I6ze0CFepwmiPbHzfH2HU_GmGMqgLjjZn-1-jo/edit",
+        "reviewed_at": "2026-08-18T02:40:00Z"
+      },
+      "source_dependency_key": "google-doc:product-reverse-engineering-context",
+      "source_id": "fixture:google-doc:codexdoc",
+      "source_kind": "GOOGLE_DOC",
+      "state": "READ_BACK_VERIFIED"
+    },
+    {
+      "authority_ceiling": "CONTRACT_FIXTURE_ONLY",
+      "blockers": [],
+      "change_notification_only": false,
+      "completeness": {
+        "missing_parts": [],
+        "reviewed": true,
+        "status": "COMPLETE"
+      },
+      "content": {
+        "content_scope": "BOUNDED_RANGE",
+        "digest": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+        "has_images": false,
+        "has_tables": true,
+        "has_text": true,
+        "material_visuals": false,
+        "media_type": "application/vnd.google-apps.spreadsheet",
+        "visual_review_state": "NOT_APPLICABLE"
+      },
+      "identity": {
+        "external_id": "fixture-sheet-id",
+        "immutable": false,
+        "observed_revision": "sheet-observation:2026-08-18T02:40:00Z",
+        "resolved_at": "2026-08-18T02:40:00Z",
+        "row_key": "source-001",
+        "sheet_range": "Sources!A2:N2"
+      },
+      "locators": [
+        {
+          "kind": "row_key",
+          "value": "source-001"
+        },
+        {
+          "kind": "sheet_range",
+          "value": "Sources!A2:N2"
+        }
+      ],
+      "primary_or_secondary": "PRIMARY",
+      "readback": {
+        "content_digest": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+        "evidence_uri": "https://docs.google.com/spreadsheets/d/fixture-sheet-id/edit",
+        "method": "SHEET_RANGE_READBACK",
+        "observed_at": "2026-08-18T02:40:00Z",
+        "status": "PASS"
+      },
+      "requested_url": "https://docs.google.com/spreadsheets/d/fixture-sheet-id/edit",
+      "resolved_url": "https://docs.google.com/spreadsheets/d/fixture-sheet-id/edit",
+      "retention": {
+        "policy": "EXTERNAL_REFERENCE_ONLY"
+      },
+      "rights": {
+        "basis": "OWNER_PROVIDED",
+        "decision": "PASS",
+        "evidence_uri": "https://docs.google.com/spreadsheets/d/fixture-sheet-id/edit",
+        "reviewed_at": "2026-08-18T02:40:00Z"
+      },
+      "source_dependency_key": "google-sheet:source-dashboard:row-001",
+      "source_id": "fixture:google-sheet:source-dashboard",
+      "source_kind": "GOOGLE_SHEET",
+      "state": "READ_BACK_VERIFIED"
+    },
+    {
+      "authority_ceiling": "CONTRACT_FIXTURE_ONLY",
+      "blockers": [],
+      "change_notification_only": false,
+      "completeness": {
+        "missing_parts": [],
+        "reviewed": true,
+        "status": "COMPLETE"
+      },
+      "content": {
+        "content_scope": "COMPLETE_BODY",
+        "digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+        "has_images": true,
+        "has_tables": true,
+        "has_text": true,
+        "material_visuals": true,
+        "media_type": "application/pdf",
+        "size_bytes": 1878749,
+        "visual_review_state": "PASS"
+      },
+      "identity": {
+        "external_id": "1G35AxLrIa95YIUAvncH6BiWkUVAeX9A9",
+        "immutable": false,
+        "observed_revision": "drive-modified:2026-08-17T16:06:59Z",
+        "resolved_at": "2026-08-18T02:40:00Z"
+      },
+      "locators": [
+        {
+          "kind": "page",
+          "value": "2"
+        },
+        {
+          "kind": "section",
+          "value": "核心架構能力矩陣對照表"
+        },
+        {
+          "kind": "visual_region",
+          "value": "page:2/table:core-capability-matrix"
+        }
+      ],
+      "primary_or_secondary": "SECONDARY",
+      "readback": {
+        "content_digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+        "evidence_uri": "https://drive.google.com/file/d/1G35AxLrIa95YIUAvncH6BiWkUVAeX9A9/view",
+        "method": "PDF_PAGE_RENDER",
+        "observed_at": "2026-08-18T02:40:00Z",
+        "status": "PASS"
+      },
+      "requested_url": "https://drive.google.com/file/d/1G35AxLrIa95YIUAvncH6BiWkUVAeX9A9/view",
+      "resolved_url": "https://drive.google.com/file/d/1G35AxLrIa95YIUAvncH6BiWkUVAeX9A9/view",
+      "retention": {
+        "policy": "EXTERNAL_REFERENCE_ONLY"
+      },
+      "rights": {
+        "basis": "OWNER_PROVIDED",
+        "decision": "PASS",
+        "evidence_uri": "https://drive.google.com/file/d/1G35AxLrIa95YIUAvncH6BiWkUVAeX9A9/view",
+        "reviewed_at": "2026-08-18T02:40:00Z"
+      },
+      "source_dependency_key": "owner-provided-pdf:modern-web-architecture",
+      "source_id": "fixture:pdf:modern-web-architecture",
+      "source_kind": "PDF",
+      "state": "READ_BACK_VERIFIED"
+    }
+  ],
+  "evidence_mode": "FIXTURE",
+  "generated_at": "2026-08-18T02:45:00Z",
+  "projection_mode": "OWNER_DECISION_PENDING",
+  "registry_digest": "sha256:76de5d97557b3b2da081549519af643dd457faa477417cb04ae7c455b51de958",
+  "registry_id": "prel-source-registry-fixture-001",
+  "schema_version": "source-registry@1",
+  "subject": {
+    "repository": "ed3c/ai-content-notes",
+    "revision": "6afe799f9ba01c0c7ab4a25dffe5f226c0d05d53",
+    "tree_sha": "6683ba605f574a40d33265cf4ca2cc223fa77dcc"
+  }
+}
