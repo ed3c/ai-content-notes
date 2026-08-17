@@ -1,0 +1,78 @@
+{
+  "canonical_authority": "GITHUB",
+  "entries": [
+    {
+      "authority_ceiling": "CONTRACT_FIXTURE_ONLY",
+      "blockers": [],
+      "change_notification_only": false,
+      "completeness": {
+        "missing_parts": [],
+        "reviewed": true,
+        "status": "COMPLETE"
+      },
+      "content": {
+        "content_scope": "TITLE_OR_SNIPPET_ONLY",
+        "digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+        "has_images": false,
+        "has_tables": false,
+        "has_text": true,
+        "material_visuals": false,
+        "media_type": "text/markdown",
+        "size_bytes": 11092,
+        "visual_review_state": "NOT_APPLICABLE"
+      },
+      "identity": {
+        "blob_sha": "faf6df77c9e2ea5bd7a1d511681b1530efde122b",
+        "commit_sha": "6afe799f9ba01c0c7ab4a25dffe5f226c0d05d53",
+        "immutable": true,
+        "path": "AGENTS.md",
+        "repository": "ed3c/ai-content-notes",
+        "resolved_at": "2026-08-18T02:40:00Z"
+      },
+      "locators": [
+        {
+          "kind": "commit",
+          "value": "6afe799f9ba01c0c7ab4a25dffe5f226c0d05d53"
+        },
+        {
+          "kind": "path",
+          "value": "AGENTS.md"
+        }
+      ],
+      "primary_or_secondary": "PRIMARY",
+      "readback": {
+        "content_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+        "evidence_uri": "https://github.com/ed3c/ai-content-notes/blob/6afe799f9ba01c0c7ab4a25dffe5f226c0d05d53/AGENTS.md",
+        "method": "GITHUB_BLOB_SHA",
+        "observed_at": "2026-08-18T02:40:00Z",
+        "status": "PASS"
+      },
+      "requested_url": "https://github.com/ed3c/ai-content-notes/blob/main/AGENTS.md",
+      "resolved_url": "https://github.com/ed3c/ai-content-notes/blob/6afe799f9ba01c0c7ab4a25dffe5f226c0d05d53/AGENTS.md",
+      "retention": {
+        "policy": "EXTERNAL_REFERENCE_ONLY"
+      },
+      "rights": {
+        "basis": "REPOSITORY_POLICY",
+        "decision": "PASS",
+        "evidence_uri": "https://github.com/ed3c/ai-content-notes",
+        "reviewed_at": "2026-08-18T02:40:00Z"
+      },
+      "source_dependency_key": "github-blob:ed3c/ai-content-notes:AGENTS.md",
+      "source_id": "fixture:github:agents",
+      "source_kind": "GITHUB_BLOB",
+      "state": "READ_BACK_VERIFIED"
+    }
+  ],
+  "evidence_mode": "FIXTURE",
+  "generated_at": "2026-08-18T02:45:00Z",
+  "projection_mode": "OWNER_DECISION_PENDING",
+  "registry_digest": "sha256:e191e4422551cf85ea97493e33b9e0cdd3e90febd1ead1f67f565ecf617bdece",
+  "registry_id": "prel-source-registry-invalid-title-snippet",
+  "schema_version": "source-registry@1",
+  "subject": {
+    "repository": "ed3c/ai-content-notes",
+    "revision": "6afe799f9ba01c0c7ab4a25dffe5f226c0d05d53",
+    "tree_sha": "6683ba605f574a40d33265cf4ca2cc223fa77dcc"
+  }
+}
