@@ -1,0 +1,45 @@
+{
+  "schema_version": "pdf-source-shadow-review@1",
+  "mode": "SAME_CONTEXT_READ_ONLY_SHADOW",
+  "verdict": "LIVE_PDF_ADAPTER_AND_SOURCE_INPUT_CANARY_ALLOWED_WITH_DECLARED_CEILING",
+  "independent_shadow": "NOT_EXERCISED",
+  "findings": [
+    {
+      "id": "S2-PDF-001",
+      "state": "PASS",
+      "finding": "The child consumes unmerged source-registry@1 bytes and must target parent branch prel/51-source-registry-contract."
+    },
+    {
+      "id": "S2-PDF-002",
+      "state": "PASS",
+      "finding": "The Drive raw download and conversation upload have the same size and SHA-256."
+    },
+    {
+      "id": "S2-PDF-003",
+      "state": "PASS",
+      "finding": "All 34 pages were contact-sheet reviewed; material diagrams and tables have explicit page-region locators."
+    },
+    {
+      "id": "S2-PDF-004",
+      "state": "OWNER_DECISION_PENDING",
+      "finding": "Issue #41 still owns Google persistence authority; this leaf does not edit authority-bearing governance files."
+    },
+    {
+      "id": "S2-PDF-005",
+      "state": "NON_CLAIM",
+      "finding": "PDF descriptions of product internals, libraries, costs, performance, and licensing remain source statements or hypotheses."
+    },
+    {
+      "id": "S2-PDF-006",
+      "state": "NOT_EXERCISED",
+      "finding": "Separate-context or separate-model Shadow review has not run."
+    }
+  ],
+  "authority_ceiling": "SOURCE_INPUT_ONLY",
+  "human_owned_operations": [
+    "merge",
+    "Google persistence authority decision",
+    "legal or license admission",
+    "market and commercial promotion"
+  ]
+}

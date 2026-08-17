@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ed3c/ai-content-notes/schemas/pdf-source-descriptor.schema.json",
+  "title": "PDF Source Descriptor",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "source_id",
+    "source_dependency_key",
+    "requested_url",
+    "resolved_url",
+    "external_id",
+    "observed_revision",
+    "expected_digest",
+    "expected_size_bytes",
+    "expected_page_count",
+    "primary_or_secondary",
+    "producer_subject",
+    "generated_at",
+    "resolved_at",
+    "rights",
+    "completeness",
+    "content_profile",
+    "visual_review",
+    "retention",
+    "projection_mode",
+    "authority_ceiling"
+  ],
+  "properties": {
+    "schema_version": {"const": "pdf-source-descriptor@1"},
+    "source_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._:-]{2,191}$"},
+    "source_dependency_key": {"type": "string", "minLength": 1},
+    "requested_url": {"type": "string", "format": "uri"},
+    "resolved_url": {"type": "string", "format": "uri"},
+    "external_id": {"type": "string", "minLength": 1},
+    "observed_revision": {"type": "string", "minLength": 1},
+    "expected_digest": {"$ref": "#/$defs/sha256"},
+    "expected_size_bytes": {"type": "integer", "minimum": 1},
+    "expected_page_count": {"type": "integer", "minimum": 1},
+    "primary_or_secondary": {"enum": ["PRIMARY", "SECONDARY", "UNKNOWN"]},
+    "producer_subject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository", "revision", "tree_sha"],
+      "properties": {
+        "repository": {"const": "ed3c/ai-content-notes"},
+        "revision": {"$ref": "#/$defs/git_sha"},
+        "tree_sha": {"$ref": "#/$defs/git_sha"}
+      }
+    },
+    "generated_at": {"type": "string", "format": "date-time"},
+    "resolved_at": {"type": "string", "format": "date-time"},
+    "rights": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["basis", "decision", "evidence_uri", "reviewed_at"],
+      "properties": {
+        "basis": {"enum": ["OWNER_PROVIDED", "PUBLIC_LICENSE", "CONTRACTUAL_LICENSE", "REPOSITORY_POLICY", "PUBLIC_VISIBILITY_ONLY", "UNKNOWN"]},
+        "decision": {"enum": ["PASS", "BLOCKED", "NEEDS_REVIEW", "NOT_APPLICABLE"]},
+        "evidence_uri": {"type": "string", "format": "uri"},
+        "reviewed_at": {"type": "string", "format": "date-time"}
+      }
+    },
+    "completeness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "reviewed", "missing_parts"],
+      "properties": {
+        "status": {"enum": ["COMPLETE", "PARTIAL", "BLOCKED", "NEEDS_REVIEW"]},
+        "reviewed": {"type": "boolean"},
+        "missing_parts": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true}
+      }
+    },
+    "content_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["has_text", "has_images", "has_tables", "material_visuals"],
+      "properties": {
+        "has_text": {"type": "boolean"},
+        "has_images": {"type": "boolean"},
+        "has_tables": {"type": "boolean"},
+        "material_visuals": {"type": "boolean"}
+      }
+    },
+    "visual_review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "reviewed_page_range", "material_visual_pages", "regions", "reviewed_at", "reviewer_mode"],
+      "properties": {
+        "status": {"enum": ["PASS", "PARTIAL", "BLOCKED", "NOT_EXERCISED", "NOT_APPLICABLE"]},
+        "reviewed_page_range": {"type": "string", "pattern": "^[1-9][0-9]*-[1-9][0-9]*$"},
+        "material_visual_pages": {"type": "array", "items": {"type": "integer", "minimum": 1}, "uniqueItems": true},
+        "regions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["page", "region", "kind", "summary"],
+            "properties": {
+              "page": {"type": "integer", "minimum": 1},
+              "region": {"type": "string", "minLength": 1},
+              "kind": {"enum": ["DIAGRAM", "TABLE", "CODE", "MIXED"]},
+              "summary": {"type": "string", "minLength": 1}
+            }
+          }
+        },
+        "reviewed_at": {"type": "string", "format": "date-time"},
+        "reviewer_mode": {"enum": ["MODEL_VISUAL_REVIEW", "HUMAN_REVIEW", "MIXED"]}
+      }
+    },
+    "retention": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policy"],
+      "properties": {
+        "policy": {"enum": ["EXTERNAL_REFERENCE_ONLY", "PRIVATE_SIDECAR", "COMMIT_ALLOWED"]},
+        "retained_path": {"type": "string", "minLength": 1}
+      }
+    },
+    "projection_mode": {"enum": ["GITHUB_ONLY", "GITHUB_CANONICAL_GOOGLE_PROJECTION", "OWNER_DECISION_PENDING"]},
+    "authority_ceiling": {"const": "SOURCE_INPUT_ONLY"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"},
+    "git_sha": {"type": "string", "pattern": "^[a-f0-9]{40}$"}
+  }
+}
