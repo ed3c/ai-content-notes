@@ -1,0 +1,41 @@
+{
+  "schema_version": "prel-shadow-preflight@1",
+  "issue": "https://github.com/ed3c/ai-content-notes/issues/51",
+  "subject": {
+    "repository": "ed3c/ai-content-notes",
+    "revision": "6afe799f9ba01c0c7ab4a25dffe5f226c0d05d53",
+    "tree_sha": "6683ba605f574a40d33265cf4ca2cc223fa77dcc"
+  },
+  "mode": "SAME_CONTEXT_READ_ONLY_SHADOW",
+  "verdict": "CONTRACT_CORE_IMPLEMENTATION_ALLOWED_WITH_DECLARED_BLOCKERS",
+  "findings": [
+    {
+      "id": "SHADOW-S2-001",
+      "state": "PASS",
+      "finding": "No open pull request currently owns the proposed source-registry contract, tool, test, example, or source-intake documentation paths."
+    },
+    {
+      "id": "SHADOW-S2-002",
+      "state": "BLOCKED",
+      "finding": "Issue #41 owner authority over Google persistence remains unresolved; this leaf cannot change completion authority or the nine Google-bearing contract files."
+    },
+    {
+      "id": "SHADOW-S2-003",
+      "state": "NOT_EXERCISED",
+      "finding": "The exact PDF bytes, content digest, rights receipt, and visual read-back have not been persisted as a live source subject in this leaf."
+    },
+    {
+      "id": "SHADOW-S2-004",
+      "state": "NOT_EXERCISED",
+      "finding": "Independent Shadow context/model, local worktree, Git Town, Forgejo, provider, and device lanes remain unexercised."
+    }
+  ],
+  "authority_ceiling": "CONTRACT_AND_DETERMINISTIC_GATE_ONLY",
+  "human_owned_operations": [
+    "Google persistence authority decision",
+    "rights admission",
+    "semantic conflict resolution",
+    "merge",
+    "release"
+  ]
+}
