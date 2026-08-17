@@ -1,0 +1,99 @@
+{
+  "authority_ceiling": "SOURCE_INPUT_ONLY",
+  "completeness": {
+    "missing_parts": [],
+    "reviewed": true,
+    "status": "COMPLETE"
+  },
+  "content_profile": {
+    "has_images": true,
+    "has_tables": true,
+    "has_text": true,
+    "material_visuals": true
+  },
+  "expected_digest": "sha256:7350f0e3d29ace70a6c92343e5501b34763f452e057d9b8acef3829f57230ef6",
+  "expected_page_count": 34,
+  "expected_size_bytes": 1878749,
+  "external_id": "1G35AxLrIa95YIUAvncH6BiWkUVAeX9A9",
+  "generated_at": "2026-08-17T19:27:06Z",
+  "observed_revision": "drive:modified=2026-08-17T16:06:59.000Z;size=1878749;sha256=7350f0e3d29ace70a6c92343e5501b34763f452e057d9b8acef3829f57230ef6",
+  "primary_or_secondary": "SECONDARY",
+  "producer_subject": {
+    "repository": "ed3c/ai-content-notes",
+    "revision": "9e249a717f86e500d49fb43d5a94dce9ee57697c",
+    "tree_sha": "779229a9802592d026bab0c06f09709f70cc219e"
+  },
+  "projection_mode": "OWNER_DECISION_PENDING",
+  "requested_url": "https://drive.google.com/file/d/1G35AxLrIa95YIUAvncH6BiWkUVAeX9A9/view",
+  "resolved_at": "2026-08-17T19:27:06Z",
+  "resolved_url": "https://drive.google.com/file/d/1G35AxLrIa95YIUAvncH6BiWkUVAeX9A9/view",
+  "retention": {
+    "policy": "EXTERNAL_REFERENCE_ONLY"
+  },
+  "rights": {
+    "basis": "OWNER_PROVIDED",
+    "decision": "PASS",
+    "evidence_uri": "https://github.com/ed3c/ai-content-notes/issues/51",
+    "reviewed_at": "2026-08-17T19:27:06Z"
+  },
+  "schema_version": "pdf-source-descriptor@1",
+  "source_dependency_key": "drive-file:1G35AxLrIa95YIUAvncH6BiWkUVAeX9A9",
+  "source_id": "pdf:modern-web-architecture-2026-08-18",
+  "visual_review": {
+    "material_visual_pages": [2, 7, 8, 18, 27, 28, 29, 30],
+    "regions": [
+      {
+        "kind": "MIXED",
+        "page": 2,
+        "region": "full-page",
+        "summary": "YC product architecture matrix and the proposed Flair AI multi-pass spatial pipeline."
+      },
+      {
+        "kind": "TABLE",
+        "page": 7,
+        "region": "full-page",
+        "summary": "Problem-to-mechanism comparison and candidate client-side CV/audio library tables."
+      },
+      {
+        "kind": "TABLE",
+        "page": 8,
+        "region": "full-page",
+        "summary": "Candidate vector, CRDT, text shaping, asset pipeline, and telemetry library tables."
+      },
+      {
+        "kind": "MIXED",
+        "page": 18,
+        "region": "full-page",
+        "summary": "Proposed DJ architecture mapping, permissive-library table, and DSP code excerpt."
+      },
+      {
+        "kind": "TABLE",
+        "page": 27,
+        "region": "full-page",
+        "summary": "Candidate browser encoding, GPU text, shader, and color-science library tables."
+      },
+      {
+        "kind": "TABLE",
+        "page": 28,
+        "region": "full-page",
+        "summary": "Candidate vector search, VAD, queue, authentication, and permissive-stack summary tables."
+      },
+      {
+        "kind": "TABLE",
+        "page": 29,
+        "region": "full-page",
+        "summary": "Consolidated Web/UI, 3D, motion, layout, and browser-AI stack matrix."
+      },
+      {
+        "kind": "TABLE",
+        "page": 30,
+        "region": "full-page",
+        "summary": "Audio, video, state, infrastructure stack matrix and package manifest introduction."
+      }
+    ],
+    "reviewed_at": "2026-08-17T19:27:06Z",
+    "reviewed_page_range": "1-34",
+    "reviewer_mode": "MODEL_VISUAL_REVIEW",
+    "status": "PASS"
+  }
+}

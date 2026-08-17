@@ -1,0 +1,108 @@
+{
+  "canonical_authority": "GITHUB",
+  "entries": [
+    {
+      "authority_ceiling": "SOURCE_INPUT_ONLY",
+      "blockers": [],
+      "change_notification_only": false,
+      "completeness": {
+        "missing_parts": [],
+        "reviewed": true,
+        "status": "COMPLETE"
+      },
+      "content": {
+        "content_scope": "COMPLETE_BODY",
+        "digest": "sha256:7350f0e3d29ace70a6c92343e5501b34763f452e057d9b8acef3829f57230ef6",
+        "has_images": true,
+        "has_tables": true,
+        "has_text": true,
+        "material_visuals": true,
+        "media_type": "application/pdf",
+        "size_bytes": 1878749,
+        "visual_review_state": "PASS"
+      },
+      "identity": {
+        "external_id": "1G35AxLrIa95YIUAvncH6BiWkUVAeX9A9",
+        "immutable": false,
+        "observed_revision": "drive:modified=2026-08-17T16:06:59.000Z;size=1878749;sha256=7350f0e3d29ace70a6c92343e5501b34763f452e057d9b8acef3829f57230ef6",
+        "resolved_at": "2026-08-17T19:27:06Z"
+      },
+      "locators": [
+        {
+          "kind": "page",
+          "value": "1-34"
+        },
+        {
+          "kind": "section",
+          "value": "complete PDF body"
+        },
+        {
+          "kind": "visual_region",
+          "value": "page:18:full-page:MIXED"
+        },
+        {
+          "kind": "visual_region",
+          "value": "page:27:full-page:TABLE"
+        },
+        {
+          "kind": "visual_region",
+          "value": "page:28:full-page:TABLE"
+        },
+        {
+          "kind": "visual_region",
+          "value": "page:29:full-page:TABLE"
+        },
+        {
+          "kind": "visual_region",
+          "value": "page:2:full-page:MIXED"
+        },
+        {
+          "kind": "visual_region",
+          "value": "page:30:full-page:TABLE"
+        },
+        {
+          "kind": "visual_region",
+          "value": "page:7:full-page:TABLE"
+        },
+        {
+          "kind": "visual_region",
+          "value": "page:8:full-page:TABLE"
+        }
+      ],
+      "primary_or_secondary": "SECONDARY",
+      "readback": {
+        "content_digest": "sha256:7350f0e3d29ace70a6c92343e5501b34763f452e057d9b8acef3829f57230ef6",
+        "evidence_uri": "https://drive.google.com/file/d/1G35AxLrIa95YIUAvncH6BiWkUVAeX9A9/view",
+        "method": "LOCAL_FILE_HASH",
+        "observed_at": "2026-08-17T19:27:06Z",
+        "status": "PASS"
+      },
+      "requested_url": "https://drive.google.com/file/d/1G35AxLrIa95YIUAvncH6BiWkUVAeX9A9/view",
+      "resolved_url": "https://drive.google.com/file/d/1G35AxLrIa95YIUAvncH6BiWkUVAeX9A9/view",
+      "retention": {
+        "policy": "EXTERNAL_REFERENCE_ONLY"
+      },
+      "rights": {
+        "basis": "OWNER_PROVIDED",
+        "decision": "PASS",
+        "evidence_uri": "https://github.com/ed3c/ai-content-notes/issues/51",
+        "reviewed_at": "2026-08-17T19:27:06Z"
+      },
+      "source_dependency_key": "drive-file:1G35AxLrIa95YIUAvncH6BiWkUVAeX9A9",
+      "source_id": "pdf:modern-web-architecture-2026-08-18",
+      "source_kind": "PDF",
+      "state": "ADMITTED"
+    }
+  ],
+  "evidence_mode": "LIVE",
+  "generated_at": "2026-08-17T19:27:06Z",
+  "projection_mode": "OWNER_DECISION_PENDING",
+  "registry_digest": "sha256:1dcc8d6ca8f1282e9e319cefcca59a2278d203ba9e3ebecba52b8815e1c45166",
+  "registry_id": "registry-pdf-modern-web-architecture-2026-08-18",
+  "schema_version": "source-registry@1",
+  "subject": {
+    "repository": "ed3c/ai-content-notes",
+    "revision": "9e249a717f86e500d49fb43d5a94dce9ee57697c",
+    "tree_sha": "779229a9802592d026bab0c06f09709f70cc219e"
+  }
+}
