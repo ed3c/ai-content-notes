@@ -1,0 +1,12 @@
+{
+  "schema_version": "contradiction-ledger@1",
+  "entries": [
+    {
+      "contradiction_id": "contradiction:all-permissive-vs-lgpl-option",
+      "claim_ids": ["claim:permissive-stack-claim", "claim:lgpl-row"],
+      "status": "UNRESOLVED",
+      "statement": "The source's unconditional 100% permissive summary is not sufficient to resolve its own LGPL/MIT qualification for one candidate dependency.",
+      "required_evidence": ["exact selected package and transitive dependency license audit"]
+    }
+  ]
+}
