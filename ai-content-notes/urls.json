@@ -1,0 +1,18 @@
+{
+  "schema": "repo-url-index@1",
+  "owner_issue": "ed3c/ai-content-notes#59",
+  "repo_name": "ai-content-notes",
+  "repository_url": "https://github.com/ed3c/ai-content-notes",
+  "visibility": "PRIVATE",
+  "repository_ref_id": "REF-1101",
+  "role": "SOURCE_EVIDENCE_AND_CARD_AUTHORITY",
+  "state": "URL_INDEXED",
+  "revision": "main_MUTABLE",
+  "digest": "UNKNOWN",
+  "urls": [
+    {"ref_id":"REF-1101","title":"ed3c/ai-content-notes","kind":"PRIVATE_GITHUB_REPOSITORY","url":"https://github.com/ed3c/ai-content-notes","role":"CANONICAL_REPOSITORY","used_by":["KAW#79","KAW#119","AI-CONTENT#51","AI-CONTENT#56","AI-CONTENT#59"]},
+    {"ref_id":"REF-1206","title":"CARD_PROTOCOL_CURRENT.json","kind":"PRIVATE_GITHUB_FILE","url":"https://github.com/ed3c/ai-content-notes/blob/main/governance/CARD_PROTOCOL_CURRENT.json","role":"CARD_PROTOCOL_POINTER","used_by":["AI-CONTENT#51","KAW#79"]},
+    {"ref_id":"REF-1207","title":"CARD_PROTOCOL_V7_1.md","kind":"PRIVATE_GITHUB_FILE","url":"https://github.com/ed3c/ai-content-notes/blob/main/governance/CARD_PROTOCOL_V7_1.md","role":"CARD_METHOD_BODY","used_by":["AI-CONTENT#51","KAW#79"]},
+    {"ref_id":"REF-1006","title":"AI高價值內容知識變現潛力排行榜","kind":"GOOGLE_SHEET","url":"https://docs.google.com/spreadsheets/d/1i1y4116id0l-CFYR0g1wPbYYMr6bAU18I85yOAcaG0M/edit?usp=drivesdk","role":"CONTENT_MONETIZATION_RESEARCH_DASHBOARD","used_by":["KAW#79","KAW#119","KAW#129"]}
+  ]
+}
