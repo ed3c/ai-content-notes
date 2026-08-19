@@ -9,10 +9,14 @@ This private registry stores full locators that must not be committed to the pub
 
 - user Google Docs / Sheets / Drive URLs;
 - private GitHub repository URLs;
+- private canonical Skill / prompt / method URLs;
 - their stable shared `REF-*` identities;
 - role, visibility, current indexing state and downstream issue links.
 
-Machine inventory: [`reference-index.private.json`](reference-index.private.json).
+Machine inventories:
+
+- [`reference-index.private.json`](reference-index.private.json) — Google assets and private repositories;
+- [`reference-index.private.methods.json`](reference-index.private.methods.json) — canonical private Skills/methods and prompt pointers.
 
 ## Authority boundary
 
@@ -33,14 +37,14 @@ This first registry is an inventory/provenance layer. `ai-content-notes#51` rema
 ```text
 private full locator
         ↓
-reference-index.private.json
+reference-index.private*.json
         ↓ same stable REF-* ID
-public KAW reference-index.public.json
+public KAW reference-index.public*.json
         ↓
 opaque private reference only
 ```
 
-The public KAW index may say `REF-1001`; it must not contain the corresponding Google file ID or private repository URL.
+The public KAW index may say `REF-1001` or `REF-1201`; it must not contain the corresponding Google file ID or private repository/Skill URL.
 
 ## Indexed private Google assets
 
@@ -64,6 +68,10 @@ Duplicate titles are intentionally retained as separate identities. File IDs, re
 ## Indexed private repositories
 
 `REF-1101`–`REF-1112` currently cover private evidence, product, methods, orchestration, routing, runtime and device-support repositories. Their full URLs remain in the machine inventory and must not be projected into the public KAW registry.
+
+## Indexed canonical private methods
+
+`REF-1201`–`REF-1207` cover the current `skills-shared` methods and `ai-content-notes` card-protocol pointers used by Tech Lead / Shadow / Stack-PR / evidence compilation. Mutable `main` paths are locator discovery only; later admission must pin exact commits/trees/blobs without changing the stable REF identity.
 
 ## Future enrichment
 
