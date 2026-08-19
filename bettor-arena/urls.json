@@ -1,0 +1,16 @@
+{
+  "schema": "repo-url-index@1",
+  "owner_issue": "ed3c/ai-content-notes#59",
+  "repo_name": "bettor-arena",
+  "repository_url": "https://github.com/ed3c/bettor-arena",
+  "visibility": "PRIVATE",
+  "repository_ref_id": "REF-1104",
+  "role": "WORKER_GATE_RECEIPT_ORCHESTRATION",
+  "state": "URL_INDEXED",
+  "revision": "main_MUTABLE",
+  "digest": "UNKNOWN",
+  "urls": [
+    {"ref_id":"REF-1104","title":"ed3c/bettor-arena","kind":"PRIVATE_GITHUB_REPOSITORY","url":"https://github.com/ed3c/bettor-arena","role":"CANONICAL_REPOSITORY","used_by":["KAW#119","BETTOR#197"]},
+    {"ref_id":null,"title":"Capability Workspace consumer issue #197","kind":"GITHUB_ISSUE","url":"https://github.com/ed3c/bettor-arena/issues/197","role":"FEDERATION_CONSUMER_OWNER","used_by":["KAW#124","BETTOR#197"]}
+  ]
+}
