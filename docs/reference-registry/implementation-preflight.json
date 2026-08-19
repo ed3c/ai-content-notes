@@ -1,0 +1,122 @@
+{
+  "schema": "traceability-implementation-preflight@1",
+  "review_date": "2026-08-19",
+  "owner_issue": "ed3c/ai-content-notes#69",
+  "global_convergence_issue": "ed3c/ai-content-notes#61",
+  "phase_target": "TRACEABILITY_PREIMPLEMENTATION_READY",
+  "parent_stack": [
+    {"pr": 58, "head": "37ae45a68b7ad66de36dc17163280e6b8972ec63"},
+    {"pr": 60, "head": "7ba9e1a6d4e5ab5da0cbab3e44187fe9c1d88afd"},
+    {"pr": 65, "head": "2c87fc77a693da1be0122566a335ed6ff864e16f"},
+    {"pr": 66, "head": "876c45806449074fd3e10b7b29d016479566e97e"},
+    {"pr": 67, "head": "0b27678f9c5d924d5676d29a9e3e028231a2f8dd"}
+  ],
+  "edge_classes": [
+    "GIT_PARENT_CONSUMED_BYTES",
+    "START_DEPENDENCY",
+    "COMPLETION_DEPENDENCY",
+    "CROSS_REPO_PROCESS_DEPENDENCY",
+    "EXTERNAL_AUTHORITY"
+  ],
+  "atoms": [
+    {
+      "id": "I0",
+      "owner": "ed3c/ai-content-notes#51",
+      "title": "source-registry@1 immutable source identity and read-back",
+      "state": "READY_TO_START",
+      "start_dependencies": ["PR#67"],
+      "completion_dependencies": [],
+      "planned_paths": ["schemas/source-registry*", "tools/*source*registry*", "tests/*source*registry*", "sources/**"],
+      "outputs": ["source manifest", "revision/commit identity", "digest", "locator map", "rights/completeness state", "read-back receipt"],
+      "negative_controls": ["title-only input", "stale Drive export", "duplicate external identity", "missing Sheet range", "GitHub URL without exact read-back", "omitted PDF visual/table lane", "credential-shaped URL"],
+      "evidence_ceiling": "SOURCE_IDENTITY_COMPLETENESS_READBACK_ONLY",
+      "next_safe_transition": "START_IMPLEMENTATION"
+    },
+    {
+      "id": "I1",
+      "owner": "ed3c/ai-content-notes#57",
+      "title": "private/public REF parity and privacy verifier",
+      "state": "READY_TO_START",
+      "start_dependencies": ["PR#67", "ed3c/kotlin-auto-webview#129"],
+      "completion_dependencies": ["ed3c/kotlin-auto-webview#130 applicable public receipt"],
+      "planned_paths": ["tools/verify_reference_*", "tests/test_reference_*", "docs/reference-registry/** verification outputs"],
+      "outputs": ["REF parity report", "private locator containment result", "tombstone/freshness consistency result"],
+      "negative_controls": ["missing counterpart REF", "duplicate external ID under distinct REF", "private locator in public snapshot", "silent deletion of tombstoned ref"],
+      "evidence_ceiling": "REGISTRY_CONSISTENCY_ONLY",
+      "next_safe_transition": "START_IMPLEMENTATION"
+    },
+    {
+      "id": "I2",
+      "owner": "ed3c/ai-content-notes#68",
+      "title": "CodexDoc semantic terminal-state triage",
+      "state": "READY_TO_START",
+      "start_dependencies": ["PR#65", "PR#67"],
+      "completion_dependencies": ["#51 revision/read-back for items that need identity aliasing"],
+      "planned_paths": ["docs/reference-registry/codexdoc-index.json", "docs/reference-registry/codexdoc-routing/**"],
+      "outputs": ["semantic terminal state per CodexDoc item", "owning knowledge/decision/implementation route", "specific missing-edge state when incomplete"],
+      "negative_controls": ["fake consumer issue", "source-only PR requirement", "same-title file collapse", "repository adjacency treated as consumption"],
+      "evidence_ceiling": "SEMANTIC_OWNERSHIP_ROUTING_ONLY",
+      "next_safe_transition": "START_IMPLEMENTATION"
+    },
+    {
+      "id": "E1",
+      "owner": "ed3c/kotlin-auto-webview#130",
+      "binding_issue": "ed3c/kotlin-auto-webview#134",
+      "title": "public registry URL hygiene and opaque private REF parity",
+      "state": "READY_TO_START_EXTERNAL_REPO",
+      "start_dependencies": ["ed3c/kotlin-auto-webview#129"],
+      "completion_dependencies": ["I1 cross-repo parity reconciliation"],
+      "planned_paths": ["public KAW registry verifier/test paths owned by #130"],
+      "outputs": ["public JSON validation", "URL hygiene result", "opaque private REF parity result"],
+      "negative_controls": ["private Drive URL in public registry", "private repo URL in public registry", "credential query", "missing opaque REF"],
+      "evidence_ceiling": "PUBLIC_REGISTRY_HYGIENE_ONLY",
+      "next_safe_transition": "START_IN_KAW"
+    },
+    {
+      "id": "I3",
+      "owner": "ed3c/ai-content-notes#55",
+      "title": "note-specific Google Docs/Sheets projection",
+      "state": "BLOCKED_BY_DEPENDENCIES",
+      "start_dependencies": ["I0 exact admitted source identity fields", "ed3c/kotlin-auto-webview#120", "ed3c/kotlin-auto-webview#121", "ed3c/kotlin-auto-webview#123"],
+      "completion_dependencies": ["Google exact-account read-back receipt"],
+      "planned_paths": ["note/card projection manifest and adapter paths owned by #55"],
+      "outputs": ["projection manifest", "outbox identity", "revision precondition", "write/read-back receipt", "ChangeProposal flow"],
+      "negative_controls": ["same-title file as identity", "write ACK without read-back", "manual edit mutates canonical state", "stale overwrite"],
+      "evidence_ceiling": "NOTE_GOOGLE_PROJECTION_ONLY",
+      "next_safe_transition": "WAIT_FOR_I0_AND_KAW_W0_W1_W3"
+    },
+    {
+      "id": "I4",
+      "owner": "ed3c/ai-product-notes#48",
+      "title": "GitHub-canonical CodexDoc and Sheet projection registry",
+      "state": "BLOCKED_BY_I0",
+      "start_dependencies": ["I0 exact admitted source identity/digest contract"],
+      "completion_dependencies": ["CodexDoc read-back canary", "bounded Sheet read-back canary", "GitHub pointer reconciliation"],
+      "planned_paths": ["ai-product-notes projection registry/adapter/test paths owned by #48"],
+      "outputs": ["folder/file revision registry", "export digest", "GitHub pointer", "idempotency/compensation state"],
+      "negative_controls": ["Drive notification as proof", "write without GitHub pointer", "stale overwrite", "Sheet row collision", "Google completion closes GitHub issue"],
+      "evidence_ceiling": "PRODUCT_GOOGLE_PROJECTION_ONLY",
+      "next_safe_transition": "WAIT_FOR_I0"
+    },
+    {
+      "id": "G0",
+      "owner": "ed3c/ai-content-notes#61",
+      "title": "global trace convergence",
+      "state": "BLOCKED_BY_IMPLEMENTATION_ATOMS",
+      "start_dependencies": ["I0", "I1", "I2", "E1"],
+      "completion_dependencies": ["I0 receipt", "I1/E1 parity receipts", "I2 semantic terminal states", "I3/I4 applicable projection receipts or explicit scoped non-PASS states"],
+      "planned_paths": ["global traceability convergence artifacts owned by #61"],
+      "outputs": ["global denominator", "typed source/implementation closure graph", "remaining non-PASS states"],
+      "negative_controls": ["URL count used as closure", "issue close used as receipt", "Google read-back used as Git authority", "omitted unbound source"],
+      "evidence_ceiling": "INDEXED_UNIVERSE_TRACEABILITY_ONLY",
+      "next_safe_transition": "WAIT_FOR_PREDECESSORS"
+    }
+  ],
+  "human_external_authority": [
+    "legal or rights determination",
+    "provider/account authorization",
+    "merge/release/promotion",
+    "organization Google Workspace policy approval",
+    "user/market outcome"
+  ]
+}
