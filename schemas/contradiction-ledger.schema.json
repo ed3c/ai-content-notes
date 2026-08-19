@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ed3c/ai-content-notes/schemas/contradiction-ledger.schema.json",
+  "title": "Contradiction ledger",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "entries"],
+  "properties": {
+    "schema_version": {"const": "contradiction-ledger@1"},
+    "entries": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["contradiction_id", "claim_ids", "status", "statement", "required_evidence"],
+        "properties": {
+          "contradiction_id": {"type": "string", "pattern": "^contradiction:[a-z0-9][a-z0-9._:-]*$"},
+          "claim_ids": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"type": "string", "pattern": "^claim:[a-z0-9][a-z0-9._:-]*$"}},
+          "status": {"enum": ["UNRESOLVED", "RESOLVED", "BLOCKED"]},
+          "statement": {"type": "string", "minLength": 12},
+          "required_evidence": {"type": "array", "items": {"type": "string", "minLength": 1}}
+        }
+      }
+    }
+  }
+}
