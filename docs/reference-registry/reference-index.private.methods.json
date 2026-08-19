@@ -1,0 +1,15 @@
+{
+  "schema": "reference-index.private-shard@1",
+  "review_date": "2026-08-19",
+  "owner_issue": "ed3c/ai-content-notes#56",
+  "shard": "canonical-methods",
+  "references": [
+    {"id":"REF-1201","title":"spatial-loop-systems-engineering","kind":"PRIVATE_GITHUB_SKILL","url":"https://github.com/ed3c/skills-shared/tree/main/skills/spatial-loop-systems-engineering","provider":"GITHUB","role":"SHADOW_ARCHITECT_SYSTEMS_ENGINEERING","visibility":"PRIVATE","state":"URL_INDEXED","revision":"main_MUTABLE","digest":"UNKNOWN","used_by":["KAW#119","KAW#129"]},
+    {"id":"REF-1202","title":"git-town-stacked-pr-worker","kind":"PRIVATE_GITHUB_SKILL","url":"https://github.com/ed3c/skills-shared/tree/main/skills/git-town-stacked-pr-worker","provider":"GITHUB","role":"MOLECULAR_STACK_PR_METHOD","visibility":"PRIVATE","state":"URL_INDEXED","revision":"main_MUTABLE","digest":"UNKNOWN","used_by":["KAW#119","KAW#129"]},
+    {"id":"REF-1203","title":"dual-forge-repository-loop","kind":"PRIVATE_GITHUB_SKILL","url":"https://github.com/ed3c/skills-shared/tree/main/skills/dual-forge-repository-loop","provider":"GITHUB","role":"DUAL_FORGE_DELIVERY_METHOD","visibility":"PRIVATE","state":"URL_INDEXED","revision":"main_MUTABLE","digest":"UNKNOWN","used_by":["KAW#119","KAW#129"]},
+    {"id":"REF-1204","title":"agentic-tech-lead-orchestration","kind":"PRIVATE_GITHUB_SKILL","url":"https://github.com/ed3c/skills-shared/tree/main/skills/agentic-tech-lead-orchestration","provider":"GITHUB","role":"TECH_LEAD_TASK_DAG_METHOD","visibility":"PRIVATE","state":"URL_INDEXED","revision":"main_MUTABLE","digest":"UNKNOWN","used_by":["KAW#119","KAW#129","BETTOR#197"]},
+    {"id":"REF-1205","title":"skill-refactor-proof-loop","kind":"PRIVATE_GITHUB_SKILL","url":"https://github.com/ed3c/skills-shared/tree/main/skills/skill-refactor-proof-loop","provider":"GITHUB","role":"PROOF_CARRYING_SKILL_REFACTOR_METHOD","visibility":"PRIVATE","state":"URL_INDEXED","revision":"main_MUTABLE","digest":"UNKNOWN","used_by":["KAW#119"]},
+    {"id":"REF-1206","title":"ai-content-notes card protocol current pointer","kind":"PRIVATE_GITHUB_FILE","url":"https://github.com/ed3c/ai-content-notes/blob/main/governance/CARD_PROTOCOL_CURRENT.json","provider":"GITHUB","role":"CARD_PROTOCOL_POINTER","visibility":"PRIVATE","state":"URL_INDEXED","revision":"main_MUTABLE","digest":"UNKNOWN","used_by":["AI-CONTENT#51","KAW#79"]},
+    {"id":"REF-1207","title":"ai-content-notes v7.1 card protocol","kind":"PRIVATE_GITHUB_FILE","url":"https://github.com/ed3c/ai-content-notes/blob/main/governance/CARD_PROTOCOL_V7_1.md","provider":"GITHUB","role":"IMMUTABLE_CARD_METHOD_BODY","visibility":"PRIVATE","state":"URL_INDEXED","revision":"main_MUTABLE_POINTER_TO_IMMUTABLE_BLOB","digest":"SEE_REPO_POINTER","used_by":["AI-CONTENT#51","KAW#79"]}
+  ]
+}
