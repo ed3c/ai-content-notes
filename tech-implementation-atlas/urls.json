@@ -1,0 +1,15 @@
+{
+  "schema": "repo-url-index@1",
+  "owner_issue": "ed3c/ai-content-notes#59",
+  "repo_name": "tech-implementation-atlas",
+  "repository_url": "https://github.com/ed3c/tech-implementation-atlas",
+  "visibility": "PRIVATE",
+  "repository_ref_id": "REF-1105",
+  "role": "REQUIREMENT_CAPABILITY_ROUTER",
+  "state": "URL_INDEXED",
+  "revision": "main_MUTABLE",
+  "digest": "UNKNOWN",
+  "urls": [
+    {"ref_id":"REF-1105","title":"ed3c/tech-implementation-atlas","kind":"PRIVATE_GITHUB_REPOSITORY","url":"https://github.com/ed3c/tech-implementation-atlas","role":"CANONICAL_REPOSITORY","used_by":["KAW#119"]}
+  ]
+}
