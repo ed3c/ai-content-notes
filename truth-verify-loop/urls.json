@@ -1,0 +1,15 @@
+{
+  "schema": "repo-url-index@1",
+  "owner_issue": "ed3c/ai-content-notes#59",
+  "repo_name": "truth-verify-loop",
+  "repository_url": "https://github.com/ed3c/truth-verify-loop",
+  "visibility": "PUBLIC",
+  "repository_ref_id": "REF-0002",
+  "role": "CLAIM_VERIFICATION",
+  "state": "URL_INDEXED",
+  "revision": "main_MUTABLE",
+  "digest": "UNKNOWN",
+  "urls": [
+    {"ref_id":"REF-0002","title":"ed3c/truth-verify-loop","kind":"GITHUB_REPOSITORY","url":"https://github.com/ed3c/truth-verify-loop","role":"CANONICAL_REPOSITORY","used_by":["KAW#119"]}
+  ]
+}
