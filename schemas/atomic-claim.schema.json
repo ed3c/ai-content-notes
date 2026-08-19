@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "atomic-claim.schema.json",
+  "title": "Atomic source claim",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "claim_id", "claim_class", "statement", "source_id", "locator", "evidence_refs", "verification", "risk_tags", "signal_refs", "required_evidence"],
+  "properties": {
+    "schema_version": {"const": "atomic-claim@1"},
+    "claim_id": {"type": "string", "pattern": "^claim:[a-z0-9][a-z0-9._:-]*$"},
+    "claim_class": {"enum": ["FACT", "SOURCE_STATEMENT", "INFERENCE", "HYPOTHESIS", "ASSUMPTION", "CONTRADICTION", "UNKNOWN"]},
+    "statement": {"type": "string", "minLength": 12},
+    "source_id": {"type": "string", "minLength": 3},
+    "locator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": {"enum": ["PAGE", "VISUAL_REGION", "TEXT_MATCH", "SECTION"]},
+        "page": {"type": "integer", "minimum": 1},
+        "value": {"type": "string", "minLength": 1}
+      }
+    },
+    "evidence_refs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "verification": {"enum": ["UNCHECKED", "SUPPORTED", "CONTESTED", "TESTED", "CORROBORATED", "FALSIFIED"]},
+    "risk_tags": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+    "signal_refs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["signal_id", "signal_class", "title"],
+        "properties": {
+          "signal_id": {"type": "string", "pattern": "^signal:[a-z0-9][a-z0-9._:-]*$"},
+          "signal_class": {"enum": ["SOURCE_PATTERN", "MECHANISM_HYPOTHESIS", "VALIDATION_GAP", "PRODUCT_WORKFLOW", "MARKET_GAP", "CONTRADICTION_SIGNAL"]},
+          "title": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "required_evidence": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+  }
+}
