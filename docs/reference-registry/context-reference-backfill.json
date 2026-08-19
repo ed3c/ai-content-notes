@@ -60,10 +60,11 @@
       "kind": "CONVERSATION_DAG_PROVENANCE",
       "url": null,
       "source_origin": "PRIOR_CONVERSATION_SUMMARY",
-      "state": "ISSUE_IDENTITIES_NAMED_URLS_NOT_REBOUND",
+      "state": "NO_CANONICAL_URL_MATERIALIZED",
       "trace_status": "PARTIAL",
       "used_by": ["AI-CONTENT#61", "AI-CONTENT#63"],
       "known_edges": "#43 → #63 → #58 → #59 → #60 → #61 → #62 → #44 in its original owning repository/context",
+      "notes": "Issue identities are remembered from prior context, but owning repository/exact URLs have not been rebound.",
       "next_transition": "Resolve owning repository and exact issue URLs before cross-project reuse."
     }
   ]
