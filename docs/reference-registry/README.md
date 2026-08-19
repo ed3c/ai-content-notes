@@ -17,7 +17,8 @@ Machine inventories:
 
 - [`reference-index.private.json`](reference-index.private.json) — Google assets and private repositories;
 - [`reference-index.private.methods.json`](reference-index.private.methods.json) — canonical private Skills/methods and prompt pointers;
-- [`repo-directory-index.json`](repo-directory-index.json) — root-level `/<repo_name>/urls.json` navigation map.
+- [`repo-directory-index.json`](repo-directory-index.json) — root-level `/<repo_name>/urls.json` navigation map;
+- [`codexdoc-index.json`](codexdoc-index.json) — CodexDoc folder/child inventory plus Issue/PR trace status.
 
 ## Repository-name URL namespaces
 
@@ -52,6 +53,22 @@ repo name
 
 Do not invent a new `REF-*` merely because one URL is projected into several repo directories. Duplicate repo-local projections are allowed when the same source materially supports multiple repositories.
 
+## CodexDoc trace inventory
+
+Issue `#62` binds the private `CodexDoc` Drive folder and its current children to `REF-1300+` identities in [`codexdoc-index.json`](codexdoc-index.json).
+
+```text
+CodexDoc folder/file
+→ REF-13xx
+→ BOUND | PARTIAL | UNBOUND | NO_IMPLEMENTATION_REQUIREMENT
+→ consumer repository / owning Issue
+→ PR/exact evidence where implementation already exists
+```
+
+The folder is a navigation/source-projection substrate, not a DAG authority. A child file is not considered traced merely because it is inside CodexDoc. `BOUND` requires an observed consuming Issue/decision; implementation-bearing sources additionally need real PR/head/receipt edges before implementation closure can be claimed.
+
+The global audit owner is `#61`; conversation-only source backfill is `#63`; the deterministic graph verifier is `#64`.
+
 ## Authority boundary
 
 ```text
@@ -71,14 +88,14 @@ This first registry is an inventory/provenance layer. `ai-content-notes#51` rema
 ```text
 private full locator
         ↓
-reference-index.private*.json
+reference-index.private*.json / codexdoc-index.json
         ↓ same stable REF-* ID
 public KAW reference-index.public*.json
         ↓
 opaque private reference only
 ```
 
-The public KAW index may say `REF-1001` or `REF-1201`; it must not contain the corresponding Google file ID or private repository/Skill URL.
+The public KAW index may expose a stable opaque REF ID; it must not contain the corresponding Google file ID or private repository/Skill URL.
 
 ## Indexed private Google assets
 

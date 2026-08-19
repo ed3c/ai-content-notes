@@ -1,6 +1,6 @@
 {
   "schema": "repo-url-index@1",
-  "owner_issue": "ed3c/ai-content-notes#59",
+  "owner_issue": "ed3c/ai-content-notes#62",
   "repo_name": "ai-product-notes",
   "repository_url": "https://github.com/ed3c/ai-product-notes",
   "visibility": "PRIVATE",
@@ -10,7 +10,10 @@
   "revision": "main_MUTABLE",
   "digest": "UNKNOWN",
   "urls": [
-    {"ref_id":"REF-1102","title":"ed3c/ai-product-notes","kind":"PRIVATE_GITHUB_REPOSITORY","url":"https://github.com/ed3c/ai-product-notes","role":"CANONICAL_REPOSITORY","used_by":["KAW#119"]},
-    {"ref_id":"REF-1005","title":"AI Solopreneur Tracks & Gaps Master Database (2026)","kind":"GOOGLE_SHEET","url":"https://docs.google.com/spreadsheets/d/1zOhGa7nfVpWcldFGkABguRwMVPS3_KLKYMtxlrZSVlk/edit?usp=drivesdk","role":"MARKET_AND_TECH_GAPS_DASHBOARD","used_by":["KAW#119","KAW#129","AI-PRODUCT"]}
+    {"ref_id":"REF-1102","title":"ed3c/ai-product-notes","kind":"PRIVATE_GITHUB_REPOSITORY","url":"https://github.com/ed3c/ai-product-notes","role":"CANONICAL_REPOSITORY","used_by":["KAW#119","AI-CONTENT#61"]},
+    {"ref_id":"REF-1005","title":"AI Solopreneur Tracks & Gaps Master Database (2026)","kind":"GOOGLE_SHEET","url":"https://docs.google.com/spreadsheets/d/1zOhGa7nfVpWcldFGkABguRwMVPS3_KLKYMtxlrZSVlk/edit?usp=drivesdk","role":"MARKET_AND_TECH_GAPS_DASHBOARD","used_by":["KAW#119","KAW#129","AI-PRODUCT"]},
+    {"ref_id":"REF-1300","title":"CodexDoc","kind":"GOOGLE_DRIVE_FOLDER","url":"https://drive.google.com/drive/folders/1-H5VjSz__VALvkLvxiiVj8373ZxFQ4Bl","role":"HUMAN_SOURCE_AND_CONTEXT_PROJECTION_FOLDER","used_by":["AI-PRODUCT#44","AI-PRODUCT#48","AI-PRODUCT#50","AI-CONTENT#61","AI-CONTENT#62"]},
+    {"ref_id":"REF-1302","title":"Product Reverse-Engineering Closure Loop — Original Context & Traceability — 2026-08-18","kind":"GOOGLE_DOC","url":"https://docs.google.com/document/d/1PMLo7I6ze0CFepwmiPbHzfH2HU_GmGMqgLjjZn-1-jo/edit?usp=drivesdk","role":"CODEXDOC_CONTEXT_PROJECTION","used_by":["AI-PRODUCT#44","AI-PRODUCT#48","AI-PRODUCT#50"]},
+    {"ref_id":"REF-1306","title":"現代網頁設計架構擴充建議.pdf","kind":"GOOGLE_DRIVE_PDF","url":"https://drive.google.com/file/d/1G35AxLrIa95YIUAvncH6BiWkUVAeX9A9/view?usp=drivesdk","role":"CODEXDOC_SOURCE_PDF_CANARY","used_by":["AI-PRODUCT#48","AI-PRODUCT#53"]}
   ]
 }
