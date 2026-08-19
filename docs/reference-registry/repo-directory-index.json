@@ -1,10 +1,11 @@
 {
   "schema": "repo-directory-index@1",
-  "owner_issue": "ed3c/ai-content-notes#59",
+  "owner_issue": "ed3c/ai-content-notes#63",
   "state": "URL_INDEXED",
   "authority": "Navigation index only. Each /<repo_name>/urls.json is a repo-scoped locator projection; global REF identities remain owned by docs/reference-registry/reference-index.private*.json and the public counterpart where applicable.",
   "repositories": [
     {"repo_name":"kotlin-auto-webview","path":"kotlin-auto-webview/urls.json","repository_ref_id":"REF-0001","visibility":"PUBLIC"},
+    {"repo_name":"enterprise_agent_system","path":"enterprise_agent_system/urls.json","repository_ref_id":"REF-0012","visibility":"PUBLIC"},
     {"repo_name":"ai-content-notes","path":"ai-content-notes/urls.json","repository_ref_id":"REF-1101","visibility":"PRIVATE"},
     {"repo_name":"ai-product-notes","path":"ai-product-notes/urls.json","repository_ref_id":"REF-1102","visibility":"PRIVATE"},
     {"repo_name":"skills-shared","path":"skills-shared/urls.json","repository_ref_id":"REF-1103","visibility":"PRIVATE"},
