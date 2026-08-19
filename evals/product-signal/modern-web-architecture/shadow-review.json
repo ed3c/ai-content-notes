@@ -7,7 +7,20 @@
     "The source pattern is admissible as a source statement, not as proof of named-company internals.",
     "The Flair mapping remains a mechanism hypothesis until independent evidence exists.",
     "The source's all-permissive summary is kept in tension with its LGPL/MIT qualification instead of being silently reconciled.",
-    "No runtime, user, paid, merge, or release lane is exercised by this canary."
+    "No runtime, user, paid, merge, or release lane is exercised by this canary.",
+    "Hosted first-red run 32251995930 failed at Ruff import formatting in tests/test_product_signal.py before later repository gates ran; One-shot Ruff autofix moved the branch to b2408059d04ef035bcf4ee94e90d8a6654feb5ac and removed the style-only defect.",
+    "The bot-authored follow-up workflow runs on b2408059d04ef035bcf4ee94e90d8a6654feb5ac were ACTION_REQUIRED with zero jobs, so they are not counted as hosted verification PASS."
   ],
+  "hosted_first_red": {
+    "run_id": 32251995930,
+    "subject_type": "PR_MERGE_REF",
+    "failure": "RUFF_IMPORT_FORMATTING",
+    "subsequent_steps": "SKIPPED_AFTER_FIRST_FAILURE"
+  },
+  "autofix_receipt": {
+    "commit": "b2408059d04ef035bcf4ee94e90d8a6654feb5ac",
+    "actor": "github-actions[bot]",
+    "change": "split imports and removed unused json import in tests/test_product_signal.py"
+  },
   "authority_ceiling": "SOURCE_EVIDENCE_ONLY"
 }
