@@ -1,0 +1,70 @@
+{
+  "schema": "context-reference-backfill@1",
+  "review_date": "2026-08-19",
+  "owner_issue": "ed3c/ai-content-notes#63",
+  "global_audit": "ed3c/ai-content-notes#61",
+  "public_counterpart": "ed3c/kotlin-auto-webview#132",
+  "authority": "Conversation context is provenance for discovery only. A remembered/file-named source is not source truth and cannot be upgraded without a materialized locator/read-back.",
+  "records": [
+    {
+      "ref_id": "REF-1013",
+      "title": "SkillBench 整合研究與市場實作 Gap 追蹤表",
+      "kind": "GOOGLE_SHEET",
+      "url": "https://docs.google.com/spreadsheets/d/16pRFLjWhw_-ACFoVpDwB6i4BAi9Bh-hv7sCdetssmQY/edit?usp=drivesdk",
+      "external_id": "16pRFLjWhw_-ACFoVpDwB6i4BAi9Bh-hv7sCdetssmQY",
+      "source_origin": "GOOGLE_DRIVE_SEARCH_AND_PRIOR_CONVERSATION",
+      "state": "URL_INDEXED",
+      "trace_status": "PARTIAL",
+      "used_by": ["agent-skills-repo", "AI-CONTENT#61", "AI-CONTENT#63"],
+      "notes": "Distinct from REF-1007. Same research domain does not make the two Sheets duplicate evidence."
+    },
+    {
+      "ref_id": "CTX-0001",
+      "title": "enterprise_agent_system_architecture_delivery.py",
+      "kind": "CONVERSATION_FILE_ARTIFACT",
+      "url": null,
+      "source_origin": "PRIOR_CONVERSATION_FILE_CONTEXT",
+      "state": "NO_CANONICAL_URL_MATERIALIZED",
+      "trace_status": "UNBOUND",
+      "used_by": ["AI-CONTENT#61", "AI-CONTENT#63"],
+      "known_role": "Architecture delivery / external-link registry schema reference",
+      "next_transition": "Materialize or bind an exact Git/Library source before using it as normative evidence."
+    },
+    {
+      "ref_id": "CTX-0002",
+      "title": "skills-shared-harness-engineer-prompt.md",
+      "kind": "CONVERSATION_FILE_ARTIFACT",
+      "url": null,
+      "source_origin": "PRIOR_CONVERSATION_FILE_CONTEXT",
+      "state": "NO_CANONICAL_URL_MATERIALIZED",
+      "trace_status": "UNBOUND",
+      "used_by": ["AI-CONTENT#61", "AI-CONTENT#63"],
+      "known_role": "Harness engineering prompt reference",
+      "next_transition": "Resolve to canonical skills-shared file/commit or retain as non-authoritative chat artifact."
+    },
+    {
+      "ref_id": "CTX-0003",
+      "title": "GIT_TOWN_REPOSITORY_BOOTSTRAP_SYSTEM_PROMPT.md",
+      "kind": "CONVERSATION_FILE_ARTIFACT",
+      "url": null,
+      "source_origin": "PRIOR_CONVERSATION_FILE_CONTEXT",
+      "state": "NO_CANONICAL_URL_MATERIALIZED",
+      "trace_status": "UNBOUND",
+      "used_by": ["AI-CONTENT#61", "AI-CONTENT#63"],
+      "known_role": "Git Town repository bootstrap prompt reference",
+      "next_transition": "Resolve to canonical skills-shared/GitHub artifact before normative use."
+    },
+    {
+      "ref_id": "CTX-0004",
+      "title": "Prior phone-harness issue DAG",
+      "kind": "CONVERSATION_DAG_PROVENANCE",
+      "url": null,
+      "source_origin": "PRIOR_CONVERSATION_SUMMARY",
+      "state": "ISSUE_IDENTITIES_NAMED_URLS_NOT_REBOUND",
+      "trace_status": "PARTIAL",
+      "used_by": ["AI-CONTENT#61", "AI-CONTENT#63"],
+      "known_edges": "#43 → #63 → #58 → #59 → #60 → #61 → #62 → #44 in its original owning repository/context",
+      "next_transition": "Resolve owning repository and exact issue URLs before cross-project reuse."
+    }
+  ]
+}
