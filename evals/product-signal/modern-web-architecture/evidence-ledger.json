@@ -1,0 +1,43 @@
+{
+  "schema_version": "evidence-ledger@1",
+  "source_binding": {
+    "source_id": "pdf:modern-web-architecture-2026-08-18",
+    "source_digest": "sha256:7350f0e3d29ace70a6c92343e5501b34763f452e057d9b8acef3829f57230ef6",
+    "registry_digest": "sha256:1dcc8d6ca8f1282e9e319cefcca59a2278d203ba9e3ebecba52b8815e1c45166",
+    "dependency_key": "drive-file:1G35AxLrIa95YIUAvncH6BiWkUVAeX9A9"
+  },
+  "entries": [
+    {
+      "evidence_id": "evidence:page1-architecture-pattern",
+      "kind": "SOURCE_TEXT",
+      "source_id": "pdf:modern-web-architecture-2026-08-18",
+      "source_digest": "sha256:7350f0e3d29ace70a6c92343e5501b34763f452e057d9b8acef3829f57230ef6",
+      "dependency_key": "drive-file:1G35AxLrIa95YIUAvncH6BiWkUVAeX9A9",
+      "locator": {"kind": "PAGE", "page": 1, "value": "lines 5-15"}
+    },
+    {
+      "evidence_id": "evidence:page2-product-matrix",
+      "kind": "SOURCE_VISUAL",
+      "source_id": "pdf:modern-web-architecture-2026-08-18",
+      "source_digest": "sha256:7350f0e3d29ace70a6c92343e5501b34763f452e057d9b8acef3829f57230ef6",
+      "dependency_key": "drive-file:1G35AxLrIa95YIUAvncH6BiWkUVAeX9A9",
+      "locator": {"kind": "VISUAL_REGION", "page": 2, "value": "full-page:MIXED"}
+    },
+    {
+      "evidence_id": "evidence:page18-lgpl-row",
+      "kind": "SOURCE_VISUAL",
+      "source_id": "pdf:modern-web-architecture-2026-08-18",
+      "source_digest": "sha256:7350f0e3d29ace70a6c92343e5501b34763f452e057d9b8acef3829f57230ef6",
+      "dependency_key": "drive-file:1G35AxLrIa95YIUAvncH6BiWkUVAeX9A9",
+      "locator": {"kind": "VISUAL_REGION", "page": 18, "value": "full-page:MIXED"}
+    },
+    {
+      "evidence_id": "evidence:page28-permissive-claim",
+      "kind": "SOURCE_VISUAL",
+      "source_id": "pdf:modern-web-architecture-2026-08-18",
+      "source_digest": "sha256:7350f0e3d29ace70a6c92343e5501b34763f452e057d9b8acef3829f57230ef6",
+      "dependency_key": "drive-file:1G35AxLrIa95YIUAvncH6BiWkUVAeX9A9",
+      "locator": {"kind": "VISUAL_REGION", "page": 28, "value": "full-page:TABLE"}
+    }
+  ]
+}
