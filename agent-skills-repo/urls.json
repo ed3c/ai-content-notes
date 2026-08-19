@@ -1,6 +1,6 @@
 {
   "schema": "repo-url-index@1",
-  "owner_issue": "ed3c/ai-content-notes#59",
+  "owner_issue": "ed3c/ai-content-notes#63",
   "repo_name": "agent-skills-repo",
   "repository_url": "https://github.com/ed3c/agent-skills-repo",
   "visibility": "PUBLIC",
@@ -10,7 +10,8 @@
   "revision": "main_MUTABLE",
   "digest": "UNKNOWN",
   "urls": [
-    {"ref_id":"REF-0005","title":"ed3c/agent-skills-repo","kind":"GITHUB_REPOSITORY","url":"https://github.com/ed3c/agent-skills-repo","role":"CANONICAL_REPOSITORY","used_by":["KAW#119"]},
-    {"ref_id":"REF-1007","title":"SkillBench_Research_and_Market_Gaps_Tracker","kind":"GOOGLE_SHEET","url":"https://docs.google.com/spreadsheets/d/10AQ1hOmWosUx4PHALoJgb9BEjVkhgyHsmpY0E9CC7p0/edit?usp=drivesdk","role":"AGENT_SKILLS_RESEARCH_DASHBOARD","used_by":["KAW#119","KAW#129"]}
+    {"ref_id":"REF-0005","title":"ed3c/agent-skills-repo","kind":"GITHUB_REPOSITORY","url":"https://github.com/ed3c/agent-skills-repo","role":"CANONICAL_REPOSITORY","used_by":["KAW#119","AI-CONTENT#61"]},
+    {"ref_id":"REF-1007","title":"SkillBench_Research_and_Market_Gaps_Tracker","kind":"GOOGLE_SHEET","url":"https://docs.google.com/spreadsheets/d/10AQ1hOmWosUx4PHALoJgb9BEjVkhgyHsmpY0E9CC7p0/edit?usp=drivesdk","role":"AGENT_SKILLS_RESEARCH_DASHBOARD","used_by":["KAW#119","KAW#129"]},
+    {"ref_id":"REF-1013","title":"SkillBench 整合研究與市場實作 Gap 追蹤表","kind":"GOOGLE_SHEET","url":"https://docs.google.com/spreadsheets/d/16pRFLjWhw_-ACFoVpDwB6i4BAi9Bh-hv7sCdetssmQY/edit?usp=drivesdk","role":"AGENT_SKILLS_INTEGRATION_GAP_DASHBOARD","used_by":["AI-CONTENT#61","AI-CONTENT#63"]}
   ]
 }
