@@ -1,0 +1,21 @@
+{
+  "schema": "repo-url-index@1",
+  "owner_issue": "ed3c/ai-content-notes#63",
+  "repo_name": "enterprise_agent_system",
+  "repository_url": "https://github.com/ed3c/enterprise_agent_system",
+  "visibility": "PUBLIC",
+  "repository_ref_id": "REF-0012",
+  "role": "CROSS_REPOSITORY_CONTROL_PLANE",
+  "state": "URL_INDEXED",
+  "revision": "main_MUTABLE",
+  "digest": "UNKNOWN",
+  "urls": [
+    {"ref_id":"REF-0012","title":"ed3c/enterprise_agent_system","kind":"GITHUB_REPOSITORY","url":"https://github.com/ed3c/enterprise_agent_system","role":"CANONICAL_REPOSITORY","used_by":["AI-CONTENT#61","AI-CONTENT#62","AI-CONTENT#63"]},
+    {"ref_id":"REF-1301","title":"Agent Thinking Inception_ Dynamic Intervention.pdf","kind":"GOOGLE_DRIVE_PDF","url":"https://drive.google.com/file/d/1AxFwrdvlmBJcPN184RVqyDrnzKU4Rw9V/view?usp=drivesdk","role":"SOURCE_PROPOSAL_INCEPTION_PROFILE","used_by":["EAS#1","EAS#2","EAS#3","EAS#4","EAS#5","EAS#7","EAS#15","EAS#16","EAS#17","EAS#18","EAS#19","EAS#22","EAS#23"]},
+    {"ref_id":"REF-1305","title":"双 Agent 架构：云端本地协同.pdf","kind":"GOOGLE_DRIVE_PDF","url":"https://drive.google.com/file/d/1I47iyazRrcb4byoOhpLzmsutgcF-PvFY/view?usp=drivesdk","role":"SOURCE_PROPOSAL_DUAL_AGENT_PROGRAM","used_by":["EAS#6","EAS#8","EAS#9","EAS#11","EAS#12","EAS#13","EAS#14"]},
+    {"subject_id":"EAS#21","title":"INCEPTION-C0 source denominator PR","kind":"GITHUB_PULL_REQUEST","url":"https://github.com/ed3c/enterprise_agent_system/pull/21","role":"SOURCE_TO_REQUIREMENT_PR","used_by":["REF-1301"]},
+    {"subject_id":"EAS#20","title":"EAS-C control-plane contracts PR","kind":"GITHUB_PULL_REQUEST","url":"https://github.com/ed3c/enterprise_agent_system/pull/20","role":"DUAL_AGENT_CONTROL_PLANE_PR","used_by":["REF-1305"]},
+    {"subject_id":"EAS#24","title":"EAS-K Tech Lead DAG PR","kind":"GITHUB_PULL_REQUEST","url":"https://github.com/ed3c/enterprise_agent_system/pull/24","role":"DUAL_AGENT_TECH_LEAD_PR","used_by":["REF-1305"]},
+    {"subject_id":"EAS#25","title":"EAS-E Shadow controls PR","kind":"GITHUB_PULL_REQUEST","url":"https://github.com/ed3c/enterprise_agent_system/pull/25","role":"DUAL_AGENT_SHADOW_PR","used_by":["REF-1305"]}
+  ]
+}
