@@ -1,0 +1,24 @@
+{
+  "schema": "repo-url-index@1",
+  "owner_issue": "ed3c/ai-content-notes#59",
+  "repo_name": "kotlin-auto-webview",
+  "repository_url": "https://github.com/ed3c/kotlin-auto-webview",
+  "visibility": "PUBLIC",
+  "repository_ref_id": "REF-0001",
+  "role": "EXPERIENCE_ROUTING_CENTER",
+  "state": "URL_INDEXED",
+  "revision": "main_MUTABLE",
+  "digest": "UNKNOWN",
+  "urls": [
+    {"ref_id":"REF-0001","title":"kotlin-auto-webview","kind":"GITHUB_REPOSITORY","url":"https://github.com/ed3c/kotlin-auto-webview","role":"CANONICAL_REPOSITORY","used_by":["KAW#119","KAW#129"]},
+    {"ref_id":"REF-0008","title":"Procedural Skill Compiler System Prompt","kind":"PINNED_GITHUB_FILE","url":"https://github.com/ed3c/kotlin-auto-webview/blob/290a82f0394a42e0c20949a36ab575229b95051d/docs/creator/PROCEDURAL_SKILL_COMPILER_SYSTEM_PROMPT.md","role":"CANONICAL_CREATOR_COMPILER_PROMPT","used_by":["KAW#79","KAW#88"]},
+    {"ref_id":"REF-0009","title":"Community Skill Edition Architecture","kind":"PINNED_GITHUB_FILE","url":"https://github.com/ed3c/kotlin-auto-webview/blob/d8b105ba1bb7be88caf9ae52eaa5bc31bf4667c9/docs/creator/COMMUNITY_SKILL_EDITION_ARCHITECTURE.md","role":"COMMUNITY_ARCHITECTURE","used_by":["KAW#82","KAW#95"]},
+    {"ref_id":"REF-0010","title":"Content Platform and Media Risk Register","kind":"PINNED_GITHUB_FILE","url":"https://github.com/ed3c/kotlin-auto-webview/blob/8e2181e11144ae5bb349c1a0aa9b790485d60c4d/docs/security/CONTENT_PLATFORM_MEDIA_RISK_REGISTER.md","role":"MEDIA_RISK_CONTRACT","used_by":["KAW#80","KAW#85","KAW#96"]},
+    {"ref_id":"REF-0011","title":"Federated Capability Workspace Draft PR","kind":"GITHUB_PULL_REQUEST","url":"https://github.com/ed3c/kotlin-auto-webview/pull/128","role":"WORKSPACE_PREIMPLEMENTATION_REVIEW","used_by":["KAW#119","KAW#127","KAW#129"]},
+    {"ref_id":"REF-1001","title":"KMP 導航線渲染與通訊架構研究","kind":"GOOGLE_DOC","url":"https://docs.google.com/document/d/1v-RPMcYKIzo8WNgW7ic8M9h3Fg-dyMe15Xs9HlcSjIA/edit?usp=drivesdk","role":"KMP_WEBVIEW_ARCHITECTURE_SOURCE","used_by":["KAW#119","KAW#129"]},
+    {"ref_id":"REF-1002","title":"KMP 整合 OpenClaw 架構指南","kind":"GOOGLE_DOC","url":"https://docs.google.com/document/d/16NpQXhL78EUw1dalxzSZyAE9eOksExBWCWTvPDsO0yw/edit?usp=drivesdk","role":"KMP_OPENCLAW_ARCHITECTURE_SOURCE","used_by":["KAW#119","KAW#129"]},
+    {"ref_id":"REF-1003","title":"KMP 整合 OpenClaw 架構指南 (distinct file)","kind":"GOOGLE_DOC","url":"https://docs.google.com/document/d/1wvkn4p675lVtGcFxirHZjqLY_qwmu0oVA-7ZKUhOrfo/edit?usp=drivesdk","role":"KMP_OPENCLAW_ARCHITECTURE_SOURCE_DUPLICATE_TITLE","used_by":["KAW#119","KAW#129"]},
+    {"ref_id":"REF-1004","title":"AgentOS KMP 架構創新演進.pdf","kind":"GOOGLE_DRIVE_PDF","url":"https://drive.google.com/file/d/1voZOkbfrJ_Sdbv8Jv13Sv2uJK4yMrR0T/view?usp=drivesdk","role":"AGENTOS_KMP_ARCHITECTURE_SOURCE","used_by":["KAW#119","KAW#129"]},
+    {"ref_id":"REF-1009","title":"Android Engineering Note｜2026-08-07｜Google Play API 36 Deadline Playbook","kind":"GOOGLE_DOC","url":"https://docs.google.com/document/d/1cR4RKyrD21bI_h0HDQymnt8m5JE6kUayMwFrlNptDKw/edit?usp=drivesdk","role":"ANDROID_PLATFORM_OPERATION_NOTE","used_by":["KAW#80","KAW#119","KAW#129"]}
+  ]
+}
