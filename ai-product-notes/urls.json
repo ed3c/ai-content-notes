@@ -1,0 +1,16 @@
+{
+  "schema": "repo-url-index@1",
+  "owner_issue": "ed3c/ai-content-notes#59",
+  "repo_name": "ai-product-notes",
+  "repository_url": "https://github.com/ed3c/ai-product-notes",
+  "visibility": "PRIVATE",
+  "repository_ref_id": "REF-1102",
+  "role": "MARKET_TECH_RIGHTS_AUTHORITY",
+  "state": "URL_INDEXED",
+  "revision": "main_MUTABLE",
+  "digest": "UNKNOWN",
+  "urls": [
+    {"ref_id":"REF-1102","title":"ed3c/ai-product-notes","kind":"PRIVATE_GITHUB_REPOSITORY","url":"https://github.com/ed3c/ai-product-notes","role":"CANONICAL_REPOSITORY","used_by":["KAW#119"]},
+    {"ref_id":"REF-1005","title":"AI Solopreneur Tracks & Gaps Master Database (2026)","kind":"GOOGLE_SHEET","url":"https://docs.google.com/spreadsheets/d/1zOhGa7nfVpWcldFGkABguRwMVPS3_KLKYMtxlrZSVlk/edit?usp=drivesdk","role":"MARKET_AND_TECH_GAPS_DASHBOARD","used_by":["KAW#119","KAW#129","AI-PRODUCT"]}
+  ]
+}
