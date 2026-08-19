@@ -1,0 +1,62 @@
+{
+  "authority_ceiling": "SOURCE_EVIDENCE_ONLY",
+  "claims_digest": "sha256:2fe7d025df6218a357c01281bf218bae7a474e29952b75bd3c4d7f71b33fabde",
+  "contradictions_digest": "sha256:c8636dff0e74f77ae8ca9366a56d1b3d59d710348428a37ee1b14f4289731d70",
+  "decision": "VALIDATE",
+  "evidence_digest": "sha256:b881528baa3bbe8e7503eb61488bdde793c28af1b711daae5098d1068f670ac7",
+  "evidence_state": {
+    "legal": "ABSENT",
+    "paid": "ABSENT",
+    "runtime": "ABSENT",
+    "source": "PASS",
+    "user": "ABSENT"
+  },
+  "non_claims": [
+    "No named product internal architecture is established as observed fact.",
+    "No package license, performance, cost, runtime, user, paid, merge, or release state is established."
+  ],
+  "product_signal_digest": "sha256:c756bbb8e5413892356b8c675f78a17837b3ac067fff064070e318548dbb1d0f",
+  "schema_version": "product-signal@1",
+  "signal_set_id": "modern-web-architecture-2026-08-18",
+  "signals": [
+    {
+      "authority_ceiling": "SOURCE_EVIDENCE_ONLY",
+      "claim_ids": ["claim:architecture-pattern"],
+      "open_gaps": [],
+      "signal_class": "SOURCE_PATTERN",
+      "signal_id": "signal:architecture-pattern",
+      "title": "Structured product compiler pattern"
+    },
+    {
+      "authority_ceiling": "SOURCE_EVIDENCE_ONLY",
+      "claim_ids": ["claim:actual-company-internals-unknown", "claim:flair-internal-mapping"],
+      "open_gaps": [
+        "independent primary evidence of the named product implementation",
+        "official technical documentation, source code, or independently observed runtime behavior",
+        "runtime reproduction bound to an owned implementation"
+      ],
+      "signal_class": "MECHANISM_HYPOTHESIS",
+      "signal_id": "signal:flair-mechanism",
+      "title": "Flair-style spatial generation hypothesis"
+    },
+    {
+      "authority_ceiling": "SOURCE_EVIDENCE_ONLY",
+      "claim_ids": ["claim:lgpl-row", "claim:permissive-stack-claim"],
+      "open_gaps": [
+        "exact selected dependency graph and license expressions",
+        "independent package and transitive-license review"
+      ],
+      "signal_class": "VALIDATION_GAP",
+      "signal_id": "signal:rights-gap",
+      "title": "License and rights verification gap"
+    }
+  ],
+  "source_binding": {
+    "dependency_key": "drive-file:1G35AxLrIa95YIUAvncH6BiWkUVAeX9A9",
+    "registry_digest": "sha256:1dcc8d6ca8f1282e9e319cefcca59a2278d203ba9e3ebecba52b8815e1c45166",
+    "source_digest": "sha256:7350f0e3d29ace70a6c92343e5501b34763f452e057d9b8acef3829f57230ef6",
+    "source_id": "pdf:modern-web-architecture-2026-08-18"
+  },
+  "unknown_claims": ["claim:actual-company-internals-unknown"],
+  "unresolved_contradictions": ["contradiction:all-permissive-vs-lgpl-option"]
+}
