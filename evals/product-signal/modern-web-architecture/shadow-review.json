@@ -1,0 +1,13 @@
+{
+  "schema_version": "product-signal-shadow-review@1",
+  "mode": "SAME_CONTEXT_READ_ONLY_SHADOW",
+  "verdict": "STAGE3_SOURCE_EVIDENCE_CANARY_ALLOWED_WITH_VALIDATE_CEILING",
+  "independent_shadow": "NOT_EXERCISED",
+  "findings": [
+    "The source pattern is admissible as a source statement, not as proof of named-company internals.",
+    "The Flair mapping remains a mechanism hypothesis until independent evidence exists.",
+    "The source's all-permissive summary is kept in tension with its LGPL/MIT qualification instead of being silently reconciled.",
+    "No runtime, user, paid, merge, or release lane is exercised by this canary."
+  ],
+  "authority_ceiling": "SOURCE_EVIDENCE_ONLY"
+}
