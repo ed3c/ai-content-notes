@@ -1,7 +1,22 @@
 # Private Reference URL Registry
 
 Owners: `ed3c/ai-content-notes#56` / parent `#51`  
-Public privacy-safe counterpart: `ed3c/kotlin-auto-webview#129`
+Public privacy-safe counterpart: `ed3c/kotlin-auto-webview#129`  
+Implementation preflight: `#69`
+
+## Start here
+
+Before changing any reference/source/projection implementation in this directory:
+
+1. [`AGENTS.md`](AGENTS.md)
+2. [`IMPLEMENTATION_PREP.md`](IMPLEMENTATION_PREP.md)
+3. [`implementation-preflight.json`](implementation-preflight.json)
+4. [`codexdoc-index.json`](codexdoc-index.json)
+5. the applicable global/private registry and `/<repo_name>/urls.json`
+6. `tools/verify_reference_traceability.py` and its tests
+7. the exact owning Issue, PR/branch/head/check graph, and cross-repository contract owner
+
+Current prep state is `TRACEABILITY_PREIMPLEMENTATION_READY` only after #69's exact prep head passes the existing repository CI. This state is implementation readiness, not source/projection/runtime completion.
 
 ## Purpose
 
@@ -13,12 +28,34 @@ This private registry stores full locators that must not be committed to the pub
 - their stable shared `REF-*` identities;
 - role, visibility, current indexing state and downstream issue links.
 
-Machine inventories:
+Machine inventories and prep contracts:
 
 - [`reference-index.private.json`](reference-index.private.json) — Google assets and private repositories;
 - [`reference-index.private.methods.json`](reference-index.private.methods.json) — canonical private Skills/methods and prompt pointers;
 - [`repo-directory-index.json`](repo-directory-index.json) — root-level `/<repo_name>/urls.json` navigation map;
-- [`codexdoc-index.json`](codexdoc-index.json) — CodexDoc folder/child inventory plus Issue/PR trace status.
+- [`codexdoc-index.json`](codexdoc-index.json) — CodexDoc folder/child inventory plus Issue/PR trace status;
+- [`implementation-preflight.json`](implementation-preflight.json) — implementation atoms, dependency classes, outputs, controls and evidence ceilings.
+
+## Implementation readiness
+
+Issue `#69` freezes the implementation start/completion DAG without pretending the open implementation owners are complete:
+
+```text
+PR #67 baseline
+├─ #51 source-registry@1                         READY_TO_START
+├─ #57 private/public REF parity                 READY_TO_START
+├─ #68 CodexDoc semantic triage                  READY_TO_START
+└─ KAW #130 public hygiene/parity                READY_TO_START in KAW
+
+#51 admitted subject
+├─ #55 note Google projection                    blocked on #51 + KAW #120/#121/#123
+└─ ai-product-notes #48 projection               blocked on #51
+
+applicable receipts
+→ #61 global convergence
+```
+
+The detailed path leases, planted controls and evidence ceilings are in `IMPLEMENTATION_PREP.md`. Cross-repository dependencies are process/completion edges, not fabricated Git ancestry.
 
 ## Repository-name URL namespaces
 
@@ -67,7 +104,7 @@ CodexDoc folder/file
 
 The folder is a navigation/source-projection substrate, not a DAG authority. A child file is not considered traced merely because it is inside CodexDoc. `BOUND` requires an observed consuming Issue/decision; implementation-bearing sources additionally need real PR/head/receipt edges before implementation closure can be claimed.
 
-The global audit owner is `#61`; conversation-only source backfill is `#63`; the deterministic graph verifier is `#64`.
+The global audit owner is `#61`; conversation-only source backfill is `#63`; the deterministic graph verifier is `#64`; semantic terminal-state triage is `#68`.
 
 ## Authority boundary
 
@@ -81,7 +118,7 @@ URL_INDEXED
 != IMPLEMENTED
 ```
 
-This first registry is an inventory/provenance layer. `ai-content-notes#51` remains responsible for the stronger `source-registry@1` snapshot/read-back contract.
+This registry is an inventory/provenance layer. `ai-content-notes#51` remains responsible for the stronger `source-registry@1` snapshot/read-back contract.
 
 ## Public/private federation
 
@@ -113,12 +150,13 @@ The public KAW index may expose a stable opaque REF ID; it must not contain the 
 | REF-1010 | Android 工程師轉型指南 — file A | Google Doc | URL_INDEXED |
 | REF-1011 | Android 工程師轉型指南 — file B | Google Doc | URL_INDEXED |
 | REF-1012 | Android 工程師轉型指南 — file C | Google Doc | URL_INDEXED |
+| REF-1013 | SkillBench 整合研究與市場實作 Gap 追蹤表 | Google Sheet | URL_INDEXED |
 
 Duplicate titles are intentionally retained as separate identities. File IDs, revisions and future digests—not titles—determine identity.
 
 ## Indexed private repositories
 
-`REF-1101`–`REF-1112` currently cover private evidence, product, methods, orchestration, routing, runtime and device-support repositories. Their full URLs remain in the machine inventory and must not be projected into the public KAW registry.
+`REF-1101`–`REF-1112` currently cover private evidence, product, methods, orchestration, routing, runtime and device-support repositories. Their full URLs remain in the machine inventory and must not be projected into the public KAW registry. Public `enterprise_agent_system` is separately indexed through `REF-0012` and its repo-name namespace.
 
 ## Indexed canonical private methods
 
