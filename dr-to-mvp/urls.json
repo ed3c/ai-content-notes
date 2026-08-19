@@ -1,0 +1,15 @@
+{
+  "schema": "repo-url-index@1",
+  "owner_issue": "ed3c/ai-content-notes#59",
+  "repo_name": "dr-to-mvp",
+  "repository_url": "https://github.com/ed3c/dr-to-mvp",
+  "visibility": "PRIVATE",
+  "repository_ref_id": "REF-1110",
+  "role": "RESEARCH_TO_MVP_RELATED_WORKFLOW",
+  "state": "URL_INDEXED",
+  "revision": "main_MUTABLE",
+  "digest": "UNKNOWN",
+  "urls": [
+    {"ref_id":"REF-1110","title":"ed3c/dr-to-mvp","kind":"PRIVATE_GITHUB_REPOSITORY","url":"https://github.com/ed3c/dr-to-mvp","role":"CANONICAL_REPOSITORY","used_by":["RELATED_RESEARCH"]}
+  ]
+}

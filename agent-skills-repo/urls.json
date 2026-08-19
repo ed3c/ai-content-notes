@@ -1,0 +1,16 @@
+{
+  "schema": "repo-url-index@1",
+  "owner_issue": "ed3c/ai-content-notes#59",
+  "repo_name": "agent-skills-repo",
+  "repository_url": "https://github.com/ed3c/agent-skills-repo",
+  "visibility": "PUBLIC",
+  "repository_ref_id": "REF-0005",
+  "role": "SKILL_RESEARCH_AND_QUALIFICATION_HISTORY",
+  "state": "URL_INDEXED",
+  "revision": "main_MUTABLE",
+  "digest": "UNKNOWN",
+  "urls": [
+    {"ref_id":"REF-0005","title":"ed3c/agent-skills-repo","kind":"GITHUB_REPOSITORY","url":"https://github.com/ed3c/agent-skills-repo","role":"CANONICAL_REPOSITORY","used_by":["KAW#119"]},
+    {"ref_id":"REF-1007","title":"SkillBench_Research_and_Market_Gaps_Tracker","kind":"GOOGLE_SHEET","url":"https://docs.google.com/spreadsheets/d/10AQ1hOmWosUx4PHALoJgb9BEjVkhgyHsmpY0E9CC7p0/edit?usp=drivesdk","role":"AGENT_SKILLS_RESEARCH_DASHBOARD","used_by":["KAW#119","KAW#129"]}
+  ]
+}

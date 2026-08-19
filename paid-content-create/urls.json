@@ -1,0 +1,16 @@
+{
+  "schema": "repo-url-index@1",
+  "owner_issue": "ed3c/ai-content-notes#59",
+  "repo_name": "paid-content-create",
+  "repository_url": "https://github.com/ed3c/paid-content-create",
+  "visibility": "PUBLIC",
+  "repository_ref_id": "REF-0006",
+  "role": "CREATOR_OUTCOME_PRODUCT",
+  "state": "URL_INDEXED",
+  "revision": "main_MUTABLE",
+  "digest": "UNKNOWN",
+  "urls": [
+    {"ref_id":"REF-0006","title":"ed3c/paid-content-create","kind":"GITHUB_REPOSITORY","url":"https://github.com/ed3c/paid-content-create","role":"CANONICAL_REPOSITORY","used_by":["KAW#79"]},
+    {"ref_id":"REF-1006","title":"AI高價值內容知識變現潛力排行榜","kind":"GOOGLE_SHEET","url":"https://docs.google.com/spreadsheets/d/1i1y4116id0l-CFYR0g1wPbYYMr6bAU18I85yOAcaG0M/edit?usp=drivesdk","role":"CONTENT_MONETIZATION_RESEARCH_DASHBOARD","used_by":["KAW#79","KAW#119","KAW#129"]}
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "schema": "repo-url-index@1",
+  "owner_issue": "ed3c/ai-content-notes#59",
+  "repo_name": "gemini-auto-reply",
+  "repository_url": "https://github.com/ed3c/gemini-auto-reply",
+  "visibility": "PRIVATE",
+  "repository_ref_id": "REF-1111",
+  "role": "MODEL_INTEGRATION_RELATED_WORKFLOW",
+  "state": "URL_INDEXED",
+  "revision": "main_MUTABLE",
+  "digest": "UNKNOWN",
+  "urls": [
+    {"ref_id":"REF-1111","title":"ed3c/gemini-auto-reply","kind":"PRIVATE_GITHUB_REPOSITORY","url":"https://github.com/ed3c/gemini-auto-reply","role":"CANONICAL_REPOSITORY","used_by":["RELATED_RESEARCH"]}
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "schema": "repo-url-index@1",
+  "owner_issue": "ed3c/ai-content-notes#59",
+  "repo_name": "agent-shield-monorepo",
+  "repository_url": "https://github.com/ed3c/agent-shield-monorepo",
+  "visibility": "PRIVATE",
+  "repository_ref_id": "REF-1112",
+  "role": "AGENT_SECURITY_RELATED_AUTHORITY",
+  "state": "URL_INDEXED",
+  "revision": "main_MUTABLE",
+  "digest": "UNKNOWN",
+  "urls": [
+    {"ref_id":"REF-1112","title":"ed3c/agent-shield-monorepo","kind":"PRIVATE_GITHUB_REPOSITORY","url":"https://github.com/ed3c/agent-shield-monorepo","role":"CANONICAL_REPOSITORY","used_by":["RELATED_RESEARCH"]}
+  ]
+}

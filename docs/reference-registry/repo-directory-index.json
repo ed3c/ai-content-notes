@@ -1,0 +1,27 @@
+{
+  "schema": "repo-directory-index@1",
+  "owner_issue": "ed3c/ai-content-notes#59",
+  "state": "URL_INDEXED",
+  "authority": "Navigation index only. Each /<repo_name>/urls.json is a repo-scoped locator projection; global REF identities remain owned by docs/reference-registry/reference-index.private*.json and the public counterpart where applicable.",
+  "repositories": [
+    {"repo_name":"kotlin-auto-webview","path":"kotlin-auto-webview/urls.json","repository_ref_id":"REF-0001","visibility":"PUBLIC"},
+    {"repo_name":"ai-content-notes","path":"ai-content-notes/urls.json","repository_ref_id":"REF-1101","visibility":"PRIVATE"},
+    {"repo_name":"ai-product-notes","path":"ai-product-notes/urls.json","repository_ref_id":"REF-1102","visibility":"PRIVATE"},
+    {"repo_name":"skills-shared","path":"skills-shared/urls.json","repository_ref_id":"REF-1103","visibility":"PRIVATE"},
+    {"repo_name":"bettor-arena","path":"bettor-arena/urls.json","repository_ref_id":"REF-1104","visibility":"PRIVATE"},
+    {"repo_name":"tech-implementation-atlas","path":"tech-implementation-atlas/urls.json","repository_ref_id":"REF-1105","visibility":"PRIVATE"},
+    {"repo_name":"runtime-env","path":"runtime-env/urls.json","repository_ref_id":"REF-1106","visibility":"PRIVATE"},
+    {"repo_name":"truth-verify-loop","path":"truth-verify-loop/urls.json","repository_ref_id":"REF-0002","visibility":"PUBLIC"},
+    {"repo_name":"Skill.md-native","path":"Skill.md-native/urls.json","repository_ref_id":"REF-0003","visibility":"PUBLIC"},
+    {"repo_name":"blackbox-auto-research","path":"blackbox-auto-research/urls.json","repository_ref_id":"REF-0004","visibility":"PUBLIC"},
+    {"repo_name":"agent-skills-repo","path":"agent-skills-repo/urls.json","repository_ref_id":"REF-0005","visibility":"PUBLIC"},
+    {"repo_name":"paid-content-create","path":"paid-content-create/urls.json","repository_ref_id":"REF-0006","visibility":"PUBLIC"},
+    {"repo_name":"openwiki-source-anchoring","path":"openwiki-source-anchoring/urls.json","repository_ref_id":"REF-0007","visibility":"PUBLIC"},
+    {"repo_name":"agy-autopilot-loop","path":"agy-autopilot-loop/urls.json","repository_ref_id":"REF-1107","visibility":"PRIVATE"},
+    {"repo_name":"ios-device-autopilot","path":"ios-device-autopilot/urls.json","repository_ref_id":"REF-1108","visibility":"PRIVATE"},
+    {"repo_name":"android-device-autopilot","path":"android-device-autopilot/urls.json","repository_ref_id":"REF-1109","visibility":"PRIVATE"},
+    {"repo_name":"dr-to-mvp","path":"dr-to-mvp/urls.json","repository_ref_id":"REF-1110","visibility":"PRIVATE"},
+    {"repo_name":"gemini-auto-reply","path":"gemini-auto-reply/urls.json","repository_ref_id":"REF-1111","visibility":"PRIVATE"},
+    {"repo_name":"agent-shield-monorepo","path":"agent-shield-monorepo/urls.json","repository_ref_id":"REF-1112","visibility":"PRIVATE"}
+  ]
+}

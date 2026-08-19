@@ -1,0 +1,15 @@
+{
+  "schema": "repo-url-index@1",
+  "owner_issue": "ed3c/ai-content-notes#59",
+  "repo_name": "Skill.md-native",
+  "repository_url": "https://github.com/ed3c/Skill.md-native",
+  "visibility": "PUBLIC",
+  "repository_ref_id": "REF-0003",
+  "role": "SKILL_QUALIFICATION",
+  "state": "URL_INDEXED",
+  "revision": "main_MUTABLE",
+  "digest": "UNKNOWN",
+  "urls": [
+    {"ref_id":"REF-0003","title":"ed3c/Skill.md-native","kind":"GITHUB_REPOSITORY","url":"https://github.com/ed3c/Skill.md-native","role":"CANONICAL_REPOSITORY","used_by":["KAW#79","KAW#119"]}
+  ]
+}

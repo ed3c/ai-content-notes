@@ -16,7 +16,41 @@ This private registry stores full locators that must not be committed to the pub
 Machine inventories:
 
 - [`reference-index.private.json`](reference-index.private.json) — Google assets and private repositories;
-- [`reference-index.private.methods.json`](reference-index.private.methods.json) — canonical private Skills/methods and prompt pointers.
+- [`reference-index.private.methods.json`](reference-index.private.methods.json) — canonical private Skills/methods and prompt pointers;
+- [`repo-directory-index.json`](repo-directory-index.json) — root-level `/<repo_name>/urls.json` navigation map.
+
+## Repository-name URL namespaces
+
+Issue `#59` adds one root-level directory per important repository:
+
+```text
+/<repo_name>/urls.json
+```
+
+Examples:
+
+```text
+/kotlin-auto-webview/urls.json
+/ai-content-notes/urls.json
+/ai-product-notes/urls.json
+/skills-shared/urls.json
+/bettor-arena/urls.json
+/runtime-env/urls.json
+/Skill.md-native/urls.json
+```
+
+Each repo-scoped file stores that repository's canonical URL plus the important GitHub, Google Doc/Sheet/Drive, Skill, prompt or evidence URLs directly related to that repo. Stable `REF-*` remains the cross-repository identity; the repo directory is a navigation projection.
+
+```text
+repo name
+→ /<repo_name>/urls.json
+→ REF-*
+→ global reference registry
+→ future revision/digest/read-back
+→ claim / requirement / implementation / evidence
+```
+
+Do not invent a new `REF-*` merely because one URL is projected into several repo directories. Duplicate repo-local projections are allowed when the same source materially supports multiple repositories.
 
 ## Authority boundary
 

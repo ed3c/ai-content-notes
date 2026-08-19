@@ -1,0 +1,15 @@
+{
+  "schema": "repo-url-index@1",
+  "owner_issue": "ed3c/ai-content-notes#59",
+  "repo_name": "agy-autopilot-loop",
+  "repository_url": "https://github.com/ed3c/agy-autopilot-loop",
+  "visibility": "PRIVATE",
+  "repository_ref_id": "REF-1107",
+  "role": "AUTOPILOT_RESEARCH_RUNTIME",
+  "state": "URL_INDEXED",
+  "revision": "main_MUTABLE",
+  "digest": "UNKNOWN",
+  "urls": [
+    {"ref_id":"REF-1107","title":"ed3c/agy-autopilot-loop","kind":"PRIVATE_GITHUB_REPOSITORY","url":"https://github.com/ed3c/agy-autopilot-loop","role":"CANONICAL_REPOSITORY","used_by":["RELATED_RESEARCH"]}
+  ]
+}
