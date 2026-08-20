@@ -1,0 +1,53 @@
+{
+  "authority_ceiling": "SOURCE_INPUT_ONLY",
+  "local_file": {
+    "file_name": "現代網頁設計架構擴充建議.pdf",
+    "page_count": 34,
+    "sha256": "sha256:7350f0e3d29ace70a6c92343e5501b34763f452e057d9b8acef3829f57230ef6",
+    "size_bytes": 1878749
+  },
+  "non_claims": [
+    "The receipt proves exact source bytes and declared locators, not factual accuracy.",
+    "Named product internals, libraries, performance, costs, and licenses remain source statements or hypotheses.",
+    "Source admission does not prove implementation, user value, paid demand, merge, or release."
+  ],
+  "observed_at": "2026-08-17T19:27:06Z",
+  "producer_subject": {
+    "repository": "ed3c/ai-content-notes",
+    "revision": "9e249a717f86e500d49fb43d5a94dce9ee57697c",
+    "tree_sha": "779229a9802592d026bab0c06f09709f70cc219e"
+  },
+  "retention_policy": "EXTERNAL_REFERENCE_ONLY",
+  "schema_version": "pdf-source-readback-receipt@1",
+  "source_dependency_key": "drive-file:1G35AxLrIa95YIUAvncH6BiWkUVAeX9A9",
+  "source_id": "pdf:modern-web-architecture-2026-08-18",
+  "source_registry_digest": "sha256:1dcc8d6ca8f1282e9e319cefcca59a2278d203ba9e3ebecba52b8815e1c45166",
+  "source_subject": {
+    "drive_file_id": "1G35AxLrIa95YIUAvncH6BiWkUVAeX9A9",
+    "observed_revision": "drive:modified=2026-08-17T16:06:59.000Z;size=1878749;sha256=7350f0e3d29ace70a6c92343e5501b34763f452e057d9b8acef3829f57230ef6",
+    "url": "https://drive.google.com/file/d/1G35AxLrIa95YIUAvncH6BiWkUVAeX9A9/view"
+  },
+  "states": {
+    "completeness": "COMPLETE",
+    "identity": "PASS",
+    "readback": "PASS",
+    "rights": "PASS",
+    "source_registry": "PASS"
+  },
+  "visual_review": {
+    "material_visual_pages": [
+      2,
+      7,
+      8,
+      18,
+      27,
+      28,
+      29,
+      30
+    ],
+    "region_count": 8,
+    "reviewed_page_range": "1-34",
+    "reviewer_mode": "MODEL_VISUAL_REVIEW",
+    "status": "PASS"
+  }
+}
