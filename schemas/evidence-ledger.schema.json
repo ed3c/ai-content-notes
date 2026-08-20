@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ed3c/ai-content-notes/schemas/evidence-ledger.schema.json",
+  "title": "Evidence ledger",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "source_binding", "entries"],
+  "properties": {
+    "schema_version": {"const": "evidence-ledger@1"},
+    "source_binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_id", "source_digest", "registry_digest", "dependency_key"],
+      "properties": {
+        "source_id": {"type": "string", "minLength": 3},
+        "source_digest": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"},
+        "registry_digest": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"},
+        "dependency_key": {"type": "string", "minLength": 3}
+      }
+    },
+    "entries": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["evidence_id", "kind", "source_id", "source_digest", "dependency_key", "locator"],
+        "properties": {
+          "evidence_id": {"type": "string", "pattern": "^evidence:[a-z0-9][a-z0-9._:-]*$"},
+          "kind": {"enum": ["SOURCE_TEXT", "SOURCE_VISUAL", "SOURCE_METADATA", "EXTERNAL_PRIMARY", "RUNTIME_ARTIFACT", "LEGAL_REVIEW", "USER_EVIDENCE", "COMMERCIAL_EVIDENCE"]},
+          "source_id": {"type": "string", "minLength": 3},
+          "source_digest": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"},
+          "dependency_key": {"type": "string", "minLength": 3},
+          "locator": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["kind", "value"],
+            "properties": {
+              "kind": {"enum": ["PAGE", "VISUAL_REGION", "TEXT_MATCH", "SECTION"]},
+              "page": {"type": "integer", "minimum": 1},
+              "value": {"type": "string", "minLength": 1}
+            }
+          }
+        }
+      }
+    }
+  }
+}
