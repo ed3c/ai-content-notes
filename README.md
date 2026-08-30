@@ -2,6 +2,49 @@
 
 > A private Evidence Plane that turns complete AI sources into source-constrained v7.1 cards, machine receipts, knowledge projections and review-gated claim candidates.
 
+## Zero-context architecture｜先讀這裡
+
+`ai-content-notes` 的新增角色是 **domain context supply plane**，但預設路徑必須保持輕量。它的目的不是把每篇文章轉成一套新框架，而是讓下一個 Agent 用更少決策取得足夠的 domain context，並只在必要時把知識提升成 executable architecture work。
+
+Canonical contract: [`docs/DOMAIN_CONTEXT_SUPPLY_PLANE.md`](docs/DOMAIN_CONTEXT_SUPPLY_PLANE.md)
+
+```text
+External source / conversation / repeated failure / PR comment
+  -> source-constrained cards
+  -> candidate invariant / reusable domain concept
+  -> Existing-System Check
+  -> Promotion Gate
+  -> Shape | Guard | Guide
+  -> FeatureMap only for material actor-visible behavior/proof obligations
+  -> Spatial Loop only for unresolved material closure questions
+  -> executable/runtime proof
+```
+
+### Enforcement hierarchy
+
+| Layer | Role | Default |
+|---|---|---|
+| `Shape` | repository/package/API/ownership structure makes the easiest local path the correct path | strongest preference |
+| `Guard` | compiler/static analysis/lint/CI/runtime checks reject invalid states deterministically | use when Shape cannot eliminate the state |
+| `Guide` | AGENTS.md / Skills / BugBot / style guidance handles contextual judgment | last resort for non-mechanical behavior |
+
+If an invariant can be encoded mechanically, do not leave it only in human review comments or Agent instructions.
+
+### Promotion Gate
+
+```text
+useful knowledge only? -> keep as knowledge; stop
+recurring failure / missing invariant / reusable contract? -> otherwise stop
+already encoded in target repo? -> map to authority; stop
+missing? -> push to lowest deterministic owner: Shape -> Guard -> Guide
+actor-visible behavior/proof obligations materially affected? -> FeatureMap
+material unresolved behavioral/architectural closure remains? -> Spatial Loop
+```
+
+Code Graph, Product Graph, and Verification Graph are optional **derived analysis projections**. They are not three independent authoritative systems and are not mandatory for every source.
+
+`CONVERGED knowledge != architecture promotion != FeatureMap coverage != runtime VERIFIED`.
+
 ## Start here｜卡片在哪裡
 
 Modified-flow catalog: [`evals/semantic-yield/README.md`](evals/semantic-yield/README.md)
@@ -70,6 +113,7 @@ ai-content-notes/
 │           ├── semantic-yield.result.json
 │           └── run-state.md
 ├── docs/
+│   ├── DOMAIN_CONTEXT_SUPPLY_PLANE.md # zero-context promotion + anti-overengineering contract
 │   ├── runtime/README.md               # molecular runtime-leaf boundary
 │   ├── SEMANTIC_YIELD_INTEGRATION_STATUS.md
 │   └── git/
@@ -130,6 +174,16 @@ Current card batch position:
 CvRngaQZQ3Y = PERSISTED_AND_READ_BACK -> CONTINUE
 ```
 
+Domain promotion is a separate decision lane and must not be confused with content completion:
+
+```text
+knowledge pack
+  -> may stop as knowledge-only
+  -> may map to existing target-repo authority
+  -> may promote to Shape / Guard / Guide
+  -> may escalate to FeatureMap / Spatial Loop only when gate conditions hold
+```
+
 ## Actual data flow｜實際資料流
 
 ```text
@@ -145,6 +199,7 @@ complete source
   -> knowledge views
   -> deterministic semantic validation
   -> result + run state + Git read-back
+  -> optional Domain Context Promotion Gate
   -> future Google Doc/sidecar/Sheet transaction
   -> privacy-preserving claim delta
   -> Atlas review and independent Skill qualification
@@ -158,6 +213,7 @@ evals/semantic-yield/CvRngaQZQ3Y/cards/      # current modified-flow cards
 evals/semantic-yield/CvRngaQZQ3Y/knowledge-views.md
 evals/semantic-yield/CvRngaQZQ3Y/semantic-validator-report.json
 evals/semantic-yield/CvRngaQZQ3Y/run-state.md
+docs/DOMAIN_CONTEXT_SUPPLY_PLANE.md           # domain promotion policy
 ```
 
 ## Evidence lanes｜證據分流
@@ -168,6 +224,9 @@ source-reported test != current TESTED artifact
 source-pack receipt != source accuracy or claim truth
 model-run receipt != model quality or claim verification
 host projection != original visual evidence
+knowledge convergence != architecture promotion
+semantic similarity != target-repo coverage
+FeatureMap mapping != runtime VERIFIED
 note completed != claim admitted
 Skill compiled != Skill qualified
 Git branch graph != live Git Town synchronization receipt
@@ -184,6 +243,7 @@ Materialized:
 - current 10-card Semantic Yield batch and five human views;
 - deterministic semantic validator with a ten-QG evidence subset;
 - card catalog, Agent routing, State Machine, data flow and Git/stack governance;
+- zero-context Domain Context Supply Plane architecture contract on the active documentation branch;
 - **runtime Leaf 01**, merged as PR #24 / `d39d4791eed8c0cd3b1227ef8aeafd9685736e91`:
   - multimodal source-pack descriptor/receipt schemas;
   - provider-neutral model-run descriptor/receipt schemas;
@@ -192,6 +252,7 @@ Materialized:
 
 Still incomplete:
 
+- Issue #75 executable minimum Context Pack schema and Promotion Gate tests;
 - live provider/model invocation adapter;
 - provider/model raw-run receipt for the historical `CvRngaQZQ3Y` compilation;
 - relation graph/thesis runtime extracted onto current `main`;
@@ -228,6 +289,8 @@ QG-16 QG-18 QG-20 QG-21 QG-23
 
 - [`AGENTS.md`](AGENTS.md), [`CLAUDE.md`](CLAUDE.md)
 - [`INTEGRATION_REQUIREMENTS.md`](INTEGRATION_REQUIREMENTS.md)
+- [`docs/DOMAIN_CONTEXT_SUPPLY_PLANE.md`](docs/DOMAIN_CONTEXT_SUPPLY_PLANE.md)
+- [Issue #75](https://github.com/ed3c/ai-content-notes/issues/75) — implementation/acceptance status for domain context promotion
 - [`evals/semantic-yield/README.md`](evals/semantic-yield/README.md)
 - [`docs/SEMANTIC_YIELD_INTEGRATION_STATUS.md`](docs/SEMANTIC_YIELD_INTEGRATION_STATUS.md)
 - [`docs/runtime/README.md`](docs/runtime/README.md)
