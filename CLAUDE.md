@@ -49,6 +49,9 @@ evals/prompt-ab/
 evals/live/
   acquisition-backed first-pass evaluation outputs and retained baselines
 
+evals/runner/
+  LOOP harness subjects; a run writes cards, registry and receipt to its own --run-dir
+
 evals/semantic-yield/
   modified-flow card batches, projections, manifests, validator reports and run state
 
