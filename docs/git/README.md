@@ -47,7 +47,7 @@ live git town executable admission: ABSENT
 live git town sync: NOT_EXERCISED
 background sync: DISABLED
 worker publication gate: NOT_IMPLEMENTED
-merge/ship: HUMAN ADMIT
+merge/ship: MACHINE LAND at the verified head, after `verify` succeeds
 ```
 
 The current documentation stack uses explicit GitHub parent branches and PR bases. It is compatible with the intended Git Town hierarchy, but it is not evidence that `git town sync` ran.
@@ -60,7 +60,8 @@ docs/git/
 ├── REPO_PROFILE.md          # repository-owned policy/profile
 ├── GIT_TOWN_ADMISSION.md    # exact executable/version evidence state
 ├── WORKER_PROTOCOL.md       # task packet, leases, outcomes and boundaries
-└── STACKED_PRS.md           # current stack and future molecular leaf plan
+├── STACKED_PRS.md           # current stack and future molecular leaf plan
+└── MACHINE_LANDING.md       # trusted verify + exact-head land ceremony
 ```
 
 No `.git-town.toml`, sync wrapper or background loop should be added until exact Git Town admission and negative-control evals exist.

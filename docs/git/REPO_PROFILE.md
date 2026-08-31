@@ -160,8 +160,10 @@ publication:
   CI_DRAFT_PR_RUNNER_POLICY: no-runner
   CI_BILLING_CIRCUIT_POLICY: fail-closed
   CI_OBSOLETE_HEAD_POLICY: cancel-in-progress
-  CI_TRUSTED_CHECK_NAME: Canonical contracts
+  CI_TRUSTED_CHECK_NAME: verify
 ```
+
+`verify` is the trusted check installed by [`MACHINE_LANDING.md`](MACHINE_LANDING.md). `Canonical contracts` still runs on `pull_request`, but it is not the landing authority.
 
 The current PR stack was published by a trusted operator through the GitHub connector. It is not Worker publication evidence and does not resolve `CI_PUBLICATION_GATE: ABSENT`.
 
