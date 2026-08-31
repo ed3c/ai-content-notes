@@ -81,3 +81,38 @@ def test_stamp_replaces_an_existing_marker_in_place_without_duplicating() -> Non
 def test_stamp_of_an_absent_body_still_produces_the_markers() -> None:
     stamped = land_pr.stamp(None, {"state": "landed"})
     assert stamped.strip() == "<!-- landing-state: landed -->"
+
+
+def test_clean_pr_gets_exactly_one_anchor_comment() -> None:
+    calls: list[tuple[str, str]] = []
+
+    def fake(method: str, path: str, payload: dict | None = None):
+        calls.append((method, path))
+        if method == "GET" and "comments" in path:
+            return [{"body": "ordinary review comment"}]
+        if method == "GET":
+            return {"merged_at": "2026-09-01T00:00:00Z"}
+        assert "physical-receipt-anchor: pr=85 merge-commit=" + "c" * 40 in payload["body"]
+        assert "merged-at=2026-09-01T00:00:00Z" in payload["body"]
+        return {}
+
+    assert land_pr.post_receipt_anchor(REPOSITORY, 85, "c" * 40, call=fake) == "posted"
+    assert sum(1 for method, _ in calls if method == "POST") == 1
+
+
+def test_existing_anchor_is_never_duplicated() -> None:
+    def fake(method: str, path: str, payload: dict | None = None):
+        if method == "GET" and "comments" in path:
+            return [{"body": "physical-receipt-anchor: pr=85 merge-commit=old"}]
+        raise AssertionError(f"unexpected call after existing anchor: {method} {path}")
+
+    assert land_pr.post_receipt_anchor(REPOSITORY, 85, "c" * 40, call=fake) == "exists"
+
+
+def test_provider_refusal_never_gates_the_land() -> None:
+    # planted negative: a secondary-rate-limit SystemExit from the api helper
+    # must be absorbed, never raised - the anchor can never gate a land.
+    def fake(method: str, path: str, payload: dict | None = None):
+        raise SystemExit("GITHUB_API_REFUSED:POST:/comments:403:secondary rate limit")
+
+    assert land_pr.post_receipt_anchor(REPOSITORY, 85, "c" * 40, call=fake) == "failed"
