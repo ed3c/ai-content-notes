@@ -1,0 +1,170 @@
+{
+  "anchor_kind": "char-offset into text_plane; quote is the exact substring at [char_start, char_end)",
+  "anchors": [
+    {
+      "char_end": 1749,
+      "char_start": 1732,
+      "evidence_id": "EV-sqlite-testing-ratio-590x",
+      "quote": "590 times as much"
+    },
+    {
+      "char_end": 1793,
+      "char_start": 1779,
+      "evidence_id": "EV-sqlite-testing-test-ksloc",
+      "quote": "92053.1 KSLOC."
+    },
+    {
+      "char_end": 2319,
+      "char_start": 2257,
+      "evidence_id": "EV-sqlite-testing-four-harnesses",
+      "quote": "There are four independent test harnesses used for testing the"
+    },
+    {
+      "char_end": 2930,
+      "char_start": 2883,
+      "evidence_id": "EV-sqlite-testing-tcl-cases",
+      "quote": "51445 distinct test cases, but many of the test"
+    },
+    {
+      "char_end": 3523,
+      "char_start": 3474,
+      "evidence_id": "EV-sqlite-testing-th3-cases",
+      "quote": "of C code implementing 50362 distinct test cases."
+    },
+    {
+      "char_end": 4182,
+      "char_start": 4143,
+      "evidence_id": "EV-sqlite-testing-slt-queries",
+      "quote": "SLT runs 7.2 million queries comprising"
+    },
+    {
+      "char_end": 4620,
+      "char_start": 4574,
+      "evidence_id": "EV-sqlite-testing-dbsqlfuzz-rate",
+      "quote": "runs about one billion test mutations per day."
+    },
+    {
+      "char_end": 30297,
+      "char_start": 30248,
+      "evidence_id": "EV-sqlite-testing-meta-test",
+      "quote": "The gcov run is a test of the test - a meta-test."
+    },
+    {
+      "char_end": 30137,
+      "char_start": 30069,
+      "evidence_id": "EV-sqlite-testing-different-code",
+      "quote": "the -fprofile-args and -ftest-coverage options cause the compiler to"
+    },
+    {
+      "char_end": 30569,
+      "char_start": 30524,
+      "evidence_id": "EV-sqlite-testing-second-run",
+      "quote": "This second run is the actual test of SQLite."
+    },
+    {
+      "char_end": 24584,
+      "char_start": 24515,
+      "evidence_id": "EV-sqlite-testing-statement-coverage",
+      "quote": "Any one of the above test cases would provide 100% statement coverage"
+    },
+    {
+      "char_end": 23582,
+      "char_start": 23518,
+      "evidence_id": "EV-sqlite-testing-branch-stricter",
+      "quote": "Branch coverage is more rigorous than statement coverage. Branch"
+    },
+    {
+      "char_end": 18550,
+      "char_start": 18495,
+      "evidence_id": "EV-sqlite-testing-tension",
+      "quote": "Fuzz testing and 100% MC/DC testing are in tension with"
+    },
+    {
+      "char_end": 18823,
+      "char_start": 18762,
+      "evidence_id": "EV-sqlite-testing-defensive-discouraged",
+      "quote": "This is because MC/DC testing discourages defensive code with"
+    },
+    {
+      "char_end": 19783,
+      "char_start": 19716,
+      "evidence_id": "EV-sqlite-testing-cycles-to-fuzzing",
+      "quote": "100% MC/DC of the core SQLite code, but most testing CPU cycles are"
+    },
+    {
+      "char_end": 25305,
+      "char_start": 25251,
+      "evidence_id": "EV-sqlite-testing-always-never",
+      "quote": "macros called ALWAYS() and NEVER(). The ALWAYS() macro"
+    },
+    {
+      "char_end": 26229,
+      "char_start": 26163,
+      "evidence_id": "EV-sqlite-testing-three-runs",
+      "quote": "The test suite is designed to be run three times, once for each of"
+    },
+    {
+      "char_end": 7158,
+      "char_start": 7091,
+      "evidence_id": "EV-sqlite-testing-oom-rigged-malloc",
+      "quote": "inserting a modified version of malloc() that can be rigged to fail"
+    },
+    {
+      "char_end": 7675,
+      "char_start": 7613,
+      "evidence_id": "EV-sqlite-testing-oom-loop",
+      "quote": "on the instrumented malloc is increased by one and the test is"
+    },
+    {
+      "char_end": 9474,
+      "char_start": 9412,
+      "evidence_id": "EV-sqlite-testing-integrity-check",
+      "quote": "PRAGMA integrity_check to make sure that the I/O error has not"
+    },
+    {
+      "char_end": 32193,
+      "char_start": 32123,
+      "evidence_id": "EV-sqlite-testing-mutation-flip",
+      "quote": "instruction into either an unconditional jump or a no-op, compiles the"
+    },
+    {
+      "char_end": 32436,
+      "char_start": 32373,
+      "evidence_id": "EV-sqlite-testing-false-positives",
+      "quote": "Such branches generate false-positives during mutation testing."
+    },
+    {
+      "char_end": 33584,
+      "char_start": 33527,
+      "evidence_id": "EV-sqlite-testing-optimization-comment",
+      "quote": "to tell the mutation testing script to ignore some branch"
+    },
+    {
+      "char_end": 34348,
+      "char_start": 34291,
+      "evidence_id": "EV-sqlite-testing-not-cost-effective",
+      "quote": "is probably not cost effective for a typical application."
+    },
+    {
+      "char_end": 34850,
+      "char_start": 34812,
+      "evidence_id": "EV-sqlite-testing-assert-count",
+      "quote": "The SQLite core contains 6754 assert()"
+    }
+  ],
+  "canonical_url": "https://www.sqlite.org/testing.html",
+  "content_id": "sqlite-testing",
+  "fetched_content": {
+    "retained_path": "sources/sqlite-testing/article.raw.html",
+    "sha256": "sha256:d1a8b5c43a42e573f7165483fdf02b91c605076b869a823d924241fb308feb97"
+  },
+  "retrieved_at": "2026-08-31T17:29:21Z",
+  "schema_version": "evidence-manifest@1",
+  "source_id": "article:sqlite.org-testing",
+  "text_plane": {
+    "characters": 45560,
+    "produced_by": "tools/html_article_adapter.py",
+    "retained_path": "sources/sqlite-testing/article.txt",
+    "sha256": "sha256:1f25542077e5729da5ab9c024e95cefe723b15622a03a08f8b3e40d9b7d15f24"
+  }
+}

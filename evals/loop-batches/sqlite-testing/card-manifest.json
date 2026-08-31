@@ -1,0 +1,52 @@
+{
+  "authority": {
+    "authorization_status": "verified",
+    "may_compile_evaluation_cards": true,
+    "may_publish_raw_media": true,
+    "rights_basis": "public-domain",
+    "rights_reference": "sources/sqlite-testing/source-manifest.json"
+  },
+  "card_count": 10,
+  "card_order": [
+    "N-open-source-reliability-doubt",
+    "C-coverage-run-is-a-meta-test",
+    "D-branch-versus-statement-coverage",
+    "T-four-independent-harnesses",
+    "X-mcdc-versus-fuzz-tension",
+    "S-keep-defensive-code-under-full-coverage",
+    "P-oom-failure-injection-loop",
+    "E-coverage-measures-the-suite",
+    "V-mutation-testing-branch-usefulness",
+    "K-mutation-exemption-scope-unknown"
+  ],
+  "compiled_by": "tools/run_loop_harness.py",
+  "content_id": "sqlite-testing",
+  "evidence_manifest": "evidence-manifest.json",
+  "high_signal_control": "PRESENT",
+  "high_signal_declared": 8,
+  "high_signal_unmapped": [],
+  "registry_digest": "sha256:ec3f4cf0bea3fcafb98e305b7a4b71886864a939ec63c76457e4847d7361db4c",
+  "round_count": 3,
+  "run_mode": "LOOP",
+  "schema_version": "loop-batch-card-manifest@1",
+  "series_order": [
+    "N",
+    "C",
+    "D",
+    "T",
+    "X",
+    "S",
+    "P",
+    "E",
+    "V",
+    "K"
+  ],
+  "source": {
+    "canonical_url": "https://www.sqlite.org/testing.html",
+    "retained_root": "sources/sqlite-testing",
+    "source_dependency_key": "article:sqlite.org/testing.html",
+    "text_plane_sha256": "sha256:1f25542077e5729da5ab9c024e95cefe723b15622a03a08f8b3e40d9b7d15f24"
+  },
+  "source_id": "article:sqlite.org-testing",
+  "status": "DONE"
+}

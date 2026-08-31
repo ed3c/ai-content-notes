@@ -1,0 +1,47 @@
+{
+  "schema_version": "article-source-manifest@1",
+  "content_id": "sqlite-testing",
+  "source_dependency_key": "article:sqlite.org/testing.html",
+  "canonical_url": "https://www.sqlite.org/testing.html",
+  "title": "How SQLite Is Tested",
+  "publisher": "SQLite (Hwaci)",
+  "source_type": "article",
+  "retrieved_at": "2026-08-31T17:29:21Z",
+  "retrieval": {
+    "method": "curl -sSL",
+    "http_status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "source_last_updated": "2026-04-21T10:28:59Z"
+  },
+  "rights": {
+    "rights_basis": "public-domain",
+    "authorization_status": "verified",
+    "basis_statement": "All of the code and documentation in SQLite has been dedicated to the public domain by the authors.",
+    "basis_reference": "https://www.sqlite.org/copyright.html",
+    "basis_verified_on": "2026-08-31",
+    "attestor": "repository owner (ed3c)",
+    "may_publish_raw_media": true,
+    "note": "public-domain is one of the five bases governance/LICENSE_POLICY.md admits for authorization_status verified; the statement above was read back from the primary source on the retrieval date."
+  },
+  "text_plane": {
+    "retained_path": "article.txt",
+    "produced_by": "tools/html_article_adapter.py",
+    "input": "article.raw.html",
+    "characters": 45560,
+    "note": "Evidence anchors index character offsets into this file. The extraction is reproducible: `python3 tools/html_article_adapter.py --html sources/sqlite-testing/article.raw.html --check sources/sqlite-testing/article.txt`."
+  },
+  "sources": [
+    {
+      "retained_path": "article.raw.html",
+      "role": "fetched-bytes",
+      "sha256": "sha256:d1a8b5c43a42e573f7165483fdf02b91c605076b869a823d924241fb308feb97",
+      "bytes": 59623
+    },
+    {
+      "retained_path": "article.txt",
+      "role": "text-plane",
+      "sha256": "sha256:1f25542077e5729da5ab9c024e95cefe723b15622a03a08f8b3e40d9b7d15f24",
+      "bytes": 45562
+    }
+  ]
+}

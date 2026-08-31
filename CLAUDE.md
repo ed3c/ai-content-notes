@@ -49,6 +49,9 @@ evals/prompt-ab/
 evals/live/
   acquisition-backed first-pass evaluation outputs and retained baselines
 
+evals/loop-batches/
+  card batches compiled by tools/run_loop_harness.py to the v7.1 completion contract
+
 evals/runner/
   LOOP harness subjects; a run writes cards, registry and receipt to its own --run-dir
 

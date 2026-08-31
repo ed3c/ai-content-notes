@@ -1,0 +1,910 @@
+{
+  "blocked_by": [],
+  "card_count": 10,
+  "content_id": "sqlite-testing",
+  "digest_authority": "runner",
+  "gate_authority": "none",
+  "high_signal_control": "PRESENT",
+  "high_signal_declared": 8,
+  "high_signal_digest": "sha256:3e7b34c2276eccdbcb34169cd1de6837a1be32658dc77ad900981b8811c4e48b",
+  "high_signal_unmapped": [],
+  "registry_digest": "sha256:ec3f4cf0bea3fcafb98e305b7a4b71886864a939ec63c76457e4847d7361db4c",
+  "registry_revision": 3,
+  "round_count": 3,
+  "rounds": [
+    {
+      "card_count": 4,
+      "declared_status": "CONTINUE",
+      "model_authored_gate_labels": {
+        "assertion_report": {
+          "QG-01": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-02": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-03": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-04": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-05": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-06": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-07": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-08": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-09": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-10": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-11": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-12": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-13": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-14": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-15": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-16": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-17": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-18": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-19": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-20": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-21": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-22": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-23": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-24": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          }
+        },
+        "next_state": {
+          "QG-01": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-02": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-03": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-04": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-05": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-06": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-07": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-08": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-09": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-10": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-11": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-12": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-13": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-14": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-15": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-16": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-17": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-18": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-19": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-20": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-21": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-22": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-23": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-24": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          }
+        }
+      },
+      "model_authored_registry_after_digest": "sha256:2ef4e9c255b0fe7d272c6e569197f720f9ca0ce8411814896d5701d3beb159b2",
+      "operation_count": 4,
+      "raw_response": "rounds/round-01.raw.md",
+      "registry_after_digest": "sha256:ba39f29a27c6934bddc00c0556202d8e2944715d85527332ad0bac888c9cd3da",
+      "registry_before_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "registry_revision": 1,
+      "round": 1,
+      "source_cursor": {
+        "complete": false,
+        "cursor_type": "section",
+        "source_digest": "sha256:1f25542077e5729da5ab9c024e95cefe723b15622a03a08f8b3e40d9b7d15f24",
+        "value": "7.1"
+      },
+      "status": "CONTINUE"
+    },
+    {
+      "card_count": 8,
+      "declared_status": "CONTINUE",
+      "model_authored_gate_labels": {
+        "assertion_report": {
+          "QG-01": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-02": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-03": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-04": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-05": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-06": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-07": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-08": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-09": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-10": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-11": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-12": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-13": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-14": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-15": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-16": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-17": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-18": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-19": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-20": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-21": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-22": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-23": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-24": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          }
+        },
+        "next_state": {
+          "QG-01": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-02": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-03": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-04": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-05": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-06": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-07": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-08": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-09": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-10": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-11": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-12": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-13": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-14": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-15": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-16": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-17": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-18": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-19": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-20": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-21": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-22": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-23": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-24": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          }
+        }
+      },
+      "model_authored_registry_after_digest": "sha256:6c8bb09bd97cf319be21f95c16c4ba9391fdbbd09c47048b20415256218e7285",
+      "operation_count": 4,
+      "raw_response": "rounds/round-02.raw.md",
+      "registry_after_digest": "sha256:f11b0c1d111816ff682aef1d2e85265f98b5f22df91618dc62baaee33ed4aca1",
+      "registry_before_digest": "sha256:ba39f29a27c6934bddc00c0556202d8e2944715d85527332ad0bac888c9cd3da",
+      "registry_revision": 2,
+      "round": 2,
+      "source_cursor": {
+        "complete": false,
+        "cursor_type": "section",
+        "source_digest": "sha256:1f25542077e5729da5ab9c024e95cefe723b15622a03a08f8b3e40d9b7d15f24",
+        "value": "9"
+      },
+      "status": "CONTINUE"
+    },
+    {
+      "card_count": 10,
+      "declared_status": "DONE",
+      "model_authored_gate_labels": {
+        "assertion_report": {
+          "QG-01": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-02": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-03": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-04": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-05": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-06": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-07": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-08": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-09": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-10": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-11": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-12": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-13": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-14": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-15": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-16": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-17": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-18": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-19": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-20": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-21": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-22": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-23": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-24": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          }
+        },
+        "next_state": {
+          "QG-01": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-02": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-03": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-04": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-05": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-06": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-07": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-08": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-09": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-10": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-11": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-12": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-13": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-14": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-15": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-16": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-17": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-18": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-19": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-20": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-21": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-22": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-23": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-24": {
+            "evidence": [
+              "artifact:sources/sqlite-testing/article.txt"
+            ],
+            "failures": [],
+            "status": "PASS"
+          }
+        }
+      },
+      "model_authored_registry_after_digest": "sha256:f1206781259a3f301165e3f868616b8c97a6a669ad6c1e954f7a5be9e60e1d8b",
+      "operation_count": 2,
+      "raw_response": "rounds/round-03.raw.md",
+      "registry_after_digest": "sha256:ec3f4cf0bea3fcafb98e305b7a4b71886864a939ec63c76457e4847d7361db4c",
+      "registry_before_digest": "sha256:f11b0c1d111816ff682aef1d2e85265f98b5f22df91618dc62baaee33ed4aca1",
+      "registry_revision": 3,
+      "round": 3,
+      "source_cursor": {
+        "complete": true,
+        "cursor_type": "section",
+        "source_digest": "sha256:1f25542077e5729da5ab9c024e95cefe723b15622a03a08f8b3e40d9b7d15f24",
+        "value": "12"
+      },
+      "status": "DONE"
+    }
+  ],
+  "schema_version": "loop-harness-receipt@1",
+  "source_digest": "sha256:1f25542077e5729da5ab9c024e95cefe723b15622a03a08f8b3e40d9b7d15f24",
+  "source_id": "article:sqlite.org-testing",
+  "source_path": "sources/sqlite-testing/article.txt",
+  "status": "DONE",
+  "stopped_on": "completion-contract"
+}

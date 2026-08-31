@@ -1,0 +1,316 @@
+{
+  "canonical_index": {
+    "C | coverage-measurement-run | is | a-test-of-the-test-suite | sqlite-gcov | source-digest:1f255420": "C-coverage-run-is-a-meta-test",
+    "D | one-c-conditional | distinguishes | statement-from-branch-coverage | sqlite-example | source-digest:1f255420": "D-branch-versus-statement-coverage",
+    "E | a-coverage-number | describes | the-test-suite-not-the-program | derived-from-sqlite | source-digest:1f255420": "E-coverage-measures-the-suite",
+    "K | mutation-exemption-list | unknown | size-and-share-of-branches | sqlite-testing-doc | source-digest:1f255420": "K-mutation-exemption-scope-unknown",
+    "N | sqlite | answers | open-source-reliability-doubt | testing-regime-2026 | source-digest:1f255420": "N-open-source-reliability-doubt",
+    "P | out-of-memory-handling | exercised-by | incrementing-failure-injection-loop | tcl-and-th3 | source-digest:1f255420": "P-oom-failure-injection-loop",
+    "S | defensive-conditionals | retained-under | full-branch-coverage | always-never-macros | source-digest:1f255420": "S-keep-defensive-code-under-full-coverage",
+    "T | four-sqlite-test-harnesses | compared-on | scale-and-guarantee | release-gate | source-digest:1f255420": "T-four-independent-harnesses",
+    "V | every-branch-affects-output | tested-by | assembly-level-mutation | not-run-here | source-digest:1f255420": "V-mutation-testing-branch-usefulness",
+    "X | full-mcdc-coverage | conflicts-with | fuzz-robustness | same-codebase | source-digest:1f255420": "X-mcdc-versus-fuzz-tension"
+  },
+  "cards": {
+    "C-coverage-run-is-a-meta-test": {
+      "canonical_key": "C | coverage-measurement-run | is | a-test-of-the-test-suite | sqlite-gcov | source-digest:1f255420",
+      "claim_kind": "SOURCE_STATEMENT",
+      "confidence": "HIGH",
+      "confidence_basis": "三個錨都是文件對同一機制的直述，且彼此互為前後句；沒有跨來源推論。",
+      "content_digest": "sha256:c764d0d647cd826a53da3f43d7ec97294b777766c0ab5bb68bc2b1b60aae35fe",
+      "evidence_ids": [
+        "EV-sqlite-testing-different-code",
+        "EV-sqlite-testing-meta-test",
+        "EV-sqlite-testing-second-run"
+      ],
+      "lifecycle_status": "ACTIVE",
+      "revision": 1,
+      "scope": "How SQLite Is Tested, sqlite.org/testing.html, retrieved 2026-08-31; SQLite 3.42.0 era figures",
+      "series": "C",
+      "stable_id": "C-coverage-run-is-a-meta-test",
+      "supersedes": [],
+      "typed_links": [
+        {
+          "edge_type": "ROOT",
+          "relation": "inbound",
+          "target": "N-open-source-reliability-doubt"
+        },
+        {
+          "edge_type": "VALIDATED_BY",
+          "relation": "outbound",
+          "target": "V-mutation-testing-branch-usefulness"
+        }
+      ],
+      "updated_at": "2026-08-31T17:29:21Z",
+      "verification": "SUPPORTED"
+    },
+    "D-branch-versus-statement-coverage": {
+      "canonical_key": "D | one-c-conditional | distinguishes | statement-from-branch-coverage | sqlite-example | source-digest:1f255420",
+      "claim_kind": "SOURCE_STATEMENT",
+      "confidence": "HIGH",
+      "confidence_basis": "案例與三個必要測試案例皆為文件原文列舉，未做任何外推。",
+      "content_digest": "sha256:ef72a6987e2ccfa2091314c1256d2956e249fa1c6ea3ae9bb00da2d2be48f83f",
+      "evidence_ids": [
+        "EV-sqlite-testing-branch-stricter",
+        "EV-sqlite-testing-statement-coverage"
+      ],
+      "lifecycle_status": "ACTIVE",
+      "revision": 1,
+      "scope": "How SQLite Is Tested, sqlite.org/testing.html, retrieved 2026-08-31; SQLite 3.42.0 era figures",
+      "series": "D",
+      "stable_id": "D-branch-versus-statement-coverage",
+      "supersedes": [],
+      "typed_links": [
+        {
+          "edge_type": "ROOT",
+          "relation": "inbound",
+          "target": "N-open-source-reliability-doubt"
+        },
+        {
+          "edge_type": "DEPENDS_ON",
+          "relation": "outbound",
+          "target": "C-coverage-run-is-a-meta-test"
+        }
+      ],
+      "updated_at": "2026-08-31T17:29:21Z",
+      "verification": "SUPPORTED"
+    },
+    "E-coverage-measures-the-suite": {
+      "canonical_key": "E | a-coverage-number | describes | the-test-suite-not-the-program | derived-from-sqlite | source-digest:1f255420",
+      "claim_kind": "HYPOTHESIS",
+      "confidence": "LOW",
+      "confidence_basis": "單一來源歸納，明確標為 HYPOTHESIS 且未使用「唯一」「永遠」等絕對詞；falsifier 為可執行的實驗。",
+      "content_digest": "sha256:a04127f386cfb669969848a289593d97b094f08458026476882d350b8ff82223",
+      "evidence_ids": [
+        "EV-sqlite-testing-false-positives",
+        "EV-sqlite-testing-meta-test"
+      ],
+      "lifecycle_status": "ACTIVE",
+      "revision": 1,
+      "scope": "How SQLite Is Tested, sqlite.org/testing.html, retrieved 2026-08-31; SQLite 3.42.0 era figures",
+      "series": "E",
+      "stable_id": "E-coverage-measures-the-suite",
+      "supersedes": [],
+      "typed_links": [
+        {
+          "edge_type": "DEPENDS_ON",
+          "relation": "outbound",
+          "target": "C-coverage-run-is-a-meta-test"
+        },
+        {
+          "edge_type": "VALIDATED_BY",
+          "relation": "outbound",
+          "target": "V-mutation-testing-branch-usefulness"
+        }
+      ],
+      "updated_at": "2026-08-31T17:29:21Z",
+      "verification": "UNCHECKED"
+    },
+    "K-mutation-exemption-scope-unknown": {
+      "canonical_key": "K | mutation-exemption-list | unknown | size-and-share-of-branches | sqlite-testing-doc | source-digest:1f255420",
+      "claim_kind": "OBSERVATION",
+      "confidence": "MEDIUM",
+      "confidence_basis": "缺口本身由「文件給了 assert 與 testcase 的計數、卻沒給豁免計數」這個對比支撐，非臆測。",
+      "content_digest": "sha256:4c46e0d24bd2cf41bf3247653fa1a25b3c18c2d87f364556c0af2fe9ddbd773a",
+      "evidence_ids": [
+        "EV-sqlite-testing-assert-count",
+        "EV-sqlite-testing-optimization-comment"
+      ],
+      "lifecycle_status": "ACTIVE",
+      "revision": 1,
+      "scope": "How SQLite Is Tested, sqlite.org/testing.html, retrieved 2026-08-31; SQLite 3.42.0 era figures",
+      "series": "K",
+      "stable_id": "K-mutation-exemption-scope-unknown",
+      "supersedes": [],
+      "typed_links": [
+        {
+          "edge_type": "DEPENDS_ON",
+          "relation": "outbound",
+          "target": "V-mutation-testing-branch-usefulness"
+        }
+      ],
+      "updated_at": "2026-08-31T17:29:21Z",
+      "verification": "UNCHECKED"
+    },
+    "N-open-source-reliability-doubt": {
+      "canonical_key": "N | sqlite | answers | open-source-reliability-doubt | testing-regime-2026 | source-digest:1f255420",
+      "claim_kind": "SOURCE_STATEMENT",
+      "confidence": "MEDIUM",
+      "confidence_basis": "劇情鏈每一環都對應文件中的具名段落；未取得的缺陷率明確標為未解段落而非以常識補齊。",
+      "content_digest": "sha256:1f432dbc26a717e82b90166e1be77ab4a21e577bc757b56d815591e5c1351cd7",
+      "evidence_ids": [
+        "EV-sqlite-testing-cycles-to-fuzzing",
+        "EV-sqlite-testing-not-cost-effective",
+        "EV-sqlite-testing-ratio-590x"
+      ],
+      "lifecycle_status": "ACTIVE",
+      "revision": 1,
+      "scope": "How SQLite Is Tested, sqlite.org/testing.html, retrieved 2026-08-31; SQLite 3.42.0 era figures",
+      "series": "N",
+      "stable_id": "N-open-source-reliability-doubt",
+      "supersedes": [],
+      "typed_links": [
+        {
+          "edge_type": "FLOW",
+          "relation": "outbound",
+          "target": "X-mcdc-versus-fuzz-tension"
+        },
+        {
+          "edge_type": "FLOW",
+          "relation": "outbound",
+          "target": "T-four-independent-harnesses"
+        }
+      ],
+      "updated_at": "2026-08-31T17:29:21Z",
+      "verification": "SUPPORTED"
+    },
+    "P-oom-failure-injection-loop": {
+      "canonical_key": "P | out-of-memory-handling | exercised-by | incrementing-failure-injection-loop | tcl-and-th3 | source-digest:1f255420",
+      "claim_kind": "SOURCE_STATEMENT",
+      "confidence": "MEDIUM",
+      "confidence_basis": "步驟與兩種失敗模式皆為文件原文所述；Execution Status 標為 SOURCE_REPORTED，因為本批次沒有執行過它。",
+      "content_digest": "sha256:57fc6b1a6338e05b4119483c89fea9ca7fdb023c21c773ba301f29635f23c1c5",
+      "evidence_ids": [
+        "EV-sqlite-testing-integrity-check",
+        "EV-sqlite-testing-oom-loop",
+        "EV-sqlite-testing-oom-rigged-malloc"
+      ],
+      "lifecycle_status": "ACTIVE",
+      "revision": 1,
+      "scope": "How SQLite Is Tested, sqlite.org/testing.html, retrieved 2026-08-31; SQLite 3.42.0 era figures",
+      "series": "P",
+      "stable_id": "P-oom-failure-injection-loop",
+      "supersedes": [],
+      "typed_links": [
+        {
+          "edge_type": "INSTANCE_OF",
+          "relation": "outbound",
+          "target": "T-four-independent-harnesses"
+        }
+      ],
+      "updated_at": "2026-08-31T17:29:21Z",
+      "verification": "UNCHECKED"
+    },
+    "S-keep-defensive-code-under-full-coverage": {
+      "canonical_key": "S | defensive-conditionals | retained-under | full-branch-coverage | always-never-macros | source-digest:1f255420",
+      "claim_kind": "SOURCE_STATEMENT",
+      "confidence": "MEDIUM",
+      "confidence_basis": "三種巨集定義與三次執行的要求皆為文件原文；成功條件取自文件明列的「三次結果應完全相同」與 run-time 檢查。",
+      "content_digest": "sha256:39c7bfa4e2bf23b681b5476e9f6d735816bd7bc6714819fb3e7201a45591b999",
+      "evidence_ids": [
+        "EV-sqlite-testing-always-never",
+        "EV-sqlite-testing-three-runs"
+      ],
+      "lifecycle_status": "ACTIVE",
+      "revision": 1,
+      "scope": "How SQLite Is Tested, sqlite.org/testing.html, retrieved 2026-08-31; SQLite 3.42.0 era figures",
+      "series": "S",
+      "stable_id": "S-keep-defensive-code-under-full-coverage",
+      "supersedes": [],
+      "typed_links": [
+        {
+          "edge_type": "MITIGATES",
+          "relation": "outbound",
+          "target": "X-mcdc-versus-fuzz-tension"
+        }
+      ],
+      "updated_at": "2026-08-31T17:29:21Z",
+      "verification": "SUPPORTED"
+    },
+    "T-four-independent-harnesses": {
+      "canonical_key": "T | four-sqlite-test-harnesses | compared-on | scale-and-guarantee | release-gate | source-digest:1f255420",
+      "claim_kind": "SOURCE_STATEMENT",
+      "confidence": "HIGH",
+      "confidence_basis": "每一格都對應文件中的具體數字；口徑不可比這件事在 Interpretation 明說，而不是靠讀者自行折算。",
+      "content_digest": "sha256:84649fe6f1ec50e701aa0d52b13837fcbf914a7e47637247053e4aa8ce4befea",
+      "evidence_ids": [
+        "EV-sqlite-testing-dbsqlfuzz-rate",
+        "EV-sqlite-testing-four-harnesses",
+        "EV-sqlite-testing-slt-queries",
+        "EV-sqlite-testing-tcl-cases",
+        "EV-sqlite-testing-th3-cases"
+      ],
+      "lifecycle_status": "ACTIVE",
+      "revision": 1,
+      "scope": "How SQLite Is Tested, sqlite.org/testing.html, retrieved 2026-08-31; SQLite 3.42.0 era figures",
+      "series": "T",
+      "stable_id": "T-four-independent-harnesses",
+      "supersedes": [],
+      "typed_links": [
+        {
+          "edge_type": "ROOT",
+          "relation": "inbound",
+          "target": "N-open-source-reliability-doubt"
+        }
+      ],
+      "updated_at": "2026-08-31T17:29:21Z",
+      "verification": "SUPPORTED"
+    },
+    "V-mutation-testing-branch-usefulness": {
+      "canonical_key": "V | every-branch-affects-output | tested-by | assembly-level-mutation | not-run-here | source-digest:1f255420",
+      "claim_kind": "SOURCE_STATEMENT",
+      "confidence": "MEDIUM",
+      "confidence_basis": "方法與限制皆為文件直述；Observed Result 與 Verdict 皆為 NOT_RUN，因為本批次沒有執行過任何 mutation。",
+      "content_digest": "sha256:04b2d75bb97084b6a8e5d62be69635ef2a0dbc12d71772f7c4ba25783b45214b",
+      "evidence_ids": [
+        "EV-sqlite-testing-false-positives",
+        "EV-sqlite-testing-mutation-flip",
+        "EV-sqlite-testing-optimization-comment"
+      ],
+      "lifecycle_status": "ACTIVE",
+      "revision": 1,
+      "scope": "How SQLite Is Tested, sqlite.org/testing.html, retrieved 2026-08-31; SQLite 3.42.0 era figures",
+      "series": "V",
+      "stable_id": "V-mutation-testing-branch-usefulness",
+      "supersedes": [],
+      "typed_links": [
+        {
+          "edge_type": "IMPLEMENTS",
+          "relation": "outbound",
+          "target": "E-coverage-measures-the-suite"
+        }
+      ],
+      "updated_at": "2026-08-31T17:29:21Z",
+      "verification": "UNCHECKED"
+    },
+    "X-mcdc-versus-fuzz-tension": {
+      "canonical_key": "X | full-mcdc-coverage | conflicts-with | fuzz-robustness | same-codebase | source-digest:1f255420",
+      "claim_kind": "OBSERVATION",
+      "confidence": "MEDIUM",
+      "confidence_basis": "兩個 claim 都取自文件同一節的直述，且文件自陳兩者同時做到很困難，非本卡外推。",
+      "content_digest": "sha256:ddeb77b6ec75e135668d8d3e11837f932b6b02349ac1cd6413c54d05bd219d36",
+      "evidence_ids": [
+        "EV-sqlite-testing-cycles-to-fuzzing",
+        "EV-sqlite-testing-defensive-discouraged",
+        "EV-sqlite-testing-tension"
+      ],
+      "lifecycle_status": "ACTIVE",
+      "revision": 1,
+      "scope": "How SQLite Is Tested, sqlite.org/testing.html, retrieved 2026-08-31; SQLite 3.42.0 era figures",
+      "series": "X",
+      "stable_id": "X-mcdc-versus-fuzz-tension",
+      "supersedes": [],
+      "typed_links": [
+        {
+          "edge_type": "ROOT",
+          "relation": "inbound",
+          "target": "N-open-source-reliability-doubt"
+        },
+        {
+          "edge_type": "CONFLICT",
+          "relation": "outbound",
+          "target": "S-keep-defensive-code-under-full-coverage"
+        }
+      ],
+      "updated_at": "2026-08-31T17:29:21Z",
+      "verification": "SUPPORTED"
+    }
+  },
+  "evidence": {},
+  "protocol": "zettelkasten-v7.0-evidence-first-loop-safe",
+  "registry_revision": 3,
+  "schema_version": "zettelkasten-card-registry@1",
+  "source_digest": "sha256:1f25542077e5729da5ab9c024e95cefe723b15622a03a08f8b3e40d9b7d15f24",
+  "source_id": "article:sqlite.org-testing",
+  "updated_at": "2026-08-31T17:29:21Z"
+}
