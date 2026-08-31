@@ -325,6 +325,11 @@ def run(
         if high_signal is not None
         else []
     )
+    # A count alone does not bind the receipt to *which* controls were
+    # checked: a control file edited after the fact (three unmapped keys
+    # deleted, say) reproduces a smaller-but-still-plausible declared count.
+    # The digest is the part that would differ.
+    high_signal_digest = digest_bytes(high_signal.read_bytes()) if high_signal is not None else None
 
     cards_dir = run_dir / "cards"
     rounds_dir = run_dir / "rounds"
@@ -480,6 +485,7 @@ def run(
         "digest_authority": "runner",
         "high_signal_control": "PRESENT" if controls else "ABSENT",
         "high_signal_declared": len(controls),
+        "high_signal_digest": high_signal_digest,
         "high_signal_unmapped": unmapped_high_signal(controls, cards_dir),
     }
 
