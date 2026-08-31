@@ -69,4 +69,15 @@ the external gate is `tools/publication_guard.py`, which enforces the
 mechanically checkable subset (QG-03, 07, 08, 10, 16, 24, I-06) and lists the
 rest as prompt-enforced. The eight controls in `high-signal.json` are the part
 of `high_signal_unmapped = 0` that can be refuted: DONE was unreachable until
-a card anchored each of them.
+a card anchored each of them. `run-receipt.json`'s `high_signal_digest` binds
+the receipt to the exact controls file checked, not just a count.
+
+For this specific batch, `high-signal.json` and the cards were both authored
+in the same offline pass by the same hand (the authoring scaffold that
+produced this batch, not a repository component), not pre-registered before
+compilation and blind to the cards that would follow -- six of the eight
+control keys name the same topic as the card that anchors them. That the
+harness's unmapped-control check is a real refusal rather than a rubber stamp
+is proven at the code level, on a synthetic plant a card genuinely does not
+see: `tests/test_planted_signal_falsifier.py`. This batch exercises that
+mechanism; it does not re-derive independence from it.

@@ -1,5 +1,5 @@
 {
-  "cards_directory": "/private/tmp/claude-501/-Users-neon-noodles/d4332216-1347-4dc5-8057-7772de22e49c/scratchpad/wave7/a/repo/evals/loop-batches/sqlite-testing/cards",
+  "cards_directory": "evals/loop-batches/sqlite-testing/cards",
   "prior_state": {
     "baseline_guard_pass": true,
     "blocked_by": [],
@@ -155,13 +155,13 @@
   },
   "protocol": "zettelkasten-v7.1-evidence-first-narrative-alive-dual-plane",
   "registry_before_digest": "sha256:ba39f29a27c6934bddc00c0556202d8e2944715d85527332ad0bac888c9cd3da",
-  "registry_path": "/private/tmp/claude-501/-Users-neon-noodles/d4332216-1347-4dc5-8057-7772de22e49c/scratchpad/wave7/a/repo/evals/loop-batches/sqlite-testing/card-registry.json",
+  "registry_path": "evals/loop-batches/sqlite-testing/card-registry.json",
   "round": 2,
   "run_mode": "LOOP",
   "schema_version": "loop-harness-request@1",
   "source": {
     "content_id": "sqlite-testing",
-    "path": "/private/tmp/claude-501/-Users-neon-noodles/d4332216-1347-4dc5-8057-7772de22e49c/scratchpad/wave7/a/repo/sources/sqlite-testing/article.txt",
+    "path": "sources/sqlite-testing/article.txt",
     "source_digest": "sha256:1f25542077e5729da5ab9c024e95cefe723b15622a03a08f8b3e40d9b7d15f24",
     "source_id": "article:sqlite.org-testing"
   },

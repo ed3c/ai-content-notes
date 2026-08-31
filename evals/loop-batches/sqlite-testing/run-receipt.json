@@ -6,6 +6,7 @@
   "gate_authority": "none",
   "high_signal_control": "PRESENT",
   "high_signal_declared": 8,
+  "high_signal_digest": "sha256:3e7b34c2276eccdbcb34169cd1de6837a1be32658dc77ad900981b8811c4e48b",
   "high_signal_unmapped": [],
   "registry_digest": "sha256:ec3f4cf0bea3fcafb98e305b7a4b71886864a939ec63c76457e4847d7361db4c",
   "registry_revision": 3,
@@ -903,7 +904,7 @@
   "schema_version": "loop-harness-receipt@1",
   "source_digest": "sha256:1f25542077e5729da5ab9c024e95cefe723b15622a03a08f8b3e40d9b7d15f24",
   "source_id": "article:sqlite.org-testing",
-  "source_path": "/private/tmp/claude-501/-Users-neon-noodles/d4332216-1347-4dc5-8057-7772de22e49c/scratchpad/wave7/a/repo/sources/sqlite-testing/article.txt",
+  "source_path": "sources/sqlite-testing/article.txt",
   "status": "DONE",
   "stopped_on": "completion-contract"
 }

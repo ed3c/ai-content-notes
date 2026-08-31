@@ -1,5 +1,5 @@
 {
-  "cards_directory": "/private/tmp/claude-501/-Users-neon-noodles/d4332216-1347-4dc5-8057-7772de22e49c/scratchpad/wave7/a/repo/evals/loop-batches/sqlite-testing/cards",
+  "cards_directory": "evals/loop-batches/sqlite-testing/cards",
   "prior_state": null,
   "prompt": {
     "git_blob_sha1": "7f3019f4b41a90728cd48a523d742c7c59721bf6",
@@ -13,7 +13,7 @@
   "schema_version": "loop-harness-request@1",
   "source": {
     "content_id": "sqlite-testing",
-    "path": "/private/tmp/claude-501/-Users-neon-noodles/d4332216-1347-4dc5-8057-7772de22e49c/scratchpad/wave7/a/repo/sources/sqlite-testing/article.txt",
+    "path": "sources/sqlite-testing/article.txt",
     "source_digest": "sha256:1f25542077e5729da5ab9c024e95cefe723b15622a03a08f8b3e40d9b7d15f24",
     "source_id": "article:sqlite.org-testing"
   },
