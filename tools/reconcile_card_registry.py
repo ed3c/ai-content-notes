@@ -152,8 +152,13 @@ def parse_card(path: Path) -> tuple[dict[str, Any] | None, list[str]]:
     return entry, []
 
 
-def _content_identity(value: dict[str, Any]) -> str:
-    """Registry content with every wall-clock field and the revision removed."""
+def content_identity(value: dict[str, Any]) -> str:
+    """Registry content with every wall-clock field and the revision removed.
+
+    Public because it is the only wall-clock-free identity of a registry, and a
+    loop that chains rounds by digest has to hash content rather than the
+    minute a round happened to run in.
+    """
     stripped = {
         key: item
         for key, item in value.items()
@@ -250,7 +255,7 @@ def reconcile(
     # advance the revision. Only a content change does, so the comparison
     # ignores every wall-clock field and the revision counter itself.
     if prior is not None:
-        if _content_identity(registry) == _content_identity(prior):
+        if content_identity(registry) == content_identity(prior):
             registry["registry_revision"] = prior["registry_revision"]
             registry["updated_at"] = prior["updated_at"]
             registry["cards"] = {

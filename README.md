@@ -60,6 +60,7 @@ ai-content-notes/
 ├── evals/
 │   ├── prompt-ab/                      # fixed prompt A/B replay
 │   ├── live/                           # transcript-only first-pass baselines
+│   ├── runner/                         # LOOP harness subjects; run output is never written here
 │   └── semantic-yield/
 │       ├── README.md                   # modified-flow catalog
 │       └── <content-id>/
