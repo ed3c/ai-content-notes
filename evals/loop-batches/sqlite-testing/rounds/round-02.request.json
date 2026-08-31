@@ -1,0 +1,169 @@
+{
+  "cards_directory": "/private/tmp/claude-501/-Users-neon-noodles/d4332216-1347-4dc5-8057-7772de22e49c/scratchpad/wave7/a/repo/evals/loop-batches/sqlite-testing/cards",
+  "prior_state": {
+    "baseline_guard_pass": true,
+    "blocked_by": [],
+    "content_id": "sqlite-testing",
+    "prompt_git_blob_sha1": "7f3019f4b41a90728cd48a523d742c7c59721bf6",
+    "protocol": "zettelkasten-v7.1-evidence-first-narrative-alive-dual-plane",
+    "quality_gates": {
+      "QG-01": {
+        "evidence": [],
+        "failures": [],
+        "status": "NOT_RUN"
+      },
+      "QG-02": {
+        "evidence": [],
+        "failures": [],
+        "status": "NOT_RUN"
+      },
+      "QG-03": {
+        "evidence": [],
+        "failures": [],
+        "status": "NOT_RUN"
+      },
+      "QG-04": {
+        "evidence": [],
+        "failures": [],
+        "status": "NOT_RUN"
+      },
+      "QG-05": {
+        "evidence": [],
+        "failures": [],
+        "status": "NOT_RUN"
+      },
+      "QG-06": {
+        "evidence": [],
+        "failures": [],
+        "status": "NOT_RUN"
+      },
+      "QG-07": {
+        "evidence": [],
+        "failures": [],
+        "status": "NOT_RUN"
+      },
+      "QG-08": {
+        "evidence": [],
+        "failures": [],
+        "status": "NOT_RUN"
+      },
+      "QG-09": {
+        "evidence": [],
+        "failures": [],
+        "status": "NOT_RUN"
+      },
+      "QG-10": {
+        "evidence": [],
+        "failures": [],
+        "status": "NOT_RUN"
+      },
+      "QG-11": {
+        "evidence": [],
+        "failures": [],
+        "status": "NOT_RUN"
+      },
+      "QG-12": {
+        "evidence": [],
+        "failures": [],
+        "status": "NOT_RUN"
+      },
+      "QG-13": {
+        "evidence": [],
+        "failures": [],
+        "status": "NOT_RUN"
+      },
+      "QG-14": {
+        "evidence": [],
+        "failures": [],
+        "status": "NOT_RUN"
+      },
+      "QG-15": {
+        "evidence": [],
+        "failures": [],
+        "status": "NOT_RUN"
+      },
+      "QG-16": {
+        "evidence": [],
+        "failures": [],
+        "status": "NOT_RUN"
+      },
+      "QG-17": {
+        "evidence": [],
+        "failures": [],
+        "status": "NOT_RUN"
+      },
+      "QG-18": {
+        "evidence": [],
+        "failures": [],
+        "status": "NOT_RUN"
+      },
+      "QG-19": {
+        "evidence": [],
+        "failures": [],
+        "status": "NOT_RUN"
+      },
+      "QG-20": {
+        "evidence": [],
+        "failures": [],
+        "status": "NOT_RUN"
+      },
+      "QG-21": {
+        "evidence": [],
+        "failures": [],
+        "status": "NOT_RUN"
+      },
+      "QG-22": {
+        "evidence": [],
+        "failures": [],
+        "status": "NOT_RUN"
+      },
+      "QG-23": {
+        "evidence": [],
+        "failures": [],
+        "status": "NOT_RUN"
+      },
+      "QG-24": {
+        "evidence": [],
+        "failures": [],
+        "status": "NOT_RUN"
+      }
+    },
+    "registry_digest": "sha256:2ef4e9c255b0fe7d272c6e569197f720f9ca0ce8411814896d5701d3beb159b2",
+    "remaining_work": [
+      "sections after 7.1"
+    ],
+    "render_mode": "PAYLOAD_FIRST",
+    "render_order": "TASK_VALUE_FIRST",
+    "run_mode": "LOOP",
+    "schema_version": "zettelkasten-compiler-state@2",
+    "source_cursor": {
+      "complete": false,
+      "cursor_type": "section",
+      "source_digest": "sha256:1f25542077e5729da5ab9c024e95cefe723b15622a03a08f8b3e40d9b7d15f24",
+      "value": "7.1"
+    },
+    "source_digest": "sha256:1f25542077e5729da5ab9c024e95cefe723b15622a03a08f8b3e40d9b7d15f24",
+    "source_id": "article:sqlite.org-testing",
+    "source_queue_empty": false,
+    "state_channel": "SIDECAR",
+    "status": "CONTINUE",
+    "updated_at": "2026-08-31T17:29:21Z"
+  },
+  "prompt": {
+    "git_blob_sha1": "7f3019f4b41a90728cd48a523d742c7c59721bf6",
+    "path": "governance/CARD_PROTOCOL_V7_1.md"
+  },
+  "protocol": "zettelkasten-v7.1-evidence-first-narrative-alive-dual-plane",
+  "registry_before_digest": "sha256:ba39f29a27c6934bddc00c0556202d8e2944715d85527332ad0bac888c9cd3da",
+  "registry_path": "/private/tmp/claude-501/-Users-neon-noodles/d4332216-1347-4dc5-8057-7772de22e49c/scratchpad/wave7/a/repo/evals/loop-batches/sqlite-testing/card-registry.json",
+  "round": 2,
+  "run_mode": "LOOP",
+  "schema_version": "loop-harness-request@1",
+  "source": {
+    "content_id": "sqlite-testing",
+    "path": "/private/tmp/claude-501/-Users-neon-noodles/d4332216-1347-4dc5-8057-7772de22e49c/scratchpad/wave7/a/repo/sources/sqlite-testing/article.txt",
+    "source_digest": "sha256:1f25542077e5729da5ab9c024e95cefe723b15622a03a08f8b3e40d9b7d15f24",
+    "source_id": "article:sqlite.org-testing"
+  },
+  "state_channel": "SIDECAR"
+}

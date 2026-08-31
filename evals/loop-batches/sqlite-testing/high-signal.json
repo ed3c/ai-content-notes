@@ -1,0 +1,34 @@
+[
+  {
+    "key": "test-to-code-ratio",
+    "quote": "590 times as much"
+  },
+  {
+    "key": "coverage-run-is-a-meta-test",
+    "quote": "The gcov run is a test of the test - a meta-test."
+  },
+  {
+    "key": "statement-versus-branch",
+    "quote": "Any one of the above test cases would provide 100% statement coverage"
+  },
+  {
+    "key": "mcdc-fuzz-tension",
+    "quote": "Fuzz testing and 100% MC/DC testing are in tension with"
+  },
+  {
+    "key": "always-never-macros",
+    "quote": "macros called ALWAYS() and NEVER(). The ALWAYS() macro"
+  },
+  {
+    "key": "mutation-testing",
+    "quote": "instruction into either an unconditional jump or a no-op, compiles the"
+  },
+  {
+    "key": "oom-injection-loop",
+    "quote": "on the instrumented malloc is increased by one and the test is"
+  },
+  {
+    "key": "cost-honesty",
+    "quote": "is probably not cost effective for a typical application."
+  }
+]

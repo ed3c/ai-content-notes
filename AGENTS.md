@@ -37,6 +37,14 @@ evals/live/CvRngaQZQ3Y/
 
 That directory is the retained first transcript-only v7.1 evaluation batch. It did not run the complete modified Semantic Yield flow.
 
+Nor with:
+
+```text
+evals/loop-batches/sqlite-testing/
+```
+
+That is the first batch compiled by `tools/run_loop_harness.py` driving `RUN_MODE: LOOP` to the v7.1 completion contract. Its status is `DONE`, its subject is a public-domain article rather than an evaluation-only video, and it did not run the Semantic Yield flow either. `evals/loop-batches/README.md` states what its `DONE` covers and what it does not.
+
 ## Directory authority
 
 ```text
@@ -48,6 +56,9 @@ evals/prompt-ab/
 
 evals/live/
   acquisition-backed first-pass evaluation outputs and retained baselines
+
+evals/loop-batches/
+  card batches compiled by tools/run_loop_harness.py to the v7.1 completion contract
 
 evals/runner/
   LOOP harness subjects; a run writes cards, registry and receipt to its own --run-dir
