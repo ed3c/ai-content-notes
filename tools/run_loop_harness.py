@@ -37,13 +37,22 @@ Two authorities are refused on purpose, and both are named in the receipt:
 
 DONE is likewise not a word the model gets to say alone. A DONE round is
 admitted only if the batch reconciles clean, re-reconciles byte-identically
-without advancing the revision, and every id in `render_order` exists on disk.
-A DONE that fails those becomes BLOCKED naming what failed.
+without advancing the revision, every id in `render_order` exists on disk, and
+every declared high-signal control is mapped. A DONE that fails those becomes
+BLOCKED naming what failed.
+
+`--high-signal` is that last check, and it is what makes section 9's
+`high_signal_unmapped = 0` falsifiable instead of self-reported. The file is a
+JSON list of `{"key", "quote"}`; each quote must be an exact substring of the
+source, because a control that is not in the subject controls nothing. An item
+is mapped when some card declares `TEXT_MATCH::<quote>` in its CARD_META
+`source_provenance` — the protocol's own locator vocabulary (section 3), so the
+check reads what the cards already have to say rather than inventing a field.
 
 Usage:
     python3 tools/run_loop_harness.py --run-dir RUN --source SRC \
         --source-id ID --content-id CID --updated-at TS \
-        (--responder CMD | --replay DIR)
+        [--high-signal CONTROLS.json] (--responder CMD | --replay DIR)
 
 The responder is invoked once per round as `CMD <request.json>`; its stdout is
 the raw model response. `--replay DIR` serves `DIR/round-NN.raw.md` instead --
@@ -220,6 +229,48 @@ def _responder_from_replay(replay_dir: Path) -> Callable[[int, Path], str]:
     return call
 
 
+def load_high_signal(path: Path, source_text: str) -> list[dict[str, str]]:
+    """Read the high-signal controls, and prove each one is really in the subject."""
+    try:
+        items = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise HarnessError(f"cannot read high-signal controls: {path}: {exc}") from exc
+    if not isinstance(items, list) or not items:
+        raise HarnessError(f"high-signal controls must be a non-empty list: {path}")
+    controls: list[dict[str, str]] = []
+    for item in items:
+        if not isinstance(item, dict):
+            raise HarnessError(f"high-signal entry is not an object: {item!r}")
+        key, quote = item.get("key"), item.get("quote")
+        if not isinstance(key, str) or not key or not isinstance(quote, str) or not quote:
+            raise HarnessError(f"high-signal entry needs a key and a quote: {item!r}")
+        if quote not in source_text:
+            # A planted control that is not in the source is not a control; it
+            # would fail forever and prove nothing about coverage.
+            raise HarnessError(f"high-signal control {key} is not present in the source")
+        controls.append({"key": key, "quote": quote})
+    return controls
+
+
+def unmapped_high_signal(controls: list[dict[str, str]], cards_dir: Path) -> list[str]:
+    """Controls no card anchored, by the protocol's own TEXT_MATCH locator."""
+    anchors: set[str] = set()
+    for path in sorted(cards_dir.glob("*.md")):
+        match = registry.CARD_META.search(path.read_text(encoding="utf-8"))
+        if match is None:
+            continue
+        try:
+            meta = json.loads(match.group(1))
+        except json.JSONDecodeError:
+            continue  # a broken sidecar is the reconciler's finding, not this one
+        anchors.update(str(entry) for entry in meta.get("source_provenance", []))
+    return [
+        control["key"]
+        for control in controls
+        if f"TEXT_MATCH::{control['quote']}" not in anchors
+    ]
+
+
 def _admit_done(
     card_paths: list[Path],
     current: dict[str, Any],
@@ -228,9 +279,12 @@ def _admit_done(
     updated_at: str,
     render_order: list[str],
     cards_dir: Path,
+    controls: list[dict[str, str]] | None = None,
 ) -> list[str]:
     """The mechanically checkable half of the section 9 completion contract."""
     reasons: list[str] = []
+    for key in unmapped_high_signal(controls or [], cards_dir):
+        reasons.append(f"high_signal_unmapped: {key}")
     missing = [name for name in render_order if not (cards_dir / f"{name}.md").is_file()]
     if missing:
         reasons.append(f"render_order names cards absent from disk: {', '.join(sorted(missing))}")
@@ -260,10 +314,22 @@ def run(
     updated_at: str,
     responder: Callable[[int, Path], str],
     repo_root: Path,
+    high_signal: Path | None = None,
 ) -> dict[str, Any]:
     if not source_path.is_file():
         raise HarnessError(f"missing source artifact: {source_path}")
-    source_digest = digest_bytes(source_path.read_bytes())
+    source_bytes = source_path.read_bytes()
+    source_digest = digest_bytes(source_bytes)
+    controls = (
+        load_high_signal(high_signal, source_bytes.decode("utf-8"))
+        if high_signal is not None
+        else []
+    )
+    # A count alone does not bind the receipt to *which* controls were
+    # checked: a control file edited after the fact (three unmapped keys
+    # deleted, say) reproduces a smaller-but-still-plausible declared count.
+    # The digest is the part that would differ.
+    high_signal_digest = digest_bytes(high_signal.read_bytes()) if high_signal is not None else None
 
     cards_dir = run_dir / "cards"
     rounds_dir = run_dir / "rounds"
@@ -359,6 +425,7 @@ def run(
                 updated_at,
                 patch["render_order"],
                 cards_dir,
+                controls,
             )
             if blocked_by:
                 status = "BLOCKED"
@@ -416,6 +483,10 @@ def run(
         "stopped_on": "completion-contract",
         "gate_authority": "none",
         "digest_authority": "runner",
+        "high_signal_control": "PRESENT" if controls else "ABSENT",
+        "high_signal_declared": len(controls),
+        "high_signal_digest": high_signal_digest,
+        "high_signal_unmapped": unmapped_high_signal(controls, cards_dir),
     }
 
 
@@ -428,6 +499,11 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--updated-at", required=True, help="wall clock stamped into the registry")
     parser.add_argument("--repo-root", type=Path, default=Path(__file__).resolve().parents[1])
     parser.add_argument("--receipt", type=Path)
+    parser.add_argument(
+        "--high-signal",
+        type=Path,
+        help="JSON list of {key, quote} controls that DONE requires a card to anchor",
+    )
     source = parser.add_mutually_exclusive_group(required=True)
     source.add_argument("--responder", help="command invoked as CMD <request.json> each round")
     source.add_argument(
@@ -452,6 +528,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         args.updated_at,
         responder,
         repo_root,
+        args.high_signal.resolve() if args.high_signal else None,
     )
     rendered = json.dumps(receipt, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
     path = args.receipt or (args.run_dir.resolve() / "run-receipt.json")
@@ -465,6 +542,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                 "card_count": receipt["card_count"],
                 "registry_digest": receipt["registry_digest"],
                 "blocked_by": receipt["blocked_by"],
+                "high_signal_unmapped": receipt["high_signal_unmapped"],
             },
             ensure_ascii=False,
             sort_keys=True,
