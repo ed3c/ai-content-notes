@@ -46,8 +46,9 @@ Usage:
         (--responder CMD | --replay DIR)
 
 The responder is invoked once per round as `CMD <request.json>`; its stdout is
-the raw model response. `--replay DIR` serves `DIR/round-NN.md` instead, which
-is how a captured or synthetic run is replayed deterministically.
+the raw model response. `--replay DIR` serves `DIR/round-NN.raw.md` instead --
+the exact name this harness writes, so a finished run's `rounds/` directory
+replays as-is with no renaming step in between.
 """
 
 from __future__ import annotations
@@ -136,6 +137,16 @@ def apply_operations(operations: list[dict[str, Any]], cards_dir: Path) -> None:
         )
 
 
+def _display_path(path: Path, repo_root: Path) -> str:
+    """Repo-relative when the path lives under repo_root, so a receipt's
+    subject identity survives the clone that produced it being deleted --
+    an absolute host path stops meaning anything the moment it is gone."""
+    try:
+        return str(path.relative_to(repo_root))
+    except ValueError:
+        return str(path)
+
+
 def build_request(
     round_number: int,
     source_path: Path,
@@ -146,6 +157,7 @@ def build_request(
     prior_state: dict[str, Any] | None,
     cards_dir: Path,
     registry_path: Path,
+    repo_root: Path,
 ) -> dict[str, Any]:
     return {
         "schema_version": "loop-harness-request@1",
@@ -158,14 +170,14 @@ def build_request(
             "git_blob_sha1": channels.PROMPT_GIT_BLOB_SHA1,
         },
         "source": {
-            "path": str(source_path),
+            "path": _display_path(source_path, repo_root),
             "source_id": source_id,
             "content_id": content_id,
             "source_digest": source_digest,
         },
         "registry_before_digest": before_digest,
-        "registry_path": str(registry_path) if registry_path.is_file() else None,
-        "cards_directory": str(cards_dir),
+        "registry_path": _display_path(registry_path, repo_root) if registry_path.is_file() else None,
+        "cards_directory": _display_path(cards_dir, repo_root),
         "prior_state": prior_state,
     }
 
@@ -197,7 +209,9 @@ def _responder_from_command(command: str, cwd: Path) -> Callable[[int, Path], st
 def _responder_from_replay(replay_dir: Path) -> Callable[[int, Path], str]:
     def call(round_number: int, request_path: Path) -> str:
         del request_path
-        path = replay_dir / f"round-{round_number:02d}.md"
+        # Same name the harness writes, so any completed run's `rounds/`
+        # directory is replayable as-is with no renaming step in between.
+        path = replay_dir / f"round-{round_number:02d}.raw.md"
         if not path.is_file():
             # An exhausted replay is an absent round, never a quiet DONE.
             raise HarnessError(f"replay has no round {round_number}: {path}")
@@ -279,6 +293,7 @@ def run(
             prior_state,
             cards_dir,
             registry_path,
+            repo_root,
         )
         request_path = rounds_dir / f"round-{round_number:02d}.request.json"
         request_path.write_text(
@@ -389,7 +404,7 @@ def run(
         "schema_version": "loop-harness-receipt@1",
         "source_id": source_id,
         "content_id": content_id,
-        "source_path": str(source_path),
+        "source_path": _display_path(source_path, repo_root),
         "source_digest": source_digest,
         "status": status,
         "blocked_by": blocked_by,
@@ -415,7 +430,9 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--receipt", type=Path)
     source = parser.add_mutually_exclusive_group(required=True)
     source.add_argument("--responder", help="command invoked as CMD <request.json> each round")
-    source.add_argument("--replay", type=Path, help="directory of captured round-NN.md responses")
+    source.add_argument(
+        "--replay", type=Path, help="a completed run's rounds/ directory, replayed as-is"
+    )
     return parser
 
 

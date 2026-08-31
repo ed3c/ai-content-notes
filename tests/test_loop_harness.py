@@ -274,17 +274,11 @@ def test_an_exhausted_replay_is_an_explicit_absence(tmp_path: Path) -> None:
 
 
 def test_a_replayed_run_reproduces_the_same_registry(tmp_path: Path) -> None:
+    """A finished run's rounds/ directory is replayable as-is, with no renaming."""
     first = tmp_path / "live"
     receipt = drive(first, scripted())
 
-    replay_dir = tmp_path / "replay"
-    replay_dir.mkdir()
-    for path in sorted((first / "rounds").glob("round-*.raw.md")):
-        (replay_dir / path.name.replace(".raw", "")).write_text(
-            path.read_text(encoding="utf-8"), encoding="utf-8"
-        )
-
     second = tmp_path / "replayed"
-    replayed = drive(second, harness._responder_from_replay(replay_dir))
+    replayed = drive(second, harness._responder_from_replay(first / "rounds"))
     assert replayed["status"] == "DONE"
     assert replayed["registry_digest"] == receipt["registry_digest"]
