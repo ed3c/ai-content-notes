@@ -19,10 +19,13 @@ moving the repository anywhere keeps it operable.
    installs the candidate's `requirements-contracts.txt` and runs the
    candidate's own `pytest -q`. A branch that breaks its own suite stops here.
 2. `verify` checks out the default branch as `.trusted` and the exact candidate
-   head as `.candidate`, replaces `.candidate/tests` with `.trusted/tests`, and
-   runs `pytest -q` inside `.candidate`. Every test resolves its root from its
-   own file, so this is trusted test bytes over candidate content. A candidate
-   cannot weaken the suite that judges it.
+   head as `.candidate`, then runs, in order,
+   `python3 .trusted/tools/publication_guard.py --root .candidate` — the
+   deterministic subset of the v7.1 quality gates, trusted bytes over candidate
+   cards — and `pytest -q` inside `.candidate` after replacing
+   `.candidate/tests` with `.trusted/tests`. Every test resolves its root from
+   its own file, so this is trusted test bytes over candidate content. A
+   candidate cannot weaken the suite, or the guard, that judges it.
 
 `verify` then writes `verify-receipt.json` naming the exact `head_sha`, the PR
 number and the trusted commit, and uploads it. The receipt, not the

@@ -84,6 +84,11 @@ jobs:
       - name: Install the trusted contract dependencies
         run: python3 -m pip install -r .trusted/requirements-contracts.txt
 
+      # Trusted guard bytes, candidate cards. The candidate cannot publish a red
+      # card by shipping a guard that likes it.
+      - name: Run the trusted publication guard against the candidate tree
+        run: python3 .trusted/tools/publication_guard.py --root .candidate
+
       # Every test resolves its root from its own file, so trusted code runs
       # against the candidate tree by replacing the candidate's tests with the
       # default branch's. The candidate's own tests already ran in the first
