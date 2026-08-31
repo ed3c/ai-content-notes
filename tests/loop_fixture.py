@@ -141,6 +141,42 @@ ROUND_TWO = [
 
 ROUNDS = [ROUND_ONE, ROUND_TWO]
 
+# The planted control for the falsifier: a high-signal claim added to a copy of
+# the synthetic source, and the card that maps it. The scripted run above never
+# anchors this quote, so DONE has to be unreachable until this card is emitted.
+PLANTED_QUOTE = "an interruption the harness cannot observe is indistinguishable from completion"
+PLANTED_SECTION = (
+    "\n## Section 4 — the interruption nobody sees\n\n"
+    "A run killed between its last patch and its next request leaves a registry, "
+    "a cursor and a zero exit code behind it. So does a run that finished. "
+    f"{PLANTED_QUOTE}, which is why the stop has to be a checked contract rather "
+    "than the absence of further output.\n"
+)
+
+
+def planted_card() -> dict[str, Any]:
+    """The one card that anchors the planted control, and nothing else does."""
+    return add(
+        "K-unobserved-interruption",
+        "K | interrupted-run | indistinguishable-from | finished-run | synthetic-loop | source-digest:synthetic",
+        "K",
+        card_body(
+            "K-unobserved-interruption",
+            "被中斷的執行與完成的執行留下同一組痕跡",
+            "在最後一次 patch 與下一次 request 之間被殺掉的執行，留下 registry、cursor 與退出碼 0，與完成的執行無法區分。",
+            "所以停止必須是被檢查過的契約，而不是「沒有後續輸出」。",
+            "SOURCE_STATEMENT · SUPPORTED · MEDIUM",
+            "EV-synthetic-loop-unobserved-interruption",
+            f"TEXT_MATCH::{PLANTED_QUOTE}",
+            "若 harness 對每輪留下獨立收據，兩者即可區分；本卡只在沒有收據時成立。",
+            "CONFLICT → [[P-recheck-the-finished-batch]]",
+        ),
+        [
+            "artifact:evals/runner/synthetic-loop/source.md",
+            f"TEXT_MATCH::{PLANTED_QUOTE}",
+        ],
+    )
+
 
 def gates(status: str) -> dict[str, Any]:
     state: dict[str, Any] = {"status": status, "evidence": [], "failures": []}

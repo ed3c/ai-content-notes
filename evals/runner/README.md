@@ -19,6 +19,16 @@ intelligence, not a repository adapter. `tests/test_loop_harness.py` is the
 acceptance receipt: a synthetic-source run reaching DONE with every round
 schema-valid and the registry idempotent on re-run.
 
+`tests/test_planted_signal_falsifier.py` is the second receipt, and the reason
+`high_signal_unmapped = 0` means anything. It plants one known high-signal item
+into a copy of the source and asserts both directions: DONE is unreachable
+while the plant is unmapped, and the identical run reaches DONE once one card
+anchors it with `TEXT_MATCH::`. The controls are supplied to the harness with
+`--high-signal`, and a control that is not an exact substring of the source is
+refused rather than failed, because a plant outside the subject controls
+nothing. Both tests run in CI: `verify` executes the default branch's suite
+against the candidate tree.
+
 Two authorities the harness refuses, both named in every receipt:
 
 - `gate_authority: "none"` — QG-01..QG-24 labels inside a response are model
