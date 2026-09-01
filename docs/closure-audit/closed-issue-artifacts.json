@@ -1,0 +1,206 @@
+{
+  "schema": "closure-audit-ledger@1",
+  "repository": "ed3c/ai-content-notes",
+  "owner_issue": "ed3c/ai-content-notes#61",
+  "compiled_at": "2026-09-01",
+  "compiled_against_main": "d7631f5797687108ee2be8980e8e48a3e3da916c",
+  "authority": "A locator ledger, not an authority. A row records the repository-relative paths a closed issue's own body names; it does not decide whether the closure was correct, whether the artifact is any good, or whether anything downstream of it ran.",
+  "curation_rule": "artifacts[] holds only paths that appear literally in the issue body and that the body requires this repository to carry. A body that names no such path gets an empty list and a note saying why, so NO_PATH_NAMED stays distinct from a pass. A path named as material that must be absent is never recorded as a required artifact.",
+  "closures": [
+    {
+      "issue": 1,
+      "title": "materialize-ai-content-notes-migration",
+      "artifacts": [],
+      "note": "acceptance is prose only - it names no repository path"
+    },
+    {
+      "issue": 2,
+      "title": "materialize-ai-content-notes-migration",
+      "artifacts": [],
+      "note": "acceptance is prose only - it names no repository path"
+    },
+    {
+      "issue": 3,
+      "title": "Materialize canonical CONTEXT.md and claim-map contract for Atlas ingestion",
+      "artifacts": [
+        "CONTEXT.md",
+        "schemas/claim-map.schema.json",
+        "schemas/note-delta.schema.json"
+      ]
+    },
+    {
+      "issue": 7,
+      "title": "eval: establish live YouTube transcript accuracy evidence and authorized allowlist",
+      "artifacts": [],
+      "note": "acceptance names a benchmark corpus and metrics, no repository path"
+    },
+    {
+      "issue": 10,
+      "title": "runtime: materialize v7.1 compiler host, external gates, and transactional persistence",
+      "artifacts": [
+        "governance/CARD_PROTOCOL_V7_1.md",
+        "governance/WORKFLOW.md",
+        "docs/PROMPT_V7_1_AB_AND_SYSTEM_AUDIT.md",
+        "schemas/compiler-state-v7.1.schema.json"
+      ]
+    },
+    {
+      "issue": 14,
+      "title": "runtime: complete semantic-yield gates and visual receipts",
+      "artifacts": [
+        "tests/test_live_cvrngaqzq3y_v7_1.py"
+      ]
+    },
+    {
+      "issue": 17,
+      "title": "docs: make Semantic Yield card output discoverable and govern stacked delivery",
+      "artifacts": [
+        "evals/semantic-yield/CvRngaQZQ3Y/cards",
+        "evals/live/CvRngaQZQ3Y/card-output-v7.1.md",
+        "evals/semantic-yield/README.md",
+        "docs/SEMANTIC_YIELD_INTEGRATION_STATUS.md",
+        "tests/test_repository_navigation.py",
+        "docs/git"
+      ]
+    },
+    {
+      "issue": 23,
+      "title": "runtime epic: materialize Semantic Yield host pipeline as molecular Stack PRs",
+      "artifacts": [
+        "docs/git/STACKED_PRS.md",
+        "governance/CARD_PROTOCOL_V7_1.md",
+        "schemas/multimodal-source-pack.schema.json",
+        "schemas/multimodal-source-pack-descriptor.schema.json",
+        "schemas/model-run-receipt.schema.json",
+        "tools/build_multimodal_source_pack.py",
+        "tools/build_model_run_receipt.py",
+        "tests/test_source_pack_and_run_receipt.py",
+        "docs/runtime/README.md"
+      ]
+    },
+    {
+      "issue": 38,
+      "title": "runtime: leaf 04 replay needs a retained subject",
+      "artifacts": [],
+      "note": "issue body is empty - nothing here can be checked"
+    },
+    {
+      "issue": 56,
+      "title": "docs(private-reference-registry): materialize full Google/private URL index for federated traceability",
+      "artifacts": [
+        "docs/reference-registry/README.md",
+        "docs/reference-registry/reference-index.private.json"
+      ],
+      "note": "closed by a receipt comment naming a head on the still-draft chain #58 -> #60 -> #65 -> #66 -> #67 -> #71 -> #72"
+    },
+    {
+      "issue": 59,
+      "title": "docs(repo-url-namespaces): add /<repo_name>/ directories for traceable URL storage",
+      "artifacts": [
+        "ai-content-notes/urls.json",
+        "kotlin-auto-webview/urls.json"
+      ],
+      "note": "the two namespace shards its Directory contract fence names first; closed against draft PR #60"
+    },
+    {
+      "issue": 62,
+      "title": "docs(codexdoc-trace): bind CodexDoc folder and every child to stable REF IDs and consuming issues",
+      "artifacts": [
+        "docs/reference-registry/codexdoc-index.json"
+      ],
+      "note": "receipt names head 2c87fc77a693da1be0122566a335ed6ff864e16f on draft PR #65"
+    },
+    {
+      "issue": 63,
+      "title": "docs(context-reference-backfill): capture important conversation-only URLs into stable REF identities",
+      "artifacts": [
+        "docs/reference-registry/context-reference-backfill.json"
+      ],
+      "note": "closed against draft PR #66"
+    },
+    {
+      "issue": 64,
+      "title": "test(traceability-graph): verify REF → consumer Issue DAG → PR/head/receipt completeness",
+      "artifacts": [
+        "docs/reference-registry/codexdoc-index.json",
+        "docs/reference-registry/context-reference-backfill.json",
+        "docs/reference-registry/repo-directory-index.json"
+      ],
+      "note": "its own body names no output path; the paths above are the Inputs its verifier claims to read, and none of them is here"
+    },
+    {
+      "issue": 69,
+      "title": "docs(traceability-preflight): freeze implementation DAG, leases, gates, and zero-context handoff",
+      "artifacts": [
+        "docs/reference-registry/codexdoc-index.json"
+      ],
+      "note": "closed against draft PR #71"
+    },
+    {
+      "issue": 70,
+      "title": "test(reference-registry-preflight): verify implementation-prep DAG and stale-blocker mutations",
+      "artifacts": [
+        "docs/reference-registry/AGENTS.md"
+      ],
+      "note": "closed against draft PR #72"
+    },
+    {
+      "issue": 74,
+      "title": "[PREL D02] Reconcile merged source registry, PDF canary and product-signal Evidence Plane docs and handoff",
+      "artifacts": [],
+      "note": "acceptance names README/AGENTS sections in prose, no repository path"
+    },
+    {
+      "issue": 78,
+      "title": "[MACHINE-B0] Install the trusted verify/land ceremony (replicated pattern, zero noodles runtime dependency)",
+      "artifacts": [],
+      "note": "acceptance names the ceremony in prose, no repository path"
+    },
+    {
+      "issue": 79,
+      "title": "[GUARD-B0] Deterministic publication guard: mechanical subset of the v7.1 quality gates in CI",
+      "artifacts": [
+        "governance/CARD_PROTOCOL_V7_1.md"
+      ]
+    },
+    {
+      "issue": 80,
+      "title": "[RUNNER-B1] LOOP harness: drive the v7.1 three-channel loop with per-round schema validation to the completion contract",
+      "artifacts": [
+        "tools/materialize_card_batch.py",
+        "tools/reconcile_card_registry.py"
+      ]
+    },
+    {
+      "issue": 81,
+      "title": "[FALSIFIER-B2] Planted-signal DONE falsifier: make exhaustiveness falsifiable",
+      "artifacts": [],
+      "note": "acceptance names a behaviour - both plant directions - not a path"
+    },
+    {
+      "issue": 82,
+      "title": "[CARDS-B3] First production batch: 10 cards from one real article end-to-end",
+      "artifacts": [],
+      "note": "acceptance names a card count and guard state, not a path"
+    },
+    {
+      "issue": 83,
+      "title": "[DECOUPLE-A] Retarget PR #77: architecture-contract product line moves out of this repo",
+      "artifacts": [],
+      "note": "names templates/agent-friendly-architecture.md as material that must LEAVE this repository; its decoupling test asserts absence, so the path is not an artifact this reader may require"
+    },
+    {
+      "issue": 86,
+      "title": "Anchor the physical receipt at land time, once per PR",
+      "artifacts": [],
+      "note": "acceptance names post_receipt_anchor and its fixtures, not a path"
+    },
+    {
+      "issue": 91,
+      "title": "[VERIFY-B4] Generate verify-cards via the pinned create-verification-skill, prove it end-to-end",
+      "artifacts": [
+        "tools/run_loop_harness.py"
+      ]
+    }
+  ]
+}
