@@ -6,15 +6,23 @@ It does not fetch or admit an external source. It defines how a GitHub, PDF,
 Google Doc, Google Sheet, article, interview, or runtime source must be bound
 after an owning adapter has observed it.
 
-## Exact preparation subject
+## Merged status
+
+The Stage 2/3 stack this leaf was written against is on `main`:
 
 ```text
-repository  ed3c/ai-content-notes
-base        6afe799f9ba01c0c7ab4a25dffe5f226c0d05d53
-base tree   6683ba605f574a40d33265cf4ca2cc223fa77dcc
-issue       #51
-atom        C/K/E source-registry contract and deterministic gate
+PR #52 source-registry contract and deterministic gate
+       merge 3326f24fabf1cc80c65e977870ee05746e162ab6
+PR #53 exact PDF bytes, page and visual-region locators
+       merge 0f7f551ebbca067a02621abd8a2d538189a8855b
+PR #73 atomic claims, ledgers and product-signal@1
+       merge beefeb0e792a771638ad1968db126d302729256d
 ```
+
+The historical preparation subject for the #52 atom was base
+`6afe799f9ba01c0c7ab4a25dffe5f226c0d05d53`, tree
+`6683ba605f574a40d33265cf4ca2cc223fa77dcc`, issue #51. Read the contract from
+`main`, not from that base.
 
 The repository already owns `source-manifest.schema.json`, retained-subject
 verification, visual-evidence receipts, rights vocabulary, source-pack
@@ -102,7 +110,17 @@ python tools/source_registry.py \
 
 ## Next dependency
 
-This C/K/E leaf can be reviewed independently. Live GitHub/PDF/Google adapters
-remain sibling A-atoms. Stage 3 product-signal compilation remains
-completion-blocked until one live Stage 2 registry/source-manifest receipt is
-admitted on the exact source subject.
+Stage 3 is no longer completion-blocked: one live Stage 2 packet
+(`evals/source-intake/modern-web-architecture/`) was admitted on the exact PDF
+subject, and Stage 3 compiled against it in
+`evals/product-signal/modern-web-architecture/` at `decision: VALIDATE`.
+
+What remains open is the Local Handoff queue, none of which CI can fabricate:
+
+```text
+#41  Google Docs/Sheets persistence authority             OWNER_DECISION_PENDING
+#51  live GitHub/Doc/Sheet adapters beyond the PDF lane   OPEN
+#54  persist and read back the Stage 3 packet             OPEN
+#50  product signal export and evidence lineage           OPEN
+     tools/pdf_source_adapter.py --check on the raw PDF   operator-only oracle
+```

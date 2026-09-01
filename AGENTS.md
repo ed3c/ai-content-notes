@@ -19,6 +19,35 @@ The v7.1 prompt payload is immutable. Verify its Git blob SHA-1 against `CARD_PR
 
 If a declared source, locator, file, Note Document, registry, state, evidence anchor, validator artifact, Git blob, schema, Drive revision or Sheet URL cannot be read back from its authority, report a materialization/evidence gap. Do not infer completion from README prose, status strings, expected paths, issue comments, PR bodies or prior conversations.
 
+## Product Reverse Evidence Plane route
+
+Before touching a source registry, a PDF/Drive packet, an atomic claim, an
+evidence or contradiction ledger, or a `product-signal@1` artifact, read in this
+order:
+
+1. [`docs/source-intake/README.md`](docs/source-intake/README.md) — read order, State Machine, hard boundaries
+2. [`evals/source-intake/modern-web-architecture/README.md`](evals/source-intake/modern-web-architecture/README.md) — the only live Stage 2 packet
+3. [`evals/product-signal/modern-web-architecture/README.md`](evals/product-signal/modern-web-architecture/README.md) — the only Stage 3 packet
+4. `schemas/source-registry.schema.json`, `schemas/pdf-source-descriptor.schema.json`, `schemas/product-signal.schema.json`
+5. `tools/source_registry.py`, `tools/pdf_source_adapter.py`, `tools/product_signal.py` and their tests
+
+The lane's entire merged extent is three commits:
+
+```text
+PR #52 merge 3326f24fabf1cc80c65e977870ee05746e162ab6
+PR #53 merge 0f7f551ebbca067a02621abd8a2d538189a8855b
+PR #73 merge beefeb0e792a771638ad1968db126d302729256d
+```
+
+Authority laws for this lane:
+
+- exact source bytes and locators prove source identity, never source factual accuracy;
+- named-product internals stay `HYPOTHESIS` or `UNKNOWN` without independent primary or runtime evidence;
+- the merged PDF's unconditional all-permissive statement stays contradicted by its own LGPL/MIT qualification until an exact dependency/license review exists;
+- `product-signal@1` tops out at `decision: VALIDATE`; technical source evidence cannot satisfy the user, paid, runtime or legal lanes;
+- Google Docs/Sheets persistence authority remains `OWNER_DECISION_PENDING` under #41 and #51; do not edit the authority-bearing Google contract files to route around it;
+- a PR body, an issue comment or an unmerged branch head is not this lane's state — only the merge commits above and the committed packets are.
+
 ## Current Semantic Yield facts
 
 Only one content item on `main` has run the modified host-side Semantic Yield flow:
@@ -65,6 +94,13 @@ evals/runner/
 
 evals/semantic-yield/
   modified-flow card batches, projections, manifests, validator reports and run state
+
+evals/source-intake/ and evals/product-signal/
+  Product Reverse Evidence Plane packets: exact source registry and read-back
+  receipt, atomic claims, evidence/contradiction ledgers and product-signal@1
+
+docs/source-intake/
+  the read order, State Machine and blockers for that lane; prose is not PASS
 
 docs/git/
   repository-owned Git Town/Stacked-PR profile, admission, Worker and stack index
