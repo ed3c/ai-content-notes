@@ -1,0 +1,41 @@
+{
+  "batches": [
+    "loop-batches/sqlite-testing",
+    "semantic-yield/CvRngaQZQ3Y",
+    "semantic-yield/CvRngaQZQ3Y-v2"
+  ],
+  "enforced": {
+    "I-06": "Shadow Evidence Fidelity",
+    "QG-03": "Locator Integrity",
+    "QG-07": "Stable Identity",
+    "QG-08": "Typed Links",
+    "QG-10": "Test Honesty",
+    "QG-16": "Version Consistency",
+    "QG-24": "Idempotency"
+  },
+  "finding_count": 0,
+  "findings": {},
+  "prompt_enforced_only": [
+    "QG-01",
+    "QG-02",
+    "QG-04",
+    "QG-05",
+    "QG-06",
+    "QG-09",
+    "QG-11",
+    "QG-12",
+    "QG-13",
+    "QG-14",
+    "QG-15",
+    "QG-17",
+    "QG-18",
+    "QG-19",
+    "QG-20",
+    "QG-21",
+    "QG-22",
+    "QG-23"
+  ],
+  "retained_source_text": "PRESENT",
+  "root": "/private/tmp/claude-501/-Users-neon-noodles/d4332216-1347-4dc5-8057-7772de22e49c/scratchpad/wave12/acn91/repo",
+  "schema_version": "publication-guard@1"
+}

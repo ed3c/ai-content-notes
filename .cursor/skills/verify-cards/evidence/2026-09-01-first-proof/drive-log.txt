@@ -1,0 +1,229 @@
+=== identity ===
+checkout: 01df4138a0d2cf221b72ac0c8e5986b36d5fa843
+branch:   verify-cards
+python:   Python 3.14.6
+
+=== LAUNCH ===
+VERIFY_RUN=/tmp/claude-501/verify-cards.m3Y9dm
+
+=== DOCTOR ===
+
+$ git hash-object governance/CARD_PROTOCOL_V7_1.md
+7f3019f4b41a90728cd48a523d742c7c59721bf6
+exit=0
+
+$ .venv/bin/python -c import json;print(json.load(open('governance/CARD_PROTOCOL_CURRENT.json'))['git_blob_sha1'])
+7f3019f4b41a90728cd48a523d742c7c59721bf6
+exit=0
+
+$ .venv/bin/python tools/publication_guard.py
+{
+  "batches": [
+    "loop-batches/sqlite-testing",
+    "semantic-yield/CvRngaQZQ3Y",
+    "semantic-yield/CvRngaQZQ3Y-v2"
+  ],
+  "enforced": {
+    "I-06": "Shadow Evidence Fidelity",
+    "QG-03": "Locator Integrity",
+    "QG-07": "Stable Identity",
+    "QG-08": "Typed Links",
+    "QG-10": "Test Honesty",
+    "QG-16": "Version Consistency",
+    "QG-24": "Idempotency"
+  },
+  "finding_count": 0,
+  "findings": {},
+  "prompt_enforced_only": [
+    "QG-01",
+    "QG-02",
+    "QG-04",
+    "QG-05",
+    "QG-06",
+    "QG-09",
+    "QG-11",
+    "QG-12",
+    "QG-13",
+    "QG-14",
+    "QG-15",
+    "QG-17",
+    "QG-18",
+    "QG-19",
+    "QG-20",
+    "QG-21",
+    "QG-22",
+    "QG-23"
+  ],
+  "retained_source_text": "PRESENT",
+  "root": "/private/tmp/claude-501/-Users-neon-noodles/d4332216-1347-4dc5-8057-7772de22e49c/scratchpad/wave12/acn91/repo",
+  "schema_version": "publication-guard@1"
+}
+exit=0
+
+=== FEATURE guard-verdicts ===
+
+$ .venv/bin/python tools/publication_guard.py --root .
+{
+  "batches": [
+    "loop-batches/sqlite-testing",
+    "semantic-yield/CvRngaQZQ3Y",
+    "semantic-yield/CvRngaQZQ3Y-v2"
+  ],
+  "enforced": {
+    "I-06": "Shadow Evidence Fidelity",
+    "QG-03": "Locator Integrity",
+    "QG-07": "Stable Identity",
+    "QG-08": "Typed Links",
+    "QG-10": "Test Honesty",
+    "QG-16": "Version Consistency",
+    "QG-24": "Idempotency"
+  },
+  "finding_count": 0,
+  "findings": {},
+  "prompt_enforced_only": [
+    "QG-01",
+    "QG-02",
+    "QG-04",
+    "QG-05",
+    "QG-06",
+    "QG-09",
+    "QG-11",
+    "QG-12",
+    "QG-13",
+    "QG-14",
+    "QG-15",
+    "QG-17",
+    "QG-18",
+    "QG-19",
+    "QG-20",
+    "QG-21",
+    "QG-22",
+    "QG-23"
+  ],
+  "retained_source_text": "PRESENT",
+  "root": "/private/tmp/claude-501/-Users-neon-noodles/d4332216-1347-4dc5-8057-7772de22e49c/scratchpad/wave12/acn91/repo",
+  "schema_version": "publication-guard@1"
+}
+exit=0
+
+$ .venv/bin/python tools/publication_guard.py --root /tmp/claude-501/verify-cards.m3Y9dm/empty-tree
+publication guard cannot run: PROTOCOL_ABSENT:/private/tmp/claude-501/verify-cards.m3Y9dm/empty-tree/governance/CARD_PROTOCOL_V7_1.md
+exit=2
+
+=== FEATURE compile-to-done ===
+
+$ .venv/bin/python tools/run_loop_harness.py --run-dir /tmp/claude-501/verify-cards.m3Y9dm/synthetic --source evals/runner/synthetic-loop/source.md --source-id synthetic:runner-loop --content-id synthetic-loop --updated-at 2026-09-01T00:00:00Z --responder python3 tests/loop_fixture.py
+{"blocked_by": [], "card_count": 3, "high_signal_unmapped": [], "registry_digest": "sha256:641320142d78eb0acb6c4ae4970ada264ce855593d4932a427f0bd06ea301e34", "round_count": 2, "status": "DONE"}
+exit=0
+
+$ ls /tmp/claude-501/verify-cards.m3Y9dm/synthetic/cards
+D-stall-check-costs-one-comparison.md
+N-round-budget-hides-truncation.md
+P-recheck-the-finished-batch.md
+exit=0
+
+$ ls /tmp/claude-501/verify-cards.m3Y9dm/synthetic/rounds
+round-01.raw.md
+round-01.request.json
+round-02.raw.md
+round-02.request.json
+exit=0
+
+$ .venv/bin/python -c import json;r=json.load(open('/tmp/claude-501/verify-cards.m3Y9dm/synthetic/run-receipt.json'));print([(x['round'],x['declared_status'],x['status']) for x in r['rounds']], r['stopped_on'], r['gate_authority'], r['digest_authority'])
+[(1, 'CONTINUE', 'CONTINUE'), (2, 'DONE', 'DONE')] completion-contract none runner
+exit=0
+
+$ .venv/bin/python tools/run_loop_harness.py --run-dir /tmp/claude-501/verify-cards.m3Y9dm/replay --source sources/sqlite-testing/article.txt --source-id article:sqlite.org-testing --content-id sqlite-testing --updated-at 2026-08-31T17:29:21Z --high-signal evals/loop-batches/sqlite-testing/high-signal.json --replay evals/loop-batches/sqlite-testing/rounds
+{"blocked_by": [], "card_count": 10, "high_signal_unmapped": [], "registry_digest": "sha256:ec3f4cf0bea3fcafb98e305b7a4b71886864a939ec63c76457e4847d7361db4c", "round_count": 3, "status": "DONE"}
+exit=0
+
+$ .venv/bin/python tools/run_loop_harness.py --run-dir /tmp/claude-501/verify-cards.m3Y9dm/truncated --source evals/runner/synthetic-loop/source.md --source-id synthetic:runner-loop --content-id synthetic-loop --updated-at 2026-09-01T00:00:00Z --replay /tmp/claude-501/verify-cards.m3Y9dm/truncated-rounds
+loop harness refused: replay has no round 2: /private/tmp/claude-501/verify-cards.m3Y9dm/truncated-rounds/round-02.raw.md
+exit=2
+
+=== FEATURE planted-signal-refusal ===
+
+$ .cursor/skills/verify-cards/drive_planted_signal.py seed --out /tmp/claude-501/verify-cards.m3Y9dm/planted
+{"source": "/private/tmp/claude-501/verify-cards.m3Y9dm/planted/planted-source.md", "high_signal": "/private/tmp/claude-501/verify-cards.m3Y9dm/planted/high-signal.json", "key": "planted-unobserved-interruption"}
+exit=0
+
+$ .venv/bin/python tools/run_loop_harness.py --run-dir /tmp/claude-501/verify-cards.m3Y9dm/planted/unmapped --source /tmp/claude-501/verify-cards.m3Y9dm/planted/planted-source.md --source-id synthetic:runner-loop --content-id synthetic-loop --updated-at 2026-09-01T00:00:00Z --high-signal /tmp/claude-501/verify-cards.m3Y9dm/planted/high-signal.json --responder .cursor/skills/verify-cards/drive_planted_signal.py respond
+{"blocked_by": ["high_signal_unmapped: planted-unobserved-interruption"], "card_count": 3, "high_signal_unmapped": ["planted-unobserved-interruption"], "registry_digest": "sha256:9f65486cdd20a4821ec050fc955c4a12e4087a003113d1506beb36e0a49da4e2", "round_count": 2, "status": "BLOCKED"}
+exit=1
+
+$ .venv/bin/python -c import json;r=json.load(open('/tmp/claude-501/verify-cards.m3Y9dm/planted/unmapped/run-receipt.json'));print(r['rounds'][-1]['declared_status'], r['rounds'][-1]['status'])
+DONE BLOCKED
+exit=0
+
+$ .venv/bin/python tools/run_loop_harness.py --run-dir /tmp/claude-501/verify-cards.m3Y9dm/planted/mapped --source /tmp/claude-501/verify-cards.m3Y9dm/planted/planted-source.md --source-id synthetic:runner-loop --content-id synthetic-loop --updated-at 2026-09-01T00:00:00Z --high-signal /tmp/claude-501/verify-cards.m3Y9dm/planted/high-signal.json --responder .cursor/skills/verify-cards/drive_planted_signal.py respond --anchor
+{"blocked_by": [], "card_count": 4, "high_signal_unmapped": [], "registry_digest": "sha256:9b69a7e8498b5a3cfd10f94b01a407365cff313267bbdcf43a019136dbca8a05", "round_count": 2, "status": "DONE"}
+exit=0
+
+$ ls /tmp/claude-501/verify-cards.m3Y9dm/planted/mapped/cards
+D-stall-check-costs-one-comparison.md
+K-unobserved-interruption.md
+N-round-budget-hides-truncation.md
+P-recheck-the-finished-batch.md
+exit=0
+
+$ .venv/bin/python -c import json;r=json.load(open('/tmp/claude-501/verify-cards.m3Y9dm/planted/mapped/run-receipt.json'));print(r['high_signal_control'], r['high_signal_declared'], r['high_signal_digest'])
+PRESENT 1 sha256:1e8cb72978cb0ca596ba7e228f6cab16392610efa4524c030be08fa23e875d9f
+exit=0
+
+$ .venv/bin/python tools/run_loop_harness.py --run-dir /tmp/claude-501/verify-cards.m3Y9dm/planted/outside --source evals/runner/synthetic-loop/source.md --source-id synthetic:runner-loop --content-id synthetic-loop --updated-at 2026-09-01T00:00:00Z --high-signal /tmp/claude-501/verify-cards.m3Y9dm/planted/high-signal.json --responder .cursor/skills/verify-cards/drive_planted_signal.py respond
+loop harness refused: high-signal control planted-unobserved-interruption is not present in the source
+exit=2
+
+=== FEATURE registry-idempotency ===
+
+$ .venv/bin/python tools/reconcile_card_registry.py --cards evals/loop-batches/sqlite-testing/cards --source-id article:sqlite.org-testing --source-digest sha256:1f25542077e5729da5ab9c024e95cefe723b15622a03a08f8b3e40d9b7d15f24 --updated-at 2026-08-31T17:29:21Z --prior evals/loop-batches/sqlite-testing/card-registry.json --output evals/loop-batches/sqlite-testing/card-registry.json --check
+{"card_count": 10, "gap_count": 0, "registry_revision": 3}
+exit=0
+
+$ git status --porcelain   # --check must have written nothing
+ M tests/test_verify_cards_skill.py
+exit=0
+
+$ .venv/bin/python tools/reconcile_card_registry.py --cards /tmp/claude-501/verify-cards.m3Y9dm/synthetic/cards --source-id synthetic:runner-loop --source-digest sha256:3f181200dced1cc1a898acae23d71f60ae59ebbe7e003f8eb78cec669b996d55 --updated-at 2026-09-01T00:00:00Z --prior /tmp/claude-501/verify-cards.m3Y9dm/synthetic/card-registry.json --output /tmp/claude-501/verify-cards.m3Y9dm/synthetic/card-registry.json --check
+{"card_count": 3, "gap_count": 0, "registry_revision": 2}
+exit=0
+
+$ printf '\n<!-- drift -->\n' >> $VERIFY_RUN/synthetic/cards/N-round-budget-hides-truncation.md   # 16-byte drift, not wrapped in step() because >> inside step redirects step's own echo lines instead of printf's
+exit=0
+
+$ .venv/bin/python tools/reconcile_card_registry.py --cards /tmp/claude-501/verify-cards.m3Y9dm/synthetic/cards --source-id synthetic:runner-loop --source-digest sha256:3f181200dced1cc1a898acae23d71f60ae59ebbe7e003f8eb78cec669b996d55 --updated-at 2026-09-01T00:00:00Z --prior /tmp/claude-501/verify-cards.m3Y9dm/synthetic/card-registry.json --output /tmp/claude-501/verify-cards.m3Y9dm/synthetic/card-registry.json --check
+registry reconciliation refused: persisted registry is stale
+exit=2
+
+=== EVIDENCE (copied before cleanup) ===
+guard report exit=0
+drive-log.txt
+planted-mapped-run-receipt.json
+planted-unmapped-run-receipt.json
+publication-guard-report.json
+README.md
+sqlite-replay-run-receipt.json
+synthetic-run-receipt.json
+
+=== CLEANUP ===
+
+$ rm -rf /tmp/claude-501/verify-cards.m3Y9dm
+exit=0
+
+$ git status --porcelain
+ M .cursor/skills/verify-cards/evidence/2026-09-01-first-proof/planted-mapped-run-receipt.json
+ M .cursor/skills/verify-cards/evidence/2026-09-01-first-proof/planted-unmapped-run-receipt.json
+ M tests/test_verify_cards_skill.py
+
+$ ls .cursor/skills/verify-cards/evidence/
+2026-09-01-first-proof
+
+$ ls .cursor/skills/verify-cards/evidence/2026-09-01-first-proof   # evidence survives cleanup at its named location
+drive-log.txt
+planted-mapped-run-receipt.json
+planted-unmapped-run-receipt.json
+publication-guard-report.json
+README.md
+sqlite-replay-run-receipt.json
+synthetic-run-receipt.json
+exit=0

@@ -226,6 +226,30 @@ QG-07 QG-08 QG-10 QG-11 QG-12
 QG-16 QG-18 QG-20 QG-21 QG-23
 ```
 
+## User-POV verification｜以使用者路徑驅動的驗證
+
+`pytest` proves the pipeline's functions. It does not prove the commands an
+operator types. [`.cursor/skills/verify-cards/`](.cursor/skills/verify-cards/SKILL.md)
+is the project-local verification skill for that: launch, doctor, drive,
+evidence, cleanup and helpers for the card pipeline CLI, plus a maintained
+feature map covering compile-to-DONE, planted-signal refusal, registry
+idempotency and guard verdicts.
+
+```bash
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements-contracts.txt
+export VERIFY_RUN=$(mktemp -d "${TMPDIR:-/tmp}/verify-cards.XXXXXX")
+# then the recipes in .cursor/skills/verify-cards/features/README.md
+```
+
+Its first end-to-end proof, driven through the real CLI and surviving its own
+cleanup, is committed at
+[`.cursor/skills/verify-cards/evidence/2026-09-01-first-proof/`](.cursor/skills/verify-cards/evidence/2026-09-01-first-proof/README.md).
+`tests/test_verify_cards_skill.py` holds the skill to the shape both its
+readers depend on. The skill is project-local: it raises no Skill lifecycle,
+Atlas admission or production routability, and nothing in it changes the
+evidence grade of any card.
+
 ## Canonical entrypoints｜固定入口
 
 - [`AGENTS.md`](AGENTS.md), [`CLAUDE.md`](CLAUDE.md)
