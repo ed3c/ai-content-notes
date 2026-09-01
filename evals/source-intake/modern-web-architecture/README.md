@@ -1,8 +1,10 @@
 # Modern Web Architecture PDF — Stage 2 Live Source Canary
 
-This directory is the issue-leased PDF adapter canary for `ai-content-notes#51`.
-It consumes the unmerged `source-registry@1` contract from parent PR #52 and is
-therefore a true child Stack PR, not an independent sibling.
+This directory is the PDF adapter canary for `ai-content-notes#51`. It consumes
+the `source-registry@1` contract, which is now on `main`: PR #52 merged as
+`3326f24fabf1cc80c65e977870ee05746e162ab6`, and this packet merged after it as
+PR #53 / `0f7f551ebbca067a02621abd8a2d538189a8855b`. Its stacked-child framing
+is history; the contract is read from `main`, not from a parent branch.
 
 ## State Machine
 

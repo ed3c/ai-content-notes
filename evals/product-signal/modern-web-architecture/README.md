@@ -1,8 +1,10 @@
 # Modern Web Architecture PDF — Stage 3 Product Signal Canary
 
-This directory is the issue-leased Stage 3 canary for `#50`. It consumes the
-unmerged live PDF packet from PR #53, so the implementation branch is a true
-child of `prel/51-pdf-live-adapter` rather than a sibling of Stage 2.
+This directory is the Stage 3 canary for `#50`. It consumes the live PDF packet
+from PR #53, which is now on `main` as
+`0f7f551ebbca067a02621abd8a2d538189a8855b`; this Stage 3 packet merged after it
+as PR #73 / `beefeb0e792a771638ad1968db126d302729256d`. Its stacked-child
+framing is history; Stage 2 is read from `main`, not from a parent branch.
 
 ## State Machine
 

@@ -11,6 +11,18 @@ ROOT_README = ROOT / "README.md"
 AGENT_FILES = (ROOT / "AGENTS.md", ROOT / "CLAUDE.md")
 GIT_DOCS = ROOT / "docs" / "git"
 RUNTIME_DOCS = ROOT / "docs" / "runtime"
+INTAKE_PACKET = ROOT / "evals" / "source-intake" / "modern-web-architecture"
+SIGNAL_PACKET = ROOT / "evals" / "product-signal" / "modern-web-architecture"
+EVIDENCE_PLANE_DOCS = (
+    ROOT / "docs" / "source-intake" / "README.md",
+    INTAKE_PACKET / "README.md",
+    SIGNAL_PACKET / "README.md",
+)
+EVIDENCE_PLANE_MERGES = (
+    "3326f24fabf1cc80c65e977870ee05746e162ab6",
+    "0f7f551ebbca067a02621abd8a2d538189a8855b",
+    "beefeb0e792a771638ad1968db126d302729256d",
+)
 
 
 def load_json(path: Path) -> dict[str, object]:
@@ -192,3 +204,79 @@ def test_root_readme_indexes_completed_and_planned_stack_without_overclaim() -> 
     assert "Git branch graph != live Git Town synchronization receipt" in text
     assert "source-pack receipt != source accuracy or claim truth" in text
     assert "model-run receipt != model quality or claim verification" in text
+
+
+def test_evidence_plane_is_reachable_from_the_root_entrypoints() -> None:
+    readme = ROOT_README.read_text(encoding="utf-8")
+    assert "## Product Reverse Evidence Plane" in readme
+
+    index = (ROOT / "INDEX.md").read_text(encoding="utf-8")
+    assert "Product Reverse Evidence Plane" in index
+
+    routed = (
+        "docs/source-intake/README.md",
+        "evals/source-intake/modern-web-architecture/",
+        "evals/product-signal/modern-web-architecture/",
+        "schemas/source-registry.schema.json",
+        "schemas/product-signal.schema.json",
+        "tools/source_registry.py",
+        "tools/pdf_source_adapter.py",
+        "tools/product_signal.py",
+    )
+    for path in routed:
+        assert path in readme, path
+
+    for agent_file in AGENT_FILES:
+        text = agent_file.read_text(encoding="utf-8")
+        assert "## Product Reverse Evidence Plane route" in text
+        assert "docs/source-intake/README.md" in text
+        assert "evals/source-intake/modern-web-architecture/README.md" in text
+        assert "evals/product-signal/modern-web-architecture/README.md" in text
+        for merge_sha in EVIDENCE_PLANE_MERGES:
+            assert merge_sha in text, (agent_file, merge_sha)
+
+    for merge_sha in EVIDENCE_PLANE_MERGES:
+        assert merge_sha in readme, merge_sha
+
+
+def test_evidence_plane_prose_matches_the_persisted_packet_bytes() -> None:
+    signal = load_json(SIGNAL_PACKET / "product-signal.json")
+    receipt = load_json(INTAKE_PACKET / "readback-receipt.json")
+    readme = ROOT_README.read_text(encoding="utf-8")
+
+    assert signal["decision"] == "VALIDATE"
+    assert "decision         VALIDATE" in readme
+
+    evidence_state = signal["evidence_state"]
+    assert isinstance(evidence_state, dict)
+    rendered = " ".join(
+        f"{lane}={evidence_state[lane]}"
+        for lane in ("source", "user", "paid", "runtime", "legal")
+    )
+    assert f"evidence_state   {rendered}" in readme
+
+    assert signal["product_signal_digest"] in readme
+    assert receipt["source_registry_digest"] in readme
+    source_binding = signal["source_binding"]
+    assert isinstance(source_binding, dict)
+    assert source_binding["source_digest"] in readme
+
+    unresolved = signal["unresolved_contradictions"]
+    assert isinstance(unresolved, list)
+    assert unresolved
+    for contradiction in unresolved:
+        assert contradiction in readme
+
+
+def test_no_evidence_plane_doc_still_calls_a_merged_stack_pr_unmerged() -> None:
+    # Bans "unmerged" only where it names one of *this lane's* merged PRs, on
+    # the same line — not the word outright. A doc may still truthfully call
+    # a genuinely unmerged branch (e.g. #54) unmerged elsewhere in the same file.
+    merged_pr_numbers = ("52", "53", "73")
+    for doc in EVIDENCE_PLANE_DOCS:
+        text = doc.read_text(encoding="utf-8")
+        for line in text.splitlines():
+            if "unmerged" in line:
+                for pr_number in merged_pr_numbers:
+                    assert f"PR #{pr_number}" not in line, (doc, pr_number, line)
+        assert any(sha in text for sha in EVIDENCE_PLANE_MERGES), doc

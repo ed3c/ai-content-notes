@@ -45,6 +45,107 @@ governance/CARD_PROTOCOL_CURRENT.json
 
 The v7.1 prompt is immutable. Host runtime work must add contracts and evidence around it rather than patch its bytes.
 
+## Product Reverse Evidence Plane｜第二條證據線
+
+Two evidence programs coexist on `main`. The Semantic Yield lane above compiles
+a source into v7.1 cards. This lane binds a source's *bytes* to atomic claims, a
+contradiction ledger and a `product-signal@1` packet. It is reachable from here
+without reading any pull request:
+
+```text
+schemas/source-registry.schema.json           provider-neutral source pointer contract
+tools/source_registry.py                      deterministic identity/rights/read-back gate
+docs/source-intake/README.md                  read order, State Machine, blockers
+examples/source-registry/                     zero-secret contract fixtures
+
+evals/source-intake/modern-web-architecture/  live PDF packet: registry + read-back receipt
+schemas/pdf-source-descriptor.schema.json     PDF descriptor contract
+tools/pdf_source_adapter.py                   exact-bytes adapter and --check oracle
+
+evals/product-signal/modern-web-architecture/ claims, evidence and contradiction ledgers
+schemas/product-signal.schema.json            product-signal@1 contract
+tools/product_signal.py                       claim to signal compiler and --check replay
+```
+
+### Merged Stack index
+
+```text
+PR #52 provider-neutral source registry and fail-closed gate
+       merge 3326f24fabf1cc80c65e977870ee05746e162ab6   ceiling: contract shape only
+PR #53 exact PDF bytes and visual locators bound to the live registry
+       merge 0f7f551ebbca067a02621abd8a2d538189a8855b   ceiling: SOURCE_INPUT_ONLY
+PR #73 exact PDF evidence compiled into source-constrained product signals
+       merge beefeb0e792a771638ad1968db126d302729256d   ceiling: SOURCE_EVIDENCE_ONLY
+```
+
+These three merges are the whole of this lane on `main`. No unmerged branch or
+draft PR may be cited as its state.
+
+### State machine
+
+```text
+SOURCE_REFERENCED
+→ IDENTITY_RESOLVED
+→ RIGHTS_AND_COMPLETENESS_REVIEWED
+→ SNAPSHOT_CAPTURED
+→ LOCATORS_BOUND
+→ DIGESTED
+→ READ_BACK_VERIFIED
+→ ADMITTED | BLOCKED
+        ↓ ADMITTED
+STAGE2_SOURCE_INPUT_ADMITTED
+→ ATOMIC_CLAIMS_BOUND
+→ EVIDENCE_LINEAGE_VALIDATED
+→ CONTRADICTIONS_PRESERVED
+→ PRODUCT_SIGNALS_GROUPED
+→ PRIVACY_AND_AUTHORITY_GATED
+→ DETERMINISTIC_READ_BACK
+→ HOSTED_VERIFIED | BLOCKED
+```
+
+### Actual data flow
+
+```text
+external source pointer (GitHub blob / PDF / Doc / Sheet / article)
+  -> tools/source_registry.py identity, rights and completeness gate
+  -> tools/pdf_source_adapter.py exact bytes, page and visual-region locators
+  -> source-registry@1 packet + read-back receipt
+  -> claims.jsonl + evidence-ledger.json + contradictions.json
+  -> tools/product_signal.py
+  -> product-signal@1 packet, read back from its own Git blob
+```
+
+### Current packet state
+
+The only live subject is the 34-page Drive PDF `pdf:modern-web-architecture-2026-08-18`:
+
+```text
+source digest    sha256:7350f0e3d29ace70a6c92343e5501b34763f452e057d9b8acef3829f57230ef6
+registry digest  sha256:1dcc8d6ca8f1282e9e319cefcca59a2278d203ba9e3ebecba52b8815e1c45166
+signal digest    sha256:c756bbb8e5413892356b8c675f78a17837b3ac067fff064070e318548dbb1d0f
+decision         VALIDATE
+evidence_state   source=PASS user=ABSENT paid=ABSENT runtime=ABSENT legal=ABSENT
+unresolved       contradiction:all-permissive-vs-lgpl-option
+```
+
+`VALIDATE` is the maximum this lane reaches automatically. The source's
+unconditional "100% permissive" summary stays contradicted by its own LGPL/MIT
+qualification until an exact dependency/license review exists, so the compiler
+emits a rights gap instead of a license PASS. Named-product internals stay
+`HYPOTHESIS` or `UNKNOWN`.
+
+### Local Handoff queue
+
+Each of these needs raw bytes or an owner decision that CI cannot fabricate.
+
+```text
+#41  Google Docs/Sheets persistence authority             OWNER_DECISION_PENDING
+#51  live GitHub/Doc/Sheet adapters beyond the PDF lane   OPEN
+#54  persist and read back the Stage 3 packet             OPEN
+#50  product signal export and evidence lineage           OPEN
+     tools/pdf_source_adapter.py --check on the exact raw PDF   operator-only oracle
+```
+
 ## Repository directory map｜目錄結構
 
 ```text
@@ -62,6 +163,8 @@ ai-content-notes/
 │   ├── live/                           # transcript-only first-pass baselines
 │   ├── loop-batches/                   # batches compiled by the LOOP harness to DONE
 │   ├── runner/                         # LOOP harness subjects; run output is never written here
+│   ├── source-intake/                  # Product Reverse Stage 2 live source packets
+│   ├── product-signal/                 # Product Reverse Stage 3 claims/ledgers/signals
 │   └── semantic-yield/
 │       ├── README.md                   # modified-flow catalog
 │       └── <content-id>/
@@ -73,6 +176,7 @@ ai-content-notes/
 │           └── run-state.md
 ├── docs/
 │   ├── runtime/README.md               # molecular runtime-leaf boundary
+│   ├── source-intake/README.md         # Product Reverse source-intake read order
 │   ├── SEMANTIC_YIELD_INTEGRATION_STATUS.md
 │   └── git/
 │       ├── REPO_PROFILE.md
@@ -167,6 +271,9 @@ evals/semantic-yield/CvRngaQZQ3Y/run-state.md
 ```text
 source statement != observed truth
 source-reported test != current TESTED artifact
+exact source bytes != source factual accuracy
+source-registry read-back != implementation, user, paid or release closure
+product-signal VALIDATE != product internals, license truth or market demand
 source-pack receipt != source accuracy or claim truth
 model-run receipt != model quality or claim verification
 host projection != original visual evidence
@@ -256,6 +363,9 @@ evidence grade of any card.
 - [`INTEGRATION_REQUIREMENTS.md`](INTEGRATION_REQUIREMENTS.md)
 - [`evals/semantic-yield/README.md`](evals/semantic-yield/README.md)
 - [`docs/SEMANTIC_YIELD_INTEGRATION_STATUS.md`](docs/SEMANTIC_YIELD_INTEGRATION_STATUS.md)
+- [`docs/source-intake/README.md`](docs/source-intake/README.md)
+- [`evals/source-intake/modern-web-architecture/README.md`](evals/source-intake/modern-web-architecture/README.md)
+- [`evals/product-signal/modern-web-architecture/README.md`](evals/product-signal/modern-web-architecture/README.md)
 - [`docs/runtime/README.md`](docs/runtime/README.md)
 - [`docs/git/STACKED_PRS.md`](docs/git/STACKED_PRS.md)
 - [`governance/CARD_PROTOCOL_CURRENT.json`](governance/CARD_PROTOCOL_CURRENT.json)

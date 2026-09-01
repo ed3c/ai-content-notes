@@ -4,6 +4,11 @@
 
 This file is navigation only. Repository paths, Git blobs, manifests, validator reports, document revisions, sidecar digests and read-back determine existence/completion. A stale index entry is never authority.
 
+This index tracks the Semantic Yield note/card pipeline only. The Product
+Reverse Evidence Plane (source registry, PDF ingestion, product-signal) is a
+separate lane not covered here — see the `## Product Reverse Evidence Plane`
+section in [`README.md`](README.md) and [`docs/source-intake/README.md`](docs/source-intake/README.md).
+
 ## Active compiler contract｜目前編譯契約
 
 ```text
