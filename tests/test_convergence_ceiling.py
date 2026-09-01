@@ -38,6 +38,11 @@ AGENT_FILES = (ROOT / "AGENTS.md", ROOT / "CLAUDE.md")
 # an authority the runner does not have.
 HONEST_AUTHORITY = {"gate_authority": "none", "digest_authority": "runner"}
 
+# The only two states this repository's loop harness emits at the top level.
+# An unrecognized value must not fall through as "no violation" - that would
+# read identically to "examined and clean".
+KNOWN_STATUSES = ("DONE", "CONTINUE")
+
 # Round keys that would promote a model-authored gate label into an unqualified
 # one. The receipt keeps them under `model_authored_gate_labels` and keeps the
 # runner's own verdict in `status`, next to the model's `declared_status`.
@@ -69,7 +74,10 @@ def flatten(text: str) -> str:
 
 def receipt_violations(receipt: dict) -> list[str]:
     """Name every way a DONE receipt overstates what produced it."""
-    if receipt.get("status") != "DONE":
+    status = receipt.get("status")
+    if status not in KNOWN_STATUSES:
+        return [f"status={status!r} is not a recognized batch status {KNOWN_STATUSES}"]
+    if status != "DONE":
         return []
     violations = []
     for field, honest in HONEST_AUTHORITY.items():
@@ -150,12 +158,28 @@ def test_planted_external_digest_authority_goes_red() -> None:
 
 def test_planted_promotion_of_model_gate_labels_goes_red() -> None:
     planted = copy.deepcopy(done_receipt())
+    # The index is derived from the fixture's own round count, not hardcoded:
+    # the invariant under test is "the last round", not "round 3 specifically".
+    last_round = len(planted["rounds"])
     planted["rounds"][-1]["assertion_report"] = planted["rounds"][-1].pop(
         "model_authored_gate_labels"
     )
     violations = receipt_violations(planted)
-    assert "round 3 has no model_authored_gate_labels" in violations
-    assert "round 3 promotes model claims to 'assertion_report'" in violations
+    assert f"round {last_round} has no model_authored_gate_labels" in violations
+    assert f"round {last_round} promotes model claims to 'assertion_report'" in violations
+
+
+def test_planted_unrecognized_status_goes_red() -> None:
+    # A future runner that emits "Done", "DONE_WITH_GAPS", or drops the field
+    # must not read the same as "examined and clean" - it must read as its
+    # own violation, distinct from both DONE and CONTINUE.
+    for bad_status in ("Done", "DONE_WITH_GAPS", None):
+        planted = copy.deepcopy(done_receipt())
+        planted["status"] = bad_status
+        violations = receipt_violations(planted)
+        assert violations == [
+            f"status={bad_status!r} is not a recognized batch status {KNOWN_STATUSES}"
+        ], bad_status
 
 
 def test_a_continue_batch_is_not_where_this_ceiling_is_enforced() -> None:
