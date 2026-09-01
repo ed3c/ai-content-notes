@@ -110,10 +110,17 @@ python tools/source_registry.py \
 
 ## Next dependency
 
-Stage 3 is no longer completion-blocked: one live Stage 2 packet
-(`evals/source-intake/modern-web-architecture/`) was admitted on the exact PDF
-subject, and Stage 3 compiled against it in
+Stage 3 is no longer completion-blocked for the PDF subject: one live Stage 2
+packet (`evals/source-intake/modern-web-architecture/`) was admitted on the
+exact PDF subject, and Stage 3 compiled against it in
 `evals/product-signal/modern-web-architecture/` at `decision: VALIDATE`.
+
+The precondition this satisfied is general, not PDF-specific, and still
+applies to any other subject: **Stage 3 compilation for a subject stays
+completion-blocked until one live Stage 2 registry/source-manifest receipt is
+admitted on that exact subject.** A second subject (a GitHub, Google Doc,
+Sheet or other PDF) needs its own live Stage 2 receipt before Stage 3 can
+compile it; the PDF's `VALIDATE` decision does not transfer.
 
 What remains open is the Local Handoff queue, none of which CI can fabricate:
 

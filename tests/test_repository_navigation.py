@@ -210,6 +210,9 @@ def test_evidence_plane_is_reachable_from_the_root_entrypoints() -> None:
     readme = ROOT_README.read_text(encoding="utf-8")
     assert "## Product Reverse Evidence Plane" in readme
 
+    index = (ROOT / "INDEX.md").read_text(encoding="utf-8")
+    assert "Product Reverse Evidence Plane" in index
+
     routed = (
         "docs/source-intake/README.md",
         "evals/source-intake/modern-web-architecture/",
@@ -266,7 +269,14 @@ def test_evidence_plane_prose_matches_the_persisted_packet_bytes() -> None:
 
 
 def test_no_evidence_plane_doc_still_calls_a_merged_stack_pr_unmerged() -> None:
+    # Bans "unmerged" only where it names one of *this lane's* merged PRs, on
+    # the same line — not the word outright. A doc may still truthfully call
+    # a genuinely unmerged branch (e.g. #54) unmerged elsewhere in the same file.
+    merged_pr_numbers = ("52", "53", "73")
     for doc in EVIDENCE_PLANE_DOCS:
         text = doc.read_text(encoding="utf-8")
-        assert "unmerged" not in text, doc
+        for line in text.splitlines():
+            if "unmerged" in line:
+                for pr_number in merged_pr_numbers:
+                    assert f"PR #{pr_number}" not in line, (doc, pr_number, line)
         assert any(sha in text for sha in EVIDENCE_PLANE_MERGES), doc
