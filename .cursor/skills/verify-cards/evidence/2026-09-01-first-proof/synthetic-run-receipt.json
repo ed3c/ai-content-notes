@@ -1,0 +1,646 @@
+{
+  "blocked_by": [],
+  "card_count": 3,
+  "content_id": "synthetic-loop",
+  "digest_authority": "runner",
+  "gate_authority": "none",
+  "high_signal_control": "ABSENT",
+  "high_signal_declared": 0,
+  "high_signal_digest": null,
+  "high_signal_unmapped": [],
+  "registry_digest": "sha256:641320142d78eb0acb6c4ae4970ada264ce855593d4932a427f0bd06ea301e34",
+  "registry_revision": 2,
+  "round_count": 2,
+  "rounds": [
+    {
+      "card_count": 2,
+      "declared_status": "CONTINUE",
+      "model_authored_gate_labels": {
+        "assertion_report": {
+          "QG-01": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-02": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-03": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-04": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-05": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-06": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-07": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-08": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-09": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-10": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-11": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-12": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-13": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-14": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-15": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-16": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-17": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-18": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-19": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-20": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-21": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-22": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-23": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-24": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          }
+        },
+        "next_state": {
+          "QG-01": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-02": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-03": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-04": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-05": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-06": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-07": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-08": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-09": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-10": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-11": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-12": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-13": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-14": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-15": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-16": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-17": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-18": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-19": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-20": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-21": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-22": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-23": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          },
+          "QG-24": {
+            "evidence": [],
+            "failures": [],
+            "status": "NOT_RUN"
+          }
+        }
+      },
+      "model_authored_registry_after_digest": "sha256:32bdf8beb6f1510666a030fe70554793040cdc374f8f9ec3713296c61d6d0890",
+      "operation_count": 2,
+      "raw_response": "rounds/round-01.raw.md",
+      "registry_after_digest": "sha256:f3da7904e0ff09406ca12320ac9d690795d4e704014891e9b220dbfca0095d4a",
+      "registry_before_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "registry_revision": 1,
+      "round": 1,
+      "source_cursor": {
+        "complete": false,
+        "cursor_type": "section",
+        "source_digest": "sha256:3f181200dced1cc1a898acae23d71f60ae59ebbe7e003f8eb78cec669b996d55",
+        "value": "section-2"
+      },
+      "status": "CONTINUE"
+    },
+    {
+      "card_count": 3,
+      "declared_status": "DONE",
+      "model_authored_gate_labels": {
+        "assertion_report": {
+          "QG-01": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-02": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-03": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-04": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-05": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-06": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-07": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-08": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-09": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-10": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-11": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-12": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-13": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-14": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-15": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-16": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-17": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-18": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-19": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-20": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-21": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-22": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-23": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-24": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          }
+        },
+        "next_state": {
+          "QG-01": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-02": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-03": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-04": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-05": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-06": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-07": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-08": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-09": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-10": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-11": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-12": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-13": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-14": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-15": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-16": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-17": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-18": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-19": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-20": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-21": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-22": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-23": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          },
+          "QG-24": {
+            "evidence": [
+              "artifact:evals/runner/synthetic-loop/source.md"
+            ],
+            "failures": [],
+            "status": "PASS"
+          }
+        }
+      },
+      "model_authored_registry_after_digest": "sha256:ff7212472cdf334417d3e99a4472caa9a67ddfd3e469f0ec3b6c41ba83379de0",
+      "operation_count": 1,
+      "raw_response": "rounds/round-02.raw.md",
+      "registry_after_digest": "sha256:641320142d78eb0acb6c4ae4970ada264ce855593d4932a427f0bd06ea301e34",
+      "registry_before_digest": "sha256:f3da7904e0ff09406ca12320ac9d690795d4e704014891e9b220dbfca0095d4a",
+      "registry_revision": 2,
+      "round": 2,
+      "source_cursor": {
+        "complete": true,
+        "cursor_type": "section",
+        "source_digest": "sha256:3f181200dced1cc1a898acae23d71f60ae59ebbe7e003f8eb78cec669b996d55",
+        "value": "section-4"
+      },
+      "status": "DONE"
+    }
+  ],
+  "schema_version": "loop-harness-receipt@1",
+  "source_digest": "sha256:3f181200dced1cc1a898acae23d71f60ae59ebbe7e003f8eb78cec669b996d55",
+  "source_id": "synthetic:runner-loop",
+  "source_path": "evals/runner/synthetic-loop/source.md",
+  "status": "DONE",
+  "stopped_on": "completion-contract"
+}
