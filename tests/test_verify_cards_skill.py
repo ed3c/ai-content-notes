@@ -63,13 +63,15 @@ def test_the_feature_index_and_the_feature_directory_agree() -> None:
     linked = set(INDEX_LINK.findall(index.read_text(encoding="utf-8")))
     on_disk = {path.name for path in FEATURES.glob("*.md")} - {"README.md"}
 
+    # Agreement between index and directory is the actual drift check (catches
+    # missing/extra/dead entries per SKILL.md's own maintain step). A frozen
+    # literal filename set is deliberately NOT asserted here: verify.yml
+    # replaces the candidate's tests with this file as committed on the
+    # default branch and runs it against the candidate tree, so a hardcoded
+    # set would make this test the one thing standing between the next
+    # feature file and a green trusted suite.
     assert linked == on_disk, f"index and directory disagree: {linked ^ on_disk}"
-    assert on_disk == {
-        "compile-to-done.md",
-        "planted-signal-refusal.md",
-        "registry-idempotency.md",
-        "guard-verdicts.md",
-    }
+    assert on_disk, "the feature directory has no feature files at all"
 
 
 def test_every_feature_file_keeps_the_four_h2_shape() -> None:
@@ -130,7 +132,15 @@ def test_the_committed_proof_survived_its_own_cleanup() -> None:
         )
         receipts = sorted(run.glob("*run-receipt.json"))
         assert receipts, f"{run.name}: no run receipt, only prose"
+        statuses = set()
         for receipt in receipts:
-            assert json.loads(receipt.read_text(encoding="utf-8"))["stopped_on"] == (
-                "completion-contract"
-            )
+            body = json.loads(receipt.read_text(encoding="utf-8"))
+            assert body["stopped_on"] == "completion-contract"
+            statuses.add(body["status"])
+        # "A gate that has never refused anything is not evidence" (SKILL.md).
+        # Swapping the one refused receipt for a copy of a DONE one must be
+        # visible here, not just in stopped_on, which is the same literal for
+        # every run regardless of outcome.
+        assert statuses - {"DONE"}, (
+            f"{run.name}: every committed receipt is DONE -- no refusal is on record"
+        )

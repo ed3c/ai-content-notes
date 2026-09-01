@@ -10,24 +10,34 @@ was never executed is a draft.
 
 ```text
 repository   ed3c/ai-content-notes
-base commit  f6b6603d174cf5e424e214f3cc394890136e0dc7 (main, before this branch's commit)
+checkout     01df4138a0d2cf221b72ac0c8e5986b36d5fa843 (branch verify-cards; the
+             commit that first added this skill, evidence and test)
 branch       verify-cards
 interpreter  Python 3.14.6 from .venv, requirements-contracts.txt
-run root     VERIFY_RUN=/tmp/claude-501/verify-cards.2I5LGq (removed by cleanup)
+run root     VERIFY_RUN=/tmp/claude-501/verify-cards.m3Y9dm (removed by cleanup)
 ```
 
-The receipts were copied out of `$VERIFY_RUN` before cleanup, exactly as the
-skill's Evidence section requires; `drive-log.txt` is written last, so its own
-final listing shows the previous run's copy of itself. The `git status
---porcelain` lines near the end record the uncommitted state this branch was
-in while the proof was being produced — the skill, its evidence and the test
-were untracked, and `README.md` modified. Nothing else was dirty, which is the
-readback behind "no drive writes into the checkout".
+This is the second drive at this evidence location: the first landed in
+01df4138 itself; this one re-ran the same recipes to log a previously-silent
+step (see "What the refusals prove" below) and re-verify after a reconcile
+pass. The receipts were copied out of `$VERIFY_RUN` before cleanup, exactly as
+the skill's Evidence section requires; `drive-log.txt` is written last, so its
+own final listing shows the previous run's copy of itself. The `git status
+--porcelain` lines near the end record the working tree while this drive ran:
+`tests/test_verify_cards_skill.py` carried an uncommitted reconcile-pass fix
+(dropped a frozen feature-filename set that would have blocked the next
+feature file's trusted-suite run, and now requires at least one committed
+receipt in every run directory to record a refusal, not just a `DONE`), and
+this run's own re-copy of the two planted-signal receipts (their `source_path`
+embeds a fresh `$VERIFY_RUN` suffix every run — the plant lives outside the
+checkout by design — with every other field byte-identical to the prior run).
+Nothing else was dirty, which is the readback behind "no drive writes into the
+checkout" for everything but the evidence directory itself and the file this
+pass was actively editing.
 
-Every drive wrote into `$VERIFY_RUN`; nothing wrote into the checkout. The
-`git status --porcelain` lines in the transcript show only the untracked skill
-and test being added by this branch, which is why `--check` can be believed
-when it says it wrote nothing.
+Every drive wrote into `$VERIFY_RUN`; nothing wrote into the checkout outside
+the two paths named above, which is why `--check` can be believed when it says
+it wrote nothing.
 
 ## Artifacts
 
@@ -58,7 +68,8 @@ makes the green half mean something:
 | 140 | `run_loop_harness.py --replay <one round>` | exit 2 `replay has no round 2` — an exhausted replay is an absent round, not a quiet DONE |
 | 150 | `run_loop_harness.py --high-signal <plant> --responder "... respond"` | exit 1 `BLOCKED`, `declared_status: DONE` vs `status: BLOCKED` |
 | 173 | the same controls against the unplanted subject | exit 2 `... is not present in the source` |
-| 193 | `reconcile_card_registry.py --check` after one byte changed | exit 2 `persisted registry is stale` |
+| 191 | `printf '\n<!-- drift -->\n' >> .../N-round-budget-hides-truncation.md` | the injection itself: appends a 16-byte HTML comment to a committed card, logged as its own line (not wrapped in the log helper, since `>>` inside it would redirect the helper's own echo output instead of `printf`'s) |
+| 194 | `reconcile_card_registry.py --check` after line 191's 16-byte append | exit 2 `persisted registry is stale` |
 
 `planted-unmapped-run-receipt.json` and `planted-mapped-run-receipt.json` differ
 in exactly one thing: whether the responder emitted `K-unobserved-interruption`,

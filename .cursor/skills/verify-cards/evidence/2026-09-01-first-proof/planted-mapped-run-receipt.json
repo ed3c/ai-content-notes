@@ -640,7 +640,7 @@
   "schema_version": "loop-harness-receipt@1",
   "source_digest": "sha256:fced49e8b366f214a1db2f7a1e9464c7add762b4dc136e72f723b9c1118f4311",
   "source_id": "synthetic:runner-loop",
-  "source_path": "/private/tmp/claude-501/verify-cards.2I5LGq/planted/planted-source.md",
+  "source_path": "/private/tmp/claude-501/verify-cards.m3Y9dm/planted/planted-source.md",
   "status": "DONE",
   "stopped_on": "completion-contract"
 }

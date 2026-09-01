@@ -252,7 +252,6 @@ evidence grade of any card.
 
 ## Canonical entrypoints｜固定入口
 
-- [`.cursor/skills/verify-cards/SKILL.md`](.cursor/skills/verify-cards/SKILL.md)
 - [`AGENTS.md`](AGENTS.md), [`CLAUDE.md`](CLAUDE.md)
 - [`INTEGRATION_REQUIREMENTS.md`](INTEGRATION_REQUIREMENTS.md)
 - [`evals/semantic-yield/README.md`](evals/semantic-yield/README.md)

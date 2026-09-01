@@ -20,9 +20,11 @@ Three commands are the whole surface an operator touches:
 | `tools/reconcile_card_registry.py` | hold a rendered batch to one registry, and to the same bytes on a second pass |
 | `tools/publication_guard.py` | ask the external gate whether a batch may ship |
 
-Everything else in `tools/` is an acquisition or projection adapter feeding
-those three, and is out of this skill's scope until the feature map says
-otherwise.
+The other ~40 scripts in `tools/` were not individually read to write this
+skill. The README's own state-machine table (`NORMALIZED`, `SOURCE_PACK_BOUND`,
+`MODEL_RUN_BOUND`) already names a few as upstream acquisition stages; the rest
+are unclassified here, not confirmed non-load-bearing. All of them are out of
+this skill's scope until the feature map says otherwise.
 
 ## Launch
 
