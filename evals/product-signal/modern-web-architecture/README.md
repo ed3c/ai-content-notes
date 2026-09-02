@@ -44,11 +44,21 @@ The canary deliberately retains the tension between the source's unconditional
 candidate time-stretch dependency. The compiler therefore emits a rights
 validation gap instead of license PASS.
 
+## Packet files
+
+```text
+claims.jsonl           atomic claims, one class per row        input
+evidence-ledger.json   evidence lineage and dependency origin  input
+contradictions.json    preserved unresolved tensions           input
+product-signal.json    deterministic product-signal@1 export   output
+readback-receipt.json  byte replay + Git blob identity         output
+```
+
 ## Verification
 
 ```bash
 python -m py_compile tools/product_signal.py tests/test_product_signal.py
-python -m unittest -q tests/test_product_signal.py
+pytest -q tests/test_product_signal.py tests/test_product_signal_readback.py
 python tools/product_signal.py \
   --claims evals/product-signal/modern-web-architecture/claims.jsonl \
   --evidence evals/product-signal/modern-web-architecture/evidence-ledger.json \
@@ -56,7 +66,29 @@ python tools/product_signal.py \
   --source-registry evals/source-intake/modern-web-architecture/source-registry.json \
   --output evals/product-signal/modern-web-architecture/product-signal.json \
   --check
+python tools/product_signal_readback.py \
+  --packet-dir evals/product-signal/modern-web-architecture \
+  --output evals/product-signal/modern-web-architecture/readback-receipt.json \
+  --check
 ```
+
+## Read-back state
+
+`readback-receipt.json` is the #54 completion artifact. For every persisted
+packet file it records the SHA-256 and the Git blob SHA-1 recomputed from the
+bytes on disk, together with the result of replaying the compiler against the
+committed inputs.
+
+The packet as merged by PR #73 did **not** satisfy this. It had been
+reformatted after generation, so `--check` failed while every digest inside it
+still matched: re-serializing moves the bytes and the Git object name but
+leaves the semantic digest alone. The packet is now the exact bytes the
+compiler emits. Its `product_signal_digest` is unchanged at
+`sha256:c756bbb8e5413892356b8c675f78a17837b3ac067fff064070e318548dbb1d0f`, so
+no claim, contradiction or decision moved — only the serialization.
+
+`tests/test_product_signal_readback.py` compares the committed bytes against
+the compiler output on every run, which is the control that was absent.
 
 Maximum automated decision: `VALIDATE`. This packet does not establish product
 internals, license truth, runtime quality, user value, paid demand, merge, or
