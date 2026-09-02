@@ -24,12 +24,36 @@ EVIDENCE_PLANE_MERGES = (
     "0f7f551ebbca067a02621abd8a2d538189a8855b",
     "beefeb0e792a771638ad1968db126d302729256d",
 )
+# Where the architecture-compiler product line actually landed after it left this
+# repository under #83: ed3c/skill-concerns#36 and ed3c/noodles#255. A merge SHA is
+# immutable provider truth; the issue number that names its owner is not.
+DECOUPLED_PRODUCT_LINE_MERGES = (
+    "832415ea3ca1fb61a8b974032246ff27b25576c1",
+    "fe05ed440e90afb7c44b487c1069b186dd22f4e2",
+)
+# Sections that state repository-wide law rather than host-specific procedure.
+SHARED_LAW_SECTIONS = (
+    "## Anti-overengineering laws",
+    "## Required behavior",
+    "## State transition guard",
+)
 
 
 def load_json(path: Path) -> dict[str, object]:
     value = json.loads(path.read_text(encoding="utf-8"))
     assert isinstance(value, dict)
     return value
+
+
+def section(text: str, heading: str) -> str:
+    """Return one `## ` section, heading included, up to the next `## `."""
+    lines = text.splitlines()
+    start = lines.index(heading)
+    end = next(
+        (i for i in range(start + 1, len(lines)) if lines[i].startswith("## ")),
+        len(lines),
+    )
+    return "\n".join(lines[start:end]).strip()
 
 
 def test_modified_flow_catalog_matches_persisted_card_manifest() -> None:
@@ -94,8 +118,34 @@ def test_promotion_policy_is_reachable_and_keeps_escalation_optional() -> None:
     assert "CONVERGED knowledge != runtime VERIFIED" in policy
 
     # The architecture-compiler product line left under #83; it must not return here.
+    # The successor owner is named by issue number, but the *landing* it points at
+    # is pinned by merge SHA - an issue number survives a close, a retitle or a
+    # delete, so on its own it certifies a mention rather than a landed artifact.
     assert "skill-concerns#19" in policy
+    for merge_sha in DECOUPLED_PRODUCT_LINE_MERGES:
+        assert merge_sha in policy, merge_sha
     assert "Lauren Tan" not in policy
+
+
+def test_agent_contract_and_claude_adapter_carry_the_same_repository_law() -> None:
+    """AGENTS.md and CLAUDE.md must agree wherever they state repository-wide law.
+
+    They are a pair maintained by hand, and the pair had already drifted: AGENTS.md
+    carried Required behavior 16 (`sources/<content-id>/` retention) while CLAUDE.md
+    stopped at 15, so the Claude adapter was blind to a law the Codex contract
+    enforced. Nothing read the two lists against each other, which is the same
+    "no reader, silent rot" failure the promotion doc exists to refuse. Host-specific
+    prose stays free; these three sections are law and must be byte-identical.
+    """
+    agents, claude = (path.read_text(encoding="utf-8") for path in AGENT_FILES)
+    for heading in SHARED_LAW_SECTIONS:
+        assert section(agents, heading) == section(claude, heading), heading
+
+    # A tautology guard: the assertion above is only worth running while the
+    # sections are non-empty and actually carry the numbered law list.
+    required = section(agents, "## Required behavior")
+    assert required.count("\n1. ") == 1
+    assert "\n18. " in required
 
 
 def test_root_readme_exposes_directory_state_machine_and_data_flow() -> None:

@@ -45,8 +45,6 @@ Mandatory laws:
 - Knowledge convergence does not imply architecture promotion, FeatureMap coverage, Spatial Loop closure, or runtime verification.
 - Repeated identical PR comments are evidence that an invariant may belong in Shape or Guard.
 - The common path must reduce Agent decisions. A new layer that requires every Agent to understand more framework concepts before making a normal change is presumptively suspect.
-- Before creating downstream architecture work from cards, run the Promotion Gate in `docs/DOMAIN_CONTEXT_SUPPLY_PLANE.md`.
-- Do not invoke FeatureMap or Spatial Loop for knowledge-only items or implementation-only refactors that preserve actor-visible behavior and proof obligations.
 
 ## Product Reverse Evidence Plane route
 
@@ -153,6 +151,9 @@ notes/ and claim maps
 13. Keep complete private source and note bodies out of downstream deltas and public exports.
 14. Never raise Atlas admission, runtime Evidence Grade, Skill lifecycle, production routability or implicit invocation from this repository.
 15. A new modified-flow content item is discoverable only after `evals/semantic-yield/<content-id>/` and the catalog entry both exist and are readable.
+16. Retain the acquired subject under `sources/<content-id>/`, bound by a `source-manifest.json` that lists every retained file with a matching digest. A digest inside a card records what was compiled; it cannot reconstitute the subject, and an unretained subject makes replay impossible at any later cost.
+17. Before creating downstream architecture work from cards, run the Promotion Gate in `docs/DOMAIN_CONTEXT_SUPPLY_PLANE.md`.
+18. Do not invoke FeatureMap or Spatial Loop for knowledge-only items or implementation-only refactors that preserve actor-visible behavior and proof obligations.
 
 ## State transition guard
 
@@ -170,6 +171,16 @@ DISCOVERED
 ```
 
 No state transition is authorized by prose alone. Every transition must identify its input artifact, output artifact, owning adapter and validation receipt. `DONE` requires the full v7.1 Completion Contract; a green QG subset is insufficient.
+
+Domain-context promotion is a separate decision lane and does not alter the content-state machine:
+
+```text
+CONVERGED knowledge
+  -> MAY remain knowledge-only
+  -> MAY map to existing authority
+  -> MAY promote to Shape / Guard / Guide
+  -> MAY escalate to FeatureMap / Spatial Loop only when gate conditions hold
+```
 
 ## Change workflow
 
