@@ -142,6 +142,37 @@ different tool. `tests/test_github_source_adapter.py` asserts the pointer and
 the recompute agree, so a drift in either goes red. An external repository's
 blob uses the identical code path with its own retained bytes.
 
+## Stage 3 read-back lane
+
+`tools/product_signal_readback.py` is the #50 "exact Git blob read-back" lane.
+`tools/product_signal.py` proves a packet is *derivable* from its inputs; it
+does not prove the bytes in the tree are the bytes it emits, and it records no
+Git identity for what was persisted. This tool adds both:
+
+```text
+claims + evidence + contradictions + source-registry@1
+→ deterministic replay against the persisted product-signal.json bytes
+→ Git blob SHA-1 for every persisted packet file
+→ readback-receipt.json
+```
+
+The two controls are independent, which is the point. Re-serializing a packet
+leaves every digest inside it unchanged while its bytes and its Git object name
+both move, so a digest comparison alone waves the change through and only the
+byte comparison sees it. That is not hypothetical: the Stage 3 packet merged by
+PR #73 was reformatted after generation and reproduced its own
+`product_signal_digest` while failing `--check`.
+
+The receipt carries digests and identities only; no raw source body, private
+note body, credential, session or customer field is copied into it.
+
+```bash
+python tools/product_signal_readback.py \
+  --packet-dir evals/product-signal/modern-web-architecture \
+  --output evals/product-signal/modern-web-architecture/readback-receipt.json \
+  --check
+```
+
 ### Declared non-target: the Google half
 
 The Google Docs/Sheets half of #51 is **not implemented here and is not
