@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ed3c/ai-content-notes/schemas/github-source-descriptor.schema.json",
+  "title": "GitHub Source Descriptor",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "source_id",
+    "source_dependency_key",
+    "requested_url",
+    "resolved_url",
+    "repository",
+    "commit_sha",
+    "blob_sha",
+    "path",
+    "expected_digest",
+    "expected_size_bytes",
+    "primary_or_secondary",
+    "producer_subject",
+    "generated_at",
+    "resolved_at",
+    "rights",
+    "completeness",
+    "content_profile",
+    "retention",
+    "projection_mode",
+    "authority_ceiling"
+  ],
+  "properties": {
+    "schema_version": {"const": "github-source-descriptor@1"},
+    "source_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._:-]{2,191}$"},
+    "source_dependency_key": {"type": "string", "minLength": 1},
+    "requested_url": {"type": "string", "format": "uri"},
+    "resolved_url": {"type": "string", "format": "uri"},
+    "repository": {"type": "string", "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"},
+    "commit_sha": {"$ref": "#/$defs/git_sha"},
+    "blob_sha": {"$ref": "#/$defs/git_sha"},
+    "path": {"type": "string", "minLength": 1},
+    "expected_digest": {"$ref": "#/$defs/sha256"},
+    "expected_size_bytes": {"type": "integer", "minimum": 1},
+    "primary_or_secondary": {"enum": ["PRIMARY", "SECONDARY", "UNKNOWN"]},
+    "producer_subject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository", "revision", "tree_sha"],
+      "properties": {
+        "repository": {"const": "ed3c/ai-content-notes"},
+        "revision": {"$ref": "#/$defs/git_sha"},
+        "tree_sha": {"$ref": "#/$defs/git_sha"}
+      }
+    },
+    "generated_at": {"type": "string", "format": "date-time"},
+    "resolved_at": {"type": "string", "format": "date-time"},
+    "rights": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["basis", "decision", "evidence_uri", "reviewed_at"],
+      "properties": {
+        "basis": {
+          "enum": [
+            "OWNER_PROVIDED",
+            "PUBLIC_LICENSE",
+            "CONTRACTUAL_LICENSE",
+            "REPOSITORY_POLICY",
+            "PUBLIC_VISIBILITY_ONLY",
+            "UNKNOWN"
+          ]
+        },
+        "decision": {"enum": ["PASS", "BLOCKED", "NEEDS_REVIEW", "NOT_APPLICABLE"]},
+        "evidence_uri": {"type": "string", "format": "uri"},
+        "reviewed_at": {"type": "string", "format": "date-time"}
+      }
+    },
+    "completeness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "reviewed", "missing_parts"],
+      "properties": {
+        "status": {"enum": ["COMPLETE", "PARTIAL", "BLOCKED", "NEEDS_REVIEW"]},
+        "reviewed": {"type": "boolean"},
+        "missing_parts": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        }
+      }
+    },
+    "content_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "content_scope",
+        "media_type",
+        "has_text",
+        "has_images",
+        "has_tables"
+      ],
+      "properties": {
+        "content_scope": {
+          "enum": ["COMPLETE_BODY", "BOUNDED_RANGE", "METADATA_ONLY", "TITLE_OR_SNIPPET_ONLY"]
+        },
+        "media_type": {"type": "string", "minLength": 1},
+        "has_text": {"type": "boolean"},
+        "has_images": {"type": "boolean"},
+        "has_tables": {"type": "boolean"}
+      }
+    },
+    "retention": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policy"],
+      "properties": {
+        "policy": {
+          "enum": ["COMMIT_ALLOWED", "EXTERNAL_REFERENCE_ONLY", "PRIVATE_SIDECAR", "NOT_APPLICABLE"]
+        },
+        "retained_path": {"type": "string", "minLength": 1},
+        "retention_digest": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "projection_mode": {
+      "enum": ["GITHUB_ONLY", "GITHUB_CANONICAL_GOOGLE_PROJECTION", "OWNER_DECISION_PENDING"]
+    },
+    "authority_ceiling": {"const": "SOURCE_INPUT_ONLY"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"},
+    "git_sha": {"type": "string", "pattern": "^[a-f0-9]{40}$"}
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "authority_ceiling": "SOURCE_INPUT_ONLY",
+  "local_file": {
+    "file_name": "CARD_PROTOCOL_V7_1.md",
+    "git_blob_sha1": "7f3019f4b41a90728cd48a523d742c7c59721bf6",
+    "sha256": "sha256:9388c4f17172dc970f7228ded2f0df54a1111b22047faa11f8e7db36579165dd",
+    "size_bytes": 24631
+  },
+  "non_claims": [
+    "The receipt proves exact Git blob identity, not the file's factual accuracy.",
+    "Repository content, licenses, performance and product internals remain source statements or hypotheses.",
+    "Source admission does not prove implementation, user value, paid demand, merge, or release."
+  ],
+  "observed_at": "2026-09-03T00:00:00Z",
+  "producer_subject": {
+    "repository": "ed3c/ai-content-notes",
+    "revision": "f292deafbc0feca5dedacf27af8ce192f4a6314f",
+    "tree_sha": "1be610ff952b6a03495ebb80a7772c7368f06078"
+  },
+  "readback_method": "GIT_BLOB_SHA1_RECOMPUTE",
+  "retention_policy": "COMMIT_ALLOWED",
+  "schema_version": "github-source-readback-receipt@1",
+  "source_dependency_key": "github-blob:ed3c/ai-content-notes:governance/CARD_PROTOCOL_V7_1.md",
+  "source_id": "github-blob:card-protocol-v7-1",
+  "source_registry_digest": "sha256:4e1ba83eb3e336234432ab1b47fe8106f8a915ec9bc2759abca8a6487a26833d",
+  "source_subject": {
+    "blob_sha": "7f3019f4b41a90728cd48a523d742c7c59721bf6",
+    "commit_sha": "f292deafbc0feca5dedacf27af8ce192f4a6314f",
+    "path": "governance/CARD_PROTOCOL_V7_1.md",
+    "repository": "ed3c/ai-content-notes",
+    "url": "https://github.com/ed3c/ai-content-notes/blob/f292deafbc0feca5dedacf27af8ce192f4a6314f/governance/CARD_PROTOCOL_V7_1.md"
+  },
+  "states": {
+    "completeness": "COMPLETE",
+    "identity": "PASS",
+    "readback": "PASS",
+    "rights": "PASS",
+    "source_registry": "PASS"
+  }
+}

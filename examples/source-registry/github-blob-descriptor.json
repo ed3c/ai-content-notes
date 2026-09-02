@@ -1,0 +1,46 @@
+{
+  "schema_version": "github-source-descriptor@1",
+  "source_id": "github-blob:card-protocol-v7-1",
+  "source_dependency_key": "github-blob:ed3c/ai-content-notes:governance/CARD_PROTOCOL_V7_1.md",
+  "requested_url": "https://github.com/ed3c/ai-content-notes/blob/main/governance/CARD_PROTOCOL_V7_1.md",
+  "resolved_url": "https://github.com/ed3c/ai-content-notes/blob/f292deafbc0feca5dedacf27af8ce192f4a6314f/governance/CARD_PROTOCOL_V7_1.md",
+  "repository": "ed3c/ai-content-notes",
+  "commit_sha": "f292deafbc0feca5dedacf27af8ce192f4a6314f",
+  "blob_sha": "7f3019f4b41a90728cd48a523d742c7c59721bf6",
+  "path": "governance/CARD_PROTOCOL_V7_1.md",
+  "expected_digest": "sha256:9388c4f17172dc970f7228ded2f0df54a1111b22047faa11f8e7db36579165dd",
+  "expected_size_bytes": 24631,
+  "primary_or_secondary": "PRIMARY",
+  "producer_subject": {
+    "repository": "ed3c/ai-content-notes",
+    "revision": "f292deafbc0feca5dedacf27af8ce192f4a6314f",
+    "tree_sha": "1be610ff952b6a03495ebb80a7772c7368f06078"
+  },
+  "generated_at": "2026-09-03T00:00:00Z",
+  "resolved_at": "2026-09-03T00:00:00Z",
+  "rights": {
+    "basis": "OWNER_PROVIDED",
+    "decision": "PASS",
+    "evidence_uri": "https://github.com/ed3c/ai-content-notes/blob/f292deafbc0feca5dedacf27af8ce192f4a6314f/LICENSE",
+    "reviewed_at": "2026-09-03T00:00:00Z"
+  },
+  "completeness": {
+    "status": "COMPLETE",
+    "reviewed": true,
+    "missing_parts": []
+  },
+  "content_profile": {
+    "content_scope": "COMPLETE_BODY",
+    "media_type": "text/markdown",
+    "has_text": true,
+    "has_images": false,
+    "has_tables": false
+  },
+  "retention": {
+    "policy": "COMMIT_ALLOWED",
+    "retained_path": "governance/CARD_PROTOCOL_V7_1.md",
+    "retention_digest": "sha256:9388c4f17172dc970f7228ded2f0df54a1111b22047faa11f8e7db36579165dd"
+  },
+  "projection_mode": "GITHUB_ONLY",
+  "authority_ceiling": "SOURCE_INPUT_ONLY"
+}
