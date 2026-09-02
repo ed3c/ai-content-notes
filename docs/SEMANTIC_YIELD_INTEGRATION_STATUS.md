@@ -67,8 +67,9 @@ QG-11 Source Independence    QG-21 Batch Balance
                              QG-23 No Absolute Overreach
 ```
 
-Declared `qg_human_admitted` — judgement gates a person owns, which is a
-different state from a gate nobody has run:
+`HUMAN_ADMITTED_QG_IDS` in the validator — judgement gates a person owns,
+which is a different state from a gate nobody has run. This is a fixed
+property of these five gates' taxonomy, not a per-report field:
 
 ```text
 QG-04 Atomicity   QG-05 Anti-Fragmentation   QG-06 Entity Fission

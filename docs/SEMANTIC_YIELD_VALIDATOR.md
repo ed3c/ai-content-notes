@@ -65,9 +65,13 @@ QG-10 QG-11 QG-12 QG-13 QG-15 QG-16
 QG-17 QG-18 QG-20 QG-21 QG-23
 ```
 
-Five are declared `qg_human_admitted`, and two remain `qg_not_run`. The three
-sets partition QG-01…QG-24 with no gate in two of them. The report must never
-be used to claim that QG-01 through QG-24 all passed.
+Five are `HUMAN_ADMITTED_QG_IDS` in the validator, and two remain
+`qg_not_run`. The three sets partition QG-01…QG-24 with no gate in two of
+them — asserted once against the validator's constants
+(`tests/test_semantic_yield_validator.py`), since which five gates are
+human-admitted does not vary between subjects and so is not a per-report
+field. The report must never be used to claim that QG-01 through QG-24 all
+passed.
 
 ### What each newly automated gate actually proves
 
@@ -93,9 +97,9 @@ requires the gate to fire anyway.
 | QG-14 No Hidden Compression | semantic judgement. |
 | QG-19 Insight Delta | semantic judgement about whether a card restates the source. |
 
-`qg_human_admitted` is a distinct report field from `qg_not_run`: a gate a
-person owns and a gate nobody has run are different states, and collapsing them
-was what made the previous report unreadable.
+`HUMAN_ADMITTED_QG_IDS` is a distinct constant from the report's `qg_not_run`
+field: a gate a person owns and a gate nobody has run are different states,
+and collapsing them was what made the previous report unreadable.
 
 ### Still not run
 

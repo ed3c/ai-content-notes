@@ -148,9 +148,12 @@ AUTOMATED_QG_IDS = (
     "QG-21",
     "QG-23",
 )
-# Semantic judgement, not a missing artifact. Declared here so the report says
-# "a person owns this" instead of leaving it indistinguishable from a gate that
-# nobody has looked at yet.
+# Semantic judgement, not a missing artifact - a fixed property of these five
+# gates' taxonomy, not of any one subject's run, so it is a module constant
+# rather than a per-report field. It still keeps a gate a person owns
+# distinguishable from qg_not_run's "nobody has looked at this yet": the
+# distinction is asserted once against this constant in
+# tests/test_semantic_yield_validator.py, not re-declared in every report.
 HUMAN_ADMITTED_QG_IDS = ("QG-04", "QG-05", "QG-06", "QG-14", "QG-19")
 ALL_QG_IDS = tuple(f"QG-{index:02d}" for index in range(1, 25))
 
@@ -1017,7 +1020,6 @@ def build_report(
         "checks": checks,
         "hg": hg,
         "qg_subset": qg_subset,
-        "qg_human_admitted": list(HUMAN_ADMITTED_QG_IDS),
         "qg_not_run": [
             qg
             for qg in ALL_QG_IDS

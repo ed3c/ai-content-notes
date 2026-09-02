@@ -139,6 +139,29 @@ def test_persisted_semantic_validator_report_is_current() -> None:
     assert report["qg_not_run"] == ["QG-22", "QG-24"]
 
 
+def test_human_admitted_gates_and_automated_gates_and_not_run_gates_partition_all_24() -> None:
+    """HUMAN_ADMITTED_QG_IDS is a taxonomy fact about these five gates, not a
+    per-subject measurement - it does not vary between reports, so it is
+    asserted once here against the module's constants rather than re-declared
+    in every subject's persisted report (ed3c/ai-content-notes wave22 monitor:
+    a field that cannot vary between subjects should not walk a per-subject
+    schema and artifact).
+
+    The partition itself still matters: a gate must land in exactly one of
+    automated / human-admitted / not-run, so it can never be quietly counted
+    as both covered and deferred.
+    """
+    validator = load_validator()
+    automated = set(validator.AUTOMATED_QG_IDS)
+    human_admitted = set(validator.HUMAN_ADMITTED_QG_IDS)
+    all_ids = set(validator.ALL_QG_IDS)
+    assert human_admitted == {"QG-04", "QG-05", "QG-06", "QG-14", "QG-19"}
+    assert not (automated & human_admitted)
+    not_run = all_ids - automated - human_admitted
+    assert not_run == {"QG-22", "QG-24"}
+    assert len(automated) + len(human_admitted) + len(not_run) == 24 == len(all_ids)
+
+
 def test_sequence_only_permanent_id_fails_closed(tmp_path: Path) -> None:
     validator = load_validator()
     repository, target, schema = copy_fixture(tmp_path)

@@ -79,7 +79,8 @@ QG-11  Source Independence    QG-21  Batch Balance
 `QG-02`, `QG-03`, `QG-13`, `QG-15` and `QG-17` are evidenced against
 [`evidence-ledger.json`](evidence-ledger.json) and the subject retained under
 `sources/CvRngaQZQ3Y/`. `QG-04`, `QG-05`, `QG-06`, `QG-14` and `QG-19` are
-declared `qg_human_admitted`; `QG-22` and `QG-24` remain `qg_not_run`.
+`HUMAN_ADMITTED_QG_IDS` in the validator - a fixed property of those five
+gates, not a per-report field; `QG-22` and `QG-24` remain `qg_not_run`.
 
 This is a partial external-QG implementation. It does not turn the remaining QG states into PASS.
 
@@ -91,6 +92,19 @@ python tools/validate_semantic_yield_artifacts.py \
   --output evals/semantic-yield/CvRngaQZQ3Y/semantic-validator-report.json \
   --created-at 2026-08-14T01:15:00Z \
   --check
+```
+
+## Regenerate the evidence ledger
+
+`evidence-ledger.json` is generated, not hand-edited. Its 16 entries are
+re-derived from `sources/CvRngaQZQ3Y/` on every run and every field is
+asserted against retained bytes before the file is written.
+
+```bash
+python tools/materialize_evidence_ledger.py --check   # verify only, exit 1 on drift
+python tools/materialize_evidence_ledger.py            # regenerate after a
+                                                          # table entry or a
+                                                          # retained source changes
 ```
 
 ## Contract

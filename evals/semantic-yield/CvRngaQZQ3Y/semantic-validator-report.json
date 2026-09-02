@@ -338,13 +338,6 @@
     "target": "evals/semantic-yield/CvRngaQZQ3Y"
   },
   "overall_status": "PASS_WITH_DEFERRED_VISUAL_AND_PARTIAL_QG",
-  "qg_human_admitted": [
-    "QG-04",
-    "QG-05",
-    "QG-06",
-    "QG-14",
-    "QG-19"
-  ],
   "qg_not_run": [
     "QG-22",
     "QG-24"
