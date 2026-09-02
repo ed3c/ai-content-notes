@@ -161,3 +161,32 @@ def test_receipt_carries_no_raw_source_body(tmp_path: Path) -> None:
     packet = build_packet(tmp_path)
     receipt = readback.build_receipt(packet, REGISTRY)
     assert product_signal.walk_forbidden(receipt) == []
+
+
+def test_check_drift_exit_code_matches_the_sibling_tool(tmp_path: Path) -> None:
+    """`product_signal.py --check` returns 2 on drift; this CLI must agree.
+
+    A caller that branches on the exit code (or a CI step that merely fails on
+    nonzero) should not see the two --check gates in this lane disagree about
+    what "drift" means.
+    """
+    packet = build_packet(tmp_path)
+    stale_output = tmp_path / "readback-receipt.json"
+    stale_output.write_text("not a receipt", encoding="utf-8")
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "tools" / "product_signal_readback.py"),
+            "--packet-dir",
+            str(packet),
+            "--source-registry",
+            str(REGISTRY),
+            "--output",
+            str(stale_output),
+            "--check",
+        ],
+        capture_output=True,
+        text=True,
+    )
+    assert result.returncode == 2, result.stderr
+    assert "READBACK_RECEIPT_DRIFT" in result.stderr

@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 """Read a persisted product-signal packet back from its exact Git blob identity.
 
-`tools/product_signal.py` proves that a packet is *derivable* from its inputs.
-It does not prove that the bytes sitting in the working tree are the bytes it
-would emit, and it records no Git identity for what was persisted. Those are
-the two things #50 asks for and #54 must hand to Stage 4, so they live here.
+`tools/product_signal.py --check` proves that the persisted `product-signal.json`
+matches what the compiler emits for its inputs, but only for that one file, and
+it records no Git object identity for what was persisted -- a byte comparison is
+not the same as naming the object those bytes are. Its three sibling packet
+files (`claims.jsonl`, `contradictions.json`, `evidence-ledger.json`) get no
+byte check from either tool. Both gaps are what #50 asks for and #54 must hand
+to Stage 4, so they live here.
 
 Two independent controls have to hold:
 
@@ -177,7 +180,7 @@ def main() -> int:
     if args.check:
         if not args.output.is_file() or args.output.read_text(encoding="utf-8") != text:
             print("READBACK_RECEIPT_DRIFT", file=sys.stderr)
-            return 1
+            return 2
     else:
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(text, encoding="utf-8")
