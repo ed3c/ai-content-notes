@@ -2,22 +2,49 @@
 
 ## Mandatory entrypoint
 
-Before collecting a source, creating or editing a note, changing card state or claim mappings, updating the Google Sheet, integrating with Atlas, or changing Semantic Yield artifacts, read these files in order:
+Before collecting a source, creating or editing a note, changing card state or claim mappings, updating the Google Sheet, integrating with Atlas, changing Semantic Yield artifacts, or promoting domain knowledge into architecture/Skill work, read these files in order:
 
 1. [`INTEGRATION_REQUIREMENTS.md`](INTEGRATION_REQUIREMENTS.md)
-2. [`evals/semantic-yield/README.md`](evals/semantic-yield/README.md) — canonical modified-flow batch/card catalog
-3. [`docs/SEMANTIC_YIELD_INTEGRATION_STATUS.md`](docs/SEMANTIC_YIELD_INTEGRATION_STATUS.md) — current implementation and blocker SSOT
-4. [`governance/CARD_PROTOCOL_CURRENT.json`](governance/CARD_PROTOCOL_CURRENT.json)
-5. the immutable prompt selected by that pointer: [`governance/CARD_PROTOCOL_V7_1.md`](governance/CARD_PROTOCOL_V7_1.md)
-6. [`governance/PARAMETERS.md`](governance/PARAMETERS.md)
-7. [`governance/WORKFLOW.md`](governance/WORKFLOW.md)
-8. the nearest README and exact manifest, registry, compiler state, assertion report, card patch, note template, schema, validator report and exporter paths affected by the task
+2. [`docs/DOMAIN_CONTEXT_SUPPLY_PLANE.md`](docs/DOMAIN_CONTEXT_SUPPLY_PLANE.md) — zero-context anti-overengineering + promotion contract
+3. [`evals/semantic-yield/README.md`](evals/semantic-yield/README.md) — canonical modified-flow batch/card catalog
+4. [`docs/SEMANTIC_YIELD_INTEGRATION_STATUS.md`](docs/SEMANTIC_YIELD_INTEGRATION_STATUS.md) — current implementation and blocker SSOT
+5. [`governance/CARD_PROTOCOL_CURRENT.json`](governance/CARD_PROTOCOL_CURRENT.json)
+6. the immutable prompt selected by that pointer: [`governance/CARD_PROTOCOL_V7_1.md`](governance/CARD_PROTOCOL_V7_1.md)
+7. [`governance/PARAMETERS.md`](governance/PARAMETERS.md)
+8. [`governance/WORKFLOW.md`](governance/WORKFLOW.md)
+9. the nearest README and exact manifest, registry, compiler state, assertion report, card patch, note template, schema, validator report and exporter paths affected by the task
 
 `CARD_PROTOCOL_V7_0.md` is the retained A/B and provenance baseline. `CARD_PROTOCOL_V6_6.md` is historical. New compilations use v7.1; existing notes are not silently rewritten or renumbered.
 
 The v7.1 prompt payload is immutable. Verify its Git blob SHA-1 against `CARD_PROTOCOL_CURRENT.json`. Host adapters may provide documented Runtime Configuration values, but must not patch, append, summarize or “clarify” the prompt text.
 
 If a declared source, locator, file, Note Document, registry, state, evidence anchor, validator artifact, Git blob, schema, Drive revision or Sheet URL cannot be read back from its authority, report a materialization/evidence gap. Do not infer completion from README prose, status strings, expected paths, issue comments, PR bodies or prior conversations.
+
+## Anti-overengineering laws
+
+For every source/card insight, prefer the shortest valid path:
+
+```text
+knowledge
+  -> candidate invariant/domain contract
+  -> existing-system check
+  -> lowest deterministic owner: Shape -> Guard -> Guide
+  -> FeatureMap only for material actor-visible behavior/proof obligations
+  -> Spatial Loop only for unresolved material closure questions
+```
+
+Mandatory laws:
+
+- Useful knowledge is allowed to stop in the knowledge plane.
+- Do not create architecture work merely because a semantic/vector neighborhood looks novel.
+- If the target repository already encodes the invariant, map to that authority instead of creating a parallel mechanism.
+- Prefer repository/API shape over prose when the invalid state can be made impossible or locally unattractive.
+- Prefer compiler/static-analysis/lint/CI/runtime guards over probabilistic instructions when a deterministic predicate exists.
+- Use AGENTS.md / Skills / BugBot / style guidance only for contextual judgment that cannot yet be safely pushed into Shape or Guard.
+- Code/Product/Verification graphs are optional derived projections, never independent sources of truth.
+- Knowledge convergence does not imply architecture promotion, FeatureMap coverage, Spatial Loop closure, or runtime verification.
+- Repeated identical PR comments are evidence that an invariant may belong in Shape or Guard.
+- The common path must reduce Agent decisions. A new layer that requires every Agent to understand more framework concepts before making a normal change is presumptively suspect.
 
 ## Product Reverse Evidence Plane route
 
@@ -124,6 +151,9 @@ notes/ and claim maps
 13. Keep complete private source and note bodies out of downstream deltas and public exports.
 14. Never raise Atlas admission, runtime Evidence Grade, Skill lifecycle, production routability or implicit invocation from this repository.
 15. A new modified-flow content item is discoverable only after `evals/semantic-yield/<content-id>/` and the catalog entry both exist and are readable.
+16. Retain the acquired subject under `sources/<content-id>/`, bound by a `source-manifest.json` that lists every retained file with a matching digest. A digest inside a card records what was compiled; it cannot reconstitute the subject, and an unretained subject makes replay impossible at any later cost.
+17. Before creating downstream architecture work from cards, run the Promotion Gate in `docs/DOMAIN_CONTEXT_SUPPLY_PLANE.md`.
+18. Do not invoke FeatureMap or Spatial Loop for knowledge-only items or implementation-only refactors that preserve actor-visible behavior and proof obligations.
 
 ## State transition guard
 
@@ -141,6 +171,16 @@ DISCOVERED
 ```
 
 No state transition is authorized by prose alone. Every transition must identify its input artifact, output artifact, owning adapter and validation receipt. `DONE` requires the full v7.1 Completion Contract; a green QG subset is insufficient.
+
+Domain-context promotion is a separate decision lane and does not alter the content-state machine:
+
+```text
+CONVERGED knowledge
+  -> MAY remain knowledge-only
+  -> MAY map to existing authority
+  -> MAY promote to Shape / Guard / Guide
+  -> MAY escalate to FeatureMap / Spatial Loop only when gate conditions hold
+```
 
 ## Change workflow
 

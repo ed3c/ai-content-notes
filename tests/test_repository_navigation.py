@@ -11,6 +11,7 @@ ROOT_README = ROOT / "README.md"
 AGENT_FILES = (ROOT / "AGENTS.md", ROOT / "CLAUDE.md")
 GIT_DOCS = ROOT / "docs" / "git"
 RUNTIME_DOCS = ROOT / "docs" / "runtime"
+PROMOTION_DOC = ROOT / "docs" / "DOMAIN_CONTEXT_SUPPLY_PLANE.md"
 INTAKE_PACKET = ROOT / "evals" / "source-intake" / "modern-web-architecture"
 SIGNAL_PACKET = ROOT / "evals" / "product-signal" / "modern-web-architecture"
 EVIDENCE_PLANE_DOCS = (
@@ -23,12 +24,36 @@ EVIDENCE_PLANE_MERGES = (
     "0f7f551ebbca067a02621abd8a2d538189a8855b",
     "beefeb0e792a771638ad1968db126d302729256d",
 )
+# Where the architecture-compiler product line actually landed after it left this
+# repository under #83: ed3c/skill-concerns#36 and ed3c/noodles#255. A merge SHA is
+# immutable provider truth; the issue number that names its owner is not.
+DECOUPLED_PRODUCT_LINE_MERGES = (
+    "832415ea3ca1fb61a8b974032246ff27b25576c1",
+    "fe05ed440e90afb7c44b487c1069b186dd22f4e2",
+)
+# Sections that state repository-wide law rather than host-specific procedure.
+SHARED_LAW_SECTIONS = (
+    "## Anti-overengineering laws",
+    "## Required behavior",
+    "## State transition guard",
+)
 
 
 def load_json(path: Path) -> dict[str, object]:
     value = json.loads(path.read_text(encoding="utf-8"))
     assert isinstance(value, dict)
     return value
+
+
+def section(text: str, heading: str) -> str:
+    """Return one `## ` section, heading included, up to the next `## `."""
+    lines = text.splitlines()
+    start = lines.index(heading)
+    end = next(
+        (i for i in range(start + 1, len(lines)) if lines[i].startswith("## ")),
+        len(lines),
+    )
+    return "\n".join(lines[start:end]).strip()
 
 
 def test_modified_flow_catalog_matches_persisted_card_manifest() -> None:
@@ -67,6 +92,60 @@ def test_agent_entrypoints_route_to_catalog_status_and_git_governance() -> None:
         assert "docs/git/STACKED_PRS.md" in text
         assert "PASS_WITH_DEFERRED_VISUAL_AND_PARTIAL_QG" in text
         assert "CONTINUE" in text
+
+
+def test_promotion_policy_is_reachable_and_keeps_escalation_optional() -> None:
+    """Every entrypoint that routes to the promotion policy must reach a real file.
+
+    Three entrypoints link to this doc. Without this reader the doc can be deleted
+    or renamed and the suite stays green, leaving three dangling pointers - which
+    is how the repository's own closed-issue audit describes the failure it exists
+    to refuse.
+    """
+    assert PROMOTION_DOC.is_file()
+    policy = PROMOTION_DOC.read_text(encoding="utf-8")
+
+    for path in (*AGENT_FILES, ROOT_README):
+        assert "docs/DOMAIN_CONTEXT_SUPPLY_PLANE.md" in path.read_text(encoding="utf-8")
+
+    # The default path stays lightweight: escalation is gated, never a default stage.
+    for marker in ("## Promotion Gate", "Shape", "Guard", "Guide"):
+        assert marker in policy
+    for escalation in ("FeatureMap", "Spatial Loop"):
+        assert f"{escalation} only" in policy or f"{escalation} escalation" in policy
+
+    # Knowledge convergence must not read as runtime verification.
+    assert "CONVERGED knowledge != runtime VERIFIED" in policy
+
+    # The architecture-compiler product line left under #83; it must not return here.
+    # The successor owner is named by issue number, but the *landing* it points at
+    # is pinned by merge SHA - an issue number survives a close, a retitle or a
+    # delete, so on its own it certifies a mention rather than a landed artifact.
+    assert "skill-concerns#19" in policy
+    for merge_sha in DECOUPLED_PRODUCT_LINE_MERGES:
+        assert merge_sha in policy, merge_sha
+    assert "Lauren Tan" not in policy
+
+
+def test_agent_contract_and_claude_adapter_carry_the_same_repository_law() -> None:
+    """AGENTS.md and CLAUDE.md must agree wherever they state repository-wide law.
+
+    They are a pair maintained by hand, and the pair had already drifted: AGENTS.md
+    carried Required behavior 16 (`sources/<content-id>/` retention) while CLAUDE.md
+    stopped at 15, so the Claude adapter was blind to a law the Codex contract
+    enforced. Nothing read the two lists against each other, which is the same
+    "no reader, silent rot" failure the promotion doc exists to refuse. Host-specific
+    prose stays free; these three sections are law and must be byte-identical.
+    """
+    agents, claude = (path.read_text(encoding="utf-8") for path in AGENT_FILES)
+    for heading in SHARED_LAW_SECTIONS:
+        assert section(agents, heading) == section(claude, heading), heading
+
+    # A tautology guard: the assertion above is only worth running while the
+    # sections are non-empty and actually carry the numbered law list.
+    required = section(agents, "## Required behavior")
+    assert required.count("\n1. ") == 1
+    assert "\n18. " in required
 
 
 def test_root_readme_exposes_directory_state_machine_and_data_flow() -> None:
