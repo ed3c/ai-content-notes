@@ -22,7 +22,12 @@ from typing import Any
 
 from jsonschema import Draft202012Validator, FormatChecker
 
-from source_registry import canonical_document, canonicalize, validate_registry
+from source_registry import (
+    canonical_document,
+    canonicalize,
+    git_blob_sha1,
+    validate_registry,
+)
 
 
 class GithubSourceError(RuntimeError):
@@ -43,12 +48,6 @@ def _load_json(path: Path, label: str) -> dict[str, Any]:
 
 def _sha256(payload: bytes) -> str:
     return "sha256:" + hashlib.sha256(payload).hexdigest()
-
-
-def git_blob_sha1(payload: bytes) -> str:
-    """Return the Git object name for these bytes, matching `git hash-object`."""
-    header = f"blob {len(payload)}\0".encode()
-    return hashlib.sha1(header + payload).hexdigest()  # noqa: S324 - Git object identity
 
 
 def inspect_blob(path: Path) -> dict[str, Any]:

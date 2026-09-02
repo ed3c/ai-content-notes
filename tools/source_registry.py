@@ -49,6 +49,16 @@ def compute_registry_digest(registry: dict[str, Any]) -> str:
     return "sha256:" + hashlib.sha256(_canonical_payload(registry)).hexdigest()
 
 
+def git_blob_sha1(payload: bytes) -> str:
+    """Return the Git object name for these bytes, matching `git hash-object`.
+
+    Git object names are content-addressed, so this is an exact, offline
+    read-back primitive for any blob this lane persists or consumes.
+    """
+    header = f"blob {len(payload)}\0".encode()
+    return hashlib.sha1(header + payload).hexdigest()  # noqa: S324 - Git object identity
+
+
 def canonicalize(registry: dict[str, Any]) -> dict[str, Any]:
     """Return a deterministic deep copy with stable list ordering and digest."""
     result = copy.deepcopy(registry)
