@@ -36,6 +36,8 @@ fork or replace them.
 | `schemas/source-registry.schema.json` | contract owner | provider-neutral pointer | `source-registry@1` shape | structural only |
 | `tools/source_registry.py` | deterministic gate | registry + schema | canonical packet + PASS/FAIL report | identity/rights/read-back consistency |
 | `tests/test_source_registry.py` | negative-control owner | positive and mutated packets | executable refusal evidence | fixture/local |
+| `tools/github_source_adapter.py` | GitHub blob adapter | retained bytes + pinned descriptor | `source-registry@1` + read-back receipt | `SOURCE_INPUT_ONLY` |
+| `tests/test_github_source_adapter.py` | GitHub negative-control owner | flipped bytes, branch URLs, snippet scope | executable refusal evidence | fixture/local |
 | `examples/source-registry/` | fixture owner | synthetic GitHub/PDF/Doc/Sheet records | zero-secret examples | `CONTRACT_FIXTURE_ONLY` |
 | `docs/source-intake/` | navigation/Shadow owner | code, issue and repository facts | read order, State Machine and blockers | prose is not PASS |
 
@@ -108,6 +110,47 @@ python tools/source_registry.py \
   --registry examples/source-registry/invalid-title-snippet.json
 ```
 
+## GitHub blob lane
+
+`tools/github_source_adapter.py` is the GitHub half of #51. It binds retained
+bytes to the exact Git object the pinned URL names by recomputing the Git blob
+SHA-1 (`sha1("blob <len>\0" + bytes)`) and comparing it to the descriptor's
+`blob_sha`. Git object names are content-addressed, so this read-back is exact
+and needs no network: one flipped byte changes the name.
+
+Two identity rules carry the lane:
+
+- a `resolved_url` that does not contain the 40-hex commit names a moving
+  target and is refused as `GITHUB_RESOLVED_URL_NOT_COMMIT_PINNED`;
+- a mismatch between retained bytes and `blob_sha` is refused as
+  `GITHUB_BLOB_SHA_MISMATCH`, which is the "GitHub URL without exact read-back"
+  control from the issue body.
+
+The committed example binds this repository's own immutable prompt payload:
+
+```text
+repository  ed3c/ai-content-notes
+commit      f292deafbc0feca5dedacf27af8ce192f4a6314f
+path        governance/CARD_PROTOCOL_V7_1.md
+blob        7f3019f4b41a90728cd48a523d742c7c59721bf6
+```
+
+That subject was chosen because its blob identity has three independent
+offline arrivals: `git hash-object`, the adapter's own recompute, and the
+pre-existing `governance/CARD_PROTOCOL_CURRENT.json` pointer written by a
+different tool. `tests/test_github_source_adapter.py` asserts the pointer and
+the recompute agree, so a drift in either goes red. An external repository's
+blob uses the identical code path with its own retained bytes.
+
+### Declared non-target: the Google half
+
+The Google Docs/Sheets half of #51 is **not implemented here and is not
+claimed**. It stays read-frozen pending the owner decision in #41. No Google
+credential, lane or authority-bearing contract file was added or edited by this
+atom. `GOOGLE_DOC` and `GOOGLE_SHEET` keep their existing schema and semantic
+gates in `tools/source_registry.py`; what is absent is an adapter that observes
+a live Doc/Sheet, and that absence is deliberate, not an oversight.
+
 ## Next dependency
 
 Stage 3 is no longer completion-blocked for the PDF subject: one live Stage 2
@@ -126,8 +169,13 @@ What remains open is the Local Handoff queue, none of which CI can fabricate:
 
 ```text
 #41  Google Docs/Sheets persistence authority             OWNER_DECISION_PENDING
-#51  live GitHub/Doc/Sheet adapters beyond the PDF lane   OPEN
+#51  live GitHub blob adapter                             IMPLEMENTED
+#51  live Google Doc/Sheet adapters                       READ_FROZEN_PENDING_#41
 #54  persist and read back the Stage 3 packet             OPEN
 #50  product signal export and evidence lineage           OPEN
      tools/pdf_source_adapter.py --check on the raw PDF   operator-only oracle
 ```
+
+`IMPLEMENTED` above means the adapter, its negative controls and one committed
+example exist and are executable. It does not close #51: the Google half is
+still frozen, and issue closure remains a Human action.

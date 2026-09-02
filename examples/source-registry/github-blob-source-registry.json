@@ -1,0 +1,80 @@
+{
+  "canonical_authority": "GITHUB",
+  "entries": [
+    {
+      "authority_ceiling": "SOURCE_INPUT_ONLY",
+      "blockers": [],
+      "change_notification_only": false,
+      "completeness": {
+        "missing_parts": [],
+        "reviewed": true,
+        "status": "COMPLETE"
+      },
+      "content": {
+        "content_scope": "COMPLETE_BODY",
+        "digest": "sha256:9388c4f17172dc970f7228ded2f0df54a1111b22047faa11f8e7db36579165dd",
+        "has_images": false,
+        "has_tables": false,
+        "has_text": true,
+        "material_visuals": false,
+        "media_type": "text/markdown",
+        "size_bytes": 24631,
+        "visual_review_state": "NOT_APPLICABLE"
+      },
+      "identity": {
+        "blob_sha": "7f3019f4b41a90728cd48a523d742c7c59721bf6",
+        "commit_sha": "f292deafbc0feca5dedacf27af8ce192f4a6314f",
+        "immutable": true,
+        "path": "governance/CARD_PROTOCOL_V7_1.md",
+        "repository": "ed3c/ai-content-notes",
+        "resolved_at": "2026-09-03T00:00:00Z"
+      },
+      "locators": [
+        {
+          "kind": "commit",
+          "value": "f292deafbc0feca5dedacf27af8ce192f4a6314f"
+        },
+        {
+          "kind": "path",
+          "value": "governance/CARD_PROTOCOL_V7_1.md"
+        }
+      ],
+      "primary_or_secondary": "PRIMARY",
+      "readback": {
+        "content_digest": "sha256:9388c4f17172dc970f7228ded2f0df54a1111b22047faa11f8e7db36579165dd",
+        "evidence_uri": "https://github.com/ed3c/ai-content-notes/blob/f292deafbc0feca5dedacf27af8ce192f4a6314f/governance/CARD_PROTOCOL_V7_1.md",
+        "method": "GITHUB_BLOB_SHA",
+        "observed_at": "2026-09-03T00:00:00Z",
+        "status": "PASS"
+      },
+      "requested_url": "https://github.com/ed3c/ai-content-notes/blob/main/governance/CARD_PROTOCOL_V7_1.md",
+      "resolved_url": "https://github.com/ed3c/ai-content-notes/blob/f292deafbc0feca5dedacf27af8ce192f4a6314f/governance/CARD_PROTOCOL_V7_1.md",
+      "retention": {
+        "policy": "COMMIT_ALLOWED",
+        "retained_path": "governance/CARD_PROTOCOL_V7_1.md",
+        "retention_digest": "sha256:9388c4f17172dc970f7228ded2f0df54a1111b22047faa11f8e7db36579165dd"
+      },
+      "rights": {
+        "basis": "OWNER_PROVIDED",
+        "decision": "PASS",
+        "evidence_uri": "https://github.com/ed3c/ai-content-notes/blob/f292deafbc0feca5dedacf27af8ce192f4a6314f/LICENSE",
+        "reviewed_at": "2026-09-03T00:00:00Z"
+      },
+      "source_dependency_key": "github-blob:ed3c/ai-content-notes:governance/CARD_PROTOCOL_V7_1.md",
+      "source_id": "github-blob:card-protocol-v7-1",
+      "source_kind": "GITHUB_BLOB",
+      "state": "ADMITTED"
+    }
+  ],
+  "evidence_mode": "LIVE",
+  "generated_at": "2026-09-03T00:00:00Z",
+  "projection_mode": "GITHUB_ONLY",
+  "registry_digest": "sha256:4e1ba83eb3e336234432ab1b47fe8106f8a915ec9bc2759abca8a6487a26833d",
+  "registry_id": "registry-github-blob-card-protocol-v7-1",
+  "schema_version": "source-registry@1",
+  "subject": {
+    "repository": "ed3c/ai-content-notes",
+    "revision": "f292deafbc0feca5dedacf27af8ce192f4a6314f",
+    "tree_sha": "1be610ff952b6a03495ebb80a7772c7368f06078"
+  }
+}
