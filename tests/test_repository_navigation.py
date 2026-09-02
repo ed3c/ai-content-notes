@@ -11,6 +11,7 @@ ROOT_README = ROOT / "README.md"
 AGENT_FILES = (ROOT / "AGENTS.md", ROOT / "CLAUDE.md")
 GIT_DOCS = ROOT / "docs" / "git"
 RUNTIME_DOCS = ROOT / "docs" / "runtime"
+PROMOTION_DOC = ROOT / "docs" / "DOMAIN_CONTEXT_SUPPLY_PLANE.md"
 INTAKE_PACKET = ROOT / "evals" / "source-intake" / "modern-web-architecture"
 SIGNAL_PACKET = ROOT / "evals" / "product-signal" / "modern-web-architecture"
 EVIDENCE_PLANE_DOCS = (
@@ -67,6 +68,34 @@ def test_agent_entrypoints_route_to_catalog_status_and_git_governance() -> None:
         assert "docs/git/STACKED_PRS.md" in text
         assert "PASS_WITH_DEFERRED_VISUAL_AND_PARTIAL_QG" in text
         assert "CONTINUE" in text
+
+
+def test_promotion_policy_is_reachable_and_keeps_escalation_optional() -> None:
+    """Every entrypoint that routes to the promotion policy must reach a real file.
+
+    Three entrypoints link to this doc. Without this reader the doc can be deleted
+    or renamed and the suite stays green, leaving three dangling pointers - which
+    is how the repository's own closed-issue audit describes the failure it exists
+    to refuse.
+    """
+    assert PROMOTION_DOC.is_file()
+    policy = PROMOTION_DOC.read_text(encoding="utf-8")
+
+    for path in (*AGENT_FILES, ROOT_README):
+        assert "docs/DOMAIN_CONTEXT_SUPPLY_PLANE.md" in path.read_text(encoding="utf-8")
+
+    # The default path stays lightweight: escalation is gated, never a default stage.
+    for marker in ("## Promotion Gate", "Shape", "Guard", "Guide"):
+        assert marker in policy
+    for escalation in ("FeatureMap", "Spatial Loop"):
+        assert f"{escalation} only" in policy or f"{escalation} escalation" in policy
+
+    # Knowledge convergence must not read as runtime verification.
+    assert "CONVERGED knowledge != runtime VERIFIED" in policy
+
+    # The architecture-compiler product line left under #83; it must not return here.
+    assert "skill-concerns#19" in policy
+    assert "Lauren Tan" not in policy
 
 
 def test_root_readme_exposes_directory_state_machine_and_data_flow() -> None:
