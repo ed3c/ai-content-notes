@@ -1,0 +1,70 @@
+{
+  "authority_ceiling": "SOURCE_EVIDENCE_ONLY",
+  "claims_digest": "sha256:2fe7d025df6218a357c01281bf218bae7a474e29952b75bd3c4d7f71b33fabde",
+  "contradictions_digest": "sha256:c8636dff0e74f77ae8ca9366a56d1b3d59d710348428a37ee1b14f4289731d70",
+  "decision": "VALIDATE",
+  "deterministic_replay": "PASS",
+  "evidence_digest": "sha256:b881528baa3bbe8e7503eb61488bdde793c28af1b711daae5098d1068f670ac7",
+  "evidence_state": {
+    "legal": "ABSENT",
+    "paid": "ABSENT",
+    "runtime": "ABSENT",
+    "source": "PASS",
+    "user": "ABSENT"
+  },
+  "files": [
+    {
+      "git_blob_sha1": "340b99d7452dce79be93ce78c81fc4e115417a03",
+      "path": "claims.jsonl",
+      "sha256": "sha256:b6e2834abc61bb6c6e570aa4fe553544da744d7e64ffc268da91995f6b61c98b",
+      "size_bytes": 3588
+    },
+    {
+      "git_blob_sha1": "528fac5d21f0a101225df86c8924ed2c6ebdcced",
+      "path": "contradictions.json",
+      "sha256": "sha256:afcc13274571e4b0b45ac2503e742a3a4f4ae72fb3d191f10daf07b7b0ab7061",
+      "size_bytes": 512
+    },
+    {
+      "git_blob_sha1": "8a97575be60f911969dc96cddf42800079b8030b",
+      "path": "evidence-ledger.json",
+      "sha256": "sha256:29f37c1affb2405312aa83c49ad082bf9ac640ed883536ddc550d49f3af6e646",
+      "size_bytes": 2046
+    },
+    {
+      "git_blob_sha1": "a4792b93d21ba693c7e45fbf9a1e0db3254eba28",
+      "path": "product-signal.json",
+      "sha256": "sha256:cccc6ed25c547856153757cc25a5ced6bdae53f559d72769286b0719b1892118",
+      "size_bytes": 2793
+    }
+  ],
+  "git_blob_readback": "PASS",
+  "non_claims": [
+    "The receipt proves exact persisted bytes and Git object identity, not source factual accuracy.",
+    "Named product internals, licenses, performance and cost remain source statements or hypotheses.",
+    "Read-back does not establish runtime, user, paid, legal, BUILD, merge or release state."
+  ],
+  "packet_dir": "evals/product-signal/modern-web-architecture",
+  "product_signal_digest": "sha256:c756bbb8e5413892356b8c675f78a17837b3ac067fff064070e318548dbb1d0f",
+  "schema_version": "product-signal-readback-receipt@1",
+  "signal_set_id": "modern-web-architecture-2026-08-18",
+  "source_binding": {
+    "dependency_key": "drive-file:1G35AxLrIa95YIUAvncH6BiWkUVAeX9A9",
+    "registry_digest": "sha256:1dcc8d6ca8f1282e9e319cefcca59a2278d203ba9e3ebecba52b8815e1c45166",
+    "source_digest": "sha256:7350f0e3d29ace70a6c92343e5501b34763f452e057d9b8acef3829f57230ef6",
+    "source_id": "pdf:modern-web-architecture-2026-08-18"
+  },
+  "source_registry_readback": {
+    "path": "evals/source-intake/modern-web-architecture/source-registry.json",
+    "registry_digest": "sha256:1dcc8d6ca8f1282e9e319cefcca59a2278d203ba9e3ebecba52b8815e1c45166",
+    "source_authority_ceiling": "SOURCE_INPUT_ONLY",
+    "source_digest": "sha256:7350f0e3d29ace70a6c92343e5501b34763f452e057d9b8acef3829f57230ef6",
+    "source_readback_status": "PASS"
+  },
+  "unknown_claims": [
+    "claim:actual-company-internals-unknown"
+  ],
+  "unresolved_contradictions": [
+    "contradiction:all-permissive-vs-lgpl-option"
+  ]
+}

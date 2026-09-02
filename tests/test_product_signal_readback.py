@@ -190,3 +190,22 @@ def test_check_drift_exit_code_matches_the_sibling_tool(tmp_path: Path) -> None:
     )
     assert result.returncode == 2, result.stderr
     assert "READBACK_RECEIPT_DRIFT" in result.stderr
+
+
+def test_committed_packet_reads_back_and_receipt_is_current() -> None:
+    """The guard this lane was missing.
+
+    PR #73 merged a packet that had been reformatted after generation, so it
+    reproduced its own digest while failing --check. Nothing in CI compared the
+    committed bytes to the compiler's output. This does.
+    """
+    receipt = readback.build_receipt(PACKET, REGISTRY)
+    persisted = (PACKET / "readback-receipt.json").read_text(encoding="utf-8")
+    assert product_signal.canonical(receipt) == persisted
+    assert receipt["packet_dir"] == "evals/product-signal/modern-web-architecture"
+
+
+def test_committed_packet_has_all_four_files() -> None:
+    for name in readback.PACKET_FILES:
+        assert (PACKET / name).is_file(), name
+    assert (PACKET / "readback-receipt.json").is_file()

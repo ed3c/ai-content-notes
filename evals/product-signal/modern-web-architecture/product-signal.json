@@ -21,7 +21,9 @@
   "signals": [
     {
       "authority_ceiling": "SOURCE_EVIDENCE_ONLY",
-      "claim_ids": ["claim:architecture-pattern"],
+      "claim_ids": [
+        "claim:architecture-pattern"
+      ],
       "open_gaps": [],
       "signal_class": "SOURCE_PATTERN",
       "signal_id": "signal:architecture-pattern",
@@ -29,7 +31,10 @@
     },
     {
       "authority_ceiling": "SOURCE_EVIDENCE_ONLY",
-      "claim_ids": ["claim:actual-company-internals-unknown", "claim:flair-internal-mapping"],
+      "claim_ids": [
+        "claim:actual-company-internals-unknown",
+        "claim:flair-internal-mapping"
+      ],
       "open_gaps": [
         "independent primary evidence of the named product implementation",
         "official technical documentation, source code, or independently observed runtime behavior",
@@ -41,7 +46,10 @@
     },
     {
       "authority_ceiling": "SOURCE_EVIDENCE_ONLY",
-      "claim_ids": ["claim:lgpl-row", "claim:permissive-stack-claim"],
+      "claim_ids": [
+        "claim:lgpl-row",
+        "claim:permissive-stack-claim"
+      ],
       "open_gaps": [
         "exact selected dependency graph and license expressions",
         "independent package and transitive-license review"
@@ -57,6 +65,10 @@
     "source_digest": "sha256:7350f0e3d29ace70a6c92343e5501b34763f452e057d9b8acef3829f57230ef6",
     "source_id": "pdf:modern-web-architecture-2026-08-18"
   },
-  "unknown_claims": ["claim:actual-company-internals-unknown"],
-  "unresolved_contradictions": ["contradiction:all-permissive-vs-lgpl-option"]
+  "unknown_claims": [
+    "claim:actual-company-internals-unknown"
+  ],
+  "unresolved_contradictions": [
+    "contradiction:all-permissive-vs-lgpl-option"
+  ]
 }
