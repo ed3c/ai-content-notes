@@ -176,6 +176,76 @@
       ],
       "failures": [],
       "status": "PASS"
+    },
+    "SV-15-evidence-locator-integrity": {
+      "evidence": [
+        "evidence-ledger.json",
+        "artifact:cvrngaqzq3y:normalization-report",
+        "artifact:cvrngaqzq3y:source-manifest",
+        "youtube:cvrngaqzq3y:youtube-transcript-ai"
+      ],
+      "failures": [],
+      "status": "PASS"
+    },
+    "SV-16-evidence-verbatim-exactness": {
+      "evidence": [
+        "EV-cvrngaqzq3y-auto-research-risk",
+        "EV-cvrngaqzq3y-fit-concept",
+        "EV-cvrngaqzq3y-harness-ceiling",
+        "EV-cvrngaqzq3y-memory-not-append-only",
+        "EV-cvrngaqzq3y-model-cost-path",
+        "EV-cvrngaqzq3y-normalization-report",
+        "EV-cvrngaqzq3y-observability-learning",
+        "EV-cvrngaqzq3y-open-model-cost-claim",
+        "EV-cvrngaqzq3y-sandwich",
+        "EV-cvrngaqzq3y-source-manifest",
+        "EV-cvrngaqzq3y-stage-collect",
+        "EV-cvrngaqzq3y-stage-mine-experiment",
+        "EV-cvrngaqzq3y-stage-ship",
+        "EV-cvrngaqzq3y-three-state-planes",
+        "EV-cvrngaqzq3y-trace-questions",
+        "EV-cvrngaqzq3y-trace-scale"
+      ],
+      "failures": [],
+      "status": "PASS"
+    },
+    "SV-17-no-orphan-evidence": {
+      "evidence": [
+        "EV-cvrngaqzq3y-auto-research-risk",
+        "EV-cvrngaqzq3y-fit-concept",
+        "EV-cvrngaqzq3y-harness-ceiling",
+        "EV-cvrngaqzq3y-memory-not-append-only",
+        "EV-cvrngaqzq3y-model-cost-path",
+        "EV-cvrngaqzq3y-normalization-report",
+        "EV-cvrngaqzq3y-observability-learning",
+        "EV-cvrngaqzq3y-open-model-cost-claim",
+        "EV-cvrngaqzq3y-sandwich",
+        "EV-cvrngaqzq3y-source-manifest",
+        "EV-cvrngaqzq3y-stage-collect",
+        "EV-cvrngaqzq3y-stage-mine-experiment",
+        "EV-cvrngaqzq3y-stage-ship",
+        "EV-cvrngaqzq3y-three-state-planes",
+        "EV-cvrngaqzq3y-trace-questions",
+        "EV-cvrngaqzq3y-trace-scale"
+      ],
+      "failures": [],
+      "status": "PASS"
+    },
+    "SV-18-high-signal-coverage": {
+      "evidence": [
+        "coverage-manifest.json",
+        "fixture.json"
+      ],
+      "failures": [],
+      "status": "PASS"
+    },
+    "SV-19-injection-safety": {
+      "evidence": [
+        "sources/CvRngaQZQ3Y/source-manifest.json",
+        "youtube:cvrngaqzq3y:youtube-transcript-ai"
+      ],
+      "failures": [],
+      "status": "PASS"
     }
   },
   "content_id": "CvRngaQZQ3Y",
@@ -269,16 +339,6 @@
   },
   "overall_status": "PASS_WITH_DEFERRED_VISUAL_AND_PARTIAL_QG",
   "qg_not_run": [
-    "QG-02",
-    "QG-03",
-    "QG-04",
-    "QG-05",
-    "QG-06",
-    "QG-13",
-    "QG-14",
-    "QG-15",
-    "QG-17",
-    "QG-19",
     "QG-22",
     "QG-24"
   ],
@@ -295,6 +355,38 @@
         "C-continual-learning-state-planes",
         "V-semantic-yield-replay",
         "K-visual-identifier-evidence-gap"
+      ],
+      "failures": [],
+      "status": "PASS"
+    },
+    "QG-02": {
+      "evidence": [
+        "EV-cvrngaqzq3y-auto-research-risk",
+        "EV-cvrngaqzq3y-fit-concept",
+        "EV-cvrngaqzq3y-harness-ceiling",
+        "EV-cvrngaqzq3y-memory-not-append-only",
+        "EV-cvrngaqzq3y-model-cost-path",
+        "EV-cvrngaqzq3y-normalization-report",
+        "EV-cvrngaqzq3y-observability-learning",
+        "EV-cvrngaqzq3y-open-model-cost-claim",
+        "EV-cvrngaqzq3y-sandwich",
+        "EV-cvrngaqzq3y-source-manifest",
+        "EV-cvrngaqzq3y-stage-collect",
+        "EV-cvrngaqzq3y-stage-mine-experiment",
+        "EV-cvrngaqzq3y-stage-ship",
+        "EV-cvrngaqzq3y-three-state-planes",
+        "EV-cvrngaqzq3y-trace-questions",
+        "EV-cvrngaqzq3y-trace-scale"
+      ],
+      "failures": [],
+      "status": "PASS"
+    },
+    "QG-03": {
+      "evidence": [
+        "evidence-ledger.json",
+        "artifact:cvrngaqzq3y:normalization-report",
+        "artifact:cvrngaqzq3y:source-manifest",
+        "youtube:cvrngaqzq3y:youtube-transcript-ai"
       ],
       "failures": [],
       "status": "PASS"
@@ -374,6 +466,22 @@
       "failures": [],
       "status": "PASS"
     },
+    "QG-13": {
+      "evidence": [
+        "coverage-manifest.json",
+        "fixture.json"
+      ],
+      "failures": [],
+      "status": "PASS"
+    },
+    "QG-15": {
+      "evidence": [
+        "sources/CvRngaQZQ3Y/source-manifest.json",
+        "youtube:cvrngaqzq3y:youtube-transcript-ai"
+      ],
+      "failures": [],
+      "status": "PASS"
+    },
     "QG-16": {
       "evidence": [
         "evals/semantic-yield/CvRngaQZQ3Y/card-manifest.json",
@@ -388,6 +496,28 @@
         "evals/semantic-yield/CvRngaQZQ3Y/cards/C-continual-learning-state-planes.md",
         "evals/semantic-yield/CvRngaQZQ3Y/cards/V-semantic-yield-replay.md",
         "evals/semantic-yield/CvRngaQZQ3Y/cards/K-visual-identifier-evidence-gap.md"
+      ],
+      "failures": [],
+      "status": "PASS"
+    },
+    "QG-17": {
+      "evidence": [
+        "EV-cvrngaqzq3y-auto-research-risk",
+        "EV-cvrngaqzq3y-fit-concept",
+        "EV-cvrngaqzq3y-harness-ceiling",
+        "EV-cvrngaqzq3y-memory-not-append-only",
+        "EV-cvrngaqzq3y-model-cost-path",
+        "EV-cvrngaqzq3y-normalization-report",
+        "EV-cvrngaqzq3y-observability-learning",
+        "EV-cvrngaqzq3y-open-model-cost-claim",
+        "EV-cvrngaqzq3y-sandwich",
+        "EV-cvrngaqzq3y-source-manifest",
+        "EV-cvrngaqzq3y-stage-collect",
+        "EV-cvrngaqzq3y-stage-mine-experiment",
+        "EV-cvrngaqzq3y-stage-ship",
+        "EV-cvrngaqzq3y-three-state-planes",
+        "EV-cvrngaqzq3y-trace-questions",
+        "EV-cvrngaqzq3y-trace-scale"
       ],
       "failures": [],
       "status": "PASS"

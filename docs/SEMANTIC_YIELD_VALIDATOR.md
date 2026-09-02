@@ -17,42 +17,96 @@ The validator currently checks:
 9. Cross-card core-proposition redundancy.
 10. Source-shaped first-batch coverage rather than a fixed series counter.
 11. Series-specific payload fields and no absolute overreach.
+12. Evidence-ledger anchor resolution, verbatim exactness, orphan evidence,
+    high-signal coverage disposition and source-instruction safety, all against
+    the subject retained under `sources/<content-id>/`.
+
+## The evidence ledger
+
+`evals/semantic-yield/<content-id>/evidence-ledger.json` is required. Without
+it the validator refuses to produce a report at all, because five of the gates
+below cannot be evidenced and a silently smaller subset is the failure this
+validator exists to prevent.
+
+Its entries reuse `schemas/card-registry.schema.json#/$defs/evidenceEntry`
+rather than defining a second evidence shape. Its envelope adds what the entry
+shape cannot carry: per-source **anchor kind**, retained path and pinned digest.
+
+```text
+TRANSCRIPT_TIMESTAMP  locator  timestamp:HH:MM:SS..HH:MM:SS
+                      resolves to a run of retained cues; the verbatim must
+                      occur inside that run
+ARTIFACT_STATE        locator  json-pointer:/path/into/the/artifact
+                      resolves inside the named retained artifact; the verbatim
+                      must equal the value at that pointer
+```
+
+That distinction is the whole reason QG-03 was previously deferred: the `K`
+card's two anchors cite the source manifest and the normalization report, and
+neither has a timestamp. A locator rule without a declared anchor kind cannot
+tell a missing locator from a legitimate artifact anchor, so it would fail
+correct cards.
+
+The ledger is bound to bytes in three places, and a mismatch in any of them is
+a FAIL rather than a skipped check:
+
+- the declared `sha256` against the bytes actually on disk;
+- the same digest against `sources/<content-id>/source-manifest.json`;
+- `declared_source_id` against `card-manifest.json`'s `source.source_id`, so a
+  ledger cannot be bound to a transport the cards were not compiled from.
 
 ## Current QG mapping
 
-The validator provides automated evidence for:
+The validator provides automated evidence for seventeen gates:
 
 ```text
-QG-01 QG-07 QG-08 QG-09 QG-10 QG-11
-QG-12 QG-16 QG-18 QG-20 QG-21 QG-23
+QG-01 QG-02 QG-03 QG-07 QG-08 QG-09
+QG-10 QG-11 QG-12 QG-13 QG-15 QG-16
+QG-17 QG-18 QG-20 QG-21 QG-23
 ```
 
-All other QG states remain `NOT_RUN` for this validator. The report must never be used to claim that QG-01 through QG-24 all passed.
+Five are `HUMAN_ADMITTED_QG_IDS` in the validator, and two remain
+`qg_not_run`. The three sets partition QG-01…QG-24 with no gate in two of
+them — asserted once against the validator's constants
+(`tests/test_semantic_yield_validator.py`), since which five gates are
+human-admitted does not vary between subjects and so is not a per-report
+field. The report must never be used to claim that QG-01 through QG-24 all
+passed.
 
-### Why the remaining twelve are not automated
+### What each newly automated gate actually proves
 
-Each was assessed against the artifacts this repository actually commits, not
-against how hard the rule sounds. The blocker is recorded so the question is
-not re-opened from scratch.
+| Gate | Mechanism | Deliberately not proven |
+|---|---|---|
+| QG-02 Exactness | every ledger `verbatim` occurs byte-exactly at its own locator, after whitespace collapse | numbers a card states outside a quoted anchor |
+| QG-03 Locator Integrity | every locator resolves in the retained bytes, and every card-side timestamp gloss equals the ledger locator | whether the anchor supports the claim it is attached to |
+| QG-13 Coverage | the coverage manifest enumerates exactly the fixture's high-signal units, and every card and evidence id it names exists | whether that enumeration is complete against the source |
+| QG-15 Injection Safety | source instructions detected in the retained subject must be declared in the retention manifest and must not be repeated by a card | instruction shapes the pattern set does not recognize |
+| QG-17 No Orphan Evidence | every entry is cited by at least one card, and `supports` matches the citing set exactly | whether the citation is load-bearing for the claim |
 
-| Gate | Blocker |
+`QG-15` passes vacuously on a subject containing no injection, so the negative
+control plants one in a copied subject, re-pins every digest that binds it, and
+requires the gate to fire anyway.
+
+### Human-admitted judgement gates
+
+| Gate | Why a person owns it |
 |---|---|
-| QG-02 Exactness | needs the subject source to diff numbers, dates, versions and quotations against. The normalized transcript is deliberately not committed. |
-| QG-03 Locator Integrity | needs an evidence ledger. A `[[EV-…]]` reference may legitimately carry a timestamp span **or** point at artifact state — the `K` card's two anchors cite the source manifest and the normalization report, neither of which has a timestamp. Without a ledger declaring each anchor's kind, a locator rule cannot tell a missing locator from an artifact anchor. |
 | QG-04 Atomicity | "one primary case per card" is a semantic judgement. |
 | QG-05 Anti-Fragmentation | needs a judgement about whether a split card can produce value alone. Canonical-key uniqueness is a necessary condition only, and is already covered by QG-07. |
 | QG-06 Entity Fission | semantic judgement about entity identity. |
-| QG-13 Coverage | needs the source to enumerate high-signal items. |
 | QG-14 No Hidden Compression | semantic judgement. |
-| QG-15 Injection Safety | needs the source to compare instruction text against. |
-| QG-17 No Orphan Evidence | needs an evidence ledger; within a batch every reference is trivially used. |
 | QG-19 Insight Delta | semantic judgement about whether a card restates the source. |
-| QG-22 Baseline Guard | needs frozen v6.6 outputs and predeclared thresholds. |
-| QG-24 Idempotency | needs a re-run of the compile against the same source, which needs a model invocation. |
 
-Seven of the twelve unblock the moment an authorized artifact root and an
-evidence ledger exist. Five (QG-04, QG-05, QG-06, QG-14, QG-19) are judgement
-gates and are expected to stay human or model-assisted with human admission.
+`HUMAN_ADMITTED_QG_IDS` is a distinct constant from the report's `qg_not_run`
+field: a gate a person owns and a gate nobody has run are different states,
+and collapsing them was what made the previous report unreadable.
+
+### Still not run
+
+| Gate | Blocker |
+|---|---|
+| QG-22 Baseline Guard | needs frozen v6.6 outputs and predeclared thresholds. |
+| QG-24 Idempotency | needs a re-run of the compile against the same source, which needs a model invocation — the Codex CLI lane in `ed3c/ai-content-notes#40`. |
 
 ## Visual boundary
 

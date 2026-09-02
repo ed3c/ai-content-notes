@@ -41,6 +41,7 @@ Agent autonomy increases
 
 - [Knowledge Views](knowledge-views.md)
 - [Card manifest](card-manifest.json)
+- [Evidence ledger](evidence-ledger.json)
 - [Deterministic semantic validator report](semantic-validator-report.json)
 - [Semantic Yield result](semantic-yield.result.json)
 - [Run state](run-state.md)
@@ -50,7 +51,7 @@ Agent autonomy increases
 ```text
 validator: semantic-yield-validator@1
 overall: PASS_WITH_DEFERRED_VISUAL_AND_PARTIAL_QG
-deterministic checks: 11 PASS + 1 DEFERRED
+deterministic checks: 16 PASS + 1 DEFERRED
 HG-01: PASS
 HG-02: PASS
 HG-03: DEFERRED
@@ -64,17 +65,22 @@ The validator runs independently from the model that produced the cards. It veri
 The following v7.1 Quality Gates are currently supported by deterministic evidence:
 
 ```text
-QG-07  Stable Identity
-QG-08  Typed Links
-QG-10  Test Honesty
-QG-11  Source Independence
-QG-12  Actionability
-QG-16  Version Consistency
-QG-18  Narrative / Series Yield
-QG-20  Reader Efficiency
-QG-21  Batch Balance
-QG-23  No Absolute Overreach
+QG-01  Evidence Coverage      QG-12  Actionability
+QG-02  Exactness              QG-13  Coverage
+QG-03  Locator Integrity      QG-15  Injection Safety
+QG-07  Stable Identity        QG-16  Version Consistency
+QG-08  Typed Links            QG-17  No Orphan Evidence
+QG-09  Conflict Preservation  QG-18  Narrative / Series Yield
+QG-10  Test Honesty           QG-20  Reader Efficiency
+QG-11  Source Independence    QG-21  Batch Balance
+                              QG-23  No Absolute Overreach
 ```
+
+`QG-02`, `QG-03`, `QG-13`, `QG-15` and `QG-17` are evidenced against
+[`evidence-ledger.json`](evidence-ledger.json) and the subject retained under
+`sources/CvRngaQZQ3Y/`. `QG-04`, `QG-05`, `QG-06`, `QG-14` and `QG-19` are
+`HUMAN_ADMITTED_QG_IDS` in the validator - a fixed property of those five
+gates, not a per-report field; `QG-22` and `QG-24` remain `qg_not_run`.
 
 This is a partial external-QG implementation. It does not turn the remaining QG states into PASS.
 
@@ -86,6 +92,19 @@ python tools/validate_semantic_yield_artifacts.py \
   --output evals/semantic-yield/CvRngaQZQ3Y/semantic-validator-report.json \
   --created-at 2026-08-14T01:15:00Z \
   --check
+```
+
+## Regenerate the evidence ledger
+
+`evidence-ledger.json` is generated, not hand-edited. Its 16 entries are
+re-derived from `sources/CvRngaQZQ3Y/` on every run and every field is
+asserted against retained bytes before the file is written.
+
+```bash
+python tools/materialize_evidence_ledger.py --check   # verify only, exit 1 on drift
+python tools/materialize_evidence_ledger.py            # regenerate after a
+                                                          # table entry or a
+                                                          # retained source changes
 ```
 
 ## Contract

@@ -30,7 +30,8 @@ The complete card list is maintained in [`../evals/semantic-yield/README.md`](..
 | First v7.1 batch | `evals/live/CvRngaQZQ3Y/` | `RETAINED_BASELINE` | Pre-Semantic-Yield 12-card output. |
 | Semantic Yield cards | `evals/semantic-yield/CvRngaQZQ3Y/cards/` | `MATERIALIZED` | Current 10-card source-driven batch. |
 | Knowledge projections | `knowledge-views.md` in the batch directory | `MATERIALIZED` | Grounded host projections, not original-slide reconstructions. |
-| Deterministic validator | `tools/validate_semantic_yield_artifacts.py`, report/schema/tests | `MATERIALIZED_PARTIAL_QG` | Validates persisted artifacts and ten QGs; cannot validate missing visual/source evidence. |
+| Deterministic validator | `tools/validate_semantic_yield_artifacts.py`, report/schema/tests | `MATERIALIZED_PARTIAL_QG` | Validates persisted artifacts, the retained subject and its evidence ledger, and 17 QGs; cannot validate the A/B baseline or a re-run compile. |
+| Evidence ledger | `evals/semantic-yield/CvRngaQZQ3Y/evidence-ledger.json` | `MATERIALIZED` | 16 anchors bound to retained bytes by digest; declares anchor kind so an artifact anchor is not read as a missing locator. |
 | Live provider compiler | provider-neutral invocation + raw-response receipt | `NOT_MATERIALIZED` | A prompt/model display name is not a reproducible run identity. |
 | Visual evidence runtime | authorized frame/slide extraction, bbox/OCR/chart topology | `NOT_MATERIALIZED_FOR_THIS_SOURCE` | No authorized frame or creator-slide artifact exists for this run. |
 | Source-dependency resolver | independent-origin graph across articles/reports/releases | `NOT_MATERIALIZED` | Current run has one explicit dependency key only. |
@@ -52,28 +53,37 @@ HG-05: PASS
 HG-06: PASS
 ```
 
-Automated QG subset:
+Automated QG subset (17 of 24):
 
 ```text
-QG-07 Stable Identity
-QG-08 Typed Links
-QG-10 Test Honesty
-QG-11 Source Independence
-QG-12 Actionability
-QG-16 Version Consistency
-QG-18 Narrative / Series Yield
-QG-20 Reader Efficiency
-QG-21 Batch Balance
-QG-23 No Absolute Overreach
+QG-01 Evidence Coverage      QG-12 Actionability
+QG-02 Exactness              QG-13 Coverage
+QG-03 Locator Integrity      QG-15 Injection Safety
+QG-07 Stable Identity        QG-16 Version Consistency
+QG-08 Typed Links            QG-17 No Orphan Evidence
+QG-09 Conflict Preservation  QG-18 Narrative / Series Yield
+QG-10 Test Honesty           QG-20 Reader Efficiency
+QG-11 Source Independence    QG-21 Batch Balance
+                             QG-23 No Absolute Overreach
 ```
 
-All other QG lanes remain `NOT_RUN` for the current deterministic validator.
+`HUMAN_ADMITTED_QG_IDS` in the validator — judgement gates a person owns,
+which is a different state from a gate nobody has run. This is a fixed
+property of these five gates' taxonomy, not a per-report field:
+
+```text
+QG-04 Atomicity   QG-05 Anti-Fragmentation   QG-06 Entity Fission
+QG-14 No Hidden Compression                  QG-19 Insight Delta
+```
+
+Still `qg_not_run`: `QG-22` needs frozen v6.6 outputs and predeclared
+thresholds, `QG-24` needs a model invocation to re-run the compile.
 
 ## 4. Active blockers｜尚未解除
 
 1. **Authorized visual source** — no frame/slide artifact with rights, timestamp, digest and reviewed annotation.
 2. **Identifier review** — speaker, product, model version, benchmark and acronym spellings are not all canonicalized.
-3. **Remaining QG evidence** — QG-01/02/03/04/05/06/09/13/14/15/17/19/22/24 need independent artifacts.
+3. **Remaining QG evidence** — QG-22 needs a frozen v6.6 baseline with predeclared thresholds; QG-24 needs the provider invocation lane (#40). QG-04/05/06/14/19 are human-admitted judgement, not a missing artifact.
 4. **Provider/model run receipt** — no exact provider API model ID, sampling contract and raw-response digest for the original compilation.
 5. **Generic compiler host** — no provider-neutral runtime that produces and persists `CARD_PATCH`, `ASSERTION_REPORT` and `NEXT_STATE` from arbitrary source packs.
 6. **Transactional persistence** — Google Doc, sidecar and Sheet updates are not one verified transaction.
