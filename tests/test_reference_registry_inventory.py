@@ -6,7 +6,10 @@ The registry this verifies is #56's artifact:
 
 It is not on `main`. #56 was closed by a receipt comment naming a head on a
 still-draft chain, and `tools/closure_audit.py` already reports that closure as
-`ABSENT`. So this module does two separable things, and keeping them separable
+`ABSENT`. #96 is the open successor that will actually materialize this path
+(consumption-scoped, no Drive access) and reconcile the seven false closures;
+this module verifies whatever lands there, under whichever issue number gets
+it there. So this module does two separable things, and keeping them separable
 is the point:
 
 1. it states the laws as predicates over a registry document and proves each
@@ -19,12 +22,49 @@ A test that only says "the file is missing" is a tautology. A test that only
 runs on synthetic data never touches the artifact. This does both, and the
 second is what makes the first arm itself when the draft chain lands.
 
-Two of #57's five laws have a half this repository cannot reach, because the
-public index lives in `ed3c/kotlin-auto-webview`. What is enforceable here is
-the private side of each: that the projection this repository would hand to a
-public index carries no locator, and that every `REF-*` id it publishes
+Two of the six laws below have a half this repository cannot reach, because
+the public index lives in `ed3c/kotlin-auto-webview`. What is enforceable here
+is the private side of each: that the projection this repository would hand to
+a public index carries no locator, and that every `REF-*` id it publishes
 resolves to exactly one record here. The KAW-side half stays uncovered and is
 named as such rather than approximated.
+
+## Reconciled with #96 (contract conflict, resolved 2026-09-03)
+
+#96 named a live conflict between its own producer contract and this module's
+first draft: a `visibility` field in the public projection's field set, and
+`ADMITTED` versus `RIGHTS_ADMITTED` as the strong-claim state name. #96 is the
+producer of the artifact this module verifies, and its rationale is grounded
+in a measured defect (the closed chain's `reference-index.private.json` had 6
+of 19 rows with `visibility` wrong in both directions - PRIVATE claimed for
+repositories the provider reports PUBLIC, and the reverse). This module now
+conforms to #96's contract rather than the other way round:
+
+- `PUBLIC_PROJECTION_FIELDS` carries no `visibility` - #96 requirement 2,
+  "Visibility is derived or absent. No hand-written `visibility` field.";
+- a new law, `law_no_persisted_visibility_field`, refuses a hand-written
+  `visibility` key anywhere in the document, not only in the public
+  projection - a committed JSON file cannot prove a value was derived at
+  read time rather than typed once and left to drift, so the only
+  mechanically checkable rule is that the persisted document carries no such
+  key at all, which is exactly the defect #96 measured;
+- the strong-claim state is `RIGHTS_ADMITTED`, and `STATE_CEILING` states all
+  six rungs #96's requirement 3 names (`URL_INDEXED != IDENTITY_RESOLVED !=
+  REVISION_BOUND != READ_BACK_VERIFIED != RIGHTS_ADMITTED != CLAIM_VERIFIED`),
+  so this module recognizes and enforces all six rather than refusing the
+  four #96 owns and this module never previously named.
+
+This module does not re-derive `tools/verify_reference_traceability.py` (400
+lines, `refs/pull/72/head` at `40a77ed1`) even though #96 requirement 5 asks
+for exactly that: #96 already claims that re-derivation as its own atom's
+work. Doing it here too would be a third verifier for one registry, which is
+the failure this reconciliation is trying to reduce, not add to. This module's
+five original laws plus the visibility law are a different, narrower
+denominator (the private inventory's own hard laws) than that graph's repo-
+wide URL traceability; a later reviewer should decide whether any of the two
+denominators' overlapping checks (secret-shaped query parameters, one
+`external_id` under two `REF-*` ids) collapse to a single owner once both are
+landed. That decision is not this module's to make.
 """
 
 from __future__ import annotations
@@ -43,16 +83,35 @@ from closure_audit import ABSENT, DEFAULT_LEDGER, audit, load_ledger  # noqa: E4
 REGISTRY_ISSUE = 56
 REGISTRY_SCHEMA = "reference-index.private@1"
 
+# The full state ceiling ed3c/ai-content-notes#96 names (requirement 3) and
+# says was correct in the closed chain. The closed chain only ever emitted
+# URL_INDEXED, so URL_INDEXED is the one name this module inherits; the other
+# five are stated here for the first time against a landed subject.
+STATE_CEILING = (
+    "URL_INDEXED",
+    "IDENTITY_RESOLVED",
+    "REVISION_BOUND",
+    "READ_BACK_VERIFIED",
+    "RIGHTS_ADMITTED",
+    "CLAIM_VERIFIED",
+)
 # The state an inventory starts in. Anything stronger is a claim about bytes
-# that were read back, so it needs an immutable revision and a digest.
-URL_INDEXED = "URL_INDEXED"
-IMMUTABLE_STATES = {"READ_BACK_VERIFIED", "ADMITTED"}
+# that were read back, so it needs an immutable revision and a digest - this
+# module has no grounds narrower than "stronger than URL_INDEXED" for any of
+# the five, since only IMMUTABLE_STATES' two original members have a fixture
+# and a planted-defect control; see test_identity_resolved_without_a_digest_fails
+# for the first control on a state this module previously refused outright.
+URL_INDEXED = STATE_CEILING[0]
+IMMUTABLE_STATES = set(STATE_CEILING[1:])
 UNKNOWN = "UNKNOWN"
 MUTABLE_REVISIONS = {UNKNOWN, "main_MUTABLE", "HEAD"}
 
-# Fields a public index may receive. A locator in this set is the leak the
-# private plane exists to prevent.
-PUBLIC_PROJECTION_FIELDS = ("id", "role", "visibility", "state")
+# Fields a public index may receive: id, role and state - #96 requirement 1
+# ("the public row carries the id, the role and the state, never the
+# locator") and requirement 2 (no visibility field, hand-written or
+# otherwise; see law_no_persisted_visibility_field). A locator reaching this
+# set is the leak the private plane exists to prevent.
+PUBLIC_PROJECTION_FIELDS = ("id", "role", "state")
 LOCATOR_FIELDS = ("url", "external_id")
 # Below this, a locator value is short enough to appear inside an enum by
 # accident, so containment stops being evidence of a leak. Real Drive file IDs
@@ -82,13 +141,31 @@ REF_ID = re.compile(r"^REF-[0-9]{4}$")
 
 
 # --------------------------------------------------------------------------
-# The five laws, as predicates over a registry document.
+# The six laws, as predicates over a registry document.
 # --------------------------------------------------------------------------
 
 
 def public_projection(record: dict) -> dict:
     """What a public index may receive for one private record."""
     return {field: record[field] for field in PUBLIC_PROJECTION_FIELDS if field in record}
+
+
+def law_no_persisted_visibility_field(registry: dict) -> list[str]:
+    """Visibility is derived or absent, never a hand-written field (#96 #2).
+
+    A static JSON file cannot attest that a value was computed at read time
+    rather than typed once and left to drift - #96 measured exactly that
+    drift in the closed chain (6 of 19 rows wrong, in both directions). The
+    only law this repository can mechanically enforce is narrower and
+    stronger: the persisted document carries no `visibility` key at all. A
+    tool that wants to show visibility computes it from the provider when it
+    reads the registry; it does not commit the answer to `main`.
+    """
+    return [
+        f"{record.get('id')}: hand-written visibility field {record['visibility']!r}"
+        for record in registry["references"]
+        if "visibility" in record
+    ]
 
 
 def law_no_locator_in_public_projection(registry: dict) -> list[str]:
@@ -143,7 +220,13 @@ def resolve(registry: dict, ref_id: str) -> dict | object:
 
 
 def law_inventory_stays_url_indexed(registry: dict) -> list[str]:
-    """`URL_INDEXED` until an immutable revision and a digest exist."""
+    """`URL_INDEXED` until an immutable revision and a digest exist.
+
+    Applies to all five states above `URL_INDEXED` on `STATE_CEILING`, not
+    only the two (`READ_BACK_VERIFIED`, `RIGHTS_ADMITTED`) this module has a
+    fixture for - any of the five makes a claim stronger than "a URL was
+    found", so none of them should be reachable on a mutable pointer either.
+    """
     findings = []
     for record in registry["references"]:
         state = record.get("state")
@@ -197,6 +280,7 @@ def law_duplicate_titles_need_distinct_identity(registry: dict) -> list[str]:
 
 
 LAWS = (
+    law_no_persisted_visibility_field,
     law_no_locator_in_public_projection,
     law_every_public_ref_resolves_here,
     law_inventory_stays_url_indexed,
@@ -224,7 +308,6 @@ def lawful_registry() -> dict:
                 "url": "https://docs.google.com/document/d/EXAMPLE-FILE-A/edit?usp=drivesdk",
                 "external_id": "EXAMPLE-FILE-A",
                 "provider": "GOOGLE_DRIVE",
-                "visibility": "PRIVATE_LOCATOR",
                 "state": URL_INDEXED,
                 "revision": UNKNOWN,
                 "digest": UNKNOWN,
@@ -236,7 +319,6 @@ def lawful_registry() -> dict:
                 "url": "https://docs.google.com/document/d/EXAMPLE-FILE-B/edit?usp=drivesdk",
                 "external_id": "EXAMPLE-FILE-B",
                 "provider": "GOOGLE_DRIVE",
-                "visibility": "PRIVATE_LOCATOR",
                 "state": URL_INDEXED,
                 "revision": UNKNOWN,
                 "digest": UNKNOWN,
@@ -248,7 +330,6 @@ def lawful_registry() -> dict:
                 "url": "https://github.com/ed3c/example-private-repo",
                 "external_id": "0000000000",
                 "provider": "GITHUB",
-                "visibility": "PRIVATE",
                 "state": URL_INDEXED,
                 "revision": "main_MUTABLE",
                 "digest": UNKNOWN,
@@ -276,6 +357,18 @@ def test_the_synthetic_baseline_satisfies_every_law() -> None:
     titles = [record["title"] for record in registry["references"]]
     assert len(titles) != len(set(titles))
     assert violations(registry) == []
+
+
+def test_a_hand_written_visibility_field_fails() -> None:
+    """#96 requirement 2: no hand-written `visibility` field, public or not.
+
+    Planted on the private side (not through the public projection) to prove
+    the law reads the source record, not the projected view - the exact
+    field #96 measured wrong in both directions in the closed chain.
+    """
+    findings = law_no_persisted_visibility_field(mutated(visibility="PRIVATE"))
+    assert any("hand-written visibility field 'PRIVATE'" in item for item in findings)
+    assert law_no_persisted_visibility_field(lawful_registry()) == []
 
 
 def test_a_file_id_smuggled_through_a_public_field_fails() -> None:
@@ -340,6 +433,32 @@ def test_an_immutable_revision_with_a_digest_is_allowed_to_leave_url_indexed() -
         )
         == []
     )
+
+
+def test_identity_resolved_without_a_digest_fails() -> None:
+    """#96's STATE_CEILING names four rungs this module had no fixture for.
+
+    Before reconciliation those four names (including `IDENTITY_RESOLVED`)
+    fell into `unknown state`, so this module would have refused #96's own
+    registry the moment it used one - control-inverted from what a registry
+    verifier is for. This proves the broadened `IMMUTABLE_STATES` both
+    recognizes the name and still enforces the immutable-revision-and-digest
+    requirement on it, the same as the two previously-named states.
+    """
+    findings = law_inventory_stays_url_indexed(
+        mutated(state="IDENTITY_RESOLVED", revision="rev-3", digest=UNKNOWN)
+    )
+    assert any("without a digest" in item for item in findings)
+    assert not any("unknown state" in item for item in findings)
+
+
+def test_every_state_ceiling_rung_is_a_recognized_state() -> None:
+    """No name on #96's ceiling can fall through to `unknown state`."""
+    for state in STATE_CEILING[1:]:
+        findings = law_inventory_stays_url_indexed(
+            mutated(state=state, revision="rev-3", digest="sha256:" + "0" * 64)
+        )
+        assert findings == [], (state, findings)
 
 
 def test_a_session_bearing_url_fails() -> None:
