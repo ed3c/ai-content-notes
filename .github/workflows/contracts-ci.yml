@@ -76,6 +76,22 @@ jobs:
             --check
       - name: Verify every retained subject artifact is bound
         run: python tools/verify_source_retention.py
+      - name: Verify persisted Stage 3 product-signal packet matches compiler output
+        run: |
+          python tools/product_signal.py \
+            --claims evals/product-signal/modern-web-architecture/claims.jsonl \
+            --evidence evals/product-signal/modern-web-architecture/evidence-ledger.json \
+            --contradictions evals/product-signal/modern-web-architecture/contradictions.json \
+            --source-registry evals/source-intake/modern-web-architecture/source-registry.json \
+            --output evals/product-signal/modern-web-architecture/product-signal.json \
+            --check
+      - name: Verify persisted Stage 3 read-back receipt matches recomputed identity
+        run: |
+          python tools/product_signal_readback.py \
+            --packet-dir evals/product-signal/modern-web-architecture \
+            --source-registry evals/source-intake/modern-web-architecture/source-registry.json \
+            --output evals/product-signal/modern-web-architecture/readback-receipt.json \
+            --check
       - name: Verify persisted semantic-yield validator report
         run: |
           python tools/validate_semantic_yield_artifacts.py \
