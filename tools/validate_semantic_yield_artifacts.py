@@ -324,9 +324,18 @@ def load_evidence_ledger(target: Path) -> dict[str, Any]:
     return ledger
 
 
-def entry_schema(root: Path) -> dict[str, Any]:
-    """The ledger reuses the registry's evidenceEntry rather than redefining it."""
-    registry = load_json(root / "schemas" / "card-registry.schema.json")
+def entry_schema() -> dict[str, Any]:
+    """The ledger reuses the registry's evidenceEntry rather than redefining it.
+
+    Self-located from this file's own path rather than the caller-supplied
+    `root`: the schema defines this validator's own contract, not data about
+    the subject being validated, so it does not vary with which target a
+    caller points `--root` at. `root` can be a synthetic fixture copy that
+    carries no `schemas/` directory at all (a real gap this module hit: a
+    fixture-builder that predates this schema dependency has no way to learn
+    about it), and this file always ships next to the real one.
+    """
+    registry = load_json(Path(__file__).resolve().parents[1] / "schemas" / "card-registry.schema.json")
     return dict(registry["$defs"]["evidenceEntry"])
 
 
@@ -730,7 +739,7 @@ def build_report(
     retained_manifest_path = retained_root / "source-manifest.json"
     ledger = load_evidence_ledger(target)
     entries: dict[str, Any] = ledger.get("evidence", {})
-    entry_check = Draft202012Validator(entry_schema(root))
+    entry_check = Draft202012Validator(entry_schema())
 
     locator_failures: list[str] = []
     if ledger.get("entry_contract") != ENTRY_CONTRACT:
