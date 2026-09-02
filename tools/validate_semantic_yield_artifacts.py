@@ -131,19 +131,55 @@ ASSERTING_CLAIM_KINDS = {"SOURCE_STATEMENT", "OBSERVATION"}
 
 AUTOMATED_QG_IDS = (
     "QG-01",
+    "QG-02",
+    "QG-03",
     "QG-07",
     "QG-08",
     "QG-09",
     "QG-10",
     "QG-11",
     "QG-12",
+    "QG-13",
+    "QG-15",
     "QG-16",
+    "QG-17",
     "QG-18",
     "QG-20",
     "QG-21",
     "QG-23",
 )
+# Semantic judgement, not a missing artifact. Declared here so the report says
+# "a person owns this" instead of leaving it indistinguishable from a gate that
+# nobody has looked at yet.
+HUMAN_ADMITTED_QG_IDS = ("QG-04", "QG-05", "QG-06", "QG-14", "QG-19")
 ALL_QG_IDS = tuple(f"QG-{index:02d}" for index in range(1, 25))
+
+EVIDENCE_LEDGER_VERSION = "semantic-evidence-ledger@1"
+ENTRY_CONTRACT = "schemas/card-registry.schema.json#/$defs/evidenceEntry"
+TRANSCRIPT_ANCHOR = "TRANSCRIPT_TIMESTAMP"
+ARTIFACT_ANCHOR = "ARTIFACT_STATE"
+LOCATOR_TIMESTAMP = re.compile(r"^timestamp:(\d{2}:\d{2}:\d{2})\.\.(\d{2}:\d{2}:\d{2})$")
+LOCATOR_POINTER = re.compile(r"^json-pointer:(/\S*)$")
+# A card writes the span next to the anchor it cites. The ledger locator and the
+# card gloss must agree, or the reader is told a timestamp the ledger does not
+# stand behind.
+CARD_ANCHOR_SPAN = re.compile(
+    r"\[\[(?P<evidence_id>EV-[A-Za-z0-9._:-]+)\]\][^\n]*?"
+    r"`(?P<start>\d{2}:\d{2}:\d{2})[–-](?P<end>\d{2}:\d{2}:\d{2})`"
+)
+MAPPED_DISPOSITIONS = {"CARD_MAPPED", "PROJECTION_MAPPED"}
+COVERAGE_DISPOSITIONS = MAPPED_DISPOSITIONS | {"DEFERRED", "IGNORED"}
+# Source text that tries to address the compiler rather than describe the world.
+# Every hit has to be declared in the retained manifest, and no card may repeat
+# it as an instruction.
+INJECTION_PATTERNS = (
+    re.compile(r"ignore\s+(?:all\s+)?(?:the\s+)?(?:previous|prior|above)\s+instruction", re.IGNORECASE),
+    re.compile(r"disregard\s+(?:all\s+)?(?:the\s+)?(?:previous|prior|above)", re.IGNORECASE),
+    re.compile(r"you\s+are\s+now\s+", re.IGNORECASE),
+    re.compile(r"system\s+prompt", re.IGNORECASE),
+    re.compile(r"</?(?:system|instruction)s?>", re.IGNORECASE),
+    re.compile(r"\bnew\s+instructions?\s*:", re.IGNORECASE),
+)
 
 
 class ValidationError(RuntimeError):
@@ -226,6 +262,69 @@ def max_core_similarity(cards: list[dict[str, Any]]) -> float:
             similarity = len(left & right) / len(union) if union else 0.0
             maximum = max(maximum, similarity)
     return round(maximum, 6)
+
+
+def collapse(text: str) -> str:
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def sha256_of(path: Path) -> str:
+    return "sha256:" + hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+class Absent:
+    """A pointer that does not resolve, kept distinct from a resolved null."""
+
+    def __repr__(self) -> str:  # pragma: no cover - diagnostic only
+        return "ABSENT"
+
+
+ABSENT = Absent()
+
+
+def resolve_pointer(document: Any, pointer: str) -> Any:
+    """Resolve an RFC 6901 pointer, returning ABSENT rather than raising.
+
+    A missing anchor and an anchor whose value happens to be null are different
+    findings, so they must not collapse into the same return.
+    """
+    node = document
+    for token in pointer.lstrip("/").split("/"):
+        token = token.replace("~1", "/").replace("~0", "~")
+        if isinstance(node, list):
+            if not token.isdigit() or int(token) >= len(node):
+                return ABSENT
+            node = node[int(token)]
+        elif isinstance(node, dict):
+            if token not in node:
+                return ABSENT
+            node = node[token]
+        else:
+            return ABSENT
+    return node
+
+
+def load_evidence_ledger(target: Path) -> dict[str, Any]:
+    """Read the ledger, or fail closed.
+
+    Without it QG-03 cannot separate a missing locator from an artifact anchor,
+    which is the whole reason the gate was not automated before.
+    """
+    path = target / "evidence-ledger.json"
+    if not path.is_file():
+        raise ValidationError(f"missing evidence ledger: {path}")
+    ledger = load_json(path)
+    if ledger.get("schema_version") != EVIDENCE_LEDGER_VERSION:
+        raise ValidationError(
+            f"unexpected evidence ledger schema: {ledger.get('schema_version')!r}"
+        )
+    return ledger
+
+
+def entry_schema(root: Path) -> dict[str, Any]:
+    """The ledger reuses the registry's evidenceEntry rather than redefining it."""
+    registry = load_json(root / "schemas" / "card-registry.schema.json")
+    return dict(registry["$defs"]["evidenceEntry"])
 
 
 def validate_report(value: dict[str, Any], schema_path: Path) -> None:
@@ -613,6 +712,262 @@ def build_report(
         series_failures,
     )
 
+    # ------------------------------------------------------------------
+    # The retained subject and its evidence ledger.
+    #
+    # Everything below needs bytes that live outside the card batch: the
+    # subject retained under sources/<content-id>/ and a ledger that says, per
+    # anchor, what kind of thing the anchor points at. Without the second, a
+    # locator rule cannot tell a missing locator from a legitimate artifact
+    # anchor and would fail correct cards, which is why these gates were
+    # deferred rather than written badly.
+    # ------------------------------------------------------------------
+    content_id = str(manifest["video_id"])
+    retained_root = root / "sources" / content_id
+    retained_manifest_path = retained_root / "source-manifest.json"
+    ledger = load_evidence_ledger(target)
+    entries: dict[str, Any] = ledger.get("evidence", {})
+    entry_check = Draft202012Validator(entry_schema(root))
+
+    locator_failures: list[str] = []
+    if ledger.get("entry_contract") != ENTRY_CONTRACT:
+        locator_failures.append(f"ledger entry_contract is not {ENTRY_CONTRACT}")
+    if ledger.get("content_id") != content_id:
+        locator_failures.append("ledger content_id does not match the card manifest")
+    if not retained_manifest_path.is_file():
+        locator_failures.append(f"retained subject manifest missing: {retained_manifest_path}")
+        retained_manifest: dict[str, Any] = {"retained_artifacts": [], "sources": []}
+    else:
+        retained_manifest = load_json(retained_manifest_path)
+    retained_digests = {
+        f"sources/{content_id}/{item['path']}": item["sha256"]
+        for item in retained_manifest.get("retained_artifacts", [])
+    }
+
+    resolved_sources: dict[str, dict[str, Any]] = {}
+    for source_id, descriptor in sorted(ledger.get("sources", {}).items()):
+        declared_path = str(descriptor.get("path", ""))
+        source_path = root / declared_path
+        if not source_path.is_file():
+            locator_failures.append(f"{source_id}: retained source missing: {declared_path}")
+            continue
+        digest = sha256_of(source_path)
+        if digest != descriptor.get("sha256"):
+            locator_failures.append(
+                f"{source_id}: bytes at {declared_path} digest {digest} "
+                f"!= ledger {descriptor.get('sha256')}"
+            )
+            continue
+        retained = retained_digests.get(declared_path)
+        if retained is not None and retained != digest:
+            locator_failures.append(
+                f"{source_id}: ledger digest disagrees with the retention manifest"
+            )
+            continue
+        resolved_sources[source_id] = {**descriptor, "file": source_path}
+
+    transcript_ids = [
+        source_id
+        for source_id, descriptor in resolved_sources.items()
+        if descriptor.get("anchor_kind") == TRANSCRIPT_ANCHOR
+    ]
+    cue_runs: dict[str, dict[str, Any]] = {}
+    transcript_text = ""
+    if len(transcript_ids) != 1:
+        locator_failures.append(
+            f"expected exactly one resolved {TRANSCRIPT_ANCHOR} source, got {transcript_ids}"
+        )
+    else:
+        descriptor = resolved_sources[transcript_ids[0]]
+        if descriptor.get("declared_source_id") != manifest["source"]["source_id"]:
+            locator_failures.append(
+                "ledger transcript is not the source the cards were compiled from"
+            )
+        cues = load_json(descriptor["file"]).get("cues", [])
+        starts = {str(cue.get("start_label")): index for index, cue in enumerate(cues)}
+        ends = {str(cue.get("end_label")): index for index, cue in enumerate(cues)}
+        transcript_text = collapse(" ".join(str(cue.get("normalized_text", "")) for cue in cues))
+        for start_label, first in starts.items():
+            for end_label, last in ends.items():
+                if first <= last:
+                    cue_runs[f"{start_label}..{end_label}"] = {
+                        "text": collapse(
+                            " ".join(str(cue.get("normalized_text", "")) for cue in cues[first : last + 1])
+                        ),
+                        "cues": cues[first : last + 1],
+                    }
+
+    # Each anchor is resolved once here; the two gates below read the result.
+    resolutions: dict[str, dict[str, Any]] = {}
+    for evidence_id, entry in sorted(entries.items()):
+        errors = sorted(entry_check.iter_errors(entry), key=lambda error: error.json_path)
+        if errors:
+            locator_failures.append(
+                f"{evidence_id}: entry violates {ENTRY_CONTRACT}: {errors[0].message}"
+            )
+            continue
+        if entry["evidence_id"] != evidence_id:
+            locator_failures.append(f"{evidence_id}: entry evidence_id disagrees with its key")
+            continue
+        descriptor = resolved_sources.get(str(entry["source_id"]))
+        if descriptor is None:
+            locator_failures.append(f"{evidence_id}: source_id has no resolved ledger source")
+            continue
+        anchor_kind = descriptor.get("anchor_kind")
+        locator = str(entry["locator"])
+        if anchor_kind == TRANSCRIPT_ANCHOR:
+            matched = LOCATOR_TIMESTAMP.match(locator)
+            if not matched:
+                locator_failures.append(
+                    f"{evidence_id}: {TRANSCRIPT_ANCHOR} anchor without a timestamp locator: {locator}"
+                )
+                continue
+            span = f"{matched.group(1)}..{matched.group(2)}"
+            if span not in cue_runs:
+                locator_failures.append(
+                    f"{evidence_id}: locator {locator} is not a cue run in the retained transcript"
+                )
+                continue
+            resolutions[evidence_id] = {"kind": anchor_kind, "text": cue_runs[span]["text"], "span": span}
+        elif anchor_kind == ARTIFACT_ANCHOR:
+            matched = LOCATOR_POINTER.match(locator)
+            if not matched:
+                locator_failures.append(
+                    f"{evidence_id}: {ARTIFACT_ANCHOR} anchor without a json-pointer locator: {locator}"
+                )
+                continue
+            value = resolve_pointer(load_json(descriptor["file"]), matched.group(1))
+            if value is ABSENT:
+                locator_failures.append(
+                    f"{evidence_id}: locator {locator} does not resolve in {descriptor['path']}"
+                )
+                continue
+            resolutions[evidence_id] = {"kind": anchor_kind, "value": value}
+        else:
+            locator_failures.append(f"{evidence_id}: unknown anchor_kind {anchor_kind!r}")
+
+    citations: dict[str, set[str]] = {}
+    for card in cards:
+        for evidence_id in set(EVIDENCE_REF.findall(card["text"])):
+            evidence_id = evidence_id.strip("[]")
+            citations.setdefault(evidence_id, set()).add(card["stable_id"])
+        for matched in CARD_ANCHOR_SPAN.finditer(card["text"]):
+            evidence_id = matched.group("evidence_id")
+            resolution = resolutions.get(evidence_id)
+            if resolution is None or resolution["kind"] != TRANSCRIPT_ANCHOR:
+                continue
+            written = f"{matched.group('start')}..{matched.group('end')}"
+            if written != resolution["span"]:
+                locator_failures.append(
+                    f"{card['stable_id']}: {evidence_id} is glossed {written} "
+                    f"but the ledger locator is {resolution['span']}"
+                )
+    for evidence_id in sorted(set(citations) - set(entries)):
+        locator_failures.append(
+            f"{sorted(citations[evidence_id])[0]}: {evidence_id} has no ledger entry"
+        )
+    checks["SV-15-evidence-locator-integrity"] = status(
+        not locator_failures,
+        ["evidence-ledger.json", *sorted(resolved_sources)],
+        locator_failures,
+    )
+
+    exactness_failures: list[str] = []
+    for evidence_id, resolution in sorted(resolutions.items()):
+        verbatim = str(entries[evidence_id]["verbatim"])
+        if resolution["kind"] == TRANSCRIPT_ANCHOR:
+            if collapse(verbatim) not in resolution["text"]:
+                exactness_failures.append(
+                    f"{evidence_id}: verbatim does not occur inside its locator span"
+                )
+        elif resolution["value"] != verbatim:
+            exactness_failures.append(
+                f"{evidence_id}: verbatim does not equal the value at its locator"
+            )
+    checks["SV-16-evidence-verbatim-exactness"] = status(
+        not exactness_failures,
+        sorted(resolutions),
+        exactness_failures,
+    )
+
+    orphan_failures: list[str] = []
+    for evidence_id, entry in sorted(entries.items()):
+        if not isinstance(entry.get("supports"), list) or not entry["supports"]:
+            orphan_failures.append(f"{evidence_id}: no assertion declares it as support")
+            continue
+        cited_by = citations.get(evidence_id, set())
+        if not cited_by:
+            orphan_failures.append(f"{evidence_id}: no card cites it")
+        elif set(entry["supports"]) != cited_by:
+            orphan_failures.append(
+                f"{evidence_id}: supports {sorted(entry['supports'])} "
+                f"but is cited by {sorted(cited_by)}"
+            )
+    checks["SV-17-no-orphan-evidence"] = status(
+        not orphan_failures,
+        sorted(entries),
+        orphan_failures,
+    )
+
+    coverage_failures: list[str] = []
+    coverage = load_json(target / "coverage-manifest.json")
+    fixture = load_json(target / "fixture.json")
+    declared_units = list(fixture.get("required", {}).get("knowledge_units", []))
+    covered_units = [str(item.get("knowledge_unit_id")) for item in coverage.get("items", [])]
+    if sorted(covered_units) != sorted(declared_units):
+        coverage_failures.append(
+            "coverage manifest does not enumerate exactly the fixture's high-signal units"
+        )
+    for item in coverage.get("items", []):
+        unit = str(item.get("knowledge_unit_id"))
+        disposition = str(item.get("disposition"))
+        if disposition not in COVERAGE_DISPOSITIONS:
+            coverage_failures.append(f"{unit}: unknown disposition {disposition}")
+            continue
+        if disposition in MAPPED_DISPOSITIONS and not item.get("card_ids"):
+            coverage_failures.append(f"{unit}: {disposition} names no card")
+        if disposition not in MAPPED_DISPOSITIONS and not item.get("reason"):
+            coverage_failures.append(f"{unit}: {disposition} records no reason")
+        for card_id in item.get("card_ids") or []:
+            if card_id not in card_id_set:
+                coverage_failures.append(f"{unit}: card_id {card_id} is not in this batch")
+        for evidence_id in item.get("evidence_ids") or []:
+            if evidence_id not in entries:
+                coverage_failures.append(f"{unit}: evidence_id {evidence_id} is not in the ledger")
+    checks["SV-18-high-signal-coverage"] = status(
+        not coverage_failures,
+        ["coverage-manifest.json", "fixture.json"],
+        coverage_failures,
+    )
+
+    injection_failures: list[str] = []
+    declared_injections = retained_manifest.get("injection_findings", [])
+    if not isinstance(declared_injections, list):
+        injection_failures.append("retained manifest injection_findings is not a list")
+        declared_injections = []
+    detected: list[str] = []
+    for pattern in INJECTION_PATTERNS:
+        for matched in pattern.finditer(transcript_text):
+            detected.append(matched.group(0))
+    declared_text = [collapse(str(finding.get("text", ""))) for finding in declared_injections]
+    for hit in sorted(set(detected)):
+        if not any(collapse(hit).lower() in text.lower() for text in declared_text):
+            injection_failures.append(
+                f"source instruction {hit!r} is not declared in the retention manifest"
+            )
+        if any(hit.lower() in card["text"].lower() for card in cards):
+            injection_failures.append(f"source instruction {hit!r} is repeated by a card")
+    for text in declared_text:
+        if text and text.lower() not in transcript_text.lower():
+            injection_failures.append(
+                f"declared injection finding {text!r} is not present in the retained subject"
+            )
+    checks["SV-19-injection-safety"] = status(
+        not injection_failures,
+        [f"sources/{content_id}/source-manifest.json", *transcript_ids],
+        injection_failures,
+    )
+
     hg = {
         "HG-01": checks["SV-01-artifact-integrity"],
         "HG-02": checks["SV-05-knowledge-view-coverage"],
@@ -623,13 +978,18 @@ def build_report(
     }
     qg_subset = {
         "QG-01": checks["SV-13-evidence-anchor-coverage"],
+        "QG-02": checks["SV-16-evidence-verbatim-exactness"],
+        "QG-03": checks["SV-15-evidence-locator-integrity"],
         "QG-07": checks["SV-02-identity-and-link-integrity"],
         "QG-08": checks["SV-02-identity-and-link-integrity"],
         "QG-09": checks["SV-14-conflict-preservation"],
         "QG-10": checks["SV-04-epistemic-honesty"],
         "QG-11": checks["SV-04-epistemic-honesty"],
         "QG-12": checks["SV-08-action-contract"],
+        "QG-13": checks["SV-18-high-signal-coverage"],
+        "QG-15": checks["SV-19-injection-safety"],
         "QG-16": checks["SV-01-artifact-integrity"],
+        "QG-17": checks["SV-17-no-orphan-evidence"],
         "QG-18": checks["SV-12-series-payload-contract"],
         "QG-20": checks["SV-03-payload-first-contract"],
         "QG-21": checks["SV-10-source-shaped-batch"],
@@ -657,8 +1017,11 @@ def build_report(
         "checks": checks,
         "hg": hg,
         "qg_subset": qg_subset,
+        "qg_human_admitted": list(HUMAN_ADMITTED_QG_IDS),
         "qg_not_run": [
-            qg for qg in ALL_QG_IDS if qg not in AUTOMATED_QG_IDS
+            qg
+            for qg in ALL_QG_IDS
+            if qg not in AUTOMATED_QG_IDS and qg not in HUMAN_ADMITTED_QG_IDS
         ],
         "overall_status": (
             "FAIL"

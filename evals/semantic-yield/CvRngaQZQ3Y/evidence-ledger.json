@@ -1,0 +1,251 @@
+{
+  "content_id": "CvRngaQZQ3Y",
+  "entry_contract": "schemas/card-registry.schema.json#/$defs/evidenceEntry",
+  "evidence": {
+    "EV-cvrngaqzq3y-auto-research-risk": {
+      "challenges": [],
+      "context": "The stated failure mode of score-maximising auto research.",
+      "evidence_id": "EV-cvrngaqzq3y-auto-research-risk",
+      "evidence_kind": "quote",
+      "locator": "timestamp:00:14:28..00:14:58",
+      "secondary": true,
+      "source_id": "youtube:cvrngaqzq3y:youtube-transcript-ai",
+      "source_type": "transcript",
+      "supports": [
+        "C-model-harness-task-fit"
+      ],
+      "verbatim": "They might cheat a little bit and you need to like check them on some stuff."
+    },
+    "EV-cvrngaqzq3y-fit-concept": {
+      "challenges": [],
+      "context": "The source names the fit function over model, harness and task.",
+      "evidence_id": "EV-cvrngaqzq3y-fit-concept",
+      "evidence_kind": "quote",
+      "locator": "timestamp:00:12:57..00:14:28",
+      "secondary": true,
+      "source_id": "youtube:cvrngaqzq3y:youtube-transcript-ai",
+      "source_type": "transcript",
+      "supports": [
+        "C-model-harness-task-fit"
+      ],
+      "verbatim": "the way that they apply is what I like to call model harness task fit"
+    },
+    "EV-cvrngaqzq3y-harness-ceiling": {
+      "challenges": [],
+      "context": "The harness-engineering ceiling that motivates fine-tuning.",
+      "evidence_id": "EV-cvrngaqzq3y-harness-ceiling",
+      "evidence_kind": "quote",
+      "locator": "timestamp:00:08:55..00:09:55",
+      "secondary": true,
+      "source_id": "youtube:cvrngaqzq3y:youtube-transcript-ai",
+      "source_type": "transcript",
+      "supports": [
+        "S-harness-finetune-harness"
+      ],
+      "verbatim": "you hit a threshold of intelligence"
+    },
+    "EV-cvrngaqzq3y-memory-not-append-only": {
+      "challenges": [],
+      "context": "The memory constraint that separates the memory plane from trace storage.",
+      "evidence_id": "EV-cvrngaqzq3y-memory-not-append-only",
+      "evidence_kind": "quote",
+      "locator": "timestamp:00:17:59..00:19:00",
+      "secondary": true,
+      "source_id": "youtube:cvrngaqzq3y:youtube-transcript-ai",
+      "source_type": "transcript",
+      "supports": [
+        "C-continual-learning-state-planes"
+      ],
+      "verbatim": "we are not append-only logs of information"
+    },
+    "EV-cvrngaqzq3y-model-cost-path": {
+      "challenges": [],
+      "context": "The stated cost path: strongest model first, then look back at traces for a cheaper open model.",
+      "evidence_id": "EV-cvrngaqzq3y-model-cost-path",
+      "evidence_kind": "quote",
+      "locator": "timestamp:00:07:53..00:10:25",
+      "secondary": true,
+      "source_id": "youtube:cvrngaqzq3y:youtube-transcript-ai",
+      "source_type": "transcript",
+      "supports": [
+        "T-trace-judge-comparison"
+      ],
+      "verbatim": "we start with Opus"
+    },
+    "EV-cvrngaqzq3y-normalization-report": {
+      "challenges": [],
+      "context": "Normalization removed provable duplication and transport metadata only; it did not repair vocabulary.",
+      "evidence_id": "EV-cvrngaqzq3y-normalization-report",
+      "evidence_kind": "datum",
+      "locator": "json-pointer:/rules/5",
+      "secondary": false,
+      "source_id": "artifact:cvrngaqzq3y:normalization-report",
+      "source_type": "log",
+      "supports": [
+        "K-visual-identifier-evidence-gap"
+      ],
+      "verbatim": "no proper-noun, punctuation, grammar, or semantic correction"
+    },
+    "EV-cvrngaqzq3y-observability-learning": {
+      "challenges": [],
+      "context": "The speaker's stated link between trace observability and continual learning.",
+      "evidence_id": "EV-cvrngaqzq3y-observability-learning",
+      "evidence_kind": "quote",
+      "locator": "timestamp:00:02:17..00:03:17",
+      "secondary": true,
+      "source_id": "youtube:cvrngaqzq3y:youtube-transcript-ai",
+      "source_type": "transcript",
+      "supports": [
+        "N-autonomy-trace-mining"
+      ],
+      "verbatim": "there's a very tight coupling between what observability is and what continual learning is"
+    },
+    "EV-cvrngaqzq3y-open-model-cost-claim": {
+      "challenges": [],
+      "context": "The only cost magnitude the source states; it carries no absolute figure, which is why the comparison card keeps UNKNOWN cells.",
+      "evidence_id": "EV-cvrngaqzq3y-open-model-cost-claim",
+      "evidence_kind": "quote",
+      "locator": "timestamp:00:08:25..00:08:55",
+      "secondary": true,
+      "source_id": "youtube:cvrngaqzq3y:youtube-transcript-ai",
+      "source_type": "transcript",
+      "supports": [
+        "T-trace-judge-comparison"
+      ],
+      "verbatim": "the answer is roughly yes at like an order or like two orders of magnitude cheaper"
+    },
+    "EV-cvrngaqzq3y-sandwich": {
+      "challenges": [],
+      "context": "The sandwich sequence the strategy card renders.",
+      "evidence_id": "EV-cvrngaqzq3y-sandwich",
+      "evidence_kind": "quote",
+      "locator": "timestamp:00:15:58..00:16:59",
+      "secondary": true,
+      "source_id": "youtube:cvrngaqzq3y:youtube-transcript-ai",
+      "source_type": "transcript",
+      "supports": [
+        "S-harness-finetune-harness"
+      ],
+      "verbatim": "try harness engineering, try to do fine-tuning to sort of like break through that ceiling, and then do more harness engineering again if you need to"
+    },
+    "EV-cvrngaqzq3y-source-manifest": {
+      "challenges": [],
+      "context": "The retained-subject manifest declares the acquisition unreviewed, which is why identifier and frame identity stay unavailable.",
+      "evidence_id": "EV-cvrngaqzq3y-source-manifest",
+      "evidence_kind": "datum",
+      "locator": "json-pointer:/completeness/status",
+      "secondary": false,
+      "source_id": "artifact:cvrngaqzq3y:source-manifest",
+      "source_type": "dataset",
+      "supports": [
+        "K-visual-identifier-evidence-gap"
+      ],
+      "verbatim": "needs-review"
+    },
+    "EV-cvrngaqzq3y-stage-collect": {
+      "challenges": [],
+      "context": "Recipe step 2: every tool call, output message, API and CLI call is stored.",
+      "evidence_id": "EV-cvrngaqzq3y-stage-collect",
+      "evidence_kind": "quote",
+      "locator": "timestamp:00:01:17..00:01:47",
+      "secondary": true,
+      "source_id": "youtube:cvrngaqzq3y:youtube-transcript-ai",
+      "source_type": "transcript",
+      "supports": [
+        "D-four-stage-trace-loop"
+      ],
+      "verbatim": "The second step is collect a ton of traces."
+    },
+    "EV-cvrngaqzq3y-stage-mine-experiment": {
+      "challenges": [],
+      "context": "Recipe steps 3 and 4: mine the stored traces, then run data-driven experiments.",
+      "evidence_id": "EV-cvrngaqzq3y-stage-mine-experiment",
+      "evidence_kind": "quote",
+      "locator": "timestamp:00:01:47..00:02:17",
+      "secondary": true,
+      "source_id": "youtube:cvrngaqzq3y:youtube-transcript-ai",
+      "source_type": "transcript",
+      "supports": [
+        "D-four-stage-trace-loop"
+      ],
+      "verbatim": "we're going to do data mining over that"
+    },
+    "EV-cvrngaqzq3y-stage-ship": {
+      "challenges": [],
+      "context": "Recipe step 1 of the four-stage improvement loop.",
+      "evidence_id": "EV-cvrngaqzq3y-stage-ship",
+      "evidence_kind": "quote",
+      "locator": "timestamp:00:00:44..00:01:17",
+      "secondary": true,
+      "source_id": "youtube:cvrngaqzq3y:youtube-transcript-ai",
+      "source_type": "transcript",
+      "supports": [
+        "D-four-stage-trace-loop"
+      ],
+      "verbatim": "the first step in building a successful agent is shipping it"
+    },
+    "EV-cvrngaqzq3y-three-state-planes": {
+      "challenges": [],
+      "context": "Training data, harness updates and memory are the three planes the concept card names.",
+      "evidence_id": "EV-cvrngaqzq3y-three-state-planes",
+      "evidence_kind": "quote",
+      "locator": "timestamp:00:16:59..00:18:30",
+      "secondary": true,
+      "source_id": "youtube:cvrngaqzq3y:youtube-transcript-ai",
+      "source_type": "transcript",
+      "supports": [
+        "C-continual-learning-state-planes"
+      ],
+      "verbatim": "you're going to have to do it across all three axes"
+    },
+    "EV-cvrngaqzq3y-trace-questions": {
+      "challenges": [],
+      "context": "One of the decision questions the speaker sends agents into traces to answer.",
+      "evidence_id": "EV-cvrngaqzq3y-trace-questions",
+      "evidence_kind": "quote",
+      "locator": "timestamp:00:04:48..00:05:50",
+      "secondary": true,
+      "source_id": "youtube:cvrngaqzq3y:youtube-transcript-ai",
+      "source_type": "transcript",
+      "supports": [
+        "N-autonomy-trace-mining"
+      ],
+      "verbatim": "Does the agent get really dumb after the first compaction?"
+    },
+    "EV-cvrngaqzq3y-trace-scale": {
+      "challenges": [],
+      "context": "The first of the two scale problems; the second is that a long trace does not fit in another agent's context.",
+      "evidence_id": "EV-cvrngaqzq3y-trace-scale",
+      "evidence_kind": "quote",
+      "locator": "timestamp:00:06:21..00:07:22",
+      "secondary": true,
+      "source_id": "youtube:cvrngaqzq3y:youtube-transcript-ai",
+      "source_type": "transcript",
+      "supports": [
+        "D-trace-scale-bottleneck",
+        "N-autonomy-trace-mining"
+      ],
+      "verbatim": "reading traces at scale is super expensive"
+    }
+  },
+  "schema_version": "semantic-evidence-ledger@1",
+  "source_dependency_key": "youtube-video:CvRngaQZQ3Y",
+  "sources": {
+    "artifact:cvrngaqzq3y:normalization-report": {
+      "anchor_kind": "ARTIFACT_STATE",
+      "path": "sources/CvRngaQZQ3Y/broker/normalization-report.json",
+      "sha256": "sha256:363f2fd1285986330ad60950b84fc627b383c57c013a05cd89e67934ecffbced"
+    },
+    "artifact:cvrngaqzq3y:source-manifest": {
+      "anchor_kind": "ARTIFACT_STATE",
+      "path": "sources/CvRngaQZQ3Y/source-manifest.json",
+      "sha256": "sha256:debef7dd567b68114b72448ea090aa381faf8b7d5cb1d5cbffb8630a87c9df4a"
+    },
+    "youtube:cvrngaqzq3y:youtube-transcript-ai": {
+      "anchor_kind": "TRANSCRIPT_TIMESTAMP",
+      "declared_source_id": "youtube:CvRngaQZQ3Y:youtube-transcript-ai",
+      "path": "sources/CvRngaQZQ3Y/broker/captions.normalized.en.json",
+      "sha256": "sha256:15364680aefd1365b93fbf0205aa3f2e8ebbfdb0486935254acb510820b095f9"
+    }
+  }
+}
