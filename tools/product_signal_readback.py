@@ -42,8 +42,26 @@ PACKET_FILES = (
 )
 
 
+REPO_ROOT = Path(__file__).resolve().parents[1]
+
+
 class ReadbackError(RuntimeError):
     """Raised when a persisted packet cannot be read back."""
+
+
+def repo_relative(path: Path) -> str:
+    """Render a path so the receipt never depends on where the checkout lives.
+
+    An absolute path would change the receipt bytes per machine, which is
+    exactly the nondeterminism this lane refuses. Packets outside the
+    repository (staging or test scratch) degrade to their own name rather than
+    leaking a scratch directory into a persisted artifact.
+    """
+    resolved = path.resolve()
+    try:
+        return resolved.relative_to(REPO_ROOT).as_posix()
+    except ValueError:
+        return resolved.name
 
 
 def file_identity(path: Path) -> dict[str, Any]:
@@ -103,10 +121,10 @@ def build_receipt(packet_dir: Path, registry_path: Path) -> dict[str, Any]:
     return {
         "schema_version": "product-signal-readback-receipt@1",
         "signal_set_id": compiled["signal_set_id"],
-        "packet_dir": packet_dir.as_posix(),
+        "packet_dir": repo_relative(packet_dir),
         "source_binding": compiled["source_binding"],
         "source_registry_readback": {
-            "path": registry_path.as_posix(),
+            "path": repo_relative(registry_path),
             "registry_digest": registry["registry_digest"],
             "source_digest": source["content"]["digest"],
             "source_readback_status": source["readback"]["status"],

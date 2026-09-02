@@ -145,6 +145,18 @@ def test_tampered_claim_promotion_is_refused(tmp_path: Path) -> None:
     assert "OVERPROMOTED" in str(excinfo.value)
 
 
+def test_receipt_never_embeds_an_absolute_path(tmp_path: Path) -> None:
+    """An absolute path would make the receipt bytes differ per machine."""
+    packet = build_packet(tmp_path)
+    receipt = readback.build_receipt(packet, REGISTRY)
+    rendered = json.dumps(receipt)
+    assert str(tmp_path) not in rendered
+    assert str(ROOT) not in rendered
+    assert receipt["source_registry_readback"]["path"] == (
+        "evals/source-intake/modern-web-architecture/source-registry.json"
+    )
+
+
 def test_receipt_carries_no_raw_source_body(tmp_path: Path) -> None:
     packet = build_packet(tmp_path)
     receipt = readback.build_receipt(packet, REGISTRY)
