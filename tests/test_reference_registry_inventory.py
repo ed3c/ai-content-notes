@@ -242,16 +242,16 @@ def law_inventory_stays_url_indexed(registry: dict) -> list[str]:
       resolve a commit that is not `HEAD` - `verify.yml` checks out at
       `fetch-depth: 1` and the verifier has no network - so requiring a
       revision would require a field whose only property is that nobody checks
-      it. `docs/reference-registry/README.md` states the same decision for the
-      ten rows that rely on it.
+      it.
     - **the blocklist stays** because `UNKNOWN`, `main_MUTABLE` and `HEAD`
       claim a binding they do not have. Refusing a name that advertises
       mutability is worth doing even where absence is admitted; it is a
       narrower claim than "an immutable revision was verified", and it is the
       one this function can actually make.
 
-    Requiring a resolvable revision is the other half #115 leaves open, and it
-    is a change to `verify.yml`'s `fetch-depth` before it is a change here.
+    This docstring owns what the predicate enforces. The decision itself, and
+    the half of #115 it leaves open, are owned by
+    `docs/reference-registry/README.md` beside the ten rows that rely on them.
     """
     findings = []
     for record in registry["references"]:
