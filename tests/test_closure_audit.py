@@ -65,12 +65,24 @@ RECEIPT_CLOSED_WITHOUT_ARTIFACT = (56, 59, 62, 63, 64, 69, 70)
 # The token a ledger note must carry once its closure leaves the bare set, and
 # what has to follow it. A bare token would be a free exit - an authorization
 # gate that admits any string, the class ed3c/skill-concerns#103 catalogued -
-# so the note has to name either the merge commit that materialized the path
-# or the issue that owns having done so.
+# so the note has to name the issue that owns having materialized the path.
+#
+# An issue number and deliberately not a merge sha. A merge sha does not exist
+# when the row that needs it is written: the PR that materializes the artifact
+# is the PR that edits this note, and its own merge commit is created after it
+# is judged. Admitting the sha form only ever admitted a sha nothing produced,
+# which is why the first draft of this rule accepted forty zeros; that string
+# is now a control below. Nor could any reader here resolve one - this suite
+# has no network, and `verify.yml` checks out at `fetch-depth: 1`, so no commit
+# other than HEAD exists in the tree being judged.
+#
+# The rule lives in `tests/` rather than in `tools/closure_audit.py` for the
+# same reason the tuple above does: `verify.yml` replaces the candidate's
+# `tests/` with the default branch's and keeps the candidate's `tools/`, so a
+# vocabulary declared under `tools/` is bytes the subject can rewrite, and one
+# declared here is bytes it cannot.
 SUPERSEDED_BY = "superseded-by:"
-SUPERSESSION = re.compile(
-    rf"{re.escape(SUPERSEDED_BY)}\s*(?:[0-9a-f]{{40}}|AI-CONTENT#[0-9]+)"
-)
+SUPERSESSION = re.compile(rf"{re.escape(SUPERSEDED_BY)}\s*AI-CONTENT#[1-9][0-9]*")
 
 
 def report() -> dict:
@@ -88,6 +100,12 @@ def reconcile(rendered: dict, ledger: dict) -> list[str]:
       that says what materialized the path. Without that the row reads as if
       the original draft chain landed, which is the exact substitution of a
       receipt for a merge this audit exists to refuse.
+
+    The cheaper rule this replaced, `set(bare) <= set(RECEIPT_CLOSED_WITHOUT_
+    ARTIFACT)`, is green when all seven vanish at once with no note at all.
+    What is refused here is a *silent* departure; the controls below show the
+    refusal firing on an empty token, on prose, on a short hex string, on an
+    all-zero merge sha and on issue zero.
     """
     bare = set(rendered["summary"]["closure_without_artifact"])
     recorded = set(RECEIPT_CLOSED_WITHOUT_ARTIFACT)
@@ -97,11 +115,29 @@ def reconcile(rendered: dict, ledger: dict) -> list[str]:
         for issue in sorted(bare - recorded)
     ]
     findings.extend(
-        f"#{issue}: left the bare set with no {SUPERSEDED_BY!r} merge sha or owning issue"
+        f"#{issue}: left the bare set with no {SUPERSEDED_BY!r} owning issue"
         for issue in sorted(recorded - bare)
         if not SUPERSESSION.search(notes.get(issue, ""))
     )
     return findings
+
+
+def rendered_without(issue: int) -> dict:
+    """The audit report as it reads once `issue` acquires its artifact."""
+    rendered = copy.deepcopy(report())
+    rendered["summary"]["closure_without_artifact"] = [
+        number
+        for number in rendered["summary"]["closure_without_artifact"]
+        if number != issue
+    ]
+    return rendered
+
+
+def ledger_note(issue: int, note: str) -> dict:
+    """The ledger with one closure's note replaced, the original untouched."""
+    ledger = copy.deepcopy(load_ledger(DEFAULT_LEDGER))
+    next(closure for closure in ledger["closures"] if closure["issue"] == issue)["note"] = note
+    return ledger
 
 
 def test_ledger_covers_each_closed_issue_once_with_in_tree_paths() -> None:
@@ -168,59 +204,35 @@ def test_an_eighth_bare_closure_is_refused() -> None:
 
 def test_acquiring_the_artifact_without_a_superseding_note_is_refused() -> None:
     """The red-before-green half of the rule the old equality could not state."""
-    rendered = copy.deepcopy(report())
-    rendered["summary"]["closure_without_artifact"] = [
-        issue
-        for issue in rendered["summary"]["closure_without_artifact"]
-        if issue != 56
-    ]
-    ledger = copy.deepcopy(load_ledger(DEFAULT_LEDGER))
-    row = next(closure for closure in ledger["closures"] if closure["issue"] == 56)
-    row["note"] = "planted: artifact present, nothing recorded about what put it there"
-    findings = reconcile(rendered, ledger)
+    findings = reconcile(
+        rendered_without(56),
+        ledger_note(56, "planted: artifact present, nothing recorded about what put it there"),
+    )
     assert any("#56" in finding and SUPERSEDED_BY in finding for finding in findings), findings
 
 
 def test_acquiring_the_artifact_with_a_superseding_note_is_allowed() -> None:
     """And the green half: the rule must not make materialization unreachable."""
-    rendered = copy.deepcopy(report())
-    rendered["summary"]["closure_without_artifact"] = [
-        issue
-        for issue in rendered["summary"]["closure_without_artifact"]
-        if issue != 56
-    ]
-    ledger = copy.deepcopy(load_ledger(DEFAULT_LEDGER))
-    row = next(closure for closure in ledger["closures"] if closure["issue"] == 56)
-    row["note"] = f"planted: {SUPERSEDED_BY} 0000000000000000000000000000000000000000"
-    assert reconcile(rendered, ledger) == []
-
-    # And an owning issue is the other accepted form.
-    row["note"] = f"planted: {SUPERSEDED_BY} AI-CONTENT#96"
-    assert reconcile(rendered, ledger) == []
+    note = ledger_note(56, f"planted: {SUPERSEDED_BY} AI-CONTENT#96")
+    assert reconcile(rendered_without(56), note) == []
 
 
-def test_a_bare_supersession_token_is_refused() -> None:
+def test_a_supersession_naming_nothing_resolvable_is_refused() -> None:
     """The free-exit control: the token alone authorizes nothing.
 
     Same class as ed3c/skill-concerns#103 - an authorization gate that accepts
-    any string is not a gate. The note has to name a merge commit or the issue
-    that owns having materialized the path.
+    any string is not a gate. The last two plants are the ones the first draft
+    of this rule admitted: a forty-hex string nothing produced, and issue zero.
     """
-    rendered = copy.deepcopy(report())
-    rendered["summary"]["closure_without_artifact"] = [
-        issue
-        for issue in rendered["summary"]["closure_without_artifact"]
-        if issue != 56
-    ]
-    ledger = copy.deepcopy(load_ledger(DEFAULT_LEDGER))
-    row = next(closure for closure in ledger["closures"] if closure["issue"] == 56)
     for planted in (
         f"planted: {SUPERSEDED_BY}",
         f"planted: {SUPERSEDED_BY} the draft chain",
         f"planted: {SUPERSEDED_BY} 0123abc",
+        f"planted: {SUPERSEDED_BY} " + "0" * 40,
+        f"planted: {SUPERSEDED_BY} AI-CONTENT#0",
     ):
-        row["note"] = planted
-        assert any("#56" in finding for finding in reconcile(rendered, ledger)), planted
+        findings = reconcile(rendered_without(56), ledger_note(56, planted))
+        assert any("#56" in finding for finding in findings), planted
 
 
 def test_no_path_named_is_not_counted_as_a_pass() -> None:
