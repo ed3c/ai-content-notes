@@ -91,7 +91,7 @@
         "docs/reference-registry/README.md",
         "docs/reference-registry/reference-index.private.json"
       ],
-      "note": "closed by a receipt comment naming a head on the still-draft chain #58 -> #60 -> #65 -> #66 -> #67 -> #71 -> #72"
+      "note": "closed by a receipt comment naming a head on the still-draft chain #58 -> #60 -> #65 -> #66 -> #67 -> #71 -> #72. superseded-by: AI-CONTENT#96 - both named paths are PRESENT, and not because that chain landed. What is there is a different artifact: a consumption-scoped registry of opaque REF rows over paths this repository carries, with no Drive locator and no visibility field, re-read by tools/verify_reference_registry.py. #56's own artifact at 37ae45a68b7ad66de36dc17163280e6b8972ec63 never reached main and is not what this row now resolves."
     },
     {
       "issue": 59,
