@@ -24,7 +24,12 @@ from typing import Any
 API = "https://api.github.com"
 REFS_LINE = re.compile(r"^Refs\s+([A-Za-z0-9._-]+/[A-Za-z0-9._-]+)#(\d+)$")
 MARKER_PREFIX = "landing"
-MARKER_LINE = re.compile(rf"^<!--\s*{MARKER_PREFIX}-([A-Za-z0-9_-]+):.*?-->[ \t]*$")
+# The marker grammar has exactly one definition. Group 1 is the key `stamp`
+# replaces in place; group 2 is the value, captured for readers rather than
+# left to a second expression elsewhere - a reader whose key class admitted a
+# character this one refuses would read a line as live state that `stamp` does
+# not recognise, and would then append a duplicate (ed3c/ai-content-notes#125).
+MARKER_LINE = re.compile(rf"^<!--\s*{MARKER_PREFIX}-([A-Za-z0-9_-]+):\s*(.*?)\s*-->[ \t]*$")
 MARKER_RECEIPT_TOKEN = "landing-marker-receipt: pr="
 
 # What an Issue's two marker surfaces - the mutable body and the durable

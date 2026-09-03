@@ -37,25 +37,37 @@ markers - and is reported as `quoted_outside_block` rather than read as state.
 That is the same span `stamp()` should edit and, per #120, does not; this
 reader reports the discrepancy, it does not fix the writer.
 
-It reads the snapshot and nothing else: no network, no GitHub API, no Drive.
-A row is only ever as good as its snapshot entry, which is why every row
-carries the body digest and byte count it was read from, and why the snapshot
-records `read_back_at` and the rule it was curated under. Nothing here detects
-a land that happened after the snapshot was taken, or a body edited since.
+Reading is zero-network: the audit touches the snapshot and nothing else, so it
+runs in a test and in a checkout with no token. A row is only ever as good as
+its snapshot entry, which is why every row carries the body digest, byte count
+and line count it was read from, and why the snapshot records `read_back_at`
+and the rule it was curated under.
+
+`--curate` is the other half, and the reason those digests are worth recording:
+it re-reads the provider and prints a fresh snapshot, so `body_sha256` is a
+number something can resolve again rather than a decoration. The ceiling stays
+exactly what it was - nothing here sees a land, or a body edit, after
+`read_back_at` - but it is now payable in one command instead of being a
+permanent property of the file. It is not idle: three lands merged between this
+snapshot's first curation and its own.
 
 Owner: ed3c/ai-content-notes#125.
 
     python3 tools/landing_marker_audit.py
     python3 tools/landing_marker_audit.py --json
     python3 tools/landing_marker_audit.py --strict   # exit 1 if any row is not CONFORMING
+    python3 tools/landing_marker_audit.py --curate > docs/closure-audit/landing-marker-snapshot.json
 """
 
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
-import re
+import subprocess
 import sys
+from datetime import timezone
+from email.utils import parsedate_to_datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -63,7 +75,7 @@ DEFAULT_SNAPSHOT = ROOT / "docs" / "closure-audit" / "landing-marker-snapshot.js
 
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from land_pr import MARKER_PREFIX, land_markers  # noqa: E402
+from land_pr import MARKER_LINE, REFS_LINE, land_markers  # noqa: E402
 
 CONFORMING = "CONFORMING"
 NON_CONFORMING = "NON_CONFORMING"
@@ -79,11 +91,15 @@ UNSTAMPED = "UNSTAMPED"
 # it recomputes from `pulls/119.merged_at`.
 PER_PULL_REQUEST_ROWS_AFTER = "2026-09-03T04:23:07Z"
 
-MARKER_LINE = re.compile(rf"^<!--\s*{MARKER_PREFIX}-([A-Za-z0-9._-]+):\s*(.*?)\s*-->[ \t]*$")
-
-
 def parse_marker(text: str) -> tuple[str, str] | None:
-    """Return the `(key, value)` a marker line carries, or None if it is not one."""
+    """Return the `(key, value)` a marker line carries, or None if it is not one.
+
+    The grammar is `land_pr.MARKER_LINE`, the one expression `stamp` matches
+    keys with, rather than a second copy here. A copy diverged on its first
+    day: it admitted `.` in a key, so `<!-- landing-pr.1-head: … -->` read as
+    live state to this reader and as an unrecognised key to `stamp`, which
+    would then have appended a duplicate rather than replacing it.
+    """
     found = MARKER_LINE.match(text)
     return (found.group(1), found.group(2)) if found else None
 
@@ -94,6 +110,16 @@ def live_block(marker_lines: list[dict], body_lines: int) -> list[dict]:
     A body whose last line is not a marker has no live block even if it quotes
     markers higher up: `stamp` appends to the end, so anything not touching the
     end was not written by a land.
+
+    Ceiling, measured rather than assumed. This is a second implementation of
+    `land_pr.split_marker_block`'s rule, because the snapshot records line
+    *numbers* and not the body's blank lines, and `split_marker_block` decides
+    the end of the body by skipping trailing blank ones. So a body ending in a
+    blank line reads as having no live block here while `stamp` still finds
+    one. On the committed snapshot the two agree on 23 rows of 23, checked by
+    reconstructing each body from its line records; the divergence is latent,
+    not live, and curing it means the snapshot recording where the body's
+    content ends rather than how many lines it has.
     """
     block: list[dict] = []
     expected = body_lines
@@ -201,6 +227,117 @@ def load_snapshot(path: Path) -> dict:
     return snapshot
 
 
+CURATION_RULE = (
+    "Every merged pull request of this repository whose body carries exactly one "
+    "'Refs <repository>#<n>' line naming this repository is a land of issue <n>, by "
+    "land_pr.REFS_LINE - the same expression land_pr.parse_refs binds a land with. "
+    "For each such issue the provider's issue body was read once, at read_back_at, and "
+    "every line matching land_pr.MARKER_LINE was recorded with its 1-based line number, "
+    "together with the body's sha256 over raw UTF-8 bytes and its line count. Nothing "
+    "is normalised, summarised or inferred; the reader does the extraction. Regenerate "
+    "with: python3 tools/landing_marker_audit.py --curate > "
+    "docs/closure-audit/landing-marker-snapshot.json"
+)
+
+# `gh` is the only network this file has, and it is reached only from `--curate`.
+# Reading the snapshot stays zero-network, which is why the audit can run in a
+# test and in a checkout with no token.
+GH = "gh"
+
+
+def gh_json(*args: str):
+    done = subprocess.run([GH, "api", *args], capture_output=True)
+    if done.returncode != 0:
+        raise SystemExit(f"GH_API_REFUSED:{' '.join(args)}:{done.stderr.decode()[:400]}")
+    return json.loads(done.stdout)
+
+
+def provider_now() -> str:
+    """The provider's own clock, not this host's.
+
+    `read_back_at` is the instant everything below it stops being true, so it is
+    read off the same wire the bodies came from: a skewed host clock would make
+    the staleness ceiling claim more than it can.
+    """
+    done = subprocess.run([GH, "api", "-i", "meta"], capture_output=True)
+    if done.returncode != 0:
+        raise SystemExit(f"GH_API_REFUSED:meta:{done.stderr.decode()[:200]}")
+    for line in done.stdout.decode("utf-8", "replace").splitlines():
+        if line.lower().startswith("date:"):
+            stamp = parsedate_to_datetime(line.split(":", 1)[1].strip())
+            return stamp.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    raise SystemExit("GH_API_NO_DATE_HEADER:meta")
+
+
+def curate(repository: str) -> dict:
+    """Rebuild the snapshot from provider bytes. Reads only; writes nothing.
+
+    This is the producer the snapshot's rows previously did not have. Without
+    it every `body_sha256` in the file was a number nothing could re-resolve,
+    and a snapshot goes stale the moment the next pull request merges - three
+    lands happened between this file's first curation and its own land. The
+    ceiling is not removed by having a producer; it is made payable.
+    """
+    read_back_at = provider_now()
+    pulls = gh_json(
+        "--paginate",
+        f"repos/{repository}/pulls?state=closed&per_page=100",
+        "--jq",
+        "[.[] | {number, merged_at, merge_commit_sha, head: .head.sha, body}]",
+    )
+    lands: dict[int, list[dict]] = {}
+    for pull in sorted((item for item in pulls if item["merged_at"]), key=lambda p: p["merged_at"]):
+        hits = [
+            match
+            for match in (
+                REFS_LINE.match(line.strip()) for line in (pull["body"] or "").splitlines()
+            )
+            if match and match.group(1) == repository
+        ]
+        if len(hits) != 1:  # not a land of this repository by land_pr's own rule
+            continue
+        lands.setdefault(int(hits[0].group(2)), []).append(
+            {
+                "pull_request": pull["number"],
+                "head": pull["head"],
+                "merge": pull["merge_commit_sha"],
+                "merged_at": pull["merged_at"],
+            }
+        )
+
+    previous = {row["issue"]: row.get("note") for row in load_snapshot(DEFAULT_SNAPSHOT)["issues"]}
+    issues = []
+    for number in sorted(lands):
+        data = gh_json(f"repos/{repository}/issues/{number}")
+        body = data.get("body") or ""
+        lines = body.splitlines()
+        issues.append(
+            {
+                "issue": number,
+                "state": data["state"],
+                "body_sha256": hashlib.sha256(body.encode("utf-8")).hexdigest(),
+                "body_utf8_bytes": len(body.encode("utf-8")),
+                "body_lines": len(lines),
+                "marker_lines": [
+                    {"line": index, "text": text}
+                    for index, text in enumerate(lines, start=1)
+                    if MARKER_LINE.match(text)
+                ],
+                "lands": lands[number],
+                # Notes are the one hand-written field, so a re-curation keeps
+                # them rather than silently dropping a row's explanation.
+                "note": previous.get(number),
+            }
+        )
+    return {
+        "schema": "landing-marker-snapshot@1",
+        "repository": repository,
+        "read_back_at": read_back_at,
+        "curated_under": CURATION_RULE,
+        "issues": issues,
+    }
+
+
 def render(report: dict) -> str:
     lines = [
         f"landing markers  {report['repository']}  read_back_at={report['read_back_at']}"
@@ -242,7 +379,20 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="exit 1 when any landed Issue's marker block does not conform",
     )
+    parser.add_argument(
+        "--curate",
+        action="store_true",
+        help="re-read the provider and print a fresh snapshot to stdout; needs `gh`",
+    )
     args = parser.parse_args(argv)
+
+    if args.curate:
+        print(
+            json.dumps(
+                curate(load_snapshot(args.snapshot)["repository"]), indent=2, sort_keys=True
+            )
+        )
+        return 0
 
     report = audit(load_snapshot(args.snapshot))
     print(json.dumps(report, indent=2, sort_keys=True) if args.json else render(report))

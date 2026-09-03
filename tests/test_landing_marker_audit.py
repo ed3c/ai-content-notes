@@ -31,16 +31,17 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
 sys.path.insert(0, str(ROOT / "scripts"))
 
+from land_pr import MARKER_LINE as WRITER_MARKER_LINE  # noqa: E402
 from land_pr import land_markers  # noqa: E402
 from landing_marker_audit import (  # noqa: E402
     CONFORMING,
     DEFAULT_SNAPSHOT,
+    MARKER_LINE as READER_MARKER_LINE,
     NON_CONFORMING,
     PER_PULL_REQUEST_ROWS_AFTER,
     UNSTAMPED,
     audit,
     audit_issue,
-    live_block,
     load_snapshot,
     main,
     parse_marker,
@@ -120,32 +121,91 @@ def test_every_unstamped_row_says_why_rather_than_shrugging() -> None:
             assert row["note"], row["issue"]
 
 
+def restate_the_contract(row: dict) -> str:
+    """The status the document's rule gives this row, written out in full here.
+
+    Deliberately not assembled out of the reader. The marker line is taken
+    apart by string surgery on the exact shape `stamp` writes, not by
+    `land_pr.MARKER_LINE`, so a grammar admitting something the producer refuses
+    shows up as a disagreement between this and the reader rather than as a
+    blind spot they share.
+
+    The one thing it cannot vary independently is where the block ends: the
+    snapshot records line numbers, so "the trailing run" has exactly one
+    expression available. That is stated rather than counted as coverage.
+    """
+    block, cursor = [], row["body_lines"]
+    for entry in reversed(row["marker_lines"]):
+        if entry["line"] != cursor:
+            break
+        block.insert(0, entry["text"])
+        cursor -= 1
+
+    markers = {}
+    for text in block:
+        assert text.startswith("<!-- landing-") and text.endswith(" -->"), text
+        key, separator, value = text[len("<!-- landing-") : -len(" -->")].partition(": ")
+        assert separator, text
+        markers[key] = value
+
+    lands = sorted(row["lands"], key=lambda land: land["merged_at"])
+    newest = lands[-1]
+    # The newest land owns the unnamespaced pointer keys. Its own
+    # per-pull-request rows are not automatically required: whether any land's
+    # rows are required is decided below, by when that land merged.
+    wanted = {
+        key: value
+        for key, value in land_markers(
+            REPOSITORY, newest["pull_request"], newest["head"], newest["merge"]
+        ).items()
+        if not key.startswith("pr-")
+    }
+    for land in lands:
+        rows = land_markers(REPOSITORY, land["pull_request"], land["head"], land["merge"])
+        for key, value in rows.items():
+            # A per-pull-request row is required from a land whose producer
+            # wrote them, and merely permitted from an older one - but a row
+            # that is present must still agree with the land it names.
+            if key.startswith("pr-") and (
+                land["merged_at"] > PER_PULL_REQUEST_ROWS_AFTER or key in markers
+            ):
+                wanted[key] = value
+
+    if not row["marker_lines"]:
+        return UNSTAMPED
+    unrecorded = [key for key in markers if key.startswith("pr-") and key not in wanted]
+    if unrecorded or any(markers.get(key) != value for key, value in wanted.items()):
+        return NON_CONFORMING
+    return CONFORMING
+
+
 def test_every_row_recomputes_from_the_lines_the_snapshot_recorded() -> None:
-    # An independent recomputation, deliberately simpler than the reader: the
-    # trailing run of marker lines, parsed, compared to what the newest land
-    # should have written.
-    data = snapshot()
-    for row in data["issues"]:
-        block = live_block(row["marker_lines"], row["body_lines"])
-        markers = dict(
-            parsed for entry in block if (parsed := parse_marker(entry["text"])) is not None
-        )
-        newest = sorted(row["lands"], key=lambda land: land["merged_at"])[-1]
-        expected = {
-            key: value
-            for key, value in land_markers(
-                REPOSITORY, newest["pull_request"], newest["head"], newest["merge"]
-            ).items()
-            if not key.startswith("pr-")
-        }
+    # Exact, in both directions: the restated rule names one status per row and
+    # the reader must return that one. The previous form admitted
+    # `{CONFORMING, NON_CONFORMING}` on its passing branch, which refuses
+    # nothing.
+    for row in snapshot()["issues"]:
+        expected = restate_the_contract(row)
         reported = audit_issue(row, REPOSITORY)
-        if not row["marker_lines"]:
-            assert reported["status"] == UNSTAMPED
-        elif all(markers.get(key) == value for key, value in expected.items()):
-            assert reported["status"] in {CONFORMING, NON_CONFORMING}
-        else:
-            assert reported["status"] == NON_CONFORMING, row["issue"]
-            assert reported["findings"], row["issue"]
+        assert reported["status"] == expected, (row["issue"], reported["findings"])
+        # A pass carries nothing to say; the two failing states both do. An
+        # UNSTAMPED row's findings are every pointer key at once, which is why
+        # `render` prints its note instead - but they are still there.
+        assert bool(reported["findings"]) == (expected != CONFORMING), row["issue"]
+
+
+def test_the_reader_and_the_writer_share_one_marker_grammar() -> None:
+    # They were two expressions and diverged on their first day: the reader's
+    # key class admitted `.`, `stamp`'s did not. `<!-- landing-pr.1-head: … -->`
+    # was therefore live state to this reader and an unrecognised key to the
+    # writer, which replaces a key it recognises and *appends* one it does not.
+    assert READER_MARKER_LINE is WRITER_MARKER_LINE
+    assert parse_marker("<!-- landing-pr.1-head: aaa -->") is None
+    assert parse_marker("<!-- landing-state: landed -->") == ("state", "landed")
+    assert parse_marker("<!-- landing-pr-131-head: aaa -->") == ("pr-131-head", "aaa")
+    # and the grammar the writer emits round-trips through the reader
+    for key, value in land_markers(REPOSITORY, 131, "a" * 40, "b" * 40).items():
+        assert parse_marker(f"<!-- landing-{key}: {value} -->") == (key, value)
 
 
 def test_a_block_that_matches_the_producer_is_the_green_baseline() -> None:

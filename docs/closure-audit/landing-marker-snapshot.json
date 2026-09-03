@@ -1,5 +1,5 @@
 {
-  "curated_under": "Every merged pull request of this repository whose body carries exactly one 'Refs <repository>#<n>' line naming this repository is a land of issue <n>. For each such issue the provider's issue body was read once, at read_back_at, and every line matching the marker shape '^<!--\\s*landing-<key>:.*?-->[ \\t]*$' was recorded with its 1-based line number, together with the body's sha256 over raw UTF-8 bytes and its line count. Nothing is normalised, summarised or inferred; the reader does the extraction. Curated with: gh api --paginate 'repos/ed3c/ai-content-notes/pulls?state=closed&per_page=100' and gh api repos/ed3c/ai-content-notes/issues/<n>.",
+  "curated_under": "Every merged pull request of this repository whose body carries exactly one 'Refs <repository>#<n>' line naming this repository is a land of issue <n>, by land_pr.REFS_LINE - the same expression land_pr.parse_refs binds a land with. For each such issue the provider's issue body was read once, at read_back_at, and every line matching land_pr.MARKER_LINE was recorded with its 1-based line number, together with the body's sha256 over raw UTF-8 bytes and its line count. Nothing is normalised, summarised or inferred; the reader does the extraction. Regenerate with: python3 tools/landing_marker_audit.py --curate > docs/closure-audit/landing-marker-snapshot.json",
   "issues": [
     {
       "body_lines": 47,
@@ -803,9 +803,235 @@
       ],
       "note": null,
       "state": "closed"
+    },
+    {
+      "body_lines": 59,
+      "body_sha256": "a7c8c504740aab2f725977daa7900818f0c30d2a43db2907d64530154bc59356",
+      "body_utf8_bytes": 4185,
+      "issue": 115,
+      "lands": [
+        {
+          "head": "39f2c076b39c4161ece630c58831d6d14b8f7b03",
+          "merge": "420b04b691fcc0e447fb914bca65c1803c52df34",
+          "merged_at": "2026-09-03T06:41:53Z",
+          "pull_request": 129
+        }
+      ],
+      "marker_lines": [
+        {
+          "line": 54,
+          "text": "<!-- landing-state: landed -->"
+        },
+        {
+          "line": 55,
+          "text": "<!-- landing-landed-pr: ed3c/ai-content-notes#129 -->"
+        },
+        {
+          "line": 56,
+          "text": "<!-- landing-head: 39f2c076b39c4161ece630c58831d6d14b8f7b03 -->"
+        },
+        {
+          "line": 57,
+          "text": "<!-- landing-merge: 420b04b691fcc0e447fb914bca65c1803c52df34 -->"
+        },
+        {
+          "line": 58,
+          "text": "<!-- landing-pr-129-head: 39f2c076b39c4161ece630c58831d6d14b8f7b03 -->"
+        },
+        {
+          "line": 59,
+          "text": "<!-- landing-pr-129-merge: 420b04b691fcc0e447fb914bca65c1803c52df34 -->"
+        }
+      ],
+      "note": null,
+      "state": "closed"
+    },
+    {
+      "body_lines": 79,
+      "body_sha256": "d86597611b32423196f5aaa428f04d87efb03ff4abe3c9163dac57dc15d1ee80",
+      "body_utf8_bytes": 4922,
+      "issue": 117,
+      "lands": [
+        {
+          "head": "d3879e0ef310fdbb0f99ac066f474ad428965167",
+          "merge": "2c1169aa1ed1e93eca839a477bb2189424fb64fe",
+          "merged_at": "2026-09-03T06:38:06Z",
+          "pull_request": 128
+        }
+      ],
+      "marker_lines": [
+        {
+          "line": 55,
+          "text": "<!-- landing-state: landed -->"
+        },
+        {
+          "line": 56,
+          "text": "<!-- landing-landed-pr: ed3c/ai-content-notes#116 -->"
+        },
+        {
+          "line": 57,
+          "text": "<!-- landing-head: 9cebf79f9136eb4ba851f27a26ebba10b2ba307f -->"
+        },
+        {
+          "line": 58,
+          "text": "<!-- landing-merge: 3ba1564a572d9e61c294ece9f7e4084d25e75e87 -->"
+        },
+        {
+          "line": 74,
+          "text": "<!-- landing-state: landed -->"
+        },
+        {
+          "line": 75,
+          "text": "<!-- landing-landed-pr: ed3c/ai-content-notes#128 -->"
+        },
+        {
+          "line": 76,
+          "text": "<!-- landing-head: d3879e0ef310fdbb0f99ac066f474ad428965167 -->"
+        },
+        {
+          "line": 77,
+          "text": "<!-- landing-merge: 2c1169aa1ed1e93eca839a477bb2189424fb64fe -->"
+        },
+        {
+          "line": 78,
+          "text": "<!-- landing-pr-128-head: d3879e0ef310fdbb0f99ac066f474ad428965167 -->"
+        },
+        {
+          "line": 79,
+          "text": "<!-- landing-pr-128-merge: 2c1169aa1ed1e93eca839a477bb2189424fb64fe -->"
+        }
+      ],
+      "note": null,
+      "state": "closed"
+    },
+    {
+      "body_lines": 54,
+      "body_sha256": "26a2fbeeb348f9e16db35f36b4d9647d3a207c3c003766e5f4d028a4984be584",
+      "body_utf8_bytes": 2397,
+      "issue": 118,
+      "lands": [
+        {
+          "head": "02f603fd0eace04193faa9468c6a1c864e37a18d",
+          "merge": "f885dc812d257819e7407f6e13cf7a681c432965",
+          "merged_at": "2026-09-03T07:16:13Z",
+          "pull_request": 132
+        }
+      ],
+      "marker_lines": [
+        {
+          "line": 49,
+          "text": "<!-- landing-state: landed -->"
+        },
+        {
+          "line": 50,
+          "text": "<!-- landing-landed-pr: ed3c/ai-content-notes#132 -->"
+        },
+        {
+          "line": 51,
+          "text": "<!-- landing-head: 02f603fd0eace04193faa9468c6a1c864e37a18d -->"
+        },
+        {
+          "line": 52,
+          "text": "<!-- landing-merge: f885dc812d257819e7407f6e13cf7a681c432965 -->"
+        },
+        {
+          "line": 53,
+          "text": "<!-- landing-pr-132-head: 02f603fd0eace04193faa9468c6a1c864e37a18d -->"
+        },
+        {
+          "line": 54,
+          "text": "<!-- landing-pr-132-merge: f885dc812d257819e7407f6e13cf7a681c432965 -->"
+        }
+      ],
+      "note": null,
+      "state": "closed"
+    },
+    {
+      "body_lines": 106,
+      "body_sha256": "71142e18d66f91e40009bd4a394d844232076c2969cc9c1123c58f442eb9ce35",
+      "body_utf8_bytes": 4792,
+      "issue": 120,
+      "lands": [
+        {
+          "head": "ffecfff5a978f1eca6557bf3390fe2253c80f092",
+          "merge": "c36e9c0a236610bf7b7a8037e5b224f7364344c8",
+          "merged_at": "2026-09-03T06:32:57Z",
+          "pull_request": 127
+        }
+      ],
+      "marker_lines": [
+        {
+          "line": 101,
+          "text": "<!-- landing-state: landed -->"
+        },
+        {
+          "line": 102,
+          "text": "<!-- landing-landed-pr: ed3c/ai-content-notes#127 -->"
+        },
+        {
+          "line": 103,
+          "text": "<!-- landing-head: ffecfff5a978f1eca6557bf3390fe2253c80f092 -->"
+        },
+        {
+          "line": 104,
+          "text": "<!-- landing-merge: c36e9c0a236610bf7b7a8037e5b224f7364344c8 -->"
+        },
+        {
+          "line": 105,
+          "text": "<!-- landing-pr-127-head: ffecfff5a978f1eca6557bf3390fe2253c80f092 -->"
+        },
+        {
+          "line": 106,
+          "text": "<!-- landing-pr-127-merge: c36e9c0a236610bf7b7a8037e5b224f7364344c8 -->"
+        }
+      ],
+      "note": null,
+      "state": "closed"
+    },
+    {
+      "body_lines": 126,
+      "body_sha256": "389986481900d0a4505c0835a318b480473724642553a3a84989e4e7f02146af",
+      "body_utf8_bytes": 6212,
+      "issue": 130,
+      "lands": [
+        {
+          "head": "7d0123fa97b7d78da7bc40468b04b5cc17708c6c",
+          "merge": "5c0ecee44121e15b9aa690c2c3cfe4b0e8131747",
+          "merged_at": "2026-09-03T07:10:12Z",
+          "pull_request": 131
+        }
+      ],
+      "marker_lines": [
+        {
+          "line": 121,
+          "text": "<!-- landing-state: landed -->"
+        },
+        {
+          "line": 122,
+          "text": "<!-- landing-landed-pr: ed3c/ai-content-notes#131 -->"
+        },
+        {
+          "line": 123,
+          "text": "<!-- landing-head: 7d0123fa97b7d78da7bc40468b04b5cc17708c6c -->"
+        },
+        {
+          "line": 124,
+          "text": "<!-- landing-merge: 5c0ecee44121e15b9aa690c2c3cfe4b0e8131747 -->"
+        },
+        {
+          "line": 125,
+          "text": "<!-- landing-pr-131-head: 7d0123fa97b7d78da7bc40468b04b5cc17708c6c -->"
+        },
+        {
+          "line": 126,
+          "text": "<!-- landing-pr-131-merge: 5c0ecee44121e15b9aa690c2c3cfe4b0e8131747 -->"
+        }
+      ],
+      "note": null,
+      "state": "closed"
     }
   ],
-  "read_back_at": "2026-09-03T05:38:00Z",
+  "read_back_at": "2026-09-03T07:19:32Z",
   "repository": "ed3c/ai-content-notes",
   "schema": "landing-marker-snapshot@1"
 }
