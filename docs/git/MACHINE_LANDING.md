@@ -99,10 +99,24 @@ The live block is the *trailing* contiguous run of marker lines. Marker-shaped
 text anywhere else is quoted prose and is reported as `quoted_outside_block`
 rather than read as state.
 
-The snapshot is the ceiling. This reader is zero-network, so it cannot see a
+The snapshot is the ceiling. Reading is zero-network, so the audit cannot see a
 land that happened after `read_back_at`, or a body edited since; it states
 whether the bytes it was given conform, and every row carries the body digest
 and byte count those bytes were read from.
+
+`--curate` is what makes those digests worth recording: it re-reads the
+provider and prints a fresh snapshot, so the ceiling is a bill this repository
+can pay rather than a permanent property of the file. Regenerate after a land:
+
+```text
+python3 tools/landing_marker_audit.py --curate > docs/closure-audit/landing-marker-snapshot.json
+```
+
+A land is counted by `land_pr.REFS_LINE` — the same expression `parse_refs`
+binds a land with, exactly one line naming this repository — and marker lines
+by `land_pr.MARKER_LINE`, the one expression `stamp` edits keys with. Neither
+grammar is restated in the reader. `read_back_at` comes off the provider's own
+`Date` header, not the curating host's clock.
 
 ## Genesis (operator, once)
 
