@@ -1,0 +1,811 @@
+{
+  "curated_under": "Every merged pull request of this repository whose body carries exactly one 'Refs <repository>#<n>' line naming this repository is a land of issue <n>. For each such issue the provider's issue body was read once, at read_back_at, and every line matching the marker shape '^<!--\\s*landing-<key>:.*?-->[ \\t]*$' was recorded with its 1-based line number, together with the body's sha256 over raw UTF-8 bytes and its line count. Nothing is normalised, summarised or inferred; the reader does the extraction. Curated with: gh api --paginate 'repos/ed3c/ai-content-notes/pulls?state=closed&per_page=100' and gh api repos/ed3c/ai-content-notes/issues/<n>.",
+  "issues": [
+    {
+      "body_lines": 47,
+      "body_sha256": "ccdfc5c0c6aa446a47a643dc57c66338a59ec7d218ec9271241f10547180b90a",
+      "body_utf8_bytes": 2362,
+      "issue": 43,
+      "lands": [
+        {
+          "head": "4fb007876ca1ccb18123bcbaca41edbf69a3b0fe",
+          "merge": "d555a2fb613c4c508e143e5eb8db4f3d0b102f13",
+          "merged_at": "2026-09-02T18:51:01Z",
+          "pull_request": 102
+        }
+      ],
+      "marker_lines": [
+        {
+          "line": 44,
+          "text": "<!-- landing-state: landed -->"
+        },
+        {
+          "line": 45,
+          "text": "<!-- landing-landed-pr: ed3c/ai-content-notes#102 -->"
+        },
+        {
+          "line": 46,
+          "text": "<!-- landing-head: 4fb007876ca1ccb18123bcbaca41edbf69a3b0fe -->"
+        },
+        {
+          "line": 47,
+          "text": "<!-- landing-merge: d555a2fb613c4c508e143e5eb8db4f3d0b102f13 -->"
+        }
+      ],
+      "note": null,
+      "state": "closed"
+    },
+    {
+      "body_lines": 47,
+      "body_sha256": "ed169796da778190aef4162e28659201d749e3c2c2339bd1f00adf4d0ad9dde1",
+      "body_utf8_bytes": 2052,
+      "issue": 50,
+      "lands": [
+        {
+          "head": "1566da0f3ded5b22270795365463ddb40b5eadab",
+          "merge": "b4f910efc6d7d275ac4a7fb0201f07ffdc841492",
+          "merged_at": "2026-09-02T18:04:31Z",
+          "pull_request": 100
+        }
+      ],
+      "marker_lines": [
+        {
+          "line": 44,
+          "text": "<!-- landing-state: landed -->"
+        },
+        {
+          "line": 45,
+          "text": "<!-- landing-landed-pr: ed3c/ai-content-notes#100 -->"
+        },
+        {
+          "line": 46,
+          "text": "<!-- landing-head: 1566da0f3ded5b22270795365463ddb40b5eadab -->"
+        },
+        {
+          "line": 47,
+          "text": "<!-- landing-merge: b4f910efc6d7d275ac4a7fb0201f07ffdc841492 -->"
+        }
+      ],
+      "note": null,
+      "state": "closed"
+    },
+    {
+      "body_lines": 44,
+      "body_sha256": "e39dc03a4349199057c6a9a2bbb916e49d0fa4f0e11128e35dd8eb34cfd00e61",
+      "body_utf8_bytes": 2228,
+      "issue": 51,
+      "lands": [
+        {
+          "head": "2fe4bd1a8244ccdc088ceafe433d0638503a2c1a",
+          "merge": "b02c4811c2e52212d11a7b5b052385130bedc1c9",
+          "merged_at": "2026-09-02T17:59:31Z",
+          "pull_request": 99
+        }
+      ],
+      "marker_lines": [
+        {
+          "line": 41,
+          "text": "<!-- landing-state: landed -->"
+        },
+        {
+          "line": 42,
+          "text": "<!-- landing-landed-pr: ed3c/ai-content-notes#99 -->"
+        },
+        {
+          "line": 43,
+          "text": "<!-- landing-head: 2fe4bd1a8244ccdc088ceafe433d0638503a2c1a -->"
+        },
+        {
+          "line": 44,
+          "text": "<!-- landing-merge: b02c4811c2e52212d11a7b5b052385130bedc1c9 -->"
+        }
+      ],
+      "note": null,
+      "state": "closed"
+    },
+    {
+      "body_lines": 95,
+      "body_sha256": "d9b6863773f2debede3ff8eb6ec14982bb97607ec1d1c4658dc5eb34e833b027",
+      "body_utf8_bytes": 3738,
+      "issue": 54,
+      "lands": [
+        {
+          "head": "35f75d7d471276b5f7b2949cd253114be4004752",
+          "merge": "8233f47da6d733a6f1d15d1bbfca604017f97ccd",
+          "merged_at": "2026-09-02T18:08:32Z",
+          "pull_request": 101
+        }
+      ],
+      "marker_lines": [
+        {
+          "line": 92,
+          "text": "<!-- landing-state: landed -->"
+        },
+        {
+          "line": 93,
+          "text": "<!-- landing-landed-pr: ed3c/ai-content-notes#101 -->"
+        },
+        {
+          "line": 94,
+          "text": "<!-- landing-head: 35f75d7d471276b5f7b2949cd253114be4004752 -->"
+        },
+        {
+          "line": 95,
+          "text": "<!-- landing-merge: 8233f47da6d733a6f1d15d1bbfca604017f97ccd -->"
+        }
+      ],
+      "note": null,
+      "state": "closed"
+    },
+    {
+      "body_lines": 18,
+      "body_sha256": "89a8935c311288f3a7c7873aedc95a02b0892b976e9c6261c5826b361cc938cb",
+      "body_utf8_bytes": 882,
+      "issue": 57,
+      "lands": [
+        {
+          "head": "69f351907a89d00291b04e7c6f3099167804a1d9",
+          "merge": "3039adde19fc7d10f024325fd86ff68508408e2b",
+          "merged_at": "2026-09-02T18:33:27Z",
+          "pull_request": 103
+        }
+      ],
+      "marker_lines": [
+        {
+          "line": 15,
+          "text": "<!-- landing-state: landed -->"
+        },
+        {
+          "line": 16,
+          "text": "<!-- landing-landed-pr: ed3c/ai-content-notes#103 -->"
+        },
+        {
+          "line": 17,
+          "text": "<!-- landing-head: 69f351907a89d00291b04e7c6f3099167804a1d9 -->"
+        },
+        {
+          "line": 18,
+          "text": "<!-- landing-merge: 3039adde19fc7d10f024325fd86ff68508408e2b -->"
+        }
+      ],
+      "note": null,
+      "state": "closed"
+    },
+    {
+      "body_lines": 156,
+      "body_sha256": "1563ae344f3cae411365aa2148f00bad12cb43cf086395d60ef70239098dd74b",
+      "body_utf8_bytes": 9654,
+      "issue": 61,
+      "lands": [
+        {
+          "head": "c6d2fdc2e512056114eb3571c116a1754c0f7fda",
+          "merge": "bceaf9bffd0083849157975a32cd38f23cc1445d",
+          "merged_at": "2026-09-01T08:16:25Z",
+          "pull_request": 94
+        }
+      ],
+      "marker_lines": [
+        {
+          "line": 153,
+          "text": "<!-- landing-state: landed -->"
+        },
+        {
+          "line": 154,
+          "text": "<!-- landing-landed-pr: ed3c/ai-content-notes#94 -->"
+        },
+        {
+          "line": 155,
+          "text": "<!-- landing-head: c6d2fdc2e512056114eb3571c116a1754c0f7fda -->"
+        },
+        {
+          "line": 156,
+          "text": "<!-- landing-merge: bceaf9bffd0083849157975a32cd38f23cc1445d -->"
+        }
+      ],
+      "note": null,
+      "state": "closed"
+    },
+    {
+      "body_lines": 43,
+      "body_sha256": "24aa646cfcc06970362139f6cfa544cc04e08d9b6366f976ba1706b01ff22077",
+      "body_utf8_bytes": 2229,
+      "issue": 74,
+      "lands": [
+        {
+          "head": "ef4ab7f1e2916076a3f479442bb2d07ca1a4d5ce",
+          "merge": "d7631f5797687108ee2be8980e8e48a3e3da916c",
+          "merged_at": "2026-09-01T06:39:42Z",
+          "pull_request": 93
+        }
+      ],
+      "marker_lines": [
+        {
+          "line": 40,
+          "text": "<!-- landing-state: landed -->"
+        },
+        {
+          "line": 41,
+          "text": "<!-- landing-landed-pr: ed3c/ai-content-notes#93 -->"
+        },
+        {
+          "line": 42,
+          "text": "<!-- landing-head: ef4ab7f1e2916076a3f479442bb2d07ca1a4d5ce -->"
+        },
+        {
+          "line": 43,
+          "text": "<!-- landing-merge: d7631f5797687108ee2be8980e8e48a3e3da916c -->"
+        }
+      ],
+      "note": null,
+      "state": "closed"
+    },
+    {
+      "body_lines": 180,
+      "body_sha256": "d7a1e29a741b169c31a20d3f57308e80e4afe83e00f17c5d0410dd15034e5173",
+      "body_utf8_bytes": 10674,
+      "issue": 75,
+      "lands": [
+        {
+          "head": "81389f92f14dcc305dc39effb4a41678db34655b",
+          "merge": "f292deafbc0feca5dedacf27af8ce192f4a6314f",
+          "merged_at": "2026-09-01T08:20:14Z",
+          "pull_request": 95
+        },
+        {
+          "head": "f60841314a857746356e4f86d7c93df8a90cca71",
+          "merge": "cb011d188996c86e640bb1212c18e0a7030289ea",
+          "merged_at": "2026-09-02T17:32:01Z",
+          "pull_request": 97
+        }
+      ],
+      "marker_lines": [
+        {
+          "line": 177,
+          "text": "<!-- landing-state: landed -->"
+        },
+        {
+          "line": 178,
+          "text": "<!-- landing-landed-pr: ed3c/ai-content-notes#97 -->"
+        },
+        {
+          "line": 179,
+          "text": "<!-- landing-head: f60841314a857746356e4f86d7c93df8a90cca71 -->"
+        },
+        {
+          "line": 180,
+          "text": "<!-- landing-merge: cb011d188996c86e640bb1212c18e0a7030289ea -->"
+        }
+      ],
+      "note": null,
+      "state": "closed"
+    },
+    {
+      "body_lines": 3,
+      "body_sha256": "fdbb5ef5bc571039ffb4b57512f9eb3b63a9be2024486c7429281741c535a129",
+      "body_utf8_bytes": 736,
+      "issue": 78,
+      "lands": [
+        {
+          "head": "90253c72b9511ccab1a9356317e0ec6cd0da1d5c",
+          "merge": "1b31a4330b3860345696ddbe0b09b0d9ed26f75a",
+          "merged_at": "2026-08-31T16:49:32Z",
+          "pull_request": 84
+        }
+      ],
+      "marker_lines": [],
+      "note": "PR #84 is the genesis operator merge that installed the ceremony; land.yml did not yet exist on the default branch when it merged, so no land ran and no marker was ever stamped. docs/git/MACHINE_LANDING.md 'Genesis (operator, once)' names this merge. Curing this row means stamping PR #84's own head and merge SHAs by hand, which no atom has done.",
+      "state": "closed"
+    },
+    {
+      "body_lines": 7,
+      "body_sha256": "2d2e0ea67c6a6fc60f5893fc1e37809ac03648d19b18a7cbfd98c30a55b62be2",
+      "body_utf8_bytes": 1158,
+      "issue": 79,
+      "lands": [
+        {
+          "head": "67d252cdb4aae85352123e03a47f1255728ab7eb",
+          "merge": "de0ef31f3ec2cb01b88ee80ffb76d0c79104c950",
+          "merged_at": "2026-08-31T16:50:59Z",
+          "pull_request": 85
+        }
+      ],
+      "marker_lines": [
+        {
+          "line": 4,
+          "text": "<!-- landing-state: landed -->"
+        },
+        {
+          "line": 5,
+          "text": "<!-- landing-landed-pr: ed3c/ai-content-notes#85 -->"
+        },
+        {
+          "line": 6,
+          "text": "<!-- landing-head: 67d252cdb4aae85352123e03a47f1255728ab7eb -->"
+        },
+        {
+          "line": 7,
+          "text": "<!-- landing-merge: de0ef31f3ec2cb01b88ee80ffb76d0c79104c950 -->"
+        }
+      ],
+      "note": null,
+      "state": "closed"
+    },
+    {
+      "body_lines": 7,
+      "body_sha256": "8f2490c744c8a2e737d27caf9799b28d9a6cee29b939c111e5e04b4645558163",
+      "body_utf8_bytes": 932,
+      "issue": 80,
+      "lands": [
+        {
+          "head": "e5b7ad9eee7d4f43303b41461138472c10cf77ce",
+          "merge": "5d726464f55189157bd221e55b5c7b1c31616250",
+          "merged_at": "2026-08-31T18:06:58Z",
+          "pull_request": 88
+        }
+      ],
+      "marker_lines": [
+        {
+          "line": 4,
+          "text": "<!-- landing-state: landed -->"
+        },
+        {
+          "line": 5,
+          "text": "<!-- landing-landed-pr: ed3c/ai-content-notes#88 -->"
+        },
+        {
+          "line": 6,
+          "text": "<!-- landing-head: e5b7ad9eee7d4f43303b41461138472c10cf77ce -->"
+        },
+        {
+          "line": 7,
+          "text": "<!-- landing-merge: 5d726464f55189157bd221e55b5c7b1c31616250 -->"
+        }
+      ],
+      "note": null,
+      "state": "closed"
+    },
+    {
+      "body_lines": 7,
+      "body_sha256": "448954729a9306a271f29bee4add8996e02968f51d02157d68b4b742f56ce01f",
+      "body_utf8_bytes": 659,
+      "issue": 81,
+      "lands": [
+        {
+          "head": "26f365856bdfd139d28eaf87f7ccfc864c148986",
+          "merge": "f56d37786cfd988105f4932b482f6bc8342f33ed",
+          "merged_at": "2026-08-31T18:09:34Z",
+          "pull_request": 89
+        }
+      ],
+      "marker_lines": [
+        {
+          "line": 4,
+          "text": "<!-- landing-state: landed -->"
+        },
+        {
+          "line": 5,
+          "text": "<!-- landing-landed-pr: ed3c/ai-content-notes#89 -->"
+        },
+        {
+          "line": 6,
+          "text": "<!-- landing-head: 26f365856bdfd139d28eaf87f7ccfc864c148986 -->"
+        },
+        {
+          "line": 7,
+          "text": "<!-- landing-merge: f56d37786cfd988105f4932b482f6bc8342f33ed -->"
+        }
+      ],
+      "note": null,
+      "state": "closed"
+    },
+    {
+      "body_lines": 7,
+      "body_sha256": "25d20b7e22af5514f447d0066f25b7a238bf91125cf4c6824ae605ca1d4ae417",
+      "body_utf8_bytes": 649,
+      "issue": 82,
+      "lands": [
+        {
+          "head": "244c707e6fd6ad7868e979e943e3cdc27cf5264b",
+          "merge": "f6b6603d174cf5e424e214f3cc394890136e0dc7",
+          "merged_at": "2026-08-31T18:11:42Z",
+          "pull_request": 90
+        }
+      ],
+      "marker_lines": [
+        {
+          "line": 4,
+          "text": "<!-- landing-state: landed -->"
+        },
+        {
+          "line": 5,
+          "text": "<!-- landing-landed-pr: ed3c/ai-content-notes#90 -->"
+        },
+        {
+          "line": 6,
+          "text": "<!-- landing-head: 244c707e6fd6ad7868e979e943e3cdc27cf5264b -->"
+        },
+        {
+          "line": 7,
+          "text": "<!-- landing-merge: f6b6603d174cf5e424e214f3cc394890136e0dc7 -->"
+        }
+      ],
+      "note": null,
+      "state": "closed"
+    },
+    {
+      "body_lines": 17,
+      "body_sha256": "44fb8de3d23a3efb0f8e9df22b4ac9f36fe8e86217dd22fe6e9011d71e334671",
+      "body_utf8_bytes": 1340,
+      "issue": 86,
+      "lands": [
+        {
+          "head": "284bb440c4df1c856091d14f9e92a7507ce7bb0d",
+          "merge": "40337ee70ecf7abafcf91f4b520be30be956d066",
+          "merged_at": "2026-08-31T16:55:23Z",
+          "pull_request": 87
+        }
+      ],
+      "marker_lines": [
+        {
+          "line": 14,
+          "text": "<!-- landing-state: landed -->"
+        },
+        {
+          "line": 15,
+          "text": "<!-- landing-landed-pr: ed3c/ai-content-notes#87 -->"
+        },
+        {
+          "line": 16,
+          "text": "<!-- landing-head: 284bb440c4df1c856091d14f9e92a7507ce7bb0d -->"
+        },
+        {
+          "line": 17,
+          "text": "<!-- landing-merge: 40337ee70ecf7abafcf91f4b520be30be956d066 -->"
+        }
+      ],
+      "note": null,
+      "state": "closed"
+    },
+    {
+      "body_lines": 24,
+      "body_sha256": "a658cb49252854aa931d4e658f0962bf2a8f64f6b073106fe87d81b9f544e32a",
+      "body_utf8_bytes": 2353,
+      "issue": 91,
+      "lands": [
+        {
+          "head": "60f86727f5a02fb23a308fb8ad49ac8ece7d81ce",
+          "merge": "cfac2d7d5d7f336ec96de7956ee877d589832d3e",
+          "merged_at": "2026-09-01T05:31:07Z",
+          "pull_request": 92
+        }
+      ],
+      "marker_lines": [
+        {
+          "line": 21,
+          "text": "<!-- landing-state: landed -->"
+        },
+        {
+          "line": 22,
+          "text": "<!-- landing-landed-pr: ed3c/ai-content-notes#92 -->"
+        },
+        {
+          "line": 23,
+          "text": "<!-- landing-head: 60f86727f5a02fb23a308fb8ad49ac8ece7d81ce -->"
+        },
+        {
+          "line": 24,
+          "text": "<!-- landing-merge: cfac2d7d5d7f336ec96de7956ee877d589832d3e -->"
+        }
+      ],
+      "note": null,
+      "state": "closed"
+    },
+    {
+      "body_lines": 63,
+      "body_sha256": "d797883de58ff7417c47052198bf4c3fb333ff1ab220bdc171b3c0c52d4e5cb7",
+      "body_utf8_bytes": 4364,
+      "issue": 98,
+      "lands": [
+        {
+          "head": "8f46efc0dfe563d6b1de628eb3612be58b74f72c",
+          "merge": "dfb3fcb79842ae834517704634391945d465c005",
+          "merged_at": "2026-09-03T04:23:07Z",
+          "pull_request": 119
+        }
+      ],
+      "marker_lines": [
+        {
+          "line": 10,
+          "text": "<!-- landing-landed-pr: ed3c/ai-content-notes#94 -->"
+        },
+        {
+          "line": 61,
+          "text": "<!-- landing-state: landed -->"
+        },
+        {
+          "line": 62,
+          "text": "<!-- landing-head: 8f46efc0dfe563d6b1de628eb3612be58b74f72c -->"
+        },
+        {
+          "line": 63,
+          "text": "<!-- landing-merge: dfb3fcb79842ae834517704634391945d465c005 -->"
+        }
+      ],
+      "note": null,
+      "state": "closed"
+    },
+    {
+      "body_lines": 53,
+      "body_sha256": "7f0142eeea1a7f1a3f1fb73a2306e8aca1443894e02fe113f736b72c00a961a0",
+      "body_utf8_bytes": 2827,
+      "issue": 104,
+      "lands": [
+        {
+          "head": "9c80aede4085b9be8a744cde51fbc7ea846d88a9",
+          "merge": "9b8c4306e43ac68e3cf1dd4868d9a88622bdfa3d",
+          "merged_at": "2026-09-02T18:45:52Z",
+          "pull_request": 105
+        }
+      ],
+      "marker_lines": [
+        {
+          "line": 50,
+          "text": "<!-- landing-state: landed -->"
+        },
+        {
+          "line": 51,
+          "text": "<!-- landing-landed-pr: ed3c/ai-content-notes#105 -->"
+        },
+        {
+          "line": 52,
+          "text": "<!-- landing-head: 9c80aede4085b9be8a744cde51fbc7ea846d88a9 -->"
+        },
+        {
+          "line": 53,
+          "text": "<!-- landing-merge: 9b8c4306e43ac68e3cf1dd4868d9a88622bdfa3d -->"
+        }
+      ],
+      "note": null,
+      "state": "closed"
+    },
+    {
+      "body_lines": 58,
+      "body_sha256": "f901eba1893afed258d91c7d5253692bcf9ae8d0ace0863dfd6972af477474b6",
+      "body_utf8_bytes": 4868,
+      "issue": 106,
+      "lands": [
+        {
+          "head": "396c7e0fea222aa553c701d32644a9260e4b2627",
+          "merge": "6fb15828c3fac0fbc7e47c8ad95b99d7422ce1ec",
+          "merged_at": "2026-09-03T04:32:40Z",
+          "pull_request": 121
+        }
+      ],
+      "marker_lines": [
+        {
+          "line": 53,
+          "text": "<!-- landing-state: landed -->"
+        },
+        {
+          "line": 54,
+          "text": "<!-- landing-landed-pr: ed3c/ai-content-notes#121 -->"
+        },
+        {
+          "line": 55,
+          "text": "<!-- landing-head: 396c7e0fea222aa553c701d32644a9260e4b2627 -->"
+        },
+        {
+          "line": 56,
+          "text": "<!-- landing-merge: 6fb15828c3fac0fbc7e47c8ad95b99d7422ce1ec -->"
+        },
+        {
+          "line": 57,
+          "text": "<!-- landing-pr-121-head: 396c7e0fea222aa553c701d32644a9260e4b2627 -->"
+        },
+        {
+          "line": 58,
+          "text": "<!-- landing-pr-121-merge: 6fb15828c3fac0fbc7e47c8ad95b99d7422ce1ec -->"
+        }
+      ],
+      "note": null,
+      "state": "closed"
+    },
+    {
+      "body_lines": 70,
+      "body_sha256": "bbe7e72d66689bee834b44e967caac5563071fb8b416878a7fec97be0473a72f",
+      "body_utf8_bytes": 5461,
+      "issue": 107,
+      "lands": [
+        {
+          "head": "382c59b3c2ce293f50d928573dc139aae53b58b5",
+          "merge": "00d84cecf4754aa558e02cca4ceae422c008b36e",
+          "merged_at": "2026-09-03T04:34:40Z",
+          "pull_request": 122
+        }
+      ],
+      "marker_lines": [
+        {
+          "line": 65,
+          "text": "<!-- landing-state: landed -->"
+        },
+        {
+          "line": 66,
+          "text": "<!-- landing-landed-pr: ed3c/ai-content-notes#122 -->"
+        },
+        {
+          "line": 67,
+          "text": "<!-- landing-head: 382c59b3c2ce293f50d928573dc139aae53b58b5 -->"
+        },
+        {
+          "line": 68,
+          "text": "<!-- landing-merge: 00d84cecf4754aa558e02cca4ceae422c008b36e -->"
+        },
+        {
+          "line": 69,
+          "text": "<!-- landing-pr-122-head: 382c59b3c2ce293f50d928573dc139aae53b58b5 -->"
+        },
+        {
+          "line": 70,
+          "text": "<!-- landing-pr-122-merge: 00d84cecf4754aa558e02cca4ceae422c008b36e -->"
+        }
+      ],
+      "note": null,
+      "state": "closed"
+    },
+    {
+      "body_lines": 52,
+      "body_sha256": "1769417ffcf133fd6ca8a5edfd1f1cf4944b2ef0251b64d509f835d70afa0919",
+      "body_utf8_bytes": 3165,
+      "issue": 108,
+      "lands": [
+        {
+          "head": "6a8dcba257fc3accc8862eee7ba04f17ea28aad7",
+          "merge": "0f75471bbd7d6b44942118f6574dd3396f0a9927",
+          "merged_at": "2026-09-03T04:47:29Z",
+          "pull_request": 123
+        }
+      ],
+      "marker_lines": [
+        {
+          "line": 47,
+          "text": "<!-- landing-state: landed -->"
+        },
+        {
+          "line": 48,
+          "text": "<!-- landing-landed-pr: ed3c/ai-content-notes#123 -->"
+        },
+        {
+          "line": 49,
+          "text": "<!-- landing-head: 6a8dcba257fc3accc8862eee7ba04f17ea28aad7 -->"
+        },
+        {
+          "line": 50,
+          "text": "<!-- landing-merge: 0f75471bbd7d6b44942118f6574dd3396f0a9927 -->"
+        },
+        {
+          "line": 51,
+          "text": "<!-- landing-pr-123-head: 6a8dcba257fc3accc8862eee7ba04f17ea28aad7 -->"
+        },
+        {
+          "line": 52,
+          "text": "<!-- landing-pr-123-merge: 0f75471bbd7d6b44942118f6574dd3396f0a9927 -->"
+        }
+      ],
+      "note": null,
+      "state": "closed"
+    },
+    {
+      "body_lines": 61,
+      "body_sha256": "68ea47f1e2899bc71baa3c2d86e33d3aa30a4ed5dad52c1cab6910c22fb26b63",
+      "body_utf8_bytes": 4623,
+      "issue": 109,
+      "lands": [
+        {
+          "head": "8a66eac64c7b3381754a369b6506d7ba4925ed21",
+          "merge": "7b43d57ecd3c00514b9ed4e9e787a188feef39ba",
+          "merged_at": "2026-09-03T03:51:03Z",
+          "pull_request": 114
+        }
+      ],
+      "marker_lines": [
+        {
+          "line": 58,
+          "text": "<!-- landing-state: landed -->"
+        },
+        {
+          "line": 59,
+          "text": "<!-- landing-landed-pr: ed3c/ai-content-notes#114 -->"
+        },
+        {
+          "line": 60,
+          "text": "<!-- landing-head: 8a66eac64c7b3381754a369b6506d7ba4925ed21 -->"
+        },
+        {
+          "line": 61,
+          "text": "<!-- landing-merge: 7b43d57ecd3c00514b9ed4e9e787a188feef39ba -->"
+        }
+      ],
+      "note": null,
+      "state": "closed"
+    },
+    {
+      "body_lines": 52,
+      "body_sha256": "908a196e9ea98e5625bf8da81310da1f543f982615a4033eaa9236ab7f3b920f",
+      "body_utf8_bytes": 2614,
+      "issue": 110,
+      "lands": [
+        {
+          "head": "6049d9aa9150ba81661fc758a444a7937ffbc97c",
+          "merge": "ac10987c85c3f2cc01ca302c76e1c2eb6e8ea88a",
+          "merged_at": "2026-09-03T04:47:53Z",
+          "pull_request": 124
+        }
+      ],
+      "marker_lines": [
+        {
+          "line": 47,
+          "text": "<!-- landing-state: landed -->"
+        },
+        {
+          "line": 48,
+          "text": "<!-- landing-landed-pr: ed3c/ai-content-notes#124 -->"
+        },
+        {
+          "line": 49,
+          "text": "<!-- landing-head: 6049d9aa9150ba81661fc758a444a7937ffbc97c -->"
+        },
+        {
+          "line": 50,
+          "text": "<!-- landing-merge: ac10987c85c3f2cc01ca302c76e1c2eb6e8ea88a -->"
+        },
+        {
+          "line": 51,
+          "text": "<!-- landing-pr-124-head: 6049d9aa9150ba81661fc758a444a7937ffbc97c -->"
+        },
+        {
+          "line": 52,
+          "text": "<!-- landing-pr-124-merge: ac10987c85c3f2cc01ca302c76e1c2eb6e8ea88a -->"
+        }
+      ],
+      "note": null,
+      "state": "closed"
+    },
+    {
+      "body_lines": 72,
+      "body_sha256": "5bb7a10e7805725307d165e97375e0d238a6acdff2bc590642c7c371fa2164c9",
+      "body_utf8_bytes": 7222,
+      "issue": 113,
+      "lands": [
+        {
+          "head": "9cebf79f9136eb4ba851f27a26ebba10b2ba307f",
+          "merge": "3ba1564a572d9e61c294ece9f7e4084d25e75e87",
+          "merged_at": "2026-09-03T03:59:45Z",
+          "pull_request": 116
+        }
+      ],
+      "marker_lines": [
+        {
+          "line": 69,
+          "text": "<!-- landing-state: landed -->"
+        },
+        {
+          "line": 70,
+          "text": "<!-- landing-landed-pr: ed3c/ai-content-notes#116 -->"
+        },
+        {
+          "line": 71,
+          "text": "<!-- landing-head: 9cebf79f9136eb4ba851f27a26ebba10b2ba307f -->"
+        },
+        {
+          "line": 72,
+          "text": "<!-- landing-merge: 3ba1564a572d9e61c294ece9f7e4084d25e75e87 -->"
+        }
+      ],
+      "note": null,
+      "state": "closed"
+    }
+  ],
+  "read_back_at": "2026-09-03T05:38:00Z",
+  "repository": "ed3c/ai-content-notes",
+  "schema": "landing-marker-snapshot@1"
+}
