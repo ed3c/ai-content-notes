@@ -83,6 +83,52 @@ def test_stamp_of_an_absent_body_still_produces_the_markers() -> None:
     assert stamped.strip() == "<!-- landing-state: landed -->"
 
 
+# The #75 double-land, replayed from the SHAs recorded in ed3c/ai-content-notes#98.
+FIRST_LAND = (95, "81389f92f14dcc305dc39effb4a41678db34655b", "f292deafbc0feca5dedacf27af8ce192f4a6314f")
+SECOND_LAND = (97, "f60841314a857746356e4f86d7c93df8a90cca71", "cb011d188996c86e640bb1212c18e0a7030289ea")
+
+
+def land(body: str | None, land_facts: tuple[int, str, str]) -> str:
+    number, head, merge = land_facts
+    return land_pr.stamp(body, land_pr.land_markers(REPOSITORY, number, head, merge))
+
+
+def test_a_second_land_leaves_the_first_land_readable() -> None:
+    # Planted defect control for #98: before the per-pull-request rows existed,
+    # the second stamp replaced `landing-head` and `landing-merge` in place and
+    # PR #95's two SHAs left the Issue body with nothing recording that they had
+    # ever been there. Both lands must survive.
+    first = land("issue text", FIRST_LAND)
+    second = land(first, SECOND_LAND)
+
+    for number, head, merge in (FIRST_LAND, SECOND_LAND):
+        assert f"<!-- landing-pr-{number}-head: {head} -->" in second
+        assert f"<!-- landing-pr-{number}-merge: {merge} -->" in second
+
+    # and the unnamespaced pointer is the newest land, not an ambiguous mixture
+    assert f"<!-- landing-landed-pr: {REPOSITORY}#97 -->" in second
+    assert f"<!-- landing-head: {SECOND_LAND[1]} -->" in second
+    assert f"<!-- landing-merge: {SECOND_LAND[2]} -->" in second
+    assert second.count("<!-- landing-head:") == 1
+    assert second.count("<!-- landing-merge:") == 1
+
+
+def test_relanding_the_same_pull_request_is_idempotent() -> None:
+    # The other direction: a retried land of one pull request must not grow a
+    # second row set for it, or the ledger would count lands that never happened.
+    once = land("issue text", SECOND_LAND)
+    twice = land(once, SECOND_LAND)
+    assert twice == once
+    assert twice.count("<!-- landing-pr-97-head:") == 1
+
+
+def test_land_markers_name_the_landing_pull_request_in_every_history_key() -> None:
+    markers = land_pr.land_markers(REPOSITORY, 97, "f" * 40, "c" * 40)
+    history = {key: value for key, value in markers.items() if key.startswith("pr-")}
+    assert history == {"pr-97-head": "f" * 40, "pr-97-merge": "c" * 40}
+    assert set(markers) - set(history) == {"state", "landed-pr", "head", "merge"}
+
+
 def test_clean_pr_gets_exactly_one_anchor_comment() -> None:
     calls: list[tuple[str, str]] = []
 
