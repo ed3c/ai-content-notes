@@ -45,6 +45,26 @@ naming this repository. It merges at that exact sha, reads the merge back,
 stamps `<!-- landing-… -->` markers into the Issue, closes it and reads the
 closure back. Any refusal is a non-zero exit carrying the provider's own reason.
 
+## What the Issue markers record
+
+`stamp` replaces a marker key in place, so a key that does not carry the landing
+pull request holds exactly one land per Issue. `land_markers` therefore writes
+two surfaces, and it is the only producer of a land's keys so that no call site
+has to remember the difference:
+
+| Key | Surface |
+| --- | --- |
+| `landing-state`, `landing-landed-pr`, `landing-head`, `landing-merge` | the newest land; rewritten by every land |
+| `landing-pr-<n>-head`, `landing-pr-<n>-merge` | that one land; appended, never rewritten by another pull request |
+
+An Issue that takes a second land keeps both row sets, so the first land's head
+and merge SHAs stay readable from the Issue body rather than only from the
+earlier pull request. Re-running a land for the same pull request rewrites that
+pull request's own rows, so a retry stays idempotent.
+
+Whether an Issue's acceptance is actually satisfied by any of those lands stays
+a human judgement. These markers record what landed, never that it was enough.
+
 ## Genesis (operator, once)
 
 The ceremony cannot verify the pull request that installs it: a

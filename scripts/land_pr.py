@@ -41,6 +41,28 @@ def parse_refs(body: str | None, repository: str) -> int:
     return number
 
 
+def land_markers(repository: str, number: int, head: str, merge_sha: str) -> dict[str, str]:
+    """Markers for one land: a newest-land pointer plus a per-pull-request row set.
+
+    `stamp` replaces a marker key in place, so a key that does not carry the
+    landing pull request holds exactly one land per Issue and a second land
+    overwrites the first. This function is the only producer of a land's marker
+    keys precisely so no call site has to remember that: the `pr-<number>-*`
+    keys differ per pull request and therefore append, while `state`,
+    `landed-pr`, `head` and `merge` are deliberately unnamespaced and keep
+    pointing at the newest land, which no longer costs anything because the
+    per-pull-request rows hold the history they used to be the only record of.
+    """
+    return {
+        "state": "landed",
+        "landed-pr": f"{repository}#{number}",
+        "head": head,
+        "merge": merge_sha,
+        f"pr-{number}-head": head,
+        f"pr-{number}-merge": merge_sha,
+    }
+
+
 def stamp(body: str | None, markers: dict[str, str]) -> str:
     """Set each `<!-- landing-<key>: ... -->` marker, replacing in place or appending."""
     text = body or ""
@@ -159,15 +181,7 @@ def main(argv: list[str] | None = None) -> int:
         "PATCH",
         f"/repos/{repository}/issues/{issue}",
         {
-            "body": stamp(
-                body,
-                {
-                    "state": "landed",
-                    "landed-pr": f"{repository}#{number}",
-                    "head": head,
-                    "merge": merge_sha,
-                },
-            ),
+            "body": stamp(body, land_markers(repository, number, head, merge_sha)),
             "state": "closed",
             "state_reason": "completed",
         },
