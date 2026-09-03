@@ -23,6 +23,7 @@ happens to hold, and the planted-defect controls build their own rows.
 from __future__ import annotations
 
 import copy
+import hashlib
 import json
 import sys
 from pathlib import Path
@@ -42,6 +43,7 @@ from landing_marker_audit import (  # noqa: E402
     UNSTAMPED,
     audit,
     audit_issue,
+    curate,
     load_snapshot,
     main,
     parse_marker,
@@ -349,6 +351,93 @@ def test_strict_exit_code_follows_the_report(tmp_path: Path) -> None:
     path = tmp_path / "broken-snapshot.json"
     path.write_text(json.dumps(broken), encoding="utf-8")
     assert main(["--strict", "--snapshot", str(path)]) == 1
+
+
+# Four merged pull requests, one shape each, for the curation's binding rule.
+# `verify.yml` and `land.yml` never run here; the provider is injected.
+CURATION_PULLS = [
+    {  # a land: exactly one Refs line naming this repository
+        "number": 131,
+        "merged_at": "2026-09-03T07:10:12Z",
+        "merge_commit_sha": "1" * 40,
+        "head": "2" * 40,
+        "body": f"Refs {REPOSITORY}#130\n",
+    },
+    {  # two Refs lines: `land_pr.parse_refs` refuses this body, so it is no land
+        "number": 140,
+        "merged_at": "2026-09-03T07:11:00Z",
+        "merge_commit_sha": "3" * 40,
+        "head": "4" * 40,
+        "body": f"Refs {REPOSITORY}#130\nRefs {REPOSITORY}#125\n",
+    },
+    {  # names another repository
+        "number": 141,
+        "merged_at": "2026-09-03T07:12:00Z",
+        "merge_commit_sha": "5" * 40,
+        "head": "6" * 40,
+        "body": "Refs other/elsewhere#7\n",
+    },
+    {  # never merged
+        "number": 142,
+        "merged_at": None,
+        "merge_commit_sha": None,
+        "head": "7" * 40,
+        "body": f"Refs {REPOSITORY}#125\n",
+    },
+]
+
+
+def curating_provider(body: str):
+    def call(*args: str):
+        if any("pulls?state=closed" in argument for argument in args):
+            return copy.deepcopy(CURATION_PULLS)
+        return {"state": "closed", "body": body}
+
+    return call
+
+
+def test_curation_counts_a_land_by_the_same_rule_the_lander_binds_with() -> None:
+    body = "prose\n<!-- landing-state: landed -->\n"
+    fresh = curate(
+        REPOSITORY,
+        notes={130: "kept from the previous curation"},
+        call=curating_provider(body),
+        now=lambda: "2026-09-03T07:19:32Z",
+    )
+
+    assert fresh["schema"] == "landing-marker-snapshot@1"
+    assert fresh["read_back_at"] == "2026-09-03T07:19:32Z"
+    # Only #130 is landed: the two-Refs body, the foreign body and the unmerged
+    # pull request are each excluded for their own reason.
+    assert [row["issue"] for row in fresh["issues"]] == [130]
+    row = fresh["issues"][0]
+    assert row["lands"] == [
+        {
+            "pull_request": 131,
+            "head": "2" * 40,
+            "merge": "1" * 40,
+            "merged_at": "2026-09-03T07:10:12Z",
+        }
+    ]
+    # Bytes, not a retelling of them.
+    assert row["body_sha256"] == hashlib.sha256(body.encode("utf-8")).hexdigest()
+    assert row["body_utf8_bytes"] == len(body.encode("utf-8"))
+    assert row["body_lines"] == 2
+    assert row["marker_lines"] == [{"line": 2, "text": "<!-- landing-state: landed -->"}]
+    # A hand-written note is the one field a re-curation cannot recompute.
+    assert row["note"] == "kept from the previous curation"
+
+    # and the fresh snapshot is readable by the reader that consumes it
+    assert audit(fresh)["summary"]["landed_issues"] == 1
+
+
+def test_the_provider_clock_is_read_off_the_wire_not_the_host() -> None:
+    # `read_back_at` is the instant everything under it stops being true, so a
+    # snapshot must not be able to claim freshness from a skewed local clock.
+    source = (ROOT / "tools" / "landing_marker_audit.py").read_text(encoding="utf-8")
+    assert "parsedate_to_datetime" in source
+    assert 'startswith("date:")' in source
+    assert "datetime.now" not in source
 
 
 def test_an_unexpected_snapshot_schema_is_refused(tmp_path: Path) -> None:

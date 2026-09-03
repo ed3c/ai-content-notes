@@ -69,6 +69,7 @@ import sys
 from datetime import timezone
 from email.utils import parsedate_to_datetime
 from pathlib import Path
+from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_SNAPSHOT = ROOT / "docs" / "closure-audit" / "landing-marker-snapshot.json"
@@ -269,7 +270,12 @@ def provider_now() -> str:
     raise SystemExit("GH_API_NO_DATE_HEADER:meta")
 
 
-def curate(repository: str) -> dict:
+def curate(
+    repository: str,
+    notes: dict[int, str | None] | None = None,
+    call: Any = None,
+    now: Any = None,
+) -> dict:
     """Rebuild the snapshot from provider bytes. Reads only; writes nothing.
 
     This is the producer the snapshot's rows previously did not have. Without
@@ -277,9 +283,14 @@ def curate(repository: str) -> dict:
     and a snapshot goes stale the moment the next pull request merges - three
     lands happened between this file's first curation and its own land. The
     ceiling is not removed by having a producer; it is made payable.
+
+    `call` and `now` are injected the way `scripts/land_pr.py` injects its own
+    provider, so the binding rule below - which merged pull requests count as
+    lands - is exercised by a test instead of only by a live run.
     """
-    read_back_at = provider_now()
-    pulls = gh_json(
+    call = gh_json if call is None else call
+    read_back_at = (provider_now if now is None else now)()
+    pulls = call(
         "--paginate",
         f"repos/{repository}/pulls?state=closed&per_page=100",
         "--jq",
@@ -305,10 +316,14 @@ def curate(repository: str) -> dict:
             }
         )
 
-    previous = {row["issue"]: row.get("note") for row in load_snapshot(DEFAULT_SNAPSHOT)["issues"]}
+    previous = (
+        {row["issue"]: row.get("note") for row in load_snapshot(DEFAULT_SNAPSHOT)["issues"]}
+        if notes is None
+        else notes
+    )
     issues = []
     for number in sorted(lands):
-        data = gh_json(f"repos/{repository}/issues/{number}")
+        data = call(f"repos/{repository}/issues/{number}")
         body = data.get("body") or ""
         lines = body.splitlines()
         issues.append(
