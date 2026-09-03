@@ -361,7 +361,7 @@ Materialized:
 
 Still incomplete:
 
-- a mechanical carrier for the Promotion Gate: the gate is policy prose, and nothing in `tests/` refuses a promotion that skipped it;
+- a Promotion Gate that anything has actually been through: `tests/test_promotion_gate_sensor.py` refuses a machine-readable promotion declaration that records no Existing-System Check and no `Shape`/`Guard`/`Guide` owner, and demonstrates both directions on planted input — but no promotion event has ever been emitted here, so its live census reads `ABSENT` and nothing has been refused in production. The other four gate steps stay policy prose and stay a human judgement (`ed3c/ai-content-notes#107`);
 - live provider/model invocation adapter;
 - provider/model raw-run receipt for the historical `CvRngaQZQ3Y` compilation;
 - relation graph/thesis runtime extracted onto current `main`;
