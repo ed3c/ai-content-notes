@@ -54,9 +54,16 @@ def git_blob_sha1(payload: bytes) -> str:
 
     Git object names are content-addressed, so this is an exact, offline
     read-back primitive for any blob this lane persists or consumes.
+
+    This is the repository's only implementation of the Git blob object name.
+    `AGENTS.md` makes this digest the immutability check for the v7.1 prompt
+    payload, so a correction applied here has to reach every consumer: no other
+    module or test may derive the `blob <len>\\0` header or call `sha1` on it.
     """
     header = f"blob {len(payload)}\0".encode()
-    return hashlib.sha1(header + payload).hexdigest()  # noqa: S324 - Git object identity
+    return hashlib.sha1(  # noqa: S324 - Git object identity, not a security digest
+        header + payload, usedforsecurity=False
+    ).hexdigest()
 
 
 def canonicalize(registry: dict[str, Any]) -> dict[str, Any]:

@@ -7,10 +7,15 @@ import argparse
 import hashlib
 import json
 import re
+import sys
 from pathlib import Path
 from typing import Any, Sequence
 
 from jsonschema import Draft202012Validator, FormatChecker
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+import source_registry  # noqa: E402
 
 SCHEMA_VERSION = "semantic-validator-report@1"
 VALIDATOR_VERSION = "semantic-yield-validator@1"
@@ -197,9 +202,8 @@ def load_json(path: Path) -> dict[str, Any]:
 
 
 def git_blob_sha1(path: Path) -> str:
-    payload = path.read_bytes()
-    header = f"blob {len(payload)}\0".encode()
-    return hashlib.sha1(header + payload).hexdigest()  # noqa: S324
+    """Git object name of this file's bytes; `source_registry` owns the algorithm."""
+    return source_registry.git_blob_sha1(path.read_bytes())
 
 
 def parse_json_comment(pattern: re.Pattern[str], text: str, path: Path) -> dict[str, Any]:

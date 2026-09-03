@@ -12,12 +12,17 @@ import argparse
 import hashlib
 import json
 import os
+import sys
 import tempfile
 from datetime import datetime
 from pathlib import Path, PurePosixPath
 from typing import Any, Sequence
 
 from jsonschema import Draft202012Validator, FormatChecker
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from source_registry import git_blob_sha1  # noqa: E402
 
 DESCRIPTOR_SCHEMA_VERSION = "model-run-receipt-descriptor@1"
 OUTPUT_SCHEMA_VERSION = "model-run-receipt@1"
@@ -54,11 +59,6 @@ def _pretty_json(value: Any) -> str:
 
 def _sha256_bytes(payload: bytes) -> str:
     return "sha256:" + hashlib.sha256(payload).hexdigest()
-
-
-def _git_blob_sha1(payload: bytes) -> str:
-    header = f"blob {len(payload)}\0".encode("ascii")
-    return hashlib.sha1(header + payload, usedforsecurity=False).hexdigest()
 
 
 def _validate(instance: dict[str, Any], schema: dict[str, Any], label: str) -> None:
@@ -180,7 +180,7 @@ def build_model_run_receipt(
 
     prompt, prompt_payload = _artifact(root, descriptor["prompt"])
     expected_git_blob = descriptor["prompt"]["git_blob_sha1"]
-    actual_git_blob = _git_blob_sha1(prompt_payload)
+    actual_git_blob = git_blob_sha1(prompt_payload)
     if expected_git_blob is not None and expected_git_blob != actual_git_blob:
         raise ModelRunReceiptError(
             "prompt git_blob_sha1 mismatch: "

@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import copy
-import hashlib
 import json
 import sys
 from pathlib import Path
@@ -14,6 +13,7 @@ sys.path.insert(0, str(REPOSITORY_ROOT / "tools"))
 
 import build_model_run_receipt  # noqa: E402
 import build_multimodal_source_pack  # noqa: E402
+from source_registry import git_blob_sha1  # noqa: E402
 
 SCHEMA_ROOT = REPOSITORY_ROOT / "schemas"
 CREATED_AT = "2026-08-14T10:30:00Z"
@@ -25,12 +25,6 @@ def write_json(path: Path, value: object) -> None:
         json.dumps(value, ensure_ascii=False, sort_keys=True, indent=2) + "\n",
         encoding="utf-8",
     )
-
-
-def git_blob_sha1(path: Path) -> str:
-    payload = path.read_bytes()
-    header = f"blob {len(payload)}\0".encode("ascii")
-    return hashlib.sha1(header + payload, usedforsecurity=False).hexdigest()
 
 
 def source_descriptor() -> dict[str, object]:
@@ -133,7 +127,7 @@ def model_descriptor(root: Path, source_pack_path: Path) -> dict[str, object]:
         "prompt": {
             "path": "inputs/prompt.md",
             "media_type": "text/markdown",
-            "git_blob_sha1": git_blob_sha1(prompt),
+            "git_blob_sha1": git_blob_sha1(prompt.read_bytes()),
         },
         "source_pack_path": source_pack_path.relative_to(root).as_posix(),
         "raw_response": {

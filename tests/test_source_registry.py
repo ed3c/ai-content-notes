@@ -196,3 +196,72 @@ def test_registry_digest_is_subject_bound() -> None:
     registry["registry_digest"] = "sha256:" + "0" * 64
     result = source_registry.validate_registry(registry, SCHEMA)
     assert result == ["registry: REGISTRY_DIGEST_MISMATCH"]
+
+
+# ed3c/ai-content-notes#106 - one implementation of the Git blob object name.
+#
+# Names produced by `git hash-object --stdin`, an implementation this repository
+# does not own. Every one of them moves if the header literal, its length field
+# or its NUL separator changes, so pinning four payload shapes is the header
+# control: the empty blob in particular is reachable only from `blob 0\0`.
+GIT_HASH_OBJECT = {
+    b"": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+    b"hello\n": "ce013625030ba8dba906f756967f9e9ca394464a",
+    "prompt 契約\n".encode(): "71ac12d8c4eeba9bbd4b82737a65cf352e495bc0",
+    b"a\x00b": "20b5be91886d0b6f26dc98a225c0dac05fe2c86e",
+}
+
+# The needles are assembled from parts rather than written whole, so this census
+# is subject to itself and there is no file the scan is allowed to skip.
+BLOB_HEADER = "blob {" + "len("
+SHA1_CALL = "hashlib." + "sha1"
+GIT_BLOB_HOME = "tools/source_registry.py"
+
+
+def python_sources() -> list[Path]:
+    found = sorted(
+        path
+        for path in REPOSITORY_ROOT.rglob("*.py")
+        if ".git" not in path.relative_to(REPOSITORY_ROOT).parts
+    )
+    # An empty scan must not read the same as a clean one.
+    assert found, "no Python sources scanned"
+    return found
+
+
+def rederivations() -> list[str]:
+    """Every file outside the home that derives a Git blob name for itself."""
+    return sorted(
+        f"{name}: {needle!r}"
+        for path in python_sources()
+        for name in [path.relative_to(REPOSITORY_ROOT).as_posix()]
+        if name != GIT_BLOB_HOME
+        for needle in (BLOB_HEADER, SHA1_CALL)
+        if needle in path.read_text(encoding="utf-8")
+    )
+
+
+def test_git_blob_sha1_matches_git_hash_object_across_payload_shapes() -> None:
+    for payload, expected in GIT_HASH_OBJECT.items():
+        assert source_registry.git_blob_sha1(payload) == expected, payload
+
+
+def test_git_blob_sha1_prepends_its_own_header_instead_of_trusting_the_payload() -> None:
+    # Negative control for the pins above: a payload that already looks headered
+    # must not name the same object as the payload it wraps, or the function
+    # would be hashing whatever it was handed rather than naming a Git object.
+    assert source_registry.git_blob_sha1(b"hello\n") != source_registry.git_blob_sha1(
+        b"blob 6\x00hello\n"
+    )
+
+
+def test_only_source_registry_derives_the_git_blob_object_name() -> None:
+    assert rederivations() == []
+
+
+def test_the_census_needles_are_the_ones_the_home_actually_uses() -> None:
+    # Without this, the empty result above could mean the needles match nothing
+    # anywhere - ABSENT would be unfalsifiable rather than merely unfalsified.
+    home = (REPOSITORY_ROOT / GIT_BLOB_HOME).read_text(encoding="utf-8")
+    assert BLOB_HEADER in home
+    assert SHA1_CALL in home
