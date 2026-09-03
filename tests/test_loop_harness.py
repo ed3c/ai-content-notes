@@ -266,6 +266,25 @@ def test_a_responder_that_fails_is_not_a_compile_verdict(tmp_path: Path) -> None
         )
 
 
+def test_a_responder_that_never_answers_is_killed_rather_than_waited_on(tmp_path: Path) -> None:
+    """ed3c/ai-content-notes#110: the sibling of the failing-responder case.
+
+    Before this bound, a stalled responder stalled the `while` loop forever - so
+    the timeout half of #40's failure-injection acceptance had nothing to inject
+    into. The bound is passed explicitly here so the test costs a second, not the
+    module default.
+    """
+    with pytest.raises(harness.HarnessError, match="exceeded 0.5s and was killed"):
+        drive(
+            tmp_path / "run",
+            harness._responder_from_command(
+                f"{sys.executable} -c 'import time; time.sleep(30)'",
+                REPOSITORY_ROOT,
+                0.5,
+            ),
+        )
+
+
 def test_an_exhausted_replay_is_an_explicit_absence(tmp_path: Path) -> None:
     empty = tmp_path / "replay"
     empty.mkdir()
