@@ -426,6 +426,49 @@ def test_a_coverage_row_naming_an_absent_card_fails_closed(tmp_path: Path) -> No
     assert report["qg_subset"]["QG-13"]["status"] == "FAIL"
 
 
+def test_a_visual_ledger_row_naming_an_absent_card_fails_closed(tmp_path: Path) -> None:
+    """ed3c/ai-content-notes#108: the exact id that was wrong on main.
+
+    `K-video-visual-evidence-unavailable` lives in `cards.fixture.md` and
+    nowhere in this batch. HG-03 never looked at these ids, so it stayed wrong
+    across two landings; this is the reader that makes that impossible.
+    """
+    validator = load_validator()
+    repository, target, schema = copy_fixture(tmp_path)
+    path = target / "visual-ledger.json"
+    ledger = load_json(path)
+    ledger["items"][0]["card_ids"] = ["K-video-visual-evidence-unavailable"]  # type: ignore[index]
+    write_json(path, ledger)
+
+    report = validator.build_report(
+        repository, target, created_at=CREATED_AT, schema_path=schema
+    )
+    check = report["checks"]["SV-20-visual-ledger-id-integrity"]
+    assert check["status"] == "FAIL"
+    assert any("is not in this batch" in item for item in check["failures"])
+    assert report["overall_status"] == "FAIL"
+
+
+def test_a_visual_ledger_row_naming_an_absent_anchor_fails_closed(tmp_path: Path) -> None:
+    """The other half of #108: `EV-cvrngaqzq3y-fit-function` resolves only in
+    `evals/live/`, the retained transcript-only baseline AGENTS.md says not to
+    confuse with this batch."""
+    validator = load_validator()
+    repository, target, schema = copy_fixture(tmp_path)
+    path = target / "visual-ledger.json"
+    ledger = load_json(path)
+    ledger["items"][0]["evidence_ids"] = ["EV-cvrngaqzq3y-fit-function"]  # type: ignore[index]
+    write_json(path, ledger)
+
+    report = validator.build_report(
+        repository, target, created_at=CREATED_AT, schema_path=schema
+    )
+    check = report["checks"]["SV-20-visual-ledger-id-integrity"]
+    assert check["status"] == "FAIL"
+    assert any("is not in the ledger" in item for item in check["failures"])
+    assert report["overall_status"] == "FAIL"
+
+
 def test_an_undeclared_source_instruction_fails_closed(tmp_path: Path) -> None:
     """QG-15: SV-19 passes on this subject because it has no injection.
 

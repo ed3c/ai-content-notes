@@ -246,6 +246,14 @@
       ],
       "failures": [],
       "status": "PASS"
+    },
+    "SV-20-visual-ledger-id-integrity": {
+      "evidence": [
+        "visual-ledger.json",
+        "evidence-ledger.json"
+      ],
+      "failures": [],
+      "status": "PASS"
     }
   },
   "content_id": "CvRngaQZQ3Y",

@@ -20,6 +20,27 @@ The validator currently checks:
 12. Evidence-ledger anchor resolution, verbatim exactness, orphan evidence,
     high-signal coverage disposition and source-instruction safety, all against
     the subject retained under `sources/<content-id>/`.
+13. Every card and evidence id that `visual-ledger.json` names resolves inside
+    this batch.
+
+## Why the visual ledger gets its own reader
+
+`tools/semantic_artifacts.py` reads `visual-ledger.json` for `visual_id` and
+`disposition` only, so HG-03 counts the visuals and never looks at the ids each
+item cites. `SV-18-high-signal-coverage` does that cross-check, but only for
+`coverage-manifest.json`. The ledger therefore had no reader for its own
+references, and both of its `card_ids` plus one `evidence_ids` entry named
+identifiers that resolve only in `cards.fixture.md` and `evals/live/` — the
+retired fixture and the transcript-only baseline this repository's AGENTS.md
+explicitly says not to confuse with the modified-flow batch. They stayed wrong
+across two landings because nothing was looking.
+
+`SV-20-visual-ledger-id-integrity` applies SV-18's denominator to that file:
+card ids against this batch, evidence ids against `evidence-ledger.json`. It is
+deliberately not mapped to a QG gate — QG-13 already belongs to the coverage
+manifest, and this is a referential-integrity reader rather than a new external
+gate — but it does contribute to `failures` and `overall_status`, so a stale id
+fails the report rather than being reported and ignored.
 
 ## The evidence ledger
 

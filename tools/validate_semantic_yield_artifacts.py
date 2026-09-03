@@ -249,6 +249,25 @@ def status(
     return {"status": state, "evidence": evidence, "failures": failures}
 
 
+def id_integrity_failures(
+    item: dict[str, Any],
+    label: str,
+    card_id_set: set[str],
+    entries: dict[str, Any],
+) -> list[str]:
+    """card_ids/evidence_ids cross-check shared by every manifest that cites
+    them (SV-18 for coverage-manifest.json, SV-20 for visual-ledger.json) -
+    one denominator, checked wherever a manifest names these ids."""
+    failures: list[str] = []
+    for card_id in item.get("card_ids") or []:
+        if card_id not in card_id_set:
+            failures.append(f"{label}: card_id {card_id} is not in this batch")
+    for evidence_id in item.get("evidence_ids") or []:
+        if evidence_id not in entries:
+            failures.append(f"{label}: evidence_id {evidence_id} is not in the ledger")
+    return failures
+
+
 def char_ngrams(text: str, width: int = 3) -> set[str]:
     normalized = re.sub(r"[\W_]+", "", text.lower())
     if len(normalized) < width:
@@ -944,16 +963,28 @@ def build_report(
             coverage_failures.append(f"{unit}: {disposition} names no card")
         if disposition not in MAPPED_DISPOSITIONS and not item.get("reason"):
             coverage_failures.append(f"{unit}: {disposition} records no reason")
-        for card_id in item.get("card_ids") or []:
-            if card_id not in card_id_set:
-                coverage_failures.append(f"{unit}: card_id {card_id} is not in this batch")
-        for evidence_id in item.get("evidence_ids") or []:
-            if evidence_id not in entries:
-                coverage_failures.append(f"{unit}: evidence_id {evidence_id} is not in the ledger")
+        coverage_failures.extend(id_integrity_failures(item, unit, card_id_set, entries))
     checks["SV-18-high-signal-coverage"] = status(
         not coverage_failures,
         ["coverage-manifest.json", "fixture.json"],
         coverage_failures,
+    )
+
+    # Same cross-check, other manifest. HG-03 reads this ledger through
+    # semantic_artifacts.accounted_visual_ids, which looks at visual_id and
+    # disposition and never at the ids each item cites - so the ids could name
+    # cards and anchors from the retired fixture and the evals/live/ baseline
+    # and stay wrong across two landings. This is SV-18's denominator applied to
+    # the file nothing was reading (ed3c/ai-content-notes#108).
+    visual_ledger_failures: list[str] = []
+    visual_ledger = load_json(target / "visual-ledger.json")
+    for item in visual_ledger.get("items", []):
+        visual = str(item.get("visual_id"))
+        visual_ledger_failures.extend(id_integrity_failures(item, visual, card_id_set, entries))
+    checks["SV-20-visual-ledger-id-integrity"] = status(
+        not visual_ledger_failures,
+        ["visual-ledger.json", "evidence-ledger.json"],
+        visual_ledger_failures,
     )
 
     injection_failures: list[str] = []
