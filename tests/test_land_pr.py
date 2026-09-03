@@ -197,8 +197,12 @@ def test_land_markers_name_the_landing_pull_request_in_every_history_key() -> No
 
 
 # ed3c/ai-content-notes#118 - `verify.yml` writes `base_sha` and `trusted_sha`
-# into the receipt and, until `verified_base_in_history`, nothing read either
-# one: `git grep -c` found exactly their own producer line. These are the
+# into the receipt and, until `verified_base_in_history`, no file in this
+# repository named either one outside that producer line. The instrument was a
+# literal `git grep -c` and it was checked in both directions: a planted sibling
+# consumer takes the count from one file to two, a planted consumer that
+# assembles the key name at runtime takes it nowhere - so the silence supports
+# "nothing here names them literally", not "nothing reads them". These are the
 # controls for the consumer, and each red arm is a status the provider really
 # returns for a default branch that no longer contains the commit the green was
 # earned against.
@@ -249,8 +253,17 @@ def test_a_verified_base_outside_the_default_branch_history_refuses(status: str)
 
 
 def test_the_base_field_is_refused_on_its_own_axis() -> None:
-    # Not a duplicate of the case above: a check that only ever looked at
-    # `trusted_sha` would pass this and still leave `base_sha` unread.
+    # Not a duplicate of the case above, and not merely a coverage argument:
+    # the two fields are recorded at different instants and are routinely
+    # different commits. `base_sha` is `pull_request.base.sha` from the webhook
+    # payload; `trusted_sha` is `rev-parse HEAD` of the default branch checked
+    # out when the job ran, and `main` moves between those two moments on every
+    # concurrent wave. So each field has an event that orphans it alone: a reset
+    # of `main` back to a commit between them leaves the older `base_sha`
+    # reachable and `trusted_sha` diverged, while a force-push of the base
+    # branch after the pull request event and before the checkout leaves the
+    # freshly read `trusted_sha` reachable and the payload's `base_sha`
+    # unreachable. One comparison cannot see both.
     with pytest.raises(SystemExit) as refusal:
         land_pr.verified_base_in_history(
             RECEIPT,

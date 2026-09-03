@@ -176,9 +176,13 @@ def verified_base_in_history(
     `verify` records two commits beside the head it tested: `base_sha`, the
     pull request's base at verification time, and `trusted_sha`, the default
     branch commit whose `tests/` and `publication_guard.py` did the judging.
-    Until this function existed both were write-only - `git grep` found one hit
-    each, their own producer line in `verify.yml` - so the receipt carried the
-    fields a two-sided check needs and nothing read them (#118).
+    Until this function existed both were write-only as far as a literal search
+    reaches: `git grep -c` over this repository at `ac10987` found one hit each,
+    their own producer line in `verify.yml`. That instrument was checked in both
+    directions - a planted sibling consumer takes each count from one file to
+    two, a planted consumer that assembles the key name at runtime takes neither
+    - so what the silence supports is "nothing here names these fields
+    literally", not "nothing reads them" (#118).
 
     What is checked: each recorded commit is still reachable from the default
     branch this land is merging into. A rewritten, reset or force-pushed default
