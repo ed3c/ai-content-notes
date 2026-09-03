@@ -221,8 +221,8 @@ GIT_BLOB_HOME = "tools/source_registry.py"
 def python_sources() -> list[Path]:
     found = sorted(
         path
-        for directory in ("tools", "tests", "scripts")
-        for path in (REPOSITORY_ROOT / directory).glob("*.py")
+        for path in REPOSITORY_ROOT.rglob("*.py")
+        if ".git" not in path.relative_to(REPOSITORY_ROOT).parts
     )
     # An empty scan must not read the same as a clean one.
     assert found, "no Python sources scanned"
