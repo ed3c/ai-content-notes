@@ -196,6 +196,129 @@ def test_land_markers_name_the_landing_pull_request_in_every_history_key() -> No
     assert set(markers) - set(history) == {"state", "landed-pr", "head", "merge"}
 
 
+# ed3c/ai-content-notes#118 - `verify.yml` writes `base_sha` and `trusted_sha`
+# into the receipt and, until `verified_base_in_history`, no file in this
+# repository named either one outside that producer line. The instrument was a
+# literal `git grep -c` and it was checked in both directions: a planted sibling
+# consumer takes the count from one file to two, a planted consumer that
+# assembles the key name at runtime takes it nowhere - so the silence supports
+# "nothing here names them literally", not "nothing reads them". These are the
+# controls for the consumer, and each red arm is a status the provider really
+# returns for a default branch that no longer contains the commit the green was
+# earned against.
+RECEIPT = {
+    "repository": REPOSITORY,
+    "pull_request": 118,
+    "head_sha": "a" * 40,
+    "base_sha": "b" * 40,
+    "trusted_sha": "c" * 40,
+}
+
+
+def comparer(status_by_sha: dict[str, str], seen: list[str] | None = None):
+    def fake(method: str, path: str, payload: dict | None = None):
+        assert method == "GET" and "/compare/" in path, path
+        if seen is not None:
+            seen.append(path)
+        return {"status": status_by_sha[path.split("/compare/")[1].split("...")[0]]}
+
+    return fake
+
+
+def test_both_receipt_fields_are_compared_against_the_default_branch() -> None:
+    seen: list[str] = []
+    statuses = land_pr.verified_base_in_history(
+        RECEIPT,
+        REPOSITORY,
+        "main",
+        call=comparer({"b" * 40: "identical", "c" * 40: "ahead"}, seen),
+    )
+    assert statuses == {"base_sha": "identical", "trusted_sha": "ahead"}
+    assert seen == [
+        f"/repos/{REPOSITORY}/compare/{'b' * 40}...main",
+        f"/repos/{REPOSITORY}/compare/{'c' * 40}...main",
+    ]
+
+
+@pytest.mark.parametrize("status", ["diverged", "behind", "None"])
+def test_a_verified_base_outside_the_default_branch_history_refuses(status: str) -> None:
+    with pytest.raises(SystemExit) as refusal:
+        land_pr.verified_base_in_history(
+            RECEIPT,
+            REPOSITORY,
+            "main",
+            call=comparer({"b" * 40: "identical", "c" * 40: status}),
+        )
+    assert str(refusal.value) == f"VERIFIED_BASE_NOT_IN_HISTORY:trusted_sha:{'c' * 40}:{status}"
+
+
+def test_the_base_field_is_refused_on_its_own_axis() -> None:
+    # Not a duplicate of the case above, and not merely a coverage argument:
+    # the two fields are recorded at different instants and are routinely
+    # different commits. `base_sha` is `pull_request.base.sha` from the webhook
+    # payload; `trusted_sha` is `rev-parse HEAD` of the default branch checked
+    # out when the job ran, and `main` moves between those two moments on every
+    # concurrent wave. So each field has an event that orphans it alone: a reset
+    # of `main` back to a commit between them leaves the older `base_sha`
+    # reachable and `trusted_sha` diverged, while a force-push of the base
+    # branch after the pull request event and before the checkout leaves the
+    # freshly read `trusted_sha` reachable and the payload's `base_sha`
+    # unreachable. One comparison cannot see both.
+    with pytest.raises(SystemExit) as refusal:
+        land_pr.verified_base_in_history(
+            RECEIPT,
+            REPOSITORY,
+            "main",
+            call=comparer({"b" * 40: "diverged", "c" * 40: "identical"}),
+        )
+    assert str(refusal.value) == f"VERIFIED_BASE_NOT_IN_HISTORY:base_sha:{'b' * 40}:diverged"
+
+
+@pytest.mark.parametrize("field", list(land_pr.VERIFIED_BASE_FIELDS))
+@pytest.mark.parametrize("planted", [None, "", "0123abc", "A" * 40, 40])
+def test_a_receipt_without_a_usable_verified_base_refuses(field: str, planted: object) -> None:
+    # An absent or unusable field gets its own exit rather than a silent pass: a
+    # receipt that cannot say what it was verified against must not land.
+    receipt = dict(RECEIPT)
+    if planted is None:
+        receipt.pop(field)
+    else:
+        receipt[field] = planted
+
+    compared: list[str] = []
+
+    def fake(method: str, path: str, payload: dict | None = None):
+        compared.append(path)
+        return {"status": "identical"}
+
+    with pytest.raises(SystemExit) as refusal:
+        land_pr.verified_base_in_history(receipt, REPOSITORY, "main", call=fake)
+    assert str(refusal.value).startswith(f"RECEIPT_VERIFIED_BASE_ABSENT:{field}:")
+    # and the unusable field was refused rather than sent to the provider: only
+    # the fields ahead of it in the checked order were ever compared.
+    assert len(compared) == land_pr.VERIFIED_BASE_FIELDS.index(field)
+
+
+def test_the_consumer_is_wired_in_before_the_merge() -> None:
+    # STATIC arrival only: `main()` is not exercised here, by the rule this
+    # module opens with. It buys exactly one thing - a consumer that exists and
+    # is never called is #118's own defect wearing a different hat - and it does
+    # not show the refusal firing, which the controls above do.
+    source = (REPOSITORY_ROOT / "scripts" / "land_pr.py").read_text(encoding="utf-8")
+    assert source.index("verified_base_in_history(receipt") < source.index('"PUT",')
+
+
+def test_verify_still_writes_both_fields_the_consumer_reads() -> None:
+    # The other half of the pairing: a consumer whose producer stopped emitting
+    # the field would refuse every land, so the workflow that writes the receipt
+    # is asserted here rather than left to the first red land to discover.
+    workflow = (REPOSITORY_ROOT / ".github" / "workflows" / "verify.yml").read_text(
+        encoding="utf-8"
+    )
+    for field in land_pr.VERIFIED_BASE_FIELDS:
+        assert f'"{field}":' in workflow, field
+
+
 def test_clean_pr_gets_exactly_one_anchor_comment() -> None:
     calls: list[tuple[str, str]] = []
 

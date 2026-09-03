@@ -35,6 +35,16 @@ MARKERS_LOST = "MARKERS_LOST"  # receipt present, body block gone: #117's measur
 RECEIPT_ABSENT = "RECEIPT_ABSENT"  # body block only: a land before this receipt existed
 NO_LAND = "NO_LAND"  # neither surface records a land
 
+COMMIT_SHA = re.compile(r"^[0-9a-f]{40}$")
+
+# `GET /repos/{repo}/compare/{base}...{head}` states the head's position
+# relative to the base. Only these two mean the base is reachable from the head:
+# `identical` (the same commit) and `ahead` (the head contains it). `behind` and
+# `diverged` both mean the commit a green was earned against is not in the
+# history about to receive the merge.
+BASE_IN_HISTORY = frozenset({"identical", "ahead"})
+VERIFIED_BASE_FIELDS = ("base_sha", "trusted_sha")
+
 
 def parse_refs(body: str | None, repository: str) -> int:
     """Return the Issue number from the single 'Refs <owner>/<repo>#<n>' line."""
@@ -156,6 +166,50 @@ def api(method: str, path: str, payload: dict[str, Any] | None = None) -> dict[s
         raise SystemExit(
             f"GITHUB_API_REFUSED:{method}:{path}:{exc.code}:{exc.read().decode('utf-8', 'replace')}"
         ) from exc
+
+
+def verified_base_in_history(
+    receipt: dict[str, Any], repository: str, default_branch: str, call: Any = None
+) -> dict[str, str]:
+    """Refuse a receipt whose verified base is not in the branch about to receive it.
+
+    `verify` records two commits beside the head it tested: `base_sha`, the
+    pull request's base at verification time, and `trusted_sha`, the default
+    branch commit whose `tests/` and `publication_guard.py` did the judging.
+    Until this function existed both were write-only as far as a literal search
+    reaches: `git grep -c` over this repository at `ac10987` found one hit each,
+    their own producer line in `verify.yml`. That instrument was checked in both
+    directions - a planted sibling consumer takes each count from one file to
+    two, a planted consumer that assembles the key name at runtime takes neither
+    - so what the silence supports is "nothing here names these fields
+    literally", not "nothing reads them" (#118).
+
+    What is checked: each recorded commit is still reachable from the default
+    branch this land is merging into. A rewritten, reset or force-pushed default
+    branch makes the green unattributable, and that is refused here rather than
+    discovered afterwards.
+
+    What is *not* checked, deliberately: that the default branch has not moved
+    forward. It moves forward on every land, and refusing that would mean no two
+    pull requests could ever be verified concurrently. The stronger property -
+    the green was earned against exactly the commit receiving it - is
+    `required_status_checks.strict: true` on the branch protection, an operator
+    setting with its own re-verification cost, not something this script can
+    assert on its own. Reachability is what the receipt's own bytes can prove.
+    """
+    call = api if call is None else call
+    statuses: dict[str, str] = {}
+    for field in VERIFIED_BASE_FIELDS:
+        sha = receipt.get(field)
+        if not isinstance(sha, str) or not COMMIT_SHA.match(sha):
+            raise SystemExit(f"RECEIPT_VERIFIED_BASE_ABSENT:{field}:{sha!r}")
+        status = str(
+            call("GET", f"/repos/{repository}/compare/{sha}...{default_branch}").get("status")
+        )
+        if status not in BASE_IN_HISTORY:
+            raise SystemExit(f"VERIFIED_BASE_NOT_IN_HISTORY:{field}:{sha}:{status}")
+        statuses[field] = status
+    return statuses
 
 
 def post_receipt_anchor(
@@ -314,6 +368,7 @@ def main(argv: list[str] | None = None) -> int:
         raise SystemExit(f"HEAD_MOVED:{number}:{pull['head']['sha']}:{head}")
     if pull["base"]["ref"] != policy["default_branch"]:
         raise SystemExit(f"BASE_NOT_DEFAULT_BRANCH:{number}:{pull['base']['ref']}")
+    verified_base = verified_base_in_history(receipt, repository, policy["default_branch"])
     issue = parse_refs(pull.get("body"), repository)
 
     merged = api(
@@ -369,6 +424,7 @@ def main(argv: list[str] | None = None) -> int:
                 "receipt_anchor": anchor,
                 "marker_receipt": receipt_comment,
                 "marker_surface": surface,
+                "verified_base": verified_base,
             },
             indent=2,
             sort_keys=True,
