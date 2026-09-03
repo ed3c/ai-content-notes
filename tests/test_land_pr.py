@@ -10,6 +10,7 @@ of the two marker surfaces earns.
 from __future__ import annotations
 
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -239,6 +240,52 @@ def test_provider_refusal_never_gates_the_land() -> None:
 LAND_113 = (116, "9cebf79f9136eb4ba851f27a26ebba10b2ba307f", "3ba1564a572d9e61c294ece9f7e4084d25e75e87")
 PRE_LAND_BODY = "issue text\n\n## Evidence boundary\n\nOne instance, one issue.\n"
 
+# The receipt `.github/workflows/verify.yml` actually writes. Every field it
+# emits is here, including the ones no current caller reads.
+#
+# This suite is the trusted one: `verify.yml` deletes a candidate's `tests/`
+# and copies the default branch's over it before the job that judges the tree.
+# So a fixture that omits a field the producer always writes is not merely
+# incomplete - it reads green forever, and it refuses the first candidate that
+# stops ignoring that field, in a job whose bytes that candidate cannot edit.
+# Measured on #118's consumer, which was refused
+# `RECEIPT_VERIFIED_BASE_ABSENT:base_sha:None` by a fixture carrying three of
+# nine fields (ed3c/ai-content-notes#130).
+VERIFY_RECEIPT = {
+    "schema_version": 1,
+    "repository": REPOSITORY,
+    "pull_request": LAND_113[0],
+    "head_sha": LAND_113[1],
+    "head_repository": REPOSITORY,
+    "base_ref": "main",
+    "base_sha": "b" * 40,
+    "verify_run_id": 33667807749,
+    "trusted_sha": "c" * 40,
+}
+
+
+def test_the_receipt_fixture_carries_every_field_verify_writes() -> None:
+    """Bind the fixture's shape to its producer's, in the direction that ratchets.
+
+    The bind costs something and the cost is the point: a pull request that adds
+    a receipt field to `verify.yml` turns this red, and cannot fix it in the same
+    pull request, because the trusted job discards the file that would. The
+    two-step - a tests-only pull request teaching this fixture the field, then
+    the atom that reads it - is the price of the swap, and paying it loudly here
+    is what #130 buys over the silence that preceded it.
+    """
+    workflow = (REPOSITORY_ROOT / ".github" / "workflows" / "verify.yml").read_text(
+        encoding="utf-8"
+    )
+    block = workflow.split("receipt = {", 1)[1].split("\n          }", 1)[0]
+    written = set(re.findall(r'"([a-z_]+)":', block))
+
+    assert written, "no receipt field names found in verify.yml"
+    assert written == set(VERIFY_RECEIPT), (
+        "the trusted receipt fixture and verify.yml disagree; land a tests-only "
+        f"pull request teaching this fixture first: {written ^ set(VERIFY_RECEIPT)}"
+    )
+
 
 def stale_whole_body_write(pre_land: str) -> str:
     """What #113's 04:00:29Z edit was: a correction composed from the 03:58Z body.
@@ -387,14 +434,23 @@ class Provider:
     Comment POSTs can be refused, which is the only axis these tests vary: it
     is the axis `post_marker_receipt` absorbs, and therefore the one where a
     failure could otherwise leave no trace.
+
+    `compare` answers too. Without it the fallthrough returned the Issue object
+    for a commit-comparison path, so a caller asking whether a recorded commit
+    is in the default branch's history read `status: None` and refused a land
+    that should have proceeded (ed3c/ai-content-notes#130). A dispatcher whose
+    default answer is a different object's JSON does not model 'no opinion'.
     """
 
-    def __init__(self, *, comments_accepted: bool = True) -> None:
+    def __init__(self, *, comments_accepted: bool = True, compare: str = "ahead") -> None:
         self.issue = {"state": "open", "body": PRE_LAND_BODY}
         self.comments: list[dict] = []
         self.comments_accepted = comments_accepted
+        self.compare = compare
 
     def __call__(self, method: str, path: str, payload: dict | None = None):
+        if "/compare/" in path:
+            return {"status": self.compare}
         if path.endswith("/comments?per_page=100"):
             return list(self.comments)
         if path.endswith("/comments"):
@@ -435,12 +491,7 @@ def test_a_land_whose_durable_receipt_did_not_post_exits_non_zero(
     wrote both surfaces, nothing but LANDED is admissible.
     """
     receipt = tmp_path / "verify-receipt.json"
-    receipt.write_text(
-        json.dumps(
-            {"repository": REPOSITORY, "pull_request": LAND_113[0], "head_sha": LAND_113[1]}
-        ),
-        encoding="utf-8",
-    )
+    receipt.write_text(json.dumps(VERIFY_RECEIPT), encoding="utf-8")
     argv = ["--receipt", str(receipt), "--policy", str(REPOSITORY_ROOT / "policy" / "github.json")]
 
     monkeypatch.setattr(land_pr, "api", Provider())
