@@ -24,6 +24,7 @@ from typing import Any
 API = "https://api.github.com"
 REFS_LINE = re.compile(r"^Refs\s+([A-Za-z0-9._-]+/[A-Za-z0-9._-]+)#(\d+)$")
 MARKER_PREFIX = "landing"
+MARKER_LINE = re.compile(rf"^<!--\s*{MARKER_PREFIX}-([A-Za-z0-9_-]+):.*?-->[ \t]*$")
 
 
 def parse_refs(body: str | None, repository: str) -> int:
@@ -63,21 +64,52 @@ def land_markers(repository: str, number: int, head: str, merge_sha: str) -> dic
     }
 
 
+def split_marker_block(text: str) -> tuple[list[str], list[str]]:
+    """Split `text` into (everything before the live marker block, the block).
+
+    The live block is the run of marker lines the text *ends* with, ignoring
+    trailing blank lines. Marker-shaped text anywhere else - a quoted example,
+    a fenced illustration, an issue whose subject happens to be these markers -
+    is prose, and belongs to the prefix.
+    """
+    lines = text.split("\n")
+    end = len(lines)
+    while end and not lines[end - 1].strip():
+        end -= 1
+    start = end
+    while start and MARKER_LINE.match(lines[start - 1]):
+        start -= 1
+    return lines[:start], lines[start:end]
+
+
 def stamp(body: str | None, markers: dict[str, str]) -> str:
-    """Set each `<!-- landing-<key>: ... -->` marker, replacing in place or appending."""
-    text = body or ""
+    """Set each `<!-- landing-<key>: ... -->` marker inside the live marker block.
+
+    Replaces a key in place if the block already carries it, appends to the
+    block otherwise. The edit is scoped to the block returned by
+    `split_marker_block` because the previous whole-body `re.subn` matched the
+    first marker-shaped line anywhere in the text: landing
+    ed3c/ai-content-notes#98 rewrote a quoted historical example two sections
+    above the real block, and - because that match consumed the one
+    substitution the `landed-pr` key allows itself - the live block silently
+    never received a `landing-landed-pr` line at all
+    (ed3c/ai-content-notes#120).
+
+    Ceiling: the block is identified by position, so an issue body that *ends*
+    with an unfenced quoted marker line still hands that line to this function
+    as live. Position is the only signal a shared prose field carries.
+    """
+    prefix, block = split_marker_block(body or "")
     for key, value in markers.items():
         line = f"<!-- {MARKER_PREFIX}-{key}: {value} -->"
-        text, replaced = re.subn(
-            rf"^<!--\s*{MARKER_PREFIX}-{re.escape(key)}:.*?-->[ \t]*$",
-            lambda _match, line=line: line,
-            text,
-            count=1,
-            flags=re.MULTILINE,
-        )
-        if not replaced:
-            text = text.rstrip("\n") + "\n" + line + "\n"
-    return text
+        for index, existing in enumerate(block):
+            match = MARKER_LINE.match(existing)
+            if match and match.group(1) == key:
+                block[index] = line
+                break
+        else:
+            block.append(line)
+    return "\n".join(prefix + block).rstrip("\n") + "\n"
 
 
 def api(method: str, path: str, payload: dict[str, Any] | None = None) -> dict[str, Any]:

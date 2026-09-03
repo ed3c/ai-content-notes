@@ -122,6 +122,70 @@ def test_relanding_the_same_pull_request_is_idempotent() -> None:
     assert twice.count("<!-- landing-pr-97-head:") == 1
 
 
+# The #98 corruption, replayed from the bytes recorded in ed3c/ai-content-notes#120.
+# `<!-- landing-landed-pr: ... -->` sits at column 0 inside a fenced quotation two
+# sections above the live block, because #98's own subject is these markers.
+QUOTING_BODY = """\
+## Instance 1
+
+```text
+#61 was closed by the machine on 2026-09-01 when PR #94 landed:
+
+<!-- landing-landed-pr: ed3c/ai-content-notes#94 -->
+
+PR #94's subject is `audit(closure): refuse a CLOSED issue whose acceptance
+artifact is not here`.
+```
+
+## Evidence boundary
+
+Two instances in two waves is what is claimed.
+"""
+
+
+def test_a_quoted_marker_line_is_not_the_live_block() -> None:
+    # Planted defect control for #120: the pre-fix `re.subn(..., re.MULTILINE,
+    # count=1)` rewrote this quotation to name the landing PR, and the live
+    # block then never received a `landing-landed-pr` line at all, because that
+    # key had already spent its one substitution on the quote.
+    stamped = land(QUOTING_BODY, (119, "8" * 40, "d" * 40))
+
+    assert "<!-- landing-landed-pr: ed3c/ai-content-notes#94 -->" in stamped
+    assert stamped.startswith(QUOTING_BODY.rstrip("\n") + "\n<!-- landing-state: landed -->")
+    _, block = land_pr.split_marker_block(stamped)
+    assert f"<!-- landing-landed-pr: {REPOSITORY}#119 -->" in block
+    assert sorted(land_pr.MARKER_LINE.match(line).group(1) for line in block) == [
+        "head",
+        "landed-pr",
+        "merge",
+        "pr-119-head",
+        "pr-119-merge",
+        "state",
+    ]
+
+
+def test_a_body_whose_quotation_is_the_whole_body_still_gains_a_live_block() -> None:
+    # The quote must survive even when it is the only marker-shaped text there
+    # is, and the block must be built beside it rather than on top of it.
+    once = land(QUOTING_BODY, (119, "8" * 40, "d" * 40))
+    twice = land(once, (121, "e" * 40, "f" * 40))
+    assert once.count("<!-- landing-landed-pr: ed3c/ai-content-notes#94 -->") == 1
+    assert twice.count("<!-- landing-landed-pr: ed3c/ai-content-notes#94 -->") == 1
+    assert f"<!-- landing-landed-pr: {REPOSITORY}#121 -->" in twice
+    assert f"<!-- landing-pr-119-head: {'8' * 40} -->" in twice
+
+
+def test_split_marker_block_reads_a_quoting_body_as_carrying_no_block() -> None:
+    """Both directions: an empty block is what "not landed" looks like here."""
+    prefix, block = land_pr.split_marker_block(QUOTING_BODY)
+    assert block == []
+    assert "\n".join(prefix).rstrip("\n") == QUOTING_BODY.rstrip("\n")
+
+    prefix, block = land_pr.split_marker_block(land(QUOTING_BODY, SECOND_LAND))
+    assert len(block) == 6
+    assert "\n".join(prefix).rstrip("\n") == QUOTING_BODY.rstrip("\n")
+
+
 def test_land_markers_name_the_landing_pull_request_in_every_history_key() -> None:
     markers = land_pr.land_markers(REPOSITORY, 97, "f" * 40, "c" * 40)
     history = {key: value for key, value in markers.items() if key.startswith("pr-")}
