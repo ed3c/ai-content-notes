@@ -1,0 +1,117 @@
+{
+  "schema": "reference-index.private@1",
+  "scope": "CONSUMPTION_SCOPED",
+  "owner_issue": "AI-CONTENT#96",
+  "references": [
+    {
+      "id": "REF-0001",
+      "role": "SOURCE_INTAKE_REGISTRY",
+      "state": "READ_BACK_VERIFIED",
+      "title": "Product Reverse Stage 2 exact source registry (modern-web-architecture)",
+      "external_id": "evals/source-intake/modern-web-architecture/source-registry.json",
+      "provider": "THIS_REPOSITORY",
+      "revision": "a03bd346f0a1cc67088ee5de6bb35c5b9552ded4",
+      "digest": "sha256:fb2238b95ea42f163bb1db0e73c437df16482f6996d262981653e2884c7fc7e5",
+      "consumer": "AI-CONTENT#96"
+    },
+    {
+      "id": "REF-0002",
+      "role": "SOURCE_INTAKE_READBACK_RECEIPT",
+      "state": "READ_BACK_VERIFIED",
+      "title": "Product Reverse Stage 2 read-back receipt (modern-web-architecture)",
+      "external_id": "evals/source-intake/modern-web-architecture/readback-receipt.json",
+      "provider": "THIS_REPOSITORY",
+      "revision": "a03bd346f0a1cc67088ee5de6bb35c5b9552ded4",
+      "digest": "sha256:86193aafca7a5216da1203ddda8721d83ba22ef17752610720b20a7ced50d6ca",
+      "consumer": "AI-CONTENT#96"
+    },
+    {
+      "id": "REF-0003",
+      "role": "SOURCE_INTAKE_DESCRIPTOR",
+      "state": "READ_BACK_VERIFIED",
+      "title": "Product Reverse Stage 2 PDF source descriptor (modern-web-architecture)",
+      "external_id": "evals/source-intake/modern-web-architecture/source-descriptor.json",
+      "provider": "THIS_REPOSITORY",
+      "revision": "a03bd346f0a1cc67088ee5de6bb35c5b9552ded4",
+      "digest": "sha256:eab19661ae5e85450ae844aed0c583d80de035e875586585a3ba43e25d7079e5",
+      "consumer": "AI-CONTENT#96"
+    },
+    {
+      "id": "REF-0004",
+      "role": "PRODUCT_SIGNAL_PACKET",
+      "state": "READ_BACK_VERIFIED",
+      "title": "Product Reverse Stage 3 product-signal@1 packet (modern-web-architecture)",
+      "external_id": "evals/product-signal/modern-web-architecture/product-signal.json",
+      "provider": "THIS_REPOSITORY",
+      "revision": "ca754151a2d4c3a371c1a1f264769f542d59e526",
+      "digest": "sha256:cccc6ed25c547856153757cc25a5ced6bdae53f559d72769286b0719b1892118",
+      "consumer": "AI-CONTENT#96"
+    },
+    {
+      "id": "REF-0005",
+      "role": "PRODUCT_SIGNAL_CLAIMS",
+      "state": "READ_BACK_VERIFIED",
+      "title": "Product Reverse Stage 3 atomic claims (modern-web-architecture)",
+      "external_id": "evals/product-signal/modern-web-architecture/claims.jsonl",
+      "provider": "THIS_REPOSITORY",
+      "revision": "1915d88a115b137f52367e2ebf17c980e3b66697",
+      "digest": "sha256:b6e2834abc61bb6c6e570aa4fe553544da744d7e64ffc268da91995f6b61c98b",
+      "consumer": "AI-CONTENT#96"
+    },
+    {
+      "id": "REF-0006",
+      "role": "PRODUCT_SIGNAL_EVIDENCE_LEDGER",
+      "state": "READ_BACK_VERIFIED",
+      "title": "Product Reverse Stage 3 evidence ledger (modern-web-architecture)",
+      "external_id": "evals/product-signal/modern-web-architecture/evidence-ledger.json",
+      "provider": "THIS_REPOSITORY",
+      "revision": "90f809210770904e0a4b8826f4a881a82902eb74",
+      "digest": "sha256:29f37c1affb2405312aa83c49ad082bf9ac640ed883536ddc550d49f3af6e646",
+      "consumer": "AI-CONTENT#96"
+    },
+    {
+      "id": "REF-0007",
+      "role": "PRODUCT_SIGNAL_CONTRADICTION_LEDGER",
+      "state": "READ_BACK_VERIFIED",
+      "title": "Product Reverse Stage 3 contradiction ledger (modern-web-architecture)",
+      "external_id": "evals/product-signal/modern-web-architecture/contradictions.json",
+      "provider": "THIS_REPOSITORY",
+      "revision": "2902e583642b3834f10dc041b1ddc7549a603a2b",
+      "digest": "sha256:afcc13274571e4b0b45ac2503e742a3a4f4ae72fb3d191f10daf07b7b0ab7061",
+      "consumer": "AI-CONTENT#96"
+    },
+    {
+      "id": "REF-0008",
+      "role": "PRODUCT_SIGNAL_READBACK_RECEIPT",
+      "state": "READ_BACK_VERIFIED",
+      "title": "Product Reverse Stage 3 read-back receipt (modern-web-architecture)",
+      "external_id": "evals/product-signal/modern-web-architecture/readback-receipt.json",
+      "provider": "THIS_REPOSITORY",
+      "revision": "ca754151a2d4c3a371c1a1f264769f542d59e526",
+      "digest": "sha256:2953d25e22d69dfe633beb27ec003f99c0ba3d9282cb54d9e54e9720064f2d20",
+      "consumer": "AI-CONTENT#96"
+    },
+    {
+      "id": "REF-0009",
+      "role": "RETAINED_SUBJECT_MANIFEST",
+      "state": "READ_BACK_VERIFIED",
+      "title": "Retained subject manifest for content id CvRngaQZQ3Y",
+      "external_id": "sources/CvRngaQZQ3Y/source-manifest.json",
+      "provider": "THIS_REPOSITORY",
+      "revision": "4f18fc1bfc7547854f5329e8db3390c317bb08bf",
+      "digest": "sha256:debef7dd567b68114b72448ea090aa381faf8b7d5cb1d5cbffb8630a87c9df4a",
+      "consumer": "AI-CONTENT#96"
+    },
+    {
+      "id": "REF-0010",
+      "role": "RETAINED_SUBJECT_MANIFEST",
+      "state": "READ_BACK_VERIFIED",
+      "title": "Retained subject manifest for content id sqlite-testing",
+      "external_id": "sources/sqlite-testing/source-manifest.json",
+      "provider": "THIS_REPOSITORY",
+      "revision": "99f709c9fd62b7042cd2aca05be527b0cace4b63",
+      "digest": "sha256:1bc9cc5ebe72cf8a1bb4a0d6c4df97d8919f21315d939ca849143acc92c42a84",
+      "consumer": "AI-CONTENT#96"
+    }
+  ]
+}

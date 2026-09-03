@@ -221,6 +221,7 @@ ai-content-notes/
 │   ├── DOMAIN_CONTEXT_SUPPLY_PLANE.md  # zero-context promotion + anti-overengineering contract
 │   ├── runtime/README.md               # molecular runtime-leaf boundary
 │   ├── source-intake/README.md         # Product Reverse source-intake read order
+│   ├── reference-registry/README.md    # consumption-scoped REF rows and their verifier
 │   ├── SEMANTIC_YIELD_INTEGRATION_STATUS.md
 │   └── git/
 │       ├── REPO_PROFILE.md
