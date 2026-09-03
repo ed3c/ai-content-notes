@@ -122,14 +122,19 @@ def test_the_citation_scanner_agrees_with_the_trusted_ref_identity() -> None:
     """One REF identity, two spellings, held against each other.
 
     `tests/test_reference_registry_inventory.py` owns the identity predicate
-    and runs in the trusted suite; the verifier needs a scanner form to find
-    ids inside prose. Bounded, the two admit the same strings - unbounded they
-    did not, and nothing was red.
+    and runs in the trusted suite; the verifier needs a scanner form because
+    it hunts ids inside prose with `findall`. The comparison has to be made
+    against `findall` for that reason: `fullmatch` anchors on its own, so a
+    control written with it is green whether the pattern is bounded or not -
+    which is how the unbounded spelling survived to be found by review rather
+    than by this suite.
+
+    Unbounded, `REF-[0-9]{4}` finds `REF-0001` inside `XREF-0001` and inside
+    `REF-00019`, neither of which the trusted predicate calls an id.
     """
-    for candidate in ("REF-0001", "REF-9999", "XREF-0001", "REF-00019", "REF-001", "REF-0001X"):
-        assert bool(REF_CITATION.fullmatch(candidate)) == bool(
-            TRUSTED_REF_ID.match(candidate)
-        ), candidate
+    for text in ("REF-0001", "REF-9999", "XREF-0001", "REF-00019", "REF-001", "REF-0001X"):
+        expected = [text] if TRUSTED_REF_ID.match(text) else []
+        assert REF_CITATION.findall(text) == expected, text
 
 
 def test_a_stale_digest_is_refused(tmp_path: Path) -> None:
