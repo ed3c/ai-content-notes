@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import copy
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -35,15 +36,108 @@ from closure_audit import (  # noqa: E402
     main,
 )
 
-# The closures this atom exists to report. When one of them acquires its
-# artifact - the draft chain lands, or the index is re-materialized - that PR
-# updates this tuple and the affected ledger row together. A silent edit here
-# is the same substitution of a comment for a merge that produced the list.
+# The closures this atom exists to report. This tuple is a *provider* fact -
+# how these seven issues were closed - and it does not change when one of them
+# acquires its artifact.
+#
+# It used to be asserted equal to the tree-derived
+# `summary.closure_without_artifact`, with a comment telling the materializing
+# PR to "update this tuple and the affected ledger row together". That
+# instruction is unexecutable here: `verify.yml` replaces the candidate's
+# `tests/` with the default branch's before judging it, so a PR that
+# materializes an artifact *and* edits this tuple is still judged by the old
+# tuple and goes red. Measured on a candidate tree carrying only
+# `docs/reference-registry/README.md` and `reference-index.private.json`:
+#
+#     E  assert (59, 62, 63, 64, 69, 70) == (56, 59, 62, 63, 64, 69, ...)
+#
+# Same class as ed3c/ai-content-notes#104, which measured the trusted-suite
+# swap failing a correct atom against exactly this kind of stale hardcoded
+# set, and was fixed in PR #105.
+#
+# What replaces it is stricter, not looser. Equality let a future PR silently
+# rewrite the literal; the reconciliation below cannot be satisfied that way:
+# a closure may leave the bare set only by acquiring its artifact *and*
+# recording what superseded it in the ledger row, and no closure outside this
+# tuple may ever enter the bare set.
 RECEIPT_CLOSED_WITHOUT_ARTIFACT = (56, 59, 62, 63, 64, 69, 70)
+
+# The token a ledger note must carry once its closure leaves the bare set, and
+# what has to follow it. A bare token would be a free exit - an authorization
+# gate that admits any string, the class ed3c/skill-concerns#103 catalogued -
+# so the note has to name the issue that owns having materialized the path.
+#
+# An issue number and deliberately not a merge sha. A merge sha does not exist
+# when the row that needs it is written: the PR that materializes the artifact
+# is the PR that edits this note, and its own merge commit is created after it
+# is judged. Admitting the sha form only ever admitted a sha nothing produced,
+# which is why the first draft of this rule accepted forty zeros; that string
+# is now a control below. Nor could any reader here resolve one - this suite
+# has no network, and `verify.yml` checks out at `fetch-depth: 1`, so no commit
+# other than HEAD exists in the tree being judged.
+#
+# The rule lives in `tests/` rather than in `tools/closure_audit.py` for the
+# same reason the tuple above does: `verify.yml` replaces the candidate's
+# `tests/` with the default branch's and keeps the candidate's `tools/`, so a
+# vocabulary declared under `tools/` is bytes the subject can rewrite, and one
+# declared here is bytes it cannot.
+SUPERSEDED_BY = "superseded-by:"
+SUPERSESSION = re.compile(rf"{re.escape(SUPERSEDED_BY)}\s*AI-CONTENT#[1-9][0-9]*")
 
 
 def report() -> dict:
     return audit(load_ledger(DEFAULT_LEDGER), ROOT)
+
+
+def reconcile(rendered: dict, ledger: dict) -> list[str]:
+    """Findings when an audit report disagrees with the receipt-closed set.
+
+    Two directions, and they are not symmetric:
+
+    - a closure *entering* the bare set is always a finding - the seven are
+      the recorded extent of this defect, and an eighth is new damage;
+    - a closure *leaving* it is legitimate, but only against a ledger note
+      that says what materialized the path. Without that the row reads as if
+      the original draft chain landed, which is the exact substitution of a
+      receipt for a merge this audit exists to refuse.
+
+    The cheaper rule this replaced, `set(bare) <= set(RECEIPT_CLOSED_WITHOUT_
+    ARTIFACT)`, is green when all seven vanish at once with no note at all.
+    What is refused here is a *silent* departure; the controls below show the
+    refusal firing on an empty token, on prose, on a short hex string, on an
+    all-zero merge sha and on issue zero.
+    """
+    bare = set(rendered["summary"]["closure_without_artifact"])
+    recorded = set(RECEIPT_CLOSED_WITHOUT_ARTIFACT)
+    notes = {closure["issue"]: str(closure.get("note") or "") for closure in ledger["closures"]}
+    findings = [
+        f"#{issue}: bare closure outside the recorded receipt-closed set"
+        for issue in sorted(bare - recorded)
+    ]
+    findings.extend(
+        f"#{issue}: left the bare set with no {SUPERSEDED_BY!r} owning issue"
+        for issue in sorted(recorded - bare)
+        if not SUPERSESSION.search(notes.get(issue, ""))
+    )
+    return findings
+
+
+def rendered_without(issue: int) -> dict:
+    """The audit report as it reads once `issue` acquires its artifact."""
+    rendered = copy.deepcopy(report())
+    rendered["summary"]["closure_without_artifact"] = [
+        number
+        for number in rendered["summary"]["closure_without_artifact"]
+        if number != issue
+    ]
+    return rendered
+
+
+def ledger_note(issue: int, note: str) -> dict:
+    """The ledger with one closure's note replaced, the original untouched."""
+    ledger = copy.deepcopy(load_ledger(DEFAULT_LEDGER))
+    next(closure for closure in ledger["closures"] if closure["issue"] == issue)["note"] = note
+    return ledger
 
 
 def test_ledger_covers_each_closed_issue_once_with_in_tree_paths() -> None:
@@ -82,16 +176,63 @@ def test_all_three_states_are_emitted_by_the_current_tree() -> None:
     assert states == {PRESENT, ABSENT, NO_PATH_NAMED}
 
 
-def test_the_seven_receipt_closures_report_closure_without_artifact() -> None:
+def test_the_seven_receipt_closures_stay_accounted_for() -> None:
+    ledger = load_ledger(DEFAULT_LEDGER)
     rendered = report()
-    assert tuple(rendered["summary"]["closure_without_artifact"]) == (
-        RECEIPT_CLOSED_WITHOUT_ARTIFACT
-    )
+    assert reconcile(rendered, ledger) == []
+
+    # Tautology guard: the reconciliation above is vacuous if the seven fell
+    # out of the ledger entirely, so the rows have to still be there.
+    issues = {closure["issue"] for closure in ledger["closures"]}
+    assert set(RECEIPT_CLOSED_WITHOUT_ARTIFACT) <= issues
+
     for row in rendered["rows"]:
-        if row["issue"] in RECEIPT_CLOSED_WITHOUT_ARTIFACT:
+        if row["issue"] in rendered["summary"]["closure_without_artifact"]:
+            assert row["issue"] in RECEIPT_CLOSED_WITHOUT_ARTIFACT
             assert row["status"] == ABSENT
             assert row["verdict"] == CLOSURE_WITHOUT_ARTIFACT
             assert row["missing"]
+
+
+def test_an_eighth_bare_closure_is_refused() -> None:
+    """Entering the bare set is new damage, whatever the ledger note says."""
+    rendered = copy.deepcopy(report())
+    rendered["summary"]["closure_without_artifact"].append(999)
+    findings = reconcile(rendered, load_ledger(DEFAULT_LEDGER))
+    assert any("#999" in finding for finding in findings), findings
+
+
+def test_acquiring_the_artifact_without_a_superseding_note_is_refused() -> None:
+    """The red-before-green half of the rule the old equality could not state."""
+    findings = reconcile(
+        rendered_without(56),
+        ledger_note(56, "planted: artifact present, nothing recorded about what put it there"),
+    )
+    assert any("#56" in finding and SUPERSEDED_BY in finding for finding in findings), findings
+
+
+def test_acquiring_the_artifact_with_a_superseding_note_is_allowed() -> None:
+    """And the green half: the rule must not make materialization unreachable."""
+    note = ledger_note(56, f"planted: {SUPERSEDED_BY} AI-CONTENT#96")
+    assert reconcile(rendered_without(56), note) == []
+
+
+def test_a_supersession_naming_nothing_resolvable_is_refused() -> None:
+    """The free-exit control: the token alone authorizes nothing.
+
+    Same class as ed3c/skill-concerns#103 - an authorization gate that accepts
+    any string is not a gate. The last two plants are the ones the first draft
+    of this rule admitted: a forty-hex string nothing produced, and issue zero.
+    """
+    for planted in (
+        f"planted: {SUPERSEDED_BY}",
+        f"planted: {SUPERSEDED_BY} the draft chain",
+        f"planted: {SUPERSEDED_BY} 0123abc",
+        f"planted: {SUPERSEDED_BY} " + "0" * 40,
+        f"planted: {SUPERSEDED_BY} AI-CONTENT#0",
+    ):
+        findings = reconcile(rendered_without(56), ledger_note(56, planted))
+        assert any("#56" in finding for finding in findings), planted
 
 
 def test_no_path_named_is_not_counted_as_a_pass() -> None:
