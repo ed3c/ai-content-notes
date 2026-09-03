@@ -42,11 +42,18 @@ this repository can resolve a commit that is not HEAD, and a wrong 40-hex
 string would have passed every check. The binding that survives is the digest,
 re-read on the tree under judgment.
 
-That leaves a hole in a law this registry does not own: `main`'s
-`law_inventory_stays_url_indexed` refuses a mutable `revision` for any state
-above `URL_INDEXED`, but a row with no `revision` key at all reaches that
-clause as `None` and passes it. These rows are carried by the law's *digest*
-clause, not its revision clause. Filed as `ed3c/ai-content-notes#115`.
+These rows are carried by the law's *digest* clause, not its revision clause.
+That used to be an accident — `law_inventory_stays_url_indexed` refused a
+mutable `revision` and a row with no `revision` key at all reached the clause
+as `None` and passed. `ed3c/ai-content-notes#115` decided it deliberately
+instead: the digest is required, `revision` is optional and unverified, and
+the blocklist stays because `UNKNOWN`, `main_MUTABLE` and `HEAD` claim a
+binding they do not have. The control that makes it a decision is
+`test_a_record_with_no_revision_key_is_admitted_on_its_digest_alone`, and it
+reads these rows to check the shape it exists for is still here.
+
+Requiring a resolvable revision is the other half #115 left open. It is a
+change to `verify.yml`'s `fetch-depth` before it is a change to the law.
 
 ## Three rules this directory exists to keep
 
