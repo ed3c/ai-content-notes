@@ -98,13 +98,25 @@ directory conforms to.
 
 ## The locators already on `main`, which this registry does not add
 
-`evals/source-intake/modern-web-architecture/` carries the Drive file
-identifier of its PDF subject in three files, and
-`examples/source-registry/example-source-registry.json` carries two more. They
-arrived with the merged Product Reverse lane (PR #52, #53, #73) and with the
-schema example, not with this directory. `REG-04` is scoped to this directory
-because a check scoped to the whole tree would be red on arrival and switched
-off within a wave. Removing them is #41's decision, not this registry's.
+Seven tracked files carry the Drive file identifier of the Stage 2 PDF
+subject, 24 occurrences in all, and one of them additionally carries a Docs
+document identifier:
+
+```text
+evals/product-signal/modern-web-architecture/evidence-ledger.json      5
+evals/product-signal/modern-web-architecture/product-signal.json       1
+evals/product-signal/modern-web-architecture/readback-receipt.json     1
+evals/source-intake/modern-web-architecture/readback-receipt.json      3
+evals/source-intake/modern-web-architecture/source-descriptor.json     4
+evals/source-intake/modern-web-architecture/source-registry.json       5
+examples/source-registry/example-source-registry.json                  5
+```
+
+They arrived with the merged Product Reverse lane (PR #52, #53, #73) and with
+the schema example, not with this directory. `REG-04` is therefore scoped to
+this directory: a check scoped to the whole tree would be red on arrival and
+switched off within a wave, which is worse than a narrow check that stays
+armed. Removing them is #41's decision, not this registry's.
 
 ## Running it
 
