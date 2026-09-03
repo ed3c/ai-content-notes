@@ -1,8 +1,10 @@
-"""Landing ceremony: the Refs contract and the Issue marker stamp.
+"""Landing ceremony: the Refs contract, the Issue marker stamp, and the exit code.
 
-Only the two pure functions are exercised. Everything else in `land_pr.py` is a
-GitHub API call whose refusal is the provider's own, and is asserted by the
-read-backs inside the script rather than by a mock of the provider here.
+The pure functions are exercised directly. The provider calls are exercised
+through an injected `call`, because what has to be pinned about them is not the
+provider's behaviour - its refusals are its own - but this script's: which
+write is allowed to fail quietly, which is not, and what exit code each state
+of the two marker surfaces earns.
 """
 
 from __future__ import annotations
@@ -343,3 +345,119 @@ def test_audit_issue_refuses_only_the_state_that_names_a_loss() -> None:
     wiped = stale_whole_body_write(PRE_LAND_BODY)
     assert land_pr.audit_issue(REPOSITORY, 113, call=provider(wiped, [{"body": receipt}])) == 1
     assert land_pr.audit_issue(REPOSITORY, 113, call=provider(wiped, [])) == 0
+
+
+def test_audit_issue_reads_the_marker_set_back_off_the_receipt(capsys) -> None:
+    """The durable copy is read, not merely written.
+
+    In MARKERS_LOST the body block is `[]` by definition, so a reader that
+    printed only the body block would name the loss and print nothing of what
+    was lost - and the receipt comment would be a store no process ever reads a
+    value out of. MARKERS_LOST is the state the comment exists for, so it is
+    the state the recovery has to be visible in.
+    """
+    markers = land_pr.land_markers(REPOSITORY, *LAND_113)
+    receipt = f"{land_pr.MARKER_RECEIPT_TOKEN}116\n\n" + land_pr.stamp("", markers)
+    wiped = stale_whole_body_write(PRE_LAND_BODY)
+    assert land_pr.split_marker_block(wiped)[1] == []
+
+    def fake(method: str, path: str, payload: dict | None = None):
+        if path.endswith("/comments?per_page=100"):
+            return [{"body": "ordinary comment"}, {"body": receipt}]
+        return {"body": wiped}
+
+    assert land_pr.audit_issue(REPOSITORY, 113, call=fake) == 1
+    reported = json.loads(capsys.readouterr().out)
+    assert reported["marker_surface"] == land_pr.MARKERS_LOST
+    assert reported["markers"] == land_pr.stamp("", markers).rstrip("\n").split("\n")
+    assert f"<!-- landing-merge: {LAND_113[2]} -->" in reported["markers"]
+
+    # The other direction: with no receipt there is nothing to recover, and the
+    # reader must not report a marker set it did not read off any surface.
+    def unreceipted(method: str, path: str, payload: dict | None = None):
+        return [] if path.endswith("/comments?per_page=100") else {"body": wiped}
+
+    assert land_pr.audit_issue(REPOSITORY, 113, call=unreceipted) == 0
+    assert json.loads(capsys.readouterr().out)["markers"] == []
+
+
+class Provider:
+    """Enough provider for one land: an open pull request at head, one Issue.
+
+    Comment POSTs can be refused, which is the only axis these tests vary: it
+    is the axis `post_marker_receipt` absorbs, and therefore the one where a
+    failure could otherwise leave no trace.
+    """
+
+    def __init__(self, *, comments_accepted: bool = True) -> None:
+        self.issue = {"state": "open", "body": PRE_LAND_BODY}
+        self.comments: list[dict] = []
+        self.comments_accepted = comments_accepted
+
+    def __call__(self, method: str, path: str, payload: dict | None = None):
+        if path.endswith("/comments?per_page=100"):
+            return list(self.comments)
+        if path.endswith("/comments"):
+            if not self.comments_accepted:
+                raise SystemExit("GITHUB_API_REFUSED:POST:/comments:403:secondary rate limit")
+            self.comments.append({"body": payload["body"]})
+            return {}
+        if "/pulls/" in path:
+            if method == "PUT":
+                return {"merged": True, "sha": LAND_113[2]}
+            return {
+                "state": "open",
+                "merged": True,
+                "head": {"sha": LAND_113[1]},
+                "base": {"ref": "main"},
+                "body": f"Refs {REPOSITORY}#113",
+                "merged_at": "2026-09-03T00:00:00Z",
+            }
+        if method == "PATCH":
+            self.issue = {"state": payload["state"], "body": payload["body"]}
+        return self.issue
+
+
+def test_a_land_whose_durable_receipt_did_not_post_exits_non_zero(
+    tmp_path, monkeypatch, capsys
+) -> None:
+    """A write that cannot raise still has to cost something. Both directions.
+
+    `post_marker_receipt` is N-class: it absorbs every provider refusal and
+    returns 'failed'. Before this control that word went into an ephemeral
+    Actions log and `main` returned 0 - identical, at the exit code, to a clean
+    land - after which the Issue read RECEIPT_ABSENT, and NO_LAND once any
+    later whole-body edit took the body copy too. That is #117's own incident
+    exiting green, on the branch that exists to make it visible.
+
+    `audit_issue` keeps the narrower predicate on purpose: on an arbitrary
+    Issue only MARKERS_LOST names a loss. Here, one API call after this land
+    wrote both surfaces, nothing but LANDED is admissible.
+    """
+    receipt = tmp_path / "verify-receipt.json"
+    receipt.write_text(
+        json.dumps(
+            {"repository": REPOSITORY, "pull_request": LAND_113[0], "head_sha": LAND_113[1]}
+        ),
+        encoding="utf-8",
+    )
+    argv = ["--receipt", str(receipt), "--policy", str(REPOSITORY_ROOT / "policy" / "github.json")]
+
+    monkeypatch.setattr(land_pr, "api", Provider())
+    assert land_pr.main(argv) == 0
+    green = json.loads(capsys.readouterr().out)
+    assert green["marker_surface"] == land_pr.LANDED
+    assert green["marker_receipt"] == "posted"
+
+    monkeypatch.setattr(land_pr, "api", Provider(comments_accepted=False))
+    assert land_pr.main(argv) == 1
+    red = json.loads(capsys.readouterr().out)
+    assert red["marker_receipt"] == "failed"
+    assert red["marker_surface"] == land_pr.RECEIPT_ABSENT
+
+    # ...and the red exit must not read as a failed merge: the merge is done,
+    # read back, and named in the same record. Retrying a land after this would
+    # hit PULL_NOT_OPEN, so the record has to say which half failed.
+    assert red["merge_sha"] == LAND_113[2]
+    assert red["closed_issue"] == 113
+    assert red["landed_pull_request"] == LAND_113[0]

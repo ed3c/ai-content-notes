@@ -213,8 +213,11 @@ def post_marker_receipt(
     the receipt-anchor answers "was this PR merged", this answers "what did the
     land write on this Issue", and a body edit reaches neither.
 
-    N-class like `post_receipt_anchor`: never raises, never gates a land.
-    Returns 'exists' | 'posted' | 'failed'.
+    N-class like `post_receipt_anchor`: never raises, and cannot gate a land -
+    it runs after the merge and the closure read-back. It is not silent
+    though: `main` reads both surfaces afterwards and exits non-zero unless
+    they agree, so 'failed' costs a red job rather than a log line nobody
+    reads. Returns 'exists' | 'posted' | 'failed'.
     """
     call = api if call is None else call
     header = f"{MARKER_RECEIPT_TOKEN}{number}"
@@ -254,17 +257,24 @@ def audit_issue(repository: str, issue: int, call: Any = None) -> int:
     """
     call = api if call is None else call
     body = call("GET", f"/repos/{repository}/issues/{issue}").get("body")
-    comments = call("GET", f"/repos/{repository}/issues/{issue}/comments?per_page=100")
-    surface = marker_surface(
-        body, [item.get("body") for item in comments if isinstance(item, dict)]
-    )
+    comments = [
+        item.get("body")
+        for item in call("GET", f"/repos/{repository}/issues/{issue}/comments?per_page=100")
+        if isinstance(item, dict)
+    ]
+    surface = marker_surface(body, comments)
+
+    # Read the marker lines off whichever surface still carries them. The body
+    # copy is `[]` by definition in MARKERS_LOST - the one state this reader
+    # refuses - so printing only the body block would print nothing at the one
+    # moment the durable copy exists for, and the receipt comment would be a
+    # store nothing ever reads a value back out of.
+    receipt = next((item for item in comments if MARKER_RECEIPT_TOKEN in (item or "")), "")
+    markers = split_marker_block(body or "")[1] or split_marker_block(receipt)[1]
+
     print(
         json.dumps(
-            {
-                "issue": issue,
-                "marker_surface": surface,
-                "markers": split_marker_block(body or "")[1],
-            },
+            {"issue": issue, "marker_surface": surface, "markers": markers},
             indent=2,
             sort_keys=True,
         )
@@ -337,8 +347,9 @@ def main(argv: list[str] | None = None) -> int:
     anchor = post_receipt_anchor(repository, number, merge_sha)
     receipt_comment = post_marker_receipt(repository, issue, number, markers)
 
-    # Read the pair back rather than assert the write succeeded. Reported, not
-    # gated: the merge already happened, and the anchor is N-class by contract.
+    # Read the pair back rather than assert the write succeeded. This cannot
+    # gate the land - the merge already happened - but it decides the exit
+    # code, which is the only durable surface left at this point.
     surface = marker_surface(
         closed.get("body"),
         [
@@ -363,7 +374,25 @@ def main(argv: list[str] | None = None) -> int:
             sort_keys=True,
         )
     )
-    return 0
+
+    # This land wrote both surfaces, so anything but LANDED means a write did
+    # not take, and the job goes red. `post_marker_receipt` is N-class and
+    # never raises: before this line its failure printed the word 'failed' into
+    # an ephemeral Actions log and exited 0 - the same exit as a clean land -
+    # after which the Issue read RECEIPT_ABSENT, and NO_LAND once any later
+    # whole-body edit took the body copy too. That is #117's own incident
+    # reading as an Issue that was never landed, which is the state this atom
+    # exists to make impossible.
+    #
+    # `audit_issue` deliberately keeps the narrower predicate: on an arbitrary
+    # Issue only MARKERS_LOST names a loss, because RECEIPT_ABSENT is every
+    # land older than this commit and NO_LAND is every unlanded Issue. Here,
+    # immediately after this land, neither is admissible.
+    #
+    # The merge is done and read back before this returns; the printed record
+    # names the merge sha. A non-zero exit here is 'the receipt did not land',
+    # never 'the pull request did not merge'.
+    return 0 if surface == LANDED else 1
 
 
 if __name__ == "__main__":
