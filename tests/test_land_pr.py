@@ -286,6 +286,15 @@ def test_a_receipt_without_a_usable_verified_base_refuses(field: str, planted: o
     assert len(compared) == land_pr.VERIFIED_BASE_FIELDS.index(field)
 
 
+def test_the_consumer_is_wired_in_before_the_merge() -> None:
+    # STATIC arrival only: `main()` is not exercised here, by the rule this
+    # module opens with. It buys exactly one thing - a consumer that exists and
+    # is never called is #118's own defect wearing a different hat - and it does
+    # not show the refusal firing, which the controls above do.
+    source = (REPOSITORY_ROOT / "scripts" / "land_pr.py").read_text(encoding="utf-8")
+    assert source.index("verified_base_in_history(receipt") < source.index('"PUT",')
+
+
 def test_verify_still_writes_both_fields_the_consumer_reads() -> None:
     # The other half of the pairing: a consumer whose producer stopped emitting
     # the field would refuse every land, so the workflow that writes the receipt
