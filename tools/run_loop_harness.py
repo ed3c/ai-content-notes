@@ -52,11 +52,13 @@ check reads what the cards already have to say rather than inventing a field.
 Usage:
     python3 tools/run_loop_harness.py --run-dir RUN --source SRC \
         --source-id ID --content-id CID --updated-at TS \
-        [--high-signal CONTROLS.json] (--responder CMD | --replay DIR)
+        [--high-signal CONTROLS.json] [--responder-timeout SECONDS] \
+        (--responder CMD | --replay DIR)
 
 The responder is invoked once per round as `CMD <request.json>`; its stdout is
-the raw model response. `--replay DIR` serves `DIR/round-NN.raw.md` instead --
-the exact name this harness writes, so a finished run's `rounds/` directory
+the raw model response, and it has `--responder-timeout` seconds to produce one
+before the round is refused. `--replay DIR` serves `DIR/round-NN.raw.md` instead
+-- the exact name this harness writes, so a finished run's `rounds/` directory
 replays as-is with no renaming step in between.
 """
 
@@ -81,6 +83,14 @@ import reconcile_card_registry as registry  # noqa: E402
 EMPTY_REGISTRY_DIGEST = "sha256:" + hashlib.sha256(b"").hexdigest()
 TERMINAL_STATES = {"DONE", "BLOCKED", "FAILED"}
 REGISTRY_SCHEMA = Path("schemas/card-registry.schema.json")
+# How long the harness is willing to wait for one round's compile intelligence.
+# Unbounded was the real previous value, and it is not a neutral default: a
+# responder that stalls stalls the whole `while` loop, with no round budget
+# reached and no receipt written. Fifteen minutes is deliberately generous for
+# one model round rather than tuned; it is overridable because acceptable
+# latency is a property of the responder an operator chose, not of this harness
+# (ed3c/ai-content-notes#110).
+RESPONDER_TIMEOUT_SECONDS = 900.0
 
 
 class HarnessError(RuntimeError):
@@ -191,18 +201,30 @@ def build_request(
     }
 
 
-def _responder_from_command(command: str, cwd: Path) -> Callable[[int, Path], str]:
+def _responder_from_command(
+    command: str,
+    cwd: Path,
+    timeout: float = RESPONDER_TIMEOUT_SECONDS,
+) -> Callable[[int, Path], str]:
     argv = shlex.split(command)
     if not argv:
         raise HarnessError("--responder is empty")
 
     def call(round_number: int, request_path: Path) -> str:
-        result = subprocess.run(  # noqa: S603 - operator-supplied compile intelligence
-            [*argv, str(request_path)],
-            capture_output=True,
-            text=True,
-            cwd=cwd,
-        )
+        try:
+            result = subprocess.run(  # noqa: S603 - operator-supplied compile intelligence
+                [*argv, str(request_path)],
+                capture_output=True,
+                text=True,
+                cwd=cwd,
+                timeout=timeout,
+            )
+        except subprocess.TimeoutExpired as expired:
+            # Distinct from "exited N" and from "produced an empty response":
+            # those are answers the harness refuses, this is no answer at all.
+            raise HarnessError(
+                f"round {round_number}: responder exceeded {timeout:g}s and was killed"
+            ) from expired
         if result.returncode != 0:
             detail = result.stderr.strip().splitlines()[-1:] or ["<no stderr>"]
             raise HarnessError(
@@ -504,6 +526,12 @@ def build_parser() -> argparse.ArgumentParser:
         type=Path,
         help="JSON list of {key, quote} controls that DONE requires a card to anchor",
     )
+    parser.add_argument(
+        "--responder-timeout",
+        type=float,
+        default=RESPONDER_TIMEOUT_SECONDS,
+        help=f"seconds to wait for one responder round (default {RESPONDER_TIMEOUT_SECONDS:g})",
+    )
     source = parser.add_mutually_exclusive_group(required=True)
     source.add_argument("--responder", help="command invoked as CMD <request.json> each round")
     source.add_argument(
@@ -518,7 +546,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     responder = (
         _responder_from_replay(args.replay.resolve())
         if args.replay
-        else _responder_from_command(args.responder, repo_root)
+        else _responder_from_command(args.responder, repo_root, args.responder_timeout)
     )
     receipt = run(
         args.run_dir.resolve(),
