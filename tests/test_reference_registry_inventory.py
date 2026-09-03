@@ -220,12 +220,38 @@ def resolve(registry: dict, ref_id: str) -> dict | object:
 
 
 def law_inventory_stays_url_indexed(registry: dict) -> list[str]:
-    """`URL_INDEXED` until an immutable revision and a digest exist.
+    """`URL_INDEXED` until a digest exists, and never on a mutable revision.
 
     Applies to all five states above `URL_INDEXED` on `STATE_CEILING`, not
     only the two (`READ_BACK_VERIFIED`, `RIGHTS_ADMITTED`) this module has a
     fixture for - any of the five makes a claim stronger than "a URL was
     found", so none of them should be reachable on a mutable pointer either.
+
+    The two clauses are not symmetric, and the docstring used to imply they
+    were - it said a stronger state "needs an immutable revision and a digest"
+    while the predicate was a blocklist of three mutable names, so a row that
+    omitted `revision` entirely reached `READ_BACK_VERIFIED` without naming one
+    and a 40-hex string nothing produced passed too (ed3c/ai-content-notes#115).
+
+    What is enforced, deliberately, is:
+
+    - **the digest is required.** It is the only binding this repository can
+      re-resolve: `tools/verify_reference_registry.py` re-reads the bytes under
+      judgment on every verifier run.
+    - **`revision` is optional, and unverified when present.** Nothing here can
+      resolve a commit that is not `HEAD` - `verify.yml` checks out at
+      `fetch-depth: 1` and the verifier has no network - so requiring a
+      revision would require a field whose only property is that nobody checks
+      it. `docs/reference-registry/README.md` states the same decision for the
+      ten rows that rely on it.
+    - **the blocklist stays** because `UNKNOWN`, `main_MUTABLE` and `HEAD`
+      claim a binding they do not have. Refusing a name that advertises
+      mutability is worth doing even where absence is admitted; it is a
+      narrower claim than "an immutable revision was verified", and it is the
+      one this function can actually make.
+
+    Requiring a resolvable revision is the other half #115 leaves open, and it
+    is a change to `verify.yml`'s `fetch-depth` before it is a change here.
     """
     findings = []
     for record in registry["references"]:
@@ -237,7 +263,11 @@ def law_inventory_stays_url_indexed(registry: dict) -> list[str]:
             continue
         if record.get("revision") in MUTABLE_REVISIONS:
             findings.append(f"{record.get('id')}: {state} on revision {record.get('revision')!r}")
-        if record.get("digest", UNKNOWN) == UNKNOWN:
+        # `or UNKNOWN` so absent, null and empty reach the same refusal as the
+        # literal name: the required half must not be silent about absence
+        # either, which is the sibling instance of the #115 hole in this same
+        # predicate.
+        if (record.get("digest") or UNKNOWN) == UNKNOWN:
             findings.append(f"{record.get('id')}: {state} without a digest")
     return findings
 
@@ -433,6 +463,63 @@ def test_an_immutable_revision_with_a_digest_is_allowed_to_leave_url_indexed() -
         )
         == []
     )
+
+
+def test_a_record_with_no_revision_key_is_admitted_on_its_digest_alone() -> None:
+    """ed3c/ai-content-notes#115: the third line of that issue's table, pinned.
+
+    An absent `revision` passing was an accident of `None not in
+    MUTABLE_REVISIONS`, not a decision. It is now the decision - option 1 of
+    the two #115 names - and this control is what makes it one: requiring a
+    revision here turns this red, and whoever does it has to mean it.
+    """
+    record = {
+        "id": "REF-9001",
+        "role": "EXAMPLE",
+        "state": "READ_BACK_VERIFIED",
+        "digest": "sha256:" + "a" * 64,
+    }
+    assert "revision" not in record
+    assert law_inventory_stays_url_indexed({"references": [record]}) == []
+
+    # ...and this is the shape the committed rows actually have, so the
+    # decision is pinned against a live subject rather than a synthetic one.
+    path = registry_json_path()
+    if path.exists():
+        committed = json.loads(path.read_text(encoding="utf-8"))
+        assert [
+            row
+            for row in committed["references"]
+            if row.get("state") != URL_INDEXED and "revision" not in row
+        ], "no committed row relies on this clause any more; revisit the decision"
+
+
+def test_the_other_direction_a_missing_digest_is_still_refused() -> None:
+    """Absence is admitted on the optional half only. Both halves, one fixture.
+
+    Without this, "an absent key passes" would read as a property of the law
+    rather than of one clause, and the required half could rot the same way.
+    """
+    base = {"id": "REF-9001", "role": "EXAMPLE", "state": "READ_BACK_VERIFIED"}
+    for digest in ({}, {"digest": UNKNOWN}, {"digest": None}, {"digest": ""}):
+        findings = law_inventory_stays_url_indexed({"references": [dict(base, **digest)]})
+        assert any("without a digest" in item for item in findings), digest
+
+
+def test_an_unresolvable_revision_is_admitted_and_a_mutable_name_is_not() -> None:
+    """The blocklist refuses claims of a binding, not unverified strings.
+
+    Nothing in this repository resolves a revision - `verify.yml` checks out at
+    `fetch-depth: 1` and the verifier has no network - so a 40-hex string here
+    is unchecked either way. The narrow claim the law can make is that a row
+    does not *advertise* mutability, and that is the claim it makes.
+    """
+    base = {"id": "REF-9001", "role": "EXAMPLE", "state": "READ_BACK_VERIFIED",
+            "digest": "sha256:" + "a" * 64}
+    assert law_inventory_stays_url_indexed({"references": [dict(base, revision="0" * 40)]}) == []
+    for name in sorted(MUTABLE_REVISIONS):
+        findings = law_inventory_stays_url_indexed({"references": [dict(base, revision=name)]})
+        assert any(f"on revision {name!r}" in item for item in findings), name
 
 
 def test_identity_resolved_without_a_digest_fails() -> None:
