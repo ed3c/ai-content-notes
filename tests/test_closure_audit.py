@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import copy
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -61,8 +62,15 @@ from closure_audit import (  # noqa: E402
 # tuple may ever enter the bare set.
 RECEIPT_CLOSED_WITHOUT_ARTIFACT = (56, 59, 62, 63, 64, 69, 70)
 
-# The token a ledger note must carry once its closure leaves the bare set.
+# The token a ledger note must carry once its closure leaves the bare set, and
+# what has to follow it. A bare token would be a free exit - an authorization
+# gate that admits any string, the class ed3c/skill-concerns#103 catalogued -
+# so the note has to name either the merge commit that materialized the path
+# or the issue that owns having done so.
 SUPERSEDED_BY = "superseded-by:"
+SUPERSESSION = re.compile(
+    rf"{re.escape(SUPERSEDED_BY)}\s*(?:[0-9a-f]{{40}}|AI-CONTENT#[0-9]+)"
+)
 
 
 def report() -> dict:
@@ -89,9 +97,9 @@ def reconcile(rendered: dict, ledger: dict) -> list[str]:
         for issue in sorted(bare - recorded)
     ]
     findings.extend(
-        f"#{issue}: left the bare set with no {SUPERSEDED_BY!r} note"
+        f"#{issue}: left the bare set with no {SUPERSEDED_BY!r} merge sha or owning issue"
         for issue in sorted(recorded - bare)
-        if SUPERSEDED_BY not in notes.get(issue, "")
+        if not SUPERSESSION.search(notes.get(issue, ""))
     )
     return findings
 
@@ -185,6 +193,34 @@ def test_acquiring_the_artifact_with_a_superseding_note_is_allowed() -> None:
     row = next(closure for closure in ledger["closures"] if closure["issue"] == 56)
     row["note"] = f"planted: {SUPERSEDED_BY} 0000000000000000000000000000000000000000"
     assert reconcile(rendered, ledger) == []
+
+    # And an owning issue is the other accepted form.
+    row["note"] = f"planted: {SUPERSEDED_BY} AI-CONTENT#96"
+    assert reconcile(rendered, ledger) == []
+
+
+def test_a_bare_supersession_token_is_refused() -> None:
+    """The free-exit control: the token alone authorizes nothing.
+
+    Same class as ed3c/skill-concerns#103 - an authorization gate that accepts
+    any string is not a gate. The note has to name a merge commit or the issue
+    that owns having materialized the path.
+    """
+    rendered = copy.deepcopy(report())
+    rendered["summary"]["closure_without_artifact"] = [
+        issue
+        for issue in rendered["summary"]["closure_without_artifact"]
+        if issue != 56
+    ]
+    ledger = copy.deepcopy(load_ledger(DEFAULT_LEDGER))
+    row = next(closure for closure in ledger["closures"] if closure["issue"] == 56)
+    for planted in (
+        f"planted: {SUPERSEDED_BY}",
+        f"planted: {SUPERSEDED_BY} the draft chain",
+        f"planted: {SUPERSEDED_BY} 0123abc",
+    ):
+        row["note"] = planted
+        assert any("#56" in finding for finding in reconcile(rendered, ledger)), planted
 
 
 def test_no_path_named_is_not_counted_as_a_pass() -> None:
