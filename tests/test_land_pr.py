@@ -226,3 +226,120 @@ def test_provider_refusal_never_gates_the_land() -> None:
         raise SystemExit("GITHUB_API_REFUSED:POST:/comments:403:secondary rate limit")
 
     assert land_pr.post_receipt_anchor(REPOSITORY, 85, "c" * 40, call=fake) == "failed"
+
+
+# --------------------------------------------------------------------------
+# ed3c/ai-content-notes#117: the Issue body is a shared mutable field, and a
+# whole-body write composed from a pre-land read deletes the marker block.
+# The #113 instance, replayed from the SHAs recorded in that issue.
+# --------------------------------------------------------------------------
+
+LAND_113 = (116, "9cebf79f9136eb4ba851f27a26ebba10b2ba307f", "3ba1564a572d9e61c294ece9f7e4084d25e75e87")
+PRE_LAND_BODY = "issue text\n\n## Evidence boundary\n\nOne instance, one issue.\n"
+
+
+def stale_whole_body_write(pre_land: str) -> str:
+    """What #113's 04:00:29Z edit was: a correction composed from the 03:58Z body.
+
+    It never saw the markers, so it cannot preserve them - it is not malicious
+    and no rule of politeness prevents it. That is the whole mechanism.
+    """
+    return pre_land.replace("One instance", "One instance, measured end to end")
+
+
+def test_a_stale_whole_body_write_deletes_the_body_markers() -> None:
+    # The defect itself, asserted rather than assumed: this is what happened to
+    # #113, and nothing in `stamp` can prevent a later writer from doing it.
+    stamped = land(PRE_LAND_BODY, LAND_113)
+    assert len(land_pr.split_marker_block(stamped)[1]) == 6
+
+    after = stale_whole_body_write(PRE_LAND_BODY)
+    assert land_pr.split_marker_block(after)[1] == []
+
+
+def test_the_marker_receipt_survives_the_write_that_deletes_the_body_block() -> None:
+    # The cure: the same land's marker set also lives in a comment, which a
+    # body PATCH cannot reach. Both directions of the reader, on one fixture.
+    posted: list[dict] = []
+
+    def fake(method: str, path: str, payload: dict | None = None):
+        if method == "GET":
+            return []
+        posted.append(payload)
+        return {}
+
+    markers = land_pr.land_markers(REPOSITORY, *LAND_113)
+    assert land_pr.post_marker_receipt(REPOSITORY, 113, 116, markers, call=fake) == "posted"
+    receipt = posted[0]["body"]
+
+    stamped = land(PRE_LAND_BODY, LAND_113)
+    assert land_pr.marker_surface(stamped, [receipt]) == land_pr.LANDED
+
+    # the direction #113 actually took: body block gone, receipt untouched
+    after = stale_whole_body_write(PRE_LAND_BODY)
+    assert land_pr.marker_surface(after, [receipt]) == land_pr.MARKERS_LOST
+
+    # and the marker set is recoverable from the receipt, not merely detected
+    assert land_pr.split_marker_block(receipt)[1] == land_pr.stamp("", markers).rstrip("\n").split(
+        "\n"
+    )
+
+
+def test_an_issue_that_was_never_landed_is_not_read_as_markers_lost() -> None:
+    """ABSENT is never NEGATIVE: silence on both surfaces is its own answer.
+
+    Without this direction the reader would be a detector that fires on every
+    unlanded issue, which is the same as not having one.
+    """
+    assert land_pr.marker_surface(PRE_LAND_BODY, []) == land_pr.NO_LAND
+    assert land_pr.marker_surface(PRE_LAND_BODY, ["an ordinary comment"]) == land_pr.NO_LAND
+    assert land_pr.marker_surface(None, []) == land_pr.NO_LAND
+
+
+def test_a_land_older_than_the_receipt_reads_as_receipt_absent() -> None:
+    """Every issue landed before this change is this state, not LANDED."""
+    stamped = land(PRE_LAND_BODY, LAND_113)
+    assert land_pr.marker_surface(stamped, []) == land_pr.RECEIPT_ABSENT
+    assert (
+        land_pr.marker_surface(
+            stamped, ["physical-receipt-anchor: pr=116 merge-commit=" + LAND_113[2]]
+        )
+        == land_pr.RECEIPT_ABSENT
+    )
+
+
+def test_the_marker_receipt_is_posted_once_per_pull_request() -> None:
+    def fake(method: str, path: str, payload: dict | None = None):
+        if method == "GET":
+            return [{"body": f"{land_pr.MARKER_RECEIPT_TOKEN}116\n\nearlier receipt"}]
+        raise AssertionError(f"unexpected write after an existing receipt: {method} {path}")
+
+    markers = land_pr.land_markers(REPOSITORY, *LAND_113)
+    assert land_pr.post_marker_receipt(REPOSITORY, 113, 116, markers, call=fake) == "exists"
+
+
+def test_the_marker_receipt_never_gates_a_land() -> None:
+    def fake(method: str, path: str, payload: dict | None = None):
+        raise SystemExit("GITHUB_API_REFUSED:POST:/comments:403:secondary rate limit")
+
+    markers = land_pr.land_markers(REPOSITORY, *LAND_113)
+    assert land_pr.post_marker_receipt(REPOSITORY, 113, 116, markers, call=fake) == "failed"
+
+
+def test_audit_issue_refuses_only_the_state_that_names_a_loss() -> None:
+    """A reader that cannot go red is not a reader (ed3c/skill-concerns#91)."""
+    receipt = f"{land_pr.MARKER_RECEIPT_TOKEN}116\n\n" + land_pr.stamp(
+        "", land_pr.land_markers(REPOSITORY, *LAND_113)
+    )
+
+    def provider(body: str, comments: list[dict]):
+        def fake(method: str, path: str, payload: dict | None = None):
+            return comments if path.endswith("/comments?per_page=100") else {"body": body}
+
+        return fake
+
+    stamped = land(PRE_LAND_BODY, LAND_113)
+    assert land_pr.audit_issue(REPOSITORY, 113, call=provider(stamped, [{"body": receipt}])) == 0
+    wiped = stale_whole_body_write(PRE_LAND_BODY)
+    assert land_pr.audit_issue(REPOSITORY, 113, call=provider(wiped, [{"body": receipt}])) == 1
+    assert land_pr.audit_issue(REPOSITORY, 113, call=provider(wiped, [])) == 0
