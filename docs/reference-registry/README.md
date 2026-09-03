@@ -9,24 +9,44 @@ the registry is allowed to claim and what it is not.
 ## What a row is
 
 A row binds one opaque `REF-*` id to one path **this repository carries**, at
-the digest those bytes had when the row was written, and names the commit that
-last changed them. Nothing else. The row is the whole claim:
+the sha256 of the bytes at that path. Nothing else. The row is the whole claim:
 
 ```text
-id           REF-0001            opaque, stable, the only thing a public index receives
-role         SOURCE_INTAKE_REGISTRY
-state        READ_BACK_VERIFIED  see the state ceiling below
-external_id  evals/source-intake/modern-web-architecture/source-registry.json
-provider     THIS_REPOSITORY
-revision     the 40-hex commit that last changed those bytes
-digest       sha256 of the bytes at that path
-consumer     AI-CONTENT#96
+id            REF-0001            opaque, stable, the only thing a public index receives
+role          SOURCE_INTAKE_REGISTRY
+state         READ_BACK_VERIFIED  see the state ceiling below
+title         human-readable; no reader resolves it
+subject_path  evals/source-intake/modern-web-architecture/source-registry.json
+provider      THIS_REPOSITORY
+digest        sha256 of the bytes at that path
 ```
 
-`external_id` holds the subject path because that path *is* this row's
-identity — it is what makes two rows for one artifact detectable. It is a
-public path in a public repository, which is the only kind of locator this
-directory is allowed to contain.
+Seven keys, and six of them have a reader. `subject_path` and `digest` are
+`REG-02`/`REG-03` in the verifier; `id`, `role` and `state` are read by three
+of the six document laws; `provider` is what makes
+`law_duplicate_titles_need_distinct_identity` demand a file ID from a
+`GOOGLE_DRIVE` row — which is why a row here declares `THIS_REPOSITORY` rather
+than omitting the key. `title` is for people and nothing resolves it.
+
+**`subject_path`, not `external_id`.** On `main`, `external_id` means
+*provider file ID*: `law_duplicate_titles_need_distinct_identity` requires a
+`GOOGLE_DRIVE` record to carry one, and `law_no_locator_in_public_projection`
+reads its value as a locator. A repository path under that name would put two
+kinds of row under one law. `REG-05` refuses the key outright, so the
+separation is a check rather than a convention.
+
+**No `revision` key.** An earlier draft of these rows carried the 40-hex
+commit that last changed each subject, and nothing read it: `verify.yml`
+checks out at `fetch-depth: 1` and this reader has no network, so no reader in
+this repository can resolve a commit that is not HEAD, and a wrong 40-hex
+string would have passed every check. The binding that survives is the digest,
+re-read on the tree under judgment.
+
+That leaves a hole in a law this registry does not own: `main`'s
+`law_inventory_stays_url_indexed` refuses a mutable `revision` for any state
+above `URL_INDEXED`, but a row with no `revision` key at all reaches that
+clause as `None` and passes it. These rows are carried by the law's *digest*
+clause, not its revision clause. Filed as `ed3c/ai-content-notes#115`.
 
 ## Three rules this directory exists to keep
 
@@ -53,12 +73,12 @@ reintroduces it.
 
 ## State ceiling
 
-```text
-URL_INDEXED != IDENTITY_RESOLVED != REVISION_BOUND != READ_BACK_VERIFIED
-            != RIGHTS_ADMITTED   != CLAIM_VERIFIED
-```
+The ladder has exactly one declaration, `STATE_CEILING` in
+`tests/test_reference_registry_inventory.py`, and this file does not restate
+it — a prose copy of a tuple is a copy that goes stale when the tuple gains a
+rung, with nothing going red.
 
-Every current row is `READ_BACK_VERIFIED` and that is a claim the verifier
+Every current row is `READ_BACK_VERIFIED`, and that is a claim the verifier
 re-earns on every run: the bytes at the subject path hash to the recorded
 digest. Nothing here is `RIGHTS_ADMITTED` or `CLAIM_VERIFIED`; this registry
 proves that a path exists with known bytes, never that its contents are true,
@@ -71,7 +91,7 @@ Two readers, one law each, deliberately not overlapping.
 | Reader | Owns | Runs |
 |---|---|---|
 | `tests/test_reference_registry_inventory.py` | the six document laws — opaque ids, no persisted `visibility`, the state ceiling, credential-bearing URLs, one file under two ids, one id resolving twice | the trusted suite, against every candidate tree |
-| `tools/verify_reference_registry.py` | the four binding refusals — dangling REF, absent subject, stale digest, published locator | `tests/test_reference_registry.py`, each with a planted defect red before green |
+| `tools/verify_reference_registry.py` | the five binding refusals — dangling REF, absent subject, stale digest, published locator, provider file-ID key | `tests/test_reference_registry.py`, each with a planted defect red before green |
 
 The first module settled its public-projection contract against #96 in PR #103
 (merge `3039adde19fc7d10f024325fd86ff68508408e2b`): `PUBLIC_PROJECTION_FIELDS`

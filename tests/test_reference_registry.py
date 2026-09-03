@@ -1,4 +1,4 @@
-"""ed3c/ai-content-notes#96 - the registry's four binding refusals.
+"""ed3c/ai-content-notes#96 - the registry's five binding refusals.
 
 `tools/verify_reference_registry.py` is only worth running if it refuses. Each
 control below plants one defect and asserts the exact refusal, then asserts the
@@ -26,10 +26,14 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
 
+from test_reference_registry_inventory import REF_ID as TRUSTED_REF_ID  # noqa: E402
 from verify_reference_registry import (  # noqa: E402
     DANGLING_REF,
     DIGEST_STALE,
+    LOCATOR_KEY,
     LOCATOR_PUBLISHED,
+    PROVIDER_LOCATOR_KEY,
+    REF_CITATION,
     REGISTRY_JSON,
     SUBJECT_ABSENT,
     checked_relative,
@@ -52,9 +56,9 @@ def planted_tree(tmp_path: Path) -> Path:
         shutil.copy2(ROOT / REGISTRY_DIR / name, root / REGISTRY_DIR / name)
     registry = load_registry(root / REGISTRY_JSON)
     for record in registry["references"]:
-        subject = root / record["external_id"]
+        subject = root / record["subject_path"]
         subject.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(ROOT / record["external_id"], subject)
+        shutil.copy2(ROOT / record["subject_path"], subject)
     return root
 
 
@@ -74,7 +78,7 @@ def test_every_row_subject_is_a_path_this_repository_carries() -> None:
     """#96's first acceptance line, asserted rather than described."""
     registry = load_registry(ROOT / REGISTRY_JSON)
     for record in registry["references"]:
-        assert (ROOT / checked_relative(record["external_id"])).is_file(), record["id"]
+        assert (ROOT / checked_relative(record["subject_path"])).is_file(), record["id"]
 
 
 def test_the_extracted_tree_is_green_before_any_plant(tmp_path: Path) -> None:
@@ -94,16 +98,45 @@ def test_a_dangling_ref_is_refused(tmp_path: Path) -> None:
 def test_an_absent_subject_is_refused(tmp_path: Path) -> None:
     root = planted_tree(tmp_path)
     registry = load_registry(root / REGISTRY_JSON)
-    registry["references"][0]["external_id"] = "evals/no-such-packet/source-registry.json"
+    registry["references"][0]["subject_path"] = "evals/no-such-packet/source-registry.json"
     rewrite(root, registry)
     assert SUBJECT_ABSENT in codes(verify(root))
+
+
+def test_a_provider_file_id_key_is_refused(tmp_path: Path) -> None:
+    """REG-05: `external_id` means provider file ID, and no row here has one.
+
+    Without this the rename is a convention, and a convention is what the
+    closed chain had. `main`'s `law_duplicate_titles_need_distinct_identity`
+    reads `external_id` as a Drive identity; a repository path arriving under
+    that name would be judged by a law written for a different kind of row.
+    """
+    root = planted_tree(tmp_path)
+    registry = load_registry(root / REGISTRY_JSON)
+    registry["references"][0][PROVIDER_LOCATOR_KEY] = "EXAMPLE-PLANTED-FILE-ID"
+    rewrite(root, registry)
+    assert LOCATOR_KEY in codes(verify(root))
+
+
+def test_the_citation_scanner_agrees_with_the_trusted_ref_identity() -> None:
+    """One REF identity, two spellings, held against each other.
+
+    `tests/test_reference_registry_inventory.py` owns the identity predicate
+    and runs in the trusted suite; the verifier needs a scanner form to find
+    ids inside prose. Bounded, the two admit the same strings - unbounded they
+    did not, and nothing was red.
+    """
+    for candidate in ("REF-0001", "REF-9999", "XREF-0001", "REF-00019", "REF-001", "REF-0001X"):
+        assert bool(REF_CITATION.fullmatch(candidate)) == bool(
+            TRUSTED_REF_ID.match(candidate)
+        ), candidate
 
 
 def test_a_stale_digest_is_refused(tmp_path: Path) -> None:
     """#64's `stale head`, retargeted: the subject drifted, the row did not."""
     root = planted_tree(tmp_path)
     registry = load_registry(root / REGISTRY_JSON)
-    subject = root / registry["references"][0]["external_id"]
+    subject = root / registry["references"][0]["subject_path"]
     subject.write_bytes(subject.read_bytes() + b"\n")
     assert DIGEST_STALE in codes(verify(root))
 
