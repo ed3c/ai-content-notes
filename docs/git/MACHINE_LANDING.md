@@ -45,6 +45,26 @@ naming this repository. It merges at that exact sha, reads the merge back,
 stamps `<!-- landing-… -->` markers into the Issue, closes it and reads the
 closure back. Any refusal is a non-zero exit carrying the provider's own reason.
 
+## What the receipt's base commits are checked against
+
+The receipt records two commits beside the head it tested: `base_sha`, the pull
+request's base at verification time, and `trusted_sha`, the default branch
+commit whose `tests/` and `publication_guard.py` did the judging. `land_pr.py`
+compares each one against the default branch it is about to merge into and
+refuses `VERIFIED_BASE_NOT_IN_HISTORY` unless the provider reports `identical`
+or `ahead` — that is, unless the commit the green was earned against is still
+reachable. A rewritten, reset or force-pushed default branch is caught before
+the merge rather than after it.
+
+Forward movement is *not* refused. The default branch moves forward on every
+land, and refusing that would mean no two pull requests could be verified
+concurrently. The stronger property — the green was earned against exactly the
+commit receiving it — is `required_status_checks.strict: true` on the branch
+protection, an operator setting with its own re-verification cost. This
+repository's protection reads `strict: false`, so `main` can and does move
+between a `verify` run and its `land` run; what the ceremony guarantees is
+reachability, not identity.
+
 ## What the Issue markers record
 
 `stamp` replaces a marker key in place, so a key that does not carry the landing

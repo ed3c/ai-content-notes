@@ -196,6 +196,107 @@ def test_land_markers_name_the_landing_pull_request_in_every_history_key() -> No
     assert set(markers) - set(history) == {"state", "landed-pr", "head", "merge"}
 
 
+# ed3c/ai-content-notes#118 - `verify.yml` writes `base_sha` and `trusted_sha`
+# into the receipt and, until `verified_base_in_history`, nothing read either
+# one: `git grep -c` found exactly their own producer line. These are the
+# controls for the consumer, and each red arm is a status the provider really
+# returns for a default branch that no longer contains the commit the green was
+# earned against.
+RECEIPT = {
+    "repository": REPOSITORY,
+    "pull_request": 118,
+    "head_sha": "a" * 40,
+    "base_sha": "b" * 40,
+    "trusted_sha": "c" * 40,
+}
+
+
+def comparer(status_by_sha: dict[str, str], seen: list[str] | None = None):
+    def fake(method: str, path: str, payload: dict | None = None):
+        assert method == "GET" and "/compare/" in path, path
+        if seen is not None:
+            seen.append(path)
+        return {"status": status_by_sha[path.split("/compare/")[1].split("...")[0]]}
+
+    return fake
+
+
+def test_both_receipt_fields_are_compared_against_the_default_branch() -> None:
+    seen: list[str] = []
+    statuses = land_pr.verified_base_in_history(
+        RECEIPT,
+        REPOSITORY,
+        "main",
+        call=comparer({"b" * 40: "identical", "c" * 40: "ahead"}, seen),
+    )
+    assert statuses == {"base_sha": "identical", "trusted_sha": "ahead"}
+    assert seen == [
+        f"/repos/{REPOSITORY}/compare/{'b' * 40}...main",
+        f"/repos/{REPOSITORY}/compare/{'c' * 40}...main",
+    ]
+
+
+@pytest.mark.parametrize("status", ["diverged", "behind", "None"])
+def test_a_verified_base_outside_the_default_branch_history_refuses(status: str) -> None:
+    with pytest.raises(SystemExit) as refusal:
+        land_pr.verified_base_in_history(
+            RECEIPT,
+            REPOSITORY,
+            "main",
+            call=comparer({"b" * 40: "identical", "c" * 40: status}),
+        )
+    assert str(refusal.value) == f"VERIFIED_BASE_NOT_IN_HISTORY:trusted_sha:{'c' * 40}:{status}"
+
+
+def test_the_base_field_is_refused_on_its_own_axis() -> None:
+    # Not a duplicate of the case above: a check that only ever looked at
+    # `trusted_sha` would pass this and still leave `base_sha` unread.
+    with pytest.raises(SystemExit) as refusal:
+        land_pr.verified_base_in_history(
+            RECEIPT,
+            REPOSITORY,
+            "main",
+            call=comparer({"b" * 40: "diverged", "c" * 40: "identical"}),
+        )
+    assert str(refusal.value) == f"VERIFIED_BASE_NOT_IN_HISTORY:base_sha:{'b' * 40}:diverged"
+
+
+@pytest.mark.parametrize("field", list(land_pr.VERIFIED_BASE_FIELDS))
+@pytest.mark.parametrize("planted", [None, "", "0123abc", "A" * 40, 40])
+def test_a_receipt_without_a_usable_verified_base_refuses(field: str, planted: object) -> None:
+    # An absent or unusable field gets its own exit rather than a silent pass: a
+    # receipt that cannot say what it was verified against must not land.
+    receipt = dict(RECEIPT)
+    if planted is None:
+        receipt.pop(field)
+    else:
+        receipt[field] = planted
+
+    compared: list[str] = []
+
+    def fake(method: str, path: str, payload: dict | None = None):
+        compared.append(path)
+        return {"status": "identical"}
+
+    with pytest.raises(SystemExit) as refusal:
+        land_pr.verified_base_in_history(receipt, REPOSITORY, "main", call=fake)
+    assert str(refusal.value).startswith(f"RECEIPT_VERIFIED_BASE_ABSENT:{field}:")
+    # and the unusable field was refused rather than sent to the provider: only
+    # the fields ahead of it in the checked order were ever compared.
+    assert len(compared) == land_pr.VERIFIED_BASE_FIELDS.index(field)
+
+
+def test_verify_still_writes_both_fields_the_consumer_reads() -> None:
+    # The other half of the pairing: a consumer whose producer stopped emitting
+    # the field would refuse every land, so the workflow that writes the receipt
+    # is asserted here rather than left to the first red land to discover.
+    workflow = (REPOSITORY_ROOT / ".github" / "workflows" / "verify.yml").read_text(
+        encoding="utf-8"
+    )
+    for field in land_pr.VERIFIED_BASE_FIELDS:
+        assert f'"{field}":' in workflow, field
+
+
 def test_clean_pr_gets_exactly_one_anchor_comment() -> None:
     calls: list[tuple[str, str]] = []
 
