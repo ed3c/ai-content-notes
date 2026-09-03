@@ -9,13 +9,16 @@ from __future__ import annotations
 
 import argparse
 import ast
-import hashlib
 import json
 import re
 import sys
 from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from source_registry import git_blob_sha1  # noqa: E402
 
 HEX40 = re.compile(r"^[a-f0-9]{40}$")
 CLAIM_ID = re.compile(r"^claim:[a-z0-9._-]+$")
@@ -98,11 +101,6 @@ def parse_frontmatter(text: str) -> dict[str, Any]:
     return result
 
 
-def git_blob_sha(data: bytes) -> str:
-    header = f"blob {len(data)}\0".encode("ascii")
-    return hashlib.sha1(header + data).hexdigest()  # noqa: S324 - Git object identity
-
-
 def _require(condition: bool, message: str) -> None:
     if not condition:
         raise ContractError(message)
@@ -138,7 +136,7 @@ def validate_binding(
 
     note_rel = _relative(note_path, repository_root, "note")
     claim_map_rel = _relative(claim_map_path, repository_root, "claim map")
-    blob_sha = git_blob_sha(note_bytes)
+    blob_sha = git_blob_sha1(note_bytes)
 
     required_frontmatter = {
         "id",

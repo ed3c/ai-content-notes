@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import hashlib
 import importlib.util
 import json
 import re
@@ -11,6 +10,10 @@ from types import ModuleType
 from jsonschema import Draft202012Validator, FormatChecker
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "tools"))
+
+from source_registry import git_blob_sha1  # noqa: E402
+
 PROMPT = ROOT / "governance/CARD_PROTOCOL_V7_1.md"
 POINTER = ROOT / "governance/CARD_PROTOCOL_CURRENT.json"
 EVAL_DIR = ROOT / "evals/prompt-ab/v7_0-v7_1"
@@ -31,12 +34,6 @@ def load_json(path: Path) -> dict[str, object]:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def git_blob_sha1(path: Path) -> str:
-    data = path.read_bytes()
-    header = f"blob {len(data)}\0".encode()
-    return hashlib.sha1(header + data).hexdigest()
-
-
 def validate(instance: object, schema_name: str) -> list[str]:
     schema = load_json(ROOT / "schemas" / schema_name)
     Draft202012Validator.check_schema(schema)
@@ -49,7 +46,7 @@ def test_v7_1_prompt_is_locked_without_prompt_rewrite() -> None:
     assert pointer["canonical_path"] == "governance/CARD_PROTOCOL_V7_1.md"
     assert pointer["git_blob_sha1"] == EXPECTED_PROMPT_BLOB
     assert pointer["immutable_prompt_payload"] is True
-    assert git_blob_sha1(PROMPT) == EXPECTED_PROMPT_BLOB
+    assert git_blob_sha1(PROMPT.read_bytes()) == EXPECTED_PROMPT_BLOB
 
 
 def test_v7_1_prompt_contains_dual_plane_and_all_gates() -> None:
